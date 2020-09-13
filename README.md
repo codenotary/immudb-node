@@ -21,7 +21,6 @@ node ./examples/database-ops-structured.js
   - UpdateMTLSConfig
   - Dump
   - SafeGet
-  - SafeSet
  - Write root to file
   - In memory at the moment
   - Look into concurrency

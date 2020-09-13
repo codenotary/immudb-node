@@ -71,7 +71,7 @@ async function main() {
     req = {
       database: rand,
       index: res.index,
-      root: res.signature,
+      root: res.root,
     }
     root.set(req)
 

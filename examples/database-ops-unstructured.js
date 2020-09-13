@@ -8,26 +8,21 @@ const cl = ImmudbClient({
 const rand = '' + Math.floor(Math.random()
   * Math.floor(100000))
  
-async function main() {
+async function main(callback) {
   try {
     let req = { username: 'immudb', password: 'immudb' }
     let res = await cl.login(req)
-    console.log(res)
 
     await cl.createDatabase({ database: rand })
 
     res = await cl.useDatabase({ database: rand })
-    console.log(res)
 
     res = await cl.set({ key: rand, value: rand })
     const index = res.index
-    console.log(res)
 
     res = await cl.get({ key: rand })
-    console.log(res)
 
     res = await cl.count({ keyPrefix: rand })
-    console.log(res)
 
     req = {
       keyPrefix: rand,
@@ -37,13 +32,10 @@ async function main() {
       deep: false,
     }
     res = await cl.scan(req)
-    console.log(res)
 
     res = await cl.byIndex({ index: index })
-    console.log(res)
 
     res = await cl.history({ key: rand })
-    console.log(res)
 
     req = {
       set: rand,
@@ -52,10 +44,8 @@ async function main() {
       reverse: false,
     }
     res = await cl.zScan(req)
-    console.log(res)
 
     res = await cl.iScan({ pageSize: 1, pageNumber: 1 })
-    console.log(res)
 
     // TODO(andrew): Figure out why this is erroring.
     // req = {
@@ -73,33 +63,81 @@ async function main() {
       }],
     }
     res = await cl.getBatch(req)
-    console.log(res)
+
+    res = await cl.set({ key: rand*2, value: rand*2 })
 
     res = await cl.currentRoot()
-    console.log(res)
 
     req = {
       database: rand,
       index: res.index,
-      root: res.signature,
+      root: res.root,
     }
     root.set(req)
-
-    // req = {
-    //   key: rand,
-    //   value: rand,
-    //   root: root.get({ database: rand }),
-    // }
-    // res = await cl.safeSet(req)
-    // console.log(res)
 
   } catch (err) {
     console.log(err)
   }
+  callback()
 }
 
-main()
+async function safeGetSet() {
+  try {
+    let req = { username: 'immudb', password: 'immudb' }
+    let res = await cl.login(req)
+
+    await cl.createDatabase({ database: rand+1 })
+
+    res = await cl.useDatabase({ database: rand+1 })
+
+    res = await cl.currentRoot()
+    req = {
+      database: rand+1,
+      index: res.index,
+      root: res.root,
+    }
+    root.set(req)
+
+    req = {
+      key: rand+6,
+      value: rand+6,
+      root: root.get({ database: rand+1 }),
+    }
+    res = await cl.safeSet(req)
+
+    res = await cl.currentRoot()
+    req = {
+      database: rand+1,
+      index: res.index,
+      root: res.root,
+    }
+    root.set(req)
+
+    req = {
+      key: rand+6,
+      value: rand+6,
+      root: root.get({ database: rand+1 }),
+    }
+    res = await cl.safeSet(req)
+
+    req = {
+      key: rand+6,
+      value: rand+6,
+      root: root.get({ database: rand+1 }),
+    }
+    res = await cl.safeSet(req)
+
+
+  } catch (err) {
+    console.log(err)
+  }
+
+}
+
+main(()=> {
+  console.log('---------Safe Get Set-------------')
+  safeGetSet()
+})
 
 // TODO
-// SafeSet(*SafeSetOptions) (*Proof)
 // SafeGet(*SafeGetOptions) (*SafeItem)
