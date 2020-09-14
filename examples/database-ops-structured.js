@@ -99,7 +99,30 @@ async function main(err, cl) {
       key: rand,
     }
     res = await cl.safeGetSV(req)
-    console.log(res)
+
+    // req = {
+    //   key: rand,
+    //   score: rand,
+    //   set: rand,
+    // }
+    // res = await cl.safeZAdd(req)
+    // console.log(res)
+
+    req = {
+      index: index,
+    }
+    res = await cl.inclusion(req)
+
+    req = {
+      index: index,
+    }
+    res = await cl.consistency(req)
+
+    // req = {
+    //   index: index,
+    // }
+    // res = await cl.bySafeIndex(req)
+    // console.log(res)
 
   } catch (err) {
     console.log(err)
@@ -107,8 +130,4 @@ async function main(err, cl) {
 }
 
 // TODO
-// SafeZAdd(*SafeZAddOptions) (*Proof)
-// Inclusion(*Index) (*InclusionProof)
-// Consistency(*Index) (*ConsistencyProof)
-// BySafeIndex(*SafeIndexOptions) (*SafeItem)
 // SafeReference(*SafeReferenceOptions) (*Proof)
