@@ -1,5 +1,5 @@
 {
-  "name": "immudb-js",
+  "name": "immudb-node",
   "version": "0.0.1",
   "description": "Node js client for immudb",
   "directories": {
@@ -10,9 +10,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "grpc-tools": "^1.9.1",
-    "protobufjs": "^6.10.1",
-    "tap": "^14.10.8"
+    "grpc-tools": "1.9.1",
+    "protobufjs": "6.10.1",
+    "tap": "14.10.8"
   },
   "dependencies": {
     "btoa": "1.2.1",
