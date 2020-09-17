@@ -1,3 +1,6 @@
 node_modules
 package-lock.json
 root.json
+test/immudb
+.nyc_output
+test/root.json

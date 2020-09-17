@@ -19,3 +19,4 @@ ImmudbClient({
  - Implement SafeZAdd
  - Implement SafeReference
  - Implement Dump
+ - Documentation

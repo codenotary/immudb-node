@@ -11,3 +11,9 @@ tap.test('is power of two', (t) => {
   t.false(util._isPowerOfTwo(3))
   t.end()
 })
+
+tap.test('equal array', (t) => {
+  t.false(util.equalArray([0], [0,1]))
+  t.false(util.equalArray([1], [2]))
+  t.end()
+})

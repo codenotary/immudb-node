@@ -1,7 +1,6 @@
 const tap = require('tap')
 
 const proofs = require('../lib/proofs')
-const util = require('../lib/util')
 
 tap.test('digest', (t) => {
   const req = {
