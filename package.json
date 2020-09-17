@@ -1,6 +1,6 @@
 {
   "name": "immudb-node",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Node js client for immudb",
   "directories": {
     "lib": "lib",
