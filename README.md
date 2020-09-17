@@ -15,22 +15,7 @@ ImmudbClient({
 })
 ```
 
-## API (WIP)
-```
- /*
-   req.username
-   req.password
-   err
-   res.token
-   res.warning
- */
- login(req, (err, res) => {}) 
-```
-
 ## Roadmap 
+ - Implement SafeZAdd
  - Implement SafeReference
  - Implement Dump
- - Write root to file (currently in memory)
- - SetSKV should only take in k and v as arguments
- - Restructure slightly
- - Update client with breaking change and publish v1.0.0 to npm

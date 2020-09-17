@@ -18,5 +18,9 @@
     "btoa": "1.2.1",
     "google-protobuf": "3.13.0",
     "grpc": "1.24.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codenotary/immudb-node.git"
   }
 }

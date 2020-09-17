@@ -34,6 +34,3 @@ async function main(err, cl) {
     console.log(err)
   }
 }
-
-// TODO
-// Dump(*empty.Empty, ImmuService_DumpServer) error

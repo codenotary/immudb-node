@@ -1,9 +1,14 @@
+const util = require('util')
+
 const ImmudbClient = require('../lib/client')
 const root = require('../lib/root')
 
-ImmudbClient({
+const clientOptions = {
   address: '127.0.0.1:7777',
-}, main)
+  rootPath: `${__dirname}/../root.json`,
+}
+
+ImmudbClient(clientOptions, main)
 
 const rand = '' + Math.floor(Math.random()
   * Math.floor(100000))
@@ -59,27 +64,11 @@ async function main(err, cl) {
 
     res = await cl.iScanSV({ pageSize: 1, pageNumber: 1 })
 
-    // TODO(andrew): Incorporate the breaking
-    // change to the API.
     res = await cl.currentRoot()
 
     res = await cl.zAdd({ set: 'set1', score: 10, key: rand })
 
     res = await cl.reference({ reference: 'ref1', key: rand })
-
-    // req = {
-    //   skvList: [{
-    //     key: rand,
-    //     payload: rand,
-    //     timestamp: unix,
-    //   },{
-    //     key: rand,
-    //     payload: rand,
-    //     timestamp: unix,
-    //   }]
-    // }
-    // res = await cl.setBatchSV(req)
-    // console.log(res)
 
     req = {
       keys: [{
@@ -100,6 +89,7 @@ async function main(err, cl) {
     }
     res = await cl.safeGetSV(req)
 
+    // WIP 
     // req = {
     //   key: rand,
     //   score: rand,
@@ -118,16 +108,12 @@ async function main(err, cl) {
     }
     res = await cl.consistency(req)
 
-    // req = {
-    //   index: index,
-    // }
-    // res = await cl.bySafeIndex(req)
-    // console.log(res)
+    req = {
+      index: 2,
+    }
+    res = await cl.bySafeIndex(req)
+    console.log(util.inspect(res, false, 8, true))
 
   } catch (err) {
-    console.log(err)
   }
 }
-
-// TODO
-// SafeReference(*SafeReferenceOptions) (*Proof)

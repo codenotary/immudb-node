@@ -51,16 +51,6 @@ async function main(err, cl) {
 
     res = await cl.iScan({ pageSize: 1, pageNumber: 1 })
 
-    // TODO(andrew): Figure out why this is erroring.
-    // req = {
-    //   kvList : [
-    //     { key: rand, value: rand },
-    //     { key: rand, value: rand },
-    //   ]
-    // }
-    // res = await cl.setBatch(req)
-    // console.log(res)
-
     req = {
       keys: [{
         key: rand,
