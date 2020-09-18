@@ -6,6 +6,7 @@
     "lib": "lib",
     "test": "test"
   },
+  "main": "lib/client.js",
   "scripts": {
     "test": "./test/test.sh"
   },
