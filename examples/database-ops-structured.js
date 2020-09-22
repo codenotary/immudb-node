@@ -4,7 +4,7 @@ const ImmudbClient = require('../lib/client')
 const root = require('../lib/root')
 
 const clientOptions = {
-  address: '127.0.0.1:7777',
+  address: '127.0.0.1:3322',
   rootPath: `${__dirname}/../root.json`,
 }
 

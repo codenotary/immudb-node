@@ -3,7 +3,7 @@ const util = require('util')
 const ImmudbClient = require('../lib/client')
 
 ImmudbClient({
-  address: '127.0.0.1:7777',
+  address: '127.0.0.1:3322',
 }, main)
 
 const rand = '' + Math.floor(Math.random()
@@ -25,6 +25,7 @@ async function main(err, cl) {
     res = await cl.set({ key: rand, value: rand })
 
     res = await cl.listDatabases()
+    console.log(util.inspect(res, false, 8, true))
 
     res = await cl.printTree()
 

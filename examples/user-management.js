@@ -4,7 +4,7 @@ const ImmudbClient = require('../lib/client')
 const types = require('../lib/types')
 
 ImmudbClient({
-  address: '127.0.0.1:7777',
+  address: '127.0.0.1:3322',
 }, main)
 
 const rand = '' + Math.floor(Math.random()
@@ -28,7 +28,7 @@ async function main(err, cl) {
     }
     await cl.createUser(req)
 
-    res = await cl.listUsers({})
+    res = await cl.listUsers()
     console.log(util.inspect(res, false, 6, true))
 
     req = {

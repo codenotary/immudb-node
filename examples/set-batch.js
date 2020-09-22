@@ -2,7 +2,7 @@ const ImmudbClient = require('../lib/client')
 const root = require('../lib/root')
 
 ImmudbClient({
-  address: '127.0.0.1:7777',
+  address: '127.0.0.1:3322',
 }, main)
 
 const rand = '' + Math.floor(Math.random()
@@ -23,8 +23,7 @@ async function main(err, cl) {
     for (let i = 0; i < 20; i++) {
       req = {
         kvList : [
-          { key: rand+i, value: rand+i },
-          { key: rand+i+30, value: rand+i+30 },
+          { key: i, value: i },
         ]
       }
       res = await cl.setBatch(req)
@@ -32,12 +31,8 @@ async function main(err, cl) {
 
       req = {
         skvList: [{
-          key: rand,
-          payload: rand,
-          timestamp: unix,
-        },{
-          key: rand,
-          payload: rand,
+          key: i+20,
+          payload: i+20,
           timestamp: unix,
         }]
       }

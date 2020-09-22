@@ -2,7 +2,7 @@ const ImmudbClient = require('../lib/client')
 const root = require('../lib/root')
 
 ImmudbClient({
-  address: '127.0.0.1:7777',
+  address: '127.0.0.1:3322',
 }, main)
 
 const rand = '' + Math.floor(Math.random()
