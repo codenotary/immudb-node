@@ -36,7 +36,7 @@ immudb-node implements a [grpc] immudb client. A minimalist API is exposed for a
 ## Prerequisites
 
 immudb-node assumes an already running immudb server. Running `immudb` is quite simple, please refer to the
-following link for downloading and running it: https://immudb.io/docs/quickstart.html
+following link for downloading and running it: https://docs.immudb.io/quickstart.html
 
 ## Installation
 
