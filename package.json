@@ -30,5 +30,12 @@
     "nyc-arg": [
       "--exclude=proto"
     ]
-  }
+  },
+  "keywords": [
+    "merkle",
+    "cryptography",
+    "merkle-proof",
+    "verifiable",
+    "tamperproof"
+  ]
 }
