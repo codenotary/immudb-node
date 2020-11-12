@@ -4,3 +4,4 @@ root.json
 test/immudb
 .nyc_output
 test/root.json
+.vscode/
