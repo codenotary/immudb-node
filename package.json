@@ -20,7 +20,7 @@
   "dependencies": {
     "btoa": "1.2.1",
     "google-protobuf": "3.13.0",
-    "grpc": "1.24.3"
+    "grpc": "1.24.4"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,7 @@
     ]
   },
   "keywords": [
+    "immutable",
     "merkle",
     "cryptography",
     "merkle-proof",
