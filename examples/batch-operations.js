@@ -20,6 +20,7 @@ async function main(err, cl) {
 
     res = await cl.useDatabase({ database: 'defaultdb' })
 
+    // set batch ops
     for (let i = 0; i < 20; i++) {
       req = {
         kvList : [
@@ -28,18 +29,18 @@ async function main(err, cl) {
       }
       res = await cl.setBatch(req)
       console.log(res)
-
-      req = {
-        skvList: [{
-          key: i+20,
-          payload: i+20,
-          timestamp: unix,
-        }]
-      }
-      res = await cl.setBatchSV(req)
-      console.log(res)
     }
 
+    // get batch ops
+    for (let i = 0; i < 20; i++) {
+        req = {
+          kvList : [
+            { key: i },
+          ]
+        }
+        res = await cl.getBatch(req)
+        console.log(res)
+      }
   } catch (err) {
     console.log(err)
   }

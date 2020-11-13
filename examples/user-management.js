@@ -18,7 +18,8 @@ async function main(err, cl) {
   try {
     let req = { username: 'immudb', password: 'immudb' }
     let res = await cl.login(req)
-    console.log(res)
+
+    console.log('login successfull, token:', res && res.token)
 
     req = {
       username: rand,
@@ -27,6 +28,8 @@ async function main(err, cl) {
       database: 'defaultdb',
     }
     await cl.createUser(req)
+
+    console.log('createUser successfull: ', res)
 
     res = await cl.listUsers()
     console.log(util.inspect(res, false, 6, true))

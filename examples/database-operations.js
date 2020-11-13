@@ -2,7 +2,8 @@ const ImmudbClient = require('../lib/client')
 const root = require('../lib/root')
 
 ImmudbClient({
-  address: '127.0.0.1:3322',
+  address: '127.0.0.1:56789',
+  rootPath: 'rootfile'
 }, main)
 
 const rand = '' + Math.floor(Math.random()
@@ -17,6 +18,8 @@ async function main(err, cl) {
     let req = { username: 'immudb', password: 'immudb' }
     let res = await cl.login(req)
 
+    console.log(rand);
+    
     await cl.createDatabase({ database: rand })
 
     res = await cl.useDatabase({ database: rand })

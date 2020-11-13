@@ -18,10 +18,16 @@ async function main(err, cl) {
     let res = await cl.login(req)
 
     res = await cl.useDatabase({ database: 'defaultdb' })
+    
+    console.log('useDatabase successfull, token:', res && res.token)
 
     await cl.updateAuthConfig({ auth: types.auth.enabled })
 
+    console.log('updateAuthConfig')
+
     await cl.updateMTLSConfig({ enabled: false })
+
+    console.log('updateMTLSConfig')
 
   } catch (err) {
     console.log(err)
