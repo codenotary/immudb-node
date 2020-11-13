@@ -13,14 +13,14 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "grpc-tools": "1.9.1",
+    "grpc-tools": "1.9.0",
     "protobufjs": "6.10.1",
     "tap": "14.10.8"
   },
   "dependencies": {
     "btoa": "1.2.1",
     "google-protobuf": "3.13.0",
-    "grpc": "1.24.4"
+    "@grpc/grpc-js": "1.2.0"
   },
   "repository": {
     "type": "git",
