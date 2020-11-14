@@ -84,7 +84,7 @@ async function main(err, cl) {
       keyPrefix: rand,
       offset: '10',
       limit: 1,
-      reverse: false,
+      reverse: true,
       deep: false,
     }
     res = await cl.scan(req)
