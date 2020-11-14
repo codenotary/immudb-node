@@ -8,7 +8,8 @@
   },
   "main": "lib/client.js",
   "scripts": {
-    "test": "./test/test.sh"
+    "test": "./test/test.sh",
+    "test:dev": "./test/test.sh --dev"
   },
   "author": "",
   "license": "ISC",
@@ -18,7 +19,9 @@
     "tap": "14.10.8"
   },
   "dependencies": {
+    "async-lock": "^1.2.4",
     "btoa": "1.2.1",
+    "dotenv": "^8.2.0",
     "google-protobuf": "3.13.0",
     "@grpc/grpc-js": "1.2.0"
   },
