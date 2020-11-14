@@ -20,13 +20,13 @@ const IMMUDB_USER = process.env.IMMUDB_USER || 'immudb'
 const IMMUDB_PWD = process.env.IMMUDB_PWD || 'immudb'
 
 ImmudbClient({
-    address: `${IMMUDB_HOST}:${IMMUDB_PORT}`,
-    rootPath: 'rootfile'
-  }, main)
+  address: `${IMMUDB_HOST}:${IMMUDB_PORT}`,
+  rootPath: 'rootfile'
+}, main)
 
-const rand = '1'
-const testDB = 'opsdb'
- 
+const rand = '' + Math.floor(Math.random()
+* Math.floor(100000))
+
 async function main(err, cl) {
   if (err) {
     return console.log(err)
@@ -39,12 +39,12 @@ async function main(err, cl) {
     console.log('success: login', res)
 
     // create database
-    req = { database: testDB }
+    req = { database: rand }
     res = await cl.createDatabase(req)
     console.log('success: createDatabase', res)
 
     // use database just created
-    req = { database: testDB }
+    req = { database: rand }
     res = await cl.useDatabase(req)
     console.log('success: useDatabase', res)
 

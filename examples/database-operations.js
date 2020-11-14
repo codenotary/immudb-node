@@ -24,8 +24,8 @@ ImmudbClient({
     rootPath: 'rootfile'
   }, main)
 
-const rand = '' + Math.floor(Math.random()
-  * Math.floor(100000))
+const rand = '1'
+const testDB = 'opsdb'
  
 async function main(err, cl) {
   if (err) {
@@ -39,12 +39,12 @@ async function main(err, cl) {
     console.log('success: login', res)
 
     // create database
-    req = { database: rand }
+    req = { database: testDB }
     res = await cl.createDatabase(req)
     console.log('success: createDatabase', res)
 
     // use database just created
-    req = { database: rand }
+    req = { database: testDB }
     res = await cl.useDatabase(req)
     console.log('success: useDatabase', res)
 
