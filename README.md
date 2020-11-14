@@ -171,17 +171,15 @@ Atomic multi-key write (all entries are persisted or none):
 
 ```
   req = {
-    skvList: [{
+    keys: [{
       key: 'key1',
-      payload: 'value1',
-      timestamp: Math.floor(Date.now()/100),
+      payload: 'value1'
     },{
       key: 'key2',
-      payload: 'value2',
-      timestamp: Math.floor(Date.now()/100),
+      payload: 'value2'
     }]
   }
-  res = await cl.setBatchSV(req)
+  res = await cl.setBatch(req)
 ```
 
 Atomic multi-key read (all entries are retrieved or none):
@@ -193,7 +191,7 @@ Atomic multi-key read (all entries are retrieved or none):
         key: 'key2',
       }],
     }
-    res = await cl.getBatchSV(req)
+    res = await cl.getBatch(req)
 ```
 
 ### Closing the client
