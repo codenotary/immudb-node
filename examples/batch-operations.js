@@ -1,13 +1,16 @@
 const ImmudbClient = require('../lib/client')
-const root = require('../lib/root')
+
+const IMMUDB_HOST = process.env.IMMUDB_HOST || '127.0.0.1'
+const IMMUDB_PORT = process.env.IMMUDB_PORT || 3322
+const IMMUDB_USER = process.env.IMMUDB_USER || 'immudb'
+const IMMUDB_PWD = process.env.IMMUDB_PWD || 'immudb'
 
 ImmudbClient({
-  address: '127.0.0.1:3322',
-}, main)
+    address: `${IMMUDB_HOST}:${IMMUDB_PORT}`,
+  }, main)
 
 const rand = '' + Math.floor(Math.random()
   * Math.floor(100000))
-let unix = Math.floor(Date.now()/1000)
  
 async function main(err, cl) {
   if (err) {
@@ -15,32 +18,37 @@ async function main(err, cl) {
   }
 
   try {
-    let req = { username: 'immudb', password: 'immudb' }
+    // login using the specified username and password
+    let req = { username: IMMUDB_USER, password: IMMUDB_PWD }
     let res = await cl.login(req)
+    console.log('success: login', res)
 
-    res = await cl.useDatabase({ database: 'defaultdb' })
+    // create database
+    req = { database: rand }
+    res = await cl.createDatabase(req)
+    console.log('success: createDatabase', res)
 
-    // set batch ops
+    // use database just created
+    req = { database: rand }
+    res = await cl.useDatabase(req)
+    console.log('success: useDatabase', res)
+    
+    // execute a batch insert
+    req = { keys: [] }
     for (let i = 0; i < 20; i++) {
-      req = {
-        kvList : [
-          { key: i, value: i },
-        ]
-      }
-      res = await cl.setBatch(req)
-      console.log(res)
+      req.keys.push({ key: i, value: i })
     }
+    res = await cl.setBatch(req)
+    console.log(`success: setBatch`, res)
 
-    // get batch ops
+    // execute a batch read
+    req = { keys: [] }
     for (let i = 0; i < 20; i++) {
-        req = {
-          kvList : [
-            { key: i },
-          ]
-        }
-        res = await cl.getBatch(req)
-        console.log(res)
-      }
+      req.keys.push({ key: i })
+    }
+    res = await cl.getBatch(req)
+    console.log(`success: getBatch`, res)
+ 
   } catch (err) {
     console.log(err)
   }
