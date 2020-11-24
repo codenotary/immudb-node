@@ -3,4 +3,5 @@ package-lock.json
 root.json
 test/immudb
 .nyc_output
+.vscode/
 test/root.json
