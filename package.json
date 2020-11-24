@@ -1,6 +1,6 @@
 {
   "name": "immudb-node",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Node js client for immudb",
   "directories": {
     "lib": "lib",
@@ -8,19 +8,22 @@
   },
   "main": "lib/client.js",
   "scripts": {
-    "test": "./test/test.sh"
+    "test": "./test/test.sh",
+    "test:dev": "./test/test.sh --dev"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "grpc-tools": "1.9.1",
+    "grpc-tools": "1.9.0",
     "protobufjs": "6.10.1",
     "tap": "14.10.8"
   },
   "dependencies": {
+    "async-lock": "^1.2.4",
     "btoa": "1.2.1",
+    "dotenv": "^8.2.0",
     "google-protobuf": "3.13.0",
-    "grpc": "1.24.3"
+    "@grpc/grpc-js": "1.2.0"
   },
   "repository": {
     "type": "git",
@@ -28,10 +31,11 @@
   },
   "tap": {
     "nyc-arg": [
-      "--exclude=proto"
+      "--exclude=protos"
     ]
   },
   "keywords": [
+    "immutable",
     "merkle",
     "cryptography",
     "merkle-proof",

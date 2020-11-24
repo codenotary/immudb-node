@@ -3,13 +3,10 @@
 // Original file comments:
 //
 // Copyright 2019-2020 vChain, Inc.
-//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
 // http://www.apache.org/licenses/LICENSE-2.0
-//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,9 +14,8 @@
 // limitations under the License.
 //
 'use strict';
-var grpc = require('grpc');
+var grpc = require('@grpc/grpc-js');
 var schema_pb = require('./schema_pb.js');
-var google_api_annotations_pb = require('./google/api/annotations_pb.js');
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
 
 function serialize_google_protobuf_Empty(arg) {
@@ -119,6 +115,17 @@ function serialize_immudb_schema_HealthResponse(arg) {
 
 function deserialize_immudb_schema_HealthResponse(buffer_arg) {
   return schema_pb.HealthResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_immudb_schema_HistoryOptions(arg) {
+  if (!(arg instanceof schema_pb.HistoryOptions)) {
+    throw new Error('Expected argument of type immudb.schema.HistoryOptions');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_immudb_schema_HistoryOptions(buffer_arg) {
+  return schema_pb.HistoryOptions.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_immudb_schema_IScanOptions(arg) {
@@ -319,28 +326,6 @@ function deserialize_immudb_schema_Root(buffer_arg) {
   return schema_pb.Root.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_immudb_schema_SKVList(arg) {
-  if (!(arg instanceof schema_pb.SKVList)) {
-    throw new Error('Expected argument of type immudb.schema.SKVList');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_immudb_schema_SKVList(buffer_arg) {
-  return schema_pb.SKVList.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_immudb_schema_SPage(arg) {
-  if (!(arg instanceof schema_pb.SPage)) {
-    throw new Error('Expected argument of type immudb.schema.SPage');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_immudb_schema_SPage(buffer_arg) {
-  return schema_pb.SPage.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_immudb_schema_SafeGetOptions(arg) {
   if (!(arg instanceof schema_pb.SafeGetOptions)) {
     throw new Error('Expected argument of type immudb.schema.SafeGetOptions');
@@ -396,28 +381,6 @@ function deserialize_immudb_schema_SafeSetOptions(buffer_arg) {
   return schema_pb.SafeSetOptions.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_immudb_schema_SafeSetSVOptions(arg) {
-  if (!(arg instanceof schema_pb.SafeSetSVOptions)) {
-    throw new Error('Expected argument of type immudb.schema.SafeSetSVOptions');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_immudb_schema_SafeSetSVOptions(buffer_arg) {
-  return schema_pb.SafeSetSVOptions.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_immudb_schema_SafeStructuredItem(arg) {
-  if (!(arg instanceof schema_pb.SafeStructuredItem)) {
-    throw new Error('Expected argument of type immudb.schema.SafeStructuredItem');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_immudb_schema_SafeStructuredItem(buffer_arg) {
-  return schema_pb.SafeStructuredItem.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_immudb_schema_SafeZAddOptions(arg) {
   if (!(arg instanceof schema_pb.SafeZAddOptions)) {
     throw new Error('Expected argument of type immudb.schema.SafeZAddOptions');
@@ -449,39 +412,6 @@ function serialize_immudb_schema_SetActiveUserRequest(arg) {
 
 function deserialize_immudb_schema_SetActiveUserRequest(buffer_arg) {
   return schema_pb.SetActiveUserRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_immudb_schema_StructuredItem(arg) {
-  if (!(arg instanceof schema_pb.StructuredItem)) {
-    throw new Error('Expected argument of type immudb.schema.StructuredItem');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_immudb_schema_StructuredItem(buffer_arg) {
-  return schema_pb.StructuredItem.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_immudb_schema_StructuredItemList(arg) {
-  if (!(arg instanceof schema_pb.StructuredItemList)) {
-    throw new Error('Expected argument of type immudb.schema.StructuredItemList');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_immudb_schema_StructuredItemList(buffer_arg) {
-  return schema_pb.StructuredItemList.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_immudb_schema_StructuredKeyValue(arg) {
-  if (!(arg instanceof schema_pb.StructuredKeyValue)) {
-    throw new Error('Expected argument of type immudb.schema.StructuredKeyValue');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_immudb_schema_StructuredKeyValue(buffer_arg) {
-  return schema_pb.StructuredKeyValue.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_immudb_schema_Tree(arg) {
@@ -528,6 +458,17 @@ function deserialize_immudb_schema_ZAddOptions(buffer_arg) {
   return schema_pb.ZAddOptions.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_immudb_schema_ZItemList(arg) {
+  if (!(arg instanceof schema_pb.ZItemList)) {
+    throw new Error('Expected argument of type immudb.schema.ZItemList');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_immudb_schema_ZItemList(buffer_arg) {
+  return schema_pb.ZItemList.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_immudb_schema_ZScanOptions(arg) {
   if (!(arg instanceof schema_pb.ZScanOptions)) {
     throw new Error('Expected argument of type immudb.schema.ZScanOptions');
@@ -540,7 +481,7 @@ function deserialize_immudb_schema_ZScanOptions(buffer_arg) {
 }
 
 
-// immudb gRPC
+// immudb gRPC & REST service
 // IMPORTANT: All get and safeget functions return base64-encoded keys and values, while all set and safeset functions expect base64-encoded inputs.
 var ImmuServiceService = exports.ImmuServiceService = {
   listUsers: {
@@ -642,17 +583,6 @@ var ImmuServiceService = exports.ImmuServiceService = {
     responseSerialize: serialize_immudb_schema_Index,
     responseDeserialize: deserialize_immudb_schema_Index,
   },
-  setSV: {
-    path: '/immudb.schema.ImmuService/SetSV',
-    requestStream: false,
-    responseStream: false,
-    requestType: schema_pb.StructuredKeyValue,
-    responseType: schema_pb.Index,
-    requestSerialize: serialize_immudb_schema_StructuredKeyValue,
-    requestDeserialize: deserialize_immudb_schema_StructuredKeyValue,
-    responseSerialize: serialize_immudb_schema_Index,
-    responseDeserialize: deserialize_immudb_schema_Index,
-  },
   safeSet: {
     path: '/immudb.schema.ImmuService/SafeSet',
     requestStream: false,
@@ -661,17 +591,6 @@ var ImmuServiceService = exports.ImmuServiceService = {
     responseType: schema_pb.Proof,
     requestSerialize: serialize_immudb_schema_SafeSetOptions,
     requestDeserialize: deserialize_immudb_schema_SafeSetOptions,
-    responseSerialize: serialize_immudb_schema_Proof,
-    responseDeserialize: deserialize_immudb_schema_Proof,
-  },
-  safeSetSV: {
-    path: '/immudb.schema.ImmuService/SafeSetSV',
-    requestStream: false,
-    responseStream: false,
-    requestType: schema_pb.SafeSetSVOptions,
-    responseType: schema_pb.Proof,
-    requestSerialize: serialize_immudb_schema_SafeSetSVOptions,
-    requestDeserialize: deserialize_immudb_schema_SafeSetSVOptions,
     responseSerialize: serialize_immudb_schema_Proof,
     responseDeserialize: deserialize_immudb_schema_Proof,
   },
@@ -686,17 +605,6 @@ var ImmuServiceService = exports.ImmuServiceService = {
     responseSerialize: serialize_immudb_schema_Item,
     responseDeserialize: deserialize_immudb_schema_Item,
   },
-  getSV: {
-    path: '/immudb.schema.ImmuService/GetSV',
-    requestStream: false,
-    responseStream: false,
-    requestType: schema_pb.Key,
-    responseType: schema_pb.StructuredItem,
-    requestSerialize: serialize_immudb_schema_Key,
-    requestDeserialize: deserialize_immudb_schema_Key,
-    responseSerialize: serialize_immudb_schema_StructuredItem,
-    responseDeserialize: deserialize_immudb_schema_StructuredItem,
-  },
   safeGet: {
     path: '/immudb.schema.ImmuService/SafeGet',
     requestStream: false,
@@ -708,17 +616,6 @@ var ImmuServiceService = exports.ImmuServiceService = {
     responseSerialize: serialize_immudb_schema_SafeItem,
     responseDeserialize: deserialize_immudb_schema_SafeItem,
   },
-  safeGetSV: {
-    path: '/immudb.schema.ImmuService/SafeGetSV',
-    requestStream: false,
-    responseStream: false,
-    requestType: schema_pb.SafeGetOptions,
-    responseType: schema_pb.SafeStructuredItem,
-    requestSerialize: serialize_immudb_schema_SafeGetOptions,
-    requestDeserialize: deserialize_immudb_schema_SafeGetOptions,
-    responseSerialize: serialize_immudb_schema_SafeStructuredItem,
-    responseDeserialize: deserialize_immudb_schema_SafeStructuredItem,
-  },
   setBatch: {
     path: '/immudb.schema.ImmuService/SetBatch',
     requestStream: false,
@@ -727,17 +624,6 @@ var ImmuServiceService = exports.ImmuServiceService = {
     responseType: schema_pb.Index,
     requestSerialize: serialize_immudb_schema_KVList,
     requestDeserialize: deserialize_immudb_schema_KVList,
-    responseSerialize: serialize_immudb_schema_Index,
-    responseDeserialize: deserialize_immudb_schema_Index,
-  },
-  setBatchSV: {
-    path: '/immudb.schema.ImmuService/SetBatchSV',
-    requestStream: false,
-    responseStream: false,
-    requestType: schema_pb.SKVList,
-    responseType: schema_pb.Index,
-    requestSerialize: serialize_immudb_schema_SKVList,
-    requestDeserialize: deserialize_immudb_schema_SKVList,
     responseSerialize: serialize_immudb_schema_Index,
     responseDeserialize: deserialize_immudb_schema_Index,
   },
@@ -752,17 +638,6 @@ var ImmuServiceService = exports.ImmuServiceService = {
     responseSerialize: serialize_immudb_schema_ItemList,
     responseDeserialize: deserialize_immudb_schema_ItemList,
   },
-  getBatchSV: {
-    path: '/immudb.schema.ImmuService/GetBatchSV',
-    requestStream: false,
-    responseStream: false,
-    requestType: schema_pb.KeyList,
-    responseType: schema_pb.StructuredItemList,
-    requestSerialize: serialize_immudb_schema_KeyList,
-    requestDeserialize: deserialize_immudb_schema_KeyList,
-    responseSerialize: serialize_immudb_schema_StructuredItemList,
-    responseDeserialize: deserialize_immudb_schema_StructuredItemList,
-  },
   scan: {
     path: '/immudb.schema.ImmuService/Scan',
     requestStream: false,
@@ -774,17 +649,6 @@ var ImmuServiceService = exports.ImmuServiceService = {
     responseSerialize: serialize_immudb_schema_ItemList,
     responseDeserialize: deserialize_immudb_schema_ItemList,
   },
-  scanSV: {
-    path: '/immudb.schema.ImmuService/ScanSV',
-    requestStream: false,
-    responseStream: false,
-    requestType: schema_pb.ScanOptions,
-    responseType: schema_pb.StructuredItemList,
-    requestSerialize: serialize_immudb_schema_ScanOptions,
-    requestDeserialize: deserialize_immudb_schema_ScanOptions,
-    responseSerialize: serialize_immudb_schema_StructuredItemList,
-    responseDeserialize: deserialize_immudb_schema_StructuredItemList,
-  },
   count: {
     path: '/immudb.schema.ImmuService/Count',
     requestStream: false,
@@ -793,6 +657,17 @@ var ImmuServiceService = exports.ImmuServiceService = {
     responseType: schema_pb.ItemsCount,
     requestSerialize: serialize_immudb_schema_KeyPrefix,
     requestDeserialize: deserialize_immudb_schema_KeyPrefix,
+    responseSerialize: serialize_immudb_schema_ItemsCount,
+    responseDeserialize: deserialize_immudb_schema_ItemsCount,
+  },
+  countAll: {
+    path: '/immudb.schema.ImmuService/CountAll',
+    requestStream: false,
+    responseStream: false,
+    requestType: google_protobuf_empty_pb.Empty,
+    responseType: schema_pb.ItemsCount,
+    requestSerialize: serialize_google_protobuf_Empty,
+    requestDeserialize: deserialize_google_protobuf_Empty,
     responseSerialize: serialize_immudb_schema_ItemsCount,
     responseDeserialize: deserialize_immudb_schema_ItemsCount,
   },
@@ -851,38 +726,16 @@ var ImmuServiceService = exports.ImmuServiceService = {
     responseSerialize: serialize_immudb_schema_SafeItem,
     responseDeserialize: deserialize_immudb_schema_SafeItem,
   },
-  byIndexSV: {
-    path: '/immudb.schema.ImmuService/ByIndexSV',
-    requestStream: false,
-    responseStream: false,
-    requestType: schema_pb.Index,
-    responseType: schema_pb.StructuredItem,
-    requestSerialize: serialize_immudb_schema_Index,
-    requestDeserialize: deserialize_immudb_schema_Index,
-    responseSerialize: serialize_immudb_schema_StructuredItem,
-    responseDeserialize: deserialize_immudb_schema_StructuredItem,
-  },
   history: {
     path: '/immudb.schema.ImmuService/History',
     requestStream: false,
     responseStream: false,
-    requestType: schema_pb.Key,
+    requestType: schema_pb.HistoryOptions,
     responseType: schema_pb.ItemList,
-    requestSerialize: serialize_immudb_schema_Key,
-    requestDeserialize: deserialize_immudb_schema_Key,
+    requestSerialize: serialize_immudb_schema_HistoryOptions,
+    requestDeserialize: deserialize_immudb_schema_HistoryOptions,
     responseSerialize: serialize_immudb_schema_ItemList,
     responseDeserialize: deserialize_immudb_schema_ItemList,
-  },
-  historySV: {
-    path: '/immudb.schema.ImmuService/HistorySV',
-    requestStream: false,
-    responseStream: false,
-    requestType: schema_pb.Key,
-    responseType: schema_pb.StructuredItemList,
-    requestSerialize: serialize_immudb_schema_Key,
-    requestDeserialize: deserialize_immudb_schema_Key,
-    responseSerialize: serialize_immudb_schema_StructuredItemList,
-    responseDeserialize: deserialize_immudb_schema_StructuredItemList,
   },
   health: {
     path: '/immudb.schema.ImmuService/Health',
@@ -933,22 +786,11 @@ var ImmuServiceService = exports.ImmuServiceService = {
     requestStream: false,
     responseStream: false,
     requestType: schema_pb.ZScanOptions,
-    responseType: schema_pb.ItemList,
+    responseType: schema_pb.ZItemList,
     requestSerialize: serialize_immudb_schema_ZScanOptions,
     requestDeserialize: deserialize_immudb_schema_ZScanOptions,
-    responseSerialize: serialize_immudb_schema_ItemList,
-    responseDeserialize: deserialize_immudb_schema_ItemList,
-  },
-  zScanSV: {
-    path: '/immudb.schema.ImmuService/ZScanSV',
-    requestStream: false,
-    responseStream: false,
-    requestType: schema_pb.ZScanOptions,
-    responseType: schema_pb.StructuredItemList,
-    requestSerialize: serialize_immudb_schema_ZScanOptions,
-    requestDeserialize: deserialize_immudb_schema_ZScanOptions,
-    responseSerialize: serialize_immudb_schema_StructuredItemList,
-    responseDeserialize: deserialize_immudb_schema_StructuredItemList,
+    responseSerialize: serialize_immudb_schema_ZItemList,
+    responseDeserialize: deserialize_immudb_schema_ZItemList,
   },
   safeZAdd: {
     path: '/immudb.schema.ImmuService/SafeZAdd',
@@ -972,31 +814,7 @@ var ImmuServiceService = exports.ImmuServiceService = {
     responseSerialize: serialize_immudb_schema_Page,
     responseDeserialize: deserialize_immudb_schema_Page,
   },
-  iScanSV: {
-    path: '/immudb.schema.ImmuService/IScanSV',
-    requestStream: false,
-    responseStream: false,
-    requestType: schema_pb.IScanOptions,
-    responseType: schema_pb.SPage,
-    requestSerialize: serialize_immudb_schema_IScanOptions,
-    requestDeserialize: deserialize_immudb_schema_IScanOptions,
-    responseSerialize: serialize_immudb_schema_SPage,
-    responseDeserialize: deserialize_immudb_schema_SPage,
-  },
-  dump: {
-    path: '/immudb.schema.ImmuService/Dump',
-    requestStream: false,
-    responseStream: true,
-    requestType: google_protobuf_empty_pb.Empty,
-    responseType: schema_pb.KVList,
-    requestSerialize: serialize_google_protobuf_Empty,
-    requestDeserialize: deserialize_google_protobuf_Empty,
-    responseSerialize: serialize_immudb_schema_KVList,
-    responseDeserialize: deserialize_immudb_schema_KVList,
-  },
-  // todo(joe-dz): Enable restore when the feature is required again
-//  rpc Restore(stream KVList) returns (ItemsCount) {}
-//
+  // 	rpc Dump(google.protobuf.Empty) returns (stream pb.KVList) {}
 createDatabase: {
     path: '/immudb.schema.ImmuService/CreateDatabase',
     requestStream: false,

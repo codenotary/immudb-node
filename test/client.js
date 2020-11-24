@@ -3,7 +3,10 @@ const tap = require('tap')
 const ImmudbClient = require('../lib/client')
 const types = require('../lib/types')
 
-const unix = Math.floor(Date.now()/1000)
+const IMMUDB_HOST = process.env.IMMUDB_HOST || '127.0.0.1'
+const IMMUDB_PORT = process.env.IMMUDB_TEST_PORT || 56789
+const IMMUDB_USER = process.env.IMMUDB_USER || 'immudb'
+const IMMUDB_PWD = process.env.IMMUDB_PWD || 'immudb'
 
 const setup = (options, t, done) => {
   ImmudbClient(options, (err, cl) => {
@@ -14,31 +17,39 @@ const setup = (options, t, done) => {
 
 tap.test('database management', (t) => {
   const options = {
-    address: '127.0.0.1:56789',
+    address: `${IMMUDB_HOST}:${IMMUDB_PORT}`,
   }
   setup(options, t, async function(cl) {
     try {
-      const rand = '' + Math.floor(Math.random()
-        * Math.floor(100000))
-
-      let req = { username: 'immudb', password: 'immudb' }
+      // test: login using the specified username and password
+      let req = { username: IMMUDB_USER, password: IMMUDB_PWD}
       let res = await cl.login(req)
       t.type(res.token, 'string')
 
-      await cl.createDatabase({ database: 'db1' })
+      // test: create database
+      req = { database: 'db1' }
+      await cl.createDatabase(req)
 
-      res = await cl.useDatabase({ database: 'db1' })
+      // test: use database just created
+      req = { database: 'db1' }
+      res = await cl.useDatabase(req)
       t.type(res.token, 'string')
 
-      res = await cl.set({ key: 'key1', value: 'value1' })
+      // test: add new item having the specified key and value
+      req = { key: 'key1', value: 'value1' }
+      res = await cl.set(req)
       t.equal(res.index, 0)
 
+      // test: list all databases available
       res = await cl.listDatabases()
       t.equal(res.databases[0], 'defaultdb')
       t.equal(res.databases[1], 'db1')
+      t.notEqual(res.databases[1], 'defaultdb');
 
+      // test: print merkle tree
       res = await cl.printTree()
 
+      // test: check immudb health status
       res = await cl.health()
       t.true(res.status)
 
@@ -51,7 +62,7 @@ tap.test('database management', (t) => {
 
 tap.test('user management', (t) => {
   const options = {
-    address: '127.0.0.1:56789',
+    address: `${IMMUDB_HOST}:${IMMUDB_PORT}`,
     rootPath: `${__dirname}/../test/root.json`,
   }
   setup(options, t, async function(cl) {
@@ -59,10 +70,12 @@ tap.test('user management', (t) => {
       const rand = '' + Math.floor(Math.random()
         * Math.floor(100000))
 
-      let req = { username: 'immudb', password: 'immudb' }
+      // test: login using the specified username and password
+      let req = { username: IMMUDB_USER, password: IMMUDB_PWD}
       let res = await cl.login(req)
       t.type(res.token, 'string')
 
+      // test: create a new user
       req = {
         username: rand,
         password: 'Example12#',
@@ -71,8 +84,11 @@ tap.test('user management', (t) => {
       }
       await cl.createUser(req)
 
-      res = await cl.listUsers({})
+      // test: list all users
+      req = {}
+      res = await cl.listUsers(req)
 
+      // test: change user permission
       req = {
         action: types.action.grant,
         username: rand,
@@ -81,6 +97,7 @@ tap.test('user management', (t) => {
       }
       await cl.changePermission(req)
 
+      // test: change user password
       req = {
         username: rand,
         old: 'Example12#',
@@ -88,12 +105,14 @@ tap.test('user management', (t) => {
       }
       await cl.changePassword(req)
 
+      // test: set active user
       req = {
         username: rand,
         active: true,
       }
       await cl.setActiveUser(req)
 
+      // test: logout
       await cl.logout()
 
       t.end()
@@ -103,143 +122,47 @@ tap.test('user management', (t) => {
   })
 })
 
-tap.test('ops structured', (t) => {
+tap.test('operations', (t) => {
   const options = {
-    address: '127.0.0.1:56789',
+    address: `${IMMUDB_HOST}:${IMMUDB_PORT}`,
   }
   setup(options, t, async function(cl) {
     try {
-      const rand = '' + Math.floor(Math.random()
-        * Math.floor(100000))
+    //   const rand = '' + Math.floor(Math.random()
+    //     * Math.floor(100000))
 
-      let req = { username: 'immudb', password: 'immudb' }
-      let res = await cl.login(req)
-      t.type(res.token, 'string')
+      const rand = 1
+      const testDB = 'testdb'
 
-      await cl.createDatabase({ database: rand })
-
-      res = await cl.useDatabase({ database: rand })
-      t.type(res.token, 'string')
-
-      req = {
-        key: rand,
-        payload: rand,
-        timestamp: unix,
-      }
-      res = await cl.setSV(req)
-      t.equal(res.index, 0)
-
-      const index = res.index
-
-      res = await cl.getSV({ key: rand })
-      t.equal(res.key, rand)
-      t.equal(res.payload, rand)
-      t.equal(res.timestamp, unix)
-
-      res = await cl.count({ keyPrefix: rand })
-      t.equal(res.count, 1)
-
-      req = {
-        keyPrefix: rand,
-        offset: '10',
-        limit: 5,
-        reverse: false,
-        deep: false,
-      }
-      res = await cl.scanSV(req)
-      console.log(res)
-      t.equal(res.items[0].key, rand)
-      t.equal(res.items[0].payload, rand)
-      t.equal(res.items[0].timestamp, unix)
-      t.equal(res.items[0].index, index)
-
-      res = await cl.byIndexSV({ index: index })
-      t.equal(res.key, rand)
-      t.equal(res.payload, rand)
-      t.equal(res.timestamp, unix)
-      t.equal(res.index, index)
-
-      res = await cl.historySV({ key: rand })
-
-      req = {
-        set: rand,
-        offset: '10',
-        limit: 5,
-        reverse: false,
-      }
-      res = await cl.zScanSV(req)
-
-      res = await cl.iScanSV({ pageSize: 1, pageNumber: 1 })
-
-      res = await cl.currentRoot()
-
-      res = await cl.zAdd({ set: 'set1', score: 10, key: rand })
-
-      res = await cl.reference({ reference: 'ref1', key: rand })
-
-      req = {
-        keys: [{
-          key: rand,
-        }],
-      }
-      res = await cl.getBatchSV(req)
-
-      req = {
-        key: rand,
-        payload: rand,
-        timestamp: unix,
-      }
-      res = await cl.safeSetSV(req)
-
-      req = {
-        key: rand,
-      }
-      res = await cl.safeGetSV(req)
-
-      req = {
-        index: index,
-      }
-      res = await cl.inclusion(req)
-
-      req = {
-        index: index,
-      }
-      res = await cl.consistency(req)
-
-      req = {
-        index: 2,
-      }
-      res = await cl.bySafeIndex(req)
-      t.end()
-    } catch (err) {
-      t.error(err)
-    }
-  })
-})
-
-tap.test('ops unstructured', (t) => {
-  const options = {
-    address: '127.0.0.1:56789',
-  }
-  setup(options, t, async function(cl) {
-    try {
-      const rand = '' + Math.floor(Math.random()
-        * Math.floor(100000))
-
-      let req = { username: 'immudb', password: 'immudb' }
+      // test: login using the specified username and password
+      let req = { username: IMMUDB_USER, password: IMMUDB_PWD}
       let res = await cl.login(req)
 
-      await cl.createDatabase({ database: rand })
+      // test: create database
+      req = { database: testDB }
+      res = await cl.createDatabase(req)
 
-      res = await cl.useDatabase({ database: rand })
+      // test: use database just created
+      req = { database: testDB }
+      res = await cl.useDatabase(req)
 
-      res = await cl.set({ key: rand, value: rand })
-      const index = res.index
+      // test: add new item having the specified key
+      // and value
+      req = { key: rand, value: rand }
+      res = await cl.set(req)
+      const index = res && res.index // saving for byIndex
 
+      // test: get item by key
+      req = { key: rand }
       res = await cl.get({ key: rand })
 
-      res = await cl.count({ keyPrefix: rand })
+      // test: count keys having the specified value
+      // in the database in use
+      req = { keyPrefix: rand }
+      res = await cl.count(req)
 
+      // test: iterate over keys having the specified
+      // prefix
       req = {
         keyPrefix: rand,
         offset: '10',
@@ -249,10 +172,16 @@ tap.test('ops unstructured', (t) => {
       }
       res = await cl.scan(req)
 
-      res = await cl.byIndex({ index: index })
+      // test: return an element by index
+      req = { index: index }
+      res = await cl.byIndex()
 
-      res = await cl.history({ key: rand })
+      // history: fetch history for the item having the
+      // specified key
+      req = { key: rand }
+      res = await cl.history(req)
 
+      // test: iterate over a sorted set
       req = {
         set: rand,
         offset: '10',
@@ -261,8 +190,12 @@ tap.test('ops unstructured', (t) => {
       }
       res = await cl.zScan(req)
 
-      res = await cl.iScan({ pageSize: 1, pageNumber: 1 })
+      // test: iterate over all elements by
+      // insertion order
+      req = { pageSize: 1, pageNumber: 1 }
+      res = await cl.iScan(req)
 
+      // test: execute a batch read
       req = {
         keys: [{
           key: rand,
@@ -270,30 +203,41 @@ tap.test('ops unstructured', (t) => {
       }
       res = await cl.getBatch(req)
 
+      // test: add new item having the specified key
+      // and value
       res = await cl.set({ key: rand*2, value: rand*2 })
 
+      // test: get current root info
       res = await cl.currentRoot()
 
+      // test: safely add new item having the specified key
+      // and value
       req = {
         key: rand+10,
         value: rand+10,
       }
       res = await cl.safeSet(req)
 
+      // test: get current root info
       res = await cl.currentRoot()
 
+      // test: safely add new item having the specified key
+      // and value
       req = {
         key: rand+11,
         value: rand+11,
       }
       res = await cl.safeSet(req)
 
+      // test: safely add new item having the specified key
+      // and value
       req = {
         key: rand+12,
         value: rand+12,
       }
       res = await cl.safeSet(req)
 
+      // test: safely get item by key
       req = {
         key: rand+12,
       }
@@ -308,41 +252,31 @@ tap.test('ops unstructured', (t) => {
 
 tap.test('batches', (t) => {
   const options = {
-    address: '127.0.0.1:56789',
+    address: `${IMMUDB_HOST}:${IMMUDB_PORT}`,
   }
   setup(options, t, async function(cl) {
     try {
-      const rand = '' + Math.floor(Math.random()
-        * Math.floor(100000))
-
-      let unix = Math.floor(Date.now()/1000)
-      let req = { username: 'immudb', password: 'immudb' }
+      // test: login using the specified username and password
+      let req = { username: IMMUDB_USER, password: IMMUDB_PWD}
       let res = await cl.login(req)
 
-      res = await cl.useDatabase({ database: 'defaultdb' })
+      // test: use default database
+      req = { database: 'defaultdb' }
+      res = await cl.useDatabase(req)
 
-      req = {
-        kvList : []
-      }
+      // test: execute a batch insert
+      req = { keys : [] }
       for (let i = 0; i < 20; i++) {
-        req.kvList.push({
-          key: 'batchKey'+i,
-          value: 'value'+i,
-        })
+        req.keys.push({ key: i, value: i })
       }
       res = await cl.setBatch(req)
 
-      // req = {
-      //   skvList: [],
-      // }
-      // for (let i = 0; i < 10; i++) {
-      //   req.skvList.push({
-      //     key: 'batchKey'+i,
-      //     payload: 'batchValue'+i,
-      //     timestamp: unix,
-      //   })
-      // }
-      // res = await cl.setBatchSV(req)
+      // test: execute a batch read
+      req = { keys : [] }
+      for (let i = 0; i < 20; i++) {
+        req.keys.push({ key: i })
+      }
+      res = await cl.getBatch(req)
 
       t.end()
     } catch (err) {

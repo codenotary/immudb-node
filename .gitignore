@@ -5,3 +5,5 @@ test/immudb
 .nyc_output
 .vscode/
 test/root.json
+.vscode
+rootfile

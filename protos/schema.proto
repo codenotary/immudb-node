@@ -1,0 +1,387 @@
+/*
+Copyright 2019-2020 vChain, Inc.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+	http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+syntax = "proto3";
+
+// import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+// import "protoc-gen-swagger/options/annotations.proto";
+// import "pb/pb.proto";
+
+package immudb.schema;
+
+option go_package = "github.com/codenotary/immudb/pkg/api/schema";
+
+message Key {
+	bytes key = 1;
+}
+
+message Permission{
+	string database = 1;
+	uint32 permission = 2;
+}
+message User {
+	bytes user = 1;
+	repeated Permission permissions = 3;
+	string createdby = 4;
+	string createdat = 5;
+	bool active = 6;
+}
+message UserList {
+	repeated User users = 1;
+}
+
+message CreateUserRequest {
+	bytes user = 1;
+	bytes password = 2;
+	uint32 permission = 3;
+	string database = 4;
+}
+
+message UserRequest {
+	bytes user = 1;
+}
+
+message ChangePasswordRequest {
+	bytes user = 1;
+	bytes oldPassword = 2;
+	bytes newPassword = 3;
+}
+
+message LoginRequest {
+	bytes user = 1;
+	bytes password = 2;
+}
+message LoginResponse {
+	string token = 1;
+	bytes warning = 2;
+}
+
+message AuthConfig {
+	uint32 kind = 1;
+}
+message MTLSConfig {
+	bool enabled = 1;
+}
+
+message Node {
+	bytes i = 1;
+	bytes h = 2;
+	bytes refk = 3;
+	bool ref = 4;
+	bool cache = 5;
+	bool root = 6;
+}
+
+message Layer {
+	repeated Node l = 1;
+}
+
+message Tree{
+	repeated Layer t = 1;
+}
+
+message KeyValue {
+	bytes key = 1;
+	bytes value = 2;
+}
+
+message StructuredKeyValue {
+	bytes key = 1;
+	Content value = 2;
+}
+message Content {
+	uint64 timestamp = 1;
+	bytes payload = 2;
+}
+
+message Index {
+	uint64 index = 1;
+}
+
+message Item {
+	bytes key = 1;
+	bytes value = 2;
+	uint64 index = 3;
+}
+
+message StructuredItem {
+	bytes key = 1;
+	Content value = 2;
+	uint64 index = 3;
+}
+
+message KVList {
+	repeated KeyValue KVs = 1;
+}
+
+message SKVList {
+	repeated StructuredKeyValue SKVs = 1;
+}
+
+message KeyList {
+	repeated Key keys = 1;
+}
+
+message ItemList {
+	repeated Item items = 1;
+}
+
+message ZItem {
+	Item item = 1;
+	double score = 2;
+	bytes currentOffset = 3;
+	uint64 index = 4;
+}
+
+message ZItemList {
+	repeated ZItem items = 1;
+}
+
+message StructuredItemList {
+	repeated StructuredItem items = 1;
+}
+
+message ZStructuredItemList {
+	repeated ZStructuredItem items = 1;
+}
+
+message ZStructuredItem {
+	StructuredItem item = 1;
+	double score = 2;
+	bytes currentOffset = 3;
+	uint64 index = 4;
+}
+
+
+message Root {
+	RootIndex payload = 1;
+	Signature signature = 2;
+}
+
+message RootIndex {
+	uint64 index = 1;
+	bytes root = 2;
+}
+
+message Signature {
+	bytes signature = 1;
+	bytes publicKey = 2;
+}
+
+message ScanOptions {
+	bytes prefix = 1;
+	bytes offset = 2;
+	uint64 limit = 3;
+	bool reverse = 4;
+	bool deep = 5;
+}
+
+message KeyPrefix {
+	bytes prefix = 1;
+}
+
+message ItemsCount {
+	uint64 count = 1;
+}
+
+message InclusionProof {
+	uint64 at = 1;
+	uint64 index = 2;
+	bytes root = 3;
+	bytes leaf = 4;
+	repeated bytes path = 5;
+}
+
+message ConsistencyProof {
+	uint64 first = 1;
+	uint64 second = 2;
+	bytes firstRoot = 3;
+	bytes secondRoot = 4;
+	repeated bytes path = 5;
+}
+
+message Proof {
+	bytes leaf = 1;
+	uint64 index = 2;
+	bytes root = 3;
+	uint64 at = 4;
+	repeated bytes inclusionPath = 5;
+	repeated bytes consistencyPath = 6;
+}
+
+message SafeItem {
+	Item item = 1;
+	Proof proof = 2;
+}
+
+message SafeStructuredItem {
+	StructuredItem item = 1;
+	Proof proof = 2;
+}
+
+message SafeSetOptions {
+	KeyValue kv = 1;
+	Index rootIndex = 2;
+}
+
+message SafeSetSVOptions {
+	StructuredKeyValue skv = 1;
+	Index rootIndex = 2;
+}
+
+message SafeGetOptions {
+	bytes key = 1;
+	Index rootIndex = 2;
+}
+
+message SafeReferenceOptions {
+	ReferenceOptions ro = 1;
+	Index rootIndex = 2;
+}
+
+message HealthResponse {
+	bool status = 1;
+	string version = 2;
+}
+
+message ReferenceOptions {
+	bytes reference = 1;
+	bytes key = 2;
+}
+
+/*
+Why use double as score type?
+Because it is not purely about the storage size, but also use cases.
+64-bit floating point double gives a lot of flexibility and dynamic range, at the expense of having only 53-bits of integer.
+*/
+message ZAddOptions {
+	bytes set = 1;
+	Score score = 2;
+	bytes key = 3;
+	Index index = 4;
+}
+
+message ZScanOptions {
+	bytes set = 1;
+	bytes offset = 2;
+	uint64 limit = 3;
+	bool reverse = 4;
+	Score min = 5;
+	Score max = 6;
+}
+
+message Score {
+	double score = 1;
+}
+
+message IScanOptions {
+	uint64 pageSize = 1;
+	uint64 pageNumber = 2;
+}
+
+message Page {
+	repeated Item items = 1;
+	bool more = 3;
+}
+
+message SPage {
+	repeated StructuredItem items = 1;
+	uint64 pageNum  = 2;
+	bool more = 3;
+}
+
+message HistoryOptions {
+	bytes key = 1;
+	uint64 offset = 2;
+	uint64 limit = 3;
+	bool reverse = 4;
+}
+
+message SafeZAddOptions {
+	ZAddOptions zopts = 1;
+	Index rootIndex = 2;
+}
+
+message SafeIndexOptions {
+	uint64 index = 1;
+	Index rootIndex = 2;
+}
+
+message Database {
+	string databasename = 1;
+}
+message UseDatabaseReply{
+	string token = 1;
+}
+
+enum PermissionAction {
+	GRANT = 0;
+	REVOKE = 1;
+}
+
+message ChangePermissionRequest {
+	PermissionAction action = 1;
+	string username = 2;
+	string database = 3;
+	uint32 permission = 4;
+}
+
+message SetActiveUserRequest {
+	bool active = 1;
+	string username = 2;
+}
+
+message DatabaseListResponse{
+	repeated Database databases = 1;
+}
+// immudb gRPC & REST service
+// IMPORTANT: All get and safeget functions return base64-encoded keys and values, while all set and safeset functions expect base64-encoded inputs.
+service ImmuService {
+	rpc ListUsers (google.protobuf.Empty) returns (UserList){}
+	rpc CreateUser (CreateUserRequest) returns (google.protobuf.Empty){}
+	rpc ChangePassword (ChangePasswordRequest) returns (google.protobuf.Empty){}
+	rpc UpdateAuthConfig (AuthConfig) returns (google.protobuf.Empty){}
+	rpc UpdateMTLSConfig (MTLSConfig) returns (google.protobuf.Empty){}
+	rpc PrintTree (google.protobuf.Empty) returns (Tree){}
+	rpc Login (LoginRequest) returns (LoginResponse){}
+	rpc Logout (google.protobuf.Empty) returns (google.protobuf.Empty){}
+	rpc Set (KeyValue) returns (Index){}
+	rpc SafeSet(SafeSetOptions) returns (Proof){}
+	rpc Get (Key) returns (Item){}
+	rpc SafeGet(SafeGetOptions) returns (SafeItem){}
+	rpc SetBatch (KVList) returns (Index){}
+	rpc GetBatch (KeyList) returns (ItemList){}
+	rpc Scan(ScanOptions) returns (ItemList){}
+	rpc Count(KeyPrefix) returns (ItemsCount){}
+	rpc CountAll(google.protobuf.Empty) returns (ItemsCount){}
+	rpc CurrentRoot(google.protobuf.Empty) returns (Root) {}
+	rpc Inclusion(Index) returns (InclusionProof){}
+	rpc Consistency(Index) returns (ConsistencyProof){}
+	rpc ByIndex(Index) returns (Item){}
+	rpc BySafeIndex(SafeIndexOptions) returns (SafeItem){}
+	rpc History(HistoryOptions) returns (ItemList){}
+	rpc Health (google.protobuf.Empty) returns (HealthResponse){}
+	rpc Reference (ReferenceOptions) returns (Index){}
+	rpc SafeReference (SafeReferenceOptions) returns (Proof){}
+	rpc ZAdd (ZAddOptions) returns (Index){}
+	rpc ZScan (ZScanOptions) returns (ZItemList){}
+	rpc SafeZAdd (SafeZAddOptions) returns (Proof){}
+	rpc IScan (IScanOptions) returns (Page){}
+// 	rpc Dump(google.protobuf.Empty) returns (stream pb.KVList) {}
+	rpc CreateDatabase(Database) returns (google.protobuf.Empty) {}
+	rpc UseDatabase(Database) returns (UseDatabaseReply) {}
+	rpc ChangePermission(ChangePermissionRequest) returns (google.protobuf.Empty) {}
+	rpc SetActiveUser (SetActiveUserRequest) returns (google.protobuf.Empty){}
+	rpc DatabaseList (google.protobuf.Empty) returns (DatabaseListResponse){}
+}
