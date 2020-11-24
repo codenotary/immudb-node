@@ -31,7 +31,7 @@
   },
   "tap": {
     "nyc-arg": [
-      "--exclude=proto"
+      "--exclude=protos"
     ]
   },
   "keywords": [
