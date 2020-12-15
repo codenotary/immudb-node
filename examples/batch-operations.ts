@@ -21,7 +21,7 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
 
 (async () => {
     // Instantiate the client
-    const client = new ImmudbClient({
+    const client = ImmudbClient.getInstance({
         host: IMMUDB_HOST,
         port: IMMUDB_PORT,
         rootPath: 'rootfile'

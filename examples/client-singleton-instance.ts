@@ -25,8 +25,7 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
         // Instantiate the client
         const client = ImmudbClient.getInstance({
             host: IMMUDB_HOST,
-            port: IMMUDB_PORT,
-            rootPath: 'rootfile'
+            port: IMMUDB_PORT
         });
 
         await client.login({
@@ -40,38 +39,11 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
                 console.error(err);
             });
 
-        // no need to call createDatabase
-        // as 'defaultdb' is the default db 
-        await client.useDatabase({
-            databasename: 'defaultdb'
-        })
-            .then((res: any) => {
-                console.log('success: useDatabase');
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
-
-        await client.updateAuthConfig({
-            kind: types.Auth.ENABLED
-        })
-            .then((res: any) => {
-                console.log('success: updateAuthConfig');
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
-
-        await client.updateMTLSConfig({
-            enabled: false
-        })
-            .then((res: any) => {
-                console.log('success: updateMTLSConfig');
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
-        console.log('success: updateMTLSConfig')
+        // Instantiate the client a second time
+        ImmudbClient.getInstance({
+            host: IMMUDB_HOST,
+            port: IMMUDB_PORT
+        });
 
     } catch (err) {
         console.log(err)

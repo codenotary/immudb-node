@@ -10,12 +10,14 @@ import Util from './util';
 import Proofs from './proofs';
 import Root from './root';
 import * as types from './interfaces';
+import { getLogger } from '@grpc/grpc-js/build/src/logging';
 
 class ImmudbClient {
     public util = new Util();
     public proofs = new Proofs();
     public root = new Root();
     public client: any;
+    private static instance: ImmudbClient;
     private _auth: any;
     private _token: any;
     private _metadata: any;
@@ -23,7 +25,7 @@ class ImmudbClient {
     private _serverUUID: any;
     private _serverVersion: any;
 
-    constructor(
+    private constructor(
         config: Config
     ) {
         const { host, port, certs, rootPath } = config;
@@ -44,6 +46,26 @@ class ImmudbClient {
         }
 
         this.health();
+    }
+
+    public static getInstance(
+        config: Config
+    ): ImmudbClient {
+        if (!ImmudbClient.instance) {
+            console.log('ImmudbClient: creating new instance');
+            ImmudbClient.instance = new ImmudbClient(config);
+        } else {
+            console.log('ImmudbClient: using already available instance');
+        }
+
+        const { authorization } = ImmudbClient.instance._metadata;
+        if (authorization) {
+            console.log('token', authorization.token);
+        } else {
+            console.log('token unavailable');
+        }
+
+        return ImmudbClient.instance;
     }
 
     async shutdown() {
