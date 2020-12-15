@@ -18,15 +18,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -56,1041 +47,936 @@ class ImmudbClient {
                 path: rootPath
             });
         }
+        this.health();
     }
-    shutdown() {
-        return __awaiter(this, void 0, void 0, function* () {
-            this.root && this.root.commit();
-            process.exit(0);
-        });
+    async shutdown() {
+        this.root && this.root.commit();
+        process.exit(0);
     }
-    login(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const { user, password } = params;
-                const req = new messages.LoginRequest();
-                req.setUser(this.util.utf8Encode(user));
-                req.setPassword(this.util.utf8Encode(password));
-                this.client.login(req)
-                    .then((res) => {
-                    this._token = res && res.getToken();
-                    this._metadata && this._metadata.remove('authorization');
-                    this._metadata && this._metadata.add('authorization', 'Bearer ' + this._token);
-                    return {
-                        token: this._token,
-                        warning: this.util.utf8Decode(res && res.getWarning())
-                    };
-                })
-                    .catch((err) => {
+    async login(params) {
+        try {
+            const { user, password } = params;
+            const req = new messages.LoginRequest();
+            req.setUser(this.util.utf8Encode(user));
+            req.setPassword(this.util.utf8Encode(password));
+            return new Promise((resolve, reject) => this.client.login(req, this._metadata, (err, res) => {
+                if (err) {
                     console.error('Login Error', err);
-                    throw new Error('Login Error');
+                    return reject(err);
+                }
+                this._token = res && res.getToken();
+                this._metadata && this._metadata.remove('authorization');
+                this._metadata && this._metadata.add('authorization', 'Bearer ' + this._token);
+                resolve({
+                    token: this._token,
+                    warning: this.util.utf8Decode(res && res.getWarning())
                 });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
+            }));
+        }
+        catch (err) {
+            console.error('Login Error', err);
+        }
     }
-    createDatabase(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new messages.Database();
-                req.setDatabasename(params && params.databasename);
-                this.client.createDatabase(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('Create database error');
-                    }
-                    return {};
+    async createDatabase(params) {
+        try {
+            const req = new messages.Database();
+            req.setDatabasename(params && params.databasename);
+            return new Promise((resolve, reject) => this.client.createDatabase(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('Create database error');
+                    return reject(err);
+                }
+                resolve();
+            }));
+        }
+        catch (err) {
+            console.error('Create database error', err);
+        }
+    }
+    async useDatabase(params) {
+        try {
+            const req = new messages.Database();
+            req.setDatabasename(params && params.databasename);
+            return new Promise((resolve, reject) => this.client.useDatabase(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('Use database error', err);
+                    return reject(err);
+                }
+                const token = res && res.getToken();
+                this._metadata && this._metadata.remove('authorization');
+                this._metadata && this._metadata.add('authorization', 'Bearer ' + token);
+                this._activeDatabase = params && params.databasename;
+                this.currentRoot()
+                    .then(() => ({ token }))
+                    .catch((err) => { throw new Error('Use database error'); });
+            }));
+        }
+        catch (err) {
+            console.error('Use database error', err);
+        }
+    }
+    async set(params) {
+        try {
+            const req = new messages.KeyValue();
+            req.setKey(this.util && this.util.utf8Encode(params && params.key));
+            req.setValue(this.util && this.util.utf8Encode(params && params.value));
+            return new Promise((resolve, reject) => this.client.set(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('Set error', err);
+                    return reject(err);
+                }
+                resolve({
+                    index: res && res.getIndex()
                 });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
+            }));
+        }
+        catch (err) {
+            console.error('Set error', err);
+        }
     }
-    useDatabase(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new messages.Database();
-                req.setDatabasename(params && params.databasename);
-                this.client.useDatabase(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('Use database error');
+    async get(params) {
+        try {
+            const req = new messages.Key();
+            req.setKey(this.util && this.util.utf8Encode(params && params.key));
+            return new Promise((resolve, reject) => this.client.get(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('Get error', err);
+                    throw new Error(err);
+                }
+                resolve({
+                    key: this.util && this.util.utf8Decode(res && res.getKey()),
+                    value: this.util && this.util.utf8Decode(res && res.getValue()),
+                    index: res && res.getIndex()
+                });
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+    async listDatabases() {
+        try {
+            const req = new empty.Empty();
+            return new Promise((resolve, reject) => this.client.databaseList(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('List databases error', err);
+                    return reject(err);
+                }
+                const dl = res && res.getDatabasesList();
+                const l = [];
+                for (let i = 0; dl && i < dl.length; i++) {
+                    l.push(dl[i].getDatabasename());
+                }
+                resolve({
+                    databasesList: l
+                });
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+    async changePermission(params) {
+        try {
+            const req = new messages.ChangePermissionRequest();
+            req.setAction(params && params.action);
+            req.setPermission(params && params.permission);
+            req.setUsername(params && params.username);
+            req.setDatabase(params && params.database);
+            return new Promise((resolve, reject) => this.client.changePermission(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('Change permission error', err);
+                    return reject(err);
+                }
+                resolve();
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+    async listUsers() {
+        try {
+            const req = new empty.Empty();
+            return new Promise((resolve, reject) => this.client.listUsers(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('List users error', err);
+                    throw new Error(err);
+                }
+                const ul = res && res.getUsersList();
+                const l = [];
+                for (let i = 0; ul && i < ul.length; i++) {
+                    let u = ul[i];
+                    const pl = u.getPermissionsList();
+                    const p = [];
+                    for (let j = 0; j < pl.length; j++) {
+                        p.push({
+                            database: pl[j].getDatabase(),
+                            permission: pl[j].getPermission()
+                        });
                     }
-                    const token = res && res.getToken();
-                    this._metadata && this._metadata.remove('authorization');
-                    this._metadata && this._metadata.add('authorization', 'Bearer ' + token);
-                    this._activeDatabase = params && params.databasename;
-                    this.currentRoot()
-                        .then(() => {
-                        return {
-                            token
-                        };
-                    })
-                        .catch((err) => {
-                        throw new Error(err);
+                    l.push({
+                        user: this.util && this.util.utf8Decode(u.getUser()),
+                        permissionsList: p,
+                        createdby: u.getCreatedby(),
+                        createdat: u.getCreatedat(),
+                        active: u.getActive()
                     });
+                }
+                resolve({
+                    usersList: l
                 });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
-    set(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new messages.KeyValue();
-                req.setKey(this.util && this.util.utf8Encode(params && params.key));
-                req.setValue(this.util && this.util.utf8Encode(params && params.value));
-                this.client.set(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('Set error');
-                    }
-                    return {
-                        index: res && res.getIndex()
-                    };
-                });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
+    async createUser(params) {
+        try {
+            const req = new messages.CreateUserRequest();
+            req.setUser(this.util && this.util.utf8Encode(params && params.user));
+            req.setPassword(this.util && this.util.utf8Encode(params && params.password));
+            req.setPermission(params && params.permission);
+            req.setDatabase(params && params.database);
+            return new Promise((resolve, reject) => this.client.createUser(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('Create user error', err);
+                    return reject(err);
+                }
+                resolve();
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
-    get(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new messages.Key();
-                req.setKey(this.util && this.util.utf8Encode(params && params.key));
-                this.client.get(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('Get error');
-                    }
-                    return {
-                        key: this.util && this.util.utf8Decode(res && res.getKey()),
-                        value: this.util && this.util.utf8Decode(res && res.getValue()),
-                        index: res && res.getIndex()
-                    };
-                });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
+    async changePassword(params) {
+        try {
+            const req = new messages.ChangePasswordRequest();
+            req.setUser(this.util && this.util.utf8Encode(params && params.user));
+            req.setOldpassword(this.util && this.util.utf8Encode(params && params.oldpassword));
+            req.setNewpassword(this.util && this.util.utf8Encode(params && params.newpassword));
+            return new Promise((resolve, reject) => this.client.changePassword(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('Change password error', err);
+                    return reject(err);
+                }
+                resolve();
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
-    listDatabases() {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new empty.Empty();
-                this.client.databaseList(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('List databases error');
-                    }
-                    const dl = res && res.getDatabasesList();
-                    const l = [];
-                    for (let i = 0; dl && i < dl.length; i++) {
-                        l.push(dl[i].getDatabasename());
-                    }
-                    return {
-                        databases: l
-                    };
-                });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
+    async logout() {
+        try {
+            const req = new empty.Empty();
+            return new Promise((resolve, reject) => this.client.logout(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('Logout error', err);
+                    throw new Error(err);
+                }
+                resolve();
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
-    changePermission(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new messages.ChangePermissionRequest();
-                req.setAction(params && params.action);
-                req.setPermission(params && params.permission);
-                req.setUsername(params && params.username);
-                req.setDatabase(params && params.database);
-                this.client.changePermission(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('Change permission error');
-                    }
-                    return {};
-                });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
+    async setActiveUser(params) {
+        try {
+            const req = new messages.SetActiveUserRequest();
+            req.setUsername(params && params.username);
+            req.setActive(params && params.active);
+            return new Promise((resolve, reject) => this.client.setActiveUser(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('Set active user error', err);
+                    return reject(err);
+                }
+                resolve();
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
-    listUsers() {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new empty.Empty();
-                this.client.listUsers(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('List users error');
-                    }
-                    const ul = res && res.getUsersList();
-                    const l = [];
-                    for (let i = 0; ul && i < ul.length; i++) {
-                        let u = ul[i];
-                        const pl = u.getPermissionsList();
-                        const p = [];
-                        for (let j = 0; j < pl.length; j++) {
-                            p.push({
-                                database: pl[j].getDatabase(),
-                                permission: pl[j].getPermission()
-                            });
-                        }
-                        l.push({
-                            username: this.util && this.util.utf8Decode(u.getUser()),
-                            permissions: p,
-                            createdBy: u.getCreatedby(),
-                            createdAt: u.getCreatedat(),
-                            active: u.getActive()
-                        });
-                    }
-                    return {
-                        users: l
-                    };
+    // async printTree (): Promise <messages.Tree.AsObject | undefined> {
+    //     try {
+    //         const req = new empty.Empty();
+    //         return new Promise((resolve, reject) => this.client.printTree(req, this._metadata, (err: any, res: any) => {
+    //             if (err) {
+    //                 console.error('Print tree error', err);
+    //                 return reject(err);
+    //             }
+    //             // const tList = [];
+    //             const tList = new messages.Tree();
+    //             const tl = res && res.getTList();
+    //             for (let i = 0; tl && i < tl.length; i++) {
+    //                 let layer = tl[i];
+    //                 const ll = layer.getLList();
+    //                 const lList = new messages.Layer();
+    //                 for (let j = 0; j < ll.length; j++) {
+    //                     let node = new messages.Node(ll[j]);
+    //                     node.setI();
+    //                     node.setH();
+    //                     node.setRefk();
+    //                     node.setRef();
+    //                     node.setCache();
+    //                     node.setRoot();
+    //                     let refk = node.getRefk() == ''
+    //                         ? node.getRefk() :
+    //                         this.util && this.util.utf8Decode(node.getRefk());
+    //                     lList.addL(<messages.Node.AsObject>{
+    //                         i: this.util && this.util.base64Encode(node.getI()),
+    //                         h: this.util && this.util.base64Encode(node.getH()),
+    //                         refk: refk,
+    //                         ref: node.getRef(),
+    //                         cache: node.getCache(),
+    //                         root: node.getRoot()
+    //                     });
+    //                 }
+    //                 tList.addT(lList);
+    //             }
+    //             resolve({
+    //                 tList: tList
+    //             });
+    //         }));
+    //     } catch (err) {
+    //         console.error(err);
+    //     }
+    // }
+    async health() {
+        try {
+            const req = new empty.Empty();
+            return new Promise((resolve, reject) => this.client.health(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('Health error', err);
+                    return reject(err);
+                }
+                this._serverVersion = res && res.getVersion().split(' ')[1];
+                resolve({
+                    status: res && res.getStatus(),
+                    version: res && res.getVersion()
                 });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
-    createUser(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new messages.CreateUserRequest();
-                req.setUser(this.util && this.util.utf8Encode(params && params.user));
-                req.setPassword(this.util && this.util.utf8Encode(params && params.password));
-                req.setPermission(params && params.permission);
-                req.setDatabase(params && params.database);
-                this.client.createUser(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('Create user error');
-                    }
-                    return {};
+    async count(params) {
+        try {
+            const req = new messages.KeyPrefix();
+            req.setPrefix(this.util && this.util.utf8Encode(params && params.prefix));
+            return new Promise((resolve, reject) => this.client.count(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('Count error', err);
+                    return reject(err);
+                }
+                resolve({
+                    count: res && res.getCount()
                 });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
-    changePassword(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new messages.ChangePasswordRequest();
-                req.setUser(this.util && this.util.utf8Encode(params && params.user));
-                req.setOldpassword(this.util && this.util.utf8Encode(params && params.oldpassword));
-                req.setNewpassword(this.util && this.util.utf8Encode(params && params.newpassword));
-                this.client.changePassword(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('Change password error');
-                    }
-                    return {};
+    async scan(params) {
+        try {
+            const req = new messages.ScanOptions();
+            req.setPrefix(this.util && this.util.utf8Encode(params && params.prefix));
+            req.setOffset(this.util && this.util.utf8Encode(params && params.offset));
+            req.setLimit(params && params.limit);
+            req.setReverse(params && params.reverse);
+            req.setDeep(params && params.deep);
+            return new Promise((resolve, reject) => this.client.scan(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('Scan error', err);
+                    return reject(err);
+                }
+                const result = [];
+                const il = res && res.getItemsList();
+                for (let i = 0; il && i < il.length; i++) {
+                    let item = il[i];
+                    result.push({
+                        key: this.util && this.util.utf8Decode(item.getKey()),
+                        value: this.util && this.util.utf8Decode(item.getValue()),
+                        index: item.getIndex()
+                    });
+                }
+                resolve({
+                    itemsList: result
                 });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
-    logout() {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new empty.Empty();
-                this.client.logout(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('Logout error');
-                    }
-                    return {};
+    async byIndex(params) {
+        try {
+            const req = new messages.Index();
+            req.setIndex(params && params.index);
+            return new Promise((resolve, reject) => this.client.byIndex(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('By index error', err);
+                    return reject(err);
+                }
+                resolve({
+                    key: this.util && this.util.utf8Decode(res && res.getKey()),
+                    value: this.util && this.util.utf8Decode(res && res.getValue()),
+                    index: res && res.getIndex()
                 });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
-    setActiveUser(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new messages.SetActiveUserRequest();
-                req.setUsername(params && params.username);
-                req.setActive(params && params.active);
-                this.client.setActiveUser(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('Set active user error');
-                    }
-                    return {};
+    async history(params) {
+        try {
+            const req = new messages.HistoryOptions();
+            req.setKey(this.util && this.util.utf8Encode(params && params.key));
+            req.setOffset(params && params.offset);
+            req.setLimit(params && params.limit);
+            req.setReverse(params && params.reverse);
+            return new Promise((resolve, reject) => this.client.history(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('History error', err);
+                    return reject(err);
+                }
+                const result = [];
+                const il = res && res.getItemsList();
+                for (let i = 0; il && i < il.length; i++) {
+                    let item = il[i];
+                    result.push({
+                        key: this.util && this.util.utf8Decode(item.getKey()),
+                        value: this.util && this.util.utf8Decode(item.getValue()),
+                        index: item.getIndex()
+                    });
+                }
+                resolve({
+                    itemsList: result
                 });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
-    printTree() {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new empty.Empty();
-                this.client.printTree(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('Print tree error');
-                    }
-                    const result = [];
-                    const tl = res && res.getTList();
-                    for (let i = 0; tl && i < tl.length; i++) {
-                        let layer = tl[i];
-                        const ll = layer.getLList();
-                        const nodes = [];
-                        for (let j = 0; j < ll.length; j++) {
-                            let node = ll[j];
-                            let refk = node.getRefk() == ''
-                                ? node.getRefk() :
-                                this.util && this.util.utf8Decode(node.getRefk());
-                            nodes.push({
-                                h: this.util && this.util.base64Encode(node.getH()),
-                                i: this.util && this.util.base64Encode(node.getI()),
-                                refk: refk,
-                                ref: node.getRef(),
-                                cache: node.getCache(),
-                                root: node.getRoot()
-                            });
-                        }
-                        result.push(nodes);
-                    }
-                    return {
-                        tree: result
-                    };
+    async zScan(params) {
+        try {
+            const req = new messages.ZScanOptions();
+            req.setSet(this.util && this.util.utf8Encode(params && params.set));
+            req.setOffset(this.util && this.util.utf8Encode(params && params.offset));
+            req.setLimit(params && params.limit);
+            req.setReverse(params && params.reverse);
+            return new Promise((resolve, reject) => this.client.zScan(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('zScan error', err);
+                    return reject(err);
+                }
+                const result = [];
+                const il = res && res.getItemsList();
+                for (let i = 0; il && i < il.length; i++) {
+                    let item = il[i];
+                    result.push({
+                        key: this.util && this.util.utf8Decode(item.getKey()),
+                        value: this.util && this.util.utf8Decode(item.getValue()),
+                        index: item.getIndex()
+                    });
+                }
+                resolve({
+                    itemsList: result
                 });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
-    health() {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new empty.Empty();
-                const call = this.client.health(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('Health error');
-                    }
-                    this._serverVersion = res && res.getVersion().split(' ')[1];
-                    return {
-                        status: res && res.getStatus(),
-                        version: res && res.getVersion()
-                    };
+    async iScan(params) {
+        try {
+            const req = new messages.IScanOptions();
+            req.setPagesize(params && params.pagesize);
+            req.setPagenumber(params && params.pagenumber);
+            return new Promise((resolve, reject) => this.client.iScan(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('iScan error', err);
+                    return reject(err);
+                }
+                const result = [];
+                const il = res && res.getItemsList();
+                for (let i = 0; il && i < il.length; i++) {
+                    let item = il[i];
+                    result.push({
+                        key: this.util && this.util.utf8Decode(item && item.getKey()),
+                        value: this.util && this.util.utf8Decode(item && item.getValue()),
+                        index: item && item.getIndex()
+                    });
+                }
+                resolve({
+                    itemsList: result,
+                    more: res && res.getMore()
                 });
-                call.on('this._metadata', (meta) => {
-                    this._serverUUID = meta.get('immudb-uuid')[0];
-                });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
-    count(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new messages.KeyPrefix();
-                req.setPrefix(this.util && this.util.utf8Encode(params && params.prefix));
-                this.client.count(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('Count error');
-                    }
-                    return {
-                        count: res && res.getCount()
-                    };
+    async currentRoot() {
+        try {
+            const req = new empty.Empty();
+            return new Promise((resolve, reject) => this.client.currentRoot(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('Current root error', err);
+                    return reject(err);
+                }
+                let payload = res && res.getPayload();
+                let signature = res && res.getSignature();
+                this.root && this.root.set({
+                    server: this._serverUUID,
+                    database: this._activeDatabase,
+                    root: payload && payload.getRoot(),
+                    index: payload && payload.getIndex()
                 });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
-    }
-    scan(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new messages.ScanOptions();
-                req.setPrefix(this.util && this.util.utf8Encode(params && params.prefix));
-                req.setOffset(this.util && this.util.utf8Encode(params && params.offset));
-                req.setLimit(params && params.limit);
-                req.setReverse(params && params.reverse);
-                req.setDeep(params && params.deep);
-                this.client.scan(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('Scan error');
+                resolve({
+                    payload: {
+                        index: payload && payload.getIndex(),
+                        root: payload && payload.getRoot()
+                    },
+                    signature: {
+                        signature: signature && signature.getSignature(),
+                        publickey: signature && signature.getPublickey()
                     }
-                    const result = [];
-                    const il = res && res.getItemsList();
-                    for (let i = 0; il && i < il.length; i++) {
-                        let item = il[i];
-                        result.push({
-                            key: this.util && this.util.utf8Decode(item.getKey()),
-                            value: this.util && this.util.utf8Decode(item.getValue()),
-                            index: item.getIndex()
-                        });
-                    }
-                    return {
-                        items: result
-                    };
                 });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
-    byIndex(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new messages.Index();
-                req.setIndex(params && params.index);
-                this.client.byIndex(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('By index error');
-                    }
-                    return {
-                        key: this.util && this.util.utf8Decode(res && res.getKey()),
-                        value: this.util && this.util.utf8Decode(res && res.getValue()),
-                        index: res && res.getIndex()
-                    };
+    async zAdd(params) {
+        try {
+            const req = new messages.ZAddOptions();
+            const score = new messages.Score();
+            const index = new messages.Index();
+            params && score.setScore(params.score || 0);
+            params && index.setIndex(params.index || 0);
+            req.setSet(this.util && this.util.utf8Encode(params && params.set));
+            req.setScore(score);
+            req.setIndex(index);
+            req.setKey(this.util && this.util.utf8Encode(params && params.key));
+            return new Promise((resolve, reject) => this.client.zAdd(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('zAdd error', err);
+                    return reject(err);
+                }
+                resolve({
+                    index: res && res.getIndex()
                 });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
-    history(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new messages.HistoryOptions();
-                req.setKey(this.util && this.util.utf8Encode(params && params.key));
-                req.setOffset(params && params.offset);
-                req.setLimit(params && params.limit);
-                req.setReverse(params && params.reverse);
-                this.client.history(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('History error');
-                    }
-                    const result = [];
-                    const il = res && res.getItemsList();
-                    for (let i = 0; il && i < il.length; i++) {
-                        let item = il[i];
-                        result.push({
-                            key: this.util && this.util.utf8Decode(item.getKey()),
-                            value: this.util && this.util.utf8Decode(item.getValue()),
-                            index: item.getIndex()
-                        });
-                    }
-                    return {
-                        items: result
-                    };
+    async reference(params) {
+        try {
+            const req = new messages.ReferenceOptions();
+            req.setReference(this.util && this.util.utf8Encode(params && params.reference));
+            req.setKey(this.util && this.util.utf8Encode(params && params.key));
+            return new Promise((resolve, reject) => this.client.reference(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('Reference error', err);
+                    return reject(err);
+                }
+                ;
+                resolve({
+                    index: res && res.getIndex()
                 });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
-    zScan(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new messages.ZScanOptions();
-                req.setSet(this.util && this.util.utf8Encode(params && params.set));
-                req.setOffset(this.util && this.util.utf8Encode(params && params.offset));
-                req.setLimit(params && params.limit);
-                req.setReverse(params && params.reverse);
-                this.client.zScan(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('zScan error');
-                    }
-                    const result = [];
-                    const il = res && res.getItemsList();
-                    for (let i = 0; il && i < il.length; i++) {
-                        let item = il[i];
-                        result.push({
-                            key: this.util && this.util.utf8Decode(item.getKey()),
-                            value: this.util && this.util.utf8Decode(item.getValue()),
-                            index: item.getIndex()
-                        });
-                    }
-                    return {
-                        items: result
-                    };
+    async setBatch(params) {
+        try {
+            const req = new messages.KVList();
+            for (let i = 0; params && params.kvsList && i < params.kvsList.length; i++) {
+                const kv = new messages.KeyValue();
+                kv.setKey(this.util && this.util.utf8Encode(params && params.kvsList[i].key));
+                kv.setValue(this.util && this.util.utf8Encode(params && params.kvsList[i].value));
+                req.addKvs(kv);
+            }
+            return new Promise((resolve, reject) => this.client.setBatch(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('Set batch error', err);
+                    return reject(err);
+                }
+                resolve({
+                    index: res && res.getIndex()
                 });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
-    iScan(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new messages.IScanOptions();
-                req.setPagesize(params && params.pagesize);
-                req.setPagenumber(params && params.pagenumber);
-                this.client.iScan(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('iScan error');
-                    }
-                    const result = [];
-                    const il = res && res.getItemsList();
-                    for (let i = 0; il && i < il.length; i++) {
-                        let item = il[i];
-                        result.push({
-                            key: this.util && this.util.utf8Decode(item && item.getKey()),
-                            value: this.util && this.util.utf8Decode(item && item.getValue()),
-                            index: item && item.getIndex()
-                        });
-                    }
-                    return {
-                        items: result,
-                        more: res && res.getMore()
-                    };
+    async getBatch(params) {
+        try {
+            const l = [];
+            for (let i = 0; params && params.keysList && i < params.keysList.length; i++) {
+                const key = new messages.Key();
+                key.setKey(this.util && this.util.utf8Encode(params && params.keysList[i].key));
+                l.push(key);
+            }
+            const req = new messages.KeyList();
+            req.setKeysList(l);
+            return new Promise((resolve, reject) => this.client.getBatch(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('Get batch error', err);
+                    return reject(err);
+                }
+                const result = [];
+                const il = res && res.getItemsList();
+                for (let i = 0; il && i < il.length; i++) {
+                    let item = il[i];
+                    result.push({
+                        key: this.util && this.util.utf8Decode(item.getKey()),
+                        value: this.util && this.util.utf8Decode(item.getValue()),
+                        index: item.getIndex()
+                    });
+                }
+                resolve({
+                    itemsList: result
                 });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
-    currentRoot() {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new empty.Empty();
-                this.client.currentRoot(req, this._metadata, (err, res) => {
+    async safeSet(params) {
+        try {
+            const kv = new messages.KeyValue();
+            kv.setKey(this.util && this.util.utf8Encode(params && params.key));
+            kv.setValue(this.util && this.util.utf8Encode(params && params.value));
+            const index = new messages.Index();
+            index.setIndex(this.util && this.root.get({
+                server: this._serverUUID,
+                database: this._activeDatabase
+            }).index);
+            const req = new messages.SafeSetOptions();
+            req.setKv(kv);
+            req.setRootindex(index);
+            return new Promise((resolve, reject) => this.client.safeSet(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('SafeSet error', err);
+                    return reject(err);
+                }
+                const verifyReq = {
+                    proof: {
+                        inclusionPath: res && res.getInclusionpathList(),
+                        consistencyPath: res && res.getConsistencypathList(),
+                        index: res && res.getIndex(),
+                        at: res && res.getAt(),
+                        leaf: res && res.getLeaf(),
+                        root: res && res.getRoot(),
+                    },
+                    item: {
+                        key: this.util && this.util.utf8Encode(params && params.key),
+                        value: this.util && this.util.utf8Encode(params && params.value),
+                        index: res && res.getIndex(),
+                    },
+                    oldRoot: this.root && this.root.get({
+                        server: this._serverUUID,
+                        database: this._activeDatabase
+                    })
+                };
+                this.proofs && this.proofs.verify(verifyReq, (err) => {
                     if (err) {
-                        throw new Error('Current root error');
+                        return { err };
                     }
-                    let payload = res && res.getPayload();
-                    let signature = res && res.getSignature();
                     this.root && this.root.set({
                         server: this._serverUUID,
                         database: this._activeDatabase,
-                        root: payload && payload.getRoot(),
-                        index: payload && payload.getIndex()
-                    });
-                    return {
-                        rootIndex: {
-                            index: payload && payload.getIndex(),
-                            root: payload && payload.getRoot()
-                        },
-                        signature: {
-                            signature: signature && signature.getSignature(),
-                            publicKey: signature && signature.getPublickey()
-                        }
-                    };
-                });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
-    }
-    zAdd(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new messages.ZAddOptions();
-                const score = new messages.Score();
-                const index = new messages.Index();
-                params && score.setScore(params.score || 0);
-                params && index.setIndex(params.index || 0);
-                req.setSet(this.util && this.util.utf8Encode(params && params.set));
-                req.setScore(score);
-                req.setIndex(index);
-                req.setKey(this.util && this.util.utf8Encode(params && params.key));
-                this.client.zAdd(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('zAdd error');
-                    }
-                    return {
-                        index: res && res.getIndex()
-                    };
-                });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
-    }
-    reference(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new messages.ReferenceOptions();
-                req.setReference(this.util && this.util.utf8Encode(params && params.reference));
-                req.setKey(this.util && this.util.utf8Encode(params && params.key));
-                this.client.reference(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('Reference error');
-                    }
-                    ;
-                    return {
-                        index: res && res.getIndex()
-                    };
-                });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
-    }
-    setBatch(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new messages.KVList();
-                for (let i = 0; params && params.kvsList && i < params.kvsList.length; i++) {
-                    const kv = new messages.KeyValue();
-                    kv.setKey(this.util && this.util.utf8Encode(params && params.kvsList[i].key));
-                    kv.setValue(this.util && this.util.utf8Encode(params && params.kvsList[i].value));
-                    req.addKvs(kv);
-                }
-                this.client.setBatch(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('Set batch error');
-                    }
-                    return {
-                        index: res && res.getIndex()
-                    };
-                });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
-    }
-    getBatch(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const l = [];
-                for (let i = 0; params && params.keysList && i < params.keysList.length; i++) {
-                    const key = new messages.Key();
-                    key.setKey(this.util && this.util.utf8Encode(params && params.keysList[i].key));
-                    l.push(key);
-                }
-                const req = new messages.KeyList();
-                req.setKeysList(l);
-                this.client.getBatch(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('Get batch error');
-                    }
-                    const result = [];
-                    const il = res && res.getItemsList();
-                    for (let i = 0; il && i < il.length; i++) {
-                        let item = il[i];
-                        result.push({
-                            key: this.util && this.util.utf8Decode(item.getKey()),
-                            value: this.util && this.util.utf8Decode(item.getValue()),
-                            index: item.getIndex()
-                        });
-                    }
-                    return {
-                        items: result
-                    };
-                });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
-    }
-    safeSet(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const kv = new messages.KeyValue();
-                kv.setKey(this.util && this.util.utf8Encode(params && params.key));
-                kv.setValue(this.util && this.util.utf8Encode(params && params.value));
-                const index = new messages.Index();
-                index.setIndex(this.util && this.root.get({
-                    server: this._serverUUID,
-                    database: this._activeDatabase
-                }).index);
-                const req = new messages.SafeSetOptions();
-                req.setKv(kv);
-                req.setRootindex(index);
-                this.client.safeSet(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('SafeSet error');
-                    }
-                    const verifyReq = {
-                        proof: {
-                            inclusionPath: res && res.getInclusionpathList(),
-                            consistencyPath: res && res.getConsistencypathList(),
-                            index: res && res.getIndex(),
-                            at: res && res.getAt(),
-                            leaf: res && res.getLeaf(),
-                            root: res && res.getRoot(),
-                        },
-                        item: {
-                            key: this.util && this.util.utf8Encode(params && params.key),
-                            value: this.util && this.util.utf8Encode(params && params.value),
-                            index: res && res.getIndex(),
-                        },
-                        oldRoot: this.root && this.root.get({
-                            server: this._serverUUID,
-                            database: this._activeDatabase
-                        })
-                    };
-                    this.proofs && this.proofs.verify(verifyReq, (err) => {
-                        if (err) {
-                            return { err };
-                        }
-                        this.root && this.root.set({
-                            server: this._serverUUID,
-                            database: this._activeDatabase,
-                            root: res && res.getRoot(),
-                            index: res && res.getAt()
-                        });
-                        return {
-                            index: res && res.getIndex()
-                        };
-                    });
-                });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
-    }
-    safeGet(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const index = new messages.Index();
-                index.setIndex(this.root && this.root.get({
-                    server: this._serverUUID,
-                    database: this._activeDatabase
-                }).index);
-                const req = new messages.SafeGetOptions();
-                req.setKey(this.util && this.util.utf8Encode(params && params.key));
-                req.setRootindex(index);
-                this.client.safeGet(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('SafeGet error');
-                    }
-                    const proof = res && res.getProof();
-                    const item = res && res.getItem();
-                    const verifyReq = {
-                        proof: {
-                            inclusionPath: proof.getInclusionpathList(),
-                            consistencyPath: proof.getConsistencypathList(),
-                            index: proof.getIndex(),
-                            at: proof.getAt(),
-                            leaf: proof.getLeaf(),
-                            root: proof.getRoot(),
-                        },
-                        item: {
-                            key: item.getKey(),
-                            value: item.getValue(),
-                            index: item.getIndex(),
-                        },
-                        oldRoot: this.root && this.root.get({
-                            server: this._serverUUID,
-                            database: this._activeDatabase,
-                        })
-                    };
-                    this.proofs && this.proofs.verify(verifyReq, (err) => {
-                        if (err) {
-                            return { err };
-                        }
-                        this.root && this.root.set({
-                            server: this._serverUUID,
-                            database: this._activeDatabase,
-                            root: proof.getRoot(),
-                            index: proof.getAt()
-                        });
-                        return {
-                            key: this.util && this.util.utf8Decode(item.getKey()),
-                            value: this.util && this.util.utf8Decode(item.getValue()),
-                            index: item.getIndex()
-                        };
-                    });
-                });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
-    }
-    updateAuthConfig(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new messages.AuthConfig();
-                req.setKind(params && params.kind);
-                this.client.updateAuthConfig(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('Update auth config error');
-                    }
-                    return {};
-                });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
-    }
-    updateMTLSConfig(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new messages.MTLSConfig();
-                req.setEnabled(params && params.enabled);
-                this.client.updateMTLSConfig(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('Update mtls config error');
-                    }
-                    return {};
-                });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
-    }
-    safeZAdd(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const options = new messages.ZAddOptions();
-                const score = new messages.Score();
-                params && score.setScore(params.score || 0);
-                options.setSet(this.util && this.util.utf8Encode(params && params.set));
-                options.setScore(score);
-                options.setKey(this.util && this.util.utf8Encode(params && params.key));
-                const index = new messages.Index();
-                index.setIndex(this.root && this.root.get({
-                    server: this._serverUUID,
-                    database: this._activeDatabase
-                }).index);
-                const req = new messages.SafeZAddOptions();
-                req.setZopts(options);
-                req.setRootindex(index);
-                this.client.safeZAdd(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('safeZAdd error');
-                    }
-                    let key2 = this.proofs && this.proofs.setKey({
-                        key: this.util && this.util.utf8Encode(params && params.key),
-                        set: this.util && this.util.utf8Encode(params && params.set),
-                        score: params && params.score
-                    });
-                    const verifyReq = {
-                        proof: {
-                            inclusionPath: res && res.getInclusionpathList(),
-                            consistencyPath: res && res.getConsistencypathList(),
-                            index: res && res.getIndex(),
-                            at: res && res.getAt(),
-                            leaf: res && res.getLeaf(),
-                            root: res && res.getRoot()
-                        },
-                        item: {
-                            key: key2,
-                            value: this.util && this.util.utf8Encode(params && params.key),
-                            index: res && res.getIndex()
-                        },
-                        oldRoot: this.root && this.root.get({
-                            server: this._serverUUID,
-                            database: this._activeDatabase
-                        })
-                    };
-                    this.proofs && this.proofs.verify(verifyReq, (err) => {
-                        if (err) {
-                            return { err };
-                        }
-                        this.root && this.root.set({
-                            server: this._serverUUID,
-                            database: this._activeDatabase,
-                            root: res && res.getRoot(),
-                            index: res && res.getAt()
-                        });
-                        return {
-                            index: res && res.getIndex()
-                        };
-                    });
-                });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
-    }
-    inclusion(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new messages.Index();
-                req.setIndex(params && params.index);
-                this.client.inclusion(req, this._metadata, (err, res) => {
-                    if (err) {
-                        throw new Error('inclusion error');
-                    }
-                    return {
-                        at: res && res.getAt(),
-                        index: res && res.getIndex(),
                         root: res && res.getRoot(),
-                        leaf: res && res.getLeaf(),
-                        inclusionPath: res && res.getPathList()
-                    };
+                        index: res && res.getAt()
+                    });
+                    resolve({
+                        index: res && res.getIndex()
+                    });
                 });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
-    consistency(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const req = new messages.Index();
-                req.setIndex(params && params.index);
-                this.client.consistency(req, this._metadata, (err, res) => {
+    async safeGet(params) {
+        try {
+            const index = new messages.Index();
+            index.setIndex(this.root && this.root.get({
+                server: this._serverUUID,
+                database: this._activeDatabase
+            }).index);
+            const req = new messages.SafeGetOptions();
+            req.setKey(this.util && this.util.utf8Encode(params && params.key));
+            req.setRootindex(index);
+            return new Promise((resolve, reject) => this.client.safeGet(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('SafeGet error', err);
+                    return reject(err);
+                }
+                const proof = res && res.getProof();
+                const item = res && res.getItem();
+                const verifyReq = {
+                    proof: {
+                        inclusionPath: proof.getInclusionpathList(),
+                        consistencyPath: proof.getConsistencypathList(),
+                        index: proof.getIndex(),
+                        at: proof.getAt(),
+                        leaf: proof.getLeaf(),
+                        root: proof.getRoot(),
+                    },
+                    item: {
+                        key: item.getKey(),
+                        value: item.getValue(),
+                        index: item.getIndex(),
+                    },
+                    oldRoot: this.root && this.root.get({
+                        server: this._serverUUID,
+                        database: this._activeDatabase,
+                    })
+                };
+                this.proofs && this.proofs.verify(verifyReq, (err) => {
                     if (err) {
-                        throw new Error('consistency error');
+                        return { err };
                     }
-                    ;
-                    return {
-                        oldRootIndex: res && res.getFirst(),
-                        at: res && res.getSecond(),
-                        oldRoot: res && res.getFirstroot(),
-                        newRoot: res && res.getSecondroot(),
-                        consistencyPath: res && res.getPathList()
-                    };
+                    this.root && this.root.set({
+                        server: this._serverUUID,
+                        database: this._activeDatabase,
+                        root: proof.getRoot(),
+                        index: proof.getAt()
+                    });
+                    resolve({
+                        key: this.util && this.util.utf8Decode(item.getKey()),
+                        value: this.util && this.util.utf8Decode(item.getValue()),
+                        index: item.getIndex()
+                    });
                 });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
-    bySafeIndex(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                let oldRoot = this.root && this.root.get({
+    async updateAuthConfig(params) {
+        try {
+            const req = new messages.AuthConfig();
+            req.setKind(params && params.kind);
+            return new Promise((resolve, reject) => this.client.updateAuthConfig(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('Update auth config error', err);
+                    return reject(err);
+                }
+                resolve();
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+    async updateMTLSConfig(params) {
+        try {
+            const req = new messages.MTLSConfig();
+            req.setEnabled(params && params.enabled);
+            return new Promise((resolve, reject) => this.client.updateMTLSConfig(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('Update mtls config error', err);
+                    return reject(err);
+                }
+                resolve();
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+    async safeZAdd(params) {
+        try {
+            const options = new messages.ZAddOptions();
+            const score = new messages.Score();
+            params && score.setScore(params.score || 0);
+            options.setSet(this.util && this.util.utf8Encode(params && params.set));
+            options.setScore(score);
+            options.setKey(this.util && this.util.utf8Encode(params && params.key));
+            const index = new messages.Index();
+            index.setIndex(this.root && this.root.get({
+                server: this._serverUUID,
+                database: this._activeDatabase
+            }).index);
+            const req = new messages.SafeZAddOptions();
+            req.setZopts(options);
+            req.setRootindex(index);
+            return new Promise((resolve, reject) => this.client.safeZAdd(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('safeZAdd error', err);
+                    return reject(err);
+                }
+                let key2 = this.proofs && this.proofs.setKey({
+                    key: this.util && this.util.utf8Encode(params && params.key),
+                    set: this.util && this.util.utf8Encode(params && params.set),
+                    score: params && params.score
+                });
+                const verifyReq = {
+                    proof: {
+                        inclusionPath: res && res.getInclusionpathList(),
+                        consistencyPath: res && res.getConsistencypathList(),
+                        index: res && res.getIndex(),
+                        at: res && res.getAt(),
+                        leaf: res && res.getLeaf(),
+                        root: res && res.getRoot()
+                    },
+                    item: {
+                        key: key2,
+                        value: this.util && this.util.utf8Encode(params && params.key),
+                        index: res && res.getIndex()
+                    },
+                    oldRoot: this.root && this.root.get({
+                        server: this._serverUUID,
+                        database: this._activeDatabase
+                    })
+                };
+                this.proofs && this.proofs.verify(verifyReq, (err) => {
+                    if (err) {
+                        return { err };
+                    }
+                    this.root && this.root.set({
+                        server: this._serverUUID,
+                        database: this._activeDatabase,
+                        root: res && res.getRoot(),
+                        index: res && res.getAt()
+                    });
+                    resolve({
+                        index: res && res.getIndex()
+                    });
+                });
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+    async inclusion(params) {
+        try {
+            const req = new messages.Index();
+            req.setIndex(params && params.index);
+            return new Promise((resolve, reject) => this.client.inclusion(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('inclusion error', err);
+                    return reject(err);
+                }
+                resolve({
+                    at: res && res.getAt(),
+                    index: res && res.getIndex(),
+                    root: res && res.getRoot(),
+                    leaf: res && res.getLeaf(),
+                    pathList: res && res.getPathList()
+                });
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+    async consistency(params) {
+        try {
+            const req = new messages.Index();
+            req.setIndex(params && params.index);
+            return new Promise((resolve, reject) => this.client.consistency(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('consistency error', err);
+                    return reject(err);
+                }
+                ;
+                resolve({
+                    first: res && res.getFirst(),
+                    second: res && res.getSecond(),
+                    firstroot: res && res.getFirstroot(),
+                    secondroot: res && res.getSecondroot(),
+                    pathList: res && res.getPathList()
+                });
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+    async bySafeIndex(params) {
+        try {
+            let oldRoot = this.root && this.root.get({
+                server: this._serverUUID,
+                database: this._activeDatabase,
+            });
+            const index = new messages.Index();
+            index.setIndex(oldRoot.index);
+            const req = new messages.SafeIndexOptions();
+            req.setIndex(params && params.index);
+            req.setRootindex(index);
+            return new Promise((resolve, reject) => this.client.bySafeIndex(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('bySafeIndex error', err);
+                    return reject(err);
+                }
+                const proof = res && res.getProof();
+                const item = res && res.getItem();
+                const verifyReq = {
+                    proof: {
+                        inclusionPath: proof.getInclusionpathList(),
+                        consistencyPath: proof.getConsistencypathList(),
+                        index: proof.getIndex(),
+                        at: proof.getAt(),
+                        leaf: proof.getLeaf(),
+                        root: proof.getRoot(),
+                    },
+                    item: {
+                        key: item.getKey(),
+                        value: item.getValue(),
+                        index: item.getIndex()
+                    },
+                    oldRoot: oldRoot,
+                };
+                oldRoot = this.root && this.root.get({
                     server: this._serverUUID,
                     database: this._activeDatabase,
                 });
-                const index = new messages.Index();
-                index.setIndex(oldRoot.index);
-                const req = new messages.SafeIndexOptions();
-                req.setIndex(params && params.index);
-                req.setRootindex(index);
-                this.client.bySafeIndex(req, this._metadata, (err, res) => {
+                this.proofs && this.proofs.verify(verifyReq, (err) => {
                     if (err) {
-                        throw new Error('bySafeIndex error');
+                        return { err };
                     }
-                    const proof = res && res.getProof();
-                    const item = res && res.getItem();
-                    const verifyReq = {
-                        proof: {
-                            inclusionPath: proof.getInclusionpathList(),
-                            consistencyPath: proof.getConsistencypathList(),
-                            index: proof.getIndex(),
-                            at: proof.getAt(),
-                            leaf: proof.getLeaf(),
-                            root: proof.getRoot(),
-                        },
-                        item: {
-                            key: item.getKey(),
-                            value: item.getValue(),
-                            index: item.getIndex()
-                        },
-                        oldRoot: oldRoot,
-                    };
-                    oldRoot = this.root && this.root.get({
+                    this.root && this.root.set({
                         server: this._serverUUID,
                         database: this._activeDatabase,
+                        root: proof.getRoot(),
+                        index: proof.getAt(),
                     });
-                    this.proofs && this.proofs.verify(verifyReq, (err) => {
-                        if (err) {
-                            return { err };
-                        }
-                        this.root && this.root.set({
-                            server: this._serverUUID,
-                            database: this._activeDatabase,
-                            root: proof.getRoot(),
-                            index: proof.getAt(),
-                        });
-                        return {
-                            key: this.util && this.util.utf8Decode(item.getKey()),
-                            value: this.util && this.util.utf8Decode(item.getValue()),
-                            index: item.getIndex()
-                        };
+                    resolve({
+                        key: this.util && this.util.utf8Decode(item.getKey()),
+                        value: this.util && this.util.utf8Decode(item.getValue()),
+                        index: item.getIndex()
                     });
                 });
-            }
-            catch (err) {
-                console.error(err);
-            }
-            // Fallback in case of errors
-            return new empty.Empty;
-        });
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
 }
 exports.default = ImmudbClient;

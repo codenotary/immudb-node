@@ -22,92 +22,94 @@ const IMMUDB_PORT: string = (process.env.IMMUDB_PORT as string || '3322');
 const IMMUDB_USER: string = (process.env.IMMUDB_USER as string || 'immudb');
 const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
 
-try {
-    const client = new ImmudbClient({
-        host: IMMUDB_HOST,
-        port: IMMUDB_PORT,
-        rootPath: 'rootfile'
-    });
-  
-    const rand = '' + Math.floor(Math.random()
-    * Math.floor(100000))
+(async () => {
+    try {
+        const client = new ImmudbClient({
+            host: IMMUDB_HOST,
+            port: IMMUDB_PORT,
+            rootPath: 'rootfile'
+        });
+    
+        const rand = '' + Math.floor(Math.random()
+        * Math.floor(100000))
 
-    client.login({
-        username: IMMUDB_USER,
-        password: IMMUDB_PWD
-    })
-        .then((res: any) => {
-            console.log('success: login', res);
+        await client.login({
+            user: IMMUDB_USER,
+            password: IMMUDB_PWD
         })
-        .catch((err: any) => {
-            console.error(err);
-        })
+            .then((res: any) => {
+                console.log('success: login', res);
+            })
+            .catch((err: any) => {
+                console.error(err);
+            })
 
-    client.createUser({
-        username: rand,
-        password: 'Example12#',
-        permission: types.Permission.READ_WRITE,
-        database: 'defaultdb',
-    })
-        .then((res: any) => {
-            console.log('success: createUser', res);
+        await client.createUser({
+            user: rand,
+            password: 'Example12#',
+            permission: types.Permission.READ_WRITE,
+            database: 'defaultdb'
         })
-        .catch((err: any) => {
-            console.error(err);
-        })
+            .then((res: any) => {
+                console.log('success: createUser', res);
+            })
+            .catch((err: any) => {
+                console.error(err);
+            })
 
-    client.listUsers()
-        .then((res: any) => {
-            console.log('success: listUser', util.inspect(res, false, 6, true));
-        })
-        .catch((err: any) => {
-            console.error(err);
-        })
+        await client.listUsers()
+            .then((res: any) => {
+                console.log('success: listUser', util.inspect(res, false, 6, true));
+            })
+            .catch((err: any) => {
+                console.error(err);
+            })
 
-    client.changePermission({
-        action: messages.PermissionAction.GRANT,
-        username: rand,
-        database: rand,
-        permission: types.Permission.READ_ONLY, 
-    })
-        .then((res: any) => {
-            console.log('success: changePermission', res);
+        await client.changePermission({
+            action: messages.PermissionAction.GRANT,
+            username: rand,
+            database: rand,
+            permission: types.Permission.READ_ONLY
         })
-        .catch((err: any) => {
-            console.error(err);
-        })
+            .then((res: any) => {
+                console.log('success: changePermission');
+            })
+            .catch((err: any) => {
+                console.error(err);
+            })
 
-    client.changePassword({
-        username: rand,
-        old: 'Example12#',
-        new: 'Example1234%',
-    })
-        .then((res: any) => {
-            console.log('success: changePassword', res);
+        await client.changePassword({
+            user: rand,
+            oldpassword: 'Example12#',
+            newpassword: 'Example1234%'
         })
-        .catch((err: any) => {
-            console.error(err);
-        })
+            .then((res: any) => {
+                console.log('success: changePassword');
+            })
+            .catch((err: any) => {
+                console.error(err);
+            })
 
-    client.setActiveUser({
-        username: rand,
-        active: true,
-    })
-        .then((res: any) => {
-            console.log('success: setActiveUser', res);
+        await client.setActiveUser({
+            username: rand,
+            active: true
         })
-        .catch((err: any) => {
-            console.error(err);
-        })
+            .then((res: any) => {
+                console.log('success: setActiveUser');
+            })
+            .catch((err: any) => {
+                console.error(err);
+            })
 
-    client.logout()
-        .then((res: any) => {
-            console.log('success: logout', res);
-        })
-        .catch((err: any) => {
-            console.error(err);
-        })
+        await client.logout()
+            .then((res: any) => {
+                console.log('success: logout');
+            })
+            .catch((err: any) => {
+                console.error(err);
+            })
 
-} catch (err) {
-console.log(err)
-}
+    } catch (err) {
+    console.log(err)
+    }
+})();

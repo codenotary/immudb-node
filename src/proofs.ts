@@ -7,9 +7,7 @@ interface ErrVerificationException {
     meta?: number
 }
 
-
 class Proof {
-
     public util = new Util();
     public leafPrefix = [0];
     public nodePrefix = [1];

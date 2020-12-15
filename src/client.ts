@@ -12,7 +12,6 @@ import Root from './root';
 import * as types from './interfaces';
 
 class ImmudbClient {
-
     public util = new Util();
     public proofs = new Proofs();
     public root = new Root();
@@ -71,7 +70,7 @@ class ImmudbClient {
                 this._token = res && res.getToken();
                 this._metadata && this._metadata.remove('authorization');
                 this._metadata && this._metadata.add('authorization', 'Bearer ' + this._token);
-        
+
                 resolve({
                     token: this._token,
                     warning: this.util.utf8Decode(res && res.getWarning())
@@ -123,7 +122,9 @@ class ImmudbClient {
                 
                 this.currentRoot()
                     .then(() => ({ token }))
-                    .catch((err) => { throw new Error('Use database error') })
+                    .catch((err) => { throw new Error('Use database error') });
+
+                resolve();
             }));
         } catch (err) {
             console.error('Use database error', err);
@@ -414,13 +415,6 @@ class ImmudbClient {
                 }
 
                 this._serverVersion = res && res.getVersion().split(' ')[1];
-                
-                console.log(res.getMeta());
-
-                console.log({
-                    status: res && res.getStatus(),
-                    version: res && res.getVersion()
-                });
                 
                 resolve({
                     status: res && res.getStatus(),

@@ -23,8 +23,8 @@ export enum Permission {
 }
 
 export enum Auth {
-    Disabled,
-    Enabled
+    DISABLED = 0,
+    ENABLED = 1
 }
 
 export namespace SimpleZAddOptions {
