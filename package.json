@@ -1,29 +1,46 @@
 {
   "name": "immudb-node",
   "version": "1.0.8",
-  "description": "Node js client for immudb",
+  "description": "Node ts client for immudb",
   "directories": {
     "lib": "lib",
     "test": "test"
   },
-  "main": "lib/client.js",
+  "main": "lib/client.ts",
   "scripts": {
+    "prepare": "npm run build",
+    "build": "tsc",
     "test": "./test/test.sh",
     "test:dev": "./test/test.sh --dev"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "grpc-tools": "1.9.0",
+    "@types/node": "^14.14.13",
+    "@typescript-eslint/eslint-plugin": "^3.9.0",
+    "@typescript-eslint/parser": "^3.9.0",
+    "crypto-ts": "^1.0.2",
+    "eslint": "^7.6.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "grpc": "^1.24.4",
+    "grpc-tools": "^1.9.0",
+    "grpc_tools_node_protoc_ts": "^5.0.1",
+    "prettier": "^2.2.1",
     "protobufjs": "6.10.1",
-    "tap": "14.10.8"
+    "tap": "14.10.8",
+    "typescript": "^3.9.7"
   },
   "dependencies": {
-    "async-lock": "^1.2.4",
+    "@grpc/grpc-js": "1.2.0",
+    "@types/btoa": "^1.2.3",
+    "@types/google-protobuf": "^3.7.4",
+    "@types/mocha": "^8.2.0",
     "btoa": "1.2.1",
     "dotenv": "^8.2.0",
-    "google-protobuf": "3.13.0",
-    "@grpc/grpc-js": "1.2.0"
+    "google-protobuf": "3.13.0"
   },
   "repository": {
     "type": "git",
@@ -31,7 +48,7 @@
   },
   "tap": {
     "nyc-arg": [
-      "--exclude=protos"
+      "--exclude=proto"
     ]
   },
   "keywords": [

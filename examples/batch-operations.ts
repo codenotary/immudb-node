@@ -1,5 +1,5 @@
 /*
-Copyright 2019-2020 vChain, Inc.
+Copyright 2019-2020 Codenotary, Inc.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -11,16 +11,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-const dotenv = require('dotenv').config()
-const util = require('util')
+const ImmudbClient = require('../lib/client')
 
 const IMMUDB_HOST = process.env.IMMUDB_HOST || '127.0.0.1'
 const IMMUDB_PORT = process.env.IMMUDB_PORT || 3322
 const IMMUDB_USER = process.env.IMMUDB_USER || 'immudb'
 const IMMUDB_PWD = process.env.IMMUDB_PWD || 'immudb'
-
-const ImmudbClient = require('../lib/client')
-const types = require('../lib/types')
 
 ImmudbClient({
     address: `${IMMUDB_HOST}:${IMMUDB_PORT}`,
@@ -35,50 +31,37 @@ async function main(err, cl) {
   }
 
   try {
+    // login using the specified username and password
     let req = { username: IMMUDB_USER, password: IMMUDB_PWD }
     let res = await cl.login(req)
-
     console.log('success: login', res)
 
-    req = {
-      username: rand,
-      password: 'Example12#',
-      permission: types.permission.readWrite,
-      database: 'defaultdb',
+    // create database
+    req = { database: rand }
+    res = await cl.createDatabase(req)
+    console.log('success: createDatabase', res)
+
+    // use database just created
+    req = { database: rand }
+    res = await cl.useDatabase(req)
+    console.log('success: useDatabase', res)
+    
+    // execute a batch insert
+    req = { keys: [] }
+    for (let i = 0; i < 20; i++) {
+      req.keys.push({ key: i, value: i })
     }
-    res = await cl.createUser(req)
-    console.log('success: createUser');
+    res = await cl.setBatch(req)
+    console.log(`success: setBatch`, res)
 
-    res = await cl.listUsers()
-    console.log('success: listUser', util.inspect(res, false, 6, true))
-
-    req = {
-      action: types.action.grant,
-      username: rand,
-      database: rand,
-      permission: types.permission.readOnly, 
+    // execute a batch read
+    req = { keys: [] }
+    for (let i = 0; i < 20; i++) {
+      req.keys.push({ key: i })
     }
-    res = await cl.changePermission(req)
-    console.log('success: changePermission');
-
-    req = {
-      username: rand,
-      old: 'Example12#',
-      new: 'Example1234%',
-    }
-    res = await cl.changePassword(req)
-    console.log('success: changePassword');
-
-    req = {
-      username: rand,
-      active: true,
-    }
-    res = await cl.setActiveUser(req)
-    console.log('success: setActiveUser');
-
-    res = await cl.logout()
-    console.log('success: logout');
-
+    res = await cl.getBatch(req)
+    console.log(`success: getBatch`, res)
+ 
   } catch (err) {
     console.log(err)
   }

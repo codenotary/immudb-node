@@ -54,11 +54,11 @@ tap.test('utf8 encode', (t) => {
   })
   
   tap.test('is power of two', (t) => {
-    t.true(util._isPowerOfTwo(1))
-    t.true(util._isPowerOfTwo(2))
-    t.true(util._isPowerOfTwo(4))
+    t.true(util.isPowerOfTwo(1))
+    t.true(util.isPowerOfTwo(2))
+    t.true(util.isPowerOfTwo(4))
   
-    t.false(util._isPowerOfTwo(0))
-    t.false(util._isPowerOfTwo(3))
+    t.false(util.isPowerOfTwo(0))
+    t.false(util.isPowerOfTwo(3))
     t.end()
   })

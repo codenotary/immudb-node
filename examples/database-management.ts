@@ -1,5 +1,5 @@
 /*
-Copyright 2019-2020 vChain, Inc.
+Copyright 2019-2020 Codenotary, Inc.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -12,8 +12,8 @@ limitations under the License.
 */
 
 const dotenv = require('dotenv').config()
-const ImmudbClient = require("../lib/client")
-const types = require('../lib/types')
+const util = require('util')
+const ImmudbClient = require('../lib/client')
 
 const IMMUDB_HOST = process.env.IMMUDB_HOST || '127.0.0.1'
 const IMMUDB_PORT = process.env.IMMUDB_PORT || 3322
@@ -21,9 +21,12 @@ const IMMUDB_USER = process.env.IMMUDB_USER || 'immudb'
 const IMMUDB_PWD = process.env.IMMUDB_PWD || 'immudb'
 
 ImmudbClient({
-  address: `${IMMUDB_HOST}:${IMMUDB_PORT}`,
-}, main)
+    address: `${IMMUDB_HOST}:${IMMUDB_PORT}`,
+  }, main)
 
+const rand = '' + Math.floor(Math.random()
+  * Math.floor(100000))
+ 
 async function main(err, cl) {
   if (err) {
     return console.log(err)
@@ -33,14 +36,24 @@ async function main(err, cl) {
     let req = { username: IMMUDB_USER, password: IMMUDB_PWD }
     let res = await cl.login(req)
 
-    res = await cl.useDatabase({ database: 'defaultdb' })
-    console.log('success: useDatabase:', res)
+    await cl.createDatabase({ database: rand })
+    console.log('success: createDatabase', res);
 
-    res = await cl.updateAuthConfig({ auth: types.auth.enabled })
-    console.log('success: updateAuthConfig')
+    res = await cl.useDatabase({ database: rand })
+    console.log('success: useDatabase', res);
 
-    res = await cl.updateMTLSConfig({ enabled: false })
-    console.log('success: updateMTLSConfig')
+    res = await cl.set({ key: rand, value: rand })
+
+    res = await cl.listDatabases()
+    console.log('success: listDatabases', res);
+
+    console.log(util.inspect(res, false, 8, true))
+
+    res = await cl.printTree()
+    console.log('success: printTree', res);
+
+    res = await cl.health()
+    console.log('success: health', res);
 
   } catch (err) {
     console.log(err)
