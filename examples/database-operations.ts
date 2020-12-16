@@ -47,7 +47,7 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
         })
         console.log('success: useDatabase');
 
-        // add new item having the specified key and value
+        // add new item with the specified key and value
         res = await client.set({
             key: rand,
             value: rand

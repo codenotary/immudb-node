@@ -30,8 +30,8 @@ class ImmudbClient {
     private constructor(
         config: Config
     ) {
-        const host: string = config && config.host || (process.env.IMMUDB_HOST as string);
-        const port: string = config && config.port || (process.env.IMMUDB_PORT as string);
+        const host: string = config && config.host || (process.env.IMMUDB_HOST as string) || '127.0.0.1';
+        const port: string = config && config.port || (process.env.IMMUDB_PORT as string) || '3322';
         const certs = config && config.certs;
         const rootPath = config && config.rootPath;
 
@@ -54,6 +54,7 @@ class ImmudbClient {
     public static async getInstance (
         config: Config
     ): Promise<ImmudbClient> {
+        const util = new Util();
         const user: string = config && config.user || (process.env.IMMUDB_USER as string);
         const password: string = config && config.password || (process.env.IMMUDB_PWD as string);
         const databasename: string = config && config.database || (process.env.IMMUDB_DEFAULT_DB as string);
@@ -62,7 +63,7 @@ class ImmudbClient {
         
         try {
             if (!ImmudbClient.instance) {
-                console.log(`${CLIENT_INIT_PREFIX} creating new ImmudbClient instance`);
+                console.log(`${CLIENT_INIT_PREFIX} creating new ImmudbClient instance with config`, '\n', `${util.maskConfig(config)}`);
                 ImmudbClient.instance = new ImmudbClient(config);
                 console.log(`${CLIENT_INIT_PREFIX} init new instance`);
                 await ImmudbClient.instance.initClient(user, password, databasename,
@@ -96,7 +97,7 @@ class ImmudbClient {
             console.log(`${CLIENT_INIT_PREFIX} skipped automatic init login (manual client login is required)`);
             
             if (autoDatabase) {
-                console.warn(`${CLIENT_INIT_PREFIX} it's not possible to 'autoDatabase' if 'autoLogin' is set to false (the following ops will fallback to use '${DEFAULT_DATABASE}' database)`);
+                console.warn(`${CLIENT_INIT_PREFIX} it's not possible to 'autoDatabase' if 'autoLogin' is set to false`, '\n', `(the following ops will fallback to use '${DEFAULT_DATABASE}' database)`);
             }
         }
 
@@ -124,7 +125,7 @@ class ImmudbClient {
                 console.log(`${CLIENT_INIT_PREFIX} useDatabase '${databasename}'`);
             }
         } else {
-            console.log(`${CLIENT_INIT_PREFIX} skipped automatic init database (manual client database ops are required, '${DEFAULT_DATABASE}' database will be used otherwise)`);
+            console.log(`${CLIENT_INIT_PREFIX} skipped automatic init database`, '\n', `(manual client database ops are required, '${DEFAULT_DATABASE}' database will be used otherwise)`);
         }
 
         // fetch health status

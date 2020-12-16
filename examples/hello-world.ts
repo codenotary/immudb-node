@@ -11,34 +11,23 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'dotenv/config';
 import ImmudbClient from '../src/client';
-
-const IMMUDB_HOST: string = (process.env.IMMUDB_HOST as string || '127.0.0.1');
-const IMMUDB_PORT: string = (process.env.IMMUDB_PORT as string || '3322');
-const IMMUDB_USER: string = (process.env.IMMUDB_USER as string || 'immudb');
-const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
 
 (async () => {
     try {
-        const rand = '' + Math.floor(Math.random()
-            * Math.floor(100000));
-
         // Instantiate the client
         const client = await ImmudbClient.getInstance({
-            host: IMMUDB_HOST,
-            port: IMMUDB_PORT,
-            user: IMMUDB_USER,
-            password: IMMUDB_PWD,
-            database: rand,
+            host: '127.0.0.1', port: '3322', user: 'immudb', password: 'immudb'
         });
 
-        // Instantiate the client a second time
-        await ImmudbClient.getInstance({
-            host: IMMUDB_HOST,
-            port: IMMUDB_PORT
-        });
+        // add new item with the specified key and value
+        let res = await client.set({ key: 'hello', value: 'world' });
+        console.log('success: set', res);
 
+        // get item having the specified key
+        res = await client.get({ key: 'hello' })
+        console.log('success: get', res);
+    
     } catch (err) {
         console.log(err)
     }
