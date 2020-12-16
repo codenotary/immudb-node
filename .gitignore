@@ -8,5 +8,4 @@ test/root.json
 .vscode
 rootfile
 .env
-.env
 examples/.env

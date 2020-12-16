@@ -18,27 +18,39 @@ interface IImmuServiceService extends grpc.ServiceDefinition<grpc.UntypedService
     login: IImmuServiceService_ILogin;
     logout: IImmuServiceService_ILogout;
     set: IImmuServiceService_ISet;
+    setSV: IImmuServiceService_ISetSV;
     safeSet: IImmuServiceService_ISafeSet;
+    safeSetSV: IImmuServiceService_ISafeSetSV;
     get: IImmuServiceService_IGet;
+    getSV: IImmuServiceService_IGetSV;
     safeGet: IImmuServiceService_ISafeGet;
+    safeGetSV: IImmuServiceService_ISafeGetSV;
     setBatch: IImmuServiceService_ISetBatch;
+    setBatchSV: IImmuServiceService_ISetBatchSV;
     getBatch: IImmuServiceService_IGetBatch;
+    getBatchSV: IImmuServiceService_IGetBatchSV;
     scan: IImmuServiceService_IScan;
+    scanSV: IImmuServiceService_IScanSV;
     count: IImmuServiceService_ICount;
-    countAll: IImmuServiceService_ICountAll;
     currentRoot: IImmuServiceService_ICurrentRoot;
+    countAll: IImmuServiceService_ICountAll;
     inclusion: IImmuServiceService_IInclusion;
     consistency: IImmuServiceService_IConsistency;
     byIndex: IImmuServiceService_IByIndex;
     bySafeIndex: IImmuServiceService_IBySafeIndex;
+    byIndexSV: IImmuServiceService_IByIndexSV;
     history: IImmuServiceService_IHistory;
+    historySV: IImmuServiceService_IHistorySV;
     health: IImmuServiceService_IHealth;
     reference: IImmuServiceService_IReference;
     safeReference: IImmuServiceService_ISafeReference;
     zAdd: IImmuServiceService_IZAdd;
     zScan: IImmuServiceService_IZScan;
+    zScanSV: IImmuServiceService_IZScanSV;
     safeZAdd: IImmuServiceService_ISafeZAdd;
     iScan: IImmuServiceService_IIScan;
+    iScanSV: IImmuServiceService_IIScanSV;
+    dump: IImmuServiceService_IDump;
     createDatabase: IImmuServiceService_ICreateDatabase;
     useDatabase: IImmuServiceService_IUseDatabase;
     changePermission: IImmuServiceService_IChangePermission;
@@ -127,12 +139,30 @@ interface IImmuServiceService_ISet extends grpc.MethodDefinition<schema_pb.KeyVa
     responseSerialize: grpc.serialize<schema_pb.Index>;
     responseDeserialize: grpc.deserialize<schema_pb.Index>;
 }
+interface IImmuServiceService_ISetSV extends grpc.MethodDefinition<schema_pb.StructuredKeyValue, schema_pb.Index> {
+    path: "/immudb.schema.ImmuService/SetSV";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<schema_pb.StructuredKeyValue>;
+    requestDeserialize: grpc.deserialize<schema_pb.StructuredKeyValue>;
+    responseSerialize: grpc.serialize<schema_pb.Index>;
+    responseDeserialize: grpc.deserialize<schema_pb.Index>;
+}
 interface IImmuServiceService_ISafeSet extends grpc.MethodDefinition<schema_pb.SafeSetOptions, schema_pb.Proof> {
     path: "/immudb.schema.ImmuService/SafeSet";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<schema_pb.SafeSetOptions>;
     requestDeserialize: grpc.deserialize<schema_pb.SafeSetOptions>;
+    responseSerialize: grpc.serialize<schema_pb.Proof>;
+    responseDeserialize: grpc.deserialize<schema_pb.Proof>;
+}
+interface IImmuServiceService_ISafeSetSV extends grpc.MethodDefinition<schema_pb.SafeSetSVOptions, schema_pb.Proof> {
+    path: "/immudb.schema.ImmuService/SafeSetSV";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<schema_pb.SafeSetSVOptions>;
+    requestDeserialize: grpc.deserialize<schema_pb.SafeSetSVOptions>;
     responseSerialize: grpc.serialize<schema_pb.Proof>;
     responseDeserialize: grpc.deserialize<schema_pb.Proof>;
 }
@@ -145,6 +175,15 @@ interface IImmuServiceService_IGet extends grpc.MethodDefinition<schema_pb.Key, 
     responseSerialize: grpc.serialize<schema_pb.Item>;
     responseDeserialize: grpc.deserialize<schema_pb.Item>;
 }
+interface IImmuServiceService_IGetSV extends grpc.MethodDefinition<schema_pb.Key, schema_pb.StructuredItem> {
+    path: "/immudb.schema.ImmuService/GetSV";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<schema_pb.Key>;
+    requestDeserialize: grpc.deserialize<schema_pb.Key>;
+    responseSerialize: grpc.serialize<schema_pb.StructuredItem>;
+    responseDeserialize: grpc.deserialize<schema_pb.StructuredItem>;
+}
 interface IImmuServiceService_ISafeGet extends grpc.MethodDefinition<schema_pb.SafeGetOptions, schema_pb.SafeItem> {
     path: "/immudb.schema.ImmuService/SafeGet";
     requestStream: false;
@@ -154,12 +193,30 @@ interface IImmuServiceService_ISafeGet extends grpc.MethodDefinition<schema_pb.S
     responseSerialize: grpc.serialize<schema_pb.SafeItem>;
     responseDeserialize: grpc.deserialize<schema_pb.SafeItem>;
 }
+interface IImmuServiceService_ISafeGetSV extends grpc.MethodDefinition<schema_pb.SafeGetOptions, schema_pb.SafeStructuredItem> {
+    path: "/immudb.schema.ImmuService/SafeGetSV";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<schema_pb.SafeGetOptions>;
+    requestDeserialize: grpc.deserialize<schema_pb.SafeGetOptions>;
+    responseSerialize: grpc.serialize<schema_pb.SafeStructuredItem>;
+    responseDeserialize: grpc.deserialize<schema_pb.SafeStructuredItem>;
+}
 interface IImmuServiceService_ISetBatch extends grpc.MethodDefinition<schema_pb.KVList, schema_pb.Index> {
     path: "/immudb.schema.ImmuService/SetBatch";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<schema_pb.KVList>;
     requestDeserialize: grpc.deserialize<schema_pb.KVList>;
+    responseSerialize: grpc.serialize<schema_pb.Index>;
+    responseDeserialize: grpc.deserialize<schema_pb.Index>;
+}
+interface IImmuServiceService_ISetBatchSV extends grpc.MethodDefinition<schema_pb.SKVList, schema_pb.Index> {
+    path: "/immudb.schema.ImmuService/SetBatchSV";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<schema_pb.SKVList>;
+    requestDeserialize: grpc.deserialize<schema_pb.SKVList>;
     responseSerialize: grpc.serialize<schema_pb.Index>;
     responseDeserialize: grpc.deserialize<schema_pb.Index>;
 }
@@ -172,6 +229,15 @@ interface IImmuServiceService_IGetBatch extends grpc.MethodDefinition<schema_pb.
     responseSerialize: grpc.serialize<schema_pb.ItemList>;
     responseDeserialize: grpc.deserialize<schema_pb.ItemList>;
 }
+interface IImmuServiceService_IGetBatchSV extends grpc.MethodDefinition<schema_pb.KeyList, schema_pb.StructuredItemList> {
+    path: "/immudb.schema.ImmuService/GetBatchSV";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<schema_pb.KeyList>;
+    requestDeserialize: grpc.deserialize<schema_pb.KeyList>;
+    responseSerialize: grpc.serialize<schema_pb.StructuredItemList>;
+    responseDeserialize: grpc.deserialize<schema_pb.StructuredItemList>;
+}
 interface IImmuServiceService_IScan extends grpc.MethodDefinition<schema_pb.ScanOptions, schema_pb.ItemList> {
     path: "/immudb.schema.ImmuService/Scan";
     requestStream: false;
@@ -181,21 +247,21 @@ interface IImmuServiceService_IScan extends grpc.MethodDefinition<schema_pb.Scan
     responseSerialize: grpc.serialize<schema_pb.ItemList>;
     responseDeserialize: grpc.deserialize<schema_pb.ItemList>;
 }
+interface IImmuServiceService_IScanSV extends grpc.MethodDefinition<schema_pb.ScanOptions, schema_pb.StructuredItemList> {
+    path: "/immudb.schema.ImmuService/ScanSV";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<schema_pb.ScanOptions>;
+    requestDeserialize: grpc.deserialize<schema_pb.ScanOptions>;
+    responseSerialize: grpc.serialize<schema_pb.StructuredItemList>;
+    responseDeserialize: grpc.deserialize<schema_pb.StructuredItemList>;
+}
 interface IImmuServiceService_ICount extends grpc.MethodDefinition<schema_pb.KeyPrefix, schema_pb.ItemsCount> {
     path: "/immudb.schema.ImmuService/Count";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<schema_pb.KeyPrefix>;
     requestDeserialize: grpc.deserialize<schema_pb.KeyPrefix>;
-    responseSerialize: grpc.serialize<schema_pb.ItemsCount>;
-    responseDeserialize: grpc.deserialize<schema_pb.ItemsCount>;
-}
-interface IImmuServiceService_ICountAll extends grpc.MethodDefinition<google_protobuf_empty_pb.Empty, schema_pb.ItemsCount> {
-    path: "/immudb.schema.ImmuService/CountAll";
-    requestStream: false;
-    responseStream: false;
-    requestSerialize: grpc.serialize<google_protobuf_empty_pb.Empty>;
-    requestDeserialize: grpc.deserialize<google_protobuf_empty_pb.Empty>;
     responseSerialize: grpc.serialize<schema_pb.ItemsCount>;
     responseDeserialize: grpc.deserialize<schema_pb.ItemsCount>;
 }
@@ -207,6 +273,15 @@ interface IImmuServiceService_ICurrentRoot extends grpc.MethodDefinition<google_
     requestDeserialize: grpc.deserialize<google_protobuf_empty_pb.Empty>;
     responseSerialize: grpc.serialize<schema_pb.Root>;
     responseDeserialize: grpc.deserialize<schema_pb.Root>;
+}
+interface IImmuServiceService_ICountAll extends grpc.MethodDefinition<google_protobuf_empty_pb.Empty, schema_pb.ItemsCount> {
+    path: "/immudb.schema.ImmuService/CountAll";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<google_protobuf_empty_pb.Empty>;
+    requestDeserialize: grpc.deserialize<google_protobuf_empty_pb.Empty>;
+    responseSerialize: grpc.serialize<schema_pb.ItemsCount>;
+    responseDeserialize: grpc.deserialize<schema_pb.ItemsCount>;
 }
 interface IImmuServiceService_IInclusion extends grpc.MethodDefinition<schema_pb.Index, schema_pb.InclusionProof> {
     path: "/immudb.schema.ImmuService/Inclusion";
@@ -244,14 +319,32 @@ interface IImmuServiceService_IBySafeIndex extends grpc.MethodDefinition<schema_
     responseSerialize: grpc.serialize<schema_pb.SafeItem>;
     responseDeserialize: grpc.deserialize<schema_pb.SafeItem>;
 }
-interface IImmuServiceService_IHistory extends grpc.MethodDefinition<schema_pb.HistoryOptions, schema_pb.ItemList> {
+interface IImmuServiceService_IByIndexSV extends grpc.MethodDefinition<schema_pb.Index, schema_pb.StructuredItem> {
+    path: "/immudb.schema.ImmuService/ByIndexSV";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<schema_pb.Index>;
+    requestDeserialize: grpc.deserialize<schema_pb.Index>;
+    responseSerialize: grpc.serialize<schema_pb.StructuredItem>;
+    responseDeserialize: grpc.deserialize<schema_pb.StructuredItem>;
+}
+interface IImmuServiceService_IHistory extends grpc.MethodDefinition<schema_pb.Key, schema_pb.ItemList> {
     path: "/immudb.schema.ImmuService/History";
     requestStream: false;
     responseStream: false;
-    requestSerialize: grpc.serialize<schema_pb.HistoryOptions>;
-    requestDeserialize: grpc.deserialize<schema_pb.HistoryOptions>;
+    requestSerialize: grpc.serialize<schema_pb.Key>;
+    requestDeserialize: grpc.deserialize<schema_pb.Key>;
     responseSerialize: grpc.serialize<schema_pb.ItemList>;
     responseDeserialize: grpc.deserialize<schema_pb.ItemList>;
+}
+interface IImmuServiceService_IHistorySV extends grpc.MethodDefinition<schema_pb.Key, schema_pb.StructuredItemList> {
+    path: "/immudb.schema.ImmuService/HistorySV";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<schema_pb.Key>;
+    requestDeserialize: grpc.deserialize<schema_pb.Key>;
+    responseSerialize: grpc.serialize<schema_pb.StructuredItemList>;
+    responseDeserialize: grpc.deserialize<schema_pb.StructuredItemList>;
 }
 interface IImmuServiceService_IHealth extends grpc.MethodDefinition<google_protobuf_empty_pb.Empty, schema_pb.HealthResponse> {
     path: "/immudb.schema.ImmuService/Health";
@@ -289,14 +382,23 @@ interface IImmuServiceService_IZAdd extends grpc.MethodDefinition<schema_pb.ZAdd
     responseSerialize: grpc.serialize<schema_pb.Index>;
     responseDeserialize: grpc.deserialize<schema_pb.Index>;
 }
-interface IImmuServiceService_IZScan extends grpc.MethodDefinition<schema_pb.ZScanOptions, schema_pb.ZItemList> {
+interface IImmuServiceService_IZScan extends grpc.MethodDefinition<schema_pb.ZScanOptions, schema_pb.ItemList> {
     path: "/immudb.schema.ImmuService/ZScan";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<schema_pb.ZScanOptions>;
     requestDeserialize: grpc.deserialize<schema_pb.ZScanOptions>;
-    responseSerialize: grpc.serialize<schema_pb.ZItemList>;
-    responseDeserialize: grpc.deserialize<schema_pb.ZItemList>;
+    responseSerialize: grpc.serialize<schema_pb.ItemList>;
+    responseDeserialize: grpc.deserialize<schema_pb.ItemList>;
+}
+interface IImmuServiceService_IZScanSV extends grpc.MethodDefinition<schema_pb.ZScanOptions, schema_pb.StructuredItemList> {
+    path: "/immudb.schema.ImmuService/ZScanSV";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<schema_pb.ZScanOptions>;
+    requestDeserialize: grpc.deserialize<schema_pb.ZScanOptions>;
+    responseSerialize: grpc.serialize<schema_pb.StructuredItemList>;
+    responseDeserialize: grpc.deserialize<schema_pb.StructuredItemList>;
 }
 interface IImmuServiceService_ISafeZAdd extends grpc.MethodDefinition<schema_pb.SafeZAddOptions, schema_pb.Proof> {
     path: "/immudb.schema.ImmuService/SafeZAdd";
@@ -315,6 +417,24 @@ interface IImmuServiceService_IIScan extends grpc.MethodDefinition<schema_pb.ISc
     requestDeserialize: grpc.deserialize<schema_pb.IScanOptions>;
     responseSerialize: grpc.serialize<schema_pb.Page>;
     responseDeserialize: grpc.deserialize<schema_pb.Page>;
+}
+interface IImmuServiceService_IIScanSV extends grpc.MethodDefinition<schema_pb.IScanOptions, schema_pb.SPage> {
+    path: "/immudb.schema.ImmuService/IScanSV";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<schema_pb.IScanOptions>;
+    requestDeserialize: grpc.deserialize<schema_pb.IScanOptions>;
+    responseSerialize: grpc.serialize<schema_pb.SPage>;
+    responseDeserialize: grpc.deserialize<schema_pb.SPage>;
+}
+interface IImmuServiceService_IDump extends grpc.MethodDefinition<google_protobuf_empty_pb.Empty, schema_pb.KVList> {
+    path: "/immudb.schema.ImmuService/Dump";
+    requestStream: false;
+    responseStream: true;
+    requestSerialize: grpc.serialize<google_protobuf_empty_pb.Empty>;
+    requestDeserialize: grpc.deserialize<google_protobuf_empty_pb.Empty>;
+    responseSerialize: grpc.serialize<schema_pb.KVList>;
+    responseDeserialize: grpc.deserialize<schema_pb.KVList>;
 }
 interface IImmuServiceService_ICreateDatabase extends grpc.MethodDefinition<schema_pb.Database, google_protobuf_empty_pb.Empty> {
     path: "/immudb.schema.ImmuService/CreateDatabase";
@@ -374,27 +494,39 @@ export interface IImmuServiceServer {
     login: grpc.handleUnaryCall<schema_pb.LoginRequest, schema_pb.LoginResponse>;
     logout: grpc.handleUnaryCall<google_protobuf_empty_pb.Empty, google_protobuf_empty_pb.Empty>;
     set: grpc.handleUnaryCall<schema_pb.KeyValue, schema_pb.Index>;
+    setSV: grpc.handleUnaryCall<schema_pb.StructuredKeyValue, schema_pb.Index>;
     safeSet: grpc.handleUnaryCall<schema_pb.SafeSetOptions, schema_pb.Proof>;
+    safeSetSV: grpc.handleUnaryCall<schema_pb.SafeSetSVOptions, schema_pb.Proof>;
     get: grpc.handleUnaryCall<schema_pb.Key, schema_pb.Item>;
+    getSV: grpc.handleUnaryCall<schema_pb.Key, schema_pb.StructuredItem>;
     safeGet: grpc.handleUnaryCall<schema_pb.SafeGetOptions, schema_pb.SafeItem>;
+    safeGetSV: grpc.handleUnaryCall<schema_pb.SafeGetOptions, schema_pb.SafeStructuredItem>;
     setBatch: grpc.handleUnaryCall<schema_pb.KVList, schema_pb.Index>;
+    setBatchSV: grpc.handleUnaryCall<schema_pb.SKVList, schema_pb.Index>;
     getBatch: grpc.handleUnaryCall<schema_pb.KeyList, schema_pb.ItemList>;
+    getBatchSV: grpc.handleUnaryCall<schema_pb.KeyList, schema_pb.StructuredItemList>;
     scan: grpc.handleUnaryCall<schema_pb.ScanOptions, schema_pb.ItemList>;
+    scanSV: grpc.handleUnaryCall<schema_pb.ScanOptions, schema_pb.StructuredItemList>;
     count: grpc.handleUnaryCall<schema_pb.KeyPrefix, schema_pb.ItemsCount>;
-    countAll: grpc.handleUnaryCall<google_protobuf_empty_pb.Empty, schema_pb.ItemsCount>;
     currentRoot: grpc.handleUnaryCall<google_protobuf_empty_pb.Empty, schema_pb.Root>;
+    countAll: grpc.handleUnaryCall<google_protobuf_empty_pb.Empty, schema_pb.ItemsCount>;
     inclusion: grpc.handleUnaryCall<schema_pb.Index, schema_pb.InclusionProof>;
     consistency: grpc.handleUnaryCall<schema_pb.Index, schema_pb.ConsistencyProof>;
     byIndex: grpc.handleUnaryCall<schema_pb.Index, schema_pb.Item>;
     bySafeIndex: grpc.handleUnaryCall<schema_pb.SafeIndexOptions, schema_pb.SafeItem>;
-    history: grpc.handleUnaryCall<schema_pb.HistoryOptions, schema_pb.ItemList>;
+    byIndexSV: grpc.handleUnaryCall<schema_pb.Index, schema_pb.StructuredItem>;
+    history: grpc.handleUnaryCall<schema_pb.Key, schema_pb.ItemList>;
+    historySV: grpc.handleUnaryCall<schema_pb.Key, schema_pb.StructuredItemList>;
     health: grpc.handleUnaryCall<google_protobuf_empty_pb.Empty, schema_pb.HealthResponse>;
     reference: grpc.handleUnaryCall<schema_pb.ReferenceOptions, schema_pb.Index>;
     safeReference: grpc.handleUnaryCall<schema_pb.SafeReferenceOptions, schema_pb.Proof>;
     zAdd: grpc.handleUnaryCall<schema_pb.ZAddOptions, schema_pb.Index>;
-    zScan: grpc.handleUnaryCall<schema_pb.ZScanOptions, schema_pb.ZItemList>;
+    zScan: grpc.handleUnaryCall<schema_pb.ZScanOptions, schema_pb.ItemList>;
+    zScanSV: grpc.handleUnaryCall<schema_pb.ZScanOptions, schema_pb.StructuredItemList>;
     safeZAdd: grpc.handleUnaryCall<schema_pb.SafeZAddOptions, schema_pb.Proof>;
     iScan: grpc.handleUnaryCall<schema_pb.IScanOptions, schema_pb.Page>;
+    iScanSV: grpc.handleUnaryCall<schema_pb.IScanOptions, schema_pb.SPage>;
+    dump: grpc.handleServerStreamingCall<google_protobuf_empty_pb.Empty, schema_pb.KVList>;
     createDatabase: grpc.handleUnaryCall<schema_pb.Database, google_protobuf_empty_pb.Empty>;
     useDatabase: grpc.handleUnaryCall<schema_pb.Database, schema_pb.UseDatabaseReply>;
     changePermission: grpc.handleUnaryCall<schema_pb.ChangePermissionRequest, google_protobuf_empty_pb.Empty>;
@@ -430,33 +562,54 @@ export interface IImmuServiceClient {
     set(request: schema_pb.KeyValue, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
     set(request: schema_pb.KeyValue, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
     set(request: schema_pb.KeyValue, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
+    setSV(request: schema_pb.StructuredKeyValue, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
+    setSV(request: schema_pb.StructuredKeyValue, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
+    setSV(request: schema_pb.StructuredKeyValue, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
     safeSet(request: schema_pb.SafeSetOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.Proof) => void): grpc.ClientUnaryCall;
     safeSet(request: schema_pb.SafeSetOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.Proof) => void): grpc.ClientUnaryCall;
     safeSet(request: schema_pb.SafeSetOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.Proof) => void): grpc.ClientUnaryCall;
+    safeSetSV(request: schema_pb.SafeSetSVOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.Proof) => void): grpc.ClientUnaryCall;
+    safeSetSV(request: schema_pb.SafeSetSVOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.Proof) => void): grpc.ClientUnaryCall;
+    safeSetSV(request: schema_pb.SafeSetSVOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.Proof) => void): grpc.ClientUnaryCall;
     get(request: schema_pb.Key, callback: (error: grpc.ServiceError | null, response: schema_pb.Item) => void): grpc.ClientUnaryCall;
     get(request: schema_pb.Key, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.Item) => void): grpc.ClientUnaryCall;
     get(request: schema_pb.Key, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.Item) => void): grpc.ClientUnaryCall;
+    getSV(request: schema_pb.Key, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItem) => void): grpc.ClientUnaryCall;
+    getSV(request: schema_pb.Key, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItem) => void): grpc.ClientUnaryCall;
+    getSV(request: schema_pb.Key, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItem) => void): grpc.ClientUnaryCall;
     safeGet(request: schema_pb.SafeGetOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.SafeItem) => void): grpc.ClientUnaryCall;
     safeGet(request: schema_pb.SafeGetOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.SafeItem) => void): grpc.ClientUnaryCall;
     safeGet(request: schema_pb.SafeGetOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.SafeItem) => void): grpc.ClientUnaryCall;
+    safeGetSV(request: schema_pb.SafeGetOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.SafeStructuredItem) => void): grpc.ClientUnaryCall;
+    safeGetSV(request: schema_pb.SafeGetOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.SafeStructuredItem) => void): grpc.ClientUnaryCall;
+    safeGetSV(request: schema_pb.SafeGetOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.SafeStructuredItem) => void): grpc.ClientUnaryCall;
     setBatch(request: schema_pb.KVList, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
     setBatch(request: schema_pb.KVList, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
     setBatch(request: schema_pb.KVList, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
+    setBatchSV(request: schema_pb.SKVList, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
+    setBatchSV(request: schema_pb.SKVList, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
+    setBatchSV(request: schema_pb.SKVList, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
     getBatch(request: schema_pb.KeyList, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
     getBatch(request: schema_pb.KeyList, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
     getBatch(request: schema_pb.KeyList, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
+    getBatchSV(request: schema_pb.KeyList, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItemList) => void): grpc.ClientUnaryCall;
+    getBatchSV(request: schema_pb.KeyList, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItemList) => void): grpc.ClientUnaryCall;
+    getBatchSV(request: schema_pb.KeyList, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItemList) => void): grpc.ClientUnaryCall;
     scan(request: schema_pb.ScanOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
     scan(request: schema_pb.ScanOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
     scan(request: schema_pb.ScanOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
+    scanSV(request: schema_pb.ScanOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItemList) => void): grpc.ClientUnaryCall;
+    scanSV(request: schema_pb.ScanOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItemList) => void): grpc.ClientUnaryCall;
+    scanSV(request: schema_pb.ScanOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItemList) => void): grpc.ClientUnaryCall;
     count(request: schema_pb.KeyPrefix, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemsCount) => void): grpc.ClientUnaryCall;
     count(request: schema_pb.KeyPrefix, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemsCount) => void): grpc.ClientUnaryCall;
     count(request: schema_pb.KeyPrefix, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemsCount) => void): grpc.ClientUnaryCall;
-    countAll(request: google_protobuf_empty_pb.Empty, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemsCount) => void): grpc.ClientUnaryCall;
-    countAll(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemsCount) => void): grpc.ClientUnaryCall;
-    countAll(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemsCount) => void): grpc.ClientUnaryCall;
     currentRoot(request: google_protobuf_empty_pb.Empty, callback: (error: grpc.ServiceError | null, response: schema_pb.Root) => void): grpc.ClientUnaryCall;
     currentRoot(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.Root) => void): grpc.ClientUnaryCall;
     currentRoot(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.Root) => void): grpc.ClientUnaryCall;
+    countAll(request: google_protobuf_empty_pb.Empty, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemsCount) => void): grpc.ClientUnaryCall;
+    countAll(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemsCount) => void): grpc.ClientUnaryCall;
+    countAll(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemsCount) => void): grpc.ClientUnaryCall;
     inclusion(request: schema_pb.Index, callback: (error: grpc.ServiceError | null, response: schema_pb.InclusionProof) => void): grpc.ClientUnaryCall;
     inclusion(request: schema_pb.Index, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.InclusionProof) => void): grpc.ClientUnaryCall;
     inclusion(request: schema_pb.Index, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.InclusionProof) => void): grpc.ClientUnaryCall;
@@ -469,9 +622,15 @@ export interface IImmuServiceClient {
     bySafeIndex(request: schema_pb.SafeIndexOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.SafeItem) => void): grpc.ClientUnaryCall;
     bySafeIndex(request: schema_pb.SafeIndexOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.SafeItem) => void): grpc.ClientUnaryCall;
     bySafeIndex(request: schema_pb.SafeIndexOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.SafeItem) => void): grpc.ClientUnaryCall;
-    history(request: schema_pb.HistoryOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
-    history(request: schema_pb.HistoryOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
-    history(request: schema_pb.HistoryOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
+    byIndexSV(request: schema_pb.Index, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItem) => void): grpc.ClientUnaryCall;
+    byIndexSV(request: schema_pb.Index, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItem) => void): grpc.ClientUnaryCall;
+    byIndexSV(request: schema_pb.Index, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItem) => void): grpc.ClientUnaryCall;
+    history(request: schema_pb.Key, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
+    history(request: schema_pb.Key, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
+    history(request: schema_pb.Key, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
+    historySV(request: schema_pb.Key, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItemList) => void): grpc.ClientUnaryCall;
+    historySV(request: schema_pb.Key, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItemList) => void): grpc.ClientUnaryCall;
+    historySV(request: schema_pb.Key, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItemList) => void): grpc.ClientUnaryCall;
     health(request: google_protobuf_empty_pb.Empty, callback: (error: grpc.ServiceError | null, response: schema_pb.HealthResponse) => void): grpc.ClientUnaryCall;
     health(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.HealthResponse) => void): grpc.ClientUnaryCall;
     health(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.HealthResponse) => void): grpc.ClientUnaryCall;
@@ -484,15 +643,23 @@ export interface IImmuServiceClient {
     zAdd(request: schema_pb.ZAddOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
     zAdd(request: schema_pb.ZAddOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
     zAdd(request: schema_pb.ZAddOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
-    zScan(request: schema_pb.ZScanOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.ZItemList) => void): grpc.ClientUnaryCall;
-    zScan(request: schema_pb.ZScanOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.ZItemList) => void): grpc.ClientUnaryCall;
-    zScan(request: schema_pb.ZScanOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.ZItemList) => void): grpc.ClientUnaryCall;
+    zScan(request: schema_pb.ZScanOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
+    zScan(request: schema_pb.ZScanOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
+    zScan(request: schema_pb.ZScanOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
+    zScanSV(request: schema_pb.ZScanOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItemList) => void): grpc.ClientUnaryCall;
+    zScanSV(request: schema_pb.ZScanOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItemList) => void): grpc.ClientUnaryCall;
+    zScanSV(request: schema_pb.ZScanOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItemList) => void): grpc.ClientUnaryCall;
     safeZAdd(request: schema_pb.SafeZAddOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.Proof) => void): grpc.ClientUnaryCall;
     safeZAdd(request: schema_pb.SafeZAddOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.Proof) => void): grpc.ClientUnaryCall;
     safeZAdd(request: schema_pb.SafeZAddOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.Proof) => void): grpc.ClientUnaryCall;
     iScan(request: schema_pb.IScanOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.Page) => void): grpc.ClientUnaryCall;
     iScan(request: schema_pb.IScanOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.Page) => void): grpc.ClientUnaryCall;
     iScan(request: schema_pb.IScanOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.Page) => void): grpc.ClientUnaryCall;
+    iScanSV(request: schema_pb.IScanOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.SPage) => void): grpc.ClientUnaryCall;
+    iScanSV(request: schema_pb.IScanOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.SPage) => void): grpc.ClientUnaryCall;
+    iScanSV(request: schema_pb.IScanOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.SPage) => void): grpc.ClientUnaryCall;
+    dump(request: google_protobuf_empty_pb.Empty, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<schema_pb.KVList>;
+    dump(request: google_protobuf_empty_pb.Empty, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<schema_pb.KVList>;
     createDatabase(request: schema_pb.Database, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
     createDatabase(request: schema_pb.Database, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
     createDatabase(request: schema_pb.Database, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
@@ -539,33 +706,54 @@ export class ImmuServiceClient extends grpc.Client implements IImmuServiceClient
     public set(request: schema_pb.KeyValue, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
     public set(request: schema_pb.KeyValue, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
     public set(request: schema_pb.KeyValue, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
+    public setSV(request: schema_pb.StructuredKeyValue, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
+    public setSV(request: schema_pb.StructuredKeyValue, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
+    public setSV(request: schema_pb.StructuredKeyValue, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
     public safeSet(request: schema_pb.SafeSetOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.Proof) => void): grpc.ClientUnaryCall;
     public safeSet(request: schema_pb.SafeSetOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.Proof) => void): grpc.ClientUnaryCall;
     public safeSet(request: schema_pb.SafeSetOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.Proof) => void): grpc.ClientUnaryCall;
+    public safeSetSV(request: schema_pb.SafeSetSVOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.Proof) => void): grpc.ClientUnaryCall;
+    public safeSetSV(request: schema_pb.SafeSetSVOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.Proof) => void): grpc.ClientUnaryCall;
+    public safeSetSV(request: schema_pb.SafeSetSVOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.Proof) => void): grpc.ClientUnaryCall;
     public get(request: schema_pb.Key, callback: (error: grpc.ServiceError | null, response: schema_pb.Item) => void): grpc.ClientUnaryCall;
     public get(request: schema_pb.Key, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.Item) => void): grpc.ClientUnaryCall;
     public get(request: schema_pb.Key, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.Item) => void): grpc.ClientUnaryCall;
+    public getSV(request: schema_pb.Key, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItem) => void): grpc.ClientUnaryCall;
+    public getSV(request: schema_pb.Key, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItem) => void): grpc.ClientUnaryCall;
+    public getSV(request: schema_pb.Key, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItem) => void): grpc.ClientUnaryCall;
     public safeGet(request: schema_pb.SafeGetOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.SafeItem) => void): grpc.ClientUnaryCall;
     public safeGet(request: schema_pb.SafeGetOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.SafeItem) => void): grpc.ClientUnaryCall;
     public safeGet(request: schema_pb.SafeGetOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.SafeItem) => void): grpc.ClientUnaryCall;
+    public safeGetSV(request: schema_pb.SafeGetOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.SafeStructuredItem) => void): grpc.ClientUnaryCall;
+    public safeGetSV(request: schema_pb.SafeGetOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.SafeStructuredItem) => void): grpc.ClientUnaryCall;
+    public safeGetSV(request: schema_pb.SafeGetOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.SafeStructuredItem) => void): grpc.ClientUnaryCall;
     public setBatch(request: schema_pb.KVList, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
     public setBatch(request: schema_pb.KVList, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
     public setBatch(request: schema_pb.KVList, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
+    public setBatchSV(request: schema_pb.SKVList, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
+    public setBatchSV(request: schema_pb.SKVList, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
+    public setBatchSV(request: schema_pb.SKVList, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
     public getBatch(request: schema_pb.KeyList, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
     public getBatch(request: schema_pb.KeyList, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
     public getBatch(request: schema_pb.KeyList, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
+    public getBatchSV(request: schema_pb.KeyList, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItemList) => void): grpc.ClientUnaryCall;
+    public getBatchSV(request: schema_pb.KeyList, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItemList) => void): grpc.ClientUnaryCall;
+    public getBatchSV(request: schema_pb.KeyList, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItemList) => void): grpc.ClientUnaryCall;
     public scan(request: schema_pb.ScanOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
     public scan(request: schema_pb.ScanOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
     public scan(request: schema_pb.ScanOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
+    public scanSV(request: schema_pb.ScanOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItemList) => void): grpc.ClientUnaryCall;
+    public scanSV(request: schema_pb.ScanOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItemList) => void): grpc.ClientUnaryCall;
+    public scanSV(request: schema_pb.ScanOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItemList) => void): grpc.ClientUnaryCall;
     public count(request: schema_pb.KeyPrefix, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemsCount) => void): grpc.ClientUnaryCall;
     public count(request: schema_pb.KeyPrefix, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemsCount) => void): grpc.ClientUnaryCall;
     public count(request: schema_pb.KeyPrefix, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemsCount) => void): grpc.ClientUnaryCall;
-    public countAll(request: google_protobuf_empty_pb.Empty, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemsCount) => void): grpc.ClientUnaryCall;
-    public countAll(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemsCount) => void): grpc.ClientUnaryCall;
-    public countAll(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemsCount) => void): grpc.ClientUnaryCall;
     public currentRoot(request: google_protobuf_empty_pb.Empty, callback: (error: grpc.ServiceError | null, response: schema_pb.Root) => void): grpc.ClientUnaryCall;
     public currentRoot(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.Root) => void): grpc.ClientUnaryCall;
     public currentRoot(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.Root) => void): grpc.ClientUnaryCall;
+    public countAll(request: google_protobuf_empty_pb.Empty, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemsCount) => void): grpc.ClientUnaryCall;
+    public countAll(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemsCount) => void): grpc.ClientUnaryCall;
+    public countAll(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemsCount) => void): grpc.ClientUnaryCall;
     public inclusion(request: schema_pb.Index, callback: (error: grpc.ServiceError | null, response: schema_pb.InclusionProof) => void): grpc.ClientUnaryCall;
     public inclusion(request: schema_pb.Index, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.InclusionProof) => void): grpc.ClientUnaryCall;
     public inclusion(request: schema_pb.Index, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.InclusionProof) => void): grpc.ClientUnaryCall;
@@ -578,9 +766,15 @@ export class ImmuServiceClient extends grpc.Client implements IImmuServiceClient
     public bySafeIndex(request: schema_pb.SafeIndexOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.SafeItem) => void): grpc.ClientUnaryCall;
     public bySafeIndex(request: schema_pb.SafeIndexOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.SafeItem) => void): grpc.ClientUnaryCall;
     public bySafeIndex(request: schema_pb.SafeIndexOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.SafeItem) => void): grpc.ClientUnaryCall;
-    public history(request: schema_pb.HistoryOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
-    public history(request: schema_pb.HistoryOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
-    public history(request: schema_pb.HistoryOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
+    public byIndexSV(request: schema_pb.Index, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItem) => void): grpc.ClientUnaryCall;
+    public byIndexSV(request: schema_pb.Index, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItem) => void): grpc.ClientUnaryCall;
+    public byIndexSV(request: schema_pb.Index, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItem) => void): grpc.ClientUnaryCall;
+    public history(request: schema_pb.Key, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
+    public history(request: schema_pb.Key, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
+    public history(request: schema_pb.Key, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
+    public historySV(request: schema_pb.Key, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItemList) => void): grpc.ClientUnaryCall;
+    public historySV(request: schema_pb.Key, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItemList) => void): grpc.ClientUnaryCall;
+    public historySV(request: schema_pb.Key, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItemList) => void): grpc.ClientUnaryCall;
     public health(request: google_protobuf_empty_pb.Empty, callback: (error: grpc.ServiceError | null, response: schema_pb.HealthResponse) => void): grpc.ClientUnaryCall;
     public health(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.HealthResponse) => void): grpc.ClientUnaryCall;
     public health(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.HealthResponse) => void): grpc.ClientUnaryCall;
@@ -593,15 +787,23 @@ export class ImmuServiceClient extends grpc.Client implements IImmuServiceClient
     public zAdd(request: schema_pb.ZAddOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
     public zAdd(request: schema_pb.ZAddOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
     public zAdd(request: schema_pb.ZAddOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.Index) => void): grpc.ClientUnaryCall;
-    public zScan(request: schema_pb.ZScanOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.ZItemList) => void): grpc.ClientUnaryCall;
-    public zScan(request: schema_pb.ZScanOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.ZItemList) => void): grpc.ClientUnaryCall;
-    public zScan(request: schema_pb.ZScanOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.ZItemList) => void): grpc.ClientUnaryCall;
+    public zScan(request: schema_pb.ZScanOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
+    public zScan(request: schema_pb.ZScanOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
+    public zScan(request: schema_pb.ZScanOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.ItemList) => void): grpc.ClientUnaryCall;
+    public zScanSV(request: schema_pb.ZScanOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItemList) => void): grpc.ClientUnaryCall;
+    public zScanSV(request: schema_pb.ZScanOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItemList) => void): grpc.ClientUnaryCall;
+    public zScanSV(request: schema_pb.ZScanOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.StructuredItemList) => void): grpc.ClientUnaryCall;
     public safeZAdd(request: schema_pb.SafeZAddOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.Proof) => void): grpc.ClientUnaryCall;
     public safeZAdd(request: schema_pb.SafeZAddOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.Proof) => void): grpc.ClientUnaryCall;
     public safeZAdd(request: schema_pb.SafeZAddOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.Proof) => void): grpc.ClientUnaryCall;
     public iScan(request: schema_pb.IScanOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.Page) => void): grpc.ClientUnaryCall;
     public iScan(request: schema_pb.IScanOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.Page) => void): grpc.ClientUnaryCall;
     public iScan(request: schema_pb.IScanOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.Page) => void): grpc.ClientUnaryCall;
+    public iScanSV(request: schema_pb.IScanOptions, callback: (error: grpc.ServiceError | null, response: schema_pb.SPage) => void): grpc.ClientUnaryCall;
+    public iScanSV(request: schema_pb.IScanOptions, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.SPage) => void): grpc.ClientUnaryCall;
+    public iScanSV(request: schema_pb.IScanOptions, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.SPage) => void): grpc.ClientUnaryCall;
+    public dump(request: google_protobuf_empty_pb.Empty, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<schema_pb.KVList>;
+    public dump(request: google_protobuf_empty_pb.Empty, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<schema_pb.KVList>;
     public createDatabase(request: schema_pb.Database, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
     public createDatabase(request: schema_pb.Database, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
     public createDatabase(request: schema_pb.Database, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;

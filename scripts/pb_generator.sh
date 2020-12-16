@@ -17,6 +17,7 @@ grpc_tools_node_protoc \
     --js_out=import_style=commonjs,binary:./$DEST_PATH \
     --grpc_out=grpc_js:./$DEST_PATH \
     --plugin=protoc-gen-grpc=./node_modules/.bin/grpc_tools_node_protoc_plugin \
+    -I grpc-gateway/third_party/googleapis \
     -I=./proto ./$SRC_PATH/*.proto
 
 # generate ts codes via grpc_tools_node_protoc[CommonJS imports]
