@@ -24,14 +24,16 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
 
 (async () => {
     try {
+        let res = null;
+        
         // Instantiate the client
-        const client = ImmudbClient.getInstance({
+        const client = await ImmudbClient.getInstance({
             host: IMMUDB_HOST,
             port: IMMUDB_PORT,
-            rootPath: 'rootfile'
+            rootPath: 'rootfile',
+            autoLogin: false,
+            autoDatabase: false
         });
-    
-        let res = null;
 
         const rand = '' + Math.floor(Math.random()
         * Math.floor(100000))
@@ -50,7 +52,7 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
             permission: types.Permission.READ_WRITE,
             database: 'defaultdb'
         })
-        console.log('success: createUser', res);
+        console.log(`success: createUser`);
 
         // list all users
         res = await client.listUsers()

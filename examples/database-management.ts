@@ -22,24 +22,19 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
 
 (async () => {
     try {
-        // Instantiate the client
-        const client = ImmudbClient.getInstance({
-            host: IMMUDB_HOST,
-            port: IMMUDB_PORT,
-            rootPath: 'rootfile'
-        });
-
-        let res = null;
-
         const rand = '' + Math.floor(Math.random()
             * Math.floor(100000));
+        let res = null;
 
-        // login using the specified username and password
-        res = await client.login({
+        // Instantiate the client
+        const client = await ImmudbClient.getInstance({
+            host: IMMUDB_HOST,
+            port: IMMUDB_PORT,
             user: IMMUDB_USER,
-            password: IMMUDB_PWD
-        })
-        console.log('success: login', res);
+            password: IMMUDB_PWD,
+            database: rand,
+            rootPath: 'rootfile'
+        });
 
         // create database
         res = await client.createDatabase({

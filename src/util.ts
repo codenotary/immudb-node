@@ -39,6 +39,13 @@ class Util {
     isPowerOfTwo (x: any) {
         return Math.log2(x) % 1 === 0;
     }
+
+    maskString(data: string, n = 12) {
+        if (data) {
+            return `${data.slice(0, n)}************${data.slice(data.length - n)}`;
+        }
+        return '';
+    }
 }
 
 export default Util;

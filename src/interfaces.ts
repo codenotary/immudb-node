@@ -12,6 +12,8 @@ export interface Config {
     rootPath?: string;
     certs?: Certs;
     secure?: boolean;
+    autoLogin?: boolean;
+    autoDatabase?: boolean;
 }
 
 export enum Action {

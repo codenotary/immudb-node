@@ -19,17 +19,20 @@ const IMMUDB_HOST: string = (process.env.IMMUDB_HOST as string || '127.0.0.1');
 const IMMUDB_PORT: string = (process.env.IMMUDB_PORT as string || '3322');
 const IMMUDB_USER: string = (process.env.IMMUDB_USER as string || 'immudb');
 const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
+const IMMUDB_DEFAULT_DB: string = (process.env.IMMUDB_DEFAULT_DB as string || 'defaultdb');
 
 (async () => {
     try {
+        let res = null;
+
         // Instantiate the client
-        const client = ImmudbClient.getInstance({
+        const client = await ImmudbClient.getInstance({
             host: IMMUDB_HOST,
             port: IMMUDB_PORT,
-            rootPath: 'rootfile'
+            rootPath: 'rootfile',
+            autoLogin: false,
+            autoDatabase: false
         });
-
-        let res = null;
 
         // login using the spcified username and password
         res = await client.login({
@@ -41,7 +44,7 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
         // no need to call createDatabase
         // as 'defaultdb' is the default db 
         await client.useDatabase({
-            databasename: 'defaultdb'
+            databasename: IMMUDB_DEFAULT_DB
         })
         console.log('success: useDatabase');
 

@@ -20,54 +20,37 @@ const IMMUDB_USER: string = (process.env.IMMUDB_USER as string || 'immudb');
 const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
 
 (async () => {
+    const rand = '' + Math.floor(Math.random()
+        * Math.floor(100000));
+    let res = null;
+
     // Instantiate the client
-    const client = ImmudbClient.getInstance({
+    const client = await ImmudbClient.getInstance({
         host: IMMUDB_HOST,
         port: IMMUDB_PORT,
+        user: IMMUDB_USER,
+        password: IMMUDB_PWD,
+        database: rand,
         rootPath: 'rootfile'
     });
 
-    let res = null;
-
-    const rand = '' + Math.floor(Math.random()
-        * Math.floor(100000));
-
-    try {
-        // login using the specified username and password
-        res = await client.login({
-            user: IMMUDB_USER,
-            password: IMMUDB_PWD
-        })
-        console.log('success: login', res);
-
-        // create database
-        res = await client.createDatabase({
-            databasename: rand
-        })
-        console.log('success: createDatabase', res);
-
-        // use database just created
-        res = await client.useDatabase({
-            databasename: rand
-        })
-        console.log('success: useDatabase', res);
-        
+    try {       
         // execute a batch insert
-        const req1 = { kvsList: [] }
+        const req1 = { kvsList: <any>[] }
         for (let i = 0; i < 20; i++) {
             req1.kvsList.push({
-                key: i,
-                value: i
+                key: String(i),
+                value: String(i)
             });
         }
         res = await client.setBatch(req1);
         console.log('success: setBatch', res);
 
         // execute a batch read
-        const req2 = { keysList: [] }
+        const req2 = { keysList: <any>[] }
         for (let i = 0; i < 20; i++) {
             req2.keysList.push({
-                key: i
+                key: String(i)
             });
         }
         res = await client.getBatch(req2);
