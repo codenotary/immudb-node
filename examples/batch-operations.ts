@@ -27,74 +27,51 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
         rootPath: 'rootfile'
     });
 
+    let res = null;
+
     const rand = '' + Math.floor(Math.random()
         * Math.floor(100000));
 
     try {
         // login using the specified username and password
-        await cl.login({
+        res = await client.login({
             user: IMMUDB_USER,
             password: IMMUDB_PWD
         })
-            .then((res: any) => {
-                console.log('success: login', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: login', res);
 
         // create database
-        await cl.createDatabase({
-            database: rand
+        res = await client.createDatabase({
+            databasename: rand
         })
-            .then((res: any) => {
-                console.log('success: createDatabase', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: createDatabase', res);
 
         // use database just created
-        await cl.useDatabase({
-            database: rand
+        res = await client.useDatabase({
+            databasename: rand
         })
-            .then((res: any) => {
-                console.log('success: useDatabase', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: useDatabase', res);
         
         // execute a batch insert
-        let req1 = { keys: [] }
+        const req1 = { kvsList: [] }
         for (let i = 0; i < 20; i++) {
-            req1.keys.push({
+            req1.kvsList.push({
                 key: i,
                 value: i
             });
         }
-        await cl.setBatch(req1)
-            .then((res: any) => {
-                console.log('success: setBatch', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        res = await client.setBatch(req1);
+        console.log('success: setBatch', res);
 
         // execute a batch read
-        let req2 = { keys: [] }
+        const req2 = { keysList: [] }
         for (let i = 0; i < 20; i++) {
-            req2.keys.push({
+            req2.keysList.push({
                 key: i
             });
         }
-        await cl.getBatch(req2)
-            .then((res: any) => {
-                console.log('success: getBatch', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        res = await client.getBatch(req2);
+        console.log('success: getBatch', res);
     
     } catch (err) {
         console.log(err)

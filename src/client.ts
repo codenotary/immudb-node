@@ -10,7 +10,6 @@ import Util from './util';
 import Proofs from './proofs';
 import Root from './root';
 import * as types from './interfaces';
-import { getLogger } from '@grpc/grpc-js/build/src/logging';
 
 class ImmudbClient {
     public util = new Util();
@@ -28,9 +27,10 @@ class ImmudbClient {
     private constructor(
         config: Config
     ) {
-        const { host, port, certs, rootPath } = config;
+        const { host, port, user, password, database,
+            certs, rootPath } = config;
 
-            this._auth = grpc.credentials.createInsecure();
+        this._auth = grpc.credentials.createInsecure();
 
         if (certs) {
             this._auth = grpc.credentials.createSsl();
@@ -200,7 +200,8 @@ class ImmudbClient {
         }
     }
 
-    async listDatabases (): Promise <messages.DatabaseListResponse.AsObject | undefined> {
+    async listDatabases (
+    ): Promise <messages.DatabaseListResponse.AsObject | undefined> {
         try {
             const req = new empty.Empty();
 
@@ -248,7 +249,8 @@ class ImmudbClient {
         }
     }
 
-    async listUsers (): Promise <messages.UserList.AsObject | undefined> {
+    async listUsers (
+    ): Promise <messages.UserList.AsObject | undefined> {
         try {
             const req = new empty.Empty();
 
@@ -335,7 +337,8 @@ class ImmudbClient {
         }
     }
 
-    async logout (): Promise <empty.Empty | undefined> {
+    async logout (
+    ): Promise <empty.Empty | undefined> {
         try {
             const req = new empty.Empty();
 
@@ -426,7 +429,8 @@ class ImmudbClient {
     //     }
     // }
 
-    async health (): Promise <messages.HealthResponse.AsObject | undefined> {
+    async health (
+    ): Promise <messages.HealthResponse.AsObject | undefined> {
         try {
             const req = new empty.Empty();
 
@@ -639,7 +643,8 @@ class ImmudbClient {
         }
     }
 
-    async currentRoot (): Promise <messages.Root.AsObject | undefined> {
+    async currentRoot (
+    ): Promise <messages.Root.AsObject | undefined> {
         try {
             const req = new empty.Empty();
 

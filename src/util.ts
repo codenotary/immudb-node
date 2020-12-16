@@ -3,7 +3,7 @@ import * as util from 'util';
 
 class Util {
 
-    constructor() {}
+    constructor () {}
 
     utf8Encode (val: any) {
         return new util.TextEncoder().encode(val);

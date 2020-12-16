@@ -30,299 +30,180 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
         const rand = '' + Math.floor(Math.random()
             * Math.floor(100000));
 
+        let res = null;
         let index = 0;
 
-        // login using the specified username and password
-        await client.login({
+        // login using the spcified username and password
+        res = await client.login({
             user: IMMUDB_USER,
             password: IMMUDB_PWD
         })
-            .then((res: any) => {
-                console.log('success: login', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: login', res);
 
         // create database
-        await client.createDatabase({
+        res = await client.createDatabase({
             databasename: rand
         })
-            .then((res: any) => {
-                console.log('success: createDatabase');
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: createDatabase');
 
         // use database just created
-        await client.useDatabase({
+        res = await client.useDatabase({
             databasename: rand
         })
-            .then((res: any) => {
-                console.log('success: useDatabase');
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: useDatabase');
 
         // add new item having the specified key and value
-        await client.set({
+        res = await client.set({
             key: rand,
             value: rand
         })
-            .then((res: any) => {
-                console.log('success: set', res);
-                index = res && res.index
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: set', res);
+        index = res && res.index
 
         // get item having the specified key
-        await client.get({
+        res = await client.get({
             key: rand
         })
-            .then((res: any) => {
-                console.log('success: get', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: get', res);
 
         // count keys having the specified value
         // in the database in use
-        await client.count({ 
+        res = await client.count({ 
             prefix: rand
         })
-            .then((res: any) => {
-                console.log('success: count', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: count', res);
 
         // increase occurences of items having the
         // same key
         for (let i = 0; i < 10; i++) {
-            await client.set({
+            res = await client.set({
                 key: rand,
                 value: rand
             })
-            .then((res: any) => {
-                console.log(`success: set ${i}`, res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+            console.log(`success: set ${i}`, res);
         }
             
         // count again keys having the specified value
         // in the database in use (result will be +10)
-        await client.count({
+        res = await client.count({
             prefix: rand
         })
-            .then((res: any) => {
-                console.log('success: count', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: count', res);
 
         // iterate over keys having the specified
         // prefix
-        await client.scan({
+        res = await client.scan({
             prefix: rand,
             offset: '10',
             limit: 1,
             reverse: false,
             deep: false
         })
-            .then((res: any) => {
-                console.log('success: scan', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: scan', res);
 
         // return an element by index
-        await client.byIndex({
+        res = await client.byIndex({
             index: index
         })
-            .then((res: any) => {
-                console.log('success: byIndex', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: byIndex', res);
 
         // safely return an element by index
-        await client.bySafeIndex({
+        res = await client.bySafeIndex({
             index: index
         })
-            .then((res: any) => {
-                console.log('success: bySafeIndex', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: bySafeIndex', res);
 
         // fetch history for the item having the
         // specified key
-        await client.history({
+        res = await client.history({
             key: rand,
             offset: 0,
             limit: 0,
             reverse: false
         })
-            .then((res: any) => {
-                console.log('success: history', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: history', res);
 
         // fetch paginated history for the item having the
         // specified key
-        await client.history({
+        res = await client.history({
             key: rand,
             offset: 10,
             limit: 5,
             reverse: false
         })
-            .then((res: any) => {
-                console.log('success: paginated history', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: paginated history', res);
 
         // iterate over a sorted set
-        await client.zScan({
+        res = await client.zScan({
             set: rand,
             offset: '10',
             limit: 5,
             reverse: false
         })
-            .then((res: any) => {
-                console.log('success: zScan', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: zScan', res);
 
         // iterate over a sorted set
-        await client.zAdd({
+        res = await client.zAdd({
             set: rand,
             key: '10',
             score: 5,
             index: 0
         })
-            .then((res: any) => {
-                console.log('success: zScan', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: zScan', res);
 
         // iterate over all elements by insertion order
-        await client.iScan({
+        res = await client.iScan({
             pagesize: 1,
             pagenumber: 1
         })
-            .then((res: any) => {
-                console.log('success: iScan', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: iScan', res);
 
         // execute a batch read
-        await client.getBatch({
+        res = await client.getBatch({
             keysList: [{
                 key: rand
             }],
         })
-            .then((res: any) => {
-                console.log('success: getBatch', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: getBatch', res);
 
         // check immudb health status
-        await client.health()
-            .then((res: any) => {
-                console.log('success: health', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        res = await client.health()
+        console.log('success: health', res);
 
         // get current root info
-        await client.currentRoot()
-            .then((res: any) => {
-                console.log('success: currentRoot', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        res = await client.currentRoot()
+        console.log('success: currentRoot', res);
 
         // safely add new item having the specified key and value
-        await client.safeSet({
+        res = await client.safeSet({
             key: rand + 10,
             value: rand + 10
         })
-            .then((res: any) => {
-                console.log('success: safeSet', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: safeSet', res);
 
         // get current root info
-        await client.currentRoot()
-            .then((res: any) => {
-                console.log('success: currentRoot', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        res = await client.currentRoot()
+        console.log('success: currentRoot', res);
 
         // safely add new item having the specified key and value
-        await client.safeSet({
+        res = await client.safeSet({
             key: rand + 11,
             value: rand + 11
         })
-            .then((res: any) => {
-                console.log('success: safeSet', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: safeSet', res);
 
         // safely add new item having the specified key and value
-        await client.safeSet({
+        res = await client.safeSet({
             key: rand + 12,
             value: rand + 12
         })
-            .then((res: any) => {
-                console.log('success: safeSet', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: safeSet', res);
 
         // safely get item by key
-        await client.safeGet({
+        res = await client.safeGet({
             key: rand + 12
         })
-            .then((res: any) => {
-                console.log('success: safeGet', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: safeGet', res);
     } catch (err) {
         console.log(err)
     }

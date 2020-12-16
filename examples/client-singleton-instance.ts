@@ -28,16 +28,14 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
             port: IMMUDB_PORT
         });
 
-        await client.login({
+        let res = null;
+
+        // login using the spcified username and password
+        res = await client.login({
             user: IMMUDB_USER,
             password: IMMUDB_PWD
         })
-            .then((res: any) => {
-                console.log('success: login', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: login', res);
 
         // Instantiate the client a second time
         ImmudbClient.getInstance({

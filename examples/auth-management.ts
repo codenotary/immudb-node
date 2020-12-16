@@ -29,49 +29,33 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
             rootPath: 'rootfile'
         });
 
-        await client.login({
+        let res = null;
+
+        // login using the spcified username and password
+        res = await client.login({
             user: IMMUDB_USER,
             password: IMMUDB_PWD
         })
-            .then((res: any) => {
-                console.log('success: login', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: login', res);
 
         // no need to call createDatabase
         // as 'defaultdb' is the default db 
         await client.useDatabase({
             databasename: 'defaultdb'
         })
-            .then((res: any) => {
-                console.log('success: useDatabase');
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: useDatabase');
 
+        // update auth configuration
         await client.updateAuthConfig({
             kind: types.Auth.ENABLED
         })
-            .then((res: any) => {
-                console.log('success: updateAuthConfig');
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: updateAuthConfig');
 
+        // update MTLS configuration
         await client.updateMTLSConfig({
             enabled: false
         })
-            .then((res: any) => {
-                console.log('success: updateMTLSConfig');
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
-        console.log('success: updateMTLSConfig')
+        console.log('success: updateMTLSConfig');
 
     } catch (err) {
         console.log(err)

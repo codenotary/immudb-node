@@ -6,6 +6,9 @@ export interface Certs {
 export interface Config {
     host: string;
     port: string;
+    user?: string;
+    password?: string;
+    database?: string;
     rootPath?: string;
     certs?: Certs;
     secure?: boolean;

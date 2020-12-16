@@ -29,74 +29,48 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
             rootPath: 'rootfile'
         });
 
+        let res = null;
+
         const rand = '' + Math.floor(Math.random()
             * Math.floor(100000));
 
-        await client.login({
+        // login using the specified username and password
+        res = await client.login({
             user: IMMUDB_USER,
             password: IMMUDB_PWD
         })
-            .then((res: any) => {
-                console.log('success: login', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: login', res);
 
-        await client.createDatabase({
+        // create database
+        res = await client.createDatabase({
             databasename: rand
         })
-            .then((res: any) => {
-                console.log('success: createDatabase');
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: createDatabase');
 
-        await client.useDatabase({
+        // use database just created
+        res = await client.useDatabase({
             databasename: rand
         })
-            .then((res: any) => {
-                console.log('success: useDatabase');
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: useDatabase');
 
-        await client.set({
+        // add new item having the specified key and value
+        res = await client.set({
             key: rand,
             value: rand
         })
-            .then((res: any) => {
-                console.log('success: set', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        console.log('success: set', res);
 
-        await client.listDatabases()
-            .then((res: any) => {
-                console.log('success: listDatabases', util.inspect(res, false, 8, true));
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        // list all databases available
+        res = await client.listDatabases()
+        console.log('success: listDatabases', util.inspect(res, false, 8, true));
 
-        // await client.printTree()
-        //     .then((res: any) => {
-        //         console.log('success: printTree', res);
-        //     })
-        //     .catch((err: any) => {
-        //         console.error(err);
-        //     });
+        // get a tree visualization of immudb
+        // res =  await client.printTree()
+        // console.log('success: printTree', res);
 
-        await client.health()
-            .then((res: any) => {
-                console.log('success: health', res);
-            })
-            .catch((err: any) => {
-                console.error(err);
-            });
+        // check immudb health status
+        res = await client.health()
+        console.log('success: health', res);
 
     } catch (err) {
         console.log(err)
