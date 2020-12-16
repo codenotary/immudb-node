@@ -1,9 +1,12 @@
 /*
 Copyright 2019-2020 vChain, Inc.
+
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
+
 	http://www.apache.org/licenses/LICENSE-2.0
+
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,12 +18,12 @@ syntax = "proto3";
 
 // import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
+// import "protoc-gen-swagger/options/annotations.proto";
+// import "pb/pb.proto";
 
 package immudb.schema;
 
 option go_package = "github.com/codenotary/immudb/pkg/api/schema";
-option java_package = "io.codenotary.immudb";
-option java_outer_classname = "ImmudbProto";
 
 message Key {
 	bytes key = 1;
@@ -137,9 +140,32 @@ message ItemList {
 	repeated Item items = 1;
 }
 
+message ZItem {
+	Item item = 1;
+	double score = 2;
+	bytes currentOffset = 3;
+	uint64 index = 4;
+}
+
+message ZItemList {
+	repeated ZItem items = 1;
+}
+
 message StructuredItemList {
 	repeated StructuredItem items = 1;
 }
+
+message ZStructuredItemList {
+	repeated ZStructuredItem items = 1;
+}
+
+message ZStructuredItem {
+	StructuredItem item = 1;
+	double score = 2;
+	bytes currentOffset = 3;
+	uint64 index = 4;
+}
+
 
 message Root {
 	RootIndex payload = 1;
@@ -244,7 +270,7 @@ Because it is not purely about the storage size, but also use cases.
 */
 message ZAddOptions {
 	bytes set = 1;
-	double score = 2;
+	Score score = 2;
 	bytes key = 3;
 	Index index = 4;
 }
@@ -254,6 +280,12 @@ message ZScanOptions {
 	bytes offset = 2;
 	uint64 limit = 3;
 	bool reverse = 4;
+	Score min = 5;
+	Score max = 6;
+}
+
+message Score {
+	double score = 1;
 }
 
 message IScanOptions {
@@ -270,6 +302,13 @@ message SPage {
 	repeated StructuredItem items = 1;
 	uint64 pageNum  = 2;
 	bool more = 3;
+}
+
+message HistoryOptions {
+	bytes key = 1;
+	uint64 offset = 2;
+	uint64 limit = 3;
+	bool reverse = 4;
 }
 
 message SafeZAddOptions {
@@ -309,104 +348,43 @@ message SetActiveUserRequest {
 message DatabaseListResponse{
 	repeated Database databases = 1;
 }
-
-// immudb gRPC
+// immudb gRPC & REST service
 // IMPORTANT: All get and safeget functions return base64-encoded keys and values, while all set and safeset functions expect base64-encoded inputs.
 service ImmuService {
 	rpc ListUsers (google.protobuf.Empty) returns (UserList){}
-
 	rpc CreateUser (CreateUserRequest) returns (google.protobuf.Empty){}
-
 	rpc ChangePassword (ChangePasswordRequest) returns (google.protobuf.Empty){}
-
 	rpc UpdateAuthConfig (AuthConfig) returns (google.protobuf.Empty){}
 	rpc UpdateMTLSConfig (MTLSConfig) returns (google.protobuf.Empty){}
-
 	rpc PrintTree (google.protobuf.Empty) returns (Tree){}
-
 	rpc Login (LoginRequest) returns (LoginResponse){}
-
 	rpc Logout (google.protobuf.Empty) returns (google.protobuf.Empty){}
-
 	rpc Set (KeyValue) returns (Index){}
-
-	rpc SetSV (StructuredKeyValue) returns (Index){}
-
 	rpc SafeSet(SafeSetOptions) returns (Proof){}
-
-	rpc SafeSetSV(SafeSetSVOptions) returns (Proof){}
-
 	rpc Get (Key) returns (Item){}
-
-	rpc GetSV (Key) returns (StructuredItem){}
-
 	rpc SafeGet(SafeGetOptions) returns (SafeItem){}
-
-	rpc SafeGetSV(SafeGetOptions) returns (SafeStructuredItem){}
-
 	rpc SetBatch (KVList) returns (Index){}
-
-	rpc SetBatchSV (SKVList) returns (Index){}
-
 	rpc GetBatch (KeyList) returns (ItemList){}
-
-	rpc GetBatchSV (KeyList) returns (StructuredItemList){}
-
 	rpc Scan(ScanOptions) returns (ItemList){}
-
-	rpc ScanSV(ScanOptions) returns (StructuredItemList){}
-
 	rpc Count(KeyPrefix) returns (ItemsCount){}
-
+	rpc CountAll(google.protobuf.Empty) returns (ItemsCount){}
 	rpc CurrentRoot(google.protobuf.Empty) returns (Root) {}
-
-	rpc CountAll(google.protobuf.Empty) returns (ItemsCount) {}
-
 	rpc Inclusion(Index) returns (InclusionProof){}
-
 	rpc Consistency(Index) returns (ConsistencyProof){}
-
 	rpc ByIndex(Index) returns (Item){}
-
 	rpc BySafeIndex(SafeIndexOptions) returns (SafeItem){}
-
-	rpc ByIndexSV(Index) returns (StructuredItem){}
-
-	rpc History(Key) returns (ItemList){}
-
-	rpc HistorySV(Key) returns (StructuredItemList){}
-
+	rpc History(HistoryOptions) returns (ItemList){}
 	rpc Health (google.protobuf.Empty) returns (HealthResponse){}
-
 	rpc Reference (ReferenceOptions) returns (Index){}
-
 	rpc SafeReference (SafeReferenceOptions) returns (Proof){}
-
 	rpc ZAdd (ZAddOptions) returns (Index){}
-
-	rpc ZScan (ZScanOptions) returns (ItemList){}
-
-	rpc ZScanSV (ZScanOptions) returns (StructuredItemList){}
-
+	rpc ZScan (ZScanOptions) returns (ZItemList){}
 	rpc SafeZAdd (SafeZAddOptions) returns (Proof){}
-
 	rpc IScan (IScanOptions) returns (Page){}
-
-	rpc IScanSV (IScanOptions) returns (SPage){}
-
-	rpc Dump(google.protobuf.Empty) returns (stream KVList) {}
-
-	// todo(joe-dz): Enable restore when the feature is required again
-	//	rpc Restore(stream KVList) returns (ItemsCount) {}
-
+// 	rpc Dump(google.protobuf.Empty) returns (stream pb.KVList) {}
 	rpc CreateDatabase(Database) returns (google.protobuf.Empty) {}
-
 	rpc UseDatabase(Database) returns (UseDatabaseReply) {}
-
 	rpc ChangePermission(ChangePermissionRequest) returns (google.protobuf.Empty) {}
-
 	rpc SetActiveUser (SetActiveUserRequest) returns (google.protobuf.Empty){}
-
 	rpc DatabaseList (google.protobuf.Empty) returns (DatabaseListResponse){}
-
 }

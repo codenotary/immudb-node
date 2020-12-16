@@ -10,8 +10,8 @@
   "scripts": {
     "prepare": "npm run build",
     "build": "tsc",
-    "test": "./test/test.sh",
-    "test:dev": "./test/test.sh --dev"
+    "test": "./tests/test.sh",
+    "test:dev": "./tests/test.sh --dev"
   },
   "author": "",
   "license": "ISC",

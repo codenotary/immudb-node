@@ -671,6 +671,67 @@ export namespace ItemList {
     }
 }
 
+export class ZItem extends jspb.Message { 
+
+    hasItem(): boolean;
+    clearItem(): void;
+    getItem(): Item | undefined;
+    setItem(value?: Item): ZItem;
+
+    getScore(): number;
+    setScore(value: number): ZItem;
+
+    getCurrentoffset(): Uint8Array | string;
+    getCurrentoffset_asU8(): Uint8Array;
+    getCurrentoffset_asB64(): string;
+    setCurrentoffset(value: Uint8Array | string): ZItem;
+
+    getIndex(): number;
+    setIndex(value: number): ZItem;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ZItem.AsObject;
+    static toObject(includeInstance: boolean, msg: ZItem): ZItem.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ZItem, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ZItem;
+    static deserializeBinaryFromReader(message: ZItem, reader: jspb.BinaryReader): ZItem;
+}
+
+export namespace ZItem {
+    export type AsObject = {
+        item?: Item.AsObject,
+        score: number,
+        currentoffset: Uint8Array | string,
+        index: number,
+    }
+}
+
+export class ZItemList extends jspb.Message { 
+    clearItemsList(): void;
+    getItemsList(): Array<ZItem>;
+    setItemsList(value: Array<ZItem>): ZItemList;
+    addItems(value?: ZItem, index?: number): ZItem;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ZItemList.AsObject;
+    static toObject(includeInstance: boolean, msg: ZItemList): ZItemList.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ZItemList, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ZItemList;
+    static deserializeBinaryFromReader(message: ZItemList, reader: jspb.BinaryReader): ZItemList;
+}
+
+export namespace ZItemList {
+    export type AsObject = {
+        itemsList: Array<ZItem.AsObject>,
+    }
+}
+
 export class StructuredItemList extends jspb.Message { 
     clearItemsList(): void;
     getItemsList(): Array<StructuredItem>;
@@ -691,6 +752,67 @@ export class StructuredItemList extends jspb.Message {
 export namespace StructuredItemList {
     export type AsObject = {
         itemsList: Array<StructuredItem.AsObject>,
+    }
+}
+
+export class ZStructuredItemList extends jspb.Message { 
+    clearItemsList(): void;
+    getItemsList(): Array<ZStructuredItem>;
+    setItemsList(value: Array<ZStructuredItem>): ZStructuredItemList;
+    addItems(value?: ZStructuredItem, index?: number): ZStructuredItem;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ZStructuredItemList.AsObject;
+    static toObject(includeInstance: boolean, msg: ZStructuredItemList): ZStructuredItemList.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ZStructuredItemList, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ZStructuredItemList;
+    static deserializeBinaryFromReader(message: ZStructuredItemList, reader: jspb.BinaryReader): ZStructuredItemList;
+}
+
+export namespace ZStructuredItemList {
+    export type AsObject = {
+        itemsList: Array<ZStructuredItem.AsObject>,
+    }
+}
+
+export class ZStructuredItem extends jspb.Message { 
+
+    hasItem(): boolean;
+    clearItem(): void;
+    getItem(): StructuredItem | undefined;
+    setItem(value?: StructuredItem): ZStructuredItem;
+
+    getScore(): number;
+    setScore(value: number): ZStructuredItem;
+
+    getCurrentoffset(): Uint8Array | string;
+    getCurrentoffset_asU8(): Uint8Array;
+    getCurrentoffset_asB64(): string;
+    setCurrentoffset(value: Uint8Array | string): ZStructuredItem;
+
+    getIndex(): number;
+    setIndex(value: number): ZStructuredItem;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ZStructuredItem.AsObject;
+    static toObject(includeInstance: boolean, msg: ZStructuredItem): ZStructuredItem.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ZStructuredItem, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ZStructuredItem;
+    static deserializeBinaryFromReader(message: ZStructuredItem, reader: jspb.BinaryReader): ZStructuredItem;
+}
+
+export namespace ZStructuredItem {
+    export type AsObject = {
+        item?: StructuredItem.AsObject,
+        score: number,
+        currentoffset: Uint8Array | string,
+        index: number,
     }
 }
 
@@ -1254,8 +1376,11 @@ export class ZAddOptions extends jspb.Message {
     getSet_asB64(): string;
     setSet(value: Uint8Array | string): ZAddOptions;
 
-    getScore(): number;
-    setScore(value: number): ZAddOptions;
+
+    hasScore(): boolean;
+    clearScore(): void;
+    getScore(): Score | undefined;
+    setScore(value?: Score): ZAddOptions;
 
     getKey(): Uint8Array | string;
     getKey_asU8(): Uint8Array;
@@ -1282,7 +1407,7 @@ export class ZAddOptions extends jspb.Message {
 export namespace ZAddOptions {
     export type AsObject = {
         set: Uint8Array | string,
-        score: number,
+        score?: Score.AsObject,
         key: Uint8Array | string,
         index?: Index.AsObject,
     }
@@ -1306,6 +1431,18 @@ export class ZScanOptions extends jspb.Message {
     setReverse(value: boolean): ZScanOptions;
 
 
+    hasMin(): boolean;
+    clearMin(): void;
+    getMin(): Score | undefined;
+    setMin(value?: Score): ZScanOptions;
+
+
+    hasMax(): boolean;
+    clearMax(): void;
+    getMax(): Score | undefined;
+    setMax(value?: Score): ZScanOptions;
+
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ZScanOptions.AsObject;
     static toObject(includeInstance: boolean, msg: ZScanOptions): ZScanOptions.AsObject;
@@ -1322,6 +1459,29 @@ export namespace ZScanOptions {
         offset: Uint8Array | string,
         limit: number,
         reverse: boolean,
+        min?: Score.AsObject,
+        max?: Score.AsObject,
+    }
+}
+
+export class Score extends jspb.Message { 
+    getScore(): number;
+    setScore(value: number): Score;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Score.AsObject;
+    static toObject(includeInstance: boolean, msg: Score): Score.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Score, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Score;
+    static deserializeBinaryFromReader(message: Score, reader: jspb.BinaryReader): Score;
+}
+
+export namespace Score {
+    export type AsObject = {
+        score: number,
     }
 }
 
@@ -1405,6 +1565,41 @@ export namespace SPage {
         itemsList: Array<StructuredItem.AsObject>,
         pagenum: number,
         more: boolean,
+    }
+}
+
+export class HistoryOptions extends jspb.Message { 
+    getKey(): Uint8Array | string;
+    getKey_asU8(): Uint8Array;
+    getKey_asB64(): string;
+    setKey(value: Uint8Array | string): HistoryOptions;
+
+    getOffset(): number;
+    setOffset(value: number): HistoryOptions;
+
+    getLimit(): number;
+    setLimit(value: number): HistoryOptions;
+
+    getReverse(): boolean;
+    setReverse(value: boolean): HistoryOptions;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): HistoryOptions.AsObject;
+    static toObject(includeInstance: boolean, msg: HistoryOptions): HistoryOptions.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: HistoryOptions, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): HistoryOptions;
+    static deserializeBinaryFromReader(message: HistoryOptions, reader: jspb.BinaryReader): HistoryOptions;
+}
+
+export namespace HistoryOptions {
+    export type AsObject = {
+        key: Uint8Array | string,
+        offset: number,
+        limit: number,
+        reverse: boolean,
     }
 }
 
