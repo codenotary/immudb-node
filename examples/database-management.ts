@@ -33,7 +33,7 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
             user: IMMUDB_USER,
             password: IMMUDB_PWD,
             database: rand,
-            rootPath: 'rootfile'
+            rootPath: 'root'
         });
 
         // create database

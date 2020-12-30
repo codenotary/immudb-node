@@ -30,7 +30,7 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
         const client = await ImmudbClient.getInstance({
             host: IMMUDB_HOST,
             port: IMMUDB_PORT,
-            rootPath: 'rootfile',
+            rootPath: 'root',
             autoLogin: false,
             autoDatabase: false
         });

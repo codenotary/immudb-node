@@ -22,6 +22,7 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
 (async () => {
     const rand = '' + Math.floor(Math.random()
         * Math.floor(100000));
+    const ITERATIONS = 1000; // may fail over 50K KV
     let res = null;
 
     // Instantiate the client
@@ -31,13 +32,13 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
         user: IMMUDB_USER,
         password: IMMUDB_PWD,
         database: rand,
-        rootPath: 'rootfile'
+        rootPath: 'root'
     });
 
     try {       
         // execute a batch insert
         const req1 = { kvsList: <any>[] }
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < ITERATIONS; i++) {
             req1.kvsList.push({
                 key: String(i),
                 value: String(i)
@@ -48,7 +49,7 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
 
         // execute a batch read
         const req2 = { keysList: <any>[] }
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < ITERATIONS; i++) {
             req2.keysList.push({
                 key: String(i)
             });

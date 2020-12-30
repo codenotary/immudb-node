@@ -29,7 +29,7 @@ const IMMUDB_DEFAULT_DB: string = (process.env.IMMUDB_DEFAULT_DB as string || 'd
         const client = await ImmudbClient.getInstance({
             host: IMMUDB_HOST,
             port: IMMUDB_PORT,
-            rootPath: 'rootfile',
+            rootPath: 'root',
             autoLogin: false,
             autoDatabase: false
         });
