@@ -40,7 +40,8 @@
     "@types/mocha": "^8.2.0",
     "btoa": "1.2.1",
     "dotenv": "^8.2.0",
-    "google-protobuf": "3.13.0"
+    "google-protobuf": "3.13.0",
+    "ts-node": "^9.1.1"
   },
   "repository": {
     "type": "git",

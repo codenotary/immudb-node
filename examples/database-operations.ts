@@ -31,7 +31,7 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
             port: IMMUDB_PORT,
             user: IMMUDB_USER,
             password: IMMUDB_PWD,
-            rootPath: 'rootfile',
+            rootPath: 'root',
             autoDatabase: false
         });
 

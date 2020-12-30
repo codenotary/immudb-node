@@ -6,6 +6,7 @@ test/immudb
 .vscode/
 test/root.json
 .vscode
+root
 rootfile
 .env
 examples/.env

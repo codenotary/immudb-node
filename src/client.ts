@@ -13,6 +13,7 @@ import * as types from './interfaces';
 
 const CLIENT_INIT_PREFIX = 'ImmudbClient:';
 const DEFAULT_DATABASE = 'defaultdb';
+const DEFAULT_ROOTPATH = 'root';
 
 class ImmudbClient {
     public util = new Util();
@@ -33,7 +34,7 @@ class ImmudbClient {
         const host: string = config && config.host || (process.env.IMMUDB_HOST as string) || '127.0.0.1';
         const port: string = config && config.port || (process.env.IMMUDB_PORT as string) || '3322';
         const certs = config && config.certs;
-        const rootPath = config && config.rootPath;
+        const rootPath = config && config.rootPath || DEFAULT_ROOTPATH;
 
         // init insecure grpc auth
         this._auth = grpc.credentials.createInsecure();
@@ -74,6 +75,7 @@ class ImmudbClient {
             
             return new Promise((resolve) => resolve(ImmudbClient.instance));
         } catch (err) {
+            await ImmudbClient.instance.shutdown();
             return new Promise((reject) => reject(err));
         }
     }
@@ -527,6 +529,27 @@ class ImmudbClient {
             return new Promise((resolve, reject) => this.client.count(req, this._metadata, (err: any, res: any) => {
                 if (err) {
                     console.error('Count error', err);
+                    return reject(err);
+                }
+
+                resolve({
+                    count: res && res.getCount()
+                });
+            }));
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    async countAll (
+        params: messages.KeyPrefix.AsObject
+    ): Promise <messages.ItemsCount.AsObject | undefined> {
+        try {
+            const req = new empty.Empty();
+
+            return new Promise((resolve, reject) => this.client.countAll(req, this._metadata, (err: any, res: any) => {
+                if (err) {
+                    console.error('Count all error', err);
                     return reject(err);
                 }
 

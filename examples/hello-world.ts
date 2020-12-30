@@ -27,6 +27,14 @@ import ImmudbClient from '../src/client';
         // get item having the specified key
         res = await client.get({ key: 'hello' })
         console.log('success: get', res);
+
+        // add new item with the specified key and value
+        res = await client.set({ key: 'hello', value: 'world2' });
+        console.log('success: set', res);
+
+        // get item having the specified key
+        res = await client.get({ key: 'hello' })
+        console.log('success: get', res);
     
     } catch (err) {
         console.log(err)
