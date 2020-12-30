@@ -5,9 +5,14 @@ export interface Certs {
 export interface Config {
     host: string;
     port: string;
+    user?: string;
+    password?: string;
+    database?: string;
     rootPath?: string;
     certs?: Certs;
     secure?: boolean;
+    autoLogin?: boolean;
+    autoDatabase?: boolean;
 }
 export declare enum Action {
     Grant = 0,
@@ -19,8 +24,8 @@ export declare enum Permission {
     READ_WRITE = 2
 }
 export declare enum Auth {
-    Disabled = 0,
-    Enabled = 1
+    DISABLED = 0,
+    ENABLED = 1
 }
 export declare namespace SimpleZAddOptions {
     type AsObject = {

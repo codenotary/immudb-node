@@ -11,13 +11,16 @@ declare class ImmudbClient {
     proofs: Proofs;
     root: Root;
     client: any;
+    private static instance;
     private _auth;
     private _token;
     private _metadata;
     private _activeDatabase;
     private _serverUUID;
     private _serverVersion;
-    constructor(config: Config);
+    private constructor();
+    static getInstance(config: Config): Promise<ImmudbClient>;
+    initClient(user?: string, password?: string, databasename?: string, autoLogin?: boolean, autoDatabase?: boolean): Promise<void>;
     shutdown(): Promise<void>;
     login(params: messages.LoginRequest.AsObject): Promise<messages.LoginResponse.AsObject | undefined>;
     createDatabase(params: messages.Database.AsObject): Promise<empty.Empty | undefined>;

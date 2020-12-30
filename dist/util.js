@@ -52,5 +52,26 @@ class Util {
     isPowerOfTwo(x) {
         return Math.log2(x) % 1 === 0;
     }
+    maskConfig(c) {
+        let result = '';
+        if (c) {
+            result += `[ address: ${c.host}:${c.port}`;
+            c.user && (result += `, user: ${c.user}`);
+            c.password && (result += ', password: *****');
+            c.database && (result += `, database: ${c.database || 'defaultdb'}`);
+            c.rootPath && (result += `, rootPath: ${c.rootPath}`);
+            c.secure && (result += `, secure: ${!!c.secure}`);
+            c.certs && (result += `, certs: ${c.certs}`);
+            c.autoLogin && (result += `, autoLogin: ${!!c.autoLogin}`);
+            c.autoDatabase && (result += `, autoDatabase: ${!!c.autoDatabase}`);
+        }
+        return `${result} ]`;
+    }
+    maskString(data, n = 12) {
+        if (data) {
+            return `${data.slice(0, n)}************${data.slice(data.length - n)}`;
+        }
+        return '';
+    }
 }
 exports.default = Util;

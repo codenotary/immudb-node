@@ -10,6 +10,7 @@ import Util from './util';
 import Proofs from './proofs';
 import Root from './root';
 import * as types from './interfaces';
+import { Database, Item, Key, Permission, User } from './proto/schema_pb';
 
 const CLIENT_INIT_PREFIX = 'ImmudbClient:';
 const DEFAULT_DATABASE = 'defaultdb';
@@ -277,7 +278,7 @@ class ImmudbClient {
                 }
 
                 const dl = res && res.getDatabasesList();
-                const l = [];
+                const l: Array<Database.AsObject> = [];
                 for (let i = 0; dl && i < dl.length; i++) {
                     l.push(dl[i].getDatabasename());
                 }
@@ -326,12 +327,12 @@ class ImmudbClient {
                 }
 
                 const ul = res && res.getUsersList();
-                const l = [];
+                const l: Array<User.AsObject> = [];
                 for (let i = 0; ul && i < ul.length; i++) {
                     let u = ul[i];
 
                     const pl = u.getPermissionsList();
-                    const p = [];
+                    const p: Array<Permission.AsObject> = [];
                     for (let j = 0; j < pl.length; j++) {
                         p.push({
                             database: pl[j].getDatabase(),
@@ -556,7 +557,7 @@ class ImmudbClient {
                     return reject(err);
                 }
 
-                const result = [];
+                const result: Array<Item.AsObject> = [];
                 const il = res && res.getItemsList();
                 for (let i = 0; il && i < il.length; i++) {
                     let item = il[i];
@@ -616,7 +617,7 @@ class ImmudbClient {
                     return reject(err);
                 }
 
-                const result = [];
+                const result: Array<Item.AsObject> = [];
                 const il = res && res.getItemsList();
                 for (let i = 0; il && i < il.length; i++) {
                     let item = il[i]
@@ -653,7 +654,7 @@ class ImmudbClient {
                     return reject(err);
                 }
 
-                const result = []
+                const result: Array<Item.AsObject> = []
                 const il = res && res.getItemsList()
                 for (let i = 0; il && i < il.length; i++) {
                     let item = il[i];
@@ -687,7 +688,7 @@ class ImmudbClient {
                     return reject(err);
                 }
 
-                const result = []
+                const result: Array<Item.AsObject> = []
                 const il = res && res.getItemsList()
                 for (let i = 0; il && i < il.length; i++) {
                     let item = il[i];
@@ -829,7 +830,7 @@ class ImmudbClient {
         params: messages.KeyList.AsObject
     ): Promise <messages.ItemList.AsObject | undefined> {
         try {
-            const l = [];
+            const l: Array<Key> = [];
             for (let i = 0; params && params.keysList && i < params.keysList.length; i++) {
                 const key = new messages.Key();
                 key.setKey(this.util && this.util.utf8Encode(params && params.keysList[i].key));
@@ -845,7 +846,7 @@ class ImmudbClient {
                     return reject(err);
                 }
 
-                const result = [];
+                const result: Array<Item.AsObject> = [];
                 const il = res && res.getItemsList();
                 for (let i = 0; il && i < il.length; i++) {
                     let item = il[i]

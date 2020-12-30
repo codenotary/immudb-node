@@ -14,6 +14,6 @@ var Permission;
 })(Permission = exports.Permission || (exports.Permission = {}));
 var Auth;
 (function (Auth) {
-    Auth[Auth["Disabled"] = 0] = "Disabled";
-    Auth[Auth["Enabled"] = 1] = "Enabled";
+    Auth[Auth["DISABLED"] = 0] = "DISABLED";
+    Auth[Auth["ENABLED"] = 1] = "ENABLED";
 })(Auth = exports.Auth || (exports.Auth = {}));

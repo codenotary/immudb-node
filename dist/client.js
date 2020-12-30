@@ -30,27 +30,101 @@ const empty = __importStar(require("google-protobuf/google/protobuf/empty_pb"));
 const util_1 = __importDefault(require("./util"));
 const proofs_1 = __importDefault(require("./proofs"));
 const root_1 = __importDefault(require("./root"));
+const CLIENT_INIT_PREFIX = 'ImmudbClient:';
+const DEFAULT_DATABASE = 'defaultdb';
 class ImmudbClient {
     constructor(config) {
         this.util = new util_1.default();
         this.proofs = new proofs_1.default();
         this.root = new root_1.default();
-        const { host, port, certs, rootPath } = config;
+        const host = config && config.host || process.env.IMMUDB_HOST || '127.0.0.1';
+        const port = config && config.port || process.env.IMMUDB_PORT || '3322';
+        const certs = config && config.certs;
+        const rootPath = config && config.rootPath;
+        // init insecure grpc auth
         this._auth = grpc.credentials.createInsecure();
-        if (certs) {
-            this._auth = grpc.credentials.createSsl();
-        }
+        // init secure grpc auth
+        certs && (this._auth = grpc.credentials.createSsl());
+        // initialize client from service
         this.client = new services.ImmuServiceClient(`${host}:${port}`, this._auth);
+        // init empty grpc metadata
         this._metadata = new grpc.Metadata();
-        if (rootPath) {
-            this.root && this.root.setRootPath({
-                path: rootPath
-            });
+        // init root
+        rootPath && this.root && this.root.setRootPath({ path: rootPath });
+    }
+    static async getInstance(config) {
+        const util = new util_1.default();
+        const user = config && config.user || process.env.IMMUDB_USER;
+        const password = config && config.password || process.env.IMMUDB_PWD;
+        const databasename = config && config.database || process.env.IMMUDB_DEFAULT_DB;
+        const autoLogin = config && config.autoLogin !== undefined ? config.autoLogin : true;
+        const autoDatabase = config && config.autoDatabase !== undefined ? config.autoDatabase : true;
+        try {
+            if (!ImmudbClient.instance) {
+                console.log(`${CLIENT_INIT_PREFIX} creating new ImmudbClient instance with config`, '\n', `${util.maskConfig(config)}`);
+                ImmudbClient.instance = new ImmudbClient(config);
+                console.log(`${CLIENT_INIT_PREFIX} init new instance`);
+                await ImmudbClient.instance.initClient(user, password, databasename, autoLogin, autoDatabase);
+            }
+            else {
+                console.log(`${CLIENT_INIT_PREFIX} using already available ImmudbClient instance`);
+            }
+            return new Promise((resolve) => resolve(ImmudbClient.instance));
         }
+        catch (err) {
+            return new Promise((reject) => reject(err));
+        }
+    }
+    async initClient(user, password, databasename, autoLogin = true, autoDatabase = true) {
+        // by default automatically manage user login with dotenv variables
+        if (autoLogin) {
+            // login
+            if (user && password) {
+                const resLogin = await this.login({ user, password });
+                const token = resLogin ? this.util.maskString(resLogin.token) : '';
+                console.log('ImmudbClient: login', token);
+            }
+        }
+        else {
+            console.log(`${CLIENT_INIT_PREFIX} skipped automatic init login (manual client login is required)`);
+            if (autoDatabase) {
+                console.warn(`${CLIENT_INIT_PREFIX} it's not possible to 'autoDatabase' if 'autoLogin' is set to false`, '\n', `(the following ops will fallback to use '${DEFAULT_DATABASE}' database)`);
+            }
+        }
+        // by default automatically manage database ops with dotenv variables
+        if (autoLogin && autoDatabase) {
+            // get current database list
+            const resList = await this.listDatabases();
+            if (resList && resList && resList.databasesList.some((_) => String(_) === databasename)) {
+                // useDatabase database specified if it 
+                // already exists
+                await this.useDatabase({ databasename: DEFAULT_DATABASE });
+                console.log(`${CLIENT_INIT_PREFIX} useDatabase  '${DEFAULT_DATABASE}'`);
+            }
+            else if (databasename) {
+                // run createDatabase and useDatabase if databasename
+                // is different than the default one
+                await this.createDatabase({ databasename });
+                console.log(`${CLIENT_INIT_PREFIX} createDatabase '${databasename}'`);
+                await this.useDatabase({ databasename });
+                console.log(`${CLIENT_INIT_PREFIX} useDatabase '${databasename}'`);
+            }
+            else {
+                // run createDatabase and useDatabase if default
+                // databasename is missing
+                await this.useDatabase({ databasename: DEFAULT_DATABASE });
+                console.log(`${CLIENT_INIT_PREFIX} useDatabase '${databasename}'`);
+            }
+        }
+        else {
+            console.log(`${CLIENT_INIT_PREFIX} skipped automatic init database`, '\n', `(manual client database ops are required, '${DEFAULT_DATABASE}' database will be used otherwise)`);
+        }
+        // fetch health status
         this.health();
     }
     async shutdown() {
         this.root && this.root.commit();
+        this.logout();
         process.exit(0);
     }
     async login(params) {
@@ -109,6 +183,7 @@ class ImmudbClient {
                 this.currentRoot()
                     .then(() => ({ token }))
                     .catch((err) => { throw new Error('Use database error'); });
+                resolve();
             }));
         }
         catch (err) {

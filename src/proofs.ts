@@ -159,7 +159,7 @@ class Proof {
             return callback(this.errVerificationException);
         }
 
-        let pp = [];
+        let pp: Array<Uint8Array | string> = [];
         if (this.util && this.util.isPowerOfTwo(params.oldRoot.index + 1)) {
             pp.push(new Uint8Array(oldHash), ...params.proof.consistencyPath);
         } else {
