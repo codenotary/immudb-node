@@ -1,10 +1,10 @@
 node_modules/
 package-lock.json
 root.json
-test/immudb
+tests/immudb
 .nyc_output
 .vscode/
-test/root.json
+tests/root.json
 .vscode
 rootfile
 .env
