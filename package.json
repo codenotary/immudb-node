@@ -4,14 +4,14 @@
   "description": "Node ts client for immudb",
   "directories": {
     "lib": "lib",
-    "test": "test"
+    "test": "tests"
   },
   "main": "lib/client.ts",
   "scripts": {
     "prepare": "npm run build",
     "build": "tsc",
-    "test": "./tests/test.sh",
-    "test:dev": "./tests/test.sh --dev"
+    "test": "tests/test.sh",
+    "test:dev": "tests/test.sh --dev"
   },
   "author": "",
   "license": "ISC",
