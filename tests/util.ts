@@ -1,22 +1,23 @@
+// @ts-ignore
 import tap from 'tap';
 import Util from '../src/util';
 
 const utilInstance = new Util;
-tap.test('utf8 encode', (t) => {
+tap.test('utf8 encode', (t: any) => {
     const array = new Uint8Array([226, 130, 172])
     t.same(utilInstance.utf8Encode('€'), array)
     t.notSame(utilInstance.utf8Encode('$'), array)
     t.end()
   })
   
-  tap.test('utf8 decode', (t) => {
+  tap.test('utf8 decode', (t: any) => {
     const array = new Uint8Array([226, 130, 172])
     t.equal(utilInstance.utf8Decode(array), '€')
     t.notEqual(utilInstance.utf8Decode(array), '$')
     t.end()
   })
 
-  tap.test('utf8 decode empty string', (t) => {
+  tap.test('utf8 decode empty string', (t: any) => {
     t.equal(utilInstance.utf8Decode(''), '')
     t.notEqual(utilInstance.utf8Decode(''), '$')
     t.end()
@@ -46,7 +47,7 @@ tap.test('utf8 encode', (t) => {
   })
   */
 
-  tap.test('equal array', (t) => {
+  tap.test('equal array', (t: any) => {
     t.true(utilInstance.equalArray([0], [0]))
     t.true(utilInstance.equalArray([0,1], [0,1]))
     t.false(utilInstance.equalArray([0], [0,1]))
@@ -54,7 +55,7 @@ tap.test('utf8 encode', (t) => {
     t.end()
   })
   
-  tap.test('is power of two', (t) => {
+  tap.test('is power of two', (t: any) => {
     t.true(utilInstance.isPowerOfTwo(1))
     t.true(utilInstance.isPowerOfTwo(2))
     t.true(utilInstance.isPowerOfTwo(4))

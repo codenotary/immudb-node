@@ -10,7 +10,7 @@ const IMMUDB_PORT = process.env.IMMUDB_TEST_PORT || '56789'
 const IMMUDB_USER = process.env.IMMUDB_USER || 'immudb'
 const IMMUDB_PWD = process.env.IMMUDB_PWD || 'immudb'
 
-tap.test('database management', async (t) => {
+tap.test('database management', async (t: any) => {
   const config: Config = {
     host: IMMUDB_HOST,
     port: IMMUDB_PORT,
@@ -87,7 +87,7 @@ tap.test('database management', async (t) => {
   }
 })
 
-tap.test('user management', async (t) => {
+tap.test('user management', async (t: any) => {
   const config: Config = {
     host: IMMUDB_HOST,
     port: IMMUDB_PORT,
@@ -157,7 +157,7 @@ tap.test('user management', async (t) => {
   }
 })
 
-tap.test('operations', async (t) => {
+tap.test('operations', async (t: any) => {
   const config: Config = {
     host: IMMUDB_HOST,
     port: IMMUDB_PORT,
@@ -299,7 +299,7 @@ tap.test('operations', async (t) => {
   }
 })
 
-tap.test('batches', async (t) => {
+tap.test('batches', async (t: any) => {
   const config: Config = {
     host: IMMUDB_HOST,
     port: IMMUDB_PORT,

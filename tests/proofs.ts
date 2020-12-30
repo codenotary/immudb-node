@@ -1,7 +1,8 @@
+// @ts-ignore
 import tap from 'tap';
 import proofs from '../src/proofs';
 
-tap.test('digest', (t) => {
+tap.test('digest', (t: any) => {
   const proofsInstance = new proofs();
   const req = {
     key: [ 57, 55, 55, 55, 54 ],
