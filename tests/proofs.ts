@@ -15,7 +15,7 @@ tap.test('digest', (t: any) => {
     78, 121, 201,  94,  89,  63, 161,  23,
     22, 162, 164, 204,  22, 191, 233, 175
   ]
-  // const res = proofsInstance._digest(req)
-  // t.deepEquals(res, expected)
+  const res = proofsInstance._digest(req)
+  t.deepEquals(res, expected)
   t.end()
 })

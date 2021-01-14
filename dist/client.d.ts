@@ -36,6 +36,7 @@ declare class ImmudbClient {
     setActiveUser(params: messages.SetActiveUserRequest.AsObject): Promise<empty.Empty | undefined>;
     health(): Promise<messages.HealthResponse.AsObject | undefined>;
     count(params: messages.KeyPrefix.AsObject): Promise<messages.ItemsCount.AsObject | undefined>;
+    countAll(params: messages.KeyPrefix.AsObject): Promise<messages.ItemsCount.AsObject | undefined>;
     scan(params: messages.ScanOptions.AsObject): Promise<messages.ItemList.AsObject | undefined>;
     byIndex(params: messages.Index.AsObject): Promise<messages.Item.AsObject | undefined>;
     history(params: messages.HistoryOptions.AsObject): Promise<messages.ItemList.AsObject | undefined>;

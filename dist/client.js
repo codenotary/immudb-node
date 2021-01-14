@@ -32,6 +32,7 @@ const proofs_1 = __importDefault(require("./proofs"));
 const root_1 = __importDefault(require("./root"));
 const CLIENT_INIT_PREFIX = 'ImmudbClient:';
 const DEFAULT_DATABASE = 'defaultdb';
+const DEFAULT_ROOTPATH = 'root';
 class ImmudbClient {
     constructor(config) {
         this.util = new util_1.default();
@@ -40,7 +41,7 @@ class ImmudbClient {
         const host = config && config.host || process.env.IMMUDB_HOST || '127.0.0.1';
         const port = config && config.port || process.env.IMMUDB_PORT || '3322';
         const certs = config && config.certs;
-        const rootPath = config && config.rootPath;
+        const rootPath = config && config.rootPath || DEFAULT_ROOTPATH;
         // init insecure grpc auth
         this._auth = grpc.credentials.createInsecure();
         // init secure grpc auth
@@ -72,6 +73,7 @@ class ImmudbClient {
             return new Promise((resolve) => resolve(ImmudbClient.instance));
         }
         catch (err) {
+            await ImmudbClient.instance.shutdown();
             return new Promise((reject) => reject(err));
         }
     }
@@ -96,7 +98,7 @@ class ImmudbClient {
             // get current database list
             const resList = await this.listDatabases();
             if (resList && resList && resList.databasesList.some((_) => String(_) === databasename)) {
-                // useDatabase database specified if it 
+                // useDatabase database specified if it
                 // already exists
                 await this.useDatabase({ databasename: DEFAULT_DATABASE });
                 console.log(`${CLIENT_INIT_PREFIX} useDatabase  '${DEFAULT_DATABASE}'`);
@@ -447,6 +449,23 @@ class ImmudbClient {
             return new Promise((resolve, reject) => this.client.count(req, this._metadata, (err, res) => {
                 if (err) {
                     console.error('Count error', err);
+                    return reject(err);
+                }
+                resolve({
+                    count: res && res.getCount()
+                });
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+    async countAll(params) {
+        try {
+            const req = new empty.Empty();
+            return new Promise((resolve, reject) => this.client.countAll(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('Count all error', err);
                     return reject(err);
                 }
                 resolve({
