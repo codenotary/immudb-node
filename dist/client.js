@@ -22,14 +22,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("dotenv/config");
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const grpc = __importStar(require("@grpc/grpc-js"));
+const empty = __importStar(require("google-protobuf/google/protobuf/empty_pb"));
 const messages = __importStar(require("./proto/schema_pb"));
 const services = __importStar(require("./proto/schema_grpc_pb"));
-const empty = __importStar(require("google-protobuf/google/protobuf/empty_pb"));
 const util_1 = __importDefault(require("./util"));
 const proofs_1 = __importDefault(require("./proofs"));
-const root_1 = __importDefault(require("./root"));
+const state_1 = __importDefault(require("./state"));
 const CLIENT_INIT_PREFIX = 'ImmudbClient:';
 const DEFAULT_DATABASE = 'defaultdb';
 const DEFAULT_ROOTPATH = 'root';
@@ -37,11 +38,11 @@ class ImmudbClient {
     constructor(config) {
         this.util = new util_1.default();
         this.proofs = new proofs_1.default();
-        this.root = new root_1.default();
-        const host = config && config.host || process.env.IMMUDB_HOST || '127.0.0.1';
-        const port = config && config.port || process.env.IMMUDB_PORT || '3322';
+        this.state = new state_1.default();
+        const host = (config && config.host) || process.env.IMMUDB_HOST || '127.0.0.1';
+        const port = (config && config.port) || process.env.IMMUDB_PORT || '3322';
         const certs = config && config.certs;
-        const rootPath = config && config.rootPath || DEFAULT_ROOTPATH;
+        const rootPath = (config && config.rootPath) || DEFAULT_ROOTPATH;
         // init insecure grpc auth
         this._auth = grpc.credentials.createInsecure();
         // init secure grpc auth
@@ -50,14 +51,14 @@ class ImmudbClient {
         this.client = new services.ImmuServiceClient(`${host}:${port}`, this._auth);
         // init empty grpc metadata
         this._metadata = new grpc.Metadata();
-        // init root
-        rootPath && this.root && this.root.setRootPath({ path: rootPath });
+        // init state
+        rootPath && this.state && this.state.setRootPath({ path: rootPath });
     }
     static async getInstance(config) {
         const util = new util_1.default();
-        const user = config && config.user || process.env.IMMUDB_USER;
-        const password = config && config.password || process.env.IMMUDB_PWD;
-        const databasename = config && config.database || process.env.IMMUDB_DEFAULT_DB;
+        const user = (config && config.user) || process.env.IMMUDB_USER;
+        const password = (config && config.password) || process.env.IMMUDB_PWD;
+        const databasename = (config && config.database) || process.env.IMMUDB_DEFAULT_DB;
         const autoLogin = config && config.autoLogin !== undefined ? config.autoLogin : true;
         const autoDatabase = config && config.autoDatabase !== undefined ? config.autoDatabase : true;
         try {
@@ -122,10 +123,10 @@ class ImmudbClient {
             console.log(`${CLIENT_INIT_PREFIX} skipped automatic init database`, '\n', `(manual client database ops are required, '${DEFAULT_DATABASE}' database will be used otherwise)`);
         }
         // fetch health status
-        this.health();
+        this.healthCheck();
     }
     async shutdown() {
-        this.root && this.root.commit();
+        this.state && this.state.commit();
         this.logout();
         process.exit(0);
     }
@@ -142,10 +143,10 @@ class ImmudbClient {
                 }
                 this._token = res && res.getToken();
                 this._metadata && this._metadata.remove('authorization');
-                this._metadata && this._metadata.add('authorization', 'Bearer ' + this._token);
+                this._metadata && this._metadata.add('authorization', `Bearer ${this._token}`);
                 resolve({
                     token: this._token,
-                    warning: this.util.utf8Decode(res && res.getWarning())
+                    warning: this.util.utf8Decode(res && res.getWarning()),
                 });
             }));
         }
@@ -162,7 +163,7 @@ class ImmudbClient {
                     console.error('Create database error');
                     return reject(err);
                 }
-                resolve();
+                return resolve(new empty.Empty());
             }));
         }
         catch (err) {
@@ -178,14 +179,20 @@ class ImmudbClient {
                     console.error('Use database error', err);
                     return reject(err);
                 }
-                const token = res && res.getToken();
-                this._metadata && this._metadata.remove('authorization');
-                this._metadata && this._metadata.add('authorization', 'Bearer ' + token);
-                this._activeDatabase = params && params.databasename;
-                this.currentRoot()
-                    .then(() => ({ token }))
-                    .catch((err) => { throw new Error('Use database error'); });
-                resolve();
+                else {
+                    const token = res && res.getToken();
+                    this._metadata && this._metadata.remove('authorization');
+                    this._metadata && this._metadata.add('authorization', `Bearer ${token}`);
+                    this._activeDatabase = params && params.databasename;
+                    this.currentState()
+                        .then(() => ({ token }))
+                        .catch((err) => {
+                        console.error('Use database error', err);
+                        throw new Error('Use database error');
+                    });
+                    // @ts-ignore
+                    resolve();
+                }
             }));
         }
         catch (err) {
@@ -194,16 +201,24 @@ class ImmudbClient {
     }
     async set(params) {
         try {
-            const req = new messages.KeyValue();
-            req.setKey(this.util && this.util.utf8Encode(params && params.key));
-            req.setValue(this.util && this.util.utf8Encode(params && params.value));
+            const req = new messages.SetRequest();
+            const kv = new messages.KeyValue();
+            kv.setKey(this.util && this.util.utf8Encode(params && params.key));
+            kv.setValue(this.util && this.util.utf8Encode(params && params.value));
+            req.setKvsList([kv]);
             return new Promise((resolve, reject) => this.client.set(req, this._metadata, (err, res) => {
                 if (err) {
                     console.error('Set error', err);
                     return reject(err);
                 }
                 resolve({
-                    index: res && res.getIndex()
+                    id: res && res.getId(),
+                    prevalh: res && res.getPrevalh(),
+                    ts: res && res.getTs(),
+                    nentries: res && res.getNentries(),
+                    eh: res && res.getEh(),
+                    bltxid: res && res.getBltxid(),
+                    blroot: res && res.getBlroot(),
                 });
             }));
         }
@@ -213,18 +228,20 @@ class ImmudbClient {
     }
     async get(params) {
         try {
-            const req = new messages.Key();
+            const req = new messages.KeyRequest();
             req.setKey(this.util && this.util.utf8Encode(params && params.key));
-            return new Promise((resolve, reject) => this.client.get(req, this._metadata, (err, res) => {
+            return new Promise(resolve => this.client.get(req, this._metadata, (err, res) => {
                 if (err) {
                     console.error('Get error', err);
-                    throw new Error(err);
+                    throw new Error(err.message);
                 }
-                resolve({
-                    key: this.util && this.util.utf8Decode(res && res.getKey()),
-                    value: this.util && this.util.utf8Decode(res && res.getValue()),
-                    index: res && res.getIndex()
-                });
+                else {
+                    resolve({
+                        tx: res && res.getTx(),
+                        key: this.util && this.util.utf8Decode(res && res.getKey()),
+                        value: this.util && this.util.utf8Decode(res && res.getValue()),
+                    });
+                }
             }));
         }
         catch (err) {
@@ -242,10 +259,10 @@ class ImmudbClient {
                 const dl = res && res.getDatabasesList();
                 const l = [];
                 for (let i = 0; dl && i < dl.length; i++) {
-                    l.push(dl[i].getDatabasename());
+                    l.push(dl[i].toObject());
                 }
                 resolve({
-                    databasesList: l
+                    databasesList: l,
                 });
             }));
         }
@@ -265,6 +282,7 @@ class ImmudbClient {
                     console.error('Change permission error', err);
                     return reject(err);
                 }
+                // @ts-ignore
                 resolve();
             }));
         }
@@ -278,18 +296,18 @@ class ImmudbClient {
             return new Promise((resolve, reject) => this.client.listUsers(req, this._metadata, (err, res) => {
                 if (err) {
                     console.error('List users error', err);
-                    throw new Error(err);
+                    throw new Error(err.message);
                 }
                 const ul = res && res.getUsersList();
                 const l = [];
                 for (let i = 0; ul && i < ul.length; i++) {
-                    let u = ul[i];
+                    const u = ul[i];
                     const pl = u.getPermissionsList();
                     const p = [];
                     for (let j = 0; j < pl.length; j++) {
                         p.push({
                             database: pl[j].getDatabase(),
-                            permission: pl[j].getPermission()
+                            permission: pl[j].getPermission(),
                         });
                     }
                     l.push({
@@ -297,11 +315,11 @@ class ImmudbClient {
                         permissionsList: p,
                         createdby: u.getCreatedby(),
                         createdat: u.getCreatedat(),
-                        active: u.getActive()
+                        active: u.getActive(),
                     });
                 }
                 resolve({
-                    usersList: l
+                    usersList: l,
                 });
             }));
         }
@@ -321,6 +339,7 @@ class ImmudbClient {
                     console.error('Create user error', err);
                     return reject(err);
                 }
+                //@ts-ignore
                 resolve();
             }));
         }
@@ -339,6 +358,7 @@ class ImmudbClient {
                     console.error('Change password error', err);
                     return reject(err);
                 }
+                //@ts-ignore
                 resolve();
             }));
         }
@@ -352,8 +372,9 @@ class ImmudbClient {
             return new Promise((resolve, reject) => this.client.logout(req, this._metadata, (err, res) => {
                 if (err) {
                     console.error('Logout error', err);
-                    throw new Error(err);
+                    throw new Error(err.message);
                 }
+                //@ts-ignore
                 resolve();
             }));
         }
@@ -371,6 +392,7 @@ class ImmudbClient {
                     console.error('Set active user error', err);
                     return reject(err);
                 }
+                //@ts-ignore
                 resolve();
             }));
         }
@@ -378,52 +400,7 @@ class ImmudbClient {
             console.error(err);
         }
     }
-    // async printTree (): Promise <messages.Tree.AsObject | undefined> {
-    //     try {
-    //         const req = new empty.Empty();
-    //         return new Promise((resolve, reject) => this.client.printTree(req, this._metadata, (err: any, res: any) => {
-    //             if (err) {
-    //                 console.error('Print tree error', err);
-    //                 return reject(err);
-    //             }
-    //             // const tList = [];
-    //             const tList = new messages.Tree();
-    //             const tl = res && res.getTList();
-    //             for (let i = 0; tl && i < tl.length; i++) {
-    //                 let layer = tl[i];
-    //                 const ll = layer.getLList();
-    //                 const lList = new messages.Layer();
-    //                 for (let j = 0; j < ll.length; j++) {
-    //                     let node = new messages.Node(ll[j]);
-    //                     node.setI();
-    //                     node.setH();
-    //                     node.setRefk();
-    //                     node.setRef();
-    //                     node.setCache();
-    //                     node.setRoot();
-    //                     let refk = node.getRefk() == ''
-    //                         ? node.getRefk() :
-    //                         this.util && this.util.utf8Decode(node.getRefk());
-    //                     lList.addL(<messages.Node.AsObject>{
-    //                         i: this.util && this.util.base64Encode(node.getI()),
-    //                         h: this.util && this.util.base64Encode(node.getH()),
-    //                         refk: refk,
-    //                         ref: node.getRef(),
-    //                         cache: node.getCache(),
-    //                         root: node.getRoot()
-    //                     });
-    //                 }
-    //                 tList.addT(lList);
-    //             }
-    //             resolve({
-    //                 tList: tList
-    //             });
-    //         }));
-    //     } catch (err) {
-    //         console.error(err);
-    //     }
-    // }
-    async health() {
+    async healthCheck() {
         try {
             const req = new empty.Empty();
             return new Promise((resolve, reject) => this.client.health(req, this._metadata, (err, res) => {
@@ -434,7 +411,7 @@ class ImmudbClient {
                 this._serverVersion = res && res.getVersion().split(' ')[1];
                 resolve({
                     status: res && res.getStatus(),
-                    version: res && res.getVersion()
+                    version: res && res.getVersion(),
                 });
             }));
         }
@@ -452,7 +429,7 @@ class ImmudbClient {
                     return reject(err);
                 }
                 resolve({
-                    count: res && res.getCount()
+                    count: res && res.getCount(),
                 });
             }));
         }
@@ -469,7 +446,7 @@ class ImmudbClient {
                     return reject(err);
                 }
                 resolve({
-                    count: res && res.getCount()
+                    count: res && res.getCount(),
                 });
             }));
         }
@@ -479,29 +456,30 @@ class ImmudbClient {
     }
     async scan(params) {
         try {
-            const req = new messages.ScanOptions();
+            const req = new messages.ScanRequest();
+            req.setSeekkey(this.util && this.util.utf8Encode(params && params.seekkey));
             req.setPrefix(this.util && this.util.utf8Encode(params && params.prefix));
-            req.setOffset(this.util && this.util.utf8Encode(params && params.offset));
-            req.setLimit(params && params.limit);
-            req.setReverse(params && params.reverse);
-            req.setDeep(params && params.deep);
+            req.setDesc(params.desc);
+            req.setLimit(params.limit);
+            req.setSincetx(params.sincetx);
+            req.setNowait(params.nowait);
             return new Promise((resolve, reject) => this.client.scan(req, this._metadata, (err, res) => {
                 if (err) {
                     console.error('Scan error', err);
                     return reject(err);
                 }
                 const result = [];
-                const il = res && res.getItemsList();
+                const il = res && res.getEntriesList();
                 for (let i = 0; il && i < il.length; i++) {
-                    let item = il[i];
+                    const item = il[i];
                     result.push({
+                        tx: item.getTx(),
                         key: this.util && this.util.utf8Decode(item.getKey()),
                         value: this.util && this.util.utf8Decode(item.getValue()),
-                        index: item.getIndex()
                     });
                 }
                 resolve({
-                    itemsList: result
+                    entriesList: result,
                 });
             }));
         }
@@ -509,50 +487,27 @@ class ImmudbClient {
             console.error(err);
         }
     }
-    async byIndex(params) {
+    async history({ key, offset, limit, desc, sincetx }) {
         try {
-            const req = new messages.Index();
-            req.setIndex(params && params.index);
-            return new Promise((resolve, reject) => this.client.byIndex(req, this._metadata, (err, res) => {
-                if (err) {
-                    console.error('By index error', err);
-                    return reject(err);
-                }
-                resolve({
-                    key: this.util && this.util.utf8Decode(res && res.getKey()),
-                    value: this.util && this.util.utf8Decode(res && res.getValue()),
-                    index: res && res.getIndex()
-                });
-            }));
-        }
-        catch (err) {
-            console.error(err);
-        }
-    }
-    async history(params) {
-        try {
-            const req = new messages.HistoryOptions();
-            req.setKey(this.util && this.util.utf8Encode(params && params.key));
-            req.setOffset(params && params.offset);
-            req.setLimit(params && params.limit);
-            req.setReverse(params && params.reverse);
+            const req = new messages.HistoryRequest();
+            req.setKey(this.util && this.util.utf8Encode(key));
+            req.setOffset(offset);
+            req.setLimit(limit);
+            req.setDesc(desc);
+            req.setSincetx(sincetx);
             return new Promise((resolve, reject) => this.client.history(req, this._metadata, (err, res) => {
                 if (err) {
                     console.error('History error', err);
                     return reject(err);
                 }
-                const result = [];
-                const il = res && res.getItemsList();
-                for (let i = 0; il && i < il.length; i++) {
-                    let item = il[i];
-                    result.push({
-                        key: this.util && this.util.utf8Decode(item.getKey()),
-                        value: this.util && this.util.utf8Decode(item.getValue()),
-                        index: item.getIndex()
-                    });
-                }
+                const entriesList = res.getEntriesList();
+                const result = entriesList.reduce((entries, entry) => entries.concat({
+                    tx: entry.getTx(),
+                    key: this.util && this.util.utf8Decode(entry.getKey()),
+                    value: this.util && this.util.utf8Decode(entry.getValue()),
+                }), []);
                 resolve({
-                    itemsList: result
+                    entriesList: result
                 });
             }));
         }
@@ -560,30 +515,32 @@ class ImmudbClient {
             console.error(err);
         }
     }
-    async zScan(params) {
+    async zScan({ set, seekkey, seekscore, seekattx, inclusiveseek, limit, desc, sincetx, nowait }) {
         try {
-            const req = new messages.ZScanOptions();
-            req.setSet(this.util && this.util.utf8Encode(params && params.set));
-            req.setOffset(this.util && this.util.utf8Encode(params && params.offset));
-            req.setLimit(params && params.limit);
-            req.setReverse(params && params.reverse);
+            const req = new messages.ZScanRequest();
+            req.setSet(this.util && this.util.utf8Encode(set));
+            req.setSeekkey(this.util && this.util.utf8Encode(seekkey));
+            req.setSeekscore(seekscore);
+            req.setSeekattx(seekattx);
+            req.setInclusiveseek(inclusiveseek);
+            req.setLimit(limit);
+            req.setDesc(desc);
+            req.setSincetx(sincetx);
+            req.setNowait(nowait);
             return new Promise((resolve, reject) => this.client.zScan(req, this._metadata, (err, res) => {
                 if (err) {
                     console.error('zScan error', err);
                     return reject(err);
                 }
-                const result = [];
-                const il = res && res.getItemsList();
-                for (let i = 0; il && i < il.length; i++) {
-                    let item = il[i];
-                    result.push({
-                        key: this.util && this.util.utf8Decode(item.getKey()),
-                        value: this.util && this.util.utf8Decode(item.getValue()),
-                        index: item.getIndex()
-                    });
-                }
+                const entriesList = res.getEntriesList();
+                const result = entriesList.reduce((entries, entry) => entries.concat({
+                    set: this.util && this.util.utf8Decode(entry.getSet()),
+                    key: this.util && this.util.utf8Decode(entry.getKey()),
+                    score: entry.getScore(),
+                    attx: entry.getAttx()
+                }), []);
                 resolve({
-                    itemsList: result
+                    entriesList: result
                 });
             }));
         }
@@ -591,30 +548,27 @@ class ImmudbClient {
             console.error(err);
         }
     }
-    async iScan(params) {
+    async currentState() {
         try {
-            const req = new messages.IScanOptions();
-            req.setPagesize(params && params.pagesize);
-            req.setPagenumber(params && params.pagenumber);
-            return new Promise((resolve, reject) => this.client.iScan(req, this._metadata, (err, res) => {
+            const req = new empty.Empty();
+            return new Promise((resolve, reject) => this.client.currentState(req, this._metadata, (err, res) => {
                 if (err) {
-                    console.error('iScan error', err);
-                    return reject(err);
+                    reject(err);
                 }
-                const result = [];
-                const il = res && res.getItemsList();
-                for (let i = 0; il && i < il.length; i++) {
-                    let item = il[i];
-                    result.push({
-                        key: this.util && this.util.utf8Decode(item && item.getKey()),
-                        value: this.util && this.util.utf8Decode(item && item.getValue()),
-                        index: item && item.getIndex()
+                else {
+                    const signature = res && res.getSignature();
+                    this.state &&
+                        this.state.set(res.toObject());
+                    resolve({
+                        db: this._activeDatabase,
+                        txid: res && res.getTxid(),
+                        txhash: res && res.getTxhash(),
+                        signature: {
+                            signature: this.util && this.util.utf8Encode(signature && signature.getSignature()),
+                            publickey: this.util && this.util.utf8Encode(signature && signature.getPublickey())
+                        },
                     });
                 }
-                resolve({
-                    itemsList: result,
-                    more: res && res.getMore()
-                });
             }));
         }
         catch (err) {
@@ -622,55 +576,32 @@ class ImmudbClient {
         }
     }
     async currentRoot() {
-        try {
-            const req = new empty.Empty();
-            return new Promise((resolve, reject) => this.client.currentRoot(req, this._metadata, (err, res) => {
-                if (err) {
-                    console.error('Current root error', err);
-                    return reject(err);
-                }
-                let payload = res && res.getPayload();
-                let signature = res && res.getSignature();
-                this.root && this.root.set({
-                    server: this._serverUUID,
-                    database: this._activeDatabase,
-                    root: payload && payload.getRoot(),
-                    index: payload && payload.getIndex()
-                });
-                resolve({
-                    payload: {
-                        index: payload && payload.getIndex(),
-                        root: payload && payload.getRoot()
-                    },
-                    signature: {
-                        signature: signature && signature.getSignature(),
-                        publickey: signature && signature.getPublickey()
-                    }
-                });
-            }));
-        }
-        catch (err) {
-            console.error(err);
-        }
+        return this.currentState();
     }
     async zAdd(params) {
+        return this.zAddAt(Object.assign(Object.assign({}, params), { attx: 0 }));
+    }
+    async zAddAt({ set, score = 0, key, attx = 0 }) {
         try {
-            const req = new messages.ZAddOptions();
-            const score = new messages.Score();
-            const index = new messages.Index();
-            params && score.setScore(params.score || 0);
-            params && index.setIndex(params.index || 0);
-            req.setSet(this.util && this.util.utf8Encode(params && params.set));
+            const req = new messages.ZAddRequest();
+            req.setSet(this.util && this.util.utf8Encode(set));
             req.setScore(score);
-            req.setIndex(index);
-            req.setKey(this.util && this.util.utf8Encode(params && params.key));
+            req.setKey(this.util && this.util.utf8Encode(key));
+            req.setAttx(attx);
+            req.setBoundref(attx > 0);
             return new Promise((resolve, reject) => this.client.zAdd(req, this._metadata, (err, res) => {
                 if (err) {
                     console.error('zAdd error', err);
                     return reject(err);
                 }
                 resolve({
-                    index: res && res.getIndex()
+                    id: res && res.getId(),
+                    prevalh: res && res.getPrevalh(),
+                    ts: res && res.getTs(),
+                    nentries: res && res.getNentries(),
+                    eh: res && res.getEh(),
+                    bltxid: res && res.getBltxid(),
+                    blroot: res && res.getBlroot(),
                 });
             }));
         }
@@ -678,19 +609,123 @@ class ImmudbClient {
             console.error(err);
         }
     }
-    async reference(params) {
+    // async reference(
+    //   params: messages.ReferenceOptions.AsObject
+    // ): Promise<messages.Index.AsObject | undefined> {
+    //   try {
+    //     const req = new messages.ReferenceOptions();
+    //     req.setReference(this.util && this.util.utf8Encode(params && params.reference));
+    //     req.setKey(this.util && this.util.utf8Encode(params && params.key));
+    //     return new Promise((resolve, reject) =>
+    //       this.client.reference(req, this._metadata, (err: any, res: any) => {
+    //         if (err) {
+    //           console.error('Reference error', err);
+    //           return reject(err);
+    //         }
+    //         resolve({
+    //           index: res && res.getIndex(),
+    //         });
+    //       })
+    //     );
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    // }
+    async setReference(params) {
         try {
-            const req = new messages.ReferenceOptions();
-            req.setReference(this.util && this.util.utf8Encode(params && params.reference));
+            const req = new messages.ReferenceRequest();
             req.setKey(this.util && this.util.utf8Encode(params && params.key));
-            return new Promise((resolve, reject) => this.client.reference(req, this._metadata, (err, res) => {
+            // req.setReferencedkey(this.util && this.util.utf8Encode(params && params.referencedkey));
+            return new Promise((resolve, reject) => this.client.setReference(req, this._metadata, (err, res) => { }));
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+    async setReferenceAt() { }
+    async verifiedSetReference() { }
+    async verifiedSetReferenceAt() { }
+    // async setBatch(params: messages.KVList.AsObject): Promise<messages.Index.AsObject | undefined> {
+    //   try {
+    //     const req = new messages.KVList();
+    //     for (let i = 0; params && params.kvsList && i < params.kvsList.length; i++) {
+    //       const kv = new messages.KeyValue();
+    //       kv.setKey(this.util && this.util.utf8Encode(params && params.kvsList[i].key));
+    //       kv.setValue(this.util && this.util.utf8Encode(params && params.kvsList[i].value));
+    //       req.addKvs(kv);
+    //     }
+    //     return new Promise((resolve, reject) =>
+    //       this.client.setBatch(req, this._metadata, (err: any, res: any) => {
+    //         if (err) {
+    //           console.error('Set batch error', err);
+    //           return reject(err);
+    //         }
+    //         resolve({
+    //           index: res && res.getIndex(),
+    //         });
+    //       })
+    //     );
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    // }
+    async setAll() { }
+    async execAll() { }
+    // DEPRECATED async getBatch(
+    //   params: messages.KeyList.AsObject
+    // ): Promise<messages.ItemList.AsObject | undefined> {
+    //   try {
+    //     const l: Array<Key> = [];
+    //     for (let i = 0; params && params.keysList && i < params.keysList.length; i++) {
+    //       const key = new messages.Key();
+    //       key.setKey(this.util && this.util.utf8Encode(params && params.keysList[i].key));
+    //       l.push(key);
+    //     }
+    //     const req = new messages.KeyList();
+    //     req.setKeysList(l);
+    //     return new Promise((resolve, reject) =>
+    //       this.client.getBatch(req, this._metadata, (err: any, res: any) => {
+    //         if (err) {
+    //           console.error('Get batch error', err);
+    //           return reject(err);
+    //         }
+    //         const result: Array<Item.AsObject> = [];
+    //         const il = res && res.getItemsList();
+    //         for (let i = 0; il && i < il.length; i++) {
+    //           const item = il[i];
+    //           result.push({
+    //             key: this.util && this.util.utf8Decode(item.getKey()),
+    //             value: this.util && this.util.utf8Decode(item.getValue()),
+    //             index: item.getIndex(),
+    //           });
+    //         }
+    //         resolve({
+    //           itemsList: result,
+    //         });
+    //       })
+    //     );
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    // }
+    async getAll({ keysList, sincetx }) {
+        try {
+            const req = new messages.KeyListRequest();
+            req.setKeysList(keysList);
+            req.setSincetx(sincetx);
+            return new Promise((resolve, reject) => this.client.getAll(req, this._metadata, (err, res) => {
                 if (err) {
-                    console.error('Reference error', err);
+                    console.error('Get all error', err);
                     return reject(err);
                 }
-                ;
+                const entriesList = res.getEntriesList();
+                const result = entriesList.reduce((entries, entry) => entries.concat({
+                    tx: entry.getTx(),
+                    key: this.util && this.util.utf8Decode(entry.getKey()),
+                    value: this.util && this.util.utf8Decode(entry.getValue()),
+                }), []);
                 resolve({
-                    index: res && res.getIndex()
+                    entriesList: result
                 });
             }));
         }
@@ -698,187 +733,165 @@ class ImmudbClient {
             console.error(err);
         }
     }
-    async setBatch(params) {
-        try {
-            const req = new messages.KVList();
-            for (let i = 0; params && params.kvsList && i < params.kvsList.length; i++) {
-                const kv = new messages.KeyValue();
-                kv.setKey(this.util && this.util.utf8Encode(params && params.kvsList[i].key));
-                kv.setValue(this.util && this.util.utf8Encode(params && params.kvsList[i].value));
-                req.addKvs(kv);
-            }
-            return new Promise((resolve, reject) => this.client.setBatch(req, this._metadata, (err, res) => {
-                if (err) {
-                    console.error('Set batch error', err);
-                    return reject(err);
-                }
-                resolve({
-                    index: res && res.getIndex()
-                });
-            }));
-        }
-        catch (err) {
-            console.error(err);
-        }
-    }
-    async getBatch(params) {
-        try {
-            const l = [];
-            for (let i = 0; params && params.keysList && i < params.keysList.length; i++) {
-                const key = new messages.Key();
-                key.setKey(this.util && this.util.utf8Encode(params && params.keysList[i].key));
-                l.push(key);
-            }
-            const req = new messages.KeyList();
-            req.setKeysList(l);
-            return new Promise((resolve, reject) => this.client.getBatch(req, this._metadata, (err, res) => {
-                if (err) {
-                    console.error('Get batch error', err);
-                    return reject(err);
-                }
-                const result = [];
-                const il = res && res.getItemsList();
-                for (let i = 0; il && i < il.length; i++) {
-                    let item = il[i];
-                    result.push({
-                        key: this.util && this.util.utf8Decode(item.getKey()),
-                        value: this.util && this.util.utf8Decode(item.getValue()),
-                        index: item.getIndex()
-                    });
-                }
-                resolve({
-                    itemsList: result
-                });
-            }));
-        }
-        catch (err) {
-            console.error(err);
-        }
-    }
-    async safeSet(params) {
-        try {
-            const kv = new messages.KeyValue();
-            kv.setKey(this.util && this.util.utf8Encode(params && params.key));
-            kv.setValue(this.util && this.util.utf8Encode(params && params.value));
-            const index = new messages.Index();
-            index.setIndex(this.util && this.root.get({
-                server: this._serverUUID,
-                database: this._activeDatabase
-            }).index);
-            const req = new messages.SafeSetOptions();
-            req.setKv(kv);
-            req.setRootindex(index);
-            return new Promise((resolve, reject) => this.client.safeSet(req, this._metadata, (err, res) => {
-                if (err) {
-                    console.error('SafeSet error', err);
-                    return reject(err);
-                }
-                const verifyReq = {
-                    proof: {
-                        inclusionPath: res && res.getInclusionpathList(),
-                        consistencyPath: res && res.getConsistencypathList(),
-                        index: res && res.getIndex(),
-                        at: res && res.getAt(),
-                        leaf: res && res.getLeaf(),
-                        root: res && res.getRoot(),
-                    },
-                    item: {
-                        key: this.util && this.util.utf8Encode(params && params.key),
-                        value: this.util && this.util.utf8Encode(params && params.value),
-                        index: res && res.getIndex(),
-                    },
-                    oldRoot: this.root && this.root.get({
-                        server: this._serverUUID,
-                        database: this._activeDatabase
-                    })
-                };
-                this.proofs && this.proofs.verify(verifyReq, (err) => {
-                    if (err) {
-                        return { err };
-                    }
-                    this.root && this.root.set({
-                        server: this._serverUUID,
-                        database: this._activeDatabase,
-                        root: res && res.getRoot(),
-                        index: res && res.getAt()
-                    });
-                    resolve({
-                        index: res && res.getIndex()
-                    });
-                });
-            }));
-        }
-        catch (err) {
-            console.error(err);
-        }
-    }
-    async safeGet(params) {
-        try {
-            const index = new messages.Index();
-            index.setIndex(this.root && this.root.get({
-                server: this._serverUUID,
-                database: this._activeDatabase
-            }).index);
-            const req = new messages.SafeGetOptions();
-            req.setKey(this.util && this.util.utf8Encode(params && params.key));
-            req.setRootindex(index);
-            return new Promise((resolve, reject) => this.client.safeGet(req, this._metadata, (err, res) => {
-                if (err) {
-                    console.error('SafeGet error', err);
-                    return reject(err);
-                }
-                const proof = res && res.getProof();
-                const item = res && res.getItem();
-                const verifyReq = {
-                    proof: {
-                        inclusionPath: proof.getInclusionpathList(),
-                        consistencyPath: proof.getConsistencypathList(),
-                        index: proof.getIndex(),
-                        at: proof.getAt(),
-                        leaf: proof.getLeaf(),
-                        root: proof.getRoot(),
-                    },
-                    item: {
-                        key: item.getKey(),
-                        value: item.getValue(),
-                        index: item.getIndex(),
-                    },
-                    oldRoot: this.root && this.root.get({
-                        server: this._serverUUID,
-                        database: this._activeDatabase,
-                    })
-                };
-                this.proofs && this.proofs.verify(verifyReq, (err) => {
-                    if (err) {
-                        return { err };
-                    }
-                    this.root && this.root.set({
-                        server: this._serverUUID,
-                        database: this._activeDatabase,
-                        root: proof.getRoot(),
-                        index: proof.getAt()
-                    });
-                    resolve({
-                        key: this.util && this.util.utf8Decode(item.getKey()),
-                        value: this.util && this.util.utf8Decode(item.getValue()),
-                        index: item.getIndex()
-                    });
-                });
-            }));
-        }
-        catch (err) {
-            console.error(err);
-        }
-    }
+    // async verifiedSet(
+    //   params: messages.KeyValue.AsObject
+    // ): Promise<messages.TxMetadata.AsObject | undefined> {
+    //   try {
+    //     const kv = new messages.KeyValue();
+    //     kv.setKey(this.util && this.util.utf8Encode(params && params.key));
+    //     kv.setValue(this.util && this.util.utf8Encode(params && params.value));
+    //     // const index = new messages.Index();
+    //     // index.setIndex(
+    //     //   this.util &&
+    //     //     this.root.get({
+    //     //       server: this._serverUUID,
+    //     //       database: this._activeDatabase,
+    //     //     }).index
+    //     // );
+    //     const sr = new messages.SetRequest();
+    //     sr.setKvsList([kv]);
+    //     const req = new messages.VerifiableSetRequest();
+    //     req.setSetrequest(sr);
+    //     // req.setProvesincetx(index);
+    //     return new Promise((resolve, reject) =>
+    //       this.client.verifiableSet(req, this._metadata, (err, res) => {
+    //         if (err) {
+    //           console.error('SafeSet error', err);
+    //           return reject(err);
+    //         }
+    //         const verifyReq = {
+    //           proof: {
+    //             inclusionPath: res && res.getInclusionpathList(),
+    //             consistencyPath: res && res.getConsistencypathList(),
+    //             index: res && res.getIndex(),
+    //             at: res && res.getAt(),
+    //             leaf: res && res.getLeaf(),
+    //             root: res && res.getRoot(),
+    //           },
+    //           item: {
+    //             key: this.util && this.util.utf8Encode(params && params.key),
+    //             value: this.util && this.util.utf8Encode(params && params.value),
+    //             index: res && res.getIndex(),
+    //           },
+    //           oldRoot:
+    //             this.state &&
+    //             this.state.get(),
+    //         };
+    //         this.proofs &&
+    //           this.proofs.verify(verifyReq, (err: any) => {
+    //             if (err) {
+    //               return { err };
+    //             }
+    //             this.state &&
+    //               this.state.set({
+    //                 tx: res && res.getTx(),
+    //                 server: this._serverUUID,
+    //                 database: this._activeDatabase,
+    //               });
+    //             resolve({
+    //               id: res && res.getId(),
+    //               prevalh: res && res.getPrevalh(),
+    //               ts: res && res.getTs(),
+    //               nentries: res && res.getNentries(),
+    //               eh: res && res.getEh(),
+    //               bltxid: res && res.getBltxid(),
+    //               blroot: res && res.getBlroot(),
+    //             });
+    //           });
+    //       })
+    //     );
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    // }
+    // async safeSet(
+    //   params: messages.KeyValue.AsObject
+    // ): Promise<messages.TxMetadata.AsObject | undefined> {
+    //   return this.verifiedSet(params);
+    // }
+    // async verifiedGet(params: messages.Key.AsObject): Promise<messages.Entry.AsObject | undefined> {
+    //   try {
+    //     // const index = new messages.Index();
+    //     // index.setIndex(
+    //     //   this.root &&
+    //     //     this.root.get({
+    //     //       server: this._serverUUID,
+    //     //       database: this._activeDatabase,
+    //     //     }).index
+    //     // );
+    //     const req = new messages.VerifiableGetRequest();
+    //     const kr = new messages.KeyRequest();
+    //     kr.setKey(this.util && this.util.utf8Encode(params && params.key));
+    //     req.setKeyrequest(kr);
+    //     // req.setRootindex(index);
+    //     return new Promise((resolve, reject) =>
+    //       this.client.verifiableGet(req, this._metadata, (err, res) => {
+    //         if (err) {
+    //           console.error('SafeGet error', err);
+    //           return reject(err);
+    //         }
+    //         const proof = res && res.getProof();
+    //         const item = res && res.getItem();
+    //         const verifyReq = {
+    //           proof: {
+    //             inclusionPath: proof.getInclusionpathList(),
+    //             consistencyPath: proof.getConsistencypathList(),
+    //             index: proof.getIndex(),
+    //             at: proof.getAt(),
+    //             leaf: proof.getLeaf(),
+    //             root: proof.getRoot(),
+    //           },
+    //           item: {
+    //             key: item.getKey(),
+    //             value: item.getValue(),
+    //             index: item.getIndex(),
+    //           },
+    //           oldRoot:
+    //             this.state &&
+    //             this.state.get({
+    //               server: this._serverUUID,
+    //               database: this._activeDatabase,
+    //             }),
+    //         };
+    //         this.proofs &&
+    //           this.proofs.verify(verifyReq, (err: any) => {
+    //             if (err) {
+    //               return { err };
+    //             }
+    //             this.state &&
+    //               this.state.set({
+    //                 server: this._serverUUID,
+    //                 database: this._activeDatabase,
+    //                 root: proof.getRoot(),
+    //                 index: proof.getAt(),
+    //               });
+    //             resolve({
+    //               tx: res && res.getTx(),
+    //               key: this.util && this.util.utf8Decode(item.getKey()),
+    //               value: this.util && this.util.utf8Decode(item.getValue()),
+    //             });
+    //           });
+    //       })
+    //     );
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    // }
+    // async safeGet(
+    //   params: messages.Key.AsObject
+    // ): Promise<messages.Entry.AsObject | undefined> {
+    //   return this.verifiedGet(params);
+    // }
     async updateAuthConfig(params) {
         try {
             const req = new messages.AuthConfig();
             req.setKind(params && params.kind);
-            return new Promise((resolve, reject) => this.client.updateAuthConfig(req, this._metadata, (err, res) => {
+            return new Promise((resolve, reject) => this.client.updateAuthConfig(req, this._metadata, err => {
                 if (err) {
                     console.error('Update auth config error', err);
                     return reject(err);
                 }
+                //@ts-ignore
                 resolve();
             }));
         }
@@ -890,11 +903,12 @@ class ImmudbClient {
         try {
             const req = new messages.MTLSConfig();
             req.setEnabled(params && params.enabled);
-            return new Promise((resolve, reject) => this.client.updateMTLSConfig(req, this._metadata, (err, res) => {
+            return new Promise((resolve, reject) => this.client.updateMTLSConfig(req, this._metadata, err => {
                 if (err) {
                     console.error('Update mtls config error', err);
                     return reject(err);
                 }
+                //@ts-ignore
                 resolve();
             }));
         }
@@ -902,175 +916,117 @@ class ImmudbClient {
             console.error(err);
         }
     }
-    async safeZAdd(params) {
+    // async verifiedZAdd(
+    //   params: types.SimpleZAddOptions.AsObject
+    // ): Promise<messages.TxMetadata.AsObject | undefined> {
+    //   try {
+    //     // const index = new messages.Index();
+    //     // index.setIndex(
+    //     //   this.root &&
+    //     //     this.root.get({
+    //     //       server: this._serverUUID,
+    //     //       database: this._activeDatabase,
+    //     //     }).index
+    //     // );
+    //     const zar = new messages.ZAddRequest();
+    //     zar.setSet(this.util && this.util.utf8Encode(params && params.set));
+    //     zar.setScore(params.score || 0);
+    //     zar.setKey(this.util && this.util.utf8Encode(params && params.key));
+    //     const req = new messages.VerifiableZAddRequest();
+    //     req.setZaddrequest(zar);
+    //     // req.setProvesincetx(index);
+    //     return new Promise((resolve, reject) =>
+    //       this.client.verifiableZAdd(req, this._metadata, (err, res) => {
+    //         if (err) {
+    //           console.error('verifiedZAdd error', err);
+    //           return reject(err);
+    //         }
+    //         const key2 =
+    //           this.proofs &&
+    //           this.proofs.setKey({
+    //             key: this.util && this.util.utf8Encode(params && params.key),
+    //             set: this.util && this.util.utf8Encode(params && params.set),
+    //             score: params && params.score,
+    //           });
+    //         const verifyReq = {
+    //           proof: {
+    //             inclusionPath: res && res.getInclusionpathList(),
+    //             consistencyPath: res && res.getConsistencypathList(),
+    //             index: res && res.getIndex(),
+    //             at: res && res.getAt(),
+    //             leaf: res && res.getLeaf(),
+    //             root: res && res.getRoot(),
+    //           },
+    //           item: {
+    //             key: key2,
+    //             value: this.util && this.util.utf8Encode(params && params.key),
+    //             index: res && res.getIndex(),
+    //           },
+    //           oldRoot:
+    //             this.state &&
+    //             this.state.get({
+    //               server: this._serverUUID,
+    //               database: this._activeDatabase,
+    //             }),
+    //         };
+    //         this.proofs &&
+    //           this.proofs.verify(verifyReq, (err: any) => {
+    //             if (err) {
+    //               return { err };
+    //             }
+    //             this.state &&
+    //               this.state.set({
+    //                 server: this._serverUUID,
+    //                 database: this._activeDatabase,
+    //                 root: res && res.getRoot(),
+    //                 index: res && res.getAt(),
+    //               });
+    //             resolve({
+    //               id: res && res.getId(),
+    //               prevalh: res && res.getPrevalh(),
+    //               ts: res && res.getTs(),
+    //               nentries: res && res.getNentries(),
+    //               eh: res && res.getEh(),
+    //               bltxid: res && res.getBltxid(),
+    //               blroot: res && res.getBlroot(),
+    //             });
+    //           });
+    //       })
+    //     );
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    // }
+    // async verifiedZAddAt (params: types.SimpleZAddOptions.AsObject): Promise<messages.TxMetadata.AsObject | undefined> {
+    // }
+    // async safeZAdd(
+    //   params: types.SimpleZAddOptions.AsObject
+    // ): Promise<messages.TxMetadata.AsObject | undefined> {
+    //   return this.verifiedZAdd(params);
+    // }
+    async txById(params) {
         try {
-            const options = new messages.ZAddOptions();
-            const score = new messages.Score();
-            params && score.setScore(params.score || 0);
-            options.setSet(this.util && this.util.utf8Encode(params && params.set));
-            options.setScore(score);
-            options.setKey(this.util && this.util.utf8Encode(params && params.key));
-            const index = new messages.Index();
-            index.setIndex(this.root && this.root.get({
-                server: this._serverUUID,
-                database: this._activeDatabase
-            }).index);
-            const req = new messages.SafeZAddOptions();
-            req.setZopts(options);
-            req.setRootindex(index);
-            return new Promise((resolve, reject) => this.client.safeZAdd(req, this._metadata, (err, res) => {
+            const req = new messages.TxRequest();
+            params && req.setTx(params.tx);
+            return new Promise((resolve, reject) => this.client.txById(req, this._metadata, (err, res) => {
                 if (err) {
-                    console.error('safeZAdd error', err);
-                    return reject(err);
+                    console.error('txById error', err);
+                    reject(err);
                 }
-                let key2 = this.proofs && this.proofs.setKey({
-                    key: this.util && this.util.utf8Encode(params && params.key),
-                    set: this.util && this.util.utf8Encode(params && params.set),
-                    score: params && params.score
-                });
-                const verifyReq = {
-                    proof: {
-                        inclusionPath: res && res.getInclusionpathList(),
-                        consistencyPath: res && res.getConsistencypathList(),
-                        index: res && res.getIndex(),
-                        at: res && res.getAt(),
-                        leaf: res && res.getLeaf(),
-                        root: res && res.getRoot()
-                    },
-                    item: {
-                        key: key2,
-                        value: this.util && this.util.utf8Encode(params && params.key),
-                        index: res && res.getIndex()
-                    },
-                    oldRoot: this.root && this.root.get({
-                        server: this._serverUUID,
-                        database: this._activeDatabase
-                    })
-                };
-                this.proofs && this.proofs.verify(verifyReq, (err) => {
-                    if (err) {
-                        return { err };
-                    }
-                    this.root && this.root.set({
-                        server: this._serverUUID,
-                        database: this._activeDatabase,
-                        root: res && res.getRoot(),
-                        index: res && res.getAt()
-                    });
+                else {
+                    const response = res.toObject();
                     resolve({
-                        index: res && res.getIndex()
+                        metadata: response.metadata,
+                        entriesList: response.entriesList
                     });
-                });
-            }));
-        }
-        catch (err) {
-            console.error(err);
-        }
-    }
-    async inclusion(params) {
-        try {
-            const req = new messages.Index();
-            req.setIndex(params && params.index);
-            return new Promise((resolve, reject) => this.client.inclusion(req, this._metadata, (err, res) => {
-                if (err) {
-                    console.error('inclusion error', err);
-                    return reject(err);
                 }
-                resolve({
-                    at: res && res.getAt(),
-                    index: res && res.getIndex(),
-                    root: res && res.getRoot(),
-                    leaf: res && res.getLeaf(),
-                    pathList: res && res.getPathList()
-                });
             }));
         }
         catch (err) {
             console.error(err);
         }
     }
-    async consistency(params) {
-        try {
-            const req = new messages.Index();
-            req.setIndex(params && params.index);
-            return new Promise((resolve, reject) => this.client.consistency(req, this._metadata, (err, res) => {
-                if (err) {
-                    console.error('consistency error', err);
-                    return reject(err);
-                }
-                ;
-                resolve({
-                    first: res && res.getFirst(),
-                    second: res && res.getSecond(),
-                    firstroot: res && res.getFirstroot(),
-                    secondroot: res && res.getSecondroot(),
-                    pathList: res && res.getPathList()
-                });
-            }));
-        }
-        catch (err) {
-            console.error(err);
-        }
-    }
-    async bySafeIndex(params) {
-        try {
-            let oldRoot = this.root && this.root.get({
-                server: this._serverUUID,
-                database: this._activeDatabase,
-            });
-            const index = new messages.Index();
-            index.setIndex(oldRoot.index);
-            const req = new messages.SafeIndexOptions();
-            req.setIndex(params && params.index);
-            req.setRootindex(index);
-            return new Promise((resolve, reject) => this.client.bySafeIndex(req, this._metadata, (err, res) => {
-                if (err) {
-                    console.error('bySafeIndex error', err);
-                    return reject(err);
-                }
-                const proof = res && res.getProof();
-                const item = res && res.getItem();
-                const verifyReq = {
-                    proof: {
-                        inclusionPath: proof.getInclusionpathList(),
-                        consistencyPath: proof.getConsistencypathList(),
-                        index: proof.getIndex(),
-                        at: proof.getAt(),
-                        leaf: proof.getLeaf(),
-                        root: proof.getRoot(),
-                    },
-                    item: {
-                        key: item.getKey(),
-                        value: item.getValue(),
-                        index: item.getIndex()
-                    },
-                    oldRoot: oldRoot,
-                };
-                oldRoot = this.root && this.root.get({
-                    server: this._serverUUID,
-                    database: this._activeDatabase,
-                });
-                this.proofs && this.proofs.verify(verifyReq, (err) => {
-                    if (err) {
-                        return { err };
-                    }
-                    this.root && this.root.set({
-                        server: this._serverUUID,
-                        database: this._activeDatabase,
-                        root: proof.getRoot(),
-                        index: proof.getAt(),
-                    });
-                    resolve({
-                        key: this.util && this.util.utf8Decode(item.getKey()),
-                        value: this.util && this.util.utf8Decode(item.getValue()),
-                        index: item.getIndex()
-                    });
-                });
-            }));
-        }
-        catch (err) {
-            console.error(err);
-        }
-    }
+    // async verifiedTxById(params: messages.TxRequest.AsObject): Promise<messages.Tx.AsObject> | undefined {}
+    async setupDialOptions() { }
 }
 exports.default = ImmudbClient;

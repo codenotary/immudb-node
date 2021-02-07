@@ -1,6 +1,6 @@
-import Util from './util';
+import crypto from 'crypto';
 
-const crypto = require('crypto');
+import Util from './util';
 
 interface ErrVerificationException {
   clientErr: string;

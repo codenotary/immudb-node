@@ -19,64 +19,59 @@ goog.object.extend(proto, google_protobuf_empty_pb);
 goog.exportSymbol('proto.immudb.schema.AuthConfig', null, global);
 goog.exportSymbol('proto.immudb.schema.ChangePasswordRequest', null, global);
 goog.exportSymbol('proto.immudb.schema.ChangePermissionRequest', null, global);
-goog.exportSymbol('proto.immudb.schema.ConsistencyProof', null, global);
-goog.exportSymbol('proto.immudb.schema.Content', null, global);
 goog.exportSymbol('proto.immudb.schema.CreateUserRequest', null, global);
 goog.exportSymbol('proto.immudb.schema.Database', null, global);
 goog.exportSymbol('proto.immudb.schema.DatabaseListResponse', null, global);
+goog.exportSymbol('proto.immudb.schema.DualProof', null, global);
+goog.exportSymbol('proto.immudb.schema.Entries', null, global);
+goog.exportSymbol('proto.immudb.schema.Entry', null, global);
+goog.exportSymbol('proto.immudb.schema.EntryCount', null, global);
+goog.exportSymbol('proto.immudb.schema.ExecAllRequest', null, global);
 goog.exportSymbol('proto.immudb.schema.HealthResponse', null, global);
-goog.exportSymbol('proto.immudb.schema.HistoryOptions', null, global);
-goog.exportSymbol('proto.immudb.schema.IScanOptions', null, global);
+goog.exportSymbol('proto.immudb.schema.HistoryRequest', null, global);
+goog.exportSymbol('proto.immudb.schema.ImmutableState', null, global);
 goog.exportSymbol('proto.immudb.schema.InclusionProof', null, global);
-goog.exportSymbol('proto.immudb.schema.Index', null, global);
-goog.exportSymbol('proto.immudb.schema.Item', null, global);
-goog.exportSymbol('proto.immudb.schema.ItemList', null, global);
-goog.exportSymbol('proto.immudb.schema.ItemsCount', null, global);
-goog.exportSymbol('proto.immudb.schema.KVList', null, global);
 goog.exportSymbol('proto.immudb.schema.Key', null, global);
-goog.exportSymbol('proto.immudb.schema.KeyList', null, global);
+goog.exportSymbol('proto.immudb.schema.KeyListRequest', null, global);
 goog.exportSymbol('proto.immudb.schema.KeyPrefix', null, global);
+goog.exportSymbol('proto.immudb.schema.KeyRequest', null, global);
 goog.exportSymbol('proto.immudb.schema.KeyValue', null, global);
-goog.exportSymbol('proto.immudb.schema.Layer', null, global);
+goog.exportSymbol('proto.immudb.schema.LinearProof', null, global);
 goog.exportSymbol('proto.immudb.schema.LoginRequest', null, global);
 goog.exportSymbol('proto.immudb.schema.LoginResponse', null, global);
 goog.exportSymbol('proto.immudb.schema.MTLSConfig', null, global);
-goog.exportSymbol('proto.immudb.schema.Node', null, global);
-goog.exportSymbol('proto.immudb.schema.Page', null, global);
+goog.exportSymbol('proto.immudb.schema.Op', null, global);
+goog.exportSymbol('proto.immudb.schema.Op.OperationCase', null, global);
 goog.exportSymbol('proto.immudb.schema.Permission', null, global);
 goog.exportSymbol('proto.immudb.schema.PermissionAction', null, global);
-goog.exportSymbol('proto.immudb.schema.Proof', null, global);
-goog.exportSymbol('proto.immudb.schema.ReferenceOptions', null, global);
-goog.exportSymbol('proto.immudb.schema.Root', null, global);
-goog.exportSymbol('proto.immudb.schema.RootIndex', null, global);
-goog.exportSymbol('proto.immudb.schema.SKVList', null, global);
-goog.exportSymbol('proto.immudb.schema.SPage', null, global);
-goog.exportSymbol('proto.immudb.schema.SafeGetOptions', null, global);
-goog.exportSymbol('proto.immudb.schema.SafeIndexOptions', null, global);
-goog.exportSymbol('proto.immudb.schema.SafeItem', null, global);
-goog.exportSymbol('proto.immudb.schema.SafeReferenceOptions', null, global);
-goog.exportSymbol('proto.immudb.schema.SafeSetOptions', null, global);
-goog.exportSymbol('proto.immudb.schema.SafeSetSVOptions', null, global);
-goog.exportSymbol('proto.immudb.schema.SafeStructuredItem', null, global);
-goog.exportSymbol('proto.immudb.schema.SafeZAddOptions', null, global);
-goog.exportSymbol('proto.immudb.schema.ScanOptions', null, global);
+goog.exportSymbol('proto.immudb.schema.Reference', null, global);
+goog.exportSymbol('proto.immudb.schema.ReferenceRequest', null, global);
+goog.exportSymbol('proto.immudb.schema.ScanRequest', null, global);
 goog.exportSymbol('proto.immudb.schema.Score', null, global);
 goog.exportSymbol('proto.immudb.schema.SetActiveUserRequest', null, global);
+goog.exportSymbol('proto.immudb.schema.SetRequest', null, global);
 goog.exportSymbol('proto.immudb.schema.Signature', null, global);
-goog.exportSymbol('proto.immudb.schema.StructuredItem', null, global);
-goog.exportSymbol('proto.immudb.schema.StructuredItemList', null, global);
-goog.exportSymbol('proto.immudb.schema.StructuredKeyValue', null, global);
-goog.exportSymbol('proto.immudb.schema.Tree', null, global);
+goog.exportSymbol('proto.immudb.schema.Tx', null, global);
+goog.exportSymbol('proto.immudb.schema.TxEntry', null, global);
+goog.exportSymbol('proto.immudb.schema.TxList', null, global);
+goog.exportSymbol('proto.immudb.schema.TxMetadata', null, global);
+goog.exportSymbol('proto.immudb.schema.TxRequest', null, global);
+goog.exportSymbol('proto.immudb.schema.TxScanRequest', null, global);
 goog.exportSymbol('proto.immudb.schema.UseDatabaseReply', null, global);
 goog.exportSymbol('proto.immudb.schema.User', null, global);
 goog.exportSymbol('proto.immudb.schema.UserList', null, global);
 goog.exportSymbol('proto.immudb.schema.UserRequest', null, global);
-goog.exportSymbol('proto.immudb.schema.ZAddOptions', null, global);
-goog.exportSymbol('proto.immudb.schema.ZItem', null, global);
-goog.exportSymbol('proto.immudb.schema.ZItemList', null, global);
-goog.exportSymbol('proto.immudb.schema.ZScanOptions', null, global);
-goog.exportSymbol('proto.immudb.schema.ZStructuredItem', null, global);
-goog.exportSymbol('proto.immudb.schema.ZStructuredItemList', null, global);
+goog.exportSymbol('proto.immudb.schema.VerifiableEntry', null, global);
+goog.exportSymbol('proto.immudb.schema.VerifiableGetRequest', null, global);
+goog.exportSymbol('proto.immudb.schema.VerifiableReferenceRequest', null, global);
+goog.exportSymbol('proto.immudb.schema.VerifiableSetRequest', null, global);
+goog.exportSymbol('proto.immudb.schema.VerifiableTx', null, global);
+goog.exportSymbol('proto.immudb.schema.VerifiableTxRequest', null, global);
+goog.exportSymbol('proto.immudb.schema.VerifiableZAddRequest', null, global);
+goog.exportSymbol('proto.immudb.schema.ZAddRequest', null, global);
+goog.exportSymbol('proto.immudb.schema.ZEntries', null, global);
+goog.exportSymbol('proto.immudb.schema.ZEntry', null, global);
+goog.exportSymbol('proto.immudb.schema.ZScanRequest', null, global);
 /**
  * Generated by JsPbCodeGenerator.
  * @param {Array=} opt_data Optional initial data array, typically from a
@@ -318,69 +313,6 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.immudb.schema.Node = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.immudb.schema.Node, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.immudb.schema.Node.displayName = 'proto.immudb.schema.Node';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.immudb.schema.Layer = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.immudb.schema.Layer.repeatedFields_, null);
-};
-goog.inherits(proto.immudb.schema.Layer, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.immudb.schema.Layer.displayName = 'proto.immudb.schema.Layer';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.immudb.schema.Tree = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.immudb.schema.Tree.repeatedFields_, null);
-};
-goog.inherits(proto.immudb.schema.Tree, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.immudb.schema.Tree.displayName = 'proto.immudb.schema.Tree';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
 proto.immudb.schema.KeyValue = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -402,16 +334,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.immudb.schema.StructuredKeyValue = function(opt_data) {
+proto.immudb.schema.Entry = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.immudb.schema.StructuredKeyValue, jspb.Message);
+goog.inherits(proto.immudb.schema.Entry, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.immudb.schema.StructuredKeyValue.displayName = 'proto.immudb.schema.StructuredKeyValue';
+  proto.immudb.schema.Entry.displayName = 'proto.immudb.schema.Entry';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -423,16 +355,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.immudb.schema.Content = function(opt_data) {
+proto.immudb.schema.Reference = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.immudb.schema.Content, jspb.Message);
+goog.inherits(proto.immudb.schema.Reference, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.immudb.schema.Content.displayName = 'proto.immudb.schema.Content';
+  proto.immudb.schema.Reference.displayName = 'proto.immudb.schema.Reference';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -444,16 +376,79 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.immudb.schema.Index = function(opt_data) {
+proto.immudb.schema.Op = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.immudb.schema.Op.oneofGroups_);
+};
+goog.inherits(proto.immudb.schema.Op, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.immudb.schema.Op.displayName = 'proto.immudb.schema.Op';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.immudb.schema.ExecAllRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.immudb.schema.ExecAllRequest.repeatedFields_, null);
+};
+goog.inherits(proto.immudb.schema.ExecAllRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.immudb.schema.ExecAllRequest.displayName = 'proto.immudb.schema.ExecAllRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.immudb.schema.Entries = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.immudb.schema.Entries.repeatedFields_, null);
+};
+goog.inherits(proto.immudb.schema.Entries, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.immudb.schema.Entries.displayName = 'proto.immudb.schema.Entries';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.immudb.schema.ZEntry = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.immudb.schema.Index, jspb.Message);
+goog.inherits(proto.immudb.schema.ZEntry, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.immudb.schema.Index.displayName = 'proto.immudb.schema.Index';
+  proto.immudb.schema.ZEntry.displayName = 'proto.immudb.schema.ZEntry';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -465,310 +460,37 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.immudb.schema.Item = function(opt_data) {
+proto.immudb.schema.ZEntries = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.immudb.schema.ZEntries.repeatedFields_, null);
+};
+goog.inherits(proto.immudb.schema.ZEntries, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.immudb.schema.ZEntries.displayName = 'proto.immudb.schema.ZEntries';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.immudb.schema.ScanRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.immudb.schema.Item, jspb.Message);
+goog.inherits(proto.immudb.schema.ScanRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.immudb.schema.Item.displayName = 'proto.immudb.schema.Item';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.immudb.schema.StructuredItem = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.immudb.schema.StructuredItem, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.immudb.schema.StructuredItem.displayName = 'proto.immudb.schema.StructuredItem';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.immudb.schema.KVList = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.immudb.schema.KVList.repeatedFields_, null);
-};
-goog.inherits(proto.immudb.schema.KVList, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.immudb.schema.KVList.displayName = 'proto.immudb.schema.KVList';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.immudb.schema.SKVList = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.immudb.schema.SKVList.repeatedFields_, null);
-};
-goog.inherits(proto.immudb.schema.SKVList, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.immudb.schema.SKVList.displayName = 'proto.immudb.schema.SKVList';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.immudb.schema.KeyList = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.immudb.schema.KeyList.repeatedFields_, null);
-};
-goog.inherits(proto.immudb.schema.KeyList, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.immudb.schema.KeyList.displayName = 'proto.immudb.schema.KeyList';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.immudb.schema.ItemList = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.immudb.schema.ItemList.repeatedFields_, null);
-};
-goog.inherits(proto.immudb.schema.ItemList, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.immudb.schema.ItemList.displayName = 'proto.immudb.schema.ItemList';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.immudb.schema.ZItem = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.immudb.schema.ZItem, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.immudb.schema.ZItem.displayName = 'proto.immudb.schema.ZItem';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.immudb.schema.ZItemList = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.immudb.schema.ZItemList.repeatedFields_, null);
-};
-goog.inherits(proto.immudb.schema.ZItemList, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.immudb.schema.ZItemList.displayName = 'proto.immudb.schema.ZItemList';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.immudb.schema.StructuredItemList = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.immudb.schema.StructuredItemList.repeatedFields_, null);
-};
-goog.inherits(proto.immudb.schema.StructuredItemList, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.immudb.schema.StructuredItemList.displayName = 'proto.immudb.schema.StructuredItemList';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.immudb.schema.ZStructuredItemList = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.immudb.schema.ZStructuredItemList.repeatedFields_, null);
-};
-goog.inherits(proto.immudb.schema.ZStructuredItemList, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.immudb.schema.ZStructuredItemList.displayName = 'proto.immudb.schema.ZStructuredItemList';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.immudb.schema.ZStructuredItem = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.immudb.schema.ZStructuredItem, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.immudb.schema.ZStructuredItem.displayName = 'proto.immudb.schema.ZStructuredItem';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.immudb.schema.Root = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.immudb.schema.Root, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.immudb.schema.Root.displayName = 'proto.immudb.schema.Root';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.immudb.schema.RootIndex = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.immudb.schema.RootIndex, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.immudb.schema.RootIndex.displayName = 'proto.immudb.schema.RootIndex';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.immudb.schema.Signature = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.immudb.schema.Signature, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.immudb.schema.Signature.displayName = 'proto.immudb.schema.Signature';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.immudb.schema.ScanOptions = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.immudb.schema.ScanOptions, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.immudb.schema.ScanOptions.displayName = 'proto.immudb.schema.ScanOptions';
+  proto.immudb.schema.ScanRequest.displayName = 'proto.immudb.schema.ScanRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -801,16 +523,184 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.immudb.schema.ItemsCount = function(opt_data) {
+proto.immudb.schema.EntryCount = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.immudb.schema.ItemsCount, jspb.Message);
+goog.inherits(proto.immudb.schema.EntryCount, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.immudb.schema.ItemsCount.displayName = 'proto.immudb.schema.ItemsCount';
+  proto.immudb.schema.EntryCount.displayName = 'proto.immudb.schema.EntryCount';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.immudb.schema.Signature = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.immudb.schema.Signature, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.immudb.schema.Signature.displayName = 'proto.immudb.schema.Signature';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.immudb.schema.TxMetadata = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.immudb.schema.TxMetadata, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.immudb.schema.TxMetadata.displayName = 'proto.immudb.schema.TxMetadata';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.immudb.schema.LinearProof = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.immudb.schema.LinearProof.repeatedFields_, null);
+};
+goog.inherits(proto.immudb.schema.LinearProof, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.immudb.schema.LinearProof.displayName = 'proto.immudb.schema.LinearProof';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.immudb.schema.DualProof = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.immudb.schema.DualProof.repeatedFields_, null);
+};
+goog.inherits(proto.immudb.schema.DualProof, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.immudb.schema.DualProof.displayName = 'proto.immudb.schema.DualProof';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.immudb.schema.Tx = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.immudb.schema.Tx.repeatedFields_, null);
+};
+goog.inherits(proto.immudb.schema.Tx, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.immudb.schema.Tx.displayName = 'proto.immudb.schema.Tx';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.immudb.schema.TxEntry = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.immudb.schema.TxEntry, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.immudb.schema.TxEntry.displayName = 'proto.immudb.schema.TxEntry';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.immudb.schema.VerifiableTx = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.immudb.schema.VerifiableTx, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.immudb.schema.VerifiableTx.displayName = 'proto.immudb.schema.VerifiableTx';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.immudb.schema.VerifiableEntry = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.immudb.schema.VerifiableEntry, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.immudb.schema.VerifiableEntry.displayName = 'proto.immudb.schema.VerifiableEntry';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -843,16 +733,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.immudb.schema.ConsistencyProof = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.immudb.schema.ConsistencyProof.repeatedFields_, null);
+proto.immudb.schema.SetRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.immudb.schema.SetRequest.repeatedFields_, null);
 };
-goog.inherits(proto.immudb.schema.ConsistencyProof, jspb.Message);
+goog.inherits(proto.immudb.schema.SetRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.immudb.schema.ConsistencyProof.displayName = 'proto.immudb.schema.ConsistencyProof';
+  proto.immudb.schema.SetRequest.displayName = 'proto.immudb.schema.SetRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -864,37 +754,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.immudb.schema.Proof = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.immudb.schema.Proof.repeatedFields_, null);
-};
-goog.inherits(proto.immudb.schema.Proof, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.immudb.schema.Proof.displayName = 'proto.immudb.schema.Proof';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.immudb.schema.SafeItem = function(opt_data) {
+proto.immudb.schema.KeyRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.immudb.schema.SafeItem, jspb.Message);
+goog.inherits(proto.immudb.schema.KeyRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.immudb.schema.SafeItem.displayName = 'proto.immudb.schema.SafeItem';
+  proto.immudb.schema.KeyRequest.displayName = 'proto.immudb.schema.KeyRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -906,16 +775,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.immudb.schema.SafeStructuredItem = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+proto.immudb.schema.KeyListRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.immudb.schema.KeyListRequest.repeatedFields_, null);
 };
-goog.inherits(proto.immudb.schema.SafeStructuredItem, jspb.Message);
+goog.inherits(proto.immudb.schema.KeyListRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.immudb.schema.SafeStructuredItem.displayName = 'proto.immudb.schema.SafeStructuredItem';
+  proto.immudb.schema.KeyListRequest.displayName = 'proto.immudb.schema.KeyListRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -927,16 +796,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.immudb.schema.SafeSetOptions = function(opt_data) {
+proto.immudb.schema.VerifiableSetRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.immudb.schema.SafeSetOptions, jspb.Message);
+goog.inherits(proto.immudb.schema.VerifiableSetRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.immudb.schema.SafeSetOptions.displayName = 'proto.immudb.schema.SafeSetOptions';
+  proto.immudb.schema.VerifiableSetRequest.displayName = 'proto.immudb.schema.VerifiableSetRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -948,58 +817,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.immudb.schema.SafeSetSVOptions = function(opt_data) {
+proto.immudb.schema.VerifiableGetRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.immudb.schema.SafeSetSVOptions, jspb.Message);
+goog.inherits(proto.immudb.schema.VerifiableGetRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.immudb.schema.SafeSetSVOptions.displayName = 'proto.immudb.schema.SafeSetSVOptions';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.immudb.schema.SafeGetOptions = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.immudb.schema.SafeGetOptions, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.immudb.schema.SafeGetOptions.displayName = 'proto.immudb.schema.SafeGetOptions';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.immudb.schema.SafeReferenceOptions = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.immudb.schema.SafeReferenceOptions, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.immudb.schema.SafeReferenceOptions.displayName = 'proto.immudb.schema.SafeReferenceOptions';
+  proto.immudb.schema.VerifiableGetRequest.displayName = 'proto.immudb.schema.VerifiableGetRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -1032,16 +859,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.immudb.schema.ReferenceOptions = function(opt_data) {
+proto.immudb.schema.ImmutableState = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.immudb.schema.ReferenceOptions, jspb.Message);
+goog.inherits(proto.immudb.schema.ImmutableState, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.immudb.schema.ReferenceOptions.displayName = 'proto.immudb.schema.ReferenceOptions';
+  proto.immudb.schema.ImmutableState.displayName = 'proto.immudb.schema.ImmutableState';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -1053,16 +880,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.immudb.schema.ZAddOptions = function(opt_data) {
+proto.immudb.schema.ReferenceRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.immudb.schema.ZAddOptions, jspb.Message);
+goog.inherits(proto.immudb.schema.ReferenceRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.immudb.schema.ZAddOptions.displayName = 'proto.immudb.schema.ZAddOptions';
+  proto.immudb.schema.ReferenceRequest.displayName = 'proto.immudb.schema.ReferenceRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -1074,16 +901,37 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.immudb.schema.ZScanOptions = function(opt_data) {
+proto.immudb.schema.VerifiableReferenceRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.immudb.schema.ZScanOptions, jspb.Message);
+goog.inherits(proto.immudb.schema.VerifiableReferenceRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.immudb.schema.ZScanOptions.displayName = 'proto.immudb.schema.ZScanOptions';
+  proto.immudb.schema.VerifiableReferenceRequest.displayName = 'proto.immudb.schema.VerifiableReferenceRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.immudb.schema.ZAddRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.immudb.schema.ZAddRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.immudb.schema.ZAddRequest.displayName = 'proto.immudb.schema.ZAddRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -1116,16 +964,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.immudb.schema.IScanOptions = function(opt_data) {
+proto.immudb.schema.ZScanRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.immudb.schema.IScanOptions, jspb.Message);
+goog.inherits(proto.immudb.schema.ZScanRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.immudb.schema.IScanOptions.displayName = 'proto.immudb.schema.IScanOptions';
+  proto.immudb.schema.ZScanRequest.displayName = 'proto.immudb.schema.ZScanRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -1137,58 +985,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.immudb.schema.Page = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.immudb.schema.Page.repeatedFields_, null);
-};
-goog.inherits(proto.immudb.schema.Page, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.immudb.schema.Page.displayName = 'proto.immudb.schema.Page';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.immudb.schema.SPage = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.immudb.schema.SPage.repeatedFields_, null);
-};
-goog.inherits(proto.immudb.schema.SPage, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.immudb.schema.SPage.displayName = 'proto.immudb.schema.SPage';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.immudb.schema.HistoryOptions = function(opt_data) {
+proto.immudb.schema.HistoryRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.immudb.schema.HistoryOptions, jspb.Message);
+goog.inherits(proto.immudb.schema.HistoryRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.immudb.schema.HistoryOptions.displayName = 'proto.immudb.schema.HistoryOptions';
+  proto.immudb.schema.HistoryRequest.displayName = 'proto.immudb.schema.HistoryRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -1200,16 +1006,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.immudb.schema.SafeZAddOptions = function(opt_data) {
+proto.immudb.schema.VerifiableZAddRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.immudb.schema.SafeZAddOptions, jspb.Message);
+goog.inherits(proto.immudb.schema.VerifiableZAddRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.immudb.schema.SafeZAddOptions.displayName = 'proto.immudb.schema.SafeZAddOptions';
+  proto.immudb.schema.VerifiableZAddRequest.displayName = 'proto.immudb.schema.VerifiableZAddRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -1221,16 +1027,79 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.immudb.schema.SafeIndexOptions = function(opt_data) {
+proto.immudb.schema.TxRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.immudb.schema.SafeIndexOptions, jspb.Message);
+goog.inherits(proto.immudb.schema.TxRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.immudb.schema.SafeIndexOptions.displayName = 'proto.immudb.schema.SafeIndexOptions';
+  proto.immudb.schema.TxRequest.displayName = 'proto.immudb.schema.TxRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.immudb.schema.VerifiableTxRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.immudb.schema.VerifiableTxRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.immudb.schema.VerifiableTxRequest.displayName = 'proto.immudb.schema.VerifiableTxRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.immudb.schema.TxScanRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.immudb.schema.TxScanRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.immudb.schema.TxScanRequest.displayName = 'proto.immudb.schema.TxScanRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.immudb.schema.TxList = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.immudb.schema.TxList.repeatedFields_, null);
+};
+goog.inherits(proto.immudb.schema.TxList, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.immudb.schema.TxList.displayName = 'proto.immudb.schema.TxList';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -3467,678 +3336,6 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.immudb.schema.Node.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.Node.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.Node} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.Node.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    i: msg.getI_asB64(),
-    h: msg.getH_asB64(),
-    refk: msg.getRefk_asB64(),
-    ref: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
-    cache: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    root: jspb.Message.getBooleanFieldWithDefault(msg, 6, false)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.Node}
- */
-proto.immudb.schema.Node.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.Node;
-  return proto.immudb.schema.Node.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.immudb.schema.Node} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.Node}
- */
-proto.immudb.schema.Node.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setI(value);
-      break;
-    case 2:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setH(value);
-      break;
-    case 3:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setRefk(value);
-      break;
-    case 4:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setRef(value);
-      break;
-    case 5:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setCache(value);
-      break;
-    case 6:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setRoot(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.immudb.schema.Node.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.Node.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.Node} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.Node.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getI_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
-      1,
-      f
-    );
-  }
-  f = message.getH_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
-      2,
-      f
-    );
-  }
-  f = message.getRefk_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
-      3,
-      f
-    );
-  }
-  f = message.getRef();
-  if (f) {
-    writer.writeBool(
-      4,
-      f
-    );
-  }
-  f = message.getCache();
-  if (f) {
-    writer.writeBool(
-      5,
-      f
-    );
-  }
-  f = message.getRoot();
-  if (f) {
-    writer.writeBool(
-      6,
-      f
-    );
-  }
-};
-
-
-/**
- * optional bytes i = 1;
- * @return {!(string|Uint8Array)}
- */
-proto.immudb.schema.Node.prototype.getI = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * optional bytes i = 1;
- * This is a type-conversion wrapper around `getI()`
- * @return {string}
- */
-proto.immudb.schema.Node.prototype.getI_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getI()));
-};
-
-
-/**
- * optional bytes i = 1;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getI()`
- * @return {!Uint8Array}
- */
-proto.immudb.schema.Node.prototype.getI_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getI()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.Node} returns this
- */
-proto.immudb.schema.Node.prototype.setI = function(value) {
-  return jspb.Message.setProto3BytesField(this, 1, value);
-};
-
-
-/**
- * optional bytes h = 2;
- * @return {!(string|Uint8Array)}
- */
-proto.immudb.schema.Node.prototype.getH = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * optional bytes h = 2;
- * This is a type-conversion wrapper around `getH()`
- * @return {string}
- */
-proto.immudb.schema.Node.prototype.getH_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getH()));
-};
-
-
-/**
- * optional bytes h = 2;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getH()`
- * @return {!Uint8Array}
- */
-proto.immudb.schema.Node.prototype.getH_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getH()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.Node} returns this
- */
-proto.immudb.schema.Node.prototype.setH = function(value) {
-  return jspb.Message.setProto3BytesField(this, 2, value);
-};
-
-
-/**
- * optional bytes refk = 3;
- * @return {!(string|Uint8Array)}
- */
-proto.immudb.schema.Node.prototype.getRefk = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * optional bytes refk = 3;
- * This is a type-conversion wrapper around `getRefk()`
- * @return {string}
- */
-proto.immudb.schema.Node.prototype.getRefk_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getRefk()));
-};
-
-
-/**
- * optional bytes refk = 3;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getRefk()`
- * @return {!Uint8Array}
- */
-proto.immudb.schema.Node.prototype.getRefk_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getRefk()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.Node} returns this
- */
-proto.immudb.schema.Node.prototype.setRefk = function(value) {
-  return jspb.Message.setProto3BytesField(this, 3, value);
-};
-
-
-/**
- * optional bool ref = 4;
- * @return {boolean}
- */
-proto.immudb.schema.Node.prototype.getRef = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.immudb.schema.Node} returns this
- */
-proto.immudb.schema.Node.prototype.setRef = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 4, value);
-};
-
-
-/**
- * optional bool cache = 5;
- * @return {boolean}
- */
-proto.immudb.schema.Node.prototype.getCache = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.immudb.schema.Node} returns this
- */
-proto.immudb.schema.Node.prototype.setCache = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 5, value);
-};
-
-
-/**
- * optional bool root = 6;
- * @return {boolean}
- */
-proto.immudb.schema.Node.prototype.getRoot = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.immudb.schema.Node} returns this
- */
-proto.immudb.schema.Node.prototype.setRoot = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 6, value);
-};
-
-
-
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.immudb.schema.Layer.repeatedFields_ = [1];
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.immudb.schema.Layer.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.Layer.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.Layer} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.Layer.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    lList: jspb.Message.toObjectList(msg.getLList(),
-    proto.immudb.schema.Node.toObject, includeInstance)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.Layer}
- */
-proto.immudb.schema.Layer.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.Layer;
-  return proto.immudb.schema.Layer.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.immudb.schema.Layer} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.Layer}
- */
-proto.immudb.schema.Layer.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = new proto.immudb.schema.Node;
-      reader.readMessage(value,proto.immudb.schema.Node.deserializeBinaryFromReader);
-      msg.addL(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.immudb.schema.Layer.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.Layer.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.Layer} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.Layer.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getLList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      1,
-      f,
-      proto.immudb.schema.Node.serializeBinaryToWriter
-    );
-  }
-};
-
-
-/**
- * repeated Node l = 1;
- * @return {!Array<!proto.immudb.schema.Node>}
- */
-proto.immudb.schema.Layer.prototype.getLList = function() {
-  return /** @type{!Array<!proto.immudb.schema.Node>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.immudb.schema.Node, 1));
-};
-
-
-/**
- * @param {!Array<!proto.immudb.schema.Node>} value
- * @return {!proto.immudb.schema.Layer} returns this
-*/
-proto.immudb.schema.Layer.prototype.setLList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 1, value);
-};
-
-
-/**
- * @param {!proto.immudb.schema.Node=} opt_value
- * @param {number=} opt_index
- * @return {!proto.immudb.schema.Node}
- */
-proto.immudb.schema.Layer.prototype.addL = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.immudb.schema.Node, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.immudb.schema.Layer} returns this
- */
-proto.immudb.schema.Layer.prototype.clearLList = function() {
-  return this.setLList([]);
-};
-
-
-
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.immudb.schema.Tree.repeatedFields_ = [1];
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.immudb.schema.Tree.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.Tree.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.Tree} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.Tree.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    tList: jspb.Message.toObjectList(msg.getTList(),
-    proto.immudb.schema.Layer.toObject, includeInstance)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.Tree}
- */
-proto.immudb.schema.Tree.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.Tree;
-  return proto.immudb.schema.Tree.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.immudb.schema.Tree} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.Tree}
- */
-proto.immudb.schema.Tree.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = new proto.immudb.schema.Layer;
-      reader.readMessage(value,proto.immudb.schema.Layer.deserializeBinaryFromReader);
-      msg.addT(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.immudb.schema.Tree.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.Tree.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.Tree} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.Tree.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getTList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      1,
-      f,
-      proto.immudb.schema.Layer.serializeBinaryToWriter
-    );
-  }
-};
-
-
-/**
- * repeated Layer t = 1;
- * @return {!Array<!proto.immudb.schema.Layer>}
- */
-proto.immudb.schema.Tree.prototype.getTList = function() {
-  return /** @type{!Array<!proto.immudb.schema.Layer>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.immudb.schema.Layer, 1));
-};
-
-
-/**
- * @param {!Array<!proto.immudb.schema.Layer>} value
- * @return {!proto.immudb.schema.Tree} returns this
-*/
-proto.immudb.schema.Tree.prototype.setTList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 1, value);
-};
-
-
-/**
- * @param {!proto.immudb.schema.Layer=} opt_value
- * @param {number=} opt_index
- * @return {!proto.immudb.schema.Layer}
- */
-proto.immudb.schema.Tree.prototype.addT = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.immudb.schema.Layer, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.immudb.schema.Tree} returns this
- */
-proto.immudb.schema.Tree.prototype.clearTList = function() {
-  return this.setTList([]);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
 proto.immudb.schema.KeyValue.prototype.toObject = function(opt_includeInstance) {
   return proto.immudb.schema.KeyValue.toObject(opt_includeInstance, this);
 };
@@ -4347,8 +3544,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.immudb.schema.StructuredKeyValue.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.StructuredKeyValue.toObject(opt_includeInstance, this);
+proto.immudb.schema.Entry.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.Entry.toObject(opt_includeInstance, this);
 };
 
 
@@ -4357,534 +3554,16 @@ proto.immudb.schema.StructuredKeyValue.prototype.toObject = function(opt_include
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.StructuredKeyValue} msg The msg instance to transform.
+ * @param {!proto.immudb.schema.Entry} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.StructuredKeyValue.toObject = function(includeInstance, msg) {
+proto.immudb.schema.Entry.toObject = function(includeInstance, msg) {
   var f, obj = {
-    key: msg.getKey_asB64(),
-    value: (f = msg.getValue()) && proto.immudb.schema.Content.toObject(includeInstance, f)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.StructuredKeyValue}
- */
-proto.immudb.schema.StructuredKeyValue.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.StructuredKeyValue;
-  return proto.immudb.schema.StructuredKeyValue.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.immudb.schema.StructuredKeyValue} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.StructuredKeyValue}
- */
-proto.immudb.schema.StructuredKeyValue.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setKey(value);
-      break;
-    case 2:
-      var value = new proto.immudb.schema.Content;
-      reader.readMessage(value,proto.immudb.schema.Content.deserializeBinaryFromReader);
-      msg.setValue(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.immudb.schema.StructuredKeyValue.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.StructuredKeyValue.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.StructuredKeyValue} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.StructuredKeyValue.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getKey_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
-      1,
-      f
-    );
-  }
-  f = message.getValue();
-  if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      proto.immudb.schema.Content.serializeBinaryToWriter
-    );
-  }
-};
-
-
-/**
- * optional bytes key = 1;
- * @return {!(string|Uint8Array)}
- */
-proto.immudb.schema.StructuredKeyValue.prototype.getKey = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * optional bytes key = 1;
- * This is a type-conversion wrapper around `getKey()`
- * @return {string}
- */
-proto.immudb.schema.StructuredKeyValue.prototype.getKey_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getKey()));
-};
-
-
-/**
- * optional bytes key = 1;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getKey()`
- * @return {!Uint8Array}
- */
-proto.immudb.schema.StructuredKeyValue.prototype.getKey_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getKey()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.StructuredKeyValue} returns this
- */
-proto.immudb.schema.StructuredKeyValue.prototype.setKey = function(value) {
-  return jspb.Message.setProto3BytesField(this, 1, value);
-};
-
-
-/**
- * optional Content value = 2;
- * @return {?proto.immudb.schema.Content}
- */
-proto.immudb.schema.StructuredKeyValue.prototype.getValue = function() {
-  return /** @type{?proto.immudb.schema.Content} */ (
-    jspb.Message.getWrapperField(this, proto.immudb.schema.Content, 2));
-};
-
-
-/**
- * @param {?proto.immudb.schema.Content|undefined} value
- * @return {!proto.immudb.schema.StructuredKeyValue} returns this
-*/
-proto.immudb.schema.StructuredKeyValue.prototype.setValue = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.immudb.schema.StructuredKeyValue} returns this
- */
-proto.immudb.schema.StructuredKeyValue.prototype.clearValue = function() {
-  return this.setValue(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.immudb.schema.StructuredKeyValue.prototype.hasValue = function() {
-  return jspb.Message.getField(this, 2) != null;
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.immudb.schema.Content.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.Content.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.Content} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.Content.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    timestamp: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    payload: msg.getPayload_asB64()
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.Content}
- */
-proto.immudb.schema.Content.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.Content;
-  return proto.immudb.schema.Content.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.immudb.schema.Content} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.Content}
- */
-proto.immudb.schema.Content.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setTimestamp(value);
-      break;
-    case 2:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setPayload(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.immudb.schema.Content.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.Content.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.Content} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.Content.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getTimestamp();
-  if (f !== 0) {
-    writer.writeUint64(
-      1,
-      f
-    );
-  }
-  f = message.getPayload_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
-      2,
-      f
-    );
-  }
-};
-
-
-/**
- * optional uint64 timestamp = 1;
- * @return {number}
- */
-proto.immudb.schema.Content.prototype.getTimestamp = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.immudb.schema.Content} returns this
- */
-proto.immudb.schema.Content.prototype.setTimestamp = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-/**
- * optional bytes payload = 2;
- * @return {!(string|Uint8Array)}
- */
-proto.immudb.schema.Content.prototype.getPayload = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * optional bytes payload = 2;
- * This is a type-conversion wrapper around `getPayload()`
- * @return {string}
- */
-proto.immudb.schema.Content.prototype.getPayload_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getPayload()));
-};
-
-
-/**
- * optional bytes payload = 2;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getPayload()`
- * @return {!Uint8Array}
- */
-proto.immudb.schema.Content.prototype.getPayload_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getPayload()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.Content} returns this
- */
-proto.immudb.schema.Content.prototype.setPayload = function(value) {
-  return jspb.Message.setProto3BytesField(this, 2, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.immudb.schema.Index.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.Index.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.Index} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.Index.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    index: jspb.Message.getFieldWithDefault(msg, 1, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.Index}
- */
-proto.immudb.schema.Index.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.Index;
-  return proto.immudb.schema.Index.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.immudb.schema.Index} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.Index}
- */
-proto.immudb.schema.Index.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setIndex(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.immudb.schema.Index.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.Index.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.Index} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.Index.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getIndex();
-  if (f !== 0) {
-    writer.writeUint64(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional uint64 index = 1;
- * @return {number}
- */
-proto.immudb.schema.Index.prototype.getIndex = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.immudb.schema.Index} returns this
- */
-proto.immudb.schema.Index.prototype.setIndex = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.immudb.schema.Item.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.Item.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.Item} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.Item.toObject = function(includeInstance, msg) {
-  var f, obj = {
+    tx: jspb.Message.getFieldWithDefault(msg, 1, 0),
     key: msg.getKey_asB64(),
     value: msg.getValue_asB64(),
-    index: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    referencedby: (f = msg.getReferencedby()) && proto.immudb.schema.Reference.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4898,23 +3577,23 @@ proto.immudb.schema.Item.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.Item}
+ * @return {!proto.immudb.schema.Entry}
  */
-proto.immudb.schema.Item.deserializeBinary = function(bytes) {
+proto.immudb.schema.Entry.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.Item;
-  return proto.immudb.schema.Item.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.immudb.schema.Entry;
+  return proto.immudb.schema.Entry.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.immudb.schema.Item} msg The message object to deserialize into.
+ * @param {!proto.immudb.schema.Entry} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.Item}
+ * @return {!proto.immudb.schema.Entry}
  */
-proto.immudb.schema.Item.deserializeBinaryFromReader = function(msg, reader) {
+proto.immudb.schema.Entry.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -4922,16 +3601,21 @@ proto.immudb.schema.Item.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setKey(value);
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setTx(value);
       break;
     case 2:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setValue(value);
+      msg.setKey(value);
       break;
     case 3:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setIndex(value);
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setValue(value);
+      break;
+    case 4:
+      var value = new proto.immudb.schema.Reference;
+      reader.readMessage(value,proto.immudb.schema.Reference.deserializeBinaryFromReader);
+      msg.setReferencedby(value);
       break;
     default:
       reader.skipField();
@@ -4946,9 +3630,9 @@ proto.immudb.schema.Item.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.immudb.schema.Item.prototype.serializeBinary = function() {
+proto.immudb.schema.Entry.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.Item.serializeBinaryToWriter(this, writer);
+  proto.immudb.schema.Entry.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -4956,135 +3640,180 @@ proto.immudb.schema.Item.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.Item} message
+ * @param {!proto.immudb.schema.Entry} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.Item.serializeBinaryToWriter = function(message, writer) {
+proto.immudb.schema.Entry.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getTx();
+  if (f !== 0) {
+    writer.writeUint64(
+      1,
+      f
+    );
+  }
   f = message.getKey_asU8();
   if (f.length > 0) {
     writer.writeBytes(
-      1,
+      2,
       f
     );
   }
   f = message.getValue_asU8();
   if (f.length > 0) {
     writer.writeBytes(
-      2,
-      f
-    );
-  }
-  f = message.getIndex();
-  if (f !== 0) {
-    writer.writeUint64(
       3,
       f
     );
   }
+  f = message.getReferencedby();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      proto.immudb.schema.Reference.serializeBinaryToWriter
+    );
+  }
 };
 
 
 /**
- * optional bytes key = 1;
- * @return {!(string|Uint8Array)}
- */
-proto.immudb.schema.Item.prototype.getKey = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * optional bytes key = 1;
- * This is a type-conversion wrapper around `getKey()`
- * @return {string}
- */
-proto.immudb.schema.Item.prototype.getKey_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getKey()));
-};
-
-
-/**
- * optional bytes key = 1;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getKey()`
- * @return {!Uint8Array}
- */
-proto.immudb.schema.Item.prototype.getKey_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getKey()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.Item} returns this
- */
-proto.immudb.schema.Item.prototype.setKey = function(value) {
-  return jspb.Message.setProto3BytesField(this, 1, value);
-};
-
-
-/**
- * optional bytes value = 2;
- * @return {!(string|Uint8Array)}
- */
-proto.immudb.schema.Item.prototype.getValue = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * optional bytes value = 2;
- * This is a type-conversion wrapper around `getValue()`
- * @return {string}
- */
-proto.immudb.schema.Item.prototype.getValue_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getValue()));
-};
-
-
-/**
- * optional bytes value = 2;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getValue()`
- * @return {!Uint8Array}
- */
-proto.immudb.schema.Item.prototype.getValue_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getValue()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.Item} returns this
- */
-proto.immudb.schema.Item.prototype.setValue = function(value) {
-  return jspb.Message.setProto3BytesField(this, 2, value);
-};
-
-
-/**
- * optional uint64 index = 3;
+ * optional uint64 tx = 1;
  * @return {number}
  */
-proto.immudb.schema.Item.prototype.getIndex = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+proto.immudb.schema.Entry.prototype.getTx = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.immudb.schema.Item} returns this
+ * @return {!proto.immudb.schema.Entry} returns this
  */
-proto.immudb.schema.Item.prototype.setIndex = function(value) {
-  return jspb.Message.setProto3IntField(this, 3, value);
+proto.immudb.schema.Entry.prototype.setTx = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional bytes key = 2;
+ * @return {!(string|Uint8Array)}
+ */
+proto.immudb.schema.Entry.prototype.getKey = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * optional bytes key = 2;
+ * This is a type-conversion wrapper around `getKey()`
+ * @return {string}
+ */
+proto.immudb.schema.Entry.prototype.getKey_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getKey()));
+};
+
+
+/**
+ * optional bytes key = 2;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getKey()`
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.Entry.prototype.getKey_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getKey()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.immudb.schema.Entry} returns this
+ */
+proto.immudb.schema.Entry.prototype.setKey = function(value) {
+  return jspb.Message.setProto3BytesField(this, 2, value);
+};
+
+
+/**
+ * optional bytes value = 3;
+ * @return {!(string|Uint8Array)}
+ */
+proto.immudb.schema.Entry.prototype.getValue = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * optional bytes value = 3;
+ * This is a type-conversion wrapper around `getValue()`
+ * @return {string}
+ */
+proto.immudb.schema.Entry.prototype.getValue_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getValue()));
+};
+
+
+/**
+ * optional bytes value = 3;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getValue()`
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.Entry.prototype.getValue_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getValue()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.immudb.schema.Entry} returns this
+ */
+proto.immudb.schema.Entry.prototype.setValue = function(value) {
+  return jspb.Message.setProto3BytesField(this, 3, value);
+};
+
+
+/**
+ * optional Reference referencedBy = 4;
+ * @return {?proto.immudb.schema.Reference}
+ */
+proto.immudb.schema.Entry.prototype.getReferencedby = function() {
+  return /** @type{?proto.immudb.schema.Reference} */ (
+    jspb.Message.getWrapperField(this, proto.immudb.schema.Reference, 4));
+};
+
+
+/**
+ * @param {?proto.immudb.schema.Reference|undefined} value
+ * @return {!proto.immudb.schema.Entry} returns this
+*/
+proto.immudb.schema.Entry.prototype.setReferencedby = function(value) {
+  return jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.immudb.schema.Entry} returns this
+ */
+proto.immudb.schema.Entry.prototype.clearReferencedby = function() {
+  return this.setReferencedby(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.immudb.schema.Entry.prototype.hasReferencedby = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
@@ -5104,8 +3833,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.immudb.schema.StructuredItem.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.StructuredItem.toObject(opt_includeInstance, this);
+proto.immudb.schema.Reference.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.Reference.toObject(opt_includeInstance, this);
 };
 
 
@@ -5114,15 +3843,15 @@ proto.immudb.schema.StructuredItem.prototype.toObject = function(opt_includeInst
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.StructuredItem} msg The msg instance to transform.
+ * @param {!proto.immudb.schema.Reference} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.StructuredItem.toObject = function(includeInstance, msg) {
+proto.immudb.schema.Reference.toObject = function(includeInstance, msg) {
   var f, obj = {
+    tx: jspb.Message.getFieldWithDefault(msg, 1, 0),
     key: msg.getKey_asB64(),
-    value: (f = msg.getValue()) && proto.immudb.schema.Content.toObject(includeInstance, f),
-    index: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    attx: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -5136,23 +3865,23 @@ proto.immudb.schema.StructuredItem.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.StructuredItem}
+ * @return {!proto.immudb.schema.Reference}
  */
-proto.immudb.schema.StructuredItem.deserializeBinary = function(bytes) {
+proto.immudb.schema.Reference.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.StructuredItem;
-  return proto.immudb.schema.StructuredItem.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.immudb.schema.Reference;
+  return proto.immudb.schema.Reference.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.immudb.schema.StructuredItem} msg The message object to deserialize into.
+ * @param {!proto.immudb.schema.Reference} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.StructuredItem}
+ * @return {!proto.immudb.schema.Reference}
  */
-proto.immudb.schema.StructuredItem.deserializeBinaryFromReader = function(msg, reader) {
+proto.immudb.schema.Reference.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -5160,17 +3889,16 @@ proto.immudb.schema.StructuredItem.deserializeBinaryFromReader = function(msg, r
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setTx(value);
+      break;
+    case 2:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setKey(value);
       break;
-    case 2:
-      var value = new proto.immudb.schema.Content;
-      reader.readMessage(value,proto.immudb.schema.Content.deserializeBinaryFromReader);
-      msg.setValue(value);
-      break;
     case 3:
       var value = /** @type {number} */ (reader.readUint64());
-      msg.setIndex(value);
+      msg.setAttx(value);
       break;
     default:
       reader.skipField();
@@ -5185,9 +3913,9 @@ proto.immudb.schema.StructuredItem.deserializeBinaryFromReader = function(msg, r
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.immudb.schema.StructuredItem.prototype.serializeBinary = function() {
+proto.immudb.schema.Reference.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.StructuredItem.serializeBinaryToWriter(this, writer);
+  proto.immudb.schema.Reference.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -5195,28 +3923,27 @@ proto.immudb.schema.StructuredItem.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.StructuredItem} message
+ * @param {!proto.immudb.schema.Reference} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.StructuredItem.serializeBinaryToWriter = function(message, writer) {
+proto.immudb.schema.Reference.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getKey_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
+  f = message.getTx();
+  if (f !== 0) {
+    writer.writeUint64(
       1,
       f
     );
   }
-  f = message.getValue();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getKey_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
       2,
-      f,
-      proto.immudb.schema.Content.serializeBinaryToWriter
+      f
     );
   }
-  f = message.getIndex();
+  f = message.getAttx();
   if (f !== 0) {
     writer.writeUint64(
       3,
@@ -5227,33 +3954,51 @@ proto.immudb.schema.StructuredItem.serializeBinaryToWriter = function(message, w
 
 
 /**
- * optional bytes key = 1;
- * @return {!(string|Uint8Array)}
+ * optional uint64 tx = 1;
+ * @return {number}
  */
-proto.immudb.schema.StructuredItem.prototype.getKey = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.immudb.schema.Reference.prototype.getTx = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
- * optional bytes key = 1;
+ * @param {number} value
+ * @return {!proto.immudb.schema.Reference} returns this
+ */
+proto.immudb.schema.Reference.prototype.setTx = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional bytes key = 2;
+ * @return {!(string|Uint8Array)}
+ */
+proto.immudb.schema.Reference.prototype.getKey = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * optional bytes key = 2;
  * This is a type-conversion wrapper around `getKey()`
  * @return {string}
  */
-proto.immudb.schema.StructuredItem.prototype.getKey_asB64 = function() {
+proto.immudb.schema.Reference.prototype.getKey_asB64 = function() {
   return /** @type {string} */ (jspb.Message.bytesAsB64(
       this.getKey()));
 };
 
 
 /**
- * optional bytes key = 1;
+ * optional bytes key = 2;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
  * This is a type-conversion wrapper around `getKey()`
  * @return {!Uint8Array}
  */
-proto.immudb.schema.StructuredItem.prototype.getKey_asU8 = function() {
+proto.immudb.schema.Reference.prototype.getKey_asU8 = function() {
   return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
       this.getKey()));
 };
@@ -5261,75 +4006,58 @@ proto.immudb.schema.StructuredItem.prototype.getKey_asU8 = function() {
 
 /**
  * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.StructuredItem} returns this
+ * @return {!proto.immudb.schema.Reference} returns this
  */
-proto.immudb.schema.StructuredItem.prototype.setKey = function(value) {
-  return jspb.Message.setProto3BytesField(this, 1, value);
+proto.immudb.schema.Reference.prototype.setKey = function(value) {
+  return jspb.Message.setProto3BytesField(this, 2, value);
 };
 
 
 /**
- * optional Content value = 2;
- * @return {?proto.immudb.schema.Content}
- */
-proto.immudb.schema.StructuredItem.prototype.getValue = function() {
-  return /** @type{?proto.immudb.schema.Content} */ (
-    jspb.Message.getWrapperField(this, proto.immudb.schema.Content, 2));
-};
-
-
-/**
- * @param {?proto.immudb.schema.Content|undefined} value
- * @return {!proto.immudb.schema.StructuredItem} returns this
-*/
-proto.immudb.schema.StructuredItem.prototype.setValue = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.immudb.schema.StructuredItem} returns this
- */
-proto.immudb.schema.StructuredItem.prototype.clearValue = function() {
-  return this.setValue(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.immudb.schema.StructuredItem.prototype.hasValue = function() {
-  return jspb.Message.getField(this, 2) != null;
-};
-
-
-/**
- * optional uint64 index = 3;
+ * optional uint64 atTx = 3;
  * @return {number}
  */
-proto.immudb.schema.StructuredItem.prototype.getIndex = function() {
+proto.immudb.schema.Reference.prototype.getAttx = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.immudb.schema.StructuredItem} returns this
+ * @return {!proto.immudb.schema.Reference} returns this
  */
-proto.immudb.schema.StructuredItem.prototype.setIndex = function(value) {
+proto.immudb.schema.Reference.prototype.setAttx = function(value) {
   return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
 
 /**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
+ * Oneof group definitions for this message. Each group defines the field
+ * numbers belonging to that group. When of these fields' value is set, all
+ * other fields in the group are cleared. During deserialization, if multiple
+ * fields are encountered for a group, only the last value seen will be kept.
+ * @private {!Array<!Array<number>>}
  * @const
  */
-proto.immudb.schema.KVList.repeatedFields_ = [1];
+proto.immudb.schema.Op.oneofGroups_ = [[1,2,3]];
+
+/**
+ * @enum {number}
+ */
+proto.immudb.schema.Op.OperationCase = {
+  OPERATION_NOT_SET: 0,
+  KV: 1,
+  ZADD: 2,
+  REF: 3
+};
+
+/**
+ * @return {proto.immudb.schema.Op.OperationCase}
+ */
+proto.immudb.schema.Op.prototype.getOperationCase = function() {
+  return /** @type {proto.immudb.schema.Op.OperationCase} */(jspb.Message.computeOneofCase(this, proto.immudb.schema.Op.oneofGroups_[0]));
+};
 
 
 
@@ -5346,8 +4074,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.immudb.schema.KVList.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.KVList.toObject(opt_includeInstance, this);
+proto.immudb.schema.Op.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.Op.toObject(opt_includeInstance, this);
 };
 
 
@@ -5356,14 +4084,15 @@ proto.immudb.schema.KVList.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.KVList} msg The msg instance to transform.
+ * @param {!proto.immudb.schema.Op} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.KVList.toObject = function(includeInstance, msg) {
+proto.immudb.schema.Op.toObject = function(includeInstance, msg) {
   var f, obj = {
-    kvsList: jspb.Message.toObjectList(msg.getKvsList(),
-    proto.immudb.schema.KeyValue.toObject, includeInstance)
+    kv: (f = msg.getKv()) && proto.immudb.schema.KeyValue.toObject(includeInstance, f),
+    zadd: (f = msg.getZadd()) && proto.immudb.schema.ZAddRequest.toObject(includeInstance, f),
+    ref: (f = msg.getRef()) && proto.immudb.schema.ReferenceRequest.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5377,23 +4106,23 @@ proto.immudb.schema.KVList.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.KVList}
+ * @return {!proto.immudb.schema.Op}
  */
-proto.immudb.schema.KVList.deserializeBinary = function(bytes) {
+proto.immudb.schema.Op.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.KVList;
-  return proto.immudb.schema.KVList.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.immudb.schema.Op;
+  return proto.immudb.schema.Op.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.immudb.schema.KVList} msg The message object to deserialize into.
+ * @param {!proto.immudb.schema.Op} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.KVList}
+ * @return {!proto.immudb.schema.Op}
  */
-proto.immudb.schema.KVList.deserializeBinaryFromReader = function(msg, reader) {
+proto.immudb.schema.Op.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -5403,7 +4132,17 @@ proto.immudb.schema.KVList.deserializeBinaryFromReader = function(msg, reader) {
     case 1:
       var value = new proto.immudb.schema.KeyValue;
       reader.readMessage(value,proto.immudb.schema.KeyValue.deserializeBinaryFromReader);
-      msg.addKvs(value);
+      msg.setKv(value);
+      break;
+    case 2:
+      var value = new proto.immudb.schema.ZAddRequest;
+      reader.readMessage(value,proto.immudb.schema.ZAddRequest.deserializeBinaryFromReader);
+      msg.setZadd(value);
+      break;
+    case 3:
+      var value = new proto.immudb.schema.ReferenceRequest;
+      reader.readMessage(value,proto.immudb.schema.ReferenceRequest.deserializeBinaryFromReader);
+      msg.setRef(value);
       break;
     default:
       reader.skipField();
@@ -5418,9 +4157,9 @@ proto.immudb.schema.KVList.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.immudb.schema.KVList.prototype.serializeBinary = function() {
+proto.immudb.schema.Op.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.KVList.serializeBinaryToWriter(this, writer);
+  proto.immudb.schema.Op.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -5428,716 +4167,64 @@ proto.immudb.schema.KVList.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.KVList} message
+ * @param {!proto.immudb.schema.Op} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.KVList.serializeBinaryToWriter = function(message, writer) {
+proto.immudb.schema.Op.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getKvsList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
+  f = message.getKv();
+  if (f != null) {
+    writer.writeMessage(
       1,
       f,
       proto.immudb.schema.KeyValue.serializeBinaryToWriter
     );
   }
-};
-
-
-/**
- * repeated KeyValue KVs = 1;
- * @return {!Array<!proto.immudb.schema.KeyValue>}
- */
-proto.immudb.schema.KVList.prototype.getKvsList = function() {
-  return /** @type{!Array<!proto.immudb.schema.KeyValue>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.immudb.schema.KeyValue, 1));
-};
-
-
-/**
- * @param {!Array<!proto.immudb.schema.KeyValue>} value
- * @return {!proto.immudb.schema.KVList} returns this
-*/
-proto.immudb.schema.KVList.prototype.setKvsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 1, value);
-};
-
-
-/**
- * @param {!proto.immudb.schema.KeyValue=} opt_value
- * @param {number=} opt_index
- * @return {!proto.immudb.schema.KeyValue}
- */
-proto.immudb.schema.KVList.prototype.addKvs = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.immudb.schema.KeyValue, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.immudb.schema.KVList} returns this
- */
-proto.immudb.schema.KVList.prototype.clearKvsList = function() {
-  return this.setKvsList([]);
-};
-
-
-
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.immudb.schema.SKVList.repeatedFields_ = [1];
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.immudb.schema.SKVList.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.SKVList.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.SKVList} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.SKVList.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    skvsList: jspb.Message.toObjectList(msg.getSkvsList(),
-    proto.immudb.schema.StructuredKeyValue.toObject, includeInstance)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.SKVList}
- */
-proto.immudb.schema.SKVList.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.SKVList;
-  return proto.immudb.schema.SKVList.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.immudb.schema.SKVList} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.SKVList}
- */
-proto.immudb.schema.SKVList.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = new proto.immudb.schema.StructuredKeyValue;
-      reader.readMessage(value,proto.immudb.schema.StructuredKeyValue.deserializeBinaryFromReader);
-      msg.addSkvs(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.immudb.schema.SKVList.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.SKVList.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.SKVList} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.SKVList.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getSkvsList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      1,
-      f,
-      proto.immudb.schema.StructuredKeyValue.serializeBinaryToWriter
-    );
-  }
-};
-
-
-/**
- * repeated StructuredKeyValue SKVs = 1;
- * @return {!Array<!proto.immudb.schema.StructuredKeyValue>}
- */
-proto.immudb.schema.SKVList.prototype.getSkvsList = function() {
-  return /** @type{!Array<!proto.immudb.schema.StructuredKeyValue>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.immudb.schema.StructuredKeyValue, 1));
-};
-
-
-/**
- * @param {!Array<!proto.immudb.schema.StructuredKeyValue>} value
- * @return {!proto.immudb.schema.SKVList} returns this
-*/
-proto.immudb.schema.SKVList.prototype.setSkvsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 1, value);
-};
-
-
-/**
- * @param {!proto.immudb.schema.StructuredKeyValue=} opt_value
- * @param {number=} opt_index
- * @return {!proto.immudb.schema.StructuredKeyValue}
- */
-proto.immudb.schema.SKVList.prototype.addSkvs = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.immudb.schema.StructuredKeyValue, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.immudb.schema.SKVList} returns this
- */
-proto.immudb.schema.SKVList.prototype.clearSkvsList = function() {
-  return this.setSkvsList([]);
-};
-
-
-
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.immudb.schema.KeyList.repeatedFields_ = [1];
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.immudb.schema.KeyList.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.KeyList.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.KeyList} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.KeyList.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    keysList: jspb.Message.toObjectList(msg.getKeysList(),
-    proto.immudb.schema.Key.toObject, includeInstance)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.KeyList}
- */
-proto.immudb.schema.KeyList.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.KeyList;
-  return proto.immudb.schema.KeyList.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.immudb.schema.KeyList} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.KeyList}
- */
-proto.immudb.schema.KeyList.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = new proto.immudb.schema.Key;
-      reader.readMessage(value,proto.immudb.schema.Key.deserializeBinaryFromReader);
-      msg.addKeys(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.immudb.schema.KeyList.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.KeyList.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.KeyList} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.KeyList.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getKeysList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      1,
-      f,
-      proto.immudb.schema.Key.serializeBinaryToWriter
-    );
-  }
-};
-
-
-/**
- * repeated Key keys = 1;
- * @return {!Array<!proto.immudb.schema.Key>}
- */
-proto.immudb.schema.KeyList.prototype.getKeysList = function() {
-  return /** @type{!Array<!proto.immudb.schema.Key>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.immudb.schema.Key, 1));
-};
-
-
-/**
- * @param {!Array<!proto.immudb.schema.Key>} value
- * @return {!proto.immudb.schema.KeyList} returns this
-*/
-proto.immudb.schema.KeyList.prototype.setKeysList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 1, value);
-};
-
-
-/**
- * @param {!proto.immudb.schema.Key=} opt_value
- * @param {number=} opt_index
- * @return {!proto.immudb.schema.Key}
- */
-proto.immudb.schema.KeyList.prototype.addKeys = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.immudb.schema.Key, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.immudb.schema.KeyList} returns this
- */
-proto.immudb.schema.KeyList.prototype.clearKeysList = function() {
-  return this.setKeysList([]);
-};
-
-
-
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.immudb.schema.ItemList.repeatedFields_ = [1];
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.immudb.schema.ItemList.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.ItemList.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.ItemList} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.ItemList.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    itemsList: jspb.Message.toObjectList(msg.getItemsList(),
-    proto.immudb.schema.Item.toObject, includeInstance)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.ItemList}
- */
-proto.immudb.schema.ItemList.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.ItemList;
-  return proto.immudb.schema.ItemList.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.immudb.schema.ItemList} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.ItemList}
- */
-proto.immudb.schema.ItemList.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = new proto.immudb.schema.Item;
-      reader.readMessage(value,proto.immudb.schema.Item.deserializeBinaryFromReader);
-      msg.addItems(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.immudb.schema.ItemList.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.ItemList.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.ItemList} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.ItemList.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getItemsList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      1,
-      f,
-      proto.immudb.schema.Item.serializeBinaryToWriter
-    );
-  }
-};
-
-
-/**
- * repeated Item items = 1;
- * @return {!Array<!proto.immudb.schema.Item>}
- */
-proto.immudb.schema.ItemList.prototype.getItemsList = function() {
-  return /** @type{!Array<!proto.immudb.schema.Item>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.immudb.schema.Item, 1));
-};
-
-
-/**
- * @param {!Array<!proto.immudb.schema.Item>} value
- * @return {!proto.immudb.schema.ItemList} returns this
-*/
-proto.immudb.schema.ItemList.prototype.setItemsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 1, value);
-};
-
-
-/**
- * @param {!proto.immudb.schema.Item=} opt_value
- * @param {number=} opt_index
- * @return {!proto.immudb.schema.Item}
- */
-proto.immudb.schema.ItemList.prototype.addItems = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.immudb.schema.Item, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.immudb.schema.ItemList} returns this
- */
-proto.immudb.schema.ItemList.prototype.clearItemsList = function() {
-  return this.setItemsList([]);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.immudb.schema.ZItem.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.ZItem.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.ZItem} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.ZItem.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    item: (f = msg.getItem()) && proto.immudb.schema.Item.toObject(includeInstance, f),
-    score: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-    currentoffset: msg.getCurrentoffset_asB64(),
-    index: jspb.Message.getFieldWithDefault(msg, 4, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.ZItem}
- */
-proto.immudb.schema.ZItem.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.ZItem;
-  return proto.immudb.schema.ZItem.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.immudb.schema.ZItem} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.ZItem}
- */
-proto.immudb.schema.ZItem.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = new proto.immudb.schema.Item;
-      reader.readMessage(value,proto.immudb.schema.Item.deserializeBinaryFromReader);
-      msg.setItem(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readDouble());
-      msg.setScore(value);
-      break;
-    case 3:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setCurrentoffset(value);
-      break;
-    case 4:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setIndex(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.immudb.schema.ZItem.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.ZItem.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.ZItem} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.ZItem.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getItem();
+  f = message.getZadd();
   if (f != null) {
     writer.writeMessage(
-      1,
-      f,
-      proto.immudb.schema.Item.serializeBinaryToWriter
-    );
-  }
-  f = message.getScore();
-  if (f !== 0.0) {
-    writer.writeDouble(
       2,
-      f
+      f,
+      proto.immudb.schema.ZAddRequest.serializeBinaryToWriter
     );
   }
-  f = message.getCurrentoffset_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
+  f = message.getRef();
+  if (f != null) {
+    writer.writeMessage(
       3,
-      f
-    );
-  }
-  f = message.getIndex();
-  if (f !== 0) {
-    writer.writeUint64(
-      4,
-      f
+      f,
+      proto.immudb.schema.ReferenceRequest.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional Item item = 1;
- * @return {?proto.immudb.schema.Item}
+ * optional KeyValue kv = 1;
+ * @return {?proto.immudb.schema.KeyValue}
  */
-proto.immudb.schema.ZItem.prototype.getItem = function() {
-  return /** @type{?proto.immudb.schema.Item} */ (
-    jspb.Message.getWrapperField(this, proto.immudb.schema.Item, 1));
+proto.immudb.schema.Op.prototype.getKv = function() {
+  return /** @type{?proto.immudb.schema.KeyValue} */ (
+    jspb.Message.getWrapperField(this, proto.immudb.schema.KeyValue, 1));
 };
 
 
 /**
- * @param {?proto.immudb.schema.Item|undefined} value
- * @return {!proto.immudb.schema.ZItem} returns this
+ * @param {?proto.immudb.schema.KeyValue|undefined} value
+ * @return {!proto.immudb.schema.Op} returns this
 */
-proto.immudb.schema.ZItem.prototype.setItem = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
+proto.immudb.schema.Op.prototype.setKv = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 1, proto.immudb.schema.Op.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.immudb.schema.ZItem} returns this
+ * @return {!proto.immudb.schema.Op} returns this
  */
-proto.immudb.schema.ZItem.prototype.clearItem = function() {
-  return this.setItem(undefined);
+proto.immudb.schema.Op.prototype.clearKv = function() {
+  return this.setKv(undefined);
 };
 
 
@@ -6145,744 +4232,36 @@ proto.immudb.schema.ZItem.prototype.clearItem = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.immudb.schema.ZItem.prototype.hasItem = function() {
+proto.immudb.schema.Op.prototype.hasKv = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
- * optional double score = 2;
- * @return {number}
+ * optional ZAddRequest zAdd = 2;
+ * @return {?proto.immudb.schema.ZAddRequest}
  */
-proto.immudb.schema.ZItem.prototype.getScore = function() {
-  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 2, 0.0));
+proto.immudb.schema.Op.prototype.getZadd = function() {
+  return /** @type{?proto.immudb.schema.ZAddRequest} */ (
+    jspb.Message.getWrapperField(this, proto.immudb.schema.ZAddRequest, 2));
 };
 
 
 /**
- * @param {number} value
- * @return {!proto.immudb.schema.ZItem} returns this
- */
-proto.immudb.schema.ZItem.prototype.setScore = function(value) {
-  return jspb.Message.setProto3FloatField(this, 2, value);
-};
-
-
-/**
- * optional bytes currentOffset = 3;
- * @return {!(string|Uint8Array)}
- */
-proto.immudb.schema.ZItem.prototype.getCurrentoffset = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * optional bytes currentOffset = 3;
- * This is a type-conversion wrapper around `getCurrentoffset()`
- * @return {string}
- */
-proto.immudb.schema.ZItem.prototype.getCurrentoffset_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getCurrentoffset()));
-};
-
-
-/**
- * optional bytes currentOffset = 3;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getCurrentoffset()`
- * @return {!Uint8Array}
- */
-proto.immudb.schema.ZItem.prototype.getCurrentoffset_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getCurrentoffset()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.ZItem} returns this
- */
-proto.immudb.schema.ZItem.prototype.setCurrentoffset = function(value) {
-  return jspb.Message.setProto3BytesField(this, 3, value);
-};
-
-
-/**
- * optional uint64 index = 4;
- * @return {number}
- */
-proto.immudb.schema.ZItem.prototype.getIndex = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.immudb.schema.ZItem} returns this
- */
-proto.immudb.schema.ZItem.prototype.setIndex = function(value) {
-  return jspb.Message.setProto3IntField(this, 4, value);
-};
-
-
-
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.immudb.schema.ZItemList.repeatedFields_ = [1];
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.immudb.schema.ZItemList.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.ZItemList.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.ZItemList} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.ZItemList.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    itemsList: jspb.Message.toObjectList(msg.getItemsList(),
-    proto.immudb.schema.ZItem.toObject, includeInstance)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.ZItemList}
- */
-proto.immudb.schema.ZItemList.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.ZItemList;
-  return proto.immudb.schema.ZItemList.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.immudb.schema.ZItemList} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.ZItemList}
- */
-proto.immudb.schema.ZItemList.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = new proto.immudb.schema.ZItem;
-      reader.readMessage(value,proto.immudb.schema.ZItem.deserializeBinaryFromReader);
-      msg.addItems(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.immudb.schema.ZItemList.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.ZItemList.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.ZItemList} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.ZItemList.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getItemsList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      1,
-      f,
-      proto.immudb.schema.ZItem.serializeBinaryToWriter
-    );
-  }
-};
-
-
-/**
- * repeated ZItem items = 1;
- * @return {!Array<!proto.immudb.schema.ZItem>}
- */
-proto.immudb.schema.ZItemList.prototype.getItemsList = function() {
-  return /** @type{!Array<!proto.immudb.schema.ZItem>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.immudb.schema.ZItem, 1));
-};
-
-
-/**
- * @param {!Array<!proto.immudb.schema.ZItem>} value
- * @return {!proto.immudb.schema.ZItemList} returns this
+ * @param {?proto.immudb.schema.ZAddRequest|undefined} value
+ * @return {!proto.immudb.schema.Op} returns this
 */
-proto.immudb.schema.ZItemList.prototype.setItemsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 1, value);
-};
-
-
-/**
- * @param {!proto.immudb.schema.ZItem=} opt_value
- * @param {number=} opt_index
- * @return {!proto.immudb.schema.ZItem}
- */
-proto.immudb.schema.ZItemList.prototype.addItems = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.immudb.schema.ZItem, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.immudb.schema.ZItemList} returns this
- */
-proto.immudb.schema.ZItemList.prototype.clearItemsList = function() {
-  return this.setItemsList([]);
-};
-
-
-
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.immudb.schema.StructuredItemList.repeatedFields_ = [1];
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.immudb.schema.StructuredItemList.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.StructuredItemList.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.StructuredItemList} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.StructuredItemList.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    itemsList: jspb.Message.toObjectList(msg.getItemsList(),
-    proto.immudb.schema.StructuredItem.toObject, includeInstance)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.StructuredItemList}
- */
-proto.immudb.schema.StructuredItemList.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.StructuredItemList;
-  return proto.immudb.schema.StructuredItemList.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.immudb.schema.StructuredItemList} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.StructuredItemList}
- */
-proto.immudb.schema.StructuredItemList.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = new proto.immudb.schema.StructuredItem;
-      reader.readMessage(value,proto.immudb.schema.StructuredItem.deserializeBinaryFromReader);
-      msg.addItems(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.immudb.schema.StructuredItemList.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.StructuredItemList.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.StructuredItemList} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.StructuredItemList.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getItemsList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      1,
-      f,
-      proto.immudb.schema.StructuredItem.serializeBinaryToWriter
-    );
-  }
-};
-
-
-/**
- * repeated StructuredItem items = 1;
- * @return {!Array<!proto.immudb.schema.StructuredItem>}
- */
-proto.immudb.schema.StructuredItemList.prototype.getItemsList = function() {
-  return /** @type{!Array<!proto.immudb.schema.StructuredItem>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.immudb.schema.StructuredItem, 1));
-};
-
-
-/**
- * @param {!Array<!proto.immudb.schema.StructuredItem>} value
- * @return {!proto.immudb.schema.StructuredItemList} returns this
-*/
-proto.immudb.schema.StructuredItemList.prototype.setItemsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 1, value);
-};
-
-
-/**
- * @param {!proto.immudb.schema.StructuredItem=} opt_value
- * @param {number=} opt_index
- * @return {!proto.immudb.schema.StructuredItem}
- */
-proto.immudb.schema.StructuredItemList.prototype.addItems = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.immudb.schema.StructuredItem, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.immudb.schema.StructuredItemList} returns this
- */
-proto.immudb.schema.StructuredItemList.prototype.clearItemsList = function() {
-  return this.setItemsList([]);
-};
-
-
-
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.immudb.schema.ZStructuredItemList.repeatedFields_ = [1];
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.immudb.schema.ZStructuredItemList.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.ZStructuredItemList.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.ZStructuredItemList} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.ZStructuredItemList.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    itemsList: jspb.Message.toObjectList(msg.getItemsList(),
-    proto.immudb.schema.ZStructuredItem.toObject, includeInstance)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.ZStructuredItemList}
- */
-proto.immudb.schema.ZStructuredItemList.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.ZStructuredItemList;
-  return proto.immudb.schema.ZStructuredItemList.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.immudb.schema.ZStructuredItemList} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.ZStructuredItemList}
- */
-proto.immudb.schema.ZStructuredItemList.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = new proto.immudb.schema.ZStructuredItem;
-      reader.readMessage(value,proto.immudb.schema.ZStructuredItem.deserializeBinaryFromReader);
-      msg.addItems(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.immudb.schema.ZStructuredItemList.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.ZStructuredItemList.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.ZStructuredItemList} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.ZStructuredItemList.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getItemsList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      1,
-      f,
-      proto.immudb.schema.ZStructuredItem.serializeBinaryToWriter
-    );
-  }
-};
-
-
-/**
- * repeated ZStructuredItem items = 1;
- * @return {!Array<!proto.immudb.schema.ZStructuredItem>}
- */
-proto.immudb.schema.ZStructuredItemList.prototype.getItemsList = function() {
-  return /** @type{!Array<!proto.immudb.schema.ZStructuredItem>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.immudb.schema.ZStructuredItem, 1));
-};
-
-
-/**
- * @param {!Array<!proto.immudb.schema.ZStructuredItem>} value
- * @return {!proto.immudb.schema.ZStructuredItemList} returns this
-*/
-proto.immudb.schema.ZStructuredItemList.prototype.setItemsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 1, value);
-};
-
-
-/**
- * @param {!proto.immudb.schema.ZStructuredItem=} opt_value
- * @param {number=} opt_index
- * @return {!proto.immudb.schema.ZStructuredItem}
- */
-proto.immudb.schema.ZStructuredItemList.prototype.addItems = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.immudb.schema.ZStructuredItem, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.immudb.schema.ZStructuredItemList} returns this
- */
-proto.immudb.schema.ZStructuredItemList.prototype.clearItemsList = function() {
-  return this.setItemsList([]);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.immudb.schema.ZStructuredItem.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.ZStructuredItem.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.ZStructuredItem} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.ZStructuredItem.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    item: (f = msg.getItem()) && proto.immudb.schema.StructuredItem.toObject(includeInstance, f),
-    score: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-    currentoffset: msg.getCurrentoffset_asB64(),
-    index: jspb.Message.getFieldWithDefault(msg, 4, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.ZStructuredItem}
- */
-proto.immudb.schema.ZStructuredItem.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.ZStructuredItem;
-  return proto.immudb.schema.ZStructuredItem.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.immudb.schema.ZStructuredItem} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.ZStructuredItem}
- */
-proto.immudb.schema.ZStructuredItem.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = new proto.immudb.schema.StructuredItem;
-      reader.readMessage(value,proto.immudb.schema.StructuredItem.deserializeBinaryFromReader);
-      msg.setItem(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readDouble());
-      msg.setScore(value);
-      break;
-    case 3:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setCurrentoffset(value);
-      break;
-    case 4:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setIndex(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.immudb.schema.ZStructuredItem.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.ZStructuredItem.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.ZStructuredItem} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.ZStructuredItem.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getItem();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto.immudb.schema.StructuredItem.serializeBinaryToWriter
-    );
-  }
-  f = message.getScore();
-  if (f !== 0.0) {
-    writer.writeDouble(
-      2,
-      f
-    );
-  }
-  f = message.getCurrentoffset_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
-      3,
-      f
-    );
-  }
-  f = message.getIndex();
-  if (f !== 0) {
-    writer.writeUint64(
-      4,
-      f
-    );
-  }
-};
-
-
-/**
- * optional StructuredItem item = 1;
- * @return {?proto.immudb.schema.StructuredItem}
- */
-proto.immudb.schema.ZStructuredItem.prototype.getItem = function() {
-  return /** @type{?proto.immudb.schema.StructuredItem} */ (
-    jspb.Message.getWrapperField(this, proto.immudb.schema.StructuredItem, 1));
-};
-
-
-/**
- * @param {?proto.immudb.schema.StructuredItem|undefined} value
- * @return {!proto.immudb.schema.ZStructuredItem} returns this
-*/
-proto.immudb.schema.ZStructuredItem.prototype.setItem = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
+proto.immudb.schema.Op.prototype.setZadd = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 2, proto.immudb.schema.Op.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.immudb.schema.ZStructuredItem} returns this
+ * @return {!proto.immudb.schema.Op} returns this
  */
-proto.immudb.schema.ZStructuredItem.prototype.clearItem = function() {
-  return this.setItem(undefined);
+proto.immudb.schema.Op.prototype.clearZadd = function() {
+  return this.setZadd(undefined);
 };
 
 
@@ -6890,291 +4269,55 @@ proto.immudb.schema.ZStructuredItem.prototype.clearItem = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.immudb.schema.ZStructuredItem.prototype.hasItem = function() {
-  return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional double score = 2;
- * @return {number}
- */
-proto.immudb.schema.ZStructuredItem.prototype.getScore = function() {
-  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 2, 0.0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.immudb.schema.ZStructuredItem} returns this
- */
-proto.immudb.schema.ZStructuredItem.prototype.setScore = function(value) {
-  return jspb.Message.setProto3FloatField(this, 2, value);
-};
-
-
-/**
- * optional bytes currentOffset = 3;
- * @return {!(string|Uint8Array)}
- */
-proto.immudb.schema.ZStructuredItem.prototype.getCurrentoffset = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * optional bytes currentOffset = 3;
- * This is a type-conversion wrapper around `getCurrentoffset()`
- * @return {string}
- */
-proto.immudb.schema.ZStructuredItem.prototype.getCurrentoffset_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getCurrentoffset()));
-};
-
-
-/**
- * optional bytes currentOffset = 3;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getCurrentoffset()`
- * @return {!Uint8Array}
- */
-proto.immudb.schema.ZStructuredItem.prototype.getCurrentoffset_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getCurrentoffset()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.ZStructuredItem} returns this
- */
-proto.immudb.schema.ZStructuredItem.prototype.setCurrentoffset = function(value) {
-  return jspb.Message.setProto3BytesField(this, 3, value);
-};
-
-
-/**
- * optional uint64 index = 4;
- * @return {number}
- */
-proto.immudb.schema.ZStructuredItem.prototype.getIndex = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.immudb.schema.ZStructuredItem} returns this
- */
-proto.immudb.schema.ZStructuredItem.prototype.setIndex = function(value) {
-  return jspb.Message.setProto3IntField(this, 4, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.immudb.schema.Root.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.Root.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.Root} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.Root.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    payload: (f = msg.getPayload()) && proto.immudb.schema.RootIndex.toObject(includeInstance, f),
-    signature: (f = msg.getSignature()) && proto.immudb.schema.Signature.toObject(includeInstance, f)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.Root}
- */
-proto.immudb.schema.Root.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.Root;
-  return proto.immudb.schema.Root.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.immudb.schema.Root} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.Root}
- */
-proto.immudb.schema.Root.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = new proto.immudb.schema.RootIndex;
-      reader.readMessage(value,proto.immudb.schema.RootIndex.deserializeBinaryFromReader);
-      msg.setPayload(value);
-      break;
-    case 2:
-      var value = new proto.immudb.schema.Signature;
-      reader.readMessage(value,proto.immudb.schema.Signature.deserializeBinaryFromReader);
-      msg.setSignature(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.immudb.schema.Root.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.Root.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.Root} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.Root.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getPayload();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto.immudb.schema.RootIndex.serializeBinaryToWriter
-    );
-  }
-  f = message.getSignature();
-  if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      proto.immudb.schema.Signature.serializeBinaryToWriter
-    );
-  }
-};
-
-
-/**
- * optional RootIndex payload = 1;
- * @return {?proto.immudb.schema.RootIndex}
- */
-proto.immudb.schema.Root.prototype.getPayload = function() {
-  return /** @type{?proto.immudb.schema.RootIndex} */ (
-    jspb.Message.getWrapperField(this, proto.immudb.schema.RootIndex, 1));
-};
-
-
-/**
- * @param {?proto.immudb.schema.RootIndex|undefined} value
- * @return {!proto.immudb.schema.Root} returns this
-*/
-proto.immudb.schema.Root.prototype.setPayload = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.immudb.schema.Root} returns this
- */
-proto.immudb.schema.Root.prototype.clearPayload = function() {
-  return this.setPayload(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.immudb.schema.Root.prototype.hasPayload = function() {
-  return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional Signature signature = 2;
- * @return {?proto.immudb.schema.Signature}
- */
-proto.immudb.schema.Root.prototype.getSignature = function() {
-  return /** @type{?proto.immudb.schema.Signature} */ (
-    jspb.Message.getWrapperField(this, proto.immudb.schema.Signature, 2));
-};
-
-
-/**
- * @param {?proto.immudb.schema.Signature|undefined} value
- * @return {!proto.immudb.schema.Root} returns this
-*/
-proto.immudb.schema.Root.prototype.setSignature = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.immudb.schema.Root} returns this
- */
-proto.immudb.schema.Root.prototype.clearSignature = function() {
-  return this.setSignature(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.immudb.schema.Root.prototype.hasSignature = function() {
+proto.immudb.schema.Op.prototype.hasZadd = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
+/**
+ * optional ReferenceRequest ref = 3;
+ * @return {?proto.immudb.schema.ReferenceRequest}
+ */
+proto.immudb.schema.Op.prototype.getRef = function() {
+  return /** @type{?proto.immudb.schema.ReferenceRequest} */ (
+    jspb.Message.getWrapperField(this, proto.immudb.schema.ReferenceRequest, 3));
+};
+
+
+/**
+ * @param {?proto.immudb.schema.ReferenceRequest|undefined} value
+ * @return {!proto.immudb.schema.Op} returns this
+*/
+proto.immudb.schema.Op.prototype.setRef = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 3, proto.immudb.schema.Op.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.immudb.schema.Op} returns this
+ */
+proto.immudb.schema.Op.prototype.clearRef = function() {
+  return this.setRef(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.immudb.schema.Op.prototype.hasRef = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.immudb.schema.ExecAllRequest.repeatedFields_ = [1];
 
 
 
@@ -7191,8 +4334,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.immudb.schema.RootIndex.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.RootIndex.toObject(opt_includeInstance, this);
+proto.immudb.schema.ExecAllRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.ExecAllRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -7201,14 +4344,14 @@ proto.immudb.schema.RootIndex.prototype.toObject = function(opt_includeInstance)
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.RootIndex} msg The msg instance to transform.
+ * @param {!proto.immudb.schema.ExecAllRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.RootIndex.toObject = function(includeInstance, msg) {
+proto.immudb.schema.ExecAllRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    index: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    root: msg.getRoot_asB64()
+    operationsList: jspb.Message.toObjectList(msg.getOperationsList(),
+    proto.immudb.schema.Op.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -7222,23 +4365,23 @@ proto.immudb.schema.RootIndex.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.RootIndex}
+ * @return {!proto.immudb.schema.ExecAllRequest}
  */
-proto.immudb.schema.RootIndex.deserializeBinary = function(bytes) {
+proto.immudb.schema.ExecAllRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.RootIndex;
-  return proto.immudb.schema.RootIndex.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.immudb.schema.ExecAllRequest;
+  return proto.immudb.schema.ExecAllRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.immudb.schema.RootIndex} msg The message object to deserialize into.
+ * @param {!proto.immudb.schema.ExecAllRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.RootIndex}
+ * @return {!proto.immudb.schema.ExecAllRequest}
  */
-proto.immudb.schema.RootIndex.deserializeBinaryFromReader = function(msg, reader) {
+proto.immudb.schema.ExecAllRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -7246,12 +4389,9 @@ proto.immudb.schema.RootIndex.deserializeBinaryFromReader = function(msg, reader
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setIndex(value);
-      break;
-    case 2:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setRoot(value);
+      var value = new proto.immudb.schema.Op;
+      reader.readMessage(value,proto.immudb.schema.Op.deserializeBinaryFromReader);
+      msg.addOperations(value);
       break;
     default:
       reader.skipField();
@@ -7266,9 +4406,9 @@ proto.immudb.schema.RootIndex.deserializeBinaryFromReader = function(msg, reader
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.immudb.schema.RootIndex.prototype.serializeBinary = function() {
+proto.immudb.schema.ExecAllRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.RootIndex.serializeBinaryToWriter(this, writer);
+  proto.immudb.schema.ExecAllRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -7276,89 +4416,68 @@ proto.immudb.schema.RootIndex.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.RootIndex} message
+ * @param {!proto.immudb.schema.ExecAllRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.RootIndex.serializeBinaryToWriter = function(message, writer) {
+proto.immudb.schema.ExecAllRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getIndex();
-  if (f !== 0) {
-    writer.writeUint64(
-      1,
-      f
-    );
-  }
-  f = message.getRoot_asU8();
+  f = message.getOperationsList();
   if (f.length > 0) {
-    writer.writeBytes(
-      2,
-      f
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.immudb.schema.Op.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional uint64 index = 1;
- * @return {number}
+ * repeated Op Operations = 1;
+ * @return {!Array<!proto.immudb.schema.Op>}
  */
-proto.immudb.schema.RootIndex.prototype.getIndex = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+proto.immudb.schema.ExecAllRequest.prototype.getOperationsList = function() {
+  return /** @type{!Array<!proto.immudb.schema.Op>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.immudb.schema.Op, 1));
 };
 
 
 /**
- * @param {number} value
- * @return {!proto.immudb.schema.RootIndex} returns this
- */
-proto.immudb.schema.RootIndex.prototype.setIndex = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
+ * @param {!Array<!proto.immudb.schema.Op>} value
+ * @return {!proto.immudb.schema.ExecAllRequest} returns this
+*/
+proto.immudb.schema.ExecAllRequest.prototype.setOperationsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * optional bytes root = 2;
- * @return {!(string|Uint8Array)}
+ * @param {!proto.immudb.schema.Op=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.immudb.schema.Op}
  */
-proto.immudb.schema.RootIndex.prototype.getRoot = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+proto.immudb.schema.ExecAllRequest.prototype.addOperations = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.immudb.schema.Op, opt_index);
 };
 
 
 /**
- * optional bytes root = 2;
- * This is a type-conversion wrapper around `getRoot()`
- * @return {string}
+ * Clears the list making it empty but non-null.
+ * @return {!proto.immudb.schema.ExecAllRequest} returns this
  */
-proto.immudb.schema.RootIndex.prototype.getRoot_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getRoot()));
+proto.immudb.schema.ExecAllRequest.prototype.clearOperationsList = function() {
+  return this.setOperationsList([]);
 };
+
 
 
 /**
- * optional bytes root = 2;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getRoot()`
- * @return {!Uint8Array}
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
  */
-proto.immudb.schema.RootIndex.prototype.getRoot_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getRoot()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.RootIndex} returns this
- */
-proto.immudb.schema.RootIndex.prototype.setRoot = function(value) {
-  return jspb.Message.setProto3BytesField(this, 2, value);
-};
-
-
+proto.immudb.schema.Entries.repeatedFields_ = [1];
 
 
 
@@ -7375,8 +4494,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.immudb.schema.Signature.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.Signature.toObject(opt_includeInstance, this);
+proto.immudb.schema.Entries.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.Entries.toObject(opt_includeInstance, this);
 };
 
 
@@ -7385,14 +4504,14 @@ proto.immudb.schema.Signature.prototype.toObject = function(opt_includeInstance)
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.Signature} msg The msg instance to transform.
+ * @param {!proto.immudb.schema.Entries} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.Signature.toObject = function(includeInstance, msg) {
+proto.immudb.schema.Entries.toObject = function(includeInstance, msg) {
   var f, obj = {
-    signature: msg.getSignature_asB64(),
-    publickey: msg.getPublickey_asB64()
+    entriesList: jspb.Message.toObjectList(msg.getEntriesList(),
+    proto.immudb.schema.Entry.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -7406,23 +4525,23 @@ proto.immudb.schema.Signature.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.Signature}
+ * @return {!proto.immudb.schema.Entries}
  */
-proto.immudb.schema.Signature.deserializeBinary = function(bytes) {
+proto.immudb.schema.Entries.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.Signature;
-  return proto.immudb.schema.Signature.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.immudb.schema.Entries;
+  return proto.immudb.schema.Entries.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.immudb.schema.Signature} msg The message object to deserialize into.
+ * @param {!proto.immudb.schema.Entries} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.Signature}
+ * @return {!proto.immudb.schema.Entries}
  */
-proto.immudb.schema.Signature.deserializeBinaryFromReader = function(msg, reader) {
+proto.immudb.schema.Entries.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -7430,12 +4549,9 @@ proto.immudb.schema.Signature.deserializeBinaryFromReader = function(msg, reader
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setSignature(value);
-      break;
-    case 2:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setPublickey(value);
+      var value = new proto.immudb.schema.Entry;
+      reader.readMessage(value,proto.immudb.schema.Entry.deserializeBinaryFromReader);
+      msg.addEntries(value);
       break;
     default:
       reader.skipField();
@@ -7450,9 +4566,9 @@ proto.immudb.schema.Signature.deserializeBinaryFromReader = function(msg, reader
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.immudb.schema.Signature.prototype.serializeBinary = function() {
+proto.immudb.schema.Entries.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.Signature.serializeBinaryToWriter(this, writer);
+  proto.immudb.schema.Entries.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -7460,110 +4576,58 @@ proto.immudb.schema.Signature.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.Signature} message
+ * @param {!proto.immudb.schema.Entries} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.Signature.serializeBinaryToWriter = function(message, writer) {
+proto.immudb.schema.Entries.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getSignature_asU8();
+  f = message.getEntriesList();
   if (f.length > 0) {
-    writer.writeBytes(
+    writer.writeRepeatedMessage(
       1,
-      f
-    );
-  }
-  f = message.getPublickey_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
-      2,
-      f
+      f,
+      proto.immudb.schema.Entry.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional bytes signature = 1;
- * @return {!(string|Uint8Array)}
+ * repeated Entry entries = 1;
+ * @return {!Array<!proto.immudb.schema.Entry>}
  */
-proto.immudb.schema.Signature.prototype.getSignature = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.immudb.schema.Entries.prototype.getEntriesList = function() {
+  return /** @type{!Array<!proto.immudb.schema.Entry>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.immudb.schema.Entry, 1));
 };
 
 
 /**
- * optional bytes signature = 1;
- * This is a type-conversion wrapper around `getSignature()`
- * @return {string}
- */
-proto.immudb.schema.Signature.prototype.getSignature_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getSignature()));
+ * @param {!Array<!proto.immudb.schema.Entry>} value
+ * @return {!proto.immudb.schema.Entries} returns this
+*/
+proto.immudb.schema.Entries.prototype.setEntriesList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * optional bytes signature = 1;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getSignature()`
- * @return {!Uint8Array}
+ * @param {!proto.immudb.schema.Entry=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.immudb.schema.Entry}
  */
-proto.immudb.schema.Signature.prototype.getSignature_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getSignature()));
+proto.immudb.schema.Entries.prototype.addEntries = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.immudb.schema.Entry, opt_index);
 };
 
 
 /**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.Signature} returns this
+ * Clears the list making it empty but non-null.
+ * @return {!proto.immudb.schema.Entries} returns this
  */
-proto.immudb.schema.Signature.prototype.setSignature = function(value) {
-  return jspb.Message.setProto3BytesField(this, 1, value);
-};
-
-
-/**
- * optional bytes publicKey = 2;
- * @return {!(string|Uint8Array)}
- */
-proto.immudb.schema.Signature.prototype.getPublickey = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * optional bytes publicKey = 2;
- * This is a type-conversion wrapper around `getPublickey()`
- * @return {string}
- */
-proto.immudb.schema.Signature.prototype.getPublickey_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getPublickey()));
-};
-
-
-/**
- * optional bytes publicKey = 2;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getPublickey()`
- * @return {!Uint8Array}
- */
-proto.immudb.schema.Signature.prototype.getPublickey_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getPublickey()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.Signature} returns this
- */
-proto.immudb.schema.Signature.prototype.setPublickey = function(value) {
-  return jspb.Message.setProto3BytesField(this, 2, value);
+proto.immudb.schema.Entries.prototype.clearEntriesList = function() {
+  return this.setEntriesList([]);
 };
 
 
@@ -7583,8 +4647,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.immudb.schema.ScanOptions.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.ScanOptions.toObject(opt_includeInstance, this);
+proto.immudb.schema.ZEntry.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.ZEntry.toObject(opt_includeInstance, this);
 };
 
 
@@ -7593,17 +4657,17 @@ proto.immudb.schema.ScanOptions.prototype.toObject = function(opt_includeInstanc
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.ScanOptions} msg The msg instance to transform.
+ * @param {!proto.immudb.schema.ZEntry} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.ScanOptions.toObject = function(includeInstance, msg) {
+proto.immudb.schema.ZEntry.toObject = function(includeInstance, msg) {
   var f, obj = {
-    prefix: msg.getPrefix_asB64(),
-    offset: msg.getOffset_asB64(),
-    limit: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    reverse: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
-    deep: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
+    set: msg.getSet_asB64(),
+    key: msg.getKey_asB64(),
+    entry: (f = msg.getEntry()) && proto.immudb.schema.Entry.toObject(includeInstance, f),
+    score: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
+    attx: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -7617,23 +4681,23 @@ proto.immudb.schema.ScanOptions.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.ScanOptions}
+ * @return {!proto.immudb.schema.ZEntry}
  */
-proto.immudb.schema.ScanOptions.deserializeBinary = function(bytes) {
+proto.immudb.schema.ZEntry.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.ScanOptions;
-  return proto.immudb.schema.ScanOptions.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.immudb.schema.ZEntry;
+  return proto.immudb.schema.ZEntry.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.immudb.schema.ScanOptions} msg The message object to deserialize into.
+ * @param {!proto.immudb.schema.ZEntry} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.ScanOptions}
+ * @return {!proto.immudb.schema.ZEntry}
  */
-proto.immudb.schema.ScanOptions.deserializeBinaryFromReader = function(msg, reader) {
+proto.immudb.schema.ZEntry.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -7642,23 +4706,24 @@ proto.immudb.schema.ScanOptions.deserializeBinaryFromReader = function(msg, read
     switch (field) {
     case 1:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setPrefix(value);
+      msg.setSet(value);
       break;
     case 2:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setOffset(value);
+      msg.setKey(value);
       break;
     case 3:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setLimit(value);
+      var value = new proto.immudb.schema.Entry;
+      reader.readMessage(value,proto.immudb.schema.Entry.deserializeBinaryFromReader);
+      msg.setEntry(value);
       break;
     case 4:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setReverse(value);
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setScore(value);
       break;
     case 5:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setDeep(value);
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setAttx(value);
       break;
     default:
       reader.skipField();
@@ -7673,9 +4738,9 @@ proto.immudb.schema.ScanOptions.deserializeBinaryFromReader = function(msg, read
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.immudb.schema.ScanOptions.prototype.serializeBinary = function() {
+proto.immudb.schema.ZEntry.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.ScanOptions.serializeBinaryToWriter(this, writer);
+  proto.immudb.schema.ZEntry.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -7683,43 +4748,44 @@ proto.immudb.schema.ScanOptions.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.ScanOptions} message
+ * @param {!proto.immudb.schema.ZEntry} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.ScanOptions.serializeBinaryToWriter = function(message, writer) {
+proto.immudb.schema.ZEntry.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getPrefix_asU8();
+  f = message.getSet_asU8();
   if (f.length > 0) {
     writer.writeBytes(
       1,
       f
     );
   }
-  f = message.getOffset_asU8();
+  f = message.getKey_asU8();
   if (f.length > 0) {
     writer.writeBytes(
       2,
       f
     );
   }
-  f = message.getLimit();
-  if (f !== 0) {
-    writer.writeUint64(
+  f = message.getEntry();
+  if (f != null) {
+    writer.writeMessage(
       3,
-      f
+      f,
+      proto.immudb.schema.Entry.serializeBinaryToWriter
     );
   }
-  f = message.getReverse();
-  if (f) {
-    writer.writeBool(
+  f = message.getScore();
+  if (f !== 0.0) {
+    writer.writeDouble(
       4,
       f
     );
   }
-  f = message.getDeep();
-  if (f) {
-    writer.writeBool(
+  f = message.getAttx();
+  if (f !== 0) {
+    writer.writeUint64(
       5,
       f
     );
@@ -7728,140 +4794,647 @@ proto.immudb.schema.ScanOptions.serializeBinaryToWriter = function(message, writ
 
 
 /**
- * optional bytes prefix = 1;
+ * optional bytes set = 1;
  * @return {!(string|Uint8Array)}
  */
-proto.immudb.schema.ScanOptions.prototype.getPrefix = function() {
+proto.immudb.schema.ZEntry.prototype.getSet = function() {
   return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * optional bytes prefix = 1;
- * This is a type-conversion wrapper around `getPrefix()`
+ * optional bytes set = 1;
+ * This is a type-conversion wrapper around `getSet()`
  * @return {string}
  */
-proto.immudb.schema.ScanOptions.prototype.getPrefix_asB64 = function() {
+proto.immudb.schema.ZEntry.prototype.getSet_asB64 = function() {
   return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getPrefix()));
+      this.getSet()));
 };
 
 
 /**
- * optional bytes prefix = 1;
+ * optional bytes set = 1;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getPrefix()`
+ * This is a type-conversion wrapper around `getSet()`
  * @return {!Uint8Array}
  */
-proto.immudb.schema.ScanOptions.prototype.getPrefix_asU8 = function() {
+proto.immudb.schema.ZEntry.prototype.getSet_asU8 = function() {
   return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getPrefix()));
+      this.getSet()));
 };
 
 
 /**
  * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.ScanOptions} returns this
+ * @return {!proto.immudb.schema.ZEntry} returns this
  */
-proto.immudb.schema.ScanOptions.prototype.setPrefix = function(value) {
+proto.immudb.schema.ZEntry.prototype.setSet = function(value) {
   return jspb.Message.setProto3BytesField(this, 1, value);
 };
 
 
 /**
- * optional bytes offset = 2;
+ * optional bytes key = 2;
  * @return {!(string|Uint8Array)}
  */
-proto.immudb.schema.ScanOptions.prototype.getOffset = function() {
+proto.immudb.schema.ZEntry.prototype.getKey = function() {
   return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
- * optional bytes offset = 2;
- * This is a type-conversion wrapper around `getOffset()`
+ * optional bytes key = 2;
+ * This is a type-conversion wrapper around `getKey()`
  * @return {string}
  */
-proto.immudb.schema.ScanOptions.prototype.getOffset_asB64 = function() {
+proto.immudb.schema.ZEntry.prototype.getKey_asB64 = function() {
   return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getOffset()));
+      this.getKey()));
 };
 
 
 /**
- * optional bytes offset = 2;
+ * optional bytes key = 2;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getOffset()`
+ * This is a type-conversion wrapper around `getKey()`
  * @return {!Uint8Array}
  */
-proto.immudb.schema.ScanOptions.prototype.getOffset_asU8 = function() {
+proto.immudb.schema.ZEntry.prototype.getKey_asU8 = function() {
   return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getOffset()));
+      this.getKey()));
 };
 
 
 /**
  * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.ScanOptions} returns this
+ * @return {!proto.immudb.schema.ZEntry} returns this
  */
-proto.immudb.schema.ScanOptions.prototype.setOffset = function(value) {
+proto.immudb.schema.ZEntry.prototype.setKey = function(value) {
   return jspb.Message.setProto3BytesField(this, 2, value);
 };
 
 
 /**
- * optional uint64 limit = 3;
+ * optional Entry entry = 3;
+ * @return {?proto.immudb.schema.Entry}
+ */
+proto.immudb.schema.ZEntry.prototype.getEntry = function() {
+  return /** @type{?proto.immudb.schema.Entry} */ (
+    jspb.Message.getWrapperField(this, proto.immudb.schema.Entry, 3));
+};
+
+
+/**
+ * @param {?proto.immudb.schema.Entry|undefined} value
+ * @return {!proto.immudb.schema.ZEntry} returns this
+*/
+proto.immudb.schema.ZEntry.prototype.setEntry = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.immudb.schema.ZEntry} returns this
+ */
+proto.immudb.schema.ZEntry.prototype.clearEntry = function() {
+  return this.setEntry(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.immudb.schema.ZEntry.prototype.hasEntry = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional double score = 4;
  * @return {number}
  */
-proto.immudb.schema.ScanOptions.prototype.getLimit = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+proto.immudb.schema.ZEntry.prototype.getScore = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 4, 0.0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.immudb.schema.ScanOptions} returns this
+ * @return {!proto.immudb.schema.ZEntry} returns this
  */
-proto.immudb.schema.ScanOptions.prototype.setLimit = function(value) {
-  return jspb.Message.setProto3IntField(this, 3, value);
+proto.immudb.schema.ZEntry.prototype.setScore = function(value) {
+  return jspb.Message.setProto3FloatField(this, 4, value);
 };
 
 
 /**
- * optional bool reverse = 4;
+ * optional uint64 atTx = 5;
+ * @return {number}
+ */
+proto.immudb.schema.ZEntry.prototype.getAttx = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.immudb.schema.ZEntry} returns this
+ */
+proto.immudb.schema.ZEntry.prototype.setAttx = function(value) {
+  return jspb.Message.setProto3IntField(this, 5, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.immudb.schema.ZEntries.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.immudb.schema.ZEntries.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.ZEntries.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.immudb.schema.ZEntries} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.ZEntries.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    entriesList: jspb.Message.toObjectList(msg.getEntriesList(),
+    proto.immudb.schema.ZEntry.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.immudb.schema.ZEntries}
+ */
+proto.immudb.schema.ZEntries.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.immudb.schema.ZEntries;
+  return proto.immudb.schema.ZEntries.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.immudb.schema.ZEntries} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.immudb.schema.ZEntries}
+ */
+proto.immudb.schema.ZEntries.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.immudb.schema.ZEntry;
+      reader.readMessage(value,proto.immudb.schema.ZEntry.deserializeBinaryFromReader);
+      msg.addEntries(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.ZEntries.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.immudb.schema.ZEntries.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.immudb.schema.ZEntries} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.ZEntries.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getEntriesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.immudb.schema.ZEntry.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * repeated ZEntry entries = 1;
+ * @return {!Array<!proto.immudb.schema.ZEntry>}
+ */
+proto.immudb.schema.ZEntries.prototype.getEntriesList = function() {
+  return /** @type{!Array<!proto.immudb.schema.ZEntry>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.immudb.schema.ZEntry, 1));
+};
+
+
+/**
+ * @param {!Array<!proto.immudb.schema.ZEntry>} value
+ * @return {!proto.immudb.schema.ZEntries} returns this
+*/
+proto.immudb.schema.ZEntries.prototype.setEntriesList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.immudb.schema.ZEntry=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.immudb.schema.ZEntry}
+ */
+proto.immudb.schema.ZEntries.prototype.addEntries = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.immudb.schema.ZEntry, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.immudb.schema.ZEntries} returns this
+ */
+proto.immudb.schema.ZEntries.prototype.clearEntriesList = function() {
+  return this.setEntriesList([]);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.immudb.schema.ScanRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.ScanRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.immudb.schema.ScanRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.ScanRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    seekkey: msg.getSeekkey_asB64(),
+    prefix: msg.getPrefix_asB64(),
+    desc: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+    limit: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    sincetx: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    nowait: jspb.Message.getBooleanFieldWithDefault(msg, 6, false)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.immudb.schema.ScanRequest}
+ */
+proto.immudb.schema.ScanRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.immudb.schema.ScanRequest;
+  return proto.immudb.schema.ScanRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.immudb.schema.ScanRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.immudb.schema.ScanRequest}
+ */
+proto.immudb.schema.ScanRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setSeekkey(value);
+      break;
+    case 2:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setPrefix(value);
+      break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setDesc(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setLimit(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setSincetx(value);
+      break;
+    case 6:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setNowait(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.ScanRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.immudb.schema.ScanRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.immudb.schema.ScanRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.ScanRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getSeekkey_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      1,
+      f
+    );
+  }
+  f = message.getPrefix_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      2,
+      f
+    );
+  }
+  f = message.getDesc();
+  if (f) {
+    writer.writeBool(
+      3,
+      f
+    );
+  }
+  f = message.getLimit();
+  if (f !== 0) {
+    writer.writeUint64(
+      4,
+      f
+    );
+  }
+  f = message.getSincetx();
+  if (f !== 0) {
+    writer.writeUint64(
+      5,
+      f
+    );
+  }
+  f = message.getNowait();
+  if (f) {
+    writer.writeBool(
+      6,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional bytes seekKey = 1;
+ * @return {!(string|Uint8Array)}
+ */
+proto.immudb.schema.ScanRequest.prototype.getSeekkey = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * optional bytes seekKey = 1;
+ * This is a type-conversion wrapper around `getSeekkey()`
+ * @return {string}
+ */
+proto.immudb.schema.ScanRequest.prototype.getSeekkey_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getSeekkey()));
+};
+
+
+/**
+ * optional bytes seekKey = 1;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getSeekkey()`
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.ScanRequest.prototype.getSeekkey_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getSeekkey()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.immudb.schema.ScanRequest} returns this
+ */
+proto.immudb.schema.ScanRequest.prototype.setSeekkey = function(value) {
+  return jspb.Message.setProto3BytesField(this, 1, value);
+};
+
+
+/**
+ * optional bytes prefix = 2;
+ * @return {!(string|Uint8Array)}
+ */
+proto.immudb.schema.ScanRequest.prototype.getPrefix = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * optional bytes prefix = 2;
+ * This is a type-conversion wrapper around `getPrefix()`
+ * @return {string}
+ */
+proto.immudb.schema.ScanRequest.prototype.getPrefix_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getPrefix()));
+};
+
+
+/**
+ * optional bytes prefix = 2;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getPrefix()`
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.ScanRequest.prototype.getPrefix_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getPrefix()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.immudb.schema.ScanRequest} returns this
+ */
+proto.immudb.schema.ScanRequest.prototype.setPrefix = function(value) {
+  return jspb.Message.setProto3BytesField(this, 2, value);
+};
+
+
+/**
+ * optional bool desc = 3;
  * @return {boolean}
  */
-proto.immudb.schema.ScanOptions.prototype.getReverse = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
+proto.immudb.schema.ScanRequest.prototype.getDesc = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
 };
 
 
 /**
  * @param {boolean} value
- * @return {!proto.immudb.schema.ScanOptions} returns this
+ * @return {!proto.immudb.schema.ScanRequest} returns this
  */
-proto.immudb.schema.ScanOptions.prototype.setReverse = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 4, value);
+proto.immudb.schema.ScanRequest.prototype.setDesc = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 
 /**
- * optional bool deep = 5;
+ * optional uint64 limit = 4;
+ * @return {number}
+ */
+proto.immudb.schema.ScanRequest.prototype.getLimit = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.immudb.schema.ScanRequest} returns this
+ */
+proto.immudb.schema.ScanRequest.prototype.setLimit = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+/**
+ * optional uint64 sinceTx = 5;
+ * @return {number}
+ */
+proto.immudb.schema.ScanRequest.prototype.getSincetx = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.immudb.schema.ScanRequest} returns this
+ */
+proto.immudb.schema.ScanRequest.prototype.setSincetx = function(value) {
+  return jspb.Message.setProto3IntField(this, 5, value);
+};
+
+
+/**
+ * optional bool noWait = 6;
  * @return {boolean}
  */
-proto.immudb.schema.ScanOptions.prototype.getDeep = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
+proto.immudb.schema.ScanRequest.prototype.getNowait = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
 };
 
 
 /**
  * @param {boolean} value
- * @return {!proto.immudb.schema.ScanOptions} returns this
+ * @return {!proto.immudb.schema.ScanRequest} returns this
  */
-proto.immudb.schema.ScanOptions.prototype.setDeep = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 5, value);
+proto.immudb.schema.ScanRequest.prototype.setNowait = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 
@@ -8035,8 +5608,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.immudb.schema.ItemsCount.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.ItemsCount.toObject(opt_includeInstance, this);
+proto.immudb.schema.EntryCount.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.EntryCount.toObject(opt_includeInstance, this);
 };
 
 
@@ -8045,11 +5618,11 @@ proto.immudb.schema.ItemsCount.prototype.toObject = function(opt_includeInstance
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.ItemsCount} msg The msg instance to transform.
+ * @param {!proto.immudb.schema.EntryCount} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.ItemsCount.toObject = function(includeInstance, msg) {
+proto.immudb.schema.EntryCount.toObject = function(includeInstance, msg) {
   var f, obj = {
     count: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
@@ -8065,23 +5638,23 @@ proto.immudb.schema.ItemsCount.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.ItemsCount}
+ * @return {!proto.immudb.schema.EntryCount}
  */
-proto.immudb.schema.ItemsCount.deserializeBinary = function(bytes) {
+proto.immudb.schema.EntryCount.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.ItemsCount;
-  return proto.immudb.schema.ItemsCount.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.immudb.schema.EntryCount;
+  return proto.immudb.schema.EntryCount.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.immudb.schema.ItemsCount} msg The message object to deserialize into.
+ * @param {!proto.immudb.schema.EntryCount} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.ItemsCount}
+ * @return {!proto.immudb.schema.EntryCount}
  */
-proto.immudb.schema.ItemsCount.deserializeBinaryFromReader = function(msg, reader) {
+proto.immudb.schema.EntryCount.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -8105,9 +5678,9 @@ proto.immudb.schema.ItemsCount.deserializeBinaryFromReader = function(msg, reade
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.immudb.schema.ItemsCount.prototype.serializeBinary = function() {
+proto.immudb.schema.EntryCount.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.ItemsCount.serializeBinaryToWriter(this, writer);
+  proto.immudb.schema.EntryCount.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -8115,11 +5688,11 @@ proto.immudb.schema.ItemsCount.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.ItemsCount} message
+ * @param {!proto.immudb.schema.EntryCount} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.ItemsCount.serializeBinaryToWriter = function(message, writer) {
+proto.immudb.schema.EntryCount.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getCount();
   if (f !== 0) {
@@ -8135,17 +5708,607 @@ proto.immudb.schema.ItemsCount.serializeBinaryToWriter = function(message, write
  * optional uint64 count = 1;
  * @return {number}
  */
-proto.immudb.schema.ItemsCount.prototype.getCount = function() {
+proto.immudb.schema.EntryCount.prototype.getCount = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.immudb.schema.ItemsCount} returns this
+ * @return {!proto.immudb.schema.EntryCount} returns this
  */
-proto.immudb.schema.ItemsCount.prototype.setCount = function(value) {
+proto.immudb.schema.EntryCount.prototype.setCount = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.immudb.schema.Signature.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.Signature.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.immudb.schema.Signature} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.Signature.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    publickey: msg.getPublickey_asB64(),
+    signature: msg.getSignature_asB64()
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.immudb.schema.Signature}
+ */
+proto.immudb.schema.Signature.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.immudb.schema.Signature;
+  return proto.immudb.schema.Signature.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.immudb.schema.Signature} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.immudb.schema.Signature}
+ */
+proto.immudb.schema.Signature.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setPublickey(value);
+      break;
+    case 2:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setSignature(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.Signature.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.immudb.schema.Signature.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.immudb.schema.Signature} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.Signature.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getPublickey_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      1,
+      f
+    );
+  }
+  f = message.getSignature_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional bytes publicKey = 1;
+ * @return {!(string|Uint8Array)}
+ */
+proto.immudb.schema.Signature.prototype.getPublickey = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * optional bytes publicKey = 1;
+ * This is a type-conversion wrapper around `getPublickey()`
+ * @return {string}
+ */
+proto.immudb.schema.Signature.prototype.getPublickey_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getPublickey()));
+};
+
+
+/**
+ * optional bytes publicKey = 1;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getPublickey()`
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.Signature.prototype.getPublickey_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getPublickey()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.immudb.schema.Signature} returns this
+ */
+proto.immudb.schema.Signature.prototype.setPublickey = function(value) {
+  return jspb.Message.setProto3BytesField(this, 1, value);
+};
+
+
+/**
+ * optional bytes signature = 2;
+ * @return {!(string|Uint8Array)}
+ */
+proto.immudb.schema.Signature.prototype.getSignature = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * optional bytes signature = 2;
+ * This is a type-conversion wrapper around `getSignature()`
+ * @return {string}
+ */
+proto.immudb.schema.Signature.prototype.getSignature_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getSignature()));
+};
+
+
+/**
+ * optional bytes signature = 2;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getSignature()`
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.Signature.prototype.getSignature_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getSignature()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.immudb.schema.Signature} returns this
+ */
+proto.immudb.schema.Signature.prototype.setSignature = function(value) {
+  return jspb.Message.setProto3BytesField(this, 2, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.immudb.schema.TxMetadata.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.TxMetadata.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.immudb.schema.TxMetadata} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.TxMetadata.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    prevalh: msg.getPrevalh_asB64(),
+    ts: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    nentries: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    eh: msg.getEh_asB64(),
+    bltxid: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    blroot: msg.getBlroot_asB64()
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.immudb.schema.TxMetadata}
+ */
+proto.immudb.schema.TxMetadata.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.immudb.schema.TxMetadata;
+  return proto.immudb.schema.TxMetadata.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.immudb.schema.TxMetadata} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.immudb.schema.TxMetadata}
+ */
+proto.immudb.schema.TxMetadata.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setId(value);
+      break;
+    case 2:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setPrevalh(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setTs(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setNentries(value);
+      break;
+    case 5:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setEh(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setBltxid(value);
+      break;
+    case 7:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setBlroot(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.TxMetadata.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.immudb.schema.TxMetadata.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.immudb.schema.TxMetadata} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.TxMetadata.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getId();
+  if (f !== 0) {
+    writer.writeUint64(
+      1,
+      f
+    );
+  }
+  f = message.getPrevalh_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      2,
+      f
+    );
+  }
+  f = message.getTs();
+  if (f !== 0) {
+    writer.writeInt64(
+      3,
+      f
+    );
+  }
+  f = message.getNentries();
+  if (f !== 0) {
+    writer.writeInt32(
+      4,
+      f
+    );
+  }
+  f = message.getEh_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      5,
+      f
+    );
+  }
+  f = message.getBltxid();
+  if (f !== 0) {
+    writer.writeUint64(
+      6,
+      f
+    );
+  }
+  f = message.getBlroot_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      7,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional uint64 id = 1;
+ * @return {number}
+ */
+proto.immudb.schema.TxMetadata.prototype.getId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.immudb.schema.TxMetadata} returns this
+ */
+proto.immudb.schema.TxMetadata.prototype.setId = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional bytes prevAlh = 2;
+ * @return {!(string|Uint8Array)}
+ */
+proto.immudb.schema.TxMetadata.prototype.getPrevalh = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * optional bytes prevAlh = 2;
+ * This is a type-conversion wrapper around `getPrevalh()`
+ * @return {string}
+ */
+proto.immudb.schema.TxMetadata.prototype.getPrevalh_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getPrevalh()));
+};
+
+
+/**
+ * optional bytes prevAlh = 2;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getPrevalh()`
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.TxMetadata.prototype.getPrevalh_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getPrevalh()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.immudb.schema.TxMetadata} returns this
+ */
+proto.immudb.schema.TxMetadata.prototype.setPrevalh = function(value) {
+  return jspb.Message.setProto3BytesField(this, 2, value);
+};
+
+
+/**
+ * optional int64 ts = 3;
+ * @return {number}
+ */
+proto.immudb.schema.TxMetadata.prototype.getTs = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.immudb.schema.TxMetadata} returns this
+ */
+proto.immudb.schema.TxMetadata.prototype.setTs = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * optional int32 nentries = 4;
+ * @return {number}
+ */
+proto.immudb.schema.TxMetadata.prototype.getNentries = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.immudb.schema.TxMetadata} returns this
+ */
+proto.immudb.schema.TxMetadata.prototype.setNentries = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+/**
+ * optional bytes eH = 5;
+ * @return {!(string|Uint8Array)}
+ */
+proto.immudb.schema.TxMetadata.prototype.getEh = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * optional bytes eH = 5;
+ * This is a type-conversion wrapper around `getEh()`
+ * @return {string}
+ */
+proto.immudb.schema.TxMetadata.prototype.getEh_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getEh()));
+};
+
+
+/**
+ * optional bytes eH = 5;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getEh()`
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.TxMetadata.prototype.getEh_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getEh()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.immudb.schema.TxMetadata} returns this
+ */
+proto.immudb.schema.TxMetadata.prototype.setEh = function(value) {
+  return jspb.Message.setProto3BytesField(this, 5, value);
+};
+
+
+/**
+ * optional uint64 blTxId = 6;
+ * @return {number}
+ */
+proto.immudb.schema.TxMetadata.prototype.getBltxid = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.immudb.schema.TxMetadata} returns this
+ */
+proto.immudb.schema.TxMetadata.prototype.setBltxid = function(value) {
+  return jspb.Message.setProto3IntField(this, 6, value);
+};
+
+
+/**
+ * optional bytes blRoot = 7;
+ * @return {!(string|Uint8Array)}
+ */
+proto.immudb.schema.TxMetadata.prototype.getBlroot = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * optional bytes blRoot = 7;
+ * This is a type-conversion wrapper around `getBlroot()`
+ * @return {string}
+ */
+proto.immudb.schema.TxMetadata.prototype.getBlroot_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getBlroot()));
+};
+
+
+/**
+ * optional bytes blRoot = 7;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getBlroot()`
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.TxMetadata.prototype.getBlroot_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getBlroot()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.immudb.schema.TxMetadata} returns this
+ */
+proto.immudb.schema.TxMetadata.prototype.setBlroot = function(value) {
+  return jspb.Message.setProto3BytesField(this, 7, value);
 };
 
 
@@ -8155,7 +6318,1765 @@ proto.immudb.schema.ItemsCount.prototype.setCount = function(value) {
  * @private {!Array<number>}
  * @const
  */
-proto.immudb.schema.InclusionProof.repeatedFields_ = [5];
+proto.immudb.schema.LinearProof.repeatedFields_ = [3];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.immudb.schema.LinearProof.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.LinearProof.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.immudb.schema.LinearProof} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.LinearProof.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    sourcetxid: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    targettxid: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    termsList: msg.getTermsList_asB64()
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.immudb.schema.LinearProof}
+ */
+proto.immudb.schema.LinearProof.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.immudb.schema.LinearProof;
+  return proto.immudb.schema.LinearProof.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.immudb.schema.LinearProof} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.immudb.schema.LinearProof}
+ */
+proto.immudb.schema.LinearProof.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setSourcetxid(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setTargettxid(value);
+      break;
+    case 3:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.addTerms(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.LinearProof.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.immudb.schema.LinearProof.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.immudb.schema.LinearProof} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.LinearProof.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getSourcetxid();
+  if (f !== 0) {
+    writer.writeUint64(
+      1,
+      f
+    );
+  }
+  f = message.getTargettxid();
+  if (f !== 0) {
+    writer.writeUint64(
+      2,
+      f
+    );
+  }
+  f = message.getTermsList_asU8();
+  if (f.length > 0) {
+    writer.writeRepeatedBytes(
+      3,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional uint64 sourceTxId = 1;
+ * @return {number}
+ */
+proto.immudb.schema.LinearProof.prototype.getSourcetxid = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.immudb.schema.LinearProof} returns this
+ */
+proto.immudb.schema.LinearProof.prototype.setSourcetxid = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional uint64 TargetTxId = 2;
+ * @return {number}
+ */
+proto.immudb.schema.LinearProof.prototype.getTargettxid = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.immudb.schema.LinearProof} returns this
+ */
+proto.immudb.schema.LinearProof.prototype.setTargettxid = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * repeated bytes terms = 3;
+ * @return {!(Array<!Uint8Array>|Array<string>)}
+ */
+proto.immudb.schema.LinearProof.prototype.getTermsList = function() {
+  return /** @type {!(Array<!Uint8Array>|Array<string>)} */ (jspb.Message.getRepeatedField(this, 3));
+};
+
+
+/**
+ * repeated bytes terms = 3;
+ * This is a type-conversion wrapper around `getTermsList()`
+ * @return {!Array<string>}
+ */
+proto.immudb.schema.LinearProof.prototype.getTermsList_asB64 = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.bytesListAsB64(
+      this.getTermsList()));
+};
+
+
+/**
+ * repeated bytes terms = 3;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getTermsList()`
+ * @return {!Array<!Uint8Array>}
+ */
+proto.immudb.schema.LinearProof.prototype.getTermsList_asU8 = function() {
+  return /** @type {!Array<!Uint8Array>} */ (jspb.Message.bytesListAsU8(
+      this.getTermsList()));
+};
+
+
+/**
+ * @param {!(Array<!Uint8Array>|Array<string>)} value
+ * @return {!proto.immudb.schema.LinearProof} returns this
+ */
+proto.immudb.schema.LinearProof.prototype.setTermsList = function(value) {
+  return jspb.Message.setField(this, 3, value || []);
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @param {number=} opt_index
+ * @return {!proto.immudb.schema.LinearProof} returns this
+ */
+proto.immudb.schema.LinearProof.prototype.addTerms = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.immudb.schema.LinearProof} returns this
+ */
+proto.immudb.schema.LinearProof.prototype.clearTermsList = function() {
+  return this.setTermsList([]);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.immudb.schema.DualProof.repeatedFields_ = [3,4,6];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.immudb.schema.DualProof.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.DualProof.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.immudb.schema.DualProof} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.DualProof.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    sourcetxmetadata: (f = msg.getSourcetxmetadata()) && proto.immudb.schema.TxMetadata.toObject(includeInstance, f),
+    targettxmetadata: (f = msg.getTargettxmetadata()) && proto.immudb.schema.TxMetadata.toObject(includeInstance, f),
+    inclusionproofList: msg.getInclusionproofList_asB64(),
+    consistencyproofList: msg.getConsistencyproofList_asB64(),
+    targetbltxalh: msg.getTargetbltxalh_asB64(),
+    lastinclusionproofList: msg.getLastinclusionproofList_asB64(),
+    linearproof: (f = msg.getLinearproof()) && proto.immudb.schema.LinearProof.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.immudb.schema.DualProof}
+ */
+proto.immudb.schema.DualProof.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.immudb.schema.DualProof;
+  return proto.immudb.schema.DualProof.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.immudb.schema.DualProof} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.immudb.schema.DualProof}
+ */
+proto.immudb.schema.DualProof.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.immudb.schema.TxMetadata;
+      reader.readMessage(value,proto.immudb.schema.TxMetadata.deserializeBinaryFromReader);
+      msg.setSourcetxmetadata(value);
+      break;
+    case 2:
+      var value = new proto.immudb.schema.TxMetadata;
+      reader.readMessage(value,proto.immudb.schema.TxMetadata.deserializeBinaryFromReader);
+      msg.setTargettxmetadata(value);
+      break;
+    case 3:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.addInclusionproof(value);
+      break;
+    case 4:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.addConsistencyproof(value);
+      break;
+    case 5:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setTargetbltxalh(value);
+      break;
+    case 6:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.addLastinclusionproof(value);
+      break;
+    case 7:
+      var value = new proto.immudb.schema.LinearProof;
+      reader.readMessage(value,proto.immudb.schema.LinearProof.deserializeBinaryFromReader);
+      msg.setLinearproof(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.DualProof.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.immudb.schema.DualProof.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.immudb.schema.DualProof} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.DualProof.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getSourcetxmetadata();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.immudb.schema.TxMetadata.serializeBinaryToWriter
+    );
+  }
+  f = message.getTargettxmetadata();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.immudb.schema.TxMetadata.serializeBinaryToWriter
+    );
+  }
+  f = message.getInclusionproofList_asU8();
+  if (f.length > 0) {
+    writer.writeRepeatedBytes(
+      3,
+      f
+    );
+  }
+  f = message.getConsistencyproofList_asU8();
+  if (f.length > 0) {
+    writer.writeRepeatedBytes(
+      4,
+      f
+    );
+  }
+  f = message.getTargetbltxalh_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      5,
+      f
+    );
+  }
+  f = message.getLastinclusionproofList_asU8();
+  if (f.length > 0) {
+    writer.writeRepeatedBytes(
+      6,
+      f
+    );
+  }
+  f = message.getLinearproof();
+  if (f != null) {
+    writer.writeMessage(
+      7,
+      f,
+      proto.immudb.schema.LinearProof.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional TxMetadata sourceTxMetadata = 1;
+ * @return {?proto.immudb.schema.TxMetadata}
+ */
+proto.immudb.schema.DualProof.prototype.getSourcetxmetadata = function() {
+  return /** @type{?proto.immudb.schema.TxMetadata} */ (
+    jspb.Message.getWrapperField(this, proto.immudb.schema.TxMetadata, 1));
+};
+
+
+/**
+ * @param {?proto.immudb.schema.TxMetadata|undefined} value
+ * @return {!proto.immudb.schema.DualProof} returns this
+*/
+proto.immudb.schema.DualProof.prototype.setSourcetxmetadata = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.immudb.schema.DualProof} returns this
+ */
+proto.immudb.schema.DualProof.prototype.clearSourcetxmetadata = function() {
+  return this.setSourcetxmetadata(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.immudb.schema.DualProof.prototype.hasSourcetxmetadata = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional TxMetadata targetTxMetadata = 2;
+ * @return {?proto.immudb.schema.TxMetadata}
+ */
+proto.immudb.schema.DualProof.prototype.getTargettxmetadata = function() {
+  return /** @type{?proto.immudb.schema.TxMetadata} */ (
+    jspb.Message.getWrapperField(this, proto.immudb.schema.TxMetadata, 2));
+};
+
+
+/**
+ * @param {?proto.immudb.schema.TxMetadata|undefined} value
+ * @return {!proto.immudb.schema.DualProof} returns this
+*/
+proto.immudb.schema.DualProof.prototype.setTargettxmetadata = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.immudb.schema.DualProof} returns this
+ */
+proto.immudb.schema.DualProof.prototype.clearTargettxmetadata = function() {
+  return this.setTargettxmetadata(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.immudb.schema.DualProof.prototype.hasTargettxmetadata = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * repeated bytes inclusionProof = 3;
+ * @return {!(Array<!Uint8Array>|Array<string>)}
+ */
+proto.immudb.schema.DualProof.prototype.getInclusionproofList = function() {
+  return /** @type {!(Array<!Uint8Array>|Array<string>)} */ (jspb.Message.getRepeatedField(this, 3));
+};
+
+
+/**
+ * repeated bytes inclusionProof = 3;
+ * This is a type-conversion wrapper around `getInclusionproofList()`
+ * @return {!Array<string>}
+ */
+proto.immudb.schema.DualProof.prototype.getInclusionproofList_asB64 = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.bytesListAsB64(
+      this.getInclusionproofList()));
+};
+
+
+/**
+ * repeated bytes inclusionProof = 3;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getInclusionproofList()`
+ * @return {!Array<!Uint8Array>}
+ */
+proto.immudb.schema.DualProof.prototype.getInclusionproofList_asU8 = function() {
+  return /** @type {!Array<!Uint8Array>} */ (jspb.Message.bytesListAsU8(
+      this.getInclusionproofList()));
+};
+
+
+/**
+ * @param {!(Array<!Uint8Array>|Array<string>)} value
+ * @return {!proto.immudb.schema.DualProof} returns this
+ */
+proto.immudb.schema.DualProof.prototype.setInclusionproofList = function(value) {
+  return jspb.Message.setField(this, 3, value || []);
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @param {number=} opt_index
+ * @return {!proto.immudb.schema.DualProof} returns this
+ */
+proto.immudb.schema.DualProof.prototype.addInclusionproof = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.immudb.schema.DualProof} returns this
+ */
+proto.immudb.schema.DualProof.prototype.clearInclusionproofList = function() {
+  return this.setInclusionproofList([]);
+};
+
+
+/**
+ * repeated bytes consistencyProof = 4;
+ * @return {!(Array<!Uint8Array>|Array<string>)}
+ */
+proto.immudb.schema.DualProof.prototype.getConsistencyproofList = function() {
+  return /** @type {!(Array<!Uint8Array>|Array<string>)} */ (jspb.Message.getRepeatedField(this, 4));
+};
+
+
+/**
+ * repeated bytes consistencyProof = 4;
+ * This is a type-conversion wrapper around `getConsistencyproofList()`
+ * @return {!Array<string>}
+ */
+proto.immudb.schema.DualProof.prototype.getConsistencyproofList_asB64 = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.bytesListAsB64(
+      this.getConsistencyproofList()));
+};
+
+
+/**
+ * repeated bytes consistencyProof = 4;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getConsistencyproofList()`
+ * @return {!Array<!Uint8Array>}
+ */
+proto.immudb.schema.DualProof.prototype.getConsistencyproofList_asU8 = function() {
+  return /** @type {!Array<!Uint8Array>} */ (jspb.Message.bytesListAsU8(
+      this.getConsistencyproofList()));
+};
+
+
+/**
+ * @param {!(Array<!Uint8Array>|Array<string>)} value
+ * @return {!proto.immudb.schema.DualProof} returns this
+ */
+proto.immudb.schema.DualProof.prototype.setConsistencyproofList = function(value) {
+  return jspb.Message.setField(this, 4, value || []);
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @param {number=} opt_index
+ * @return {!proto.immudb.schema.DualProof} returns this
+ */
+proto.immudb.schema.DualProof.prototype.addConsistencyproof = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.immudb.schema.DualProof} returns this
+ */
+proto.immudb.schema.DualProof.prototype.clearConsistencyproofList = function() {
+  return this.setConsistencyproofList([]);
+};
+
+
+/**
+ * optional bytes targetBlTxAlh = 5;
+ * @return {!(string|Uint8Array)}
+ */
+proto.immudb.schema.DualProof.prototype.getTargetbltxalh = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * optional bytes targetBlTxAlh = 5;
+ * This is a type-conversion wrapper around `getTargetbltxalh()`
+ * @return {string}
+ */
+proto.immudb.schema.DualProof.prototype.getTargetbltxalh_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getTargetbltxalh()));
+};
+
+
+/**
+ * optional bytes targetBlTxAlh = 5;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getTargetbltxalh()`
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.DualProof.prototype.getTargetbltxalh_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getTargetbltxalh()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.immudb.schema.DualProof} returns this
+ */
+proto.immudb.schema.DualProof.prototype.setTargetbltxalh = function(value) {
+  return jspb.Message.setProto3BytesField(this, 5, value);
+};
+
+
+/**
+ * repeated bytes lastInclusionProof = 6;
+ * @return {!(Array<!Uint8Array>|Array<string>)}
+ */
+proto.immudb.schema.DualProof.prototype.getLastinclusionproofList = function() {
+  return /** @type {!(Array<!Uint8Array>|Array<string>)} */ (jspb.Message.getRepeatedField(this, 6));
+};
+
+
+/**
+ * repeated bytes lastInclusionProof = 6;
+ * This is a type-conversion wrapper around `getLastinclusionproofList()`
+ * @return {!Array<string>}
+ */
+proto.immudb.schema.DualProof.prototype.getLastinclusionproofList_asB64 = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.bytesListAsB64(
+      this.getLastinclusionproofList()));
+};
+
+
+/**
+ * repeated bytes lastInclusionProof = 6;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getLastinclusionproofList()`
+ * @return {!Array<!Uint8Array>}
+ */
+proto.immudb.schema.DualProof.prototype.getLastinclusionproofList_asU8 = function() {
+  return /** @type {!Array<!Uint8Array>} */ (jspb.Message.bytesListAsU8(
+      this.getLastinclusionproofList()));
+};
+
+
+/**
+ * @param {!(Array<!Uint8Array>|Array<string>)} value
+ * @return {!proto.immudb.schema.DualProof} returns this
+ */
+proto.immudb.schema.DualProof.prototype.setLastinclusionproofList = function(value) {
+  return jspb.Message.setField(this, 6, value || []);
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @param {number=} opt_index
+ * @return {!proto.immudb.schema.DualProof} returns this
+ */
+proto.immudb.schema.DualProof.prototype.addLastinclusionproof = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 6, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.immudb.schema.DualProof} returns this
+ */
+proto.immudb.schema.DualProof.prototype.clearLastinclusionproofList = function() {
+  return this.setLastinclusionproofList([]);
+};
+
+
+/**
+ * optional LinearProof linearProof = 7;
+ * @return {?proto.immudb.schema.LinearProof}
+ */
+proto.immudb.schema.DualProof.prototype.getLinearproof = function() {
+  return /** @type{?proto.immudb.schema.LinearProof} */ (
+    jspb.Message.getWrapperField(this, proto.immudb.schema.LinearProof, 7));
+};
+
+
+/**
+ * @param {?proto.immudb.schema.LinearProof|undefined} value
+ * @return {!proto.immudb.schema.DualProof} returns this
+*/
+proto.immudb.schema.DualProof.prototype.setLinearproof = function(value) {
+  return jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.immudb.schema.DualProof} returns this
+ */
+proto.immudb.schema.DualProof.prototype.clearLinearproof = function() {
+  return this.setLinearproof(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.immudb.schema.DualProof.prototype.hasLinearproof = function() {
+  return jspb.Message.getField(this, 7) != null;
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.immudb.schema.Tx.repeatedFields_ = [2];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.immudb.schema.Tx.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.Tx.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.immudb.schema.Tx} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.Tx.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    metadata: (f = msg.getMetadata()) && proto.immudb.schema.TxMetadata.toObject(includeInstance, f),
+    entriesList: jspb.Message.toObjectList(msg.getEntriesList(),
+    proto.immudb.schema.TxEntry.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.immudb.schema.Tx}
+ */
+proto.immudb.schema.Tx.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.immudb.schema.Tx;
+  return proto.immudb.schema.Tx.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.immudb.schema.Tx} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.immudb.schema.Tx}
+ */
+proto.immudb.schema.Tx.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.immudb.schema.TxMetadata;
+      reader.readMessage(value,proto.immudb.schema.TxMetadata.deserializeBinaryFromReader);
+      msg.setMetadata(value);
+      break;
+    case 2:
+      var value = new proto.immudb.schema.TxEntry;
+      reader.readMessage(value,proto.immudb.schema.TxEntry.deserializeBinaryFromReader);
+      msg.addEntries(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.Tx.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.immudb.schema.Tx.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.immudb.schema.Tx} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.Tx.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getMetadata();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.immudb.schema.TxMetadata.serializeBinaryToWriter
+    );
+  }
+  f = message.getEntriesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      2,
+      f,
+      proto.immudb.schema.TxEntry.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional TxMetadata metadata = 1;
+ * @return {?proto.immudb.schema.TxMetadata}
+ */
+proto.immudb.schema.Tx.prototype.getMetadata = function() {
+  return /** @type{?proto.immudb.schema.TxMetadata} */ (
+    jspb.Message.getWrapperField(this, proto.immudb.schema.TxMetadata, 1));
+};
+
+
+/**
+ * @param {?proto.immudb.schema.TxMetadata|undefined} value
+ * @return {!proto.immudb.schema.Tx} returns this
+*/
+proto.immudb.schema.Tx.prototype.setMetadata = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.immudb.schema.Tx} returns this
+ */
+proto.immudb.schema.Tx.prototype.clearMetadata = function() {
+  return this.setMetadata(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.immudb.schema.Tx.prototype.hasMetadata = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * repeated TxEntry entries = 2;
+ * @return {!Array<!proto.immudb.schema.TxEntry>}
+ */
+proto.immudb.schema.Tx.prototype.getEntriesList = function() {
+  return /** @type{!Array<!proto.immudb.schema.TxEntry>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.immudb.schema.TxEntry, 2));
+};
+
+
+/**
+ * @param {!Array<!proto.immudb.schema.TxEntry>} value
+ * @return {!proto.immudb.schema.Tx} returns this
+*/
+proto.immudb.schema.Tx.prototype.setEntriesList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 2, value);
+};
+
+
+/**
+ * @param {!proto.immudb.schema.TxEntry=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.immudb.schema.TxEntry}
+ */
+proto.immudb.schema.Tx.prototype.addEntries = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.immudb.schema.TxEntry, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.immudb.schema.Tx} returns this
+ */
+proto.immudb.schema.Tx.prototype.clearEntriesList = function() {
+  return this.setEntriesList([]);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.immudb.schema.TxEntry.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.TxEntry.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.immudb.schema.TxEntry} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.TxEntry.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    key: msg.getKey_asB64(),
+    hvalue: msg.getHvalue_asB64(),
+    voff: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    vlen: jspb.Message.getFieldWithDefault(msg, 4, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.immudb.schema.TxEntry}
+ */
+proto.immudb.schema.TxEntry.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.immudb.schema.TxEntry;
+  return proto.immudb.schema.TxEntry.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.immudb.schema.TxEntry} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.immudb.schema.TxEntry}
+ */
+proto.immudb.schema.TxEntry.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setKey(value);
+      break;
+    case 2:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setHvalue(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setVoff(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setVlen(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.TxEntry.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.immudb.schema.TxEntry.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.immudb.schema.TxEntry} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.TxEntry.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getKey_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      1,
+      f
+    );
+  }
+  f = message.getHvalue_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      2,
+      f
+    );
+  }
+  f = message.getVoff();
+  if (f !== 0) {
+    writer.writeInt64(
+      3,
+      f
+    );
+  }
+  f = message.getVlen();
+  if (f !== 0) {
+    writer.writeInt32(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional bytes key = 1;
+ * @return {!(string|Uint8Array)}
+ */
+proto.immudb.schema.TxEntry.prototype.getKey = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * optional bytes key = 1;
+ * This is a type-conversion wrapper around `getKey()`
+ * @return {string}
+ */
+proto.immudb.schema.TxEntry.prototype.getKey_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getKey()));
+};
+
+
+/**
+ * optional bytes key = 1;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getKey()`
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.TxEntry.prototype.getKey_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getKey()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.immudb.schema.TxEntry} returns this
+ */
+proto.immudb.schema.TxEntry.prototype.setKey = function(value) {
+  return jspb.Message.setProto3BytesField(this, 1, value);
+};
+
+
+/**
+ * optional bytes hValue = 2;
+ * @return {!(string|Uint8Array)}
+ */
+proto.immudb.schema.TxEntry.prototype.getHvalue = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * optional bytes hValue = 2;
+ * This is a type-conversion wrapper around `getHvalue()`
+ * @return {string}
+ */
+proto.immudb.schema.TxEntry.prototype.getHvalue_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getHvalue()));
+};
+
+
+/**
+ * optional bytes hValue = 2;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getHvalue()`
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.TxEntry.prototype.getHvalue_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getHvalue()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.immudb.schema.TxEntry} returns this
+ */
+proto.immudb.schema.TxEntry.prototype.setHvalue = function(value) {
+  return jspb.Message.setProto3BytesField(this, 2, value);
+};
+
+
+/**
+ * optional int64 vOff = 3;
+ * @return {number}
+ */
+proto.immudb.schema.TxEntry.prototype.getVoff = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.immudb.schema.TxEntry} returns this
+ */
+proto.immudb.schema.TxEntry.prototype.setVoff = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * optional int32 vLen = 4;
+ * @return {number}
+ */
+proto.immudb.schema.TxEntry.prototype.getVlen = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.immudb.schema.TxEntry} returns this
+ */
+proto.immudb.schema.TxEntry.prototype.setVlen = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.immudb.schema.VerifiableTx.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.VerifiableTx.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.immudb.schema.VerifiableTx} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.VerifiableTx.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    tx: (f = msg.getTx()) && proto.immudb.schema.Tx.toObject(includeInstance, f),
+    dualproof: (f = msg.getDualproof()) && proto.immudb.schema.DualProof.toObject(includeInstance, f),
+    signature: (f = msg.getSignature()) && proto.immudb.schema.Signature.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.immudb.schema.VerifiableTx}
+ */
+proto.immudb.schema.VerifiableTx.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.immudb.schema.VerifiableTx;
+  return proto.immudb.schema.VerifiableTx.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.immudb.schema.VerifiableTx} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.immudb.schema.VerifiableTx}
+ */
+proto.immudb.schema.VerifiableTx.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.immudb.schema.Tx;
+      reader.readMessage(value,proto.immudb.schema.Tx.deserializeBinaryFromReader);
+      msg.setTx(value);
+      break;
+    case 2:
+      var value = new proto.immudb.schema.DualProof;
+      reader.readMessage(value,proto.immudb.schema.DualProof.deserializeBinaryFromReader);
+      msg.setDualproof(value);
+      break;
+    case 3:
+      var value = new proto.immudb.schema.Signature;
+      reader.readMessage(value,proto.immudb.schema.Signature.deserializeBinaryFromReader);
+      msg.setSignature(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.VerifiableTx.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.immudb.schema.VerifiableTx.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.immudb.schema.VerifiableTx} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.VerifiableTx.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getTx();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.immudb.schema.Tx.serializeBinaryToWriter
+    );
+  }
+  f = message.getDualproof();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.immudb.schema.DualProof.serializeBinaryToWriter
+    );
+  }
+  f = message.getSignature();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      proto.immudb.schema.Signature.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional Tx tx = 1;
+ * @return {?proto.immudb.schema.Tx}
+ */
+proto.immudb.schema.VerifiableTx.prototype.getTx = function() {
+  return /** @type{?proto.immudb.schema.Tx} */ (
+    jspb.Message.getWrapperField(this, proto.immudb.schema.Tx, 1));
+};
+
+
+/**
+ * @param {?proto.immudb.schema.Tx|undefined} value
+ * @return {!proto.immudb.schema.VerifiableTx} returns this
+*/
+proto.immudb.schema.VerifiableTx.prototype.setTx = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.immudb.schema.VerifiableTx} returns this
+ */
+proto.immudb.schema.VerifiableTx.prototype.clearTx = function() {
+  return this.setTx(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.immudb.schema.VerifiableTx.prototype.hasTx = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional DualProof dualProof = 2;
+ * @return {?proto.immudb.schema.DualProof}
+ */
+proto.immudb.schema.VerifiableTx.prototype.getDualproof = function() {
+  return /** @type{?proto.immudb.schema.DualProof} */ (
+    jspb.Message.getWrapperField(this, proto.immudb.schema.DualProof, 2));
+};
+
+
+/**
+ * @param {?proto.immudb.schema.DualProof|undefined} value
+ * @return {!proto.immudb.schema.VerifiableTx} returns this
+*/
+proto.immudb.schema.VerifiableTx.prototype.setDualproof = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.immudb.schema.VerifiableTx} returns this
+ */
+proto.immudb.schema.VerifiableTx.prototype.clearDualproof = function() {
+  return this.setDualproof(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.immudb.schema.VerifiableTx.prototype.hasDualproof = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional Signature signature = 3;
+ * @return {?proto.immudb.schema.Signature}
+ */
+proto.immudb.schema.VerifiableTx.prototype.getSignature = function() {
+  return /** @type{?proto.immudb.schema.Signature} */ (
+    jspb.Message.getWrapperField(this, proto.immudb.schema.Signature, 3));
+};
+
+
+/**
+ * @param {?proto.immudb.schema.Signature|undefined} value
+ * @return {!proto.immudb.schema.VerifiableTx} returns this
+*/
+proto.immudb.schema.VerifiableTx.prototype.setSignature = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.immudb.schema.VerifiableTx} returns this
+ */
+proto.immudb.schema.VerifiableTx.prototype.clearSignature = function() {
+  return this.setSignature(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.immudb.schema.VerifiableTx.prototype.hasSignature = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.immudb.schema.VerifiableEntry.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.VerifiableEntry.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.immudb.schema.VerifiableEntry} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.VerifiableEntry.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    entry: (f = msg.getEntry()) && proto.immudb.schema.Entry.toObject(includeInstance, f),
+    verifiabletx: (f = msg.getVerifiabletx()) && proto.immudb.schema.VerifiableTx.toObject(includeInstance, f),
+    inclusionproof: (f = msg.getInclusionproof()) && proto.immudb.schema.InclusionProof.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.immudb.schema.VerifiableEntry}
+ */
+proto.immudb.schema.VerifiableEntry.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.immudb.schema.VerifiableEntry;
+  return proto.immudb.schema.VerifiableEntry.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.immudb.schema.VerifiableEntry} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.immudb.schema.VerifiableEntry}
+ */
+proto.immudb.schema.VerifiableEntry.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.immudb.schema.Entry;
+      reader.readMessage(value,proto.immudb.schema.Entry.deserializeBinaryFromReader);
+      msg.setEntry(value);
+      break;
+    case 2:
+      var value = new proto.immudb.schema.VerifiableTx;
+      reader.readMessage(value,proto.immudb.schema.VerifiableTx.deserializeBinaryFromReader);
+      msg.setVerifiabletx(value);
+      break;
+    case 3:
+      var value = new proto.immudb.schema.InclusionProof;
+      reader.readMessage(value,proto.immudb.schema.InclusionProof.deserializeBinaryFromReader);
+      msg.setInclusionproof(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.VerifiableEntry.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.immudb.schema.VerifiableEntry.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.immudb.schema.VerifiableEntry} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.VerifiableEntry.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getEntry();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.immudb.schema.Entry.serializeBinaryToWriter
+    );
+  }
+  f = message.getVerifiabletx();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.immudb.schema.VerifiableTx.serializeBinaryToWriter
+    );
+  }
+  f = message.getInclusionproof();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      proto.immudb.schema.InclusionProof.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional Entry entry = 1;
+ * @return {?proto.immudb.schema.Entry}
+ */
+proto.immudb.schema.VerifiableEntry.prototype.getEntry = function() {
+  return /** @type{?proto.immudb.schema.Entry} */ (
+    jspb.Message.getWrapperField(this, proto.immudb.schema.Entry, 1));
+};
+
+
+/**
+ * @param {?proto.immudb.schema.Entry|undefined} value
+ * @return {!proto.immudb.schema.VerifiableEntry} returns this
+*/
+proto.immudb.schema.VerifiableEntry.prototype.setEntry = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.immudb.schema.VerifiableEntry} returns this
+ */
+proto.immudb.schema.VerifiableEntry.prototype.clearEntry = function() {
+  return this.setEntry(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.immudb.schema.VerifiableEntry.prototype.hasEntry = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional VerifiableTx verifiableTx = 2;
+ * @return {?proto.immudb.schema.VerifiableTx}
+ */
+proto.immudb.schema.VerifiableEntry.prototype.getVerifiabletx = function() {
+  return /** @type{?proto.immudb.schema.VerifiableTx} */ (
+    jspb.Message.getWrapperField(this, proto.immudb.schema.VerifiableTx, 2));
+};
+
+
+/**
+ * @param {?proto.immudb.schema.VerifiableTx|undefined} value
+ * @return {!proto.immudb.schema.VerifiableEntry} returns this
+*/
+proto.immudb.schema.VerifiableEntry.prototype.setVerifiabletx = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.immudb.schema.VerifiableEntry} returns this
+ */
+proto.immudb.schema.VerifiableEntry.prototype.clearVerifiabletx = function() {
+  return this.setVerifiabletx(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.immudb.schema.VerifiableEntry.prototype.hasVerifiabletx = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional InclusionProof inclusionProof = 3;
+ * @return {?proto.immudb.schema.InclusionProof}
+ */
+proto.immudb.schema.VerifiableEntry.prototype.getInclusionproof = function() {
+  return /** @type{?proto.immudb.schema.InclusionProof} */ (
+    jspb.Message.getWrapperField(this, proto.immudb.schema.InclusionProof, 3));
+};
+
+
+/**
+ * @param {?proto.immudb.schema.InclusionProof|undefined} value
+ * @return {!proto.immudb.schema.VerifiableEntry} returns this
+*/
+proto.immudb.schema.VerifiableEntry.prototype.setInclusionproof = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.immudb.schema.VerifiableEntry} returns this
+ */
+proto.immudb.schema.VerifiableEntry.prototype.clearInclusionproof = function() {
+  return this.setInclusionproof(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.immudb.schema.VerifiableEntry.prototype.hasInclusionproof = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.immudb.schema.InclusionProof.repeatedFields_ = [3];
 
 
 
@@ -8188,11 +8109,9 @@ proto.immudb.schema.InclusionProof.prototype.toObject = function(opt_includeInst
  */
 proto.immudb.schema.InclusionProof.toObject = function(includeInstance, msg) {
   var f, obj = {
-    at: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    index: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    root: msg.getRoot_asB64(),
-    leaf: msg.getLeaf_asB64(),
-    pathList: msg.getPathList_asB64()
+    leaf: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    width: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    termsList: msg.getTermsList_asB64()
   };
 
   if (includeInstance) {
@@ -8230,24 +8149,16 @@ proto.immudb.schema.InclusionProof.deserializeBinaryFromReader = function(msg, r
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setAt(value);
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setLeaf(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setIndex(value);
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setWidth(value);
       break;
     case 3:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setRoot(value);
-      break;
-    case 4:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setLeaf(value);
-      break;
-    case 5:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.addPath(value);
+      msg.addTerms(value);
       break;
     default:
       reader.skipField();
@@ -8278,38 +8189,24 @@ proto.immudb.schema.InclusionProof.prototype.serializeBinary = function() {
  */
 proto.immudb.schema.InclusionProof.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAt();
+  f = message.getLeaf();
   if (f !== 0) {
-    writer.writeUint64(
+    writer.writeInt32(
       1,
       f
     );
   }
-  f = message.getIndex();
+  f = message.getWidth();
   if (f !== 0) {
-    writer.writeUint64(
+    writer.writeInt32(
       2,
       f
     );
   }
-  f = message.getRoot_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
-      3,
-      f
-    );
-  }
-  f = message.getLeaf_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
-      4,
-      f
-    );
-  }
-  f = message.getPathList_asU8();
+  f = message.getTermsList_asU8();
   if (f.length > 0) {
     writer.writeRepeatedBytes(
-      5,
+      3,
       f
     );
   }
@@ -8317,531 +8214,99 @@ proto.immudb.schema.InclusionProof.serializeBinaryToWriter = function(message, w
 
 
 /**
- * optional uint64 at = 1;
+ * optional int32 leaf = 1;
  * @return {number}
  */
-proto.immudb.schema.InclusionProof.prototype.getAt = function() {
+proto.immudb.schema.InclusionProof.prototype.getLeaf = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.immudb.schema.InclusionProof} returns this
- */
-proto.immudb.schema.InclusionProof.prototype.setAt = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-/**
- * optional uint64 index = 2;
- * @return {number}
- */
-proto.immudb.schema.InclusionProof.prototype.getIndex = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.immudb.schema.InclusionProof} returns this
- */
-proto.immudb.schema.InclusionProof.prototype.setIndex = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
-};
-
-
-/**
- * optional bytes root = 3;
- * @return {!(string|Uint8Array)}
- */
-proto.immudb.schema.InclusionProof.prototype.getRoot = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * optional bytes root = 3;
- * This is a type-conversion wrapper around `getRoot()`
- * @return {string}
- */
-proto.immudb.schema.InclusionProof.prototype.getRoot_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getRoot()));
-};
-
-
-/**
- * optional bytes root = 3;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getRoot()`
- * @return {!Uint8Array}
- */
-proto.immudb.schema.InclusionProof.prototype.getRoot_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getRoot()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.InclusionProof} returns this
- */
-proto.immudb.schema.InclusionProof.prototype.setRoot = function(value) {
-  return jspb.Message.setProto3BytesField(this, 3, value);
-};
-
-
-/**
- * optional bytes leaf = 4;
- * @return {!(string|Uint8Array)}
- */
-proto.immudb.schema.InclusionProof.prototype.getLeaf = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
-};
-
-
-/**
- * optional bytes leaf = 4;
- * This is a type-conversion wrapper around `getLeaf()`
- * @return {string}
- */
-proto.immudb.schema.InclusionProof.prototype.getLeaf_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getLeaf()));
-};
-
-
-/**
- * optional bytes leaf = 4;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getLeaf()`
- * @return {!Uint8Array}
- */
-proto.immudb.schema.InclusionProof.prototype.getLeaf_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getLeaf()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
  * @return {!proto.immudb.schema.InclusionProof} returns this
  */
 proto.immudb.schema.InclusionProof.prototype.setLeaf = function(value) {
-  return jspb.Message.setProto3BytesField(this, 4, value);
-};
-
-
-/**
- * repeated bytes path = 5;
- * @return {!(Array<!Uint8Array>|Array<string>)}
- */
-proto.immudb.schema.InclusionProof.prototype.getPathList = function() {
-  return /** @type {!(Array<!Uint8Array>|Array<string>)} */ (jspb.Message.getRepeatedField(this, 5));
-};
-
-
-/**
- * repeated bytes path = 5;
- * This is a type-conversion wrapper around `getPathList()`
- * @return {!Array<string>}
- */
-proto.immudb.schema.InclusionProof.prototype.getPathList_asB64 = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.bytesListAsB64(
-      this.getPathList()));
-};
-
-
-/**
- * repeated bytes path = 5;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getPathList()`
- * @return {!Array<!Uint8Array>}
- */
-proto.immudb.schema.InclusionProof.prototype.getPathList_asU8 = function() {
-  return /** @type {!Array<!Uint8Array>} */ (jspb.Message.bytesListAsU8(
-      this.getPathList()));
-};
-
-
-/**
- * @param {!(Array<!Uint8Array>|Array<string>)} value
- * @return {!proto.immudb.schema.InclusionProof} returns this
- */
-proto.immudb.schema.InclusionProof.prototype.setPathList = function(value) {
-  return jspb.Message.setField(this, 5, value || []);
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @param {number=} opt_index
- * @return {!proto.immudb.schema.InclusionProof} returns this
- */
-proto.immudb.schema.InclusionProof.prototype.addPath = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 5, value, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.immudb.schema.InclusionProof} returns this
- */
-proto.immudb.schema.InclusionProof.prototype.clearPathList = function() {
-  return this.setPathList([]);
-};
-
-
-
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.immudb.schema.ConsistencyProof.repeatedFields_ = [5];
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.immudb.schema.ConsistencyProof.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.ConsistencyProof.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.ConsistencyProof} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.ConsistencyProof.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    first: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    second: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    firstroot: msg.getFirstroot_asB64(),
-    secondroot: msg.getSecondroot_asB64(),
-    pathList: msg.getPathList_asB64()
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.ConsistencyProof}
- */
-proto.immudb.schema.ConsistencyProof.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.ConsistencyProof;
-  return proto.immudb.schema.ConsistencyProof.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.immudb.schema.ConsistencyProof} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.ConsistencyProof}
- */
-proto.immudb.schema.ConsistencyProof.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setFirst(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setSecond(value);
-      break;
-    case 3:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setFirstroot(value);
-      break;
-    case 4:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setSecondroot(value);
-      break;
-    case 5:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.addPath(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.immudb.schema.ConsistencyProof.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.ConsistencyProof.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.ConsistencyProof} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.ConsistencyProof.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getFirst();
-  if (f !== 0) {
-    writer.writeUint64(
-      1,
-      f
-    );
-  }
-  f = message.getSecond();
-  if (f !== 0) {
-    writer.writeUint64(
-      2,
-      f
-    );
-  }
-  f = message.getFirstroot_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
-      3,
-      f
-    );
-  }
-  f = message.getSecondroot_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
-      4,
-      f
-    );
-  }
-  f = message.getPathList_asU8();
-  if (f.length > 0) {
-    writer.writeRepeatedBytes(
-      5,
-      f
-    );
-  }
-};
-
-
-/**
- * optional uint64 first = 1;
- * @return {number}
- */
-proto.immudb.schema.ConsistencyProof.prototype.getFirst = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.immudb.schema.ConsistencyProof} returns this
- */
-proto.immudb.schema.ConsistencyProof.prototype.setFirst = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
 /**
- * optional uint64 second = 2;
+ * optional int32 width = 2;
  * @return {number}
  */
-proto.immudb.schema.ConsistencyProof.prototype.getSecond = function() {
+proto.immudb.schema.InclusionProof.prototype.getWidth = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.immudb.schema.ConsistencyProof} returns this
+ * @return {!proto.immudb.schema.InclusionProof} returns this
  */
-proto.immudb.schema.ConsistencyProof.prototype.setSecond = function(value) {
+proto.immudb.schema.InclusionProof.prototype.setWidth = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
- * optional bytes firstRoot = 3;
- * @return {!(string|Uint8Array)}
- */
-proto.immudb.schema.ConsistencyProof.prototype.getFirstroot = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * optional bytes firstRoot = 3;
- * This is a type-conversion wrapper around `getFirstroot()`
- * @return {string}
- */
-proto.immudb.schema.ConsistencyProof.prototype.getFirstroot_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getFirstroot()));
-};
-
-
-/**
- * optional bytes firstRoot = 3;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getFirstroot()`
- * @return {!Uint8Array}
- */
-proto.immudb.schema.ConsistencyProof.prototype.getFirstroot_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getFirstroot()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.ConsistencyProof} returns this
- */
-proto.immudb.schema.ConsistencyProof.prototype.setFirstroot = function(value) {
-  return jspb.Message.setProto3BytesField(this, 3, value);
-};
-
-
-/**
- * optional bytes secondRoot = 4;
- * @return {!(string|Uint8Array)}
- */
-proto.immudb.schema.ConsistencyProof.prototype.getSecondroot = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
-};
-
-
-/**
- * optional bytes secondRoot = 4;
- * This is a type-conversion wrapper around `getSecondroot()`
- * @return {string}
- */
-proto.immudb.schema.ConsistencyProof.prototype.getSecondroot_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getSecondroot()));
-};
-
-
-/**
- * optional bytes secondRoot = 4;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getSecondroot()`
- * @return {!Uint8Array}
- */
-proto.immudb.schema.ConsistencyProof.prototype.getSecondroot_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getSecondroot()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.ConsistencyProof} returns this
- */
-proto.immudb.schema.ConsistencyProof.prototype.setSecondroot = function(value) {
-  return jspb.Message.setProto3BytesField(this, 4, value);
-};
-
-
-/**
- * repeated bytes path = 5;
+ * repeated bytes terms = 3;
  * @return {!(Array<!Uint8Array>|Array<string>)}
  */
-proto.immudb.schema.ConsistencyProof.prototype.getPathList = function() {
-  return /** @type {!(Array<!Uint8Array>|Array<string>)} */ (jspb.Message.getRepeatedField(this, 5));
+proto.immudb.schema.InclusionProof.prototype.getTermsList = function() {
+  return /** @type {!(Array<!Uint8Array>|Array<string>)} */ (jspb.Message.getRepeatedField(this, 3));
 };
 
 
 /**
- * repeated bytes path = 5;
- * This is a type-conversion wrapper around `getPathList()`
+ * repeated bytes terms = 3;
+ * This is a type-conversion wrapper around `getTermsList()`
  * @return {!Array<string>}
  */
-proto.immudb.schema.ConsistencyProof.prototype.getPathList_asB64 = function() {
+proto.immudb.schema.InclusionProof.prototype.getTermsList_asB64 = function() {
   return /** @type {!Array<string>} */ (jspb.Message.bytesListAsB64(
-      this.getPathList()));
+      this.getTermsList()));
 };
 
 
 /**
- * repeated bytes path = 5;
+ * repeated bytes terms = 3;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getPathList()`
+ * This is a type-conversion wrapper around `getTermsList()`
  * @return {!Array<!Uint8Array>}
  */
-proto.immudb.schema.ConsistencyProof.prototype.getPathList_asU8 = function() {
+proto.immudb.schema.InclusionProof.prototype.getTermsList_asU8 = function() {
   return /** @type {!Array<!Uint8Array>} */ (jspb.Message.bytesListAsU8(
-      this.getPathList()));
+      this.getTermsList()));
 };
 
 
 /**
  * @param {!(Array<!Uint8Array>|Array<string>)} value
- * @return {!proto.immudb.schema.ConsistencyProof} returns this
+ * @return {!proto.immudb.schema.InclusionProof} returns this
  */
-proto.immudb.schema.ConsistencyProof.prototype.setPathList = function(value) {
-  return jspb.Message.setField(this, 5, value || []);
+proto.immudb.schema.InclusionProof.prototype.setTermsList = function(value) {
+  return jspb.Message.setField(this, 3, value || []);
 };
 
 
 /**
  * @param {!(string|Uint8Array)} value
  * @param {number=} opt_index
- * @return {!proto.immudb.schema.ConsistencyProof} returns this
+ * @return {!proto.immudb.schema.InclusionProof} returns this
  */
-proto.immudb.schema.ConsistencyProof.prototype.addPath = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 5, value, opt_index);
+proto.immudb.schema.InclusionProof.prototype.addTerms = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.immudb.schema.ConsistencyProof} returns this
+ * @return {!proto.immudb.schema.InclusionProof} returns this
  */
-proto.immudb.schema.ConsistencyProof.prototype.clearPathList = function() {
-  return this.setPathList([]);
+proto.immudb.schema.InclusionProof.prototype.clearTermsList = function() {
+  return this.setTermsList([]);
 };
 
 
@@ -8851,7 +8316,7 @@ proto.immudb.schema.ConsistencyProof.prototype.clearPathList = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.immudb.schema.Proof.repeatedFields_ = [5,6];
+proto.immudb.schema.SetRequest.repeatedFields_ = [1];
 
 
 
@@ -8868,8 +8333,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.immudb.schema.Proof.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.Proof.toObject(opt_includeInstance, this);
+proto.immudb.schema.SetRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.SetRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -8878,18 +8343,14 @@ proto.immudb.schema.Proof.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.Proof} msg The msg instance to transform.
+ * @param {!proto.immudb.schema.SetRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.Proof.toObject = function(includeInstance, msg) {
+proto.immudb.schema.SetRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    leaf: msg.getLeaf_asB64(),
-    index: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    root: msg.getRoot_asB64(),
-    at: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    inclusionpathList: msg.getInclusionpathList_asB64(),
-    consistencypathList: msg.getConsistencypathList_asB64()
+    kvsList: jspb.Message.toObjectList(msg.getKvsList(),
+    proto.immudb.schema.KeyValue.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -8903,837 +8364,23 @@ proto.immudb.schema.Proof.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.Proof}
+ * @return {!proto.immudb.schema.SetRequest}
  */
-proto.immudb.schema.Proof.deserializeBinary = function(bytes) {
+proto.immudb.schema.SetRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.Proof;
-  return proto.immudb.schema.Proof.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.immudb.schema.SetRequest;
+  return proto.immudb.schema.SetRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.immudb.schema.Proof} msg The message object to deserialize into.
+ * @param {!proto.immudb.schema.SetRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.Proof}
+ * @return {!proto.immudb.schema.SetRequest}
  */
-proto.immudb.schema.Proof.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setLeaf(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setIndex(value);
-      break;
-    case 3:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setRoot(value);
-      break;
-    case 4:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setAt(value);
-      break;
-    case 5:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.addInclusionpath(value);
-      break;
-    case 6:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.addConsistencypath(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.immudb.schema.Proof.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.Proof.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.Proof} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.Proof.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getLeaf_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
-      1,
-      f
-    );
-  }
-  f = message.getIndex();
-  if (f !== 0) {
-    writer.writeUint64(
-      2,
-      f
-    );
-  }
-  f = message.getRoot_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
-      3,
-      f
-    );
-  }
-  f = message.getAt();
-  if (f !== 0) {
-    writer.writeUint64(
-      4,
-      f
-    );
-  }
-  f = message.getInclusionpathList_asU8();
-  if (f.length > 0) {
-    writer.writeRepeatedBytes(
-      5,
-      f
-    );
-  }
-  f = message.getConsistencypathList_asU8();
-  if (f.length > 0) {
-    writer.writeRepeatedBytes(
-      6,
-      f
-    );
-  }
-};
-
-
-/**
- * optional bytes leaf = 1;
- * @return {!(string|Uint8Array)}
- */
-proto.immudb.schema.Proof.prototype.getLeaf = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * optional bytes leaf = 1;
- * This is a type-conversion wrapper around `getLeaf()`
- * @return {string}
- */
-proto.immudb.schema.Proof.prototype.getLeaf_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getLeaf()));
-};
-
-
-/**
- * optional bytes leaf = 1;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getLeaf()`
- * @return {!Uint8Array}
- */
-proto.immudb.schema.Proof.prototype.getLeaf_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getLeaf()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.Proof} returns this
- */
-proto.immudb.schema.Proof.prototype.setLeaf = function(value) {
-  return jspb.Message.setProto3BytesField(this, 1, value);
-};
-
-
-/**
- * optional uint64 index = 2;
- * @return {number}
- */
-proto.immudb.schema.Proof.prototype.getIndex = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.immudb.schema.Proof} returns this
- */
-proto.immudb.schema.Proof.prototype.setIndex = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
-};
-
-
-/**
- * optional bytes root = 3;
- * @return {!(string|Uint8Array)}
- */
-proto.immudb.schema.Proof.prototype.getRoot = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * optional bytes root = 3;
- * This is a type-conversion wrapper around `getRoot()`
- * @return {string}
- */
-proto.immudb.schema.Proof.prototype.getRoot_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getRoot()));
-};
-
-
-/**
- * optional bytes root = 3;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getRoot()`
- * @return {!Uint8Array}
- */
-proto.immudb.schema.Proof.prototype.getRoot_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getRoot()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.Proof} returns this
- */
-proto.immudb.schema.Proof.prototype.setRoot = function(value) {
-  return jspb.Message.setProto3BytesField(this, 3, value);
-};
-
-
-/**
- * optional uint64 at = 4;
- * @return {number}
- */
-proto.immudb.schema.Proof.prototype.getAt = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.immudb.schema.Proof} returns this
- */
-proto.immudb.schema.Proof.prototype.setAt = function(value) {
-  return jspb.Message.setProto3IntField(this, 4, value);
-};
-
-
-/**
- * repeated bytes inclusionPath = 5;
- * @return {!(Array<!Uint8Array>|Array<string>)}
- */
-proto.immudb.schema.Proof.prototype.getInclusionpathList = function() {
-  return /** @type {!(Array<!Uint8Array>|Array<string>)} */ (jspb.Message.getRepeatedField(this, 5));
-};
-
-
-/**
- * repeated bytes inclusionPath = 5;
- * This is a type-conversion wrapper around `getInclusionpathList()`
- * @return {!Array<string>}
- */
-proto.immudb.schema.Proof.prototype.getInclusionpathList_asB64 = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.bytesListAsB64(
-      this.getInclusionpathList()));
-};
-
-
-/**
- * repeated bytes inclusionPath = 5;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getInclusionpathList()`
- * @return {!Array<!Uint8Array>}
- */
-proto.immudb.schema.Proof.prototype.getInclusionpathList_asU8 = function() {
-  return /** @type {!Array<!Uint8Array>} */ (jspb.Message.bytesListAsU8(
-      this.getInclusionpathList()));
-};
-
-
-/**
- * @param {!(Array<!Uint8Array>|Array<string>)} value
- * @return {!proto.immudb.schema.Proof} returns this
- */
-proto.immudb.schema.Proof.prototype.setInclusionpathList = function(value) {
-  return jspb.Message.setField(this, 5, value || []);
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @param {number=} opt_index
- * @return {!proto.immudb.schema.Proof} returns this
- */
-proto.immudb.schema.Proof.prototype.addInclusionpath = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 5, value, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.immudb.schema.Proof} returns this
- */
-proto.immudb.schema.Proof.prototype.clearInclusionpathList = function() {
-  return this.setInclusionpathList([]);
-};
-
-
-/**
- * repeated bytes consistencyPath = 6;
- * @return {!(Array<!Uint8Array>|Array<string>)}
- */
-proto.immudb.schema.Proof.prototype.getConsistencypathList = function() {
-  return /** @type {!(Array<!Uint8Array>|Array<string>)} */ (jspb.Message.getRepeatedField(this, 6));
-};
-
-
-/**
- * repeated bytes consistencyPath = 6;
- * This is a type-conversion wrapper around `getConsistencypathList()`
- * @return {!Array<string>}
- */
-proto.immudb.schema.Proof.prototype.getConsistencypathList_asB64 = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.bytesListAsB64(
-      this.getConsistencypathList()));
-};
-
-
-/**
- * repeated bytes consistencyPath = 6;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getConsistencypathList()`
- * @return {!Array<!Uint8Array>}
- */
-proto.immudb.schema.Proof.prototype.getConsistencypathList_asU8 = function() {
-  return /** @type {!Array<!Uint8Array>} */ (jspb.Message.bytesListAsU8(
-      this.getConsistencypathList()));
-};
-
-
-/**
- * @param {!(Array<!Uint8Array>|Array<string>)} value
- * @return {!proto.immudb.schema.Proof} returns this
- */
-proto.immudb.schema.Proof.prototype.setConsistencypathList = function(value) {
-  return jspb.Message.setField(this, 6, value || []);
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @param {number=} opt_index
- * @return {!proto.immudb.schema.Proof} returns this
- */
-proto.immudb.schema.Proof.prototype.addConsistencypath = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 6, value, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.immudb.schema.Proof} returns this
- */
-proto.immudb.schema.Proof.prototype.clearConsistencypathList = function() {
-  return this.setConsistencypathList([]);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.immudb.schema.SafeItem.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.SafeItem.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.SafeItem} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.SafeItem.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    item: (f = msg.getItem()) && proto.immudb.schema.Item.toObject(includeInstance, f),
-    proof: (f = msg.getProof()) && proto.immudb.schema.Proof.toObject(includeInstance, f)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.SafeItem}
- */
-proto.immudb.schema.SafeItem.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.SafeItem;
-  return proto.immudb.schema.SafeItem.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.immudb.schema.SafeItem} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.SafeItem}
- */
-proto.immudb.schema.SafeItem.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = new proto.immudb.schema.Item;
-      reader.readMessage(value,proto.immudb.schema.Item.deserializeBinaryFromReader);
-      msg.setItem(value);
-      break;
-    case 2:
-      var value = new proto.immudb.schema.Proof;
-      reader.readMessage(value,proto.immudb.schema.Proof.deserializeBinaryFromReader);
-      msg.setProof(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.immudb.schema.SafeItem.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.SafeItem.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.SafeItem} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.SafeItem.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getItem();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto.immudb.schema.Item.serializeBinaryToWriter
-    );
-  }
-  f = message.getProof();
-  if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      proto.immudb.schema.Proof.serializeBinaryToWriter
-    );
-  }
-};
-
-
-/**
- * optional Item item = 1;
- * @return {?proto.immudb.schema.Item}
- */
-proto.immudb.schema.SafeItem.prototype.getItem = function() {
-  return /** @type{?proto.immudb.schema.Item} */ (
-    jspb.Message.getWrapperField(this, proto.immudb.schema.Item, 1));
-};
-
-
-/**
- * @param {?proto.immudb.schema.Item|undefined} value
- * @return {!proto.immudb.schema.SafeItem} returns this
-*/
-proto.immudb.schema.SafeItem.prototype.setItem = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.immudb.schema.SafeItem} returns this
- */
-proto.immudb.schema.SafeItem.prototype.clearItem = function() {
-  return this.setItem(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.immudb.schema.SafeItem.prototype.hasItem = function() {
-  return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional Proof proof = 2;
- * @return {?proto.immudb.schema.Proof}
- */
-proto.immudb.schema.SafeItem.prototype.getProof = function() {
-  return /** @type{?proto.immudb.schema.Proof} */ (
-    jspb.Message.getWrapperField(this, proto.immudb.schema.Proof, 2));
-};
-
-
-/**
- * @param {?proto.immudb.schema.Proof|undefined} value
- * @return {!proto.immudb.schema.SafeItem} returns this
-*/
-proto.immudb.schema.SafeItem.prototype.setProof = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.immudb.schema.SafeItem} returns this
- */
-proto.immudb.schema.SafeItem.prototype.clearProof = function() {
-  return this.setProof(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.immudb.schema.SafeItem.prototype.hasProof = function() {
-  return jspb.Message.getField(this, 2) != null;
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.immudb.schema.SafeStructuredItem.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.SafeStructuredItem.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.SafeStructuredItem} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.SafeStructuredItem.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    item: (f = msg.getItem()) && proto.immudb.schema.StructuredItem.toObject(includeInstance, f),
-    proof: (f = msg.getProof()) && proto.immudb.schema.Proof.toObject(includeInstance, f)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.SafeStructuredItem}
- */
-proto.immudb.schema.SafeStructuredItem.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.SafeStructuredItem;
-  return proto.immudb.schema.SafeStructuredItem.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.immudb.schema.SafeStructuredItem} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.SafeStructuredItem}
- */
-proto.immudb.schema.SafeStructuredItem.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = new proto.immudb.schema.StructuredItem;
-      reader.readMessage(value,proto.immudb.schema.StructuredItem.deserializeBinaryFromReader);
-      msg.setItem(value);
-      break;
-    case 2:
-      var value = new proto.immudb.schema.Proof;
-      reader.readMessage(value,proto.immudb.schema.Proof.deserializeBinaryFromReader);
-      msg.setProof(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.immudb.schema.SafeStructuredItem.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.SafeStructuredItem.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.SafeStructuredItem} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.SafeStructuredItem.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getItem();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto.immudb.schema.StructuredItem.serializeBinaryToWriter
-    );
-  }
-  f = message.getProof();
-  if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      proto.immudb.schema.Proof.serializeBinaryToWriter
-    );
-  }
-};
-
-
-/**
- * optional StructuredItem item = 1;
- * @return {?proto.immudb.schema.StructuredItem}
- */
-proto.immudb.schema.SafeStructuredItem.prototype.getItem = function() {
-  return /** @type{?proto.immudb.schema.StructuredItem} */ (
-    jspb.Message.getWrapperField(this, proto.immudb.schema.StructuredItem, 1));
-};
-
-
-/**
- * @param {?proto.immudb.schema.StructuredItem|undefined} value
- * @return {!proto.immudb.schema.SafeStructuredItem} returns this
-*/
-proto.immudb.schema.SafeStructuredItem.prototype.setItem = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.immudb.schema.SafeStructuredItem} returns this
- */
-proto.immudb.schema.SafeStructuredItem.prototype.clearItem = function() {
-  return this.setItem(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.immudb.schema.SafeStructuredItem.prototype.hasItem = function() {
-  return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional Proof proof = 2;
- * @return {?proto.immudb.schema.Proof}
- */
-proto.immudb.schema.SafeStructuredItem.prototype.getProof = function() {
-  return /** @type{?proto.immudb.schema.Proof} */ (
-    jspb.Message.getWrapperField(this, proto.immudb.schema.Proof, 2));
-};
-
-
-/**
- * @param {?proto.immudb.schema.Proof|undefined} value
- * @return {!proto.immudb.schema.SafeStructuredItem} returns this
-*/
-proto.immudb.schema.SafeStructuredItem.prototype.setProof = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.immudb.schema.SafeStructuredItem} returns this
- */
-proto.immudb.schema.SafeStructuredItem.prototype.clearProof = function() {
-  return this.setProof(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.immudb.schema.SafeStructuredItem.prototype.hasProof = function() {
-  return jspb.Message.getField(this, 2) != null;
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.immudb.schema.SafeSetOptions.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.SafeSetOptions.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.SafeSetOptions} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.SafeSetOptions.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    kv: (f = msg.getKv()) && proto.immudb.schema.KeyValue.toObject(includeInstance, f),
-    rootindex: (f = msg.getRootindex()) && proto.immudb.schema.Index.toObject(includeInstance, f)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.SafeSetOptions}
- */
-proto.immudb.schema.SafeSetOptions.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.SafeSetOptions;
-  return proto.immudb.schema.SafeSetOptions.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.immudb.schema.SafeSetOptions} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.SafeSetOptions}
- */
-proto.immudb.schema.SafeSetOptions.deserializeBinaryFromReader = function(msg, reader) {
+proto.immudb.schema.SetRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -9743,12 +8390,7 @@ proto.immudb.schema.SafeSetOptions.deserializeBinaryFromReader = function(msg, r
     case 1:
       var value = new proto.immudb.schema.KeyValue;
       reader.readMessage(value,proto.immudb.schema.KeyValue.deserializeBinaryFromReader);
-      msg.setKv(value);
-      break;
-    case 2:
-      var value = new proto.immudb.schema.Index;
-      reader.readMessage(value,proto.immudb.schema.Index.deserializeBinaryFromReader);
-      msg.setRootindex(value);
+      msg.addKvs(value);
       break;
     default:
       reader.skipField();
@@ -9763,9 +8405,9 @@ proto.immudb.schema.SafeSetOptions.deserializeBinaryFromReader = function(msg, r
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.immudb.schema.SafeSetOptions.prototype.serializeBinary = function() {
+proto.immudb.schema.SetRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.SafeSetOptions.serializeBinaryToWriter(this, writer);
+  proto.immudb.schema.SetRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -9773,102 +8415,58 @@ proto.immudb.schema.SafeSetOptions.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.SafeSetOptions} message
+ * @param {!proto.immudb.schema.SetRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.SafeSetOptions.serializeBinaryToWriter = function(message, writer) {
+proto.immudb.schema.SetRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getKv();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getKvsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
       1,
       f,
       proto.immudb.schema.KeyValue.serializeBinaryToWriter
     );
   }
-  f = message.getRootindex();
-  if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      proto.immudb.schema.Index.serializeBinaryToWriter
-    );
-  }
 };
 
 
 /**
- * optional KeyValue kv = 1;
- * @return {?proto.immudb.schema.KeyValue}
+ * repeated KeyValue KVs = 1;
+ * @return {!Array<!proto.immudb.schema.KeyValue>}
  */
-proto.immudb.schema.SafeSetOptions.prototype.getKv = function() {
-  return /** @type{?proto.immudb.schema.KeyValue} */ (
-    jspb.Message.getWrapperField(this, proto.immudb.schema.KeyValue, 1));
+proto.immudb.schema.SetRequest.prototype.getKvsList = function() {
+  return /** @type{!Array<!proto.immudb.schema.KeyValue>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.immudb.schema.KeyValue, 1));
 };
 
 
 /**
- * @param {?proto.immudb.schema.KeyValue|undefined} value
- * @return {!proto.immudb.schema.SafeSetOptions} returns this
+ * @param {!Array<!proto.immudb.schema.KeyValue>} value
+ * @return {!proto.immudb.schema.SetRequest} returns this
 */
-proto.immudb.schema.SafeSetOptions.prototype.setKv = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
+proto.immudb.schema.SetRequest.prototype.setKvsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * Clears the message field making it undefined.
- * @return {!proto.immudb.schema.SafeSetOptions} returns this
+ * @param {!proto.immudb.schema.KeyValue=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.immudb.schema.KeyValue}
  */
-proto.immudb.schema.SafeSetOptions.prototype.clearKv = function() {
-  return this.setKv(undefined);
+proto.immudb.schema.SetRequest.prototype.addKvs = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.immudb.schema.KeyValue, opt_index);
 };
 
 
 /**
- * Returns whether this field is set.
- * @return {boolean}
+ * Clears the list making it empty but non-null.
+ * @return {!proto.immudb.schema.SetRequest} returns this
  */
-proto.immudb.schema.SafeSetOptions.prototype.hasKv = function() {
-  return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional Index rootIndex = 2;
- * @return {?proto.immudb.schema.Index}
- */
-proto.immudb.schema.SafeSetOptions.prototype.getRootindex = function() {
-  return /** @type{?proto.immudb.schema.Index} */ (
-    jspb.Message.getWrapperField(this, proto.immudb.schema.Index, 2));
-};
-
-
-/**
- * @param {?proto.immudb.schema.Index|undefined} value
- * @return {!proto.immudb.schema.SafeSetOptions} returns this
-*/
-proto.immudb.schema.SafeSetOptions.prototype.setRootindex = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.immudb.schema.SafeSetOptions} returns this
- */
-proto.immudb.schema.SafeSetOptions.prototype.clearRootindex = function() {
-  return this.setRootindex(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.immudb.schema.SafeSetOptions.prototype.hasRootindex = function() {
-  return jspb.Message.getField(this, 2) != null;
+proto.immudb.schema.SetRequest.prototype.clearKvsList = function() {
+  return this.setKvsList([]);
 };
 
 
@@ -9888,8 +8486,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.immudb.schema.SafeSetSVOptions.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.SafeSetSVOptions.toObject(opt_includeInstance, this);
+proto.immudb.schema.KeyRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.KeyRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -9898,216 +8496,15 @@ proto.immudb.schema.SafeSetSVOptions.prototype.toObject = function(opt_includeIn
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.SafeSetSVOptions} msg The msg instance to transform.
+ * @param {!proto.immudb.schema.KeyRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.SafeSetSVOptions.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    skv: (f = msg.getSkv()) && proto.immudb.schema.StructuredKeyValue.toObject(includeInstance, f),
-    rootindex: (f = msg.getRootindex()) && proto.immudb.schema.Index.toObject(includeInstance, f)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.SafeSetSVOptions}
- */
-proto.immudb.schema.SafeSetSVOptions.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.SafeSetSVOptions;
-  return proto.immudb.schema.SafeSetSVOptions.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.immudb.schema.SafeSetSVOptions} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.SafeSetSVOptions}
- */
-proto.immudb.schema.SafeSetSVOptions.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = new proto.immudb.schema.StructuredKeyValue;
-      reader.readMessage(value,proto.immudb.schema.StructuredKeyValue.deserializeBinaryFromReader);
-      msg.setSkv(value);
-      break;
-    case 2:
-      var value = new proto.immudb.schema.Index;
-      reader.readMessage(value,proto.immudb.schema.Index.deserializeBinaryFromReader);
-      msg.setRootindex(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.immudb.schema.SafeSetSVOptions.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.SafeSetSVOptions.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.SafeSetSVOptions} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.SafeSetSVOptions.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getSkv();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto.immudb.schema.StructuredKeyValue.serializeBinaryToWriter
-    );
-  }
-  f = message.getRootindex();
-  if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      proto.immudb.schema.Index.serializeBinaryToWriter
-    );
-  }
-};
-
-
-/**
- * optional StructuredKeyValue skv = 1;
- * @return {?proto.immudb.schema.StructuredKeyValue}
- */
-proto.immudb.schema.SafeSetSVOptions.prototype.getSkv = function() {
-  return /** @type{?proto.immudb.schema.StructuredKeyValue} */ (
-    jspb.Message.getWrapperField(this, proto.immudb.schema.StructuredKeyValue, 1));
-};
-
-
-/**
- * @param {?proto.immudb.schema.StructuredKeyValue|undefined} value
- * @return {!proto.immudb.schema.SafeSetSVOptions} returns this
-*/
-proto.immudb.schema.SafeSetSVOptions.prototype.setSkv = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.immudb.schema.SafeSetSVOptions} returns this
- */
-proto.immudb.schema.SafeSetSVOptions.prototype.clearSkv = function() {
-  return this.setSkv(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.immudb.schema.SafeSetSVOptions.prototype.hasSkv = function() {
-  return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional Index rootIndex = 2;
- * @return {?proto.immudb.schema.Index}
- */
-proto.immudb.schema.SafeSetSVOptions.prototype.getRootindex = function() {
-  return /** @type{?proto.immudb.schema.Index} */ (
-    jspb.Message.getWrapperField(this, proto.immudb.schema.Index, 2));
-};
-
-
-/**
- * @param {?proto.immudb.schema.Index|undefined} value
- * @return {!proto.immudb.schema.SafeSetSVOptions} returns this
-*/
-proto.immudb.schema.SafeSetSVOptions.prototype.setRootindex = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.immudb.schema.SafeSetSVOptions} returns this
- */
-proto.immudb.schema.SafeSetSVOptions.prototype.clearRootindex = function() {
-  return this.setRootindex(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.immudb.schema.SafeSetSVOptions.prototype.hasRootindex = function() {
-  return jspb.Message.getField(this, 2) != null;
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.immudb.schema.SafeGetOptions.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.SafeGetOptions.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.SafeGetOptions} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.SafeGetOptions.toObject = function(includeInstance, msg) {
+proto.immudb.schema.KeyRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     key: msg.getKey_asB64(),
-    rootindex: (f = msg.getRootindex()) && proto.immudb.schema.Index.toObject(includeInstance, f)
+    attx: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    sincetx: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -10121,23 +8518,23 @@ proto.immudb.schema.SafeGetOptions.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.SafeGetOptions}
+ * @return {!proto.immudb.schema.KeyRequest}
  */
-proto.immudb.schema.SafeGetOptions.deserializeBinary = function(bytes) {
+proto.immudb.schema.KeyRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.SafeGetOptions;
-  return proto.immudb.schema.SafeGetOptions.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.immudb.schema.KeyRequest;
+  return proto.immudb.schema.KeyRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.immudb.schema.SafeGetOptions} msg The message object to deserialize into.
+ * @param {!proto.immudb.schema.KeyRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.SafeGetOptions}
+ * @return {!proto.immudb.schema.KeyRequest}
  */
-proto.immudb.schema.SafeGetOptions.deserializeBinaryFromReader = function(msg, reader) {
+proto.immudb.schema.KeyRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -10149,9 +8546,12 @@ proto.immudb.schema.SafeGetOptions.deserializeBinaryFromReader = function(msg, r
       msg.setKey(value);
       break;
     case 2:
-      var value = new proto.immudb.schema.Index;
-      reader.readMessage(value,proto.immudb.schema.Index.deserializeBinaryFromReader);
-      msg.setRootindex(value);
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setAttx(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setSincetx(value);
       break;
     default:
       reader.skipField();
@@ -10166,9 +8566,9 @@ proto.immudb.schema.SafeGetOptions.deserializeBinaryFromReader = function(msg, r
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.immudb.schema.SafeGetOptions.prototype.serializeBinary = function() {
+proto.immudb.schema.KeyRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.SafeGetOptions.serializeBinaryToWriter(this, writer);
+  proto.immudb.schema.KeyRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -10176,11 +8576,11 @@ proto.immudb.schema.SafeGetOptions.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.SafeGetOptions} message
+ * @param {!proto.immudb.schema.KeyRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.SafeGetOptions.serializeBinaryToWriter = function(message, writer) {
+proto.immudb.schema.KeyRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getKey_asU8();
   if (f.length > 0) {
@@ -10189,12 +8589,18 @@ proto.immudb.schema.SafeGetOptions.serializeBinaryToWriter = function(message, w
       f
     );
   }
-  f = message.getRootindex();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getAttx();
+  if (f !== 0) {
+    writer.writeUint64(
       2,
-      f,
-      proto.immudb.schema.Index.serializeBinaryToWriter
+      f
+    );
+  }
+  f = message.getSincetx();
+  if (f !== 0) {
+    writer.writeUint64(
+      3,
+      f
     );
   }
 };
@@ -10204,7 +8610,7 @@ proto.immudb.schema.SafeGetOptions.serializeBinaryToWriter = function(message, w
  * optional bytes key = 1;
  * @return {!(string|Uint8Array)}
  */
-proto.immudb.schema.SafeGetOptions.prototype.getKey = function() {
+proto.immudb.schema.KeyRequest.prototype.getKey = function() {
   return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -10214,7 +8620,7 @@ proto.immudb.schema.SafeGetOptions.prototype.getKey = function() {
  * This is a type-conversion wrapper around `getKey()`
  * @return {string}
  */
-proto.immudb.schema.SafeGetOptions.prototype.getKey_asB64 = function() {
+proto.immudb.schema.KeyRequest.prototype.getKey_asB64 = function() {
   return /** @type {string} */ (jspb.Message.bytesAsB64(
       this.getKey()));
 };
@@ -10227,7 +8633,7 @@ proto.immudb.schema.SafeGetOptions.prototype.getKey_asB64 = function() {
  * This is a type-conversion wrapper around `getKey()`
  * @return {!Uint8Array}
  */
-proto.immudb.schema.SafeGetOptions.prototype.getKey_asU8 = function() {
+proto.immudb.schema.KeyRequest.prototype.getKey_asU8 = function() {
   return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
       this.getKey()));
 };
@@ -10235,47 +8641,256 @@ proto.immudb.schema.SafeGetOptions.prototype.getKey_asU8 = function() {
 
 /**
  * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.SafeGetOptions} returns this
+ * @return {!proto.immudb.schema.KeyRequest} returns this
  */
-proto.immudb.schema.SafeGetOptions.prototype.setKey = function(value) {
+proto.immudb.schema.KeyRequest.prototype.setKey = function(value) {
   return jspb.Message.setProto3BytesField(this, 1, value);
 };
 
 
 /**
- * optional Index rootIndex = 2;
- * @return {?proto.immudb.schema.Index}
+ * optional uint64 atTx = 2;
+ * @return {number}
  */
-proto.immudb.schema.SafeGetOptions.prototype.getRootindex = function() {
-  return /** @type{?proto.immudb.schema.Index} */ (
-    jspb.Message.getWrapperField(this, proto.immudb.schema.Index, 2));
+proto.immudb.schema.KeyRequest.prototype.getAttx = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
- * @param {?proto.immudb.schema.Index|undefined} value
- * @return {!proto.immudb.schema.SafeGetOptions} returns this
-*/
-proto.immudb.schema.SafeGetOptions.prototype.setRootindex = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
+ * @param {number} value
+ * @return {!proto.immudb.schema.KeyRequest} returns this
+ */
+proto.immudb.schema.KeyRequest.prototype.setAttx = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
- * Clears the message field making it undefined.
- * @return {!proto.immudb.schema.SafeGetOptions} returns this
+ * optional uint64 sinceTx = 3;
+ * @return {number}
  */
-proto.immudb.schema.SafeGetOptions.prototype.clearRootindex = function() {
-  return this.setRootindex(undefined);
+proto.immudb.schema.KeyRequest.prototype.getSincetx = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 
 /**
- * Returns whether this field is set.
- * @return {boolean}
+ * @param {number} value
+ * @return {!proto.immudb.schema.KeyRequest} returns this
  */
-proto.immudb.schema.SafeGetOptions.prototype.hasRootindex = function() {
-  return jspb.Message.getField(this, 2) != null;
+proto.immudb.schema.KeyRequest.prototype.setSincetx = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.immudb.schema.KeyListRequest.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.immudb.schema.KeyListRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.KeyListRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.immudb.schema.KeyListRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.KeyListRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    keysList: msg.getKeysList_asB64(),
+    sincetx: jspb.Message.getFieldWithDefault(msg, 2, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.immudb.schema.KeyListRequest}
+ */
+proto.immudb.schema.KeyListRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.immudb.schema.KeyListRequest;
+  return proto.immudb.schema.KeyListRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.immudb.schema.KeyListRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.immudb.schema.KeyListRequest}
+ */
+proto.immudb.schema.KeyListRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.addKeys(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setSincetx(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.KeyListRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.immudb.schema.KeyListRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.immudb.schema.KeyListRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.KeyListRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getKeysList_asU8();
+  if (f.length > 0) {
+    writer.writeRepeatedBytes(
+      1,
+      f
+    );
+  }
+  f = message.getSincetx();
+  if (f !== 0) {
+    writer.writeUint64(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * repeated bytes keys = 1;
+ * @return {!(Array<!Uint8Array>|Array<string>)}
+ */
+proto.immudb.schema.KeyListRequest.prototype.getKeysList = function() {
+  return /** @type {!(Array<!Uint8Array>|Array<string>)} */ (jspb.Message.getRepeatedField(this, 1));
+};
+
+
+/**
+ * repeated bytes keys = 1;
+ * This is a type-conversion wrapper around `getKeysList()`
+ * @return {!Array<string>}
+ */
+proto.immudb.schema.KeyListRequest.prototype.getKeysList_asB64 = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.bytesListAsB64(
+      this.getKeysList()));
+};
+
+
+/**
+ * repeated bytes keys = 1;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getKeysList()`
+ * @return {!Array<!Uint8Array>}
+ */
+proto.immudb.schema.KeyListRequest.prototype.getKeysList_asU8 = function() {
+  return /** @type {!Array<!Uint8Array>} */ (jspb.Message.bytesListAsU8(
+      this.getKeysList()));
+};
+
+
+/**
+ * @param {!(Array<!Uint8Array>|Array<string>)} value
+ * @return {!proto.immudb.schema.KeyListRequest} returns this
+ */
+proto.immudb.schema.KeyListRequest.prototype.setKeysList = function(value) {
+  return jspb.Message.setField(this, 1, value || []);
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @param {number=} opt_index
+ * @return {!proto.immudb.schema.KeyListRequest} returns this
+ */
+proto.immudb.schema.KeyListRequest.prototype.addKeys = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 1, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.immudb.schema.KeyListRequest} returns this
+ */
+proto.immudb.schema.KeyListRequest.prototype.clearKeysList = function() {
+  return this.setKeysList([]);
+};
+
+
+/**
+ * optional uint64 sinceTx = 2;
+ * @return {number}
+ */
+proto.immudb.schema.KeyListRequest.prototype.getSincetx = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.immudb.schema.KeyListRequest} returns this
+ */
+proto.immudb.schema.KeyListRequest.prototype.setSincetx = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -10295,8 +8910,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.immudb.schema.SafeReferenceOptions.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.SafeReferenceOptions.toObject(opt_includeInstance, this);
+proto.immudb.schema.VerifiableSetRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.VerifiableSetRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -10305,14 +8920,14 @@ proto.immudb.schema.SafeReferenceOptions.prototype.toObject = function(opt_inclu
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.SafeReferenceOptions} msg The msg instance to transform.
+ * @param {!proto.immudb.schema.VerifiableSetRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.SafeReferenceOptions.toObject = function(includeInstance, msg) {
+proto.immudb.schema.VerifiableSetRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    ro: (f = msg.getRo()) && proto.immudb.schema.ReferenceOptions.toObject(includeInstance, f),
-    rootindex: (f = msg.getRootindex()) && proto.immudb.schema.Index.toObject(includeInstance, f)
+    setrequest: (f = msg.getSetrequest()) && proto.immudb.schema.SetRequest.toObject(includeInstance, f),
+    provesincetx: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -10326,23 +8941,23 @@ proto.immudb.schema.SafeReferenceOptions.toObject = function(includeInstance, ms
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.SafeReferenceOptions}
+ * @return {!proto.immudb.schema.VerifiableSetRequest}
  */
-proto.immudb.schema.SafeReferenceOptions.deserializeBinary = function(bytes) {
+proto.immudb.schema.VerifiableSetRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.SafeReferenceOptions;
-  return proto.immudb.schema.SafeReferenceOptions.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.immudb.schema.VerifiableSetRequest;
+  return proto.immudb.schema.VerifiableSetRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.immudb.schema.SafeReferenceOptions} msg The message object to deserialize into.
+ * @param {!proto.immudb.schema.VerifiableSetRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.SafeReferenceOptions}
+ * @return {!proto.immudb.schema.VerifiableSetRequest}
  */
-proto.immudb.schema.SafeReferenceOptions.deserializeBinaryFromReader = function(msg, reader) {
+proto.immudb.schema.VerifiableSetRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -10350,14 +8965,13 @@ proto.immudb.schema.SafeReferenceOptions.deserializeBinaryFromReader = function(
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.immudb.schema.ReferenceOptions;
-      reader.readMessage(value,proto.immudb.schema.ReferenceOptions.deserializeBinaryFromReader);
-      msg.setRo(value);
+      var value = new proto.immudb.schema.SetRequest;
+      reader.readMessage(value,proto.immudb.schema.SetRequest.deserializeBinaryFromReader);
+      msg.setSetrequest(value);
       break;
     case 2:
-      var value = new proto.immudb.schema.Index;
-      reader.readMessage(value,proto.immudb.schema.Index.deserializeBinaryFromReader);
-      msg.setRootindex(value);
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setProvesincetx(value);
       break;
     default:
       reader.skipField();
@@ -10372,9 +8986,9 @@ proto.immudb.schema.SafeReferenceOptions.deserializeBinaryFromReader = function(
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.immudb.schema.SafeReferenceOptions.prototype.serializeBinary = function() {
+proto.immudb.schema.VerifiableSetRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.SafeReferenceOptions.serializeBinaryToWriter(this, writer);
+  proto.immudb.schema.VerifiableSetRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -10382,56 +8996,55 @@ proto.immudb.schema.SafeReferenceOptions.prototype.serializeBinary = function() 
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.SafeReferenceOptions} message
+ * @param {!proto.immudb.schema.VerifiableSetRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.SafeReferenceOptions.serializeBinaryToWriter = function(message, writer) {
+proto.immudb.schema.VerifiableSetRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getRo();
+  f = message.getSetrequest();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.immudb.schema.ReferenceOptions.serializeBinaryToWriter
+      proto.immudb.schema.SetRequest.serializeBinaryToWriter
     );
   }
-  f = message.getRootindex();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getProvesincetx();
+  if (f !== 0) {
+    writer.writeUint64(
       2,
-      f,
-      proto.immudb.schema.Index.serializeBinaryToWriter
+      f
     );
   }
 };
 
 
 /**
- * optional ReferenceOptions ro = 1;
- * @return {?proto.immudb.schema.ReferenceOptions}
+ * optional SetRequest setRequest = 1;
+ * @return {?proto.immudb.schema.SetRequest}
  */
-proto.immudb.schema.SafeReferenceOptions.prototype.getRo = function() {
-  return /** @type{?proto.immudb.schema.ReferenceOptions} */ (
-    jspb.Message.getWrapperField(this, proto.immudb.schema.ReferenceOptions, 1));
+proto.immudb.schema.VerifiableSetRequest.prototype.getSetrequest = function() {
+  return /** @type{?proto.immudb.schema.SetRequest} */ (
+    jspb.Message.getWrapperField(this, proto.immudb.schema.SetRequest, 1));
 };
 
 
 /**
- * @param {?proto.immudb.schema.ReferenceOptions|undefined} value
- * @return {!proto.immudb.schema.SafeReferenceOptions} returns this
+ * @param {?proto.immudb.schema.SetRequest|undefined} value
+ * @return {!proto.immudb.schema.VerifiableSetRequest} returns this
 */
-proto.immudb.schema.SafeReferenceOptions.prototype.setRo = function(value) {
+proto.immudb.schema.VerifiableSetRequest.prototype.setSetrequest = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.immudb.schema.SafeReferenceOptions} returns this
+ * @return {!proto.immudb.schema.VerifiableSetRequest} returns this
  */
-proto.immudb.schema.SafeReferenceOptions.prototype.clearRo = function() {
-  return this.setRo(undefined);
+proto.immudb.schema.VerifiableSetRequest.prototype.clearSetrequest = function() {
+  return this.setSetrequest(undefined);
 };
 
 
@@ -10439,36 +9052,180 @@ proto.immudb.schema.SafeReferenceOptions.prototype.clearRo = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.immudb.schema.SafeReferenceOptions.prototype.hasRo = function() {
+proto.immudb.schema.VerifiableSetRequest.prototype.hasSetrequest = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
- * optional Index rootIndex = 2;
- * @return {?proto.immudb.schema.Index}
+ * optional uint64 proveSinceTx = 2;
+ * @return {number}
  */
-proto.immudb.schema.SafeReferenceOptions.prototype.getRootindex = function() {
-  return /** @type{?proto.immudb.schema.Index} */ (
-    jspb.Message.getWrapperField(this, proto.immudb.schema.Index, 2));
+proto.immudb.schema.VerifiableSetRequest.prototype.getProvesincetx = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
- * @param {?proto.immudb.schema.Index|undefined} value
- * @return {!proto.immudb.schema.SafeReferenceOptions} returns this
+ * @param {number} value
+ * @return {!proto.immudb.schema.VerifiableSetRequest} returns this
+ */
+proto.immudb.schema.VerifiableSetRequest.prototype.setProvesincetx = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.immudb.schema.VerifiableGetRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.VerifiableGetRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.immudb.schema.VerifiableGetRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.VerifiableGetRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    keyrequest: (f = msg.getKeyrequest()) && proto.immudb.schema.KeyRequest.toObject(includeInstance, f),
+    provesincetx: jspb.Message.getFieldWithDefault(msg, 2, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.immudb.schema.VerifiableGetRequest}
+ */
+proto.immudb.schema.VerifiableGetRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.immudb.schema.VerifiableGetRequest;
+  return proto.immudb.schema.VerifiableGetRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.immudb.schema.VerifiableGetRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.immudb.schema.VerifiableGetRequest}
+ */
+proto.immudb.schema.VerifiableGetRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.immudb.schema.KeyRequest;
+      reader.readMessage(value,proto.immudb.schema.KeyRequest.deserializeBinaryFromReader);
+      msg.setKeyrequest(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setProvesincetx(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.VerifiableGetRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.immudb.schema.VerifiableGetRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.immudb.schema.VerifiableGetRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.VerifiableGetRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getKeyrequest();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.immudb.schema.KeyRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getProvesincetx();
+  if (f !== 0) {
+    writer.writeUint64(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional KeyRequest keyRequest = 1;
+ * @return {?proto.immudb.schema.KeyRequest}
+ */
+proto.immudb.schema.VerifiableGetRequest.prototype.getKeyrequest = function() {
+  return /** @type{?proto.immudb.schema.KeyRequest} */ (
+    jspb.Message.getWrapperField(this, proto.immudb.schema.KeyRequest, 1));
+};
+
+
+/**
+ * @param {?proto.immudb.schema.KeyRequest|undefined} value
+ * @return {!proto.immudb.schema.VerifiableGetRequest} returns this
 */
-proto.immudb.schema.SafeReferenceOptions.prototype.setRootindex = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
+proto.immudb.schema.VerifiableGetRequest.prototype.setKeyrequest = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.immudb.schema.SafeReferenceOptions} returns this
+ * @return {!proto.immudb.schema.VerifiableGetRequest} returns this
  */
-proto.immudb.schema.SafeReferenceOptions.prototype.clearRootindex = function() {
-  return this.setRootindex(undefined);
+proto.immudb.schema.VerifiableGetRequest.prototype.clearKeyrequest = function() {
+  return this.setKeyrequest(undefined);
 };
 
 
@@ -10476,8 +9233,26 @@ proto.immudb.schema.SafeReferenceOptions.prototype.clearRootindex = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.immudb.schema.SafeReferenceOptions.prototype.hasRootindex = function() {
-  return jspb.Message.getField(this, 2) != null;
+proto.immudb.schema.VerifiableGetRequest.prototype.hasKeyrequest = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional uint64 proveSinceTx = 2;
+ * @return {number}
+ */
+proto.immudb.schema.VerifiableGetRequest.prototype.getProvesincetx = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.immudb.schema.VerifiableGetRequest} returns this
+ */
+proto.immudb.schema.VerifiableGetRequest.prototype.setProvesincetx = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -10657,8 +9432,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.immudb.schema.ReferenceOptions.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.ReferenceOptions.toObject(opt_includeInstance, this);
+proto.immudb.schema.ImmutableState.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.ImmutableState.toObject(opt_includeInstance, this);
 };
 
 
@@ -10667,14 +9442,16 @@ proto.immudb.schema.ReferenceOptions.prototype.toObject = function(opt_includeIn
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.ReferenceOptions} msg The msg instance to transform.
+ * @param {!proto.immudb.schema.ImmutableState} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.ReferenceOptions.toObject = function(includeInstance, msg) {
+proto.immudb.schema.ImmutableState.toObject = function(includeInstance, msg) {
   var f, obj = {
-    reference: msg.getReference_asB64(),
-    key: msg.getKey_asB64()
+    db: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    txid: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    txhash: msg.getTxhash_asB64(),
+    signature: (f = msg.getSignature()) && proto.immudb.schema.Signature.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -10688,23 +9465,23 @@ proto.immudb.schema.ReferenceOptions.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.ReferenceOptions}
+ * @return {!proto.immudb.schema.ImmutableState}
  */
-proto.immudb.schema.ReferenceOptions.deserializeBinary = function(bytes) {
+proto.immudb.schema.ImmutableState.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.ReferenceOptions;
-  return proto.immudb.schema.ReferenceOptions.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.immudb.schema.ImmutableState;
+  return proto.immudb.schema.ImmutableState.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.immudb.schema.ReferenceOptions} msg The message object to deserialize into.
+ * @param {!proto.immudb.schema.ImmutableState} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.ReferenceOptions}
+ * @return {!proto.immudb.schema.ImmutableState}
  */
-proto.immudb.schema.ReferenceOptions.deserializeBinaryFromReader = function(msg, reader) {
+proto.immudb.schema.ImmutableState.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -10712,232 +9489,21 @@ proto.immudb.schema.ReferenceOptions.deserializeBinaryFromReader = function(msg,
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setReference(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDb(value);
       break;
     case 2:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setKey(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.immudb.schema.ReferenceOptions.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.ReferenceOptions.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.ReferenceOptions} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.ReferenceOptions.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getReference_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
-      1,
-      f
-    );
-  }
-  f = message.getKey_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
-      2,
-      f
-    );
-  }
-};
-
-
-/**
- * optional bytes reference = 1;
- * @return {!(string|Uint8Array)}
- */
-proto.immudb.schema.ReferenceOptions.prototype.getReference = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * optional bytes reference = 1;
- * This is a type-conversion wrapper around `getReference()`
- * @return {string}
- */
-proto.immudb.schema.ReferenceOptions.prototype.getReference_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getReference()));
-};
-
-
-/**
- * optional bytes reference = 1;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getReference()`
- * @return {!Uint8Array}
- */
-proto.immudb.schema.ReferenceOptions.prototype.getReference_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getReference()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.ReferenceOptions} returns this
- */
-proto.immudb.schema.ReferenceOptions.prototype.setReference = function(value) {
-  return jspb.Message.setProto3BytesField(this, 1, value);
-};
-
-
-/**
- * optional bytes key = 2;
- * @return {!(string|Uint8Array)}
- */
-proto.immudb.schema.ReferenceOptions.prototype.getKey = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * optional bytes key = 2;
- * This is a type-conversion wrapper around `getKey()`
- * @return {string}
- */
-proto.immudb.schema.ReferenceOptions.prototype.getKey_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getKey()));
-};
-
-
-/**
- * optional bytes key = 2;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getKey()`
- * @return {!Uint8Array}
- */
-proto.immudb.schema.ReferenceOptions.prototype.getKey_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getKey()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.ReferenceOptions} returns this
- */
-proto.immudb.schema.ReferenceOptions.prototype.setKey = function(value) {
-  return jspb.Message.setProto3BytesField(this, 2, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.immudb.schema.ZAddOptions.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.ZAddOptions.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.ZAddOptions} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.ZAddOptions.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    set: msg.getSet_asB64(),
-    score: (f = msg.getScore()) && proto.immudb.schema.Score.toObject(includeInstance, f),
-    key: msg.getKey_asB64(),
-    index: (f = msg.getIndex()) && proto.immudb.schema.Index.toObject(includeInstance, f)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.ZAddOptions}
- */
-proto.immudb.schema.ZAddOptions.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.ZAddOptions;
-  return proto.immudb.schema.ZAddOptions.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.immudb.schema.ZAddOptions} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.ZAddOptions}
- */
-proto.immudb.schema.ZAddOptions.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setSet(value);
-      break;
-    case 2:
-      var value = new proto.immudb.schema.Score;
-      reader.readMessage(value,proto.immudb.schema.Score.deserializeBinaryFromReader);
-      msg.setScore(value);
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setTxid(value);
       break;
     case 3:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setKey(value);
+      msg.setTxhash(value);
       break;
     case 4:
-      var value = new proto.immudb.schema.Index;
-      reader.readMessage(value,proto.immudb.schema.Index.deserializeBinaryFromReader);
-      msg.setIndex(value);
+      var value = new proto.immudb.schema.Signature;
+      reader.readMessage(value,proto.immudb.schema.Signature.deserializeBinaryFromReader);
+      msg.setSignature(value);
       break;
     default:
       reader.skipField();
@@ -10952,9 +9518,9 @@ proto.immudb.schema.ZAddOptions.deserializeBinaryFromReader = function(msg, read
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.immudb.schema.ZAddOptions.prototype.serializeBinary = function() {
+proto.immudb.schema.ImmutableState.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.ZAddOptions.serializeBinaryToWriter(this, writer);
+  proto.immudb.schema.ImmutableState.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -10962,191 +9528,147 @@ proto.immudb.schema.ZAddOptions.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.ZAddOptions} message
+ * @param {!proto.immudb.schema.ImmutableState} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.ZAddOptions.serializeBinaryToWriter = function(message, writer) {
+proto.immudb.schema.ImmutableState.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getSet_asU8();
+  f = message.getDb();
   if (f.length > 0) {
-    writer.writeBytes(
+    writer.writeString(
       1,
       f
     );
   }
-  f = message.getScore();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getTxid();
+  if (f !== 0) {
+    writer.writeUint64(
       2,
-      f,
-      proto.immudb.schema.Score.serializeBinaryToWriter
+      f
     );
   }
-  f = message.getKey_asU8();
+  f = message.getTxhash_asU8();
   if (f.length > 0) {
     writer.writeBytes(
       3,
       f
     );
   }
-  f = message.getIndex();
+  f = message.getSignature();
   if (f != null) {
     writer.writeMessage(
       4,
       f,
-      proto.immudb.schema.Index.serializeBinaryToWriter
+      proto.immudb.schema.Signature.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional bytes set = 1;
- * @return {!(string|Uint8Array)}
- */
-proto.immudb.schema.ZAddOptions.prototype.getSet = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * optional bytes set = 1;
- * This is a type-conversion wrapper around `getSet()`
+ * optional string db = 1;
  * @return {string}
  */
-proto.immudb.schema.ZAddOptions.prototype.getSet_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getSet()));
+proto.immudb.schema.ImmutableState.prototype.getDb = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * optional bytes set = 1;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getSet()`
- * @return {!Uint8Array}
+ * @param {string} value
+ * @return {!proto.immudb.schema.ImmutableState} returns this
  */
-proto.immudb.schema.ZAddOptions.prototype.getSet_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getSet()));
+proto.immudb.schema.ImmutableState.prototype.setDb = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.ZAddOptions} returns this
+ * optional uint64 txId = 2;
+ * @return {number}
  */
-proto.immudb.schema.ZAddOptions.prototype.setSet = function(value) {
-  return jspb.Message.setProto3BytesField(this, 1, value);
+proto.immudb.schema.ImmutableState.prototype.getTxid = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
- * optional Score score = 2;
- * @return {?proto.immudb.schema.Score}
+ * @param {number} value
+ * @return {!proto.immudb.schema.ImmutableState} returns this
  */
-proto.immudb.schema.ZAddOptions.prototype.getScore = function() {
-  return /** @type{?proto.immudb.schema.Score} */ (
-    jspb.Message.getWrapperField(this, proto.immudb.schema.Score, 2));
+proto.immudb.schema.ImmutableState.prototype.setTxid = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
- * @param {?proto.immudb.schema.Score|undefined} value
- * @return {!proto.immudb.schema.ZAddOptions} returns this
-*/
-proto.immudb.schema.ZAddOptions.prototype.setScore = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.immudb.schema.ZAddOptions} returns this
- */
-proto.immudb.schema.ZAddOptions.prototype.clearScore = function() {
-  return this.setScore(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.immudb.schema.ZAddOptions.prototype.hasScore = function() {
-  return jspb.Message.getField(this, 2) != null;
-};
-
-
-/**
- * optional bytes key = 3;
+ * optional bytes txHash = 3;
  * @return {!(string|Uint8Array)}
  */
-proto.immudb.schema.ZAddOptions.prototype.getKey = function() {
+proto.immudb.schema.ImmutableState.prototype.getTxhash = function() {
   return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /**
- * optional bytes key = 3;
- * This is a type-conversion wrapper around `getKey()`
+ * optional bytes txHash = 3;
+ * This is a type-conversion wrapper around `getTxhash()`
  * @return {string}
  */
-proto.immudb.schema.ZAddOptions.prototype.getKey_asB64 = function() {
+proto.immudb.schema.ImmutableState.prototype.getTxhash_asB64 = function() {
   return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getKey()));
+      this.getTxhash()));
 };
 
 
 /**
- * optional bytes key = 3;
+ * optional bytes txHash = 3;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getKey()`
+ * This is a type-conversion wrapper around `getTxhash()`
  * @return {!Uint8Array}
  */
-proto.immudb.schema.ZAddOptions.prototype.getKey_asU8 = function() {
+proto.immudb.schema.ImmutableState.prototype.getTxhash_asU8 = function() {
   return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getKey()));
+      this.getTxhash()));
 };
 
 
 /**
  * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.ZAddOptions} returns this
+ * @return {!proto.immudb.schema.ImmutableState} returns this
  */
-proto.immudb.schema.ZAddOptions.prototype.setKey = function(value) {
+proto.immudb.schema.ImmutableState.prototype.setTxhash = function(value) {
   return jspb.Message.setProto3BytesField(this, 3, value);
 };
 
 
 /**
- * optional Index index = 4;
- * @return {?proto.immudb.schema.Index}
+ * optional Signature signature = 4;
+ * @return {?proto.immudb.schema.Signature}
  */
-proto.immudb.schema.ZAddOptions.prototype.getIndex = function() {
-  return /** @type{?proto.immudb.schema.Index} */ (
-    jspb.Message.getWrapperField(this, proto.immudb.schema.Index, 4));
+proto.immudb.schema.ImmutableState.prototype.getSignature = function() {
+  return /** @type{?proto.immudb.schema.Signature} */ (
+    jspb.Message.getWrapperField(this, proto.immudb.schema.Signature, 4));
 };
 
 
 /**
- * @param {?proto.immudb.schema.Index|undefined} value
- * @return {!proto.immudb.schema.ZAddOptions} returns this
+ * @param {?proto.immudb.schema.Signature|undefined} value
+ * @return {!proto.immudb.schema.ImmutableState} returns this
 */
-proto.immudb.schema.ZAddOptions.prototype.setIndex = function(value) {
+proto.immudb.schema.ImmutableState.prototype.setSignature = function(value) {
   return jspb.Message.setWrapperField(this, 4, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.immudb.schema.ZAddOptions} returns this
+ * @return {!proto.immudb.schema.ImmutableState} returns this
  */
-proto.immudb.schema.ZAddOptions.prototype.clearIndex = function() {
-  return this.setIndex(undefined);
+proto.immudb.schema.ImmutableState.prototype.clearSignature = function() {
+  return this.setSignature(undefined);
 };
 
 
@@ -11154,7 +9676,7 @@ proto.immudb.schema.ZAddOptions.prototype.clearIndex = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.immudb.schema.ZAddOptions.prototype.hasIndex = function() {
+proto.immudb.schema.ImmutableState.prototype.hasSignature = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
@@ -11175,8 +9697,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.immudb.schema.ZScanOptions.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.ZScanOptions.toObject(opt_includeInstance, this);
+proto.immudb.schema.ReferenceRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.ReferenceRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -11185,18 +9707,16 @@ proto.immudb.schema.ZScanOptions.prototype.toObject = function(opt_includeInstan
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.ZScanOptions} msg The msg instance to transform.
+ * @param {!proto.immudb.schema.ReferenceRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.ZScanOptions.toObject = function(includeInstance, msg) {
+proto.immudb.schema.ReferenceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    set: msg.getSet_asB64(),
-    offset: msg.getOffset_asB64(),
-    limit: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    reverse: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
-    min: (f = msg.getMin()) && proto.immudb.schema.Score.toObject(includeInstance, f),
-    max: (f = msg.getMax()) && proto.immudb.schema.Score.toObject(includeInstance, f)
+    key: msg.getKey_asB64(),
+    referencedkey: msg.getReferencedkey_asB64(),
+    attx: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    boundref: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -11210,23 +9730,23 @@ proto.immudb.schema.ZScanOptions.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.ZScanOptions}
+ * @return {!proto.immudb.schema.ReferenceRequest}
  */
-proto.immudb.schema.ZScanOptions.deserializeBinary = function(bytes) {
+proto.immudb.schema.ReferenceRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.ZScanOptions;
-  return proto.immudb.schema.ZScanOptions.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.immudb.schema.ReferenceRequest;
+  return proto.immudb.schema.ReferenceRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.immudb.schema.ZScanOptions} msg The message object to deserialize into.
+ * @param {!proto.immudb.schema.ReferenceRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.ZScanOptions}
+ * @return {!proto.immudb.schema.ReferenceRequest}
  */
-proto.immudb.schema.ZScanOptions.deserializeBinaryFromReader = function(msg, reader) {
+proto.immudb.schema.ReferenceRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -11235,29 +9755,19 @@ proto.immudb.schema.ZScanOptions.deserializeBinaryFromReader = function(msg, rea
     switch (field) {
     case 1:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setSet(value);
+      msg.setKey(value);
       break;
     case 2:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setOffset(value);
+      msg.setReferencedkey(value);
       break;
     case 3:
       var value = /** @type {number} */ (reader.readUint64());
-      msg.setLimit(value);
+      msg.setAttx(value);
       break;
     case 4:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setReverse(value);
-      break;
-    case 5:
-      var value = new proto.immudb.schema.Score;
-      reader.readMessage(value,proto.immudb.schema.Score.deserializeBinaryFromReader);
-      msg.setMin(value);
-      break;
-    case 6:
-      var value = new proto.immudb.schema.Score;
-      reader.readMessage(value,proto.immudb.schema.Score.deserializeBinaryFromReader);
-      msg.setMax(value);
+      msg.setBoundref(value);
       break;
     default:
       reader.skipField();
@@ -11272,9 +9782,9 @@ proto.immudb.schema.ZScanOptions.deserializeBinaryFromReader = function(msg, rea
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.immudb.schema.ZScanOptions.prototype.serializeBinary = function() {
+proto.immudb.schema.ReferenceRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.ZScanOptions.serializeBinaryToWriter(this, writer);
+  proto.immudb.schema.ReferenceRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -11282,11 +9792,465 @@ proto.immudb.schema.ZScanOptions.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.ZScanOptions} message
+ * @param {!proto.immudb.schema.ReferenceRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.ZScanOptions.serializeBinaryToWriter = function(message, writer) {
+proto.immudb.schema.ReferenceRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getKey_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      1,
+      f
+    );
+  }
+  f = message.getReferencedkey_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      2,
+      f
+    );
+  }
+  f = message.getAttx();
+  if (f !== 0) {
+    writer.writeUint64(
+      3,
+      f
+    );
+  }
+  f = message.getBoundref();
+  if (f) {
+    writer.writeBool(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional bytes key = 1;
+ * @return {!(string|Uint8Array)}
+ */
+proto.immudb.schema.ReferenceRequest.prototype.getKey = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * optional bytes key = 1;
+ * This is a type-conversion wrapper around `getKey()`
+ * @return {string}
+ */
+proto.immudb.schema.ReferenceRequest.prototype.getKey_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getKey()));
+};
+
+
+/**
+ * optional bytes key = 1;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getKey()`
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.ReferenceRequest.prototype.getKey_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getKey()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.immudb.schema.ReferenceRequest} returns this
+ */
+proto.immudb.schema.ReferenceRequest.prototype.setKey = function(value) {
+  return jspb.Message.setProto3BytesField(this, 1, value);
+};
+
+
+/**
+ * optional bytes referencedKey = 2;
+ * @return {!(string|Uint8Array)}
+ */
+proto.immudb.schema.ReferenceRequest.prototype.getReferencedkey = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * optional bytes referencedKey = 2;
+ * This is a type-conversion wrapper around `getReferencedkey()`
+ * @return {string}
+ */
+proto.immudb.schema.ReferenceRequest.prototype.getReferencedkey_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getReferencedkey()));
+};
+
+
+/**
+ * optional bytes referencedKey = 2;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getReferencedkey()`
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.ReferenceRequest.prototype.getReferencedkey_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getReferencedkey()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.immudb.schema.ReferenceRequest} returns this
+ */
+proto.immudb.schema.ReferenceRequest.prototype.setReferencedkey = function(value) {
+  return jspb.Message.setProto3BytesField(this, 2, value);
+};
+
+
+/**
+ * optional uint64 atTx = 3;
+ * @return {number}
+ */
+proto.immudb.schema.ReferenceRequest.prototype.getAttx = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.immudb.schema.ReferenceRequest} returns this
+ */
+proto.immudb.schema.ReferenceRequest.prototype.setAttx = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * optional bool boundRef = 4;
+ * @return {boolean}
+ */
+proto.immudb.schema.ReferenceRequest.prototype.getBoundref = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.immudb.schema.ReferenceRequest} returns this
+ */
+proto.immudb.schema.ReferenceRequest.prototype.setBoundref = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 4, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.immudb.schema.VerifiableReferenceRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.VerifiableReferenceRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.immudb.schema.VerifiableReferenceRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.VerifiableReferenceRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    referencerequest: (f = msg.getReferencerequest()) && proto.immudb.schema.ReferenceRequest.toObject(includeInstance, f),
+    provesincetx: jspb.Message.getFieldWithDefault(msg, 2, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.immudb.schema.VerifiableReferenceRequest}
+ */
+proto.immudb.schema.VerifiableReferenceRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.immudb.schema.VerifiableReferenceRequest;
+  return proto.immudb.schema.VerifiableReferenceRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.immudb.schema.VerifiableReferenceRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.immudb.schema.VerifiableReferenceRequest}
+ */
+proto.immudb.schema.VerifiableReferenceRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.immudb.schema.ReferenceRequest;
+      reader.readMessage(value,proto.immudb.schema.ReferenceRequest.deserializeBinaryFromReader);
+      msg.setReferencerequest(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setProvesincetx(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.VerifiableReferenceRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.immudb.schema.VerifiableReferenceRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.immudb.schema.VerifiableReferenceRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.VerifiableReferenceRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getReferencerequest();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.immudb.schema.ReferenceRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getProvesincetx();
+  if (f !== 0) {
+    writer.writeUint64(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional ReferenceRequest referenceRequest = 1;
+ * @return {?proto.immudb.schema.ReferenceRequest}
+ */
+proto.immudb.schema.VerifiableReferenceRequest.prototype.getReferencerequest = function() {
+  return /** @type{?proto.immudb.schema.ReferenceRequest} */ (
+    jspb.Message.getWrapperField(this, proto.immudb.schema.ReferenceRequest, 1));
+};
+
+
+/**
+ * @param {?proto.immudb.schema.ReferenceRequest|undefined} value
+ * @return {!proto.immudb.schema.VerifiableReferenceRequest} returns this
+*/
+proto.immudb.schema.VerifiableReferenceRequest.prototype.setReferencerequest = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.immudb.schema.VerifiableReferenceRequest} returns this
+ */
+proto.immudb.schema.VerifiableReferenceRequest.prototype.clearReferencerequest = function() {
+  return this.setReferencerequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.immudb.schema.VerifiableReferenceRequest.prototype.hasReferencerequest = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional uint64 proveSinceTx = 2;
+ * @return {number}
+ */
+proto.immudb.schema.VerifiableReferenceRequest.prototype.getProvesincetx = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.immudb.schema.VerifiableReferenceRequest} returns this
+ */
+proto.immudb.schema.VerifiableReferenceRequest.prototype.setProvesincetx = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.immudb.schema.ZAddRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.ZAddRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.immudb.schema.ZAddRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.ZAddRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    set: msg.getSet_asB64(),
+    score: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+    key: msg.getKey_asB64(),
+    attx: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    boundref: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.immudb.schema.ZAddRequest}
+ */
+proto.immudb.schema.ZAddRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.immudb.schema.ZAddRequest;
+  return proto.immudb.schema.ZAddRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.immudb.schema.ZAddRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.immudb.schema.ZAddRequest}
+ */
+proto.immudb.schema.ZAddRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setSet(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setScore(value);
+      break;
+    case 3:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setKey(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setAttx(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setBoundref(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.ZAddRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.immudb.schema.ZAddRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.immudb.schema.ZAddRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.ZAddRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getSet_asU8();
   if (f.length > 0) {
@@ -11295,41 +10259,32 @@ proto.immudb.schema.ZScanOptions.serializeBinaryToWriter = function(message, wri
       f
     );
   }
-  f = message.getOffset_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
+  f = message.getScore();
+  if (f !== 0.0) {
+    writer.writeDouble(
       2,
       f
     );
   }
-  f = message.getLimit();
-  if (f !== 0) {
-    writer.writeUint64(
+  f = message.getKey_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
       3,
       f
     );
   }
-  f = message.getReverse();
-  if (f) {
-    writer.writeBool(
+  f = message.getAttx();
+  if (f !== 0) {
+    writer.writeUint64(
       4,
       f
     );
   }
-  f = message.getMin();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getBoundref();
+  if (f) {
+    writer.writeBool(
       5,
-      f,
-      proto.immudb.schema.Score.serializeBinaryToWriter
-    );
-  }
-  f = message.getMax();
-  if (f != null) {
-    writer.writeMessage(
-      6,
-      f,
-      proto.immudb.schema.Score.serializeBinaryToWriter
+      f
     );
   }
 };
@@ -11339,7 +10294,7 @@ proto.immudb.schema.ZScanOptions.serializeBinaryToWriter = function(message, wri
  * optional bytes set = 1;
  * @return {!(string|Uint8Array)}
  */
-proto.immudb.schema.ZScanOptions.prototype.getSet = function() {
+proto.immudb.schema.ZAddRequest.prototype.getSet = function() {
   return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -11349,7 +10304,7 @@ proto.immudb.schema.ZScanOptions.prototype.getSet = function() {
  * This is a type-conversion wrapper around `getSet()`
  * @return {string}
  */
-proto.immudb.schema.ZScanOptions.prototype.getSet_asB64 = function() {
+proto.immudb.schema.ZAddRequest.prototype.getSet_asB64 = function() {
   return /** @type {string} */ (jspb.Message.bytesAsB64(
       this.getSet()));
 };
@@ -11362,7 +10317,7 @@ proto.immudb.schema.ZScanOptions.prototype.getSet_asB64 = function() {
  * This is a type-conversion wrapper around `getSet()`
  * @return {!Uint8Array}
  */
-proto.immudb.schema.ZScanOptions.prototype.getSet_asU8 = function() {
+proto.immudb.schema.ZAddRequest.prototype.getSet_asU8 = function() {
   return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
       this.getSet()));
 };
@@ -11370,162 +10325,106 @@ proto.immudb.schema.ZScanOptions.prototype.getSet_asU8 = function() {
 
 /**
  * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.ZScanOptions} returns this
+ * @return {!proto.immudb.schema.ZAddRequest} returns this
  */
-proto.immudb.schema.ZScanOptions.prototype.setSet = function(value) {
+proto.immudb.schema.ZAddRequest.prototype.setSet = function(value) {
   return jspb.Message.setProto3BytesField(this, 1, value);
 };
 
 
 /**
- * optional bytes offset = 2;
- * @return {!(string|Uint8Array)}
- */
-proto.immudb.schema.ZScanOptions.prototype.getOffset = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * optional bytes offset = 2;
- * This is a type-conversion wrapper around `getOffset()`
- * @return {string}
- */
-proto.immudb.schema.ZScanOptions.prototype.getOffset_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getOffset()));
-};
-
-
-/**
- * optional bytes offset = 2;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getOffset()`
- * @return {!Uint8Array}
- */
-proto.immudb.schema.ZScanOptions.prototype.getOffset_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getOffset()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.ZScanOptions} returns this
- */
-proto.immudb.schema.ZScanOptions.prototype.setOffset = function(value) {
-  return jspb.Message.setProto3BytesField(this, 2, value);
-};
-
-
-/**
- * optional uint64 limit = 3;
+ * optional double score = 2;
  * @return {number}
  */
-proto.immudb.schema.ZScanOptions.prototype.getLimit = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+proto.immudb.schema.ZAddRequest.prototype.getScore = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 2, 0.0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.immudb.schema.ZScanOptions} returns this
+ * @return {!proto.immudb.schema.ZAddRequest} returns this
  */
-proto.immudb.schema.ZScanOptions.prototype.setLimit = function(value) {
-  return jspb.Message.setProto3IntField(this, 3, value);
+proto.immudb.schema.ZAddRequest.prototype.setScore = function(value) {
+  return jspb.Message.setProto3FloatField(this, 2, value);
 };
 
 
 /**
- * optional bool reverse = 4;
+ * optional bytes key = 3;
+ * @return {!(string|Uint8Array)}
+ */
+proto.immudb.schema.ZAddRequest.prototype.getKey = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * optional bytes key = 3;
+ * This is a type-conversion wrapper around `getKey()`
+ * @return {string}
+ */
+proto.immudb.schema.ZAddRequest.prototype.getKey_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getKey()));
+};
+
+
+/**
+ * optional bytes key = 3;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getKey()`
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.ZAddRequest.prototype.getKey_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getKey()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.immudb.schema.ZAddRequest} returns this
+ */
+proto.immudb.schema.ZAddRequest.prototype.setKey = function(value) {
+  return jspb.Message.setProto3BytesField(this, 3, value);
+};
+
+
+/**
+ * optional uint64 atTx = 4;
+ * @return {number}
+ */
+proto.immudb.schema.ZAddRequest.prototype.getAttx = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.immudb.schema.ZAddRequest} returns this
+ */
+proto.immudb.schema.ZAddRequest.prototype.setAttx = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+/**
+ * optional bool boundRef = 5;
  * @return {boolean}
  */
-proto.immudb.schema.ZScanOptions.prototype.getReverse = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
+proto.immudb.schema.ZAddRequest.prototype.getBoundref = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
 };
 
 
 /**
  * @param {boolean} value
- * @return {!proto.immudb.schema.ZScanOptions} returns this
+ * @return {!proto.immudb.schema.ZAddRequest} returns this
  */
-proto.immudb.schema.ZScanOptions.prototype.setReverse = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 4, value);
-};
-
-
-/**
- * optional Score min = 5;
- * @return {?proto.immudb.schema.Score}
- */
-proto.immudb.schema.ZScanOptions.prototype.getMin = function() {
-  return /** @type{?proto.immudb.schema.Score} */ (
-    jspb.Message.getWrapperField(this, proto.immudb.schema.Score, 5));
-};
-
-
-/**
- * @param {?proto.immudb.schema.Score|undefined} value
- * @return {!proto.immudb.schema.ZScanOptions} returns this
-*/
-proto.immudb.schema.ZScanOptions.prototype.setMin = function(value) {
-  return jspb.Message.setWrapperField(this, 5, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.immudb.schema.ZScanOptions} returns this
- */
-proto.immudb.schema.ZScanOptions.prototype.clearMin = function() {
-  return this.setMin(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.immudb.schema.ZScanOptions.prototype.hasMin = function() {
-  return jspb.Message.getField(this, 5) != null;
-};
-
-
-/**
- * optional Score max = 6;
- * @return {?proto.immudb.schema.Score}
- */
-proto.immudb.schema.ZScanOptions.prototype.getMax = function() {
-  return /** @type{?proto.immudb.schema.Score} */ (
-    jspb.Message.getWrapperField(this, proto.immudb.schema.Score, 6));
-};
-
-
-/**
- * @param {?proto.immudb.schema.Score|undefined} value
- * @return {!proto.immudb.schema.ZScanOptions} returns this
-*/
-proto.immudb.schema.ZScanOptions.prototype.setMax = function(value) {
-  return jspb.Message.setWrapperField(this, 6, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.immudb.schema.ZScanOptions} returns this
- */
-proto.immudb.schema.ZScanOptions.prototype.clearMax = function() {
-  return this.setMax(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.immudb.schema.ZScanOptions.prototype.hasMax = function() {
-  return jspb.Message.getField(this, 6) != null;
+proto.immudb.schema.ZAddRequest.prototype.setBoundref = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 
@@ -11675,8 +10574,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.immudb.schema.IScanOptions.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.IScanOptions.toObject(opt_includeInstance, this);
+proto.immudb.schema.ZScanRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.ZScanRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -11685,14 +10584,23 @@ proto.immudb.schema.IScanOptions.prototype.toObject = function(opt_includeInstan
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.IScanOptions} msg The msg instance to transform.
+ * @param {!proto.immudb.schema.ZScanRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.IScanOptions.toObject = function(includeInstance, msg) {
+proto.immudb.schema.ZScanRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    pagesize: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    pagenumber: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    set: msg.getSet_asB64(),
+    seekkey: msg.getSeekkey_asB64(),
+    seekscore: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+    seekattx: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    inclusiveseek: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+    limit: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    desc: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
+    minscore: (f = msg.getMinscore()) && proto.immudb.schema.Score.toObject(includeInstance, f),
+    maxscore: (f = msg.getMaxscore()) && proto.immudb.schema.Score.toObject(includeInstance, f),
+    sincetx: jspb.Message.getFieldWithDefault(msg, 10, 0),
+    nowait: jspb.Message.getBooleanFieldWithDefault(msg, 11, false)
   };
 
   if (includeInstance) {
@@ -11706,23 +10614,23 @@ proto.immudb.schema.IScanOptions.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.IScanOptions}
+ * @return {!proto.immudb.schema.ZScanRequest}
  */
-proto.immudb.schema.IScanOptions.deserializeBinary = function(bytes) {
+proto.immudb.schema.ZScanRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.IScanOptions;
-  return proto.immudb.schema.IScanOptions.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.immudb.schema.ZScanRequest;
+  return proto.immudb.schema.ZScanRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.immudb.schema.IScanOptions} msg The message object to deserialize into.
+ * @param {!proto.immudb.schema.ZScanRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.IScanOptions}
+ * @return {!proto.immudb.schema.ZScanRequest}
  */
-proto.immudb.schema.IScanOptions.deserializeBinaryFromReader = function(msg, reader) {
+proto.immudb.schema.ZScanRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -11730,12 +10638,50 @@ proto.immudb.schema.IScanOptions.deserializeBinaryFromReader = function(msg, rea
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setPagesize(value);
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setSet(value);
       break;
     case 2:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setSeekkey(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setSeekscore(value);
+      break;
+    case 4:
       var value = /** @type {number} */ (reader.readUint64());
-      msg.setPagenumber(value);
+      msg.setSeekattx(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setInclusiveseek(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setLimit(value);
+      break;
+    case 7:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setDesc(value);
+      break;
+    case 8:
+      var value = new proto.immudb.schema.Score;
+      reader.readMessage(value,proto.immudb.schema.Score.deserializeBinaryFromReader);
+      msg.setMinscore(value);
+      break;
+    case 9:
+      var value = new proto.immudb.schema.Score;
+      reader.readMessage(value,proto.immudb.schema.Score.deserializeBinaryFromReader);
+      msg.setMaxscore(value);
+      break;
+    case 10:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setSincetx(value);
+      break;
+    case 11:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setNowait(value);
       break;
     default:
       reader.skipField();
@@ -11750,9 +10696,9 @@ proto.immudb.schema.IScanOptions.deserializeBinaryFromReader = function(msg, rea
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.immudb.schema.IScanOptions.prototype.serializeBinary = function() {
+proto.immudb.schema.ZScanRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.IScanOptions.serializeBinaryToWriter(this, writer);
+  proto.immudb.schema.ZScanRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -11760,193 +10706,88 @@ proto.immudb.schema.IScanOptions.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.IScanOptions} message
+ * @param {!proto.immudb.schema.ZScanRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.IScanOptions.serializeBinaryToWriter = function(message, writer) {
+proto.immudb.schema.ZScanRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getPagesize();
-  if (f !== 0) {
-    writer.writeUint64(
+  f = message.getSet_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
       1,
       f
     );
   }
-  f = message.getPagenumber();
-  if (f !== 0) {
-    writer.writeUint64(
+  f = message.getSeekkey_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
       2,
       f
     );
   }
-};
-
-
-/**
- * optional uint64 pageSize = 1;
- * @return {number}
- */
-proto.immudb.schema.IScanOptions.prototype.getPagesize = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.immudb.schema.IScanOptions} returns this
- */
-proto.immudb.schema.IScanOptions.prototype.setPagesize = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-/**
- * optional uint64 pageNumber = 2;
- * @return {number}
- */
-proto.immudb.schema.IScanOptions.prototype.getPagenumber = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.immudb.schema.IScanOptions} returns this
- */
-proto.immudb.schema.IScanOptions.prototype.setPagenumber = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
-};
-
-
-
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.immudb.schema.Page.repeatedFields_ = [1];
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.immudb.schema.Page.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.Page.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.Page} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.Page.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    itemsList: jspb.Message.toObjectList(msg.getItemsList(),
-    proto.immudb.schema.Item.toObject, includeInstance),
-    more: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.Page}
- */
-proto.immudb.schema.Page.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.Page;
-  return proto.immudb.schema.Page.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.immudb.schema.Page} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.Page}
- */
-proto.immudb.schema.Page.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = new proto.immudb.schema.Item;
-      reader.readMessage(value,proto.immudb.schema.Item.deserializeBinaryFromReader);
-      msg.addItems(value);
-      break;
-    case 3:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setMore(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.immudb.schema.Page.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.Page.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.Page} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.Page.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getItemsList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      1,
-      f,
-      proto.immudb.schema.Item.serializeBinaryToWriter
+  f = message.getSeekscore();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      3,
+      f
     );
   }
-  f = message.getMore();
+  f = message.getSeekattx();
+  if (f !== 0) {
+    writer.writeUint64(
+      4,
+      f
+    );
+  }
+  f = message.getInclusiveseek();
   if (f) {
     writer.writeBool(
-      3,
+      5,
+      f
+    );
+  }
+  f = message.getLimit();
+  if (f !== 0) {
+    writer.writeUint64(
+      6,
+      f
+    );
+  }
+  f = message.getDesc();
+  if (f) {
+    writer.writeBool(
+      7,
+      f
+    );
+  }
+  f = message.getMinscore();
+  if (f != null) {
+    writer.writeMessage(
+      8,
+      f,
+      proto.immudb.schema.Score.serializeBinaryToWriter
+    );
+  }
+  f = message.getMaxscore();
+  if (f != null) {
+    writer.writeMessage(
+      9,
+      f,
+      proto.immudb.schema.Score.serializeBinaryToWriter
+    );
+  }
+  f = message.getSincetx();
+  if (f !== 0) {
+    writer.writeUint64(
+      10,
+      f
+    );
+  }
+  f = message.getNowait();
+  if (f) {
+    writer.writeBool(
+      11,
       f
     );
   }
@@ -11954,278 +10795,286 @@ proto.immudb.schema.Page.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * repeated Item items = 1;
- * @return {!Array<!proto.immudb.schema.Item>}
+ * optional bytes set = 1;
+ * @return {!(string|Uint8Array)}
  */
-proto.immudb.schema.Page.prototype.getItemsList = function() {
-  return /** @type{!Array<!proto.immudb.schema.Item>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.immudb.schema.Item, 1));
+proto.immudb.schema.ZScanRequest.prototype.getSet = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {!Array<!proto.immudb.schema.Item>} value
- * @return {!proto.immudb.schema.Page} returns this
-*/
-proto.immudb.schema.Page.prototype.setItemsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 1, value);
-};
-
-
-/**
- * @param {!proto.immudb.schema.Item=} opt_value
- * @param {number=} opt_index
- * @return {!proto.immudb.schema.Item}
+ * optional bytes set = 1;
+ * This is a type-conversion wrapper around `getSet()`
+ * @return {string}
  */
-proto.immudb.schema.Page.prototype.addItems = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.immudb.schema.Item, opt_index);
+proto.immudb.schema.ZScanRequest.prototype.getSet_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getSet()));
 };
 
 
 /**
- * Clears the list making it empty but non-null.
- * @return {!proto.immudb.schema.Page} returns this
+ * optional bytes set = 1;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getSet()`
+ * @return {!Uint8Array}
  */
-proto.immudb.schema.Page.prototype.clearItemsList = function() {
-  return this.setItemsList([]);
+proto.immudb.schema.ZScanRequest.prototype.getSet_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getSet()));
 };
 
 
 /**
- * optional bool more = 3;
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.immudb.schema.ZScanRequest} returns this
+ */
+proto.immudb.schema.ZScanRequest.prototype.setSet = function(value) {
+  return jspb.Message.setProto3BytesField(this, 1, value);
+};
+
+
+/**
+ * optional bytes seekKey = 2;
+ * @return {!(string|Uint8Array)}
+ */
+proto.immudb.schema.ZScanRequest.prototype.getSeekkey = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * optional bytes seekKey = 2;
+ * This is a type-conversion wrapper around `getSeekkey()`
+ * @return {string}
+ */
+proto.immudb.schema.ZScanRequest.prototype.getSeekkey_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getSeekkey()));
+};
+
+
+/**
+ * optional bytes seekKey = 2;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getSeekkey()`
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.ZScanRequest.prototype.getSeekkey_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getSeekkey()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.immudb.schema.ZScanRequest} returns this
+ */
+proto.immudb.schema.ZScanRequest.prototype.setSeekkey = function(value) {
+  return jspb.Message.setProto3BytesField(this, 2, value);
+};
+
+
+/**
+ * optional double seekScore = 3;
+ * @return {number}
+ */
+proto.immudb.schema.ZScanRequest.prototype.getSeekscore = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 3, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.immudb.schema.ZScanRequest} returns this
+ */
+proto.immudb.schema.ZScanRequest.prototype.setSeekscore = function(value) {
+  return jspb.Message.setProto3FloatField(this, 3, value);
+};
+
+
+/**
+ * optional uint64 seekAtTx = 4;
+ * @return {number}
+ */
+proto.immudb.schema.ZScanRequest.prototype.getSeekattx = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.immudb.schema.ZScanRequest} returns this
+ */
+proto.immudb.schema.ZScanRequest.prototype.setSeekattx = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+/**
+ * optional bool inclusiveSeek = 5;
  * @return {boolean}
  */
-proto.immudb.schema.Page.prototype.getMore = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+proto.immudb.schema.ZScanRequest.prototype.getInclusiveseek = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
 };
 
 
 /**
  * @param {boolean} value
- * @return {!proto.immudb.schema.Page} returns this
+ * @return {!proto.immudb.schema.ZScanRequest} returns this
  */
-proto.immudb.schema.Page.prototype.setMore = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 3, value);
-};
-
-
-
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.immudb.schema.SPage.repeatedFields_ = [1];
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.immudb.schema.SPage.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.SPage.toObject(opt_includeInstance, this);
+proto.immudb.schema.ZScanRequest.prototype.setInclusiveseek = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 
 /**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.SPage} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.SPage.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    itemsList: jspb.Message.toObjectList(msg.getItemsList(),
-    proto.immudb.schema.StructuredItem.toObject, includeInstance),
-    pagenum: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    more: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.SPage}
- */
-proto.immudb.schema.SPage.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.SPage;
-  return proto.immudb.schema.SPage.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.immudb.schema.SPage} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.SPage}
- */
-proto.immudb.schema.SPage.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = new proto.immudb.schema.StructuredItem;
-      reader.readMessage(value,proto.immudb.schema.StructuredItem.deserializeBinaryFromReader);
-      msg.addItems(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setPagenum(value);
-      break;
-    case 3:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setMore(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.immudb.schema.SPage.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.SPage.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.SPage} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.immudb.schema.SPage.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getItemsList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      1,
-      f,
-      proto.immudb.schema.StructuredItem.serializeBinaryToWriter
-    );
-  }
-  f = message.getPagenum();
-  if (f !== 0) {
-    writer.writeUint64(
-      2,
-      f
-    );
-  }
-  f = message.getMore();
-  if (f) {
-    writer.writeBool(
-      3,
-      f
-    );
-  }
-};
-
-
-/**
- * repeated StructuredItem items = 1;
- * @return {!Array<!proto.immudb.schema.StructuredItem>}
- */
-proto.immudb.schema.SPage.prototype.getItemsList = function() {
-  return /** @type{!Array<!proto.immudb.schema.StructuredItem>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.immudb.schema.StructuredItem, 1));
-};
-
-
-/**
- * @param {!Array<!proto.immudb.schema.StructuredItem>} value
- * @return {!proto.immudb.schema.SPage} returns this
-*/
-proto.immudb.schema.SPage.prototype.setItemsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 1, value);
-};
-
-
-/**
- * @param {!proto.immudb.schema.StructuredItem=} opt_value
- * @param {number=} opt_index
- * @return {!proto.immudb.schema.StructuredItem}
- */
-proto.immudb.schema.SPage.prototype.addItems = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.immudb.schema.StructuredItem, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.immudb.schema.SPage} returns this
- */
-proto.immudb.schema.SPage.prototype.clearItemsList = function() {
-  return this.setItemsList([]);
-};
-
-
-/**
- * optional uint64 pageNum = 2;
+ * optional uint64 limit = 6;
  * @return {number}
  */
-proto.immudb.schema.SPage.prototype.getPagenum = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+proto.immudb.schema.ZScanRequest.prototype.getLimit = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.immudb.schema.SPage} returns this
+ * @return {!proto.immudb.schema.ZScanRequest} returns this
  */
-proto.immudb.schema.SPage.prototype.setPagenum = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
+proto.immudb.schema.ZScanRequest.prototype.setLimit = function(value) {
+  return jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
 /**
- * optional bool more = 3;
+ * optional bool desc = 7;
  * @return {boolean}
  */
-proto.immudb.schema.SPage.prototype.getMore = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+proto.immudb.schema.ZScanRequest.prototype.getDesc = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 7, false));
 };
 
 
 /**
  * @param {boolean} value
- * @return {!proto.immudb.schema.SPage} returns this
+ * @return {!proto.immudb.schema.ZScanRequest} returns this
  */
-proto.immudb.schema.SPage.prototype.setMore = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 3, value);
+proto.immudb.schema.ZScanRequest.prototype.setDesc = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 7, value);
+};
+
+
+/**
+ * optional Score minScore = 8;
+ * @return {?proto.immudb.schema.Score}
+ */
+proto.immudb.schema.ZScanRequest.prototype.getMinscore = function() {
+  return /** @type{?proto.immudb.schema.Score} */ (
+    jspb.Message.getWrapperField(this, proto.immudb.schema.Score, 8));
+};
+
+
+/**
+ * @param {?proto.immudb.schema.Score|undefined} value
+ * @return {!proto.immudb.schema.ZScanRequest} returns this
+*/
+proto.immudb.schema.ZScanRequest.prototype.setMinscore = function(value) {
+  return jspb.Message.setWrapperField(this, 8, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.immudb.schema.ZScanRequest} returns this
+ */
+proto.immudb.schema.ZScanRequest.prototype.clearMinscore = function() {
+  return this.setMinscore(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.immudb.schema.ZScanRequest.prototype.hasMinscore = function() {
+  return jspb.Message.getField(this, 8) != null;
+};
+
+
+/**
+ * optional Score maxScore = 9;
+ * @return {?proto.immudb.schema.Score}
+ */
+proto.immudb.schema.ZScanRequest.prototype.getMaxscore = function() {
+  return /** @type{?proto.immudb.schema.Score} */ (
+    jspb.Message.getWrapperField(this, proto.immudb.schema.Score, 9));
+};
+
+
+/**
+ * @param {?proto.immudb.schema.Score|undefined} value
+ * @return {!proto.immudb.schema.ZScanRequest} returns this
+*/
+proto.immudb.schema.ZScanRequest.prototype.setMaxscore = function(value) {
+  return jspb.Message.setWrapperField(this, 9, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.immudb.schema.ZScanRequest} returns this
+ */
+proto.immudb.schema.ZScanRequest.prototype.clearMaxscore = function() {
+  return this.setMaxscore(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.immudb.schema.ZScanRequest.prototype.hasMaxscore = function() {
+  return jspb.Message.getField(this, 9) != null;
+};
+
+
+/**
+ * optional uint64 sinceTx = 10;
+ * @return {number}
+ */
+proto.immudb.schema.ZScanRequest.prototype.getSincetx = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.immudb.schema.ZScanRequest} returns this
+ */
+proto.immudb.schema.ZScanRequest.prototype.setSincetx = function(value) {
+  return jspb.Message.setProto3IntField(this, 10, value);
+};
+
+
+/**
+ * optional bool noWait = 11;
+ * @return {boolean}
+ */
+proto.immudb.schema.ZScanRequest.prototype.getNowait = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 11, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.immudb.schema.ZScanRequest} returns this
+ */
+proto.immudb.schema.ZScanRequest.prototype.setNowait = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 11, value);
 };
 
 
@@ -12245,8 +11094,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.immudb.schema.HistoryOptions.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.HistoryOptions.toObject(opt_includeInstance, this);
+proto.immudb.schema.HistoryRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.HistoryRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -12255,16 +11104,17 @@ proto.immudb.schema.HistoryOptions.prototype.toObject = function(opt_includeInst
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.HistoryOptions} msg The msg instance to transform.
+ * @param {!proto.immudb.schema.HistoryRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.HistoryOptions.toObject = function(includeInstance, msg) {
+proto.immudb.schema.HistoryRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     key: msg.getKey_asB64(),
     offset: jspb.Message.getFieldWithDefault(msg, 2, 0),
     limit: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    reverse: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
+    desc: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+    sincetx: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -12278,23 +11128,23 @@ proto.immudb.schema.HistoryOptions.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.HistoryOptions}
+ * @return {!proto.immudb.schema.HistoryRequest}
  */
-proto.immudb.schema.HistoryOptions.deserializeBinary = function(bytes) {
+proto.immudb.schema.HistoryRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.HistoryOptions;
-  return proto.immudb.schema.HistoryOptions.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.immudb.schema.HistoryRequest;
+  return proto.immudb.schema.HistoryRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.immudb.schema.HistoryOptions} msg The message object to deserialize into.
+ * @param {!proto.immudb.schema.HistoryRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.HistoryOptions}
+ * @return {!proto.immudb.schema.HistoryRequest}
  */
-proto.immudb.schema.HistoryOptions.deserializeBinaryFromReader = function(msg, reader) {
+proto.immudb.schema.HistoryRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -12310,12 +11160,16 @@ proto.immudb.schema.HistoryOptions.deserializeBinaryFromReader = function(msg, r
       msg.setOffset(value);
       break;
     case 3:
-      var value = /** @type {number} */ (reader.readUint64());
+      var value = /** @type {number} */ (reader.readInt32());
       msg.setLimit(value);
       break;
     case 4:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setReverse(value);
+      msg.setDesc(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setSincetx(value);
       break;
     default:
       reader.skipField();
@@ -12330,9 +11184,9 @@ proto.immudb.schema.HistoryOptions.deserializeBinaryFromReader = function(msg, r
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.immudb.schema.HistoryOptions.prototype.serializeBinary = function() {
+proto.immudb.schema.HistoryRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.HistoryOptions.serializeBinaryToWriter(this, writer);
+  proto.immudb.schema.HistoryRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -12340,11 +11194,11 @@ proto.immudb.schema.HistoryOptions.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.HistoryOptions} message
+ * @param {!proto.immudb.schema.HistoryRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.HistoryOptions.serializeBinaryToWriter = function(message, writer) {
+proto.immudb.schema.HistoryRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getKey_asU8();
   if (f.length > 0) {
@@ -12362,15 +11216,22 @@ proto.immudb.schema.HistoryOptions.serializeBinaryToWriter = function(message, w
   }
   f = message.getLimit();
   if (f !== 0) {
-    writer.writeUint64(
+    writer.writeInt32(
       3,
       f
     );
   }
-  f = message.getReverse();
+  f = message.getDesc();
   if (f) {
     writer.writeBool(
       4,
+      f
+    );
+  }
+  f = message.getSincetx();
+  if (f !== 0) {
+    writer.writeUint64(
+      5,
       f
     );
   }
@@ -12381,7 +11242,7 @@ proto.immudb.schema.HistoryOptions.serializeBinaryToWriter = function(message, w
  * optional bytes key = 1;
  * @return {!(string|Uint8Array)}
  */
-proto.immudb.schema.HistoryOptions.prototype.getKey = function() {
+proto.immudb.schema.HistoryRequest.prototype.getKey = function() {
   return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -12391,7 +11252,7 @@ proto.immudb.schema.HistoryOptions.prototype.getKey = function() {
  * This is a type-conversion wrapper around `getKey()`
  * @return {string}
  */
-proto.immudb.schema.HistoryOptions.prototype.getKey_asB64 = function() {
+proto.immudb.schema.HistoryRequest.prototype.getKey_asB64 = function() {
   return /** @type {string} */ (jspb.Message.bytesAsB64(
       this.getKey()));
 };
@@ -12404,7 +11265,7 @@ proto.immudb.schema.HistoryOptions.prototype.getKey_asB64 = function() {
  * This is a type-conversion wrapper around `getKey()`
  * @return {!Uint8Array}
  */
-proto.immudb.schema.HistoryOptions.prototype.getKey_asU8 = function() {
+proto.immudb.schema.HistoryRequest.prototype.getKey_asU8 = function() {
   return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
       this.getKey()));
 };
@@ -12412,9 +11273,9 @@ proto.immudb.schema.HistoryOptions.prototype.getKey_asU8 = function() {
 
 /**
  * @param {!(string|Uint8Array)} value
- * @return {!proto.immudb.schema.HistoryOptions} returns this
+ * @return {!proto.immudb.schema.HistoryRequest} returns this
  */
-proto.immudb.schema.HistoryOptions.prototype.setKey = function(value) {
+proto.immudb.schema.HistoryRequest.prototype.setKey = function(value) {
   return jspb.Message.setProto3BytesField(this, 1, value);
 };
 
@@ -12423,53 +11284,71 @@ proto.immudb.schema.HistoryOptions.prototype.setKey = function(value) {
  * optional uint64 offset = 2;
  * @return {number}
  */
-proto.immudb.schema.HistoryOptions.prototype.getOffset = function() {
+proto.immudb.schema.HistoryRequest.prototype.getOffset = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.immudb.schema.HistoryOptions} returns this
+ * @return {!proto.immudb.schema.HistoryRequest} returns this
  */
-proto.immudb.schema.HistoryOptions.prototype.setOffset = function(value) {
+proto.immudb.schema.HistoryRequest.prototype.setOffset = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
- * optional uint64 limit = 3;
+ * optional int32 limit = 3;
  * @return {number}
  */
-proto.immudb.schema.HistoryOptions.prototype.getLimit = function() {
+proto.immudb.schema.HistoryRequest.prototype.getLimit = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.immudb.schema.HistoryOptions} returns this
+ * @return {!proto.immudb.schema.HistoryRequest} returns this
  */
-proto.immudb.schema.HistoryOptions.prototype.setLimit = function(value) {
+proto.immudb.schema.HistoryRequest.prototype.setLimit = function(value) {
   return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
 /**
- * optional bool reverse = 4;
+ * optional bool desc = 4;
  * @return {boolean}
  */
-proto.immudb.schema.HistoryOptions.prototype.getReverse = function() {
+proto.immudb.schema.HistoryRequest.prototype.getDesc = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
 };
 
 
 /**
  * @param {boolean} value
- * @return {!proto.immudb.schema.HistoryOptions} returns this
+ * @return {!proto.immudb.schema.HistoryRequest} returns this
  */
-proto.immudb.schema.HistoryOptions.prototype.setReverse = function(value) {
+proto.immudb.schema.HistoryRequest.prototype.setDesc = function(value) {
   return jspb.Message.setProto3BooleanField(this, 4, value);
+};
+
+
+/**
+ * optional uint64 sinceTx = 5;
+ * @return {number}
+ */
+proto.immudb.schema.HistoryRequest.prototype.getSincetx = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.immudb.schema.HistoryRequest} returns this
+ */
+proto.immudb.schema.HistoryRequest.prototype.setSincetx = function(value) {
+  return jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
@@ -12489,8 +11368,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.immudb.schema.SafeZAddOptions.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.SafeZAddOptions.toObject(opt_includeInstance, this);
+proto.immudb.schema.VerifiableZAddRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.VerifiableZAddRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -12499,14 +11378,14 @@ proto.immudb.schema.SafeZAddOptions.prototype.toObject = function(opt_includeIns
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.SafeZAddOptions} msg The msg instance to transform.
+ * @param {!proto.immudb.schema.VerifiableZAddRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.SafeZAddOptions.toObject = function(includeInstance, msg) {
+proto.immudb.schema.VerifiableZAddRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    zopts: (f = msg.getZopts()) && proto.immudb.schema.ZAddOptions.toObject(includeInstance, f),
-    rootindex: (f = msg.getRootindex()) && proto.immudb.schema.Index.toObject(includeInstance, f)
+    zaddrequest: (f = msg.getZaddrequest()) && proto.immudb.schema.ZAddRequest.toObject(includeInstance, f),
+    provesincetx: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -12520,23 +11399,23 @@ proto.immudb.schema.SafeZAddOptions.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.SafeZAddOptions}
+ * @return {!proto.immudb.schema.VerifiableZAddRequest}
  */
-proto.immudb.schema.SafeZAddOptions.deserializeBinary = function(bytes) {
+proto.immudb.schema.VerifiableZAddRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.SafeZAddOptions;
-  return proto.immudb.schema.SafeZAddOptions.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.immudb.schema.VerifiableZAddRequest;
+  return proto.immudb.schema.VerifiableZAddRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.immudb.schema.SafeZAddOptions} msg The message object to deserialize into.
+ * @param {!proto.immudb.schema.VerifiableZAddRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.SafeZAddOptions}
+ * @return {!proto.immudb.schema.VerifiableZAddRequest}
  */
-proto.immudb.schema.SafeZAddOptions.deserializeBinaryFromReader = function(msg, reader) {
+proto.immudb.schema.VerifiableZAddRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -12544,14 +11423,13 @@ proto.immudb.schema.SafeZAddOptions.deserializeBinaryFromReader = function(msg, 
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.immudb.schema.ZAddOptions;
-      reader.readMessage(value,proto.immudb.schema.ZAddOptions.deserializeBinaryFromReader);
-      msg.setZopts(value);
+      var value = new proto.immudb.schema.ZAddRequest;
+      reader.readMessage(value,proto.immudb.schema.ZAddRequest.deserializeBinaryFromReader);
+      msg.setZaddrequest(value);
       break;
     case 2:
-      var value = new proto.immudb.schema.Index;
-      reader.readMessage(value,proto.immudb.schema.Index.deserializeBinaryFromReader);
-      msg.setRootindex(value);
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setProvesincetx(value);
       break;
     default:
       reader.skipField();
@@ -12566,9 +11444,9 @@ proto.immudb.schema.SafeZAddOptions.deserializeBinaryFromReader = function(msg, 
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.immudb.schema.SafeZAddOptions.prototype.serializeBinary = function() {
+proto.immudb.schema.VerifiableZAddRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.SafeZAddOptions.serializeBinaryToWriter(this, writer);
+  proto.immudb.schema.VerifiableZAddRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -12576,56 +11454,55 @@ proto.immudb.schema.SafeZAddOptions.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.SafeZAddOptions} message
+ * @param {!proto.immudb.schema.VerifiableZAddRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.SafeZAddOptions.serializeBinaryToWriter = function(message, writer) {
+proto.immudb.schema.VerifiableZAddRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getZopts();
+  f = message.getZaddrequest();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.immudb.schema.ZAddOptions.serializeBinaryToWriter
+      proto.immudb.schema.ZAddRequest.serializeBinaryToWriter
     );
   }
-  f = message.getRootindex();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getProvesincetx();
+  if (f !== 0) {
+    writer.writeUint64(
       2,
-      f,
-      proto.immudb.schema.Index.serializeBinaryToWriter
+      f
     );
   }
 };
 
 
 /**
- * optional ZAddOptions zopts = 1;
- * @return {?proto.immudb.schema.ZAddOptions}
+ * optional ZAddRequest zAddRequest = 1;
+ * @return {?proto.immudb.schema.ZAddRequest}
  */
-proto.immudb.schema.SafeZAddOptions.prototype.getZopts = function() {
-  return /** @type{?proto.immudb.schema.ZAddOptions} */ (
-    jspb.Message.getWrapperField(this, proto.immudb.schema.ZAddOptions, 1));
+proto.immudb.schema.VerifiableZAddRequest.prototype.getZaddrequest = function() {
+  return /** @type{?proto.immudb.schema.ZAddRequest} */ (
+    jspb.Message.getWrapperField(this, proto.immudb.schema.ZAddRequest, 1));
 };
 
 
 /**
- * @param {?proto.immudb.schema.ZAddOptions|undefined} value
- * @return {!proto.immudb.schema.SafeZAddOptions} returns this
+ * @param {?proto.immudb.schema.ZAddRequest|undefined} value
+ * @return {!proto.immudb.schema.VerifiableZAddRequest} returns this
 */
-proto.immudb.schema.SafeZAddOptions.prototype.setZopts = function(value) {
+proto.immudb.schema.VerifiableZAddRequest.prototype.setZaddrequest = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.immudb.schema.SafeZAddOptions} returns this
+ * @return {!proto.immudb.schema.VerifiableZAddRequest} returns this
  */
-proto.immudb.schema.SafeZAddOptions.prototype.clearZopts = function() {
-  return this.setZopts(undefined);
+proto.immudb.schema.VerifiableZAddRequest.prototype.clearZaddrequest = function() {
+  return this.setZaddrequest(undefined);
 };
 
 
@@ -12633,45 +11510,26 @@ proto.immudb.schema.SafeZAddOptions.prototype.clearZopts = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.immudb.schema.SafeZAddOptions.prototype.hasZopts = function() {
+proto.immudb.schema.VerifiableZAddRequest.prototype.hasZaddrequest = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
- * optional Index rootIndex = 2;
- * @return {?proto.immudb.schema.Index}
+ * optional uint64 proveSinceTx = 2;
+ * @return {number}
  */
-proto.immudb.schema.SafeZAddOptions.prototype.getRootindex = function() {
-  return /** @type{?proto.immudb.schema.Index} */ (
-    jspb.Message.getWrapperField(this, proto.immudb.schema.Index, 2));
+proto.immudb.schema.VerifiableZAddRequest.prototype.getProvesincetx = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
- * @param {?proto.immudb.schema.Index|undefined} value
- * @return {!proto.immudb.schema.SafeZAddOptions} returns this
-*/
-proto.immudb.schema.SafeZAddOptions.prototype.setRootindex = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.immudb.schema.SafeZAddOptions} returns this
+ * @param {number} value
+ * @return {!proto.immudb.schema.VerifiableZAddRequest} returns this
  */
-proto.immudb.schema.SafeZAddOptions.prototype.clearRootindex = function() {
-  return this.setRootindex(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.immudb.schema.SafeZAddOptions.prototype.hasRootindex = function() {
-  return jspb.Message.getField(this, 2) != null;
+proto.immudb.schema.VerifiableZAddRequest.prototype.setProvesincetx = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -12691,8 +11549,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.immudb.schema.SafeIndexOptions.prototype.toObject = function(opt_includeInstance) {
-  return proto.immudb.schema.SafeIndexOptions.toObject(opt_includeInstance, this);
+proto.immudb.schema.TxRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.TxRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -12701,14 +11559,13 @@ proto.immudb.schema.SafeIndexOptions.prototype.toObject = function(opt_includeIn
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.immudb.schema.SafeIndexOptions} msg The msg instance to transform.
+ * @param {!proto.immudb.schema.TxRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.SafeIndexOptions.toObject = function(includeInstance, msg) {
+proto.immudb.schema.TxRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    index: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    rootindex: (f = msg.getRootindex()) && proto.immudb.schema.Index.toObject(includeInstance, f)
+    tx: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -12722,23 +11579,23 @@ proto.immudb.schema.SafeIndexOptions.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.immudb.schema.SafeIndexOptions}
+ * @return {!proto.immudb.schema.TxRequest}
  */
-proto.immudb.schema.SafeIndexOptions.deserializeBinary = function(bytes) {
+proto.immudb.schema.TxRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.immudb.schema.SafeIndexOptions;
-  return proto.immudb.schema.SafeIndexOptions.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.immudb.schema.TxRequest;
+  return proto.immudb.schema.TxRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.immudb.schema.SafeIndexOptions} msg The message object to deserialize into.
+ * @param {!proto.immudb.schema.TxRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.immudb.schema.SafeIndexOptions}
+ * @return {!proto.immudb.schema.TxRequest}
  */
-proto.immudb.schema.SafeIndexOptions.deserializeBinaryFromReader = function(msg, reader) {
+proto.immudb.schema.TxRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -12747,12 +11604,7 @@ proto.immudb.schema.SafeIndexOptions.deserializeBinaryFromReader = function(msg,
     switch (field) {
     case 1:
       var value = /** @type {number} */ (reader.readUint64());
-      msg.setIndex(value);
-      break;
-    case 2:
-      var value = new proto.immudb.schema.Index;
-      reader.readMessage(value,proto.immudb.schema.Index.deserializeBinaryFromReader);
-      msg.setRootindex(value);
+      msg.setTx(value);
       break;
     default:
       reader.skipField();
@@ -12767,9 +11619,9 @@ proto.immudb.schema.SafeIndexOptions.deserializeBinaryFromReader = function(msg,
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.immudb.schema.SafeIndexOptions.prototype.serializeBinary = function() {
+proto.immudb.schema.TxRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.immudb.schema.SafeIndexOptions.serializeBinaryToWriter(this, writer);
+  proto.immudb.schema.TxRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -12777,82 +11629,547 @@ proto.immudb.schema.SafeIndexOptions.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.immudb.schema.SafeIndexOptions} message
+ * @param {!proto.immudb.schema.TxRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.immudb.schema.SafeIndexOptions.serializeBinaryToWriter = function(message, writer) {
+proto.immudb.schema.TxRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getIndex();
+  f = message.getTx();
   if (f !== 0) {
     writer.writeUint64(
       1,
       f
     );
   }
-  f = message.getRootindex();
-  if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      proto.immudb.schema.Index.serializeBinaryToWriter
-    );
-  }
 };
 
 
 /**
- * optional uint64 index = 1;
+ * optional uint64 tx = 1;
  * @return {number}
  */
-proto.immudb.schema.SafeIndexOptions.prototype.getIndex = function() {
+proto.immudb.schema.TxRequest.prototype.getTx = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.immudb.schema.SafeIndexOptions} returns this
+ * @return {!proto.immudb.schema.TxRequest} returns this
  */
-proto.immudb.schema.SafeIndexOptions.prototype.setIndex = function(value) {
+proto.immudb.schema.TxRequest.prototype.setTx = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.immudb.schema.VerifiableTxRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.VerifiableTxRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.immudb.schema.VerifiableTxRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.VerifiableTxRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    tx: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    provesincetx: jspb.Message.getFieldWithDefault(msg, 2, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.immudb.schema.VerifiableTxRequest}
+ */
+proto.immudb.schema.VerifiableTxRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.immudb.schema.VerifiableTxRequest;
+  return proto.immudb.schema.VerifiableTxRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.immudb.schema.VerifiableTxRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.immudb.schema.VerifiableTxRequest}
+ */
+proto.immudb.schema.VerifiableTxRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setTx(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setProvesincetx(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.VerifiableTxRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.immudb.schema.VerifiableTxRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.immudb.schema.VerifiableTxRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.VerifiableTxRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getTx();
+  if (f !== 0) {
+    writer.writeUint64(
+      1,
+      f
+    );
+  }
+  f = message.getProvesincetx();
+  if (f !== 0) {
+    writer.writeUint64(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional uint64 tx = 1;
+ * @return {number}
+ */
+proto.immudb.schema.VerifiableTxRequest.prototype.getTx = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.immudb.schema.VerifiableTxRequest} returns this
+ */
+proto.immudb.schema.VerifiableTxRequest.prototype.setTx = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
 /**
- * optional Index rootIndex = 2;
- * @return {?proto.immudb.schema.Index}
+ * optional uint64 proveSinceTx = 2;
+ * @return {number}
  */
-proto.immudb.schema.SafeIndexOptions.prototype.getRootindex = function() {
-  return /** @type{?proto.immudb.schema.Index} */ (
-    jspb.Message.getWrapperField(this, proto.immudb.schema.Index, 2));
+proto.immudb.schema.VerifiableTxRequest.prototype.getProvesincetx = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
- * @param {?proto.immudb.schema.Index|undefined} value
- * @return {!proto.immudb.schema.SafeIndexOptions} returns this
-*/
-proto.immudb.schema.SafeIndexOptions.prototype.setRootindex = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.immudb.schema.SafeIndexOptions} returns this
+ * @param {number} value
+ * @return {!proto.immudb.schema.VerifiableTxRequest} returns this
  */
-proto.immudb.schema.SafeIndexOptions.prototype.clearRootindex = function() {
-  return this.setRootindex(undefined);
+proto.immudb.schema.VerifiableTxRequest.prototype.setProvesincetx = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.immudb.schema.TxScanRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.TxScanRequest.toObject(opt_includeInstance, this);
 };
 
 
 /**
- * Returns whether this field is set.
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.immudb.schema.TxScanRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.TxScanRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    initialtx: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    limit: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    desc: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.immudb.schema.TxScanRequest}
+ */
+proto.immudb.schema.TxScanRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.immudb.schema.TxScanRequest;
+  return proto.immudb.schema.TxScanRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.immudb.schema.TxScanRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.immudb.schema.TxScanRequest}
+ */
+proto.immudb.schema.TxScanRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setInitialtx(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setLimit(value);
+      break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setDesc(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.TxScanRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.immudb.schema.TxScanRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.immudb.schema.TxScanRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.TxScanRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getInitialtx();
+  if (f !== 0) {
+    writer.writeUint64(
+      1,
+      f
+    );
+  }
+  f = message.getLimit();
+  if (f !== 0) {
+    writer.writeUint32(
+      2,
+      f
+    );
+  }
+  f = message.getDesc();
+  if (f) {
+    writer.writeBool(
+      3,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional uint64 initialTx = 1;
+ * @return {number}
+ */
+proto.immudb.schema.TxScanRequest.prototype.getInitialtx = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.immudb.schema.TxScanRequest} returns this
+ */
+proto.immudb.schema.TxScanRequest.prototype.setInitialtx = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional uint32 limit = 2;
+ * @return {number}
+ */
+proto.immudb.schema.TxScanRequest.prototype.getLimit = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.immudb.schema.TxScanRequest} returns this
+ */
+proto.immudb.schema.TxScanRequest.prototype.setLimit = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional bool desc = 3;
  * @return {boolean}
  */
-proto.immudb.schema.SafeIndexOptions.prototype.hasRootindex = function() {
-  return jspb.Message.getField(this, 2) != null;
+proto.immudb.schema.TxScanRequest.prototype.getDesc = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.immudb.schema.TxScanRequest} returns this
+ */
+proto.immudb.schema.TxScanRequest.prototype.setDesc = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 3, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.immudb.schema.TxList.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.immudb.schema.TxList.prototype.toObject = function(opt_includeInstance) {
+  return proto.immudb.schema.TxList.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.immudb.schema.TxList} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.TxList.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    txsList: jspb.Message.toObjectList(msg.getTxsList(),
+    proto.immudb.schema.Tx.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.immudb.schema.TxList}
+ */
+proto.immudb.schema.TxList.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.immudb.schema.TxList;
+  return proto.immudb.schema.TxList.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.immudb.schema.TxList} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.immudb.schema.TxList}
+ */
+proto.immudb.schema.TxList.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.immudb.schema.Tx;
+      reader.readMessage(value,proto.immudb.schema.Tx.deserializeBinaryFromReader);
+      msg.addTxs(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.immudb.schema.TxList.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.immudb.schema.TxList.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.immudb.schema.TxList} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.immudb.schema.TxList.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getTxsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.immudb.schema.Tx.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * repeated Tx txs = 1;
+ * @return {!Array<!proto.immudb.schema.Tx>}
+ */
+proto.immudb.schema.TxList.prototype.getTxsList = function() {
+  return /** @type{!Array<!proto.immudb.schema.Tx>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.immudb.schema.Tx, 1));
+};
+
+
+/**
+ * @param {!Array<!proto.immudb.schema.Tx>} value
+ * @return {!proto.immudb.schema.TxList} returns this
+*/
+proto.immudb.schema.TxList.prototype.setTxsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.immudb.schema.Tx=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.immudb.schema.Tx}
+ */
+proto.immudb.schema.TxList.prototype.addTxs = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.immudb.schema.Tx, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.immudb.schema.TxList} returns this
+ */
+proto.immudb.schema.TxList.prototype.clearTxsList = function() {
+  return this.setTxsList([]);
 };
 
 

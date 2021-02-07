@@ -1,10 +1,10 @@
+import tap from 'tap';
+
 import * as messages from '../src/proto/schema_pb';
 import ImmudbClient from '../src/client';
 import { Config } from '../dist/interfaces';
 
-const tap = require('tap');
-
-const { Action, Permission } = require('../src/interfaces');
+import { Permission } from '../src/interfaces';
 
 const {
   IMMUDB_HOST = '127.0.0.1',
@@ -13,7 +13,7 @@ const {
   IMMUDB_PWD = 'immudb',
 } = process.env;
 
-tap.test('database management', async (t: any) => {
+tap.test('database management', async t => {
   const config: Config = {
     host: IMMUDB_HOST,
     port: IMMUDB_PORT,
@@ -43,7 +43,7 @@ tap.test('database management', async (t: any) => {
     }
 
     // test: use database just created
-    const thirdRequestData = { databasename: 'db1' };
+    const thirdRequestData: messages.Database.AsObject = { databasename: 'db1' };
     const secondResponse = await immudbClient.useDatabase(thirdRequestData);
     // if (secondResponse) {
     //   t.type(secondResponse.token, 'string')
@@ -55,8 +55,10 @@ tap.test('database management', async (t: any) => {
     // test: add new item having the specified key and value
     const fourthRequestData = { key: 'key1', value: 'value1' };
     const fourthResponse = await immudbClient.set(fourthRequestData);
+
     if (fourthResponse) {
-      t.equal(fourthResponse.index, 0);
+      t.equal(fourthResponse.bltxid, 0);
+      t.equal(fourthResponse.id, 1);
     } else {
       t.fail('Failed to set');
     }
@@ -66,9 +68,9 @@ tap.test('database management', async (t: any) => {
       | messages.DatabaseListResponse.AsObject
       | undefined = await immudbClient.listDatabases();
     if (fifthResponse) {
-      t.equal(fifthResponse.databasesList[0], 'defaultdb');
-      t.equal(fifthResponse.databasesList[1], 'db1');
-      t.notEqual(fifthResponse.databasesList[1], 'defaultdb');
+      t.equal(fifthResponse.databasesList[0].databasename, 'defaultdb');
+      t.equal(fifthResponse.databasesList[1].databasename, 'db1');
+      t.notEqual(fifthResponse.databasesList[1].databasename, 'defaultdb');
     }
 
     // test: print merkle tree
@@ -88,7 +90,7 @@ tap.test('database management', async (t: any) => {
   }
 });
 
-tap.test('user management', async (t: any) => {
+tap.test('user management', async t => {
   const config: Config = {
     host: IMMUDB_HOST,
     port: IMMUDB_PORT,
@@ -127,7 +129,7 @@ tap.test('user management', async (t: any) => {
 
     // test: change user permission
     const changeUserPermissionRequest: messages.ChangePermissionRequest.AsObject = {
-      action: Action.Grant,
+      action: messages.PermissionAction.GRANT,
       username: rand,
       database: rand,
       permission: Permission.READ_ONLY,
@@ -158,7 +160,7 @@ tap.test('user management', async (t: any) => {
   }
 });
 
-tap.test('operations', async (t: any) => {
+tap.test('operations', async t => {
   const config: Config = {
     host: IMMUDB_HOST,
     port: IMMUDB_PORT,
@@ -180,6 +182,7 @@ tap.test('operations', async (t: any) => {
     const loginResponse: messages.LoginResponse.AsObject | undefined = await immudbClient.login(
       loginRequest
     );
+    console.log('loginResponse', loginResponse)
 
     // test: create database
     const createDatabaseRequest: messages.Database.AsObject = { databasename: testDB };
@@ -196,70 +199,73 @@ tap.test('operations', async (t: any) => {
       value: new Uint8Array(rand),
     };
     let setResponse = await immudbClient.set(setRequest);
-    const index = setResponse && setResponse.index; // saving for byIndex
+    const id = setResponse && setResponse.id; // used in txById test
+    console.log('setResponse', setResponse)
 
-    if (index === undefined || index === null) {
+    if (id === undefined || id === null) {
       t.fail('Failed to get index from set');
     }
 
     // test: get item by key
     const getRequest: messages.Key.AsObject = { key: new Uint8Array(rand) };
     const getResponse = await immudbClient.get(getRequest);
+    console.log('getResponse', getResponse)
 
-    // test: count keys having the specified value
-    // in the database in use
-    const countRequest: messages.KeyPrefix.AsObject = { prefix: new Uint8Array(rand) };
-    const countResponse = await immudbClient.count(countRequest);
+    // // test: count keys having the specified value
+    // // in the database in use
+    // const countRequest: messages.KeyPrefix.AsObject = { prefix: new Uint8Array(rand) };
+    // const countResponse = await immudbClient.count(countRequest);
 
     // test: iterate over keys having the specified
     // prefix
-    const scanRequest: messages.ScanOptions.AsObject = {
+    const scanRequest: messages.ScanRequest.AsObject = {
+      seekkey: new Uint8Array(rand),
       prefix: new Uint8Array(rand),
-      offset: '10',
+      desc: true,
       limit: 5,
-      reverse: false,
-      deep: false,
+      sincetx: rand,
+      nowait: true
     };
     const seventhResponse = await immudbClient.scan(scanRequest);
 
-    // test: return an element by index
-    const byIndexRequest: messages.Index.AsObject = { index: index as number };
-    const byIndexResponse = await immudbClient.byIndex(byIndexRequest);
+    // test: return an element by txId
+    const txByIdRequest: messages.TxRequest.AsObject = { tx: id as number }
+    const txByIdResponse = await immudbClient.txById(txByIdRequest);
+    console.log('txByIdResponse', txByIdResponse)
 
     // history: fetch history for the item having the
     // specified key
-    const historyRequest: messages.HistoryOptions.AsObject = {
+    const historyRequest: messages.HistoryRequest.AsObject = {
       key: new Uint8Array(rand),
       offset: 10,
       limit: 5,
-      reverse: false,
+      desc: false,
+      sincetx: rand
     };
     const historyResponse = await immudbClient.history(historyRequest);
 
     // test: iterate over a sorted set
-    const zScanRequest: messages.ZScanOptions.AsObject = {
+    const zScanRequest: messages.ZScanRequest.AsObject = {
       set: `${rand}`,
-      // set: new Uint8Array(rand),
-      offset: '10',
+      seekkey: '',
+      seekscore: 0,
+      seekattx: 0,
+      inclusiveseek: true,
       limit: 5,
-      reverse: false,
+      desc: true,
+      sincetx: 0,
+      nowait: true
     };
     const tenthResponse = await immudbClient.zScan(zScanRequest);
 
-    // test: iterate over all elements by
-    // insertion order
-    const iScanRequest: messages.IScanOptions.AsObject = { pagesize: 1, pagenumber: 1 };
-    const iscanResponse = await immudbClient.iScan(iScanRequest);
-
-    // test: execute a batch read
-    const getBatchRequest: messages.KeyList.AsObject = {
-      keysList: [
-        {
-          key: new Uint8Array(rand),
-        },
-      ],
+    // test: execute a getAll read
+    const getAllRequest: messages.KeyListRequest.AsObject = {
+      // keysList: [new Uint8Array(rand)],
+      keysList: ['ADA='],
+      sincetx: 1
     };
-    const getBatchResponse = await immudbClient.getBatch(getBatchRequest);
+    const getAllResponse = await immudbClient.getAll(getAllRequest);
+    console.log('getAllResponse', getAllResponse)
 
     // test: add new item having the specified key
     // and value
@@ -268,85 +274,86 @@ tap.test('operations', async (t: any) => {
       value: new Uint8Array(rand * 2),
     };
     setResponse = await immudbClient.set(setRequest);
-
+    
     // test: get current root info
     let currentRootResponse = await immudbClient.currentRoot();
+    console.log('currentRootResponse', currentRootResponse)
 
-    // test: safely add new item having the specified key
-    // and value
-    let safeSetRequest: messages.KeyValue.AsObject = {
-      key: `${rand + 10}`,
-      // key: new Uint8Array(rand + 10),
-      value: new Uint8Array(rand + 10),
-    };
-    let safeSetResponse = await immudbClient.safeSet(safeSetRequest);
+    // // test: safely add new item having the specified key
+    // // and value
+    // let safeSetRequest: messages.KeyValue.AsObject = {
+    //   key: `${rand + 10}`,
+    //   // key: new Uint8Array(rand + 10),
+    //   value: new Uint8Array(rand + 10),
+    // };
+    // let safeSetResponse = await immudbClient.safeSet(safeSetRequest);
 
-    // test: get current root info
-    currentRootResponse = await immudbClient.currentRoot();
+    // // test: get current root info
+    // currentRootResponse = await immudbClient.currentRoot();
 
-    // test: safely add new item having the specified key
-    // and value
-    safeSetRequest = {
-      key: new Uint8Array(rand + 11),
-      value: new Uint8Array(rand + 11),
-    };
-    safeSetResponse = await immudbClient.safeSet(safeSetRequest);
+    // // test: safely add new item having the specified key
+    // // and value
+    // safeSetRequest = {
+    //   key: new Uint8Array(rand + 11),
+    //   value: new Uint8Array(rand + 11),
+    // };
+    // safeSetResponse = await immudbClient.safeSet(safeSetRequest);
 
-    // test: safely add new item having the specified key
-    // and value
-    safeSetRequest = {
-      key: new Uint8Array(rand + 12),
-      value: new Uint8Array(rand + 12),
-    };
-    safeSetResponse = await immudbClient.safeSet(safeSetRequest);
+    // // test: safely add new item having the specified key
+    // // and value
+    // safeSetRequest = {
+    //   key: new Uint8Array(rand + 12),
+    //   value: new Uint8Array(rand + 12),
+    // };
+    // safeSetResponse = await immudbClient.safeSet(safeSetRequest);
 
-    // test: safely get item by key
-    const safeGetRequest: messages.Key.AsObject = {
-      key: new Uint8Array(rand + 12),
-    };
-    const safeGetResponse = await immudbClient.safeGet(safeGetRequest);
-
-    t.end();
-  } catch (err) {
-    t.error(err);
-  }
-});
-
-tap.test('batches', async (t: any) => {
-  const config: Config = {
-    host: IMMUDB_HOST,
-    port: IMMUDB_PORT,
-    autoLogin: false,
-  };
-  const immudbClient = await ImmudbClient.getInstance(config);
-  try {
-    // test: login using the specified username and password
-    const loginRequest: messages.LoginRequest.AsObject = {
-      user: IMMUDB_USER,
-      password: IMMUDB_PWD,
-    };
-    const res = await immudbClient.login(loginRequest);
-
-    // test: use default database
-    const useDatabaseRequest: messages.Database.AsObject = { databasename: 'defaultdb' };
-    const useDatabaseResponse = await immudbClient.useDatabase(useDatabaseRequest);
-
-    // test: execute a batch insert
-    const setBatchRequest: messages.KVList.AsObject = { kvsList: [] };
-    for (let i = 0; i < 20; i++) {
-      setBatchRequest.kvsList.push({ key: `${i}`, value: new Uint8Array(i) });
-    }
-    const setBatchResponse = await immudbClient.setBatch(setBatchRequest);
-
-    // test: execute a batch read
-    const getBatchRequest: messages.KeyList.AsObject = { keysList: [] };
-    for (let i = 0; i < 20; i++) {
-      getBatchRequest.keysList.push({ key: `${i}` });
-    }
-    const getBatchResponse = await immudbClient.getBatch(getBatchRequest);
+    // // test: safely get item by key
+    // const safeGetRequest: messages.Key.AsObject = {
+    //   key: new Uint8Array(rand + 12),
+    // };
+    // const safeGetResponse = await immudbClient.safeGet(safeGetRequest);
 
     t.end();
   } catch (err) {
     t.error(err);
   }
 });
+
+// tap.test('batches', async t => {
+//   const config: Config = {
+//     host: IMMUDB_HOST,
+//     port: IMMUDB_PORT,
+//     autoLogin: false,
+//   };
+//   const immudbClient = await ImmudbClient.getInstance(config);
+//   try {
+//     // test: login using the specified username and password
+//     const loginRequest: messages.LoginRequest.AsObject = {
+//       user: IMMUDB_USER,
+//       password: IMMUDB_PWD,
+//     };
+//     const res = await immudbClient.login(loginRequest);
+
+//     // test: use default database
+//     const useDatabaseRequest: messages.Database.AsObject = { databasename: 'defaultdb' };
+//     const useDatabaseResponse = await immudbClient.useDatabase(useDatabaseRequest);
+
+//     // test: execute a batch insert
+//     const setBatchRequest: messages.KVList.AsObject = { kvsList: [] };
+//     for (let i = 0; i < 20; i++) {
+//       setBatchRequest.kvsList.push({ key: `${i}`, value: new Uint8Array(i) });
+//     }
+//     const setBatchResponse = await immudbClient.setBatch(setBatchRequest);
+
+//     // test: execute a batch read
+//     const getBatchRequest: messages.KeyList.AsObject = { keysList: [] };
+//     for (let i = 0; i < 20; i++) {
+//       getBatchRequest.keysList.push({ key: `${i}` });
+//     }
+//     const getBatchResponse = await immudbClient.getBatch(getBatchRequest);
+
+//     t.end();
+//   } catch (err) {
+//     t.error(err);
+//   }
+// });
