@@ -20,8 +20,8 @@ const IMMUDB_USER: string = (process.env.IMMUDB_USER as string || 'immudb');
 const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
 
 (async () => {
-    const rand = '' + Math.floor(Math.random()
-        * Math.floor(100000));
+	const randString: string = `${Math.floor(Math.random() * Math.floor(100000))}`;
+	const randNumber: number = +randString;
     const ITERATIONS = 1000; // may fail over 50K KV
     let res = null;
 
@@ -31,7 +31,7 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
         port: IMMUDB_PORT,
         user: IMMUDB_USER,
         password: IMMUDB_PWD,
-        database: rand,
+        database: randString,
         rootPath: 'root'
     });
 
@@ -44,18 +44,19 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
                 value: String(i)
             });
         }
-        res = await client.setBatch(req1);
-        console.log('success: setBatch', res);
+        res = await client.setAll(req1);
+        console.log('success: setAll', res);
 
         // execute a batch read
-        const req2 = { keysList: <any>[] }
+        const req2 = {
+			keysList: <any>[],
+			sincetx: randNumber
+		}
         for (let i = 0; i < ITERATIONS; i++) {
-            req2.keysList.push({
-                key: String(i)
-            });
+            req2.keysList.push(String(i));
         }
-        res = await client.getBatch(req2);
-        console.log('success: getBatch', res);
+        res = await client.getAll(req2);
+        console.log('success: getAll', res);
     
     } catch (err) {
         console.log(err)

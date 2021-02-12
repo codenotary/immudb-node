@@ -40,72 +40,96 @@ class State {
     }
     
     set ({ serverName, databaseName }: StateConfig, { db, txid, txhash, signature }: ImmutableState.AsObject) {
-        const currentServer: Server = this.servers.get(serverName) || new Map();
-        const state = new messages.ImmutableState();
-        const sgntr = new Signature();            
+		try {
+			const currentServer: Server = this.servers.get(serverName) || new Map();
+			const state = new messages.ImmutableState();
+			const sgntr = new Signature();            
 
-        if (signature !== undefined) {
-            sgntr.setSignature(signature.signature)
-        }
+			if (signature !== undefined) {
+				sgntr.setSignature(signature.signature)
+			}
 
-        state
-            .setDb(db)
-            .setTxid(txid)
-            .setTxhash(txhash)
-            .setSignature(sgntr);
+			state
+				.setDb(db)
+				.setTxid(txid)
+				.setTxhash(txhash)
+				.setSignature(sgntr);
 
-        currentServer.set(databaseName, state)
+			currentServer.set(databaseName, state)
 
-        this.servers.set(serverName, currentServer)
+			this.servers.set(serverName, currentServer)
+		} catch (err) {
+			console.error(err);
+		}
     }
 
     async get (stateConfig: StateConfig): Promise<ImmutableState> {
-        const { serverName, databaseName } = stateConfig;
-        const server: Server | undefined = this.servers.get(serverName);
+		try {
+			const { serverName, databaseName } = stateConfig;
+			const server: Server | undefined = this.servers.get(serverName);
 
-        if (server !== undefined) {
-            const state = server.get(databaseName);
+			if (server !== undefined) {
+				const state = server.get(databaseName);
 
-            if (state !== undefined) {
-                return state;
-            } else {
-                await this.setCurrentState(stateConfig);
+				if (state !== undefined) {
+					return state;
+				} else {
+					await this.setCurrentState(stateConfig);
 
-                return await this.get(stateConfig);
-            }
-        } else {
-            await this.setCurrentState(stateConfig);
-            
-            return await this.get(stateConfig);
-        }
+					return await this.get(stateConfig);
+				}
+			} else {
+				await this.setCurrentState(stateConfig);
+				
+				return await this.get(stateConfig);
+			}
+		} catch (err) {
+			return new Promise((reject) => reject(err));
+		}
     }
 
     async setCurrentState({ serverName, databaseName }: StateConfig) {
-        const currentState: messages.ImmutableState.AsObject = await this.client.currentState() || new messages.ImmutableState().toObject();
-
-        this.set({ serverName, databaseName }, currentState)
+		try {
+			const currentState: messages.ImmutableState.AsObject = await this.client.currentState() || new messages.ImmutableState().toObject();
+			
+			this.set({ serverName, databaseName }, currentState)
+		} catch (err) {
+			return new Promise((reject) => reject(err));
+		}
     }
 
     async getStateFromFile () {
-        if (fs.existsSync(this.rootPath)) {
-            const rawdata = fs.readFileSync(this.rootPath, 'utf-8')
-            const dataEntries: [string, Server][] = Object.entries(JSON.parse(rawdata))
-            
-            this.servers = new Map(dataEntries);
-        }
+		try {
+			if (fs.existsSync(this.rootPath)) {
+				const rawdata = fs.readFileSync(this.rootPath, 'utf-8')
+				const dataEntries: [string, Server][] = Object.entries(JSON.parse(rawdata))
+				
+				this.servers = new Map(dataEntries);
+			}
+		} catch (err) {
+			return new Promise((reject) => reject(err));
+		}
     }
 
     commit () {
-        const data = JSON.stringify(this.servers)
-
-        fs.writeFileSync(this.rootPath, data)
+		try {
+			const data = JSON.stringify(this.servers)
+	
+			fs.writeFileSync(this.rootPath, data)
+		} catch (err) {
+			return new Promise((reject) => reject(err));
+		}
     }
 
     exitHandler () {
-        if (this.rootPath) {
-          this.commit()
-        }
-    }
+		try {
+			if (this.rootPath) {
+			  this.commit()
+			}
+		} catch (err) {
+			return new Promise((reject) => reject(err));
+		}
+	}
 }
 
 
