@@ -239,12 +239,7 @@ class ImmudbClient {
           this._metadata.add('authorization', `Bearer ${token}`);
           this._activeDatabase = databasename;
 
-          this.currentState()
-            .then(() => ({ token }))
-            .catch((err) => {
-              console.error('Use database error', err)
-              throw new Error('Use database error');
-            });
+          await this.currentState()
 
           resolve(res.toObject());
         }
@@ -968,7 +963,9 @@ class ImmudbClient {
             console.error('')
 
             reject()
-          } else {}
+          } else {
+			  console.log('let\' go sleep')
+		  }
         }
       }))
     } catch(err) {
@@ -1067,7 +1064,7 @@ class ImmudbClient {
     try {
       const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID })
       //@ts-ignore
-      const txid = state.getTxid()
+      const txid = state.txid
       //@ts-ignore
       const txhash = state.getTxhash_asU8()
       const req = new messages.VerifiableGetRequest();
@@ -1439,8 +1436,8 @@ class ImmudbClient {
   async verifiedTxById({ tx }: messages.TxRequest.AsObject): Promise<messages.Tx.AsObject | undefined> {
     try {
       const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID })
-      //@ts-ignore
-      const txid = state.getTxid()
+
+	  const txid = state.txid
       const req = new messages.VerifiableTxRequest()
 
       req.setTx(tx)

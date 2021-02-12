@@ -21,20 +21,20 @@ import ImmudbClient from '../src/client';
         });
 
         // add new item with the specified key and value
-        const res1 = await client.verifiedSet({ key: 'hello', value: 'world' });
+        const res1 = await client.set({ key: 'hello', value: 'world' });
         console.log('success: set', res1);
 
-		// get item having the specified key
+		// // get item having the specified key
         const res2 = await client.verifiedGet({ key: 'hello' })
-        console.log('success: get', res2);
+        console.log('success: verifiedGet', res2);
 
-        // add new item with the specified key and value
-        const res3 = await client.verifiedSet({ key: 'hello', value: 'world2' });
-        console.log('success: set', res3);
+        // // add new item with the specified key and value
+        // const res3 = await client.verifiedSet({ key: 'hello', value: 'world2' });
+        // console.log('success: set', res3);
 
-        // get item having the specified key
-        const res4 = await client.verifiedGet({ key: 'hello' })
-        console.log('success: get', res4);
+        // // get item having the specified key
+        // const res4 = await client.verifiedGet({ key: 'hello' })
+        // console.log('success: get', res4);
     
     } catch (err) {
         console.log(err)
