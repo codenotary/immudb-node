@@ -24,16 +24,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const btoa_1 = __importDefault(require("btoa"));
 const util = __importStar(require("util"));
+const REFERENCE_VALUE_PREFIX = new Uint8Array(0x01);
+const SET_KEY_PREFIX = new Uint8Array(0x00);
+const PLAIN_VALUE_PREFIX = new Uint8Array(0x00);
 class Util {
     constructor() { }
     utf8Encode(val) {
         return new util.TextEncoder().encode(val);
     }
     utf8Decode(val) {
-        if (val === '') {
-            return val;
-        }
-        return new util.TextDecoder("utf-8").decode(val);
+        return val === ''
+            ? val
+            : new util.TextDecoder("utf-8").decode(val);
     }
     base64Encode(val) {
         return btoa_1.default(String.fromCharCode(...new Uint8Array(val)));
@@ -73,5 +75,26 @@ class Util {
         }
         return '';
     }
+    prefixKey(key) {
+        const res = new Uint8Array(2);
+        res.set(SET_KEY_PREFIX);
+        res.set(key, 1);
+        return res;
+    }
+    prefixValue(value) {
+        const res = new Uint8Array(2);
+        res.set(PLAIN_VALUE_PREFIX);
+        res.set(value, 1);
+        return res;
+    }
+    encodeReferenceValue(referencedKey, atTx) {
+        const encoded = new Uint8Array(4);
+        encoded.set(REFERENCE_VALUE_PREFIX);
+        encoded.set(new Uint8Array([atTx]), 1);
+        encoded.set(SET_KEY_PREFIX, 2);
+        encoded.set(referencedKey, 3);
+        return encoded;
+    }
 }
 exports.default = Util;
+//# sourceMappingURL=util.js.map

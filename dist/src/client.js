@@ -23,44 +23,38 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
 const grpc = __importStar(require("@grpc/grpc-js"));
 const empty = __importStar(require("google-protobuf/google/protobuf/empty_pb"));
+dotenv_1.default.config();
 const messages = __importStar(require("./proto/schema_pb"));
 const services = __importStar(require("./proto/schema_grpc_pb"));
 const util_1 = __importDefault(require("./util"));
 const proofs_1 = __importDefault(require("./proofs"));
 const state_1 = __importDefault(require("./state"));
+const htree_1 = require("./htree");
 const CLIENT_INIT_PREFIX = 'ImmudbClient:';
 const DEFAULT_DATABASE = 'defaultdb';
 const DEFAULT_ROOTPATH = 'root';
 class ImmudbClient {
-    constructor(config) {
+    constructor({ host = process.env.IMMUDB_HOST || '127.0.0.1', port = process.env.IMMUDB_PORT || '3322', certs, rootPath = DEFAULT_ROOTPATH, }) {
         this.util = new util_1.default();
         this.proofs = new proofs_1.default();
-        this.state = new state_1.default();
-        const host = (config && config.host) || process.env.IMMUDB_HOST || '127.0.0.1';
-        const port = (config && config.port) || process.env.IMMUDB_PORT || '3322';
-        const certs = config && config.certs;
-        const rootPath = (config && config.rootPath) || DEFAULT_ROOTPATH;
         // init insecure grpc auth
         this._auth = grpc.credentials.createInsecure();
         // init secure grpc auth
-        certs && (this._auth = grpc.credentials.createSsl());
+        if (certs !== undefined) {
+            this._auth = grpc.credentials.createSsl();
+        }
         // initialize client from service
         this.client = new services.ImmuServiceClient(`${host}:${port}`, this._auth);
         // init empty grpc metadata
         this._metadata = new grpc.Metadata();
         // init state
-        rootPath && this.state && this.state.setRootPath({ path: rootPath });
+        this.state = new state_1.default({ client: ImmudbClient.instance, rootPath });
     }
     static async getInstance(config) {
         const util = new util_1.default();
-        const user = (config && config.user) || process.env.IMMUDB_USER;
-        const password = (config && config.password) || process.env.IMMUDB_PWD;
-        const databasename = (config && config.database) || process.env.IMMUDB_DEFAULT_DB;
-        const autoLogin = config && config.autoLogin !== undefined ? config.autoLogin : true;
-        const autoDatabase = config && config.autoDatabase !== undefined ? config.autoDatabase : true;
+        const { user = process.env.IMMUDB_USER, password = process.env.IMMUDB_PWD, database: databasename = process.env.IMMUDB_DEFAULT_DB, autoDatabase = true, autoLogin = true } = config;
         try {
             if (!ImmudbClient.instance) {
                 console.log(`${CLIENT_INIT_PREFIX} creating new ImmudbClient instance with config`, '\n', `${util.maskConfig(config)}`);
@@ -98,7 +92,7 @@ class ImmudbClient {
         if (autoLogin && autoDatabase) {
             // get current database list
             const resList = await this.listDatabases();
-            if (resList && resList && resList.databasesList.some((_) => String(_) === databasename)) {
+            if (resList && resList && resList.databasesList.some((_) => _.databasename === databasename)) {
                 // useDatabase database specified if it
                 // already exists
                 await this.useDatabase({ databasename: DEFAULT_DATABASE });
@@ -123,10 +117,10 @@ class ImmudbClient {
             console.log(`${CLIENT_INIT_PREFIX} skipped automatic init database`, '\n', `(manual client database ops are required, '${DEFAULT_DATABASE}' database will be used otherwise)`);
         }
         // fetch health status
-        this.healthCheck();
+        this.health();
     }
     async shutdown() {
-        this.state && this.state.commit();
+        this.state.commit();
         this.logout();
         process.exit(0);
     }
@@ -141,12 +135,12 @@ class ImmudbClient {
                     console.error('Login Error', err);
                     return reject(err);
                 }
-                this._token = res && res.getToken();
-                this._metadata && this._metadata.remove('authorization');
-                this._metadata && this._metadata.add('authorization', `Bearer ${this._token}`);
+                this._token = res.getToken();
+                this._metadata.remove('authorization');
+                this._metadata.add('authorization', `Bearer ${this._token}`);
                 resolve({
                     token: this._token,
-                    warning: this.util.utf8Decode(res && res.getWarning()),
+                    warning: this.util.utf8Decode(res.getWarning()),
                 });
             }));
         }
@@ -154,44 +148,43 @@ class ImmudbClient {
             console.error('Login Error', err);
         }
     }
-    async createDatabase(params) {
+    async createDatabase({ databasename }) {
         try {
             const req = new messages.Database();
-            req.setDatabasename(params && params.databasename);
+            req.setDatabasename(databasename);
             return new Promise((resolve, reject) => this.client.createDatabase(req, this._metadata, (err, res) => {
                 if (err) {
-                    console.error('Create database error');
+                    console.error('Create database error', err);
                     return reject(err);
                 }
-                return resolve(new empty.Empty());
+                return resolve(res);
             }));
         }
         catch (err) {
             console.error('Create database error', err);
         }
     }
-    async useDatabase(params) {
+    async useDatabase({ databasename }) {
         try {
             const req = new messages.Database();
-            req.setDatabasename(params && params.databasename);
-            return new Promise((resolve, reject) => this.client.useDatabase(req, this._metadata, (err, res) => {
+            req.setDatabasename(databasename);
+            return new Promise((resolve, reject) => this.client.useDatabase(req, this._metadata, async (err, res) => {
                 if (err) {
                     console.error('Use database error', err);
                     return reject(err);
                 }
                 else {
-                    const token = res && res.getToken();
-                    this._metadata && this._metadata.remove('authorization');
-                    this._metadata && this._metadata.add('authorization', `Bearer ${token}`);
-                    this._activeDatabase = params && params.databasename;
+                    const token = res.getToken();
+                    this._metadata.remove('authorization');
+                    this._metadata.add('authorization', `Bearer ${token}`);
+                    this._activeDatabase = databasename;
                     this.currentState()
                         .then(() => ({ token }))
                         .catch((err) => {
                         console.error('Use database error', err);
                         throw new Error('Use database error');
                     });
-                    // @ts-ignore
-                    resolve();
+                    resolve(res.toObject());
                 }
             }));
         }
@@ -199,37 +192,39 @@ class ImmudbClient {
             console.error('Use database error', err);
         }
     }
-    async set(params) {
+    async set({ key, value }) {
         try {
             const req = new messages.SetRequest();
             const kv = new messages.KeyValue();
-            kv.setKey(this.util && this.util.utf8Encode(params && params.key));
-            kv.setValue(this.util && this.util.utf8Encode(params && params.value));
+            kv.setKey(this.util.utf8Encode(key));
+            kv.setValue(this.util.utf8Encode(value));
             req.setKvsList([kv]);
             return new Promise((resolve, reject) => this.client.set(req, this._metadata, (err, res) => {
                 if (err) {
                     console.error('Set error', err);
                     return reject(err);
                 }
-                resolve({
-                    id: res && res.getId(),
-                    prevalh: res && res.getPrevalh(),
-                    ts: res && res.getTs(),
-                    nentries: res && res.getNentries(),
-                    eh: res && res.getEh(),
-                    bltxid: res && res.getBltxid(),
-                    blroot: res && res.getBlroot(),
-                });
+                else {
+                    resolve({
+                        id: res.getId(),
+                        prevalh: res.getPrevalh(),
+                        ts: res.getTs(),
+                        nentries: res.getNentries(),
+                        eh: res.getEh(),
+                        bltxid: res.getBltxid(),
+                        blroot: res.getBlroot(),
+                    });
+                }
             }));
         }
         catch (err) {
             console.error('Set error', err);
         }
     }
-    async get(params) {
+    async get({ key }) {
         try {
             const req = new messages.KeyRequest();
-            req.setKey(this.util && this.util.utf8Encode(params && params.key));
+            req.setKey(this.util.utf8Encode(key));
             return new Promise(resolve => this.client.get(req, this._metadata, (err, res) => {
                 if (err) {
                     console.error('Get error', err);
@@ -282,8 +277,9 @@ class ImmudbClient {
                     console.error('Change permission error', err);
                     return reject(err);
                 }
-                // @ts-ignore
-                resolve();
+                else {
+                    resolve(res);
+                }
             }));
         }
         catch (err) {
@@ -339,8 +335,7 @@ class ImmudbClient {
                     console.error('Create user error', err);
                     return reject(err);
                 }
-                //@ts-ignore
-                resolve();
+                resolve(res);
             }));
         }
         catch (err) {
@@ -358,8 +353,7 @@ class ImmudbClient {
                     console.error('Change password error', err);
                     return reject(err);
                 }
-                //@ts-ignore
-                resolve();
+                resolve(res);
             }));
         }
         catch (err) {
@@ -374,8 +368,7 @@ class ImmudbClient {
                     console.error('Logout error', err);
                     throw new Error(err.message);
                 }
-                //@ts-ignore
-                resolve();
+                resolve(res);
             }));
         }
         catch (err) {
@@ -392,28 +385,31 @@ class ImmudbClient {
                     console.error('Set active user error', err);
                     return reject(err);
                 }
-                //@ts-ignore
-                resolve();
+                resolve(res);
             }));
         }
         catch (err) {
             console.error(err);
         }
     }
-    async healthCheck() {
+    async health() {
         try {
             const req = new empty.Empty();
-            return new Promise((resolve, reject) => this.client.health(req, this._metadata, (err, res) => {
-                if (err) {
-                    console.error('Health error', err);
-                    return reject(err);
-                }
-                this._serverVersion = res && res.getVersion().split(' ')[1];
-                resolve({
-                    status: res && res.getStatus(),
-                    version: res && res.getVersion(),
+            return new Promise((resolve, reject) => {
+                const call = this.client.health(req, this._metadata, (err, res) => {
+                    if (err) {
+                        console.error('Health error', err);
+                        return reject(err);
+                    }
+                    resolve({
+                        status: res && res.getStatus(),
+                        version: res && res.getVersion(),
+                    });
                 });
-            }));
+                call.on('_metadata', meta => {
+                    this._serverUUID = meta.get('immudb-uuid')[0];
+                });
+            });
         }
         catch (err) {
             console.error(err);
@@ -556,16 +552,15 @@ class ImmudbClient {
                     reject(err);
                 }
                 else {
-                    const signature = res && res.getSignature();
-                    this.state &&
-                        this.state.set(res.toObject());
+                    const signature = res.getSignature();
+                    this.state.set({ databaseName: this._activeDatabase, serverName: this._serverUUID }, res.toObject());
                     resolve({
                         db: this._activeDatabase,
-                        txid: res && res.getTxid(),
-                        txhash: res && res.getTxhash(),
+                        txid: res.getTxid(),
+                        txhash: res.getTxhash(),
                         signature: {
-                            signature: this.util && this.util.utf8Encode(signature && signature.getSignature()),
-                            publickey: this.util && this.util.utf8Encode(signature && signature.getPublickey())
+                            signature: this.util.utf8Encode(signature && signature.getSignature()),
+                            publickey: this.util.utf8Encode(signature && signature.getPublickey())
                         },
                     });
                 }
@@ -574,9 +569,6 @@ class ImmudbClient {
         catch (err) {
             console.error(err);
         }
-    }
-    async currentRoot() {
-        return this.currentState();
     }
     async zAdd(params) {
         return this.zAddAt(Object.assign(Object.assign({}, params), { attx: 0 }));
@@ -609,105 +601,129 @@ class ImmudbClient {
             console.error(err);
         }
     }
-    // async reference(
-    //   params: messages.ReferenceOptions.AsObject
-    // ): Promise<messages.Index.AsObject | undefined> {
-    //   try {
-    //     const req = new messages.ReferenceOptions();
-    //     req.setReference(this.util && this.util.utf8Encode(params && params.reference));
-    //     req.setKey(this.util && this.util.utf8Encode(params && params.key));
-    //     return new Promise((resolve, reject) =>
-    //       this.client.reference(req, this._metadata, (err: any, res: any) => {
-    //         if (err) {
-    //           console.error('Reference error', err);
-    //           return reject(err);
-    //         }
-    //         resolve({
-    //           index: res && res.getIndex(),
-    //         });
-    //       })
-    //     );
-    //   } catch (err) {
-    //     console.error(err);
-    //   }
-    // }
     async setReference(params) {
+        const referencedBy = Object.assign({}, params.referencedby, { attx: 0 });
+        const referenceParams = Object.assign({}, params, { referencedby: referencedBy });
+        return this.setReferenceAt(referenceParams);
+    }
+    async setReferenceAt(params) {
         try {
             const req = new messages.ReferenceRequest();
-            req.setKey(this.util && this.util.utf8Encode(params && params.key));
-            // req.setReferencedkey(this.util && this.util.utf8Encode(params && params.referencedkey));
-            return new Promise((resolve, reject) => this.client.setReference(req, this._metadata, (err, res) => { }));
+            const attx = params.referencedby ? params.referencedby.attx : 0;
+            req.setKey(this.util && this.util.utf8Encode(params.key));
+            req.setReferencedkey(this.util && this.util.utf8Encode(params.referencedby && params.referencedby.key));
+            req.setAttx(attx);
+            req.setBoundref(attx > 0);
+            return new Promise((resolve, reject) => this.client.setReference(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('Reference error', err);
+                    return reject(err);
+                }
+                resolve({
+                    id: res.getId(),
+                    prevalh: res.getPrevalh(),
+                    ts: res.getTs(),
+                    nentries: res.getNentries(),
+                    eh: res.getEh(),
+                    bltxid: res.getBltxid(),
+                    blroot: res.getBlroot(),
+                });
+            }));
         }
         catch (err) {
             console.error(err);
         }
     }
-    async setReferenceAt() { }
     async verifiedSetReference() { }
     async verifiedSetReferenceAt() { }
-    // async setBatch(params: messages.KVList.AsObject): Promise<messages.Index.AsObject | undefined> {
-    //   try {
-    //     const req = new messages.KVList();
-    //     for (let i = 0; params && params.kvsList && i < params.kvsList.length; i++) {
-    //       const kv = new messages.KeyValue();
-    //       kv.setKey(this.util && this.util.utf8Encode(params && params.kvsList[i].key));
-    //       kv.setValue(this.util && this.util.utf8Encode(params && params.kvsList[i].value));
-    //       req.addKvs(kv);
-    //     }
-    //     return new Promise((resolve, reject) =>
-    //       this.client.setBatch(req, this._metadata, (err: any, res: any) => {
-    //         if (err) {
-    //           console.error('Set batch error', err);
-    //           return reject(err);
-    //         }
-    //         resolve({
-    //           index: res && res.getIndex(),
-    //         });
-    //       })
-    //     );
-    //   } catch (err) {
-    //     console.error(err);
-    //   }
-    // }
-    async setAll() { }
-    async execAll() { }
-    // DEPRECATED async getBatch(
-    //   params: messages.KeyList.AsObject
-    // ): Promise<messages.ItemList.AsObject | undefined> {
-    //   try {
-    //     const l: Array<Key> = [];
-    //     for (let i = 0; params && params.keysList && i < params.keysList.length; i++) {
-    //       const key = new messages.Key();
-    //       key.setKey(this.util && this.util.utf8Encode(params && params.keysList[i].key));
-    //       l.push(key);
-    //     }
-    //     const req = new messages.KeyList();
-    //     req.setKeysList(l);
-    //     return new Promise((resolve, reject) =>
-    //       this.client.getBatch(req, this._metadata, (err: any, res: any) => {
-    //         if (err) {
-    //           console.error('Get batch error', err);
-    //           return reject(err);
-    //         }
-    //         const result: Array<Item.AsObject> = [];
-    //         const il = res && res.getItemsList();
-    //         for (let i = 0; il && i < il.length; i++) {
-    //           const item = il[i];
-    //           result.push({
-    //             key: this.util && this.util.utf8Decode(item.getKey()),
-    //             value: this.util && this.util.utf8Decode(item.getValue()),
-    //             index: item.getIndex(),
-    //           });
-    //         }
-    //         resolve({
-    //           itemsList: result,
-    //         });
-    //       })
-    //     );
-    //   } catch (err) {
-    //     console.error(err);
-    //   }
-    // }
+    async setAll({ kvsList }) {
+        try {
+            const req = new messages.SetRequest();
+            const kvls = kvsList.map(({ key, value }) => {
+                const kv = new messages.KeyValue();
+                kv.setKey(key);
+                kv.setValue(value);
+                return kv;
+            });
+            req.setKvsList(kvls);
+            return new Promise((resolve, reject) => this.client.set(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('setAll error', err);
+                    reject(err);
+                }
+                else {
+                    resolve({
+                        id: res.getId(),
+                        prevalh: res.getPrevalh(),
+                        ts: res.getTs(),
+                        nentries: res.getNentries(),
+                        eh: res.getEh(),
+                        bltxid: res.getBltxid(),
+                        blroot: res.getBlroot(),
+                    });
+                }
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+    async execAll({ operationsList }) {
+        try {
+            const req = new messages.ExecAllRequest();
+            const opl = operationsList.map(({ kv, zadd, ref }) => {
+                const op = new messages.Op();
+                const keyValue = new messages.KeyValue();
+                const zAddReq = new messages.ZAddRequest();
+                const refReq = new messages.ReferenceRequest();
+                if (kv !== undefined && kv !== null) {
+                    const { key, value } = kv;
+                    keyValue.setKey(key);
+                    keyValue.setValue(value);
+                }
+                if (zadd !== undefined && zadd !== null) {
+                    const { set, score, key, attx, boundref } = zadd;
+                    zAddReq.setSet(set);
+                    zAddReq.setScore(score);
+                    zAddReq.setKey(key);
+                    zAddReq.setAttx(attx);
+                    zAddReq.setBoundref(boundref);
+                }
+                if (ref !== undefined && ref !== null) {
+                    const { key, referencedkey, attx, boundref } = ref;
+                    refReq.setKey(key);
+                    refReq.setReferencedkey(referencedkey);
+                    refReq.setAttx(attx);
+                    refReq.setBoundref(boundref);
+                }
+                op.setKv(keyValue);
+                op.setZadd(zAddReq);
+                op.setRef(refReq);
+                return op;
+            });
+            req.setOperationsList(opl);
+            return new Promise((resolve, reject) => this.client.execAll(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('execeAll error', err);
+                    reject(err);
+                }
+                else {
+                    resolve({
+                        id: res.getId(),
+                        prevalh: res.getPrevalh(),
+                        ts: res.getTs(),
+                        nentries: res.getNentries(),
+                        eh: res.getEh(),
+                        bltxid: res.getBltxid(),
+                        blroot: res.getBlroot(),
+                    });
+                }
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
     async getAll({ keysList, sincetx }) {
         try {
             const req = new messages.KeyListRequest();
@@ -733,9 +749,40 @@ class ImmudbClient {
             console.error(err);
         }
     }
+    async verifiedSet({ key, value }) {
+        try {
+            const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID });
+            const txid = state.getTxid();
+            const req = new messages.VerifiableSetRequest();
+            const kv = new messages.KeyValue();
+            const setRequest = new messages.SetRequest();
+            kv.setKey(key);
+            kv.setValue(value);
+            setRequest.setKvsList([kv]);
+            req.setProvesincetx(txid);
+            req.setSetrequest(setRequest);
+            return new Promise((resolve, reject) => this.client.verifiableSet(req, this._metadata, async (err, res) => {
+                if (err) {
+                    console.error('verifiedSet error', err);
+                    reject(err);
+                }
+                else {
+                    const verifiableTx = res.getTx();
+                    if (verifiableTx === undefined) {
+                        console.error('');
+                        reject();
+                    }
+                    else { }
+                }
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
     // async verifiedSet(
     //   params: messages.KeyValue.AsObject
-    // ): Promise<messages.TxMetadata.AsObject | undefined> {
+    // ):  {
     //   try {
     //     const kv = new messages.KeyValue();
     //     kv.setKey(this.util && this.util.utf8Encode(params && params.key));
@@ -809,6 +856,109 @@ class ImmudbClient {
     // ): Promise<messages.TxMetadata.AsObject | undefined> {
     //   return this.verifiedSet(params);
     // }
+    async verifiedGet({ key }) {
+        try {
+            const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID });
+            const txid = state.getTxid();
+            const txhash = state.getTxhash_asU8();
+            const req = new messages.VerifiableGetRequest();
+            const kr = new messages.KeyRequest();
+            const uint8Key = this.util.utf8Encode(key);
+            kr.setKey(uint8Key);
+            req.setKeyrequest(kr);
+            req.setProvesincetx(txid);
+            return new Promise((resolve, reject) => this.client.verifiableGet(req, this._metadata, async (err, res) => {
+                var _a;
+                if (err) {
+                    console.error(err);
+                    reject(err);
+                }
+                else {
+                    const inclusionproof = res.getInclusionproof();
+                    const verifiabletx = res.getVerifiabletx();
+                    const entry = res.getEntry();
+                    if (!inclusionproof || !verifiabletx || !entry) {
+                        console.error('Server verifiedGet error');
+                        reject();
+                    }
+                    else {
+                        const referencedby = entry.getReferencedby();
+                        let vTx;
+                        let kv = new messages.KeyValue();
+                        if (referencedby !== undefined) {
+                            const key = referencedby.getKey_asU8();
+                            const atTx = referencedby.getAttx();
+                            vTx = referencedby.getTx();
+                            kv.setKey(this.util.prefixKey(uint8Key));
+                            kv.setValue(this.util.encodeReferenceValue(entry.getKey_asU8(), atTx));
+                        }
+                        else {
+                            vTx = entry.getTx();
+                            kv.setKey(this.util.prefixKey(uint8Key));
+                            kv.setValue(this.util.prefixValue(entry.getValue_asU8()));
+                        }
+                        const dualproof = verifiabletx.getDualproof();
+                        if (dualproof === undefined) {
+                            console.error('Server verifiedGet error');
+                            reject();
+                        }
+                        else {
+                            const targettxmetadata = dualproof.getTargettxmetadata();
+                            if (targettxmetadata === undefined) {
+                                console.error('Server verifiedGet error');
+                                reject();
+                            }
+                            else {
+                                const eh = targettxmetadata.getEh_asU8();
+                                const prevalh = targettxmetadata.getPrevalh_asU8();
+                                let sourceId;
+                                let sourceAlh;
+                                let targetId;
+                                let targetAlh;
+                                if (txid < vTx) {
+                                    sourceId = txid;
+                                    sourceAlh = txhash;
+                                    targetId = vTx;
+                                    targetAlh = prevalh;
+                                }
+                                else {
+                                    sourceId = vTx;
+                                    sourceAlh = prevalh;
+                                    targetId = txid;
+                                    targetAlh = txhash;
+                                }
+                                let verifies = htree_1.verifyInclusion(inclusionproof, kv, eh);
+                                if (!verifies) {
+                                    console.error('verifiedGet inclusion verification failed');
+                                    reject();
+                                }
+                                verifies = htree_1.verifyDualProof(dualproof, sourceId, targetId, sourceAlh, targetAlh);
+                                if (!verifies) {
+                                    console.error('verifiedGet dual verification failed');
+                                    reject();
+                                }
+                                this.state.set({ serverName: this._serverUUID, databaseName: this._activeDatabase }, { txid: targetId, txhash: targetAlh, signature: (_a = verifiabletx.getSignature()) === null || _a === void 0 ? void 0 : _a.toObject(), db: this._activeDatabase });
+                                let refKey;
+                                const referencedBy = entry.getReferencedby();
+                                if (referencedBy !== undefined) {
+                                    refKey = referencedBy.getKey_asU8();
+                                }
+                                resolve({
+                                    tx: vTx,
+                                    key: entry.getKey_asU8(),
+                                    value: entry.getValue_asU8(),
+                                    referencedby: referencedBy === null || referencedBy === void 0 ? void 0 : referencedBy.toObject()
+                                });
+                            }
+                        }
+                    }
+                }
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
     // async verifiedGet(params: messages.Key.AsObject): Promise<messages.Entry.AsObject | undefined> {
     //   try {
     //     // const index = new messages.Index();
@@ -886,13 +1036,12 @@ class ImmudbClient {
         try {
             const req = new messages.AuthConfig();
             req.setKind(params && params.kind);
-            return new Promise((resolve, reject) => this.client.updateAuthConfig(req, this._metadata, err => {
+            return new Promise((resolve, reject) => this.client.updateAuthConfig(req, this._metadata, (err, res) => {
                 if (err) {
                     console.error('Update auth config error', err);
                     return reject(err);
                 }
-                //@ts-ignore
-                resolve();
+                resolve(res);
             }));
         }
         catch (err) {
@@ -903,13 +1052,14 @@ class ImmudbClient {
         try {
             const req = new messages.MTLSConfig();
             req.setEnabled(params && params.enabled);
-            return new Promise((resolve, reject) => this.client.updateMTLSConfig(req, this._metadata, err => {
+            return new Promise((resolve, reject) => this.client.updateMTLSConfig(req, this._metadata, (err, res) => {
                 if (err) {
                     console.error('Update mtls config error', err);
                     return reject(err);
                 }
-                //@ts-ignore
-                resolve();
+                else {
+                    resolve(res);
+                }
             }));
         }
         catch (err) {
@@ -1026,7 +1176,63 @@ class ImmudbClient {
             console.error(err);
         }
     }
-    // async verifiedTxById(params: messages.TxRequest.AsObject): Promise<messages.Tx.AsObject> | undefined {}
-    async setupDialOptions() { }
+    async verifiedTxById({ tx }) {
+        try {
+            const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID });
+            const txid = state.getTxid();
+            const req = new messages.VerifiableTxRequest();
+            req.setTx(tx);
+            req.setProvesincetx(txid);
+            return new Promise((resolve, reject) => this.client.verifiableTxById(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('verifiedTxById error', err);
+                    reject(err);
+                }
+                else {
+                }
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+    async txScan(params) {
+        try {
+            const req = new messages.TxScanRequest();
+            req.setInitialtx(params.initialtx);
+            req.setLimit(params.limit);
+            req.setDesc(params.desc);
+            return new Promise((resolve, reject) => this.client.txScan(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('txScan error', err);
+                    reject(err);
+                }
+                else {
+                    resolve(res.toObject());
+                }
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+    async cleanIndex() {
+        try {
+            const req = new empty.Empty();
+            return new Promise((resolve, reject) => this.client.cleanIndex(req, this._metadata, (err, res) => {
+                if (err) {
+                    console.error('cleanIndex error', err);
+                    reject(err);
+                }
+                else {
+                    resolve(res);
+                }
+            }));
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
 }
 exports.default = ImmudbClient;
+//# sourceMappingURL=client.js.map

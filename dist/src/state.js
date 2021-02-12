@@ -32,36 +32,61 @@ var Signals;
     Signals["UNCAUGHT_EXCEPTION"] = "uncaughtException";
 })(Signals || (Signals = {}));
 class State {
-    constructor() {
+    constructor({ client, rootPath }) {
         process_1.default.on(Signals.EXIT, this.exitHandler);
         process_1.default.on(Signals.SIGINT, this.exitHandler);
         process_1.default.on(Signals.UNCAUGHT_EXCEPTION, this.exitHandler);
-        this.state = new schema_pb_1.default.ImmutableState();
+        this.servers = new Map();
+        this.client = client;
+        this.rootPath = rootPath;
+        this.getStateFromFile();
     }
-    set(params) {
-        const { db, txid, txhash, signature } = params;
+    set({ serverName, databaseName }, { db, txid, txhash, signature }) {
+        const currentServer = this.servers.get(serverName) || new Map();
+        const state = new schema_pb_1.default.ImmutableState();
         const sgntr = new schema_pb_1.Signature();
-        signature && sgntr.setSignature(signature.signature);
-        this.state.setDb(db);
-        this.state.setTxid(txid);
-        this.state.setTxhash(txhash);
-        this.state.setSignature(sgntr);
+        if (signature !== undefined) {
+            sgntr.setSignature(signature.signature);
+        }
+        state
+            .setDb(db)
+            .setTxid(txid)
+            .setTxhash(txhash)
+            .setSignature(sgntr);
+        currentServer.set(databaseName, state);
+        this.servers.set(serverName, currentServer);
     }
-    get() {
-        return this.state.toObject();
-    }
-    setRootPath(params) {
-        this.rootPath = params.path;
-        if (fs_1.default.existsSync(this.rootPath)) {
-            const rawdata = fs_1.default.readFileSync(this.rootPath, 'utf-8');
-            this.set(JSON.parse(rawdata));
+    async get(stateConfig) {
+        const { serverName, databaseName } = stateConfig;
+        const server = this.servers.get(serverName);
+        if (server !== undefined) {
+            const state = server.get(databaseName);
+            if (state !== undefined) {
+                return state;
+            }
+            else {
+                this.setCurrentState(stateConfig);
+                return this.get(stateConfig);
+            }
         }
         else {
-            this.commit();
+            this.setCurrentState(stateConfig);
+            return this.get(stateConfig);
+        }
+    }
+    async setCurrentState({ serverName, databaseName }) {
+        const currentState = await this.client.currentState() || new schema_pb_1.default.ImmutableState().toObject();
+        this.set({ serverName, databaseName }, currentState);
+    }
+    async getStateFromFile() {
+        if (fs_1.default.existsSync(this.rootPath)) {
+            const rawdata = fs_1.default.readFileSync(this.rootPath, 'utf-8');
+            const dataEntries = Object.entries(JSON.parse(rawdata));
+            this.servers = new Map(dataEntries);
         }
     }
     commit() {
-        const data = JSON.stringify(this.state);
+        const data = JSON.stringify(this.servers);
         fs_1.default.writeFileSync(this.rootPath, data);
     }
     exitHandler() {
@@ -71,3 +96,4 @@ class State {
     }
 }
 exports.default = State;
+//# sourceMappingURL=state.js.map

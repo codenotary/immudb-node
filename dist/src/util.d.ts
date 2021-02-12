@@ -8,5 +8,8 @@ declare class Util {
     isPowerOfTwo(x: any): boolean;
     maskConfig(c: types.Config): string;
     maskString(data: string, n?: number): string;
+    prefixKey(key: Uint8Array): Uint8Array;
+    prefixValue(value: Uint8Array): Uint8Array;
+    encodeReferenceValue(referencedKey: Uint8Array, atTx: number): Uint8Array;
 }
 export default Util;

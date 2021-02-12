@@ -17,3 +17,4 @@ var Auth;
     Auth[Auth["DISABLED"] = 0] = "DISABLED";
     Auth[Auth["ENABLED"] = 1] = "ENABLED";
 })(Auth = exports.Auth || (exports.Auth = {}));
+//# sourceMappingURL=interfaces.js.map

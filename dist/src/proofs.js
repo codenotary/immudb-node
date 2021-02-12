@@ -187,5 +187,8 @@ class Proof {
         }
         callback();
     }
+    inclusionProofFrom(inclusionProof) { }
+    dualProofFrom(dualProof) { }
 }
 exports.default = Proof;
+//# sourceMappingURL=proofs.js.map
