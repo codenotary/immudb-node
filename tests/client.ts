@@ -2,10 +2,9 @@ import tap from 'tap';
 
 import * as messages from '../src/proto/schema_pb';
 import ImmudbClient from '../src/client';
-import { Config } from '../dist/interfaces';
 import Util from '../src/util'
 
-import { Permission } from '../src/interfaces';
+import { Permission, Config } from '../src/interfaces';
 
 const {
   IMMUDB_HOST = '127.0.0.1',

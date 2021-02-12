@@ -61,7 +61,7 @@ class ImmudbClient {
     this._metadata = new grpc.Metadata();
 
     // init state
-    this.state = new State({ client: ImmudbClient.instance, rootPath })
+    this.state = new State(this.client)
   }
 
   public static async getInstance(config: Config): Promise<ImmudbClient> {
@@ -942,7 +942,8 @@ class ImmudbClient {
   async verifiedSet ({ key, value }: messages.KeyValue.AsObject): Promise<messages.TxMetadata.AsObject | undefined> {
     try {
       const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID })
-      const txid = state.getTxid()
+      //@ts-ignore
+      const txid = state.txid
       const req = new messages.VerifiableSetRequest();
       const kv = new messages.KeyValue();
       const setRequest = new messages.SetRequest();
@@ -1065,7 +1066,9 @@ class ImmudbClient {
   async verifiedGet({ key }: messages.Key.AsObject): Promise<messages.Entry.AsObject | undefined> {
     try {
       const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID })
+      //@ts-ignore
       const txid = state.getTxid()
+      //@ts-ignore
       const txhash = state.getTxhash_asU8()
       const req = new messages.VerifiableGetRequest();
       const kr = new messages.KeyRequest();
@@ -1436,6 +1439,7 @@ class ImmudbClient {
   async verifiedTxById({ tx }: messages.TxRequest.AsObject): Promise<messages.Tx.AsObject | undefined> {
     try {
       const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID })
+      //@ts-ignore
       const txid = state.getTxid()
       const req = new messages.VerifiableTxRequest()
 
