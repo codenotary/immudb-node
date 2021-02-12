@@ -134,7 +134,7 @@ class ImmudbClient {
     if (autoLogin && autoDatabase) {
       // get current database list
       const resList = await this.listDatabases();
-      if (resList && resList && resList.databasesList.some((_) => String(_) === databasename)) {
+      if (resList && resList && resList.databasesList.some((_) => _.databasename === databasename)) {
         // useDatabase database specified if it
         // already exists
         await this.useDatabase({ databasename: DEFAULT_DATABASE });
@@ -211,10 +211,10 @@ class ImmudbClient {
       return new Promise((resolve, reject) =>
         this.client.createDatabase(req, this._metadata, (err, res) => {
           if (err) {
-            console.error('Create database error');
+            console.error('Create database error', err);
             return reject(err);
           }
-          return resolve(new empty.Empty());
+          return resolve(res);
         })
       );
     } catch (err) {
