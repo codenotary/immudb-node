@@ -10,3 +10,4 @@ root
 rootfile
 .env
 examples/.env
+dist/

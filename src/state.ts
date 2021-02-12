@@ -69,14 +69,14 @@ class State {
             if (state !== undefined) {
                 return state;
             } else {
-                this.setCurrentState(stateConfig);
+                await this.setCurrentState(stateConfig);
 
-                return this.get(stateConfig);
+                return await this.get(stateConfig);
             }
         } else {
-            this.setCurrentState(stateConfig);
+            await this.setCurrentState(stateConfig);
             
-            return this.get(stateConfig);
+            return await this.get(stateConfig);
         }
     }
 

@@ -134,7 +134,7 @@ class ImmudbClient {
     if (autoLogin && autoDatabase) {
       // get current database list
       const resList = await this.listDatabases();
-      if (resList && resList && resList.databasesList.some((_) => String(_) === databasename)) {
+      if (resList && resList.databasesList.some(db => db.databasename === databasename)) {
         // useDatabase database specified if it
         // already exists
         await this.useDatabase({ databasename: DEFAULT_DATABASE });
@@ -211,10 +211,10 @@ class ImmudbClient {
       return new Promise((resolve, reject) =>
         this.client.createDatabase(req, this._metadata, (err, res) => {
           if (err) {
-            console.error('Create database error');
+            console.error('Create database error', err);
             return reject(err);
           }
-          return resolve(new empty.Empty());
+          return resolve(res);
         })
       );
     } catch (err) {
@@ -702,6 +702,7 @@ class ImmudbClient {
         if (err) {
           reject(err);
         } else {
+          console.log('state received', res.toObject())
           const signature = res.getSignature();
 
           this.state.set({ databaseName: this._activeDatabase, serverName: this._serverUUID }, res.toObject());
@@ -1094,19 +1095,19 @@ class ImmudbClient {
             let vTx: number
             let kv = new messages.KeyValue()
 
-            if (referencedby !== undefined) {
+            if (referencedby === undefined) {
+              vTx = entry.getTx()
+
+              kv.setKey(this.util.prefixKey(uint8Key))
+              kv.setValue(this.util.prefixValue(entry.getValue_asU8()))
+            } else {
               const key = referencedby.getKey_asU8()
               const atTx = referencedby.getAttx()
     
               vTx = referencedby.getTx()
 
-              kv.setKey(this.util.prefixKey(uint8Key))
-              kv.setValue(this.util.encodeReferenceValue(entry.getKey_asU8(), atTx))
-            } else {
-              vTx = entry.getTx()
-
-              kv.setKey(this.util.prefixKey(uint8Key))
-              kv.setValue(this.util.prefixValue(entry.getValue_asU8()))
+              kv.setKey(this.util.prefixKey(key))
+              kv.setValue(this.util.encodeReferenceValue(key, atTx))
             }
 
             const dualproof = verifiabletx.getDualproof()
@@ -1117,25 +1118,22 @@ class ImmudbClient {
               reject()
             } else {
               const targettxmetadata = dualproof.getTargettxmetadata()
+              const sourcetxmetadata = dualproof.getSourcetxmetadata()
 
-              if (targettxmetadata === undefined) {
+              if (targettxmetadata === undefined || sourcetxmetadata === undefined) {
                 console.error('Server verifiedGet error');
       
                 reject()
               } else {
-                const eh = targettxmetadata.getEh_asU8()
+                let eh = targettxmetadata.getEh_asU8()
                 const prevalh = targettxmetadata.getPrevalh_asU8()
-                let sourceId
-                let sourceAlh
-                let targetId
-                let targetAlh
+                let sourceId = txid
+                let sourceAlh = txhash
+                let targetId = vTx
+                let targetAlh = prevalh
     
-                if (txid < vTx) {
-                  sourceId = txid
-                  sourceAlh = txhash
-                  targetId = vTx
-                  targetAlh = prevalh
-                } else {
+                if (txid > vTx) {
+                  eh = sourcetxmetadata.getEh_asU8()
                   sourceId = vTx
                   sourceAlh = prevalh
                   targetId = txid
@@ -1169,11 +1167,7 @@ class ImmudbClient {
                   { txid: targetId, txhash: targetAlh, signature: verifiabletx.getSignature()?.toObject(), db: this._activeDatabase }
                 )
 
-                let refKey
                 const referencedBy = entry.getReferencedby()
-                if (referencedBy !== undefined) {
-                  refKey = referencedBy.getKey_asU8()
-                }
 
                 resolve({
                   tx: vTx,

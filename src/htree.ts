@@ -247,6 +247,11 @@ export const verifyInclusion = (proof: messages.InclusionProof, digest: messages
         r /= 2
     }
 
+    console.log('i', i)
+    console.log('i', i)
+    console.log('root', root)
+    console.log('calcRoot', calcRoot)
+
     return i === r && util.equalArray(root, calcRoot)
 }
 
