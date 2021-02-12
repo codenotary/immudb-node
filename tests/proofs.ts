@@ -2,7 +2,7 @@
 import tap from 'tap';
 import proofs from '../src/proofs';
 
-tap.test('digest', (t: any) => {
+tap.test('digest', t => {
   const proofsInstance = new proofs();
   const req = {
     key: [ 57, 55, 55, 55, 54 ],

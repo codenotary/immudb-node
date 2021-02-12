@@ -1,4 +1,4 @@
-import fs, { stat, Stats } from 'fs';
+import fs from 'fs';
 import process from 'process';
 import messages, { ImmutableState, Signature } from './proto/schema_pb';
 import ImmudbClient from './client';
@@ -22,7 +22,7 @@ type StateParams = {
 
 class State {
 
-    public servers: Servers = new Map()
+    public servers: Servers
     public rootPath: string;
     public client: ImmudbClient
 
@@ -31,10 +31,12 @@ class State {
         (process as NodeJS.EventEmitter).on(Signals.SIGINT, this.exitHandler);
         (process as NodeJS.EventEmitter).on(Signals.UNCAUGHT_EXCEPTION, this.exitHandler);
 
+        this.servers = new Map()
+
         this.client = client
         this.rootPath = rootPath
 
-        this.initState()
+        this.getStateFromFile()
     }
     
     set ({ serverName, databaseName }: StateConfig, { db, txid, txhash, signature }: ImmutableState.AsObject) {
@@ -57,7 +59,7 @@ class State {
         this.servers.set(serverName, currentServer)
     }
 
-    async get (stateConfig: StateConfig): Promise<ImmutableState.AsObject> {
+    async get (stateConfig: StateConfig): Promise<ImmutableState> {
         const { serverName, databaseName } = stateConfig;
         const server: Server | undefined = this.servers.get(serverName);
 
@@ -65,7 +67,7 @@ class State {
             const state = server.get(databaseName);
 
             if (state !== undefined) {
-                return state.toObject();
+                return state;
             } else {
                 this.setCurrentState(stateConfig);
 
@@ -84,11 +86,12 @@ class State {
         this.set({ serverName, databaseName }, currentState)
     }
 
-    initState () {
+    async getStateFromFile () {
         if (fs.existsSync(this.rootPath)) {
             const rawdata = fs.readFileSync(this.rootPath, 'utf-8')
+            const dataEntries: [string, Server][] = Object.entries(JSON.parse(rawdata))
             
-            this.servers = JSON.parse(rawdata)
+            this.servers = new Map(dataEntries);
         }
     }
 

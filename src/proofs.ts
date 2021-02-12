@@ -1,6 +1,7 @@
 import crypto from 'crypto';
 
 import Util from './util';
+import * as messages from './proto/schema_pb';
 
 interface ErrVerificationException {
   clientErr: string;
@@ -243,6 +244,10 @@ class Proof {
 
     callback();
   }
+
+  inclusionProofFrom(inclusionProof: messages.InclusionProof) {}
+
+  dualProofFrom(dualProof: messages.DualProof) {}
 }
 
 export default Proof;

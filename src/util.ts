@@ -2,6 +2,10 @@ import btoa from 'btoa';
 import * as util from 'util';
 import * as types from './interfaces';
 
+const REFERENCE_VALUE_PREFIX = new Uint8Array(0x01)
+const SET_KEY_PREFIX = new Uint8Array(0x00)
+const PLAIN_VALUE_PREFIX = new Uint8Array(0x00)
+
 class Util {
 
     constructor () {}
@@ -11,10 +15,9 @@ class Util {
     }
     
     utf8Decode (val: any) {
-        if (val === '') {
-            return val;
-        }
-        return new util.TextDecoder("utf-8").decode(val);
+        return val === ''
+            ? val
+            : new util.TextDecoder("utf-8").decode(val);
     }
     
     base64Encode (val: any) {
@@ -62,6 +65,35 @@ class Util {
             return `${data.slice(0, n)}************${data.slice(data.length - n)}`;
         }
         return '';
+    }
+
+    prefixKey(key: Uint8Array): Uint8Array {
+        const res = new Uint8Array(2)
+
+        res.set(SET_KEY_PREFIX)
+        res.set(key, 1)
+
+        return res
+    }
+
+    prefixValue(value: Uint8Array): Uint8Array {
+        const res = new Uint8Array(2)
+
+        res.set(PLAIN_VALUE_PREFIX)
+        res.set(value, 1)
+
+        return res
+    }
+
+    encodeReferenceValue(referencedKey: Uint8Array, atTx: number): Uint8Array {
+        const encoded = new Uint8Array(4)
+
+        encoded.set(REFERENCE_VALUE_PREFIX)
+        encoded.set(new Uint8Array([atTx]), 1)
+        encoded.set(SET_KEY_PREFIX, 2)
+        encoded.set(referencedKey, 3)
+
+        return encoded
     }
 }
 

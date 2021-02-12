@@ -3,6 +3,7 @@ import tap from 'tap';
 import * as messages from '../src/proto/schema_pb';
 import ImmudbClient from '../src/client';
 import { Config } from '../dist/interfaces';
+import Util from '../src/util'
 
 import { Permission } from '../src/interfaces';
 
@@ -12,6 +13,8 @@ const {
   IMMUDB_USER = 'immudb',
   IMMUDB_PWD = 'immudb',
 } = process.env;
+
+const util = new Util()
 
 tap.test('database management', async t => {
   const config: Config = {
@@ -182,7 +185,6 @@ tap.test('operations', async t => {
     const loginResponse: messages.LoginResponse.AsObject | undefined = await immudbClient.login(
       loginRequest
     );
-    console.log('loginResponse', loginResponse)
 
     // test: create database
     const createDatabaseRequest: messages.Database.AsObject = { databasename: testDB };
@@ -200,7 +202,6 @@ tap.test('operations', async t => {
     };
     let setResponse = await immudbClient.set(setRequest);
     const id = setResponse && setResponse.id; // used in txById test
-    console.log('setResponse', setResponse)
 
     if (id === undefined || id === null) {
       t.fail('Failed to get index from set');
@@ -209,7 +210,6 @@ tap.test('operations', async t => {
     // test: get item by key
     const getRequest: messages.Key.AsObject = { key: new Uint8Array(rand) };
     const getResponse = await immudbClient.get(getRequest);
-    console.log('getResponse', getResponse)
 
     // // test: count keys having the specified value
     // // in the database in use
@@ -231,7 +231,6 @@ tap.test('operations', async t => {
     // test: return an element by txId
     const txByIdRequest: messages.TxRequest.AsObject = { tx: id as number }
     const txByIdResponse = await immudbClient.txById(txByIdRequest);
-    console.log('txByIdResponse', txByIdResponse)
 
     // history: fetch history for the item having the
     // specified key
@@ -260,12 +259,10 @@ tap.test('operations', async t => {
 
     // test: execute a getAll read
     const getAllRequest: messages.KeyListRequest.AsObject = {
-      // keysList: [new Uint8Array(rand)],
-      keysList: ['ADA='],
+      keysList: [util.utf8Encode(new Uint8Array(rand))],
       sincetx: 1
     };
     const getAllResponse = await immudbClient.getAll(getAllRequest);
-    console.log('getAllResponse', getAllResponse)
 
     // test: add new item having the specified key
     // and value
@@ -275,9 +272,8 @@ tap.test('operations', async t => {
     };
     setResponse = await immudbClient.set(setRequest);
     
-    // test: get current root info
-    let currentRootResponse = await immudbClient.currentRoot();
-    console.log('currentRootResponse', currentRootResponse)
+    // test: get current state info
+    let currentStateResponse = await immudbClient.currentState();
 
     // // test: safely add new item having the specified key
     // // and value
@@ -307,11 +303,16 @@ tap.test('operations', async t => {
     // };
     // safeSetResponse = await immudbClient.safeSet(safeSetRequest);
 
-    // // test: safely get item by key
-    // const safeGetRequest: messages.Key.AsObject = {
-    //   key: new Uint8Array(rand + 12),
-    // };
-    // const safeGetResponse = await immudbClient.safeGet(safeGetRequest);
+    // test: safely get item by key
+    const verifiedGetRequest: messages.Key.AsObject = {
+      key: new Uint8Array(rand)
+    }
+    try {
+      const verifiedGetResponse = await immudbClient.verifiedGet(verifiedGetRequest);
+      t.pass('Verified get test succeeded');
+    } catch(err) {
+      t.fail('Verified get test failed',err)
+    }
 
     t.end();
   } catch (err) {

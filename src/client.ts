@@ -1,9 +1,9 @@
 import dotenv from 'dotenv';
-
-dotenv.config();
-
+import { Metadata } from 'grpc';
 import * as grpc from '@grpc/grpc-js';
 import * as empty from 'google-protobuf/google/protobuf/empty_pb';
+
+dotenv.config();
 import * as messages from './proto/schema_pb';
 import * as services from './proto/schema_grpc_pb';
 
@@ -13,7 +13,7 @@ import Proofs from './proofs';
 import State from './state';
 import * as types from './interfaces';
 import { Database, Permission, User } from './proto/schema_pb';
-import { Metadata } from 'grpc';
+import { inclusionProofFrom, dualProofFrom, verifyInclusion, verifyDualProof } from './htree'
 
 const CLIENT_INIT_PREFIX = 'ImmudbClient:';
 const DEFAULT_DATABASE = 'defaultdb';
@@ -229,7 +229,7 @@ class ImmudbClient {
       const req = new messages.Database();
       req.setDatabasename(databasename);
 
-      return new Promise((resolve, reject) => this.client.useDatabase(req, this._metadata, (err, res) => {
+      return new Promise((resolve, reject) => this.client.useDatabase(req, this._metadata, async (err, res) => {
         if (err) {
           console.error('Use database error', err);
           return reject(err);
@@ -287,11 +287,11 @@ class ImmudbClient {
     }
   }
 
-  async get(params: messages.Key.AsObject): Promise<messages.Entry.AsObject | undefined> {
+  async get({ key }: messages.Key.AsObject): Promise<messages.Entry.AsObject | undefined> {
     try {
       const req = new messages.KeyRequest();
 
-      req.setKey(this.util && this.util.utf8Encode(params && params.key));
+      req.setKey(this.util.utf8Encode(key));
 
       return new Promise(resolve =>
         this.client.get(req, this._metadata, (err, res) => {
@@ -702,18 +702,17 @@ class ImmudbClient {
         if (err) {
           reject(err);
         } else {
-          const signature = res && res.getSignature();
+          const signature = res.getSignature();
 
-          this.state &&
-            this.state.set({ databaseName: this._activeDatabase, serverName: this._serverUUID }, res.toObject());
+          this.state.set({ databaseName: this._activeDatabase, serverName: this._serverUUID }, res.toObject());
 
           resolve({
             db: this._activeDatabase,
-            txid: res && res.getTxid(),
-            txhash: res && res.getTxhash(),
+            txid: res.getTxid(),
+            txhash: res.getTxhash(),
             signature: {
-              signature: this.util && this.util.utf8Encode(signature && signature.getSignature()),
-              publickey: this.util && this.util.utf8Encode(signature && signature.getPublickey())
+              signature: this.util.utf8Encode(signature && signature.getSignature()),
+              publickey: this.util.utf8Encode(signature && signature.getPublickey())
             },
           });
         }
@@ -942,6 +941,7 @@ class ImmudbClient {
   async verifiedSet ({ key, value }: messages.KeyValue.AsObject): Promise<messages.TxMetadata.AsObject | undefined> {
     try {
       const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID })
+      const txid = state.getTxid()
       const req = new messages.VerifiableSetRequest();
       const kv = new messages.KeyValue();
       const setRequest = new messages.SetRequest();
@@ -951,16 +951,22 @@ class ImmudbClient {
 
       setRequest.setKvsList([kv])
 
-      req.setProvesincetx(state.txid)
+      req.setProvesincetx(txid)
       req.setSetrequest(setRequest)
 
-      return new Promise((resolve, reject)=> this.client.verifiableSet(req, this._metadata, (err, res) => {
+      return new Promise((resolve, reject)=> this.client.verifiableSet(req, this._metadata, async (err, res) => {
         if (err) {
           console.error('verifiedSet error', err)
 
           reject(err)
         } else {
-          const tx = res.getTx();
+          const verifiableTx = res.getTx()
+
+          if (verifiableTx === undefined) {
+            console.error('')
+
+            reject()
+          } else {}
         }
       }))
     } catch(err) {
@@ -1058,19 +1064,126 @@ class ImmudbClient {
   async verifiedGet({ key }: messages.Key.AsObject): Promise<messages.Entry.AsObject | undefined> {
     try {
       const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID })
+      const txid = state.getTxid()
+      const txhash = state.getTxhash_asU8()
       const req = new messages.VerifiableGetRequest();
       const kr = new messages.KeyRequest();
+      const uint8Key = this.util.utf8Encode(key)
 
-      kr.setKey(key)
+      kr.setKey(uint8Key)
 
       req.setKeyrequest(kr);
-      req.setProvesincetx(state.txid);
+      req.setProvesincetx(txid);
 
-      return new Promise((resolve, reject) => this.client.verifiableGet(req, this._metadata, (err, res) => {
+      return new Promise((resolve, reject) => this.client.verifiableGet(req, this._metadata, async (err, res) => {
         if (err) {
           console.error(err);
 
           reject(err)
+        } else {
+          const inclusionproof = res.getInclusionproof()
+          const verifiabletx = res.getVerifiabletx()
+          const entry = res.getEntry()
+
+          if (!inclusionproof || !verifiabletx || !entry) {
+            console.error('Server verifiedGet error');
+  
+            reject()
+          } else {
+            const referencedby = entry.getReferencedby()
+            let vTx: number
+            let kv = new messages.KeyValue()
+
+            if (referencedby !== undefined) {
+              const key = referencedby.getKey_asU8()
+              const atTx = referencedby.getAttx()
+    
+              vTx = referencedby.getTx()
+
+              kv.setKey(this.util.prefixKey(uint8Key))
+              kv.setValue(this.util.encodeReferenceValue(entry.getKey_asU8(), atTx))
+            } else {
+              vTx = entry.getTx()
+
+              kv.setKey(this.util.prefixKey(uint8Key))
+              kv.setValue(this.util.prefixValue(entry.getValue_asU8()))
+            }
+
+            const dualproof = verifiabletx.getDualproof()
+
+            if (dualproof === undefined) {
+              console.error('Server verifiedGet error');
+    
+              reject()
+            } else {
+              const targettxmetadata = dualproof.getTargettxmetadata()
+
+              if (targettxmetadata === undefined) {
+                console.error('Server verifiedGet error');
+      
+                reject()
+              } else {
+                const eh = targettxmetadata.getEh_asU8()
+                const prevalh = targettxmetadata.getPrevalh_asU8()
+                let sourceId
+                let sourceAlh
+                let targetId
+                let targetAlh
+    
+                if (txid < vTx) {
+                  sourceId = txid
+                  sourceAlh = txhash
+                  targetId = vTx
+                  targetAlh = prevalh
+                } else {
+                  sourceId = vTx
+                  sourceAlh = prevalh
+                  targetId = txid
+                  targetAlh = txhash
+                }
+    
+                let verifies = verifyInclusion(inclusionproof, kv, eh)
+    
+                if (!verifies) {
+                  console.error('verifiedGet inclusion verification failed');
+    
+                  reject()
+                }
+    
+                verifies = verifyDualProof(
+                  dualproof,
+                  sourceId,
+                  targetId,
+                  sourceAlh,
+                  targetAlh
+                )
+    
+                if (!verifies) {
+                  console.error('verifiedGet dual verification failed');
+    
+                  reject()
+                }
+
+                this.state.set(
+                  { serverName: this._serverUUID, databaseName: this._activeDatabase },
+                  { txid: targetId, txhash: targetAlh, signature: verifiabletx.getSignature()?.toObject(), db: this._activeDatabase }
+                )
+
+                let refKey
+                const referencedBy = entry.getReferencedby()
+                if (referencedBy !== undefined) {
+                  refKey = referencedBy.getKey_asU8()
+                }
+
+                resolve({
+                  tx: vTx,
+                  key: entry.getKey_asU8(),
+                  value: entry.getValue_asU8(),
+                  referencedby: referencedBy?.toObject()
+                })
+              }
+            }
+          }
         }
       }))
     } catch(err) {
@@ -1329,10 +1442,11 @@ class ImmudbClient {
   async verifiedTxById({ tx }: messages.TxRequest.AsObject): Promise<messages.Tx.AsObject | undefined> {
     try {
       const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID })
+      const txid = state.getTxid()
       const req = new messages.VerifiableTxRequest()
 
       req.setTx(tx)
-      req.setProvesincetx(state.txid)
+      req.setProvesincetx(txid)
 
       return new Promise((resolve, reject) => this.client.verifiableTxById(req, this._metadata, (err, res) => {
         if (err) {
