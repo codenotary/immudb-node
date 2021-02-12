@@ -68,30 +68,31 @@ class Util {
     }
 
     prefixKey(key: Uint8Array): Uint8Array {
-        const res = new Uint8Array(2)
+        const res = new Uint8Array(SET_KEY_PREFIX.length + key.length)
 
         res.set(SET_KEY_PREFIX)
-        res.set(key, 1)
+        res.set(key, SET_KEY_PREFIX.length)
 
         return res
     }
 
     prefixValue(value: Uint8Array): Uint8Array {
-        const res = new Uint8Array(2)
+        const res = new Uint8Array(PLAIN_VALUE_PREFIX.length + value.length)
 
         res.set(PLAIN_VALUE_PREFIX)
-        res.set(value, 1)
+        res.set(value, PLAIN_VALUE_PREFIX.length)
 
         return res
     }
 
     encodeReferenceValue(referencedKey: Uint8Array, atTx: number): Uint8Array {
-        const encoded = new Uint8Array(4)
+        const atTxUint = new Uint8Array([atTx])
+        const encoded = new Uint8Array(REFERENCE_VALUE_PREFIX.length + atTxUint.length + SET_KEY_PREFIX.length + referencedKey.length)
 
         encoded.set(REFERENCE_VALUE_PREFIX)
-        encoded.set(new Uint8Array([atTx]), 1)
-        encoded.set(SET_KEY_PREFIX, 2)
-        encoded.set(referencedKey, 3)
+        encoded.set(atTxUint, REFERENCE_VALUE_PREFIX.length)
+        encoded.set(SET_KEY_PREFIX, REFERENCE_VALUE_PREFIX.length + atTxUint.length)
+        encoded.set(referencedKey, REFERENCE_VALUE_PREFIX.length + atTxUint.length + SET_KEY_PREFIX.length)
 
         return encoded
     }

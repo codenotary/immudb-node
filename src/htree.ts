@@ -48,10 +48,11 @@ class HTree {
             throw new Error('Illegal HTree buildWith')
         }
         for (let i = 0; i < digests.length; i++) {
-            const leaf = new Uint8Array(2)
+            const digest = digests[i]
+            const leaf = new Uint8Array(LEAF_PREFIX.length + digest.length)
             
             leaf.set(LEAF_PREFIX)
-            leaf.set(digests[i], 1)
+            leaf.set(digest, LEAF_PREFIX.length)
 
             this.levels[0][i] = hashUint8Array(leaf)
         }
@@ -62,11 +63,13 @@ class HTree {
             let i = 0
 
             while (i + 1 < w) {
-                const b = new Uint8Array(3)
+                const level1 = this.levels[l][i]
+                const level2 = this.levels[l][i+1]
+                const b = new Uint8Array(NODE_PREFIX.length + level1.length + level2.length)
 
                 b.set(NODE_PREFIX)
-                b.set(this.levels[l][i], 1)
-                b.set(this.levels[l][i+1], 2)
+                b.set(level1, NODE_PREFIX.length)
+                b.set(level2, NODE_PREFIX.length + level1.length)
                 
                 this.levels[l + 1][wn] = hashUint8Array(b)
 
@@ -221,17 +224,18 @@ export const verifyInclusion = (proof: messages.InclusionProof, digest: messages
     if (proof === undefined) {
         return false
     }
-    const leaf = new Uint8Array(9)
+    const serializedDigest = digest.serializeBinary()
+    const leaf = new Uint8Array(LEAF_PREFIX.length + serializedDigest.length)
 
     leaf.set(LEAF_PREFIX)
-    leaf.set(digest.serializeBinary(), 1)
+    leaf.set(serializedDigest, LEAF_PREFIX.length)
 
     let calcRoot = hashUint8Array(leaf)
     let i = proof.getLeaf()
     let r = proof.getWidth() - 1
 
     for (let t of proof.getTermsList_asU8()) {
-        const b = new Uint8Array(3)
+        const b = new Uint8Array(NODE_PREFIX.length + t.length + calcRoot.length)
 
         b.set(NODE_PREFIX)
 
@@ -371,19 +375,19 @@ const verifyConsistency = (consistencyProofList: Array<Uint8Array>, sourceBlTxId
 
     for (let h of consistencyProofList.slice(1)) {
         if (fn % 2 === 1 || fn === sn) {
-            let b = new Uint8Array(3)
+            let b = new Uint8Array(NODE_PREFIX.length + h.length + ciRoot.length)
 
             b.set(NODE_PREFIX)
-            b.set(h, 1)
-            b.set(ciRoot, 2)
+            b.set(h, NODE_PREFIX.length)
+            b.set(ciRoot, NODE_PREFIX.length + h.length)
 
             ciRoot = hashUint8Array(b)
 
-            b = new Uint8Array(3)
+            b = new Uint8Array(NODE_PREFIX.length + h.length + ciRoot.length)
 
             b.set(NODE_PREFIX)
-            b.set(h, 1)
-            b.set(ciRoot, 2)
+            b.set(h, NODE_PREFIX.length)
+            b.set(ciRoot, NODE_PREFIX.length + h.length)
 
             cjRoot = hashUint8Array(b)
 
@@ -392,11 +396,11 @@ const verifyConsistency = (consistencyProofList: Array<Uint8Array>, sourceBlTxId
                 sn = sn >> 1
             }
         } else {
-            let b = new Uint8Array(3)
+            let b = new Uint8Array(NODE_PREFIX.length + cjRoot.length + h.length)
 
             b.set(NODE_PREFIX)
-            b.set(cjRoot, 1)
-            b.set(h, 2)
+            b.set(cjRoot, NODE_PREFIX.length)
+            b.set(h, NODE_PREFIX.length + cjRoot.length)
 
             cjRoot = hashUint8Array(b)
         }
@@ -416,11 +420,11 @@ const verifyLastInclusion = (lastInclusionproofList: Array<Uint8Array>, targetBl
     let iRoot = targetBlTxAlh
 
     for (let h of lastInclusionproofList) {
-        let b = new Uint8Array(3)
+        let b = new Uint8Array(NODE_PREFIX.length + h.length + iRoot.length)
 
         b.set(NODE_PREFIX)
-        b.set(h, 1)
-        b.set(iRoot, 2)
+        b.set(h, NODE_PREFIX.length)
+        b.set(iRoot, NODE_PREFIX.length + h.length)
 
         iRoot = hashUint8Array(b)
         i1 = i1 >> 1

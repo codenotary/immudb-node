@@ -937,8 +937,7 @@ class ImmudbClient {
   async verifiedSet ({ key, value }: messages.KeyValue.AsObject): Promise<messages.TxMetadata.AsObject | undefined> {
     try {
       const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID })
-      //@ts-ignore
-      const txid = state.txid
+      const txid = state.getTxid()
       const req = new messages.VerifiableSetRequest();
       const kv = new messages.KeyValue();
       const setRequest = new messages.SetRequest();
@@ -1063,9 +1062,7 @@ class ImmudbClient {
   async verifiedGet({ key }: messages.Key.AsObject): Promise<messages.Entry.AsObject | undefined> {
     try {
       const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID })
-      //@ts-ignore
-      const txid = state.txid
-      //@ts-ignore
+      const txid = state.getTxid()
       const txhash = state.getTxhash_asU8()
       const req = new messages.VerifiableGetRequest();
       const kr = new messages.KeyRequest();
@@ -1437,7 +1434,7 @@ class ImmudbClient {
     try {
       const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID })
 
-	  const txid = state.txid
+	  const txid = state.getTxid()
       const req = new messages.VerifiableTxRequest()
 
       req.setTx(tx)
