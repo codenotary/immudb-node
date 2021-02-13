@@ -1,12 +1,11 @@
 import * as messages from './proto/schema_pb';
-import Util from './util'
-import { hashUint8Array } from './util'
+import Util, { getAlh, hashUint8Array, encodeInt64 } from './util'
 
 const util = new Util()
 
 const NODE_PREFIX = Uint8Array.from([0x01])
 
-function bitLength(n: number): number {
+export function bitLength(n: number): number {
     return parseInt((n >>> 0).toString(2))
 }
 const withLeafPrefix = (value: Uint8Array): Uint8Array => {
@@ -223,11 +222,11 @@ export const dualProofFrom = ({
     return dProof
 }
 
-export const verifyInclusion = (proof: messages.InclusionProof, digest: messages.KeyValue, root: Uint8Array) => {
+export const verifyInclusion = (proof: messages.InclusionProof, digest: Uint8Array, root: Uint8Array) => {
     if (proof === undefined) {
         return false
     }
-    const leaf = withLeafPrefix(digest.serializeBinary())
+    const leaf = withLeafPrefix(digest)
 
     let calcRoot = hashUint8Array(leaf)
     let i = proof.getLeaf()
@@ -246,23 +245,14 @@ export const verifyInclusion = (proof: messages.InclusionProof, digest: messages
             b.set(calcRoot, NODE_PREFIX.length + t.length)
         }
         calcRoot = hashUint8Array(b)
-        i /= 2
-        r /= 2
+        i = Math.floor(i / 2)
+        r = Math.floor(r / 2)
     }
-
-    console.log('proof', proof.toObject())
-
-    console.log('i', i)
-    console.log('r', r)
-    console.log('root', root)
-    console.log('calcRoot', calcRoot)
-
+    
     return i === r && util.equalArray(root, calcRoot)
 }
 
 export const verifyDualProof = (dualProof: messages.DualProof, sourceId: number, targetId: number, sourceAlh: Uint8Array, targetAlh: Uint8Array) => {
-    // console.log('dualProof', dualProof.toObject())
-    // console.log('if 1')
     if (dualProof === undefined) {
         return false
     }
@@ -274,9 +264,6 @@ export const verifyDualProof = (dualProof: messages.DualProof, sourceId: number,
     const lastinclusionproofList = dualProof.getLastinclusionproofList_asU8()
     const targetbltxalh = dualProof.getTargetbltxalh_asU8()
     
-    // console.log('if 2')
-    // console.log('sourcetxmetadata', sourcetxmetadata)
-    // console.log('targettxmetadata', targettxmetadata)
     if (
         sourcetxmetadata === undefined ||
         targettxmetadata === undefined
@@ -286,58 +273,45 @@ export const verifyDualProof = (dualProof: messages.DualProof, sourceId: number,
 
     const sId = sourcetxmetadata.getId()
     const tId = targettxmetadata.getId()
-    const tPrevalh = targettxmetadata.getPrevalh_asU8()
+    const tPrevalh = getAlh(targettxmetadata)
     const tBltxid = targettxmetadata.getBltxid()
     const tBlroot = targettxmetadata.getBlroot_asU8()
-    const sPrevalh = sourcetxmetadata.getPrevalh_asU8()
+    const sPrevalh = getAlh(sourcetxmetadata)
     const sBltxid = sourcetxmetadata.getBltxid()
     const sBlroot = sourcetxmetadata.getBlroot_asU8()
 
-    // console.log('if 3')
-    // console.log('sId', sId)
-    // console.log('sourceId', sourceId)
-    // console.log('tId', tId)
-    // console.log('targetId', targetId)
     if (
         sId !== sourceId ||
         tId !== targetId
     ) {
         return false
     }
-    // console.log('if 4')
     if (sId === 0 || sId > tId) {
         return false
     }
-    // console.log('if 5')
-    // console.log('sourceAlh', sourceAlh)
-    // console.log('sPrevalh', sPrevalh)
-    // console.log('targetAlh', targetAlh)
-    // console.log('tPrevalh', tPrevalh)
     if (!util.equalArray(sourceAlh, sPrevalh) || !util.equalArray(targetAlh, tPrevalh)) {
         return false
     }
-    // console.log('if 6')
     if (sourceId < tBltxid && verifyInclusionAHT(inclusionproofList, sourceId, tBltxid, withLeafPrefix(sourceAlh), tBlroot) === false) {
         return false
     }
-    // console.log('if 7')
     if (sBltxid > 0 && verifyConsistency(consistencyproofList, sBltxid, tBltxid, sBlroot, tBlroot) === false) {
         return false
     }
-    // console.log('if 8')
-    if (tBltxid > 0 && verifyLastInclusion(lastinclusionproofList, tBltxid, withLeafPrefix(targetbltxalh), tBlroot) === false) {
+    if (tBltxid > 0 && verifyLastInclusion(lastinclusionproofList, tBltxid, hashUint8Array(withLeafPrefix(targetbltxalh)), tBlroot) === false) {
         return false
     }
 
     const linearproof = dualProof.getLinearproof()
 
-    // console.log('if 9')
     if (linearproof === undefined) {
         return false
     } else {
-        let ret = verifyLinearProof(linearproof, tBltxid, targetId, targetbltxalh, targetAlh)
+        let ret
 
-        if (sourceId >= tBltxid) {
+        if (sourceId < tBltxid) {
+            ret = verifyLinearProof(linearproof, tBltxid, targetId, targetbltxalh, targetAlh)
+        } else {
             ret = verifyLinearProof(linearproof, sourceId, targetId, sourceAlh, targetAlh)
         }
     
@@ -429,7 +403,7 @@ const verifyConsistency = (consistencyProofList: Array<Uint8Array>, i: number, j
         sn = sn >> 1
     }
 
-    return iRoot === ciRoot && jRoot === cjRoot
+    return util.equalArray(iRoot, ciRoot) && util.equalArray(jRoot, cjRoot)
 }
 const verifyLastInclusion = (lastInclusionproofList: Array<Uint8Array>, i: number, leaf: Uint8Array, root: Uint8Array): boolean => {
     if (i === 0) {
@@ -450,7 +424,7 @@ const verifyLastInclusion = (lastInclusionproofList: Array<Uint8Array>, i: numbe
         i1 = i1 >> 1
     }
 
-    return root === iRoot
+    return util.equalArray(root, iRoot)
 }
 const verifyLinearProof = (linearProof: messages.LinearProof, sourceId: number, targetId: number, sourceAlh: Uint8Array, targetAlh: Uint8Array): boolean => {
     if (linearProof === undefined) {
@@ -465,25 +439,25 @@ const verifyLinearProof = (linearProof: messages.LinearProof, sourceId: number, 
         return false
     }
 
-    if (sourceTxId === 0 || sourceTxId > targetTxId || termsList.length === 0 || sourceAlh !== termsList[0]) {
+    if (sourceTxId === 0 || sourceTxId > targetTxId || termsList.length === 0 || !util.equalArray(sourceAlh, termsList[0])) {
         return false
     }
 
     let calculatedAlh = termsList[0]
 
-    for (let i = 0; i < termsList.length; i++) {
-        let j = new Uint8Array(linearProof.getSourcetxid()+i)
+    for (let i = 1; i < termsList.length; i++) {
+        const txi = encodeInt64(linearProof.getSourcetxid()+i)
         const term = termsList[i]
-        const bs = new Uint8Array(j.length + calculatedAlh.length + term.length)
+        const bs = new Uint8Array(txi.length + calculatedAlh.length + term.length)
 
-        bs.set(j)
-        bs.set(calculatedAlh, j.length)
-        bs.set(term, j.length + calculatedAlh.length)
+        bs.set(txi)
+        bs.set(calculatedAlh, txi.length)
+        bs.set(term, txi.length + calculatedAlh.length)
 
         calculatedAlh = hashUint8Array(bs)
     }
 
-    return targetAlh === calculatedAlh
+    return util.equalArray(targetAlh, calculatedAlh)
 }
 
 export default HTree

@@ -8,7 +8,7 @@ import * as messages from './proto/schema_pb';
 import * as services from './proto/schema_grpc_pb';
 
 import { Config } from './interfaces';
-import Util, { utf8Encode } from './util';
+import Util, { hashUint8Array, utf8Encode, digestKeyValue, getAlh } from './util';
 import { txFrom } from './tx'
 import Proofs from './proofs';
 import State from './state';
@@ -1152,7 +1152,7 @@ class ImmudbClient {
               kv.setKey(this.util.prefixKey(uint8Key))
               kv.setValue(this.util.prefixValue(entry.getValue_asU8()))
             } else {
-              const key = referencedby.getKey_asU8()
+              const key = utf8Encode(referencedby.getKey())
               const atTx = referencedby.getAttx()
     
               vTx = referencedby.getTx()
@@ -1177,21 +1177,23 @@ class ImmudbClient {
                 reject()
               } else {
                 let eh = targettxmetadata.getEh_asU8()
-                const prevalh = targettxmetadata.getPrevalh_asU8()
+                const tPrevalh = getAlh(targettxmetadata)
                 let sourceId = txid
                 let sourceAlh = txhash
                 let targetId = vTx
-                let targetAlh = prevalh
+                let targetAlh = tPrevalh
     
                 if (txid > vTx) {
+                  const sPrevalh = sourcetxmetadata.getPrevalh_asU8()
+
                   eh = sourcetxmetadata.getEh_asU8()
                   sourceId = vTx
-                  sourceAlh = prevalh
+                  sourceAlh = sPrevalh
                   targetId = txid
                   targetAlh = txhash
                 }
     
-                let verifies = verifyInclusion(inclusionproof, kv, eh)
+                let verifies = verifyInclusion(inclusionproof, digestKeyValue(kv), eh)
     
                 if (!verifies) {
                   console.error('verifiedGet inclusion verification failed');
