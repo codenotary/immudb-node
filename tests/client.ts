@@ -2,7 +2,7 @@ import tap from 'tap';
 
 import * as messages from '../src/proto/schema_pb';
 import ImmudbClient from '../src/client';
-import Util from '../src/util'
+import Util, { utf8Encode } from '../src/util'
 
 import { Permission, Config } from '../src/interfaces';
 
@@ -258,7 +258,7 @@ tap.test('operations', async t => {
 
     // test: execute a getAll read
     const getAllRequest: messages.KeyListRequest.AsObject = {
-      keysList: [util.utf8Encode(new Uint8Array(rand))],
+      keysList: [utf8Encode(new Uint8Array(rand))],
       sincetx: 1
     };
     const getAllResponse = await immudbClient.getAll(getAllRequest);
@@ -303,7 +303,7 @@ tap.test('operations', async t => {
     // safeSetResponse = await immudbClient.safeSet(safeSetRequest);
 
     // test: safely get item by key
-    const verifiedGetRequest: messages.Key.AsObject = {
+    const verifiedGetRequest: Partial<messages.KeyRequest.AsObject> = {
       key: new Uint8Array(rand)
     }
     try {

@@ -497,8 +497,8 @@ class ImmudbClient {
           }
 
           resolve({
-            status: res && res.getStatus(),
-            version: res && res.getVersion(),
+            status: res.getStatus(),
+            version: res.getVersion(),
           });
         })
 
@@ -1113,7 +1113,7 @@ class ImmudbClient {
   //   return this.verifiedSet(params);
   // }
 
-  async verifiedGet({ key }: messages.Key.AsObject): Promise<messages.Entry.AsObject | undefined> {
+  async verifiedGet({ key, attx, sincetx }: types.PartialBy<messages.KeyRequest.AsObject, 'sincetx' | 'attx'>): Promise<messages.Entry.AsObject | undefined> {
     try {
       const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID, metadata: this._metadata })
       const txid = state.getTxid()
@@ -1123,6 +1123,13 @@ class ImmudbClient {
       const uint8Key = utf8Encode(key)
 
       kr.setKey(uint8Key)
+
+      if (attx !== undefined) {
+        kr.setAttx(attx)
+      }
+      if (sincetx !== undefined) {
+        kr.setSincetx(sincetx)
+      }
 
       req.setKeyrequest(kr);
       req.setProvesincetx(txid);
@@ -1238,87 +1245,12 @@ class ImmudbClient {
     }
   }
 
-  // async verifiedGet(params: messages.Key.AsObject): Promise<messages.Entry.AsObject | undefined> {
-  //   try {
-  //     // const index = new messages.Index();
-  //     // index.setIndex(
-  //     //   this.root &&
-  //     //     this.root.get({
-  //     //       server: this._serverUUID,
-  //     //       database: this._activeDatabase,
-  //     //     }).index
-  //     // );
-
-  //     const req = new messages.VerifiableGetRequest();
-  //     const kr = new messages.KeyRequest();
-  //     kr.setKey(this.util && utf8Encode(params && params.key));
-      
-  //     req.setKeyrequest(kr);
-  //     // req.setRootindex(index);
-
-  //     return new Promise((resolve, reject) =>
-  //       this.client.verifiableGet(req, this._metadata, (err, res) => {
-  //         if (err) {
-  //           console.error('SafeGet error', err);
-  //           return reject(err);
-  //         }
-
-  //         const proof = res && res.getProof();
-  //         const item = res && res.getItem();
-  //         const verifyReq = {
-  //           proof: {
-  //             inclusionPath: proof.getInclusionpathList(),
-  //             consistencyPath: proof.getConsistencypathList(),
-  //             index: proof.getIndex(),
-  //             at: proof.getAt(),
-  //             leaf: proof.getLeaf(),
-  //             root: proof.getRoot(),
-  //           },
-  //           item: {
-  //             key: item.getKey(),
-  //             value: item.getValue(),
-  //             index: item.getIndex(),
-  //           },
-  //           oldRoot:
-  //             this.state &&
-  //             this.state.get({
-  //               server: this._serverUUID,
-  //               database: this._activeDatabase,
-  //             }),
-  //         };
-
-  //         this.proofs &&
-  //           this.proofs.verify(verifyReq, (err: any) => {
-  //             if (err) {
-  //               return { err };
-  //             }
-
-  //             this.state &&
-  //               this.state.set({
-  //                 server: this._serverUUID,
-  //                 database: this._activeDatabase,
-  //                 root: proof.getRoot(),
-  //                 index: proof.getAt(),
-  //               });
-
-  //             resolve({
-  //               tx: res && res.getTx(),
-  //               key: this.util && this.util.utf8Decode(item.getKey()),
-  //               value: this.util && this.util.utf8Decode(item.getValue()),
-  //             });
-  //           });
-  //       })
-  //     );
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // }
-
-  // async safeGet(
-  //   params: messages.Key.AsObject
-  // ): Promise<messages.Entry.AsObject | undefined> {
-  //   return this.verifiedGet(params);
-  // }
+  async verifiedGetAt({ key, attx }: Omit<messages.KeyRequest.AsObject, 'sincetx'>) {
+    return await this.verifiedGet({ key, attx })
+  }
+  async verifiedGetSince({ key, sincetx }: Omit<messages.KeyRequest.AsObject, 'attx'>) {
+    return await this.verifiedGet({ key, sincetx })
+  }
 
   async updateAuthConfig(params: messages.AuthConfig.AsObject): Promise<empty.Empty | undefined> {
     try {
