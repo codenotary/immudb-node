@@ -1,20 +1,15 @@
 import * as messages from './proto/schema_pb';
 import * as services from './proto/schema_grpc_pb';
 import * as empty from 'google-protobuf/google/protobuf/empty_pb';
-import { rejects } from 'assert';
+import { Metadata } from 'grpc';
 
 type Server = Map<string, messages.ImmutableState>
 type Servers = Map<string, Server>
 type StateConfig = {
     serverName: string
     databaseName: string
+    metadata: Metadata
 }
-
-const getEmptyState = (databaseName: string): messages.ImmutableState.AsObject => ({
-    db: databaseName,
-    txhash: new Uint8Array(),
-    txid: 0
-})
 
 class State {
     public servers: Servers = new Map()
@@ -42,29 +37,29 @@ class State {
     }
 
     async getCurrentState(config: StateConfig): Promise<messages.ImmutableState> {
-        const { databaseName } = config
-        return new Promise((resolve, reject) => this.client.currentState(new empty.Empty(), (err, res) => {
+        const { databaseName, metadata } = config
+        return new Promise((resolve, reject) => this.client.currentState(new empty.Empty(), metadata, (err, res) => {
             if (err) {
                 reject(err);
-            } else {
-                const stateObject = res ? res.toObject() : getEmptyState(databaseName);
-                const state = new messages.ImmutableState()
-                const sgntr = new messages.Signature()
-
-                if (stateObject.signature !== undefined) {
-                    sgntr.setSignature(stateObject.signature.signature)
-                    sgntr.setPublickey(stateObject.signature.publickey)
-                }
-
-                state.setDb(databaseName)
-                state.setTxid(stateObject.txid)
-                state.setTxhash(stateObject.txhash)
-                state.setSignature(sgntr)
-
-                this.set(config, stateObject);
-
-                resolve(state);
             }
+
+            const stateObject = res.toObject();
+            const state = new messages.ImmutableState()
+            const sgntr = new messages.Signature()
+
+            if (stateObject.signature !== undefined) {
+                sgntr.setSignature(stateObject.signature.signature)
+                sgntr.setPublickey(stateObject.signature.publickey)
+            }
+
+            state.setDb(databaseName)
+            state.setTxid(stateObject.txid)
+            state.setTxhash(stateObject.txhash)
+            state.setSignature(sgntr)
+
+            this.set(config, stateObject);
+
+            resolve(state);
         }))
     }
  
@@ -84,6 +79,8 @@ class State {
         state.setSignature(sgntr)
 
         server.set(databaseName, state)
+
+        console.log('new state set', state.toObject())
 
         this.servers.set(serverName, server)
     }

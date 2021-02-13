@@ -28,6 +28,10 @@ import ImmudbClient from '../src/client';
         const res2 = await client.verifiedGet({ key: 'hello' })
         console.log('success: verifiedGet', res2);
 
+		// // get item having the specified key
+        const res3 = await client.verifiedGet({ key: 'hello' })
+        console.log('success: verifiedGet', res3);
+
         // // add new item with the specified key and value
         // const res3 = await client.verifiedSet({ key: 'hello', value: 'world2' });
         // console.log('success: set', res3);

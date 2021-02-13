@@ -1,18 +1,22 @@
 import btoa from 'btoa';
+import crypto from 'crypto';
+
 import * as util from 'util';
 import * as types from './interfaces';
+import * as messages from './proto/schema_pb';
 
 const REFERENCE_VALUE_PREFIX = new Uint8Array(0x01)
 const SET_KEY_PREFIX = new Uint8Array(0x00)
 const PLAIN_VALUE_PREFIX = new Uint8Array(0x00)
 
+export const hashUint8Array = (value: Uint8Array) => new Uint8Array(crypto.createHash('sha256').update(value).digest())
+
+export const utf8Encode = (val: any) => {
+    return new util.TextEncoder().encode(val);
+}
 class Util {
 
     constructor () {}
-
-    utf8Encode (val: any) {
-        return new util.TextEncoder().encode(val);
-    }
     
     utf8Decode (val: any) {
         return val === ''
@@ -95,6 +99,15 @@ class Util {
         encoded.set(referencedKey, REFERENCE_VALUE_PREFIX.length + atTxUint.length + SET_KEY_PREFIX.length)
 
         return encoded
+    }
+
+    encodeKeyValue(key: Uint8Array, value: Uint8Array) {
+        const kv = new messages.KeyValue()
+
+        kv.setKey(this.prefixKey(key))
+        kv.setValue(this.prefixValue(value))
+
+        return kv
     }
 }
 

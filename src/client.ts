@@ -8,7 +8,8 @@ import * as messages from './proto/schema_pb';
 import * as services from './proto/schema_grpc_pb';
 
 import { Config } from './interfaces';
-import Util from './util';
+import Util, { utf8Encode } from './util';
+import { txFrom } from './tx'
 import Proofs from './proofs';
 import State from './state';
 import * as types from './interfaces';
@@ -177,8 +178,8 @@ class ImmudbClient {
       const { user, password } = params;
 
       const req = new messages.LoginRequest();
-      req.setUser(this.util.utf8Encode(user));
-      req.setPassword(this.util.utf8Encode(password));
+      req.setUser(utf8Encode(user));
+      req.setPassword(utf8Encode(password));
 
       return new Promise((resolve, reject) =>
         this.client.login(req, this._metadata, (err, res) => {
@@ -239,8 +240,6 @@ class ImmudbClient {
           this._metadata.add('authorization', `Bearer ${token}`);
           this._activeDatabase = databasename;
 
-          await this.currentState()
-
           resolve(res.toObject());
         }
       })
@@ -255,25 +254,19 @@ class ImmudbClient {
       const req = new messages.SetRequest();
       const kv = new messages.KeyValue();
 
-      kv.setKey(this.util.utf8Encode(key));
-      kv.setValue(this.util.utf8Encode(value));
+      kv.setKey(utf8Encode(key));
+      kv.setValue(utf8Encode(value));
       req.setKvsList([kv]);
 
       return new Promise((resolve, reject) =>
-        this.client.set(req, this._metadata, (err, res) => {
+        this.client.set(req, this._metadata, async (err, res) => {
           if (err) {
             console.error('Set error', err);
             return reject(err);
           } else {
-            resolve({
-              id: res.getId(),
-              prevalh: res.getPrevalh(),
-              ts: res.getTs(),
-              nentries: res.getNentries(),
-              eh: res.getEh(),
-              bltxid: res.getBltxid(),
-              blroot: res.getBlroot(),
-            });
+            const resObject = res.toObject()
+
+            resolve(resObject);
           }
         })
       );
@@ -286,7 +279,7 @@ class ImmudbClient {
     try {
       const req = new messages.KeyRequest();
 
-      req.setKey(this.util.utf8Encode(key));
+      req.setKey(utf8Encode(key));
 
       return new Promise(resolve =>
         this.client.get(req, this._metadata, (err, res) => {
@@ -406,8 +399,8 @@ class ImmudbClient {
   async createUser(params: messages.CreateUserRequest.AsObject): Promise<empty.Empty | undefined> {
     try {
       const req = new messages.CreateUserRequest();
-      req.setUser(this.util && this.util.utf8Encode(params && params.user));
-      req.setPassword(this.util && this.util.utf8Encode(params && params.password));
+      req.setUser(this.util && utf8Encode(params && params.user));
+      req.setPassword(this.util && utf8Encode(params && params.password));
       req.setPermission(params && params.permission);
       req.setDatabase(params && params.database);
 
@@ -431,9 +424,9 @@ class ImmudbClient {
   ): Promise<empty.Empty | undefined> {
     try {
       const req = new messages.ChangePasswordRequest();
-      req.setUser(this.util && this.util.utf8Encode(params && params.user));
-      req.setOldpassword(this.util && this.util.utf8Encode(params && params.oldpassword));
-      req.setNewpassword(this.util && this.util.utf8Encode(params && params.newpassword));
+      req.setUser(this.util && utf8Encode(params && params.user));
+      req.setOldpassword(this.util && utf8Encode(params && params.oldpassword));
+      req.setNewpassword(this.util && utf8Encode(params && params.newpassword));
 
       return new Promise((resolve, reject) =>
         this.client.changePassword(req, this._metadata, (err, res) => {
@@ -523,7 +516,7 @@ class ImmudbClient {
   ): Promise<messages.EntryCount.AsObject | undefined> {
     try {
       const req = new messages.KeyPrefix();
-      req.setPrefix(this.util && this.util.utf8Encode(params && params.prefix));
+      req.setPrefix(this.util && utf8Encode(params && params.prefix));
 
       return new Promise((resolve, reject) =>
         this.client.count(req, this._metadata, (err, res) => {
@@ -571,8 +564,8 @@ class ImmudbClient {
     try {
       const req = new messages.ScanRequest();
 
-      req.setSeekkey(this.util && this.util.utf8Encode(params && params.seekkey));
-      req.setPrefix(this.util && this.util.utf8Encode(params && params.prefix));
+      req.setSeekkey(this.util && utf8Encode(params && params.seekkey));
+      req.setPrefix(this.util && utf8Encode(params && params.prefix));
       req.setDesc(params.desc);
       req.setLimit(params.limit);
       req.setSincetx(params.sincetx);
@@ -612,7 +605,7 @@ class ImmudbClient {
     try {
       const req = new messages.HistoryRequest();
 
-      req.setKey(this.util && this.util.utf8Encode(key));
+      req.setKey(this.util && utf8Encode(key));
       req.setOffset(offset);
       req.setLimit(limit);
       req.setDesc(desc);
@@ -651,8 +644,8 @@ class ImmudbClient {
     try {
       const req = new messages.ZScanRequest();
 
-      req.setSet(this.util && this.util.utf8Encode(set));
-      req.setSeekkey(this.util && this.util.utf8Encode(seekkey));
+      req.setSet(this.util && utf8Encode(set));
+      req.setSeekkey(this.util && utf8Encode(seekkey));
       req.setSeekscore(seekscore);
       req.setSeekattx(seekattx);
       req.setInclusiveseek(inclusiveseek);
@@ -700,15 +693,15 @@ class ImmudbClient {
           console.log('state received', res.toObject())
           const signature = res.getSignature();
 
-          this.state.set({ databaseName: this._activeDatabase, serverName: this._serverUUID }, res.toObject());
+          this.state.set({ databaseName: this._activeDatabase, serverName: this._serverUUID, metadata: this._metadata }, res.toObject());
 
           resolve({
             db: this._activeDatabase,
             txid: res.getTxid(),
             txhash: res.getTxhash(),
             signature: {
-              signature: this.util.utf8Encode(signature && signature.getSignature()),
-              publickey: this.util.utf8Encode(signature && signature.getPublickey())
+              signature: utf8Encode(signature && signature.getSignature()),
+              publickey: utf8Encode(signature && signature.getPublickey())
             },
           });
         }
@@ -729,9 +722,9 @@ class ImmudbClient {
     try {
       const req = new messages.ZAddRequest();
 
-      req.setSet(this.util && this.util.utf8Encode(set));
+      req.setSet(this.util && utf8Encode(set));
       req.setScore(score);
-      req.setKey(this.util && this.util.utf8Encode(key));
+      req.setKey(this.util && utf8Encode(key));
       req.setAttx(attx)
       req.setBoundref(attx > 0)
 
@@ -770,8 +763,8 @@ class ImmudbClient {
       const req = new messages.ReferenceRequest();
       const attx = params.referencedby ? params.referencedby.attx : 0
 
-      req.setKey(this.util && this.util.utf8Encode(params.key));
-      req.setReferencedkey(this.util && this.util.utf8Encode(params.referencedby && params.referencedby.key));
+      req.setKey(this.util && utf8Encode(params.key));
+      req.setReferencedkey(this.util && utf8Encode(params.referencedby && params.referencedby.key));
       req.setAttx(attx)
       req.setBoundref(attx > 0)
 
@@ -936,8 +929,9 @@ class ImmudbClient {
 
   async verifiedSet ({ key, value }: messages.KeyValue.AsObject): Promise<messages.TxMetadata.AsObject | undefined> {
     try {
-      const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID })
+      const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID, metadata: this._metadata })
       const txid = state.getTxid()
+      const txhash = state.getTxhash_asU8()
       const req = new messages.VerifiableSetRequest();
       const kv = new messages.KeyValue();
       const setRequest = new messages.SetRequest();
@@ -956,15 +950,75 @@ class ImmudbClient {
 
           reject(err)
         } else {
-          const verifiableTx = res.getTx()
+          // const verifiableTx = res.getTx()
 
-          if (verifiableTx === undefined) {
-            console.error('')
+          // if (verifiableTx === undefined) {
+          //   console.error('')
 
-            reject()
-          } else {
-			  console.log('let\' go sleep')
-		  }
+          //   reject()
+          // } else {
+          //   const tx = txFrom(verifiableTx)
+          //   const uint8Key = utf8Encode(key)
+          //   const uint8Value = utf8Encode(value)
+          //   const inclusionProof = tx.proof(this.util.prefixKey(uint8Key))
+          //   const eKv = this.util.encodeKeyValue(uint8Key, uint8Value)
+          //   let verifies = verifyInclusion(inclusionProof, eKv, tx.eh())
+
+          //   if (!verifies) {
+          //     console.error('verifiedSet inclusion verification failed', err)
+
+          //     reject(err)
+          //   }
+
+          //   const dualProof = res.getDualproof()
+
+          //   if (!dualProof) {
+
+          //   } else {
+          //     const tTxMetadata = dualProof.getTargettxmetadata()
+
+          //     if (!tTxMetadata) {
+
+          //     } else {
+          //       if (tx.eh() !== tTxMetadata.getEh_asU8()) {
+          //         console.error('verifiedSet error', err)
+          //       }
+
+          //       let sourceId: number
+          //       let sourceAlh: Uint8Array
+
+          //       if (txid === 0) {
+          //         sourceId = tx.getId()
+          //         sourceAlh = tx.getAlh()
+          //       } else {
+          //         sourceId = txid
+          //         sourceAlh = txhash
+          //       }
+
+          //       const targetId = tx.getId()
+          //       const targetAlh = tx.getAlh()
+
+          //       verifies = verifyDualProof(dualProofFrom(dualProof.toObject()), sourceId, targetId, sourceAlh, targetAlh)
+
+          //       if (!verifies) {
+          //         console.error('verifiedSet dual verification failed', err)
+    
+          //         reject(err)
+          //       }
+
+          //       this.state.set({ serverName: this._serverUUID, databaseName: this._activeDatabase }, {
+          //         db: this._activeDatabase,
+          //         txid: targetId,
+          //         txhash: targetAlh,
+          //         signature: res.getSignature()?.toObject()
+          //       })
+
+          //       resolve({
+          //         id
+          //       })
+          //     }
+          //   }
+          // }
         }
       }))
     } catch(err) {
@@ -977,8 +1031,8 @@ class ImmudbClient {
   // ):  {
   //   try {
   //     const kv = new messages.KeyValue();
-  //     kv.setKey(this.util && this.util.utf8Encode(params && params.key));
-  //     kv.setValue(this.util && this.util.utf8Encode(params && params.value));
+  //     kv.setKey(this.util && utf8Encode(params && params.key));
+  //     kv.setValue(this.util && utf8Encode(params && params.value));
 
   //     // const index = new messages.Index();
   //     // index.setIndex(
@@ -1014,8 +1068,8 @@ class ImmudbClient {
   //             root: res && res.getRoot(),
   //           },
   //           item: {
-  //             key: this.util && this.util.utf8Encode(params && params.key),
-  //             value: this.util && this.util.utf8Encode(params && params.value),
+  //             key: this.util && utf8Encode(params && params.key),
+  //             value: this.util && utf8Encode(params && params.value),
   //             index: res && res.getIndex(),
   //           },
   //           oldRoot:
@@ -1061,12 +1115,12 @@ class ImmudbClient {
 
   async verifiedGet({ key }: messages.Key.AsObject): Promise<messages.Entry.AsObject | undefined> {
     try {
-      const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID })
+      const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID, metadata: this._metadata })
       const txid = state.getTxid()
       const txhash = state.getTxhash_asU8()
       const req = new messages.VerifiableGetRequest();
       const kr = new messages.KeyRequest();
-      const uint8Key = this.util.utf8Encode(key)
+      const uint8Key = utf8Encode(key)
 
       kr.setKey(uint8Key)
 
@@ -1160,7 +1214,7 @@ class ImmudbClient {
                 }
 
                 this.state.set(
-                  { serverName: this._serverUUID, databaseName: this._activeDatabase },
+                  { serverName: this._serverUUID, databaseName: this._activeDatabase, metadata: this._metadata },
                   { txid: targetId, txhash: targetAlh, signature: verifiabletx.getSignature()?.toObject(), db: this._activeDatabase }
                 )
 
@@ -1195,7 +1249,7 @@ class ImmudbClient {
 
   //     const req = new messages.VerifiableGetRequest();
   //     const kr = new messages.KeyRequest();
-  //     kr.setKey(this.util && this.util.utf8Encode(params && params.key));
+  //     kr.setKey(this.util && utf8Encode(params && params.key));
       
   //     req.setKeyrequest(kr);
   //     // req.setRootindex(index);
@@ -1319,9 +1373,9 @@ class ImmudbClient {
 
   //     const zar = new messages.ZAddRequest();
 
-  //     zar.setSet(this.util && this.util.utf8Encode(params && params.set));
+  //     zar.setSet(this.util && utf8Encode(params && params.set));
   //     zar.setScore(params.score || 0);
-  //     zar.setKey(this.util && this.util.utf8Encode(params && params.key));
+  //     zar.setKey(this.util && utf8Encode(params && params.key));
 
   //     const req = new messages.VerifiableZAddRequest();
   //     req.setZaddrequest(zar);
@@ -1337,8 +1391,8 @@ class ImmudbClient {
   //         const key2 =
   //           this.proofs &&
   //           this.proofs.setKey({
-  //             key: this.util && this.util.utf8Encode(params && params.key),
-  //             set: this.util && this.util.utf8Encode(params && params.set),
+  //             key: this.util && utf8Encode(params && params.key),
+  //             set: this.util && utf8Encode(params && params.set),
   //             score: params && params.score,
   //           });
 
@@ -1353,7 +1407,7 @@ class ImmudbClient {
   //           },
   //           item: {
   //             key: key2,
-  //             value: this.util && this.util.utf8Encode(params && params.key),
+  //             value: this.util && utf8Encode(params && params.key),
   //             index: res && res.getIndex(),
   //           },
   //           oldRoot:
@@ -1432,7 +1486,7 @@ class ImmudbClient {
 
   async verifiedTxById({ tx }: messages.TxRequest.AsObject): Promise<messages.Tx.AsObject | undefined> {
     try {
-      const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID })
+      const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID, metadata: this._metadata })
 
 	  const txid = state.getTxid()
       const req = new messages.VerifiableTxRequest()

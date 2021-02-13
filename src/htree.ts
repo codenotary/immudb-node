@@ -1,17 +1,23 @@
-import crypto from 'crypto';
-
 import * as messages from './proto/schema_pb';
 import Util from './util'
+import { hashUint8Array } from './util'
 
 const util = new Util()
+
+const NODE_PREFIX = Uint8Array.from([0x01])
 
 function bitLength(n: number): number {
     return parseInt((n >>> 0).toString(2))
 }
-const hashUint8Array = (value: Uint8Array) => new Uint8Array(crypto.createHash('sha256').update(value).digest())
+const withLeafPrefix = (value: Uint8Array): Uint8Array => {
+    const LEAF_PREFIX = Uint8Array.from([0x00])
+    const res = new Uint8Array(LEAF_PREFIX.length + value.length)
 
-const LEAF_PREFIX = Uint8Array.from([0x00])
-const NODE_PREFIX = Uint8Array.from([0x01])
+    res.set(LEAF_PREFIX)
+    res.set(value, LEAF_PREFIX.length)
+
+    return res
+}
 
 class HTree {
     public levels: Array<Array<Uint8Array>>
@@ -49,10 +55,7 @@ class HTree {
         }
         for (let i = 0; i < digests.length; i++) {
             const digest = digests[i]
-            const leaf = new Uint8Array(LEAF_PREFIX.length + digest.length)
-            
-            leaf.set(LEAF_PREFIX)
-            leaf.set(digest, LEAF_PREFIX.length)
+            const leaf = withLeafPrefix(digest)
 
             this.levels[0][i] = hashUint8Array(leaf)
         }
@@ -92,7 +95,7 @@ class HTree {
             throw new Error("Illegal inclusionProof arguments");
         }
 
-        let m = 0
+        let m = i
         let n = this.width
         let offset = 0
         const proof = new messages.InclusionProof()
@@ -128,7 +131,7 @@ class HTree {
 
             const a = this.levels[layer][index]
             const b = proof.getTermsList_asU8()
-            const termsList: Array<Uint8Array> = [a, ...b]
+            const termsList: Array<Uint8Array> = b.concat(a)
 
             proof.setTermsList(termsList)
 
@@ -224,11 +227,7 @@ export const verifyInclusion = (proof: messages.InclusionProof, digest: messages
     if (proof === undefined) {
         return false
     }
-    const serializedDigest = digest.serializeBinary()
-    const leaf = new Uint8Array(LEAF_PREFIX.length + serializedDigest.length)
-
-    leaf.set(LEAF_PREFIX)
-    leaf.set(serializedDigest, LEAF_PREFIX.length)
+    const leaf = withLeafPrefix(digest.serializeBinary())
 
     let calcRoot = hashUint8Array(leaf)
     let i = proof.getLeaf()
@@ -240,19 +239,21 @@ export const verifyInclusion = (proof: messages.InclusionProof, digest: messages
         b.set(NODE_PREFIX)
 
         if (i % 2 === 0 && i !== r) {
-            b.set(calcRoot, 1)
-            b.set(t, 2)
+            b.set(calcRoot, NODE_PREFIX.length)
+            b.set(t, NODE_PREFIX.length + calcRoot.length)
         } else {
-            b.set(t, 1)
-            b.set(calcRoot, 2)
+            b.set(t, NODE_PREFIX.length)
+            b.set(calcRoot, NODE_PREFIX.length + t.length)
         }
         calcRoot = hashUint8Array(b)
         i /= 2
         r /= 2
     }
 
+    console.log('proof', proof.toObject())
+
     console.log('i', i)
-    console.log('i', i)
+    console.log('r', r)
     console.log('root', root)
     console.log('calcRoot', calcRoot)
 
@@ -260,6 +261,8 @@ export const verifyInclusion = (proof: messages.InclusionProof, digest: messages
 }
 
 export const verifyDualProof = (dualProof: messages.DualProof, sourceId: number, targetId: number, sourceAlh: Uint8Array, targetAlh: Uint8Array) => {
+    // console.log('dualProof', dualProof.toObject())
+    // console.log('if 1')
     if (dualProof === undefined) {
         return false
     }
@@ -271,6 +274,9 @@ export const verifyDualProof = (dualProof: messages.DualProof, sourceId: number,
     const lastinclusionproofList = dualProof.getLastinclusionproofList_asU8()
     const targetbltxalh = dualProof.getTargetbltxalh_asU8()
     
+    // console.log('if 2')
+    // console.log('sourcetxmetadata', sourcetxmetadata)
+    // console.log('targettxmetadata', targettxmetadata)
     if (
         sourcetxmetadata === undefined ||
         targettxmetadata === undefined
@@ -287,40 +293,51 @@ export const verifyDualProof = (dualProof: messages.DualProof, sourceId: number,
     const sBltxid = sourcetxmetadata.getBltxid()
     const sBlroot = sourcetxmetadata.getBlroot_asU8()
 
+    // console.log('if 3')
+    // console.log('sId', sId)
+    // console.log('sourceId', sourceId)
+    // console.log('tId', tId)
+    // console.log('targetId', targetId)
     if (
         sId !== sourceId ||
         tId !== targetId
     ) {
         return false
     }
+    // console.log('if 4')
     if (sId === 0 || sId > tId) {
         return false
     }
-    if (sourceAlh !== sPrevalh) {
+    // console.log('if 5')
+    // console.log('sourceAlh', sourceAlh)
+    // console.log('sPrevalh', sPrevalh)
+    // console.log('targetAlh', targetAlh)
+    // console.log('tPrevalh', tPrevalh)
+    if (!util.equalArray(sourceAlh, sPrevalh) || !util.equalArray(targetAlh, tPrevalh)) {
         return false
     }
-    if (targetAlh !== tPrevalh) {
+    // console.log('if 6')
+    if (sourceId < tBltxid && verifyInclusionAHT(inclusionproofList, sourceId, tBltxid, withLeafPrefix(sourceAlh), tBlroot) === false) {
         return false
     }
-    if (sourceId < tBltxid && verifyInclusionAHT(inclusionproofList, sourceId, tBltxid, sourceAlh, tBlroot) === false) {
+    // console.log('if 7')
+    if (sBltxid > 0 && verifyConsistency(consistencyproofList, sBltxid, tBltxid, sBlroot, tBlroot) === false) {
         return false
     }
-    if (tBltxid > 0 && verifyConsistency(consistencyproofList, sBltxid, tBltxid, sBlroot, tBlroot) === false) {
-        return false
-    }
-    if (tBltxid > 0 && verifyLastInclusion(lastinclusionproofList, tBltxid, targetbltxalh, tBlroot) === false) {
+    // console.log('if 8')
+    if (tBltxid > 0 && verifyLastInclusion(lastinclusionproofList, tBltxid, withLeafPrefix(targetbltxalh), tBlroot) === false) {
         return false
     }
 
     const linearproof = dualProof.getLinearproof()
 
+    // console.log('if 9')
     if (linearproof === undefined) {
         return false
     } else {
-        let ret: boolean
-        if (sourceId < tBltxid) {
-            ret = verifyLinearProof(linearproof, tBltxid, targetId, targetbltxalh, targetAlh)
-        } else {
+        let ret = verifyLinearProof(linearproof, tBltxid, targetId, targetbltxalh, targetAlh)
+
+        if (sourceId >= tBltxid) {
             ret = verifyLinearProof(linearproof, sourceId, targetId, sourceAlh, targetAlh)
         }
     
@@ -328,42 +345,45 @@ export const verifyDualProof = (dualProof: messages.DualProof, sourceId: number,
     }
 }
 
-const verifyInclusionAHT = (inclusionProofList: Array<Uint8Array>, blTxId: number, targetId: number, targetBlTxAlh: Uint8Array, targetAlh: Uint8Array): boolean => {
-    if (blTxId > targetId && inclusionProofList.length === 0) {
+const verifyInclusionAHT = (inclusionProofList: Array<Uint8Array>, i: number, j: number, iLeaf: Uint8Array, jRoot: Uint8Array): boolean => {
+    if (i > j || i === 0 || i < j && inclusionProofList.length === 0) {
         return false
     }
 
-    let i1 = blTxId - 1
-    let j1 = targetId - 1
-    let ciRoot = targetBlTxAlh
-    let b = new Uint8Array(inclusionProofList.length)
+    let i1 = i - 1
+    let j1 = j - 1
+    let ciRoot = iLeaf
 
-    for (let [index,h] of inclusionProofList.entries()) {
+    for (let h of inclusionProofList) {
+        let b = new Uint8Array(NODE_PREFIX.length + ciRoot.length + h.length)
+
+        b.set(NODE_PREFIX)
+
         if (i1 % 2 === 0 && i1 !== j1) {
-            b.set(ciRoot, index * 2)
-            b.set(h, index * 2 + 1)
+            b.set(ciRoot, NODE_PREFIX.length)
+            b.set(h, NODE_PREFIX.length + ciRoot.length)
         } else {
-            b.set(h, index * 2)
-            b.set(ciRoot, index * 2 + 1)
+            b.set(h, NODE_PREFIX.length)
+            b.set(ciRoot, NODE_PREFIX.length + h.length)
         }
         ciRoot = hashUint8Array(b)
         i1 = i1 >> 1
         j1 = j1 >> 1
     }
 
-    return ciRoot === targetAlh
+    return jRoot === ciRoot
 }
-const verifyConsistency = (consistencyProofList: Array<Uint8Array>, sourceBlTxId: number, targetBlTxId: number, sourceBlTxAlh: Uint8Array, targetBlTxAlh: Uint8Array): boolean => {
-    if (sourceBlTxId > targetBlTxId || sourceBlTxId === 0 || (sourceBlTxId < targetBlTxId && consistencyProofList.length === 0)) {
+const verifyConsistency = (consistencyProofList: Array<Uint8Array>, i: number, j: number, iRoot: Uint8Array, jRoot: Uint8Array): boolean => {
+    if (i > j || i === 0 || (i < j && consistencyProofList.length === 0)) {
         return false
     }
 
-    if (sourceBlTxId === targetBlTxId && consistencyProofList.length === 0) {
-        return sourceBlTxAlh === targetBlTxAlh
+    if (i === j && consistencyProofList.length === 0) {
+        return iRoot === jRoot
     }
 
-    let fn = sourceBlTxId - 1
-    let sn = targetBlTxId - 1
+    let fn = i - 1
+    let sn = j - 1
 
     while (fn % 2 === 1) {
         fn = fn >> 1
@@ -383,11 +403,11 @@ const verifyConsistency = (consistencyProofList: Array<Uint8Array>, sourceBlTxId
 
             ciRoot = hashUint8Array(b)
 
-            b = new Uint8Array(NODE_PREFIX.length + h.length + ciRoot.length)
+            b = new Uint8Array(NODE_PREFIX.length + h.length + cjRoot.length)
 
             b.set(NODE_PREFIX)
             b.set(h, NODE_PREFIX.length)
-            b.set(ciRoot, NODE_PREFIX.length + h.length)
+            b.set(cjRoot, NODE_PREFIX.length + h.length)
 
             cjRoot = hashUint8Array(b)
 
@@ -409,15 +429,15 @@ const verifyConsistency = (consistencyProofList: Array<Uint8Array>, sourceBlTxId
         sn = sn >> 1
     }
 
-    return sourceBlTxAlh === ciRoot && targetBlTxAlh === cjRoot
+    return iRoot === ciRoot && jRoot === cjRoot
 }
-const verifyLastInclusion = (lastInclusionproofList: Array<Uint8Array>, targetBlTxId: number, targetBlTxAlh: Uint8Array, targetBlRoot: Uint8Array): boolean => {
-    if (targetBlTxId === 0) {
+const verifyLastInclusion = (lastInclusionproofList: Array<Uint8Array>, i: number, leaf: Uint8Array, root: Uint8Array): boolean => {
+    if (i === 0) {
         return false
     }
 
-    let i1 = targetBlTxId - 1
-    let iRoot = targetBlTxAlh
+    let i1 = i - 1
+    let iRoot = leaf
 
     for (let h of lastInclusionproofList) {
         let b = new Uint8Array(NODE_PREFIX.length + h.length + iRoot.length)
@@ -430,7 +450,7 @@ const verifyLastInclusion = (lastInclusionproofList: Array<Uint8Array>, targetBl
         i1 = i1 >> 1
     }
 
-    return targetBlRoot === iRoot
+    return root === iRoot
 }
 const verifyLinearProof = (linearProof: messages.LinearProof, sourceId: number, targetId: number, sourceAlh: Uint8Array, targetAlh: Uint8Array): boolean => {
     if (linearProof === undefined) {
@@ -452,11 +472,13 @@ const verifyLinearProof = (linearProof: messages.LinearProof, sourceId: number, 
     let calculatedAlh = termsList[0]
 
     for (let i = 0; i < termsList.length; i++) {
-        const bs = new Uint8Array()
+        let j = new Uint8Array(linearProof.getSourcetxid()+i)
+        const term = termsList[i]
+        const bs = new Uint8Array(j.length + calculatedAlh.length + term.length)
 
-        bs.set(new Uint8Array(linearProof.getSourcetxid()+i))
-        bs.set(calculatedAlh, 1)
-        bs.set(termsList[i], 2)
+        bs.set(j)
+        bs.set(calculatedAlh, j.length)
+        bs.set(term, j.length + calculatedAlh.length)
 
         calculatedAlh = hashUint8Array(bs)
     }
