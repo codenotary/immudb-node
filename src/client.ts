@@ -20,6 +20,31 @@ const CLIENT_INIT_PREFIX = 'ImmudbClient:';
 const DEFAULT_DATABASE = 'defaultdb';
 const DEFAULT_ROOTPATH = 'root';
 
+type SetReferenceParameters = {
+  key: string
+  referencedKey: string
+}
+type SetReferenceAtParameters = {
+  key: string
+  referencedKey: string
+  attx: number
+}
+type ZAddParameters = {
+  set: Uint8Array
+  score: number
+  key: Uint8Array
+}
+type ZAddAtParameters = {
+  set: Uint8Array
+  score: number
+  key: Uint8Array
+  attx: number
+}
+type SetParameters = {
+  key: string
+  value: string
+}
+
 class ImmudbClient {
   public util = new Util();
 
@@ -62,7 +87,7 @@ class ImmudbClient {
     this._metadata = new grpc.Metadata();
 
     // init state
-    this.state = new State(this.client)
+    this.state = new State({ client: this.client, rootPath })
   }
 
   public static async getInstance(config: Config): Promise<ImmudbClient> {
@@ -249,7 +274,7 @@ class ImmudbClient {
     }
   }
 
-  async set({ key, value }: messages.KeyValue.AsObject): Promise<messages.TxMetadata.AsObject | undefined> {
+  async set({ key, value }: SetParameters): Promise<messages.TxMetadata.AsObject | undefined> {
     try {
       const req = new messages.SetRequest();
       const kv = new messages.KeyValue();
@@ -559,17 +584,29 @@ class ImmudbClient {
   }
 
   async scan(
-    params: messages.ScanRequest.AsObject
+    { seekkey, prefix, desc, limit, sincetx, nowait }: Partial<messages.ScanRequest.AsObject> = {}
   ): Promise<messages.Entries.AsObject | undefined> {
     try {
       const req = new messages.ScanRequest();
 
-      req.setSeekkey(this.util && utf8Encode(params && params.seekkey));
-      req.setPrefix(this.util && utf8Encode(params && params.prefix));
-      req.setDesc(params.desc);
-      req.setLimit(params.limit);
-      req.setSincetx(params.sincetx);
-      req.setNowait(params.nowait);
+      if (seekkey !== undefined) {
+        req.setSeekkey(utf8Encode(seekkey));
+      } 
+      if (prefix !== undefined) {
+        req.setPrefix(utf8Encode(prefix));
+      }
+      if (desc !== undefined) {
+        req.setDesc(desc);
+      }
+      if (limit !== undefined) {
+        req.setLimit(limit);
+      }
+      if (sincetx !== undefined) {
+        req.setSincetx(sincetx);
+      }
+      if (nowait !== undefined) {
+        req.setNowait(nowait);
+      }
 
       return new Promise((resolve, reject) =>
         this.client.scan(req, this._metadata, (err, res) => {
@@ -713,12 +750,14 @@ class ImmudbClient {
   }
 
   async zAdd(
-    params: messages.ZEntry.AsObject
+    params: ZAddParameters
   ): Promise<messages.TxMetadata.AsObject | undefined> {
-    return this.zAddAt({ ...params, attx: 0 })
+    const reqParams = Object.assign({}, params, { attx: 0 })
+
+    return this.zAddAt(reqParams)
   }
 
-  async zAddAt ({ set, score = 0, key, attx = 0 }: messages.ZEntry.AsObject): Promise<messages.TxMetadata.AsObject | undefined> {
+  async zAddAt ({ set, score = 0, key, attx = 0 }: ZAddAtParameters): Promise<messages.TxMetadata.AsObject | undefined> {
     try {
       const req = new messages.ZAddRequest();
 
@@ -751,20 +790,18 @@ class ImmudbClient {
     }
   }
 
-  async setReference (params: messages.Entry.AsObject): Promise<messages.TxMetadata.AsObject | undefined> {
-    const referencedBy = Object.assign({}, params.referencedby, { attx: 0 })
-    const referenceParams = Object.assign({}, params, { referencedby: referencedBy })
+  async setReference (params: SetReferenceParameters): Promise<messages.TxMetadata.AsObject | undefined> {
+    const referenceParams = Object.assign({}, params, { attx: 0 })
 
-    return this.setReferenceAt(referenceParams)
+    return await this.setReferenceAt(referenceParams)
   }
   
-  async setReferenceAt (params: messages.Entry.AsObject): Promise<messages.TxMetadata.AsObject | undefined> {
+  async setReferenceAt ({ key, referencedKey, attx }: SetReferenceAtParameters): Promise<messages.TxMetadata.AsObject | undefined> {
     try {
       const req = new messages.ReferenceRequest();
-      const attx = params.referencedby ? params.referencedby.attx : 0
 
-      req.setKey(this.util && utf8Encode(params.key));
-      req.setReferencedkey(this.util && utf8Encode(params.referencedby && params.referencedby.key));
+      req.setKey(utf8Encode(key));
+      req.setReferencedkey(utf8Encode(referencedKey));
       req.setAttx(attx)
       req.setBoundref(attx > 0)
 
@@ -1393,11 +1430,11 @@ class ImmudbClient {
   //   return this.verifiedZAdd(params);
   // }
 
-  async txById(params: messages.TxRequest.AsObject): Promise<messages.Tx.AsObject | undefined> {
+  async txById({ tx }: messages.TxRequest.AsObject): Promise<messages.Tx.AsObject | undefined> {
     try {
       const req = new messages.TxRequest();
 
-      params && req.setTx(params.tx)
+      req.setTx(tx)
 
       return new Promise((resolve, reject) => this.client.txById(req, this._metadata, (err, res) => {
         if (err) {
@@ -1405,11 +1442,11 @@ class ImmudbClient {
           
           reject(err);
         } else {
-          const response = res.toObject()
+          const { metadata, entriesList } = res.toObject()
 
           resolve({
-            metadata: response.metadata,
-            entriesList: response.entriesList
+            metadata,
+            entriesList
           })
         }
       }))
@@ -1422,7 +1459,8 @@ class ImmudbClient {
     try {
       const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID, metadata: this._metadata })
 
-	  const txid = state.getTxid()
+	    const txid = state.getTxid()
+	    const txhash = state.getTxhash_asU8()
       const req = new messages.VerifiableTxRequest()
 
       req.setTx(tx)
@@ -1434,7 +1472,75 @@ class ImmudbClient {
 
           reject(err)
         } else {
+          const dp = res.getDualproof()
 
+          if (dp === undefined) {
+            console.error('Error getting verifiedTxById dualProof')
+
+            reject()
+          } else {
+            const dualProof = dualProofFrom(dp.toObject())
+            const resTxId = res.getTx()?.getMetadata()?.getId()
+
+            if (resTxId === undefined) {
+              console.error('Error getting verifiedTxById txId')
+           
+              reject()
+            } else {
+              const targettxmetadata = dualProof.getTargettxmetadata()
+              const sourcetxmetadata = dualProof.getSourcetxmetadata()
+
+              if (targettxmetadata === undefined || sourcetxmetadata === undefined) {
+                console.error('Error getting verifiedTxById txmetadata')
+           
+                reject()
+              } else {
+                let sourceId
+                let sourceAlh
+                let targetId
+                let targetAlh
+
+                if (txid <= resTxId) {
+                  sourceId = txid
+                  sourceAlh = txhash
+                  targetId = resTxId
+                  targetAlh = getAlh(targettxmetadata)
+                } else {
+                  sourceId = resTxId
+                  sourceAlh = getAlh(sourcetxmetadata)
+                  targetId = txid
+                  targetAlh = txhash
+                }
+                
+                const verifies = verifyDualProof(
+                  dualProof,
+                  sourceId,
+                  targetId,
+                  sourceAlh,
+                  targetAlh
+                )
+
+                if (verifies === false) {
+                  console.error('verifiedTxById dual verification failed')
+
+                  reject()
+                }
+
+                this.state.set({
+                  serverName: this._serverUUID,
+                  databaseName: this._activeDatabase,
+                  metadata: this._metadata
+                }, {
+                  db: this._activeDatabase,
+                  txhash: targetAlh,
+                  txid: targetId,
+                  signature: res.getSignature()?.toObject()
+                })
+
+                resolve(res.getTx()?.toObject())
+              }
+            }
+          }
         }
       }))
     } catch(err) {

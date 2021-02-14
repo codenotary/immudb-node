@@ -21,21 +21,12 @@ import ImmudbClient from '../src/client';
             host: '127.0.0.1', port: '3322', user: 'immudb', password: 'immudb'
         });
 
-        // // add new item with the specified key and value
-        // const res1 = await client.set({ key: 'hello', value: 'world' });
-        // console.log('success: set', res1);
-
         // add new item with the specified key and value
-        const res3 = await client.verifiedGet({ key: 'hello' });
-        console.log('success: verifiedGetSince', res3);
+        const res1 = await client.set({ key: 'hello', value: 'world' });
+        console.log('success: set', res1);
 
-        // add new item with the specified key and value
-        const res1 = await client.verifiedGetAt({ attx: 0, key: 'hello' });
-        console.log('success: verifiedGetAt', res1);
-
-        // add new item with the specified key and value
-        const res2 = await client.verifiedGetSince({ sincetx: 5, key: 'hello' });
-        console.log('success: verifiedGetSince', res2);
+        const res2 = await client.verifiedTxById({ tx: 75 })
+        console.log('success: verifiedTxById', res2);
 
         // // get item having the specified key
         // const res4 = await client.verifiedGet({ key: 'hello' })
