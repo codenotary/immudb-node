@@ -21,20 +21,20 @@ import ImmudbClient from '../src/client';
             host: '127.0.0.1', port: '3322', user: 'immudb', password: 'immudb'
         });
 
-        // add new item with the specified key and value
-        const res11 = await client.verifiedSet({ key: 'hello', value: 'world' });
-        console.log('success: set', res11);
+        // // add new item with the specified key and value
+        // const res11 = await client.verifiedSet({ key: 'hello', value: 'world' });
+        // console.log('success: set', res11);
 
         // // add new item with the specified key and value
         // const res1 = await client.verifiedTxById({ tx: 91 });
         // console.log('success: verifiedTxById', res1);
 
-        // // add new item with the specified key and value
-        const res1 = await client.verifiedZAddAt({ set: 'test', score: 32, key: 'hello', attx: 94 });
-        console.log('success: verifiedZAdd', res1);
+        // // // add new item with the specified key and value
+        // const res1 = await client.verifiedZAddAt({ set: 'test', score: 32, key: 'hello', attx: 94 });
+        // console.log('success: verifiedZAdd', res1);
 
-        // const res2 = await client.setReferenceAt({ key: 'hello', referencedKey: 'world', attx: 76 })
-        // console.log('success: verifiedTxById', res2);
+        const res2 = await client.setReferenceAt({ key: 'hello', referencedKey: 'world', attx: 76 })
+        console.log('success: setReferenceAt', res2);
 
         // // get item having the specified key
         // const res4 = await client.verifiedGet({ key: 'hello' })
