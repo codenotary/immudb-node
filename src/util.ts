@@ -176,19 +176,19 @@ class Util {
 
     encodeZAdd(zSet: Uint8Array, score: number, key: Uint8Array, attx: number) {
         const eKey = this.prefixKey(key)
-        const zSetLengthUint = new Uint8Array([zSet.length])
-        const zSetScoreUint = new Uint8Array([score])
-        const eKeyLengthUint = new Uint8Array([eKey.length])
-        const attxUint = new Uint8Array([attx])
-        const zKey = new Uint8Array(SORTED_KEY_PREFIX.length + zSetLengthUint.length + zSet.length + zSetScoreUint.length + eKeyLengthUint.length + eKey.length + attxUint.length)
+        const zSetLengthUint = encodeInt64(zSet.length)
+        const scoreUint = encodeInt64(score)
+        const eKeyLengthUint = encodeInt64(eKey.length)
+        const attxUint = encodeInt64(attx)
+        const zKey = new Uint8Array(SORTED_KEY_PREFIX.length + zSetLengthUint.length + zSet.length + scoreUint.length + eKeyLengthUint.length + eKey.length + attxUint.length)
 
         zKey.set(SORTED_KEY_PREFIX)
         zKey.set(zSetLengthUint, SORTED_KEY_PREFIX.length)
         zKey.set(zSet, SORTED_KEY_PREFIX.length + zSetLengthUint.length)
-        zKey.set(zSetScoreUint, SORTED_KEY_PREFIX.length + zSetLengthUint.length + zSet.length)
-        zKey.set(eKeyLengthUint, SORTED_KEY_PREFIX.length + zSetLengthUint.length + zSet.length + zSetScoreUint.length)
-        zKey.set(eKey, SORTED_KEY_PREFIX.length + zSetLengthUint.length + zSet.length + zSetScoreUint.length + eKeyLengthUint.length)
-        zKey.set(attxUint, SORTED_KEY_PREFIX.length + zSetLengthUint.length + zSet.length + zSetScoreUint.length + eKeyLengthUint.length + eKey.length)
+        zKey.set(scoreUint, SORTED_KEY_PREFIX.length + zSetLengthUint.length + zSet.length)
+        zKey.set(eKeyLengthUint, SORTED_KEY_PREFIX.length + zSetLengthUint.length + zSet.length + scoreUint.length)
+        zKey.set(eKey, SORTED_KEY_PREFIX.length + zSetLengthUint.length + zSet.length + scoreUint.length + eKeyLengthUint.length)
+        zKey.set(attxUint, SORTED_KEY_PREFIX.length + zSetLengthUint.length + zSet.length + scoreUint.length + eKeyLengthUint.length + eKey.length)
         
         const kv = new messages.KeyValue()
 
