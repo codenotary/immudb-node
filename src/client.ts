@@ -30,14 +30,14 @@ type SetReferenceAtParameters = {
   attx: number
 }
 type ZAddParameters = {
-  set: Uint8Array
+  set: string
   score: number
-  key: Uint8Array
+  key: string
 }
 type ZAddAtParameters = {
-  set: Uint8Array
+  set: string
   score: number
-  key: Uint8Array
+  key: string
   attx: number
 }
 type SetParameters = {
@@ -790,6 +790,66 @@ class ImmudbClient {
     }
   }
 
+  async verifiedZAdd(params: ZAddParameters): Promise<messages.TxMetadata.AsObject | undefined> {
+    const reqParams = Object.assign({}, params, { attx: 0 })
+
+    return await this.verifiedZAddAt(reqParams)
+  }
+
+  async verifiedZAddAt({ set, score, key, attx }: ZAddAtParameters): Promise<messages.TxMetadata.AsObject | undefined> {
+    const state = await this.state.get({ serverName: this._serverUUID, databaseName: this._activeDatabase, metadata: this._metadata })
+    const req = new messages.VerifiableZAddRequest()
+    const uintSet = utf8Encode(set)
+    const uintKey = utf8Encode(key)
+
+    const zar = new messages.ZAddRequest()
+
+    zar.setSet(uintSet)
+    zar.setScore(score)
+    zar.setKey(key)
+    zar.setAttx(attx)
+    zar.setBoundref(attx > 0)
+
+    req.setZaddrequest(zar)
+    req.setProvesincetx(state.getTxid())
+
+    return new Promise((resolve, reject) => this.client.verifiableZAdd(req, this._metadata, (err, res) => {
+      if (err !== undefined) {
+        console.error('verifiedZAddAt error', err);
+
+        reject(err)
+      } else {
+        // const resTx = res.getTx()
+
+        // if (resTx === undefined) {
+        //   console.error('Error getting verifiedZAddAt tx')
+
+        //   reject()
+        // } else {
+        //   const txMetadata = resTx.getMetadata()
+
+        //   if (txMetadata === undefined) {
+        //     console.error('Error getting verifiedZAddAt txMetadata')
+  
+        //     reject()
+        //   } else {
+        //     const nEntries = txMetadata.getNentries()
+
+        //     if (nEntries !== 1) {
+        //       console.error('nEntries verification failed for verifiedZAddAt')
+    
+        //       reject()
+        //     }
+
+        //     const tx = txFrom(resTx)
+        //     const eKv = this.util.encodeZAdd(uintSet, score, uintKey, attx)
+        //     const inclusionProof = tx.proof(eKv.getKey_asU8())
+        //   }
+        // }
+      }
+    }))
+  }
+
   async setReference (params: SetReferenceParameters): Promise<messages.TxMetadata.AsObject | undefined> {
     const referenceParams = Object.assign({}, params, { attx: 0 })
 
@@ -1063,93 +1123,6 @@ class ImmudbClient {
     }
   }
 
-  // async verifiedSet(
-  //   params: messages.KeyValue.AsObject
-  // ):  {
-  //   try {
-  //     const kv = new messages.KeyValue();
-  //     kv.setKey(this.util && utf8Encode(params && params.key));
-  //     kv.setValue(this.util && utf8Encode(params && params.value));
-
-  //     // const index = new messages.Index();
-  //     // index.setIndex(
-  //     //   this.util &&
-  //     //     this.root.get({
-  //     //       server: this._serverUUID,
-  //     //       database: this._activeDatabase,
-  //     //     }).index
-  //     // );
-
-  //     const sr = new messages.SetRequest();
-
-  //     sr.setKvsList([kv]);
-
-  //     const req = new messages.VerifiableSetRequest();
-  //     req.setSetrequest(sr);
-  //     // req.setProvesincetx(index);
-
-  //     return new Promise((resolve, reject) =>
-  //       this.client.verifiableSet(req, this._metadata, (err, res) => {
-  //         if (err) {
-  //           console.error('SafeSet error', err);
-  //           return reject(err);
-  //         }
-
-  //         const verifyReq = {
-  //           proof: {
-  //             inclusionPath: res && res.getInclusionpathList(),
-  //             consistencyPath: res && res.getConsistencypathList(),
-  //             index: res && res.getIndex(),
-  //             at: res && res.getAt(),
-  //             leaf: res && res.getLeaf(),
-  //             root: res && res.getRoot(),
-  //           },
-  //           item: {
-  //             key: this.util && utf8Encode(params && params.key),
-  //             value: this.util && utf8Encode(params && params.value),
-  //             index: res && res.getIndex(),
-  //           },
-  //           oldRoot:
-  //             this.state &&
-  //             this.state.get(),
-  //         };
-
-  //         this.proofs &&
-  //           this.proofs.verify(verifyReq, (err: any) => {
-  //             if (err) {
-  //               return { err };
-  //             }
-
-  //             this.state &&
-  //               this.state.set({
-  //                 tx: res && res.getTx(),
-  //                 server: this._serverUUID,
-  //                 database: this._activeDatabase,
-  //               });
-
-  //             resolve({
-  //               id: res && res.getId(),
-  //               prevalh: res && res.getPrevalh(),
-  //               ts: res && res.getTs(),
-  //               nentries: res && res.getNentries(),
-  //               eh: res && res.getEh(),
-  //               bltxid: res && res.getBltxid(),
-  //               blroot: res && res.getBlroot(),
-  //             });
-  //           });
-  //       })
-  //     );
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // }
-
-  // async safeSet(
-  //   params: messages.KeyValue.AsObject
-  // ): Promise<messages.TxMetadata.AsObject | undefined> {
-  //   return this.verifiedSet(params);
-  // }
-
   async verifiedGet({ key, attx, sincetx }: types.PartialBy<messages.KeyRequest.AsObject, 'sincetx' | 'attx'>): Promise<messages.Entry.AsObject | undefined> {
     try {
       const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID, metadata: this._metadata })
@@ -1328,107 +1301,6 @@ class ImmudbClient {
       console.error(err);
     }
   }
-
-  // async verifiedZAdd(
-  //   params: types.SimpleZAddOptions.AsObject
-  // ): Promise<messages.TxMetadata.AsObject | undefined> {
-  //   try {
-  //     // const index = new messages.Index();
-  //     // index.setIndex(
-  //     //   this.root &&
-  //     //     this.root.get({
-  //     //       server: this._serverUUID,
-  //     //       database: this._activeDatabase,
-  //     //     }).index
-  //     // );
-
-  //     const zar = new messages.ZAddRequest();
-
-  //     zar.setSet(this.util && utf8Encode(params && params.set));
-  //     zar.setScore(params.score || 0);
-  //     zar.setKey(this.util && utf8Encode(params && params.key));
-
-  //     const req = new messages.VerifiableZAddRequest();
-  //     req.setZaddrequest(zar);
-  //     // req.setProvesincetx(index);
-
-  //     return new Promise((resolve, reject) =>
-  //       this.client.verifiableZAdd(req, this._metadata, (err, res) => {
-  //         if (err) {
-  //           console.error('verifiedZAdd error', err);
-  //           return reject(err);
-  //         }
-
-  //         const key2 =
-  //           this.proofs &&
-  //           this.proofs.setKey({
-  //             key: this.util && utf8Encode(params && params.key),
-  //             set: this.util && utf8Encode(params && params.set),
-  //             score: params && params.score,
-  //           });
-
-  //         const verifyReq = {
-  //           proof: {
-  //             inclusionPath: res && res.getInclusionpathList(),
-  //             consistencyPath: res && res.getConsistencypathList(),
-  //             index: res && res.getIndex(),
-  //             at: res && res.getAt(),
-  //             leaf: res && res.getLeaf(),
-  //             root: res && res.getRoot(),
-  //           },
-  //           item: {
-  //             key: key2,
-  //             value: this.util && utf8Encode(params && params.key),
-  //             index: res && res.getIndex(),
-  //           },
-  //           oldRoot:
-  //             this.state &&
-  //             this.state.get({
-  //               server: this._serverUUID,
-  //               database: this._activeDatabase,
-  //             }),
-  //         };
-
-  //         this.proofs &&
-  //           this.proofs.verify(verifyReq, (err: any) => {
-  //             if (err) {
-  //               return { err };
-  //             }
-
-  //             this.state &&
-  //               this.state.set({
-  //                 server: this._serverUUID,
-  //                 database: this._activeDatabase,
-  //                 root: res && res.getRoot(),
-  //                 index: res && res.getAt(),
-  //               });
-
-  //             resolve({
-  //               id: res && res.getId(),
-  //               prevalh: res && res.getPrevalh(),
-  //               ts: res && res.getTs(),
-  //               nentries: res && res.getNentries(),
-  //               eh: res && res.getEh(),
-  //               bltxid: res && res.getBltxid(),
-  //               blroot: res && res.getBlroot(),
-  //             });
-  //           });
-  //       })
-  //     );
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // }
-
-  // async verifiedZAddAt (params: types.SimpleZAddOptions.AsObject): Promise<messages.TxMetadata.AsObject | undefined> {
-
-  // }
-
-  // async safeZAdd(
-  //   params: types.SimpleZAddOptions.AsObject
-  // ): Promise<messages.TxMetadata.AsObject | undefined> {
-  //   return this.verifiedZAdd(params);
-  // }
 
   async txById({ tx }: messages.TxRequest.AsObject): Promise<messages.Tx.AsObject | undefined> {
     try {

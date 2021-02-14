@@ -6,6 +6,7 @@ import * as types from './interfaces';
 import * as messages from './proto/schema_pb';
 
 const REFERENCE_VALUE_PREFIX = new Uint8Array([0x01])
+const SORTED_KEY_PREFIX = new Uint8Array([0x01])
 const SET_KEY_PREFIX = new Uint8Array([0x00])
 const PLAIN_VALUE_PREFIX = new Uint8Array([0x00])
 
@@ -169,6 +170,29 @@ class Util {
 
         kv.setKey(this.prefixKey(key))
         kv.setValue(this.prefixValue(value))
+
+        return kv
+    }
+
+    encodeZAdd(zSet: Uint8Array, score: number, key: Uint8Array, attx: number) {
+        const eKey = this.prefixKey(key)
+        const zSetLengthUint = new Uint8Array([zSet.length])
+        const zSetScoreUint = new Uint8Array([score])
+        const eKeyLengthUint = new Uint8Array([eKey.length])
+        const attxUint = new Uint8Array([attx])
+        const zKey = new Uint8Array(SORTED_KEY_PREFIX.length + zSetLengthUint.length + zSet.length + zSetScoreUint.length + eKeyLengthUint.length + eKey.length + attxUint.length)
+
+        zKey.set(SORTED_KEY_PREFIX)
+        zKey.set(zSetLengthUint, SORTED_KEY_PREFIX.length)
+        zKey.set(zSet, SORTED_KEY_PREFIX.length + zSetLengthUint.length)
+        zKey.set(zSetScoreUint, SORTED_KEY_PREFIX.length + zSetLengthUint.length + zSet.length)
+        zKey.set(eKeyLengthUint, SORTED_KEY_PREFIX.length + zSetLengthUint.length + zSet.length + zSetScoreUint.length)
+        zKey.set(eKey, SORTED_KEY_PREFIX.length + zSetLengthUint.length + zSet.length + zSetScoreUint.length + eKeyLengthUint.length)
+        zKey.set(attxUint, SORTED_KEY_PREFIX.length + zSetLengthUint.length + zSet.length + zSetScoreUint.length + eKeyLengthUint.length + eKey.length)
+        
+        const kv = new messages.KeyValue()
+
+        kv.setKey(zKey)
 
         return kv
     }

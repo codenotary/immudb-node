@@ -25,7 +25,7 @@ import ImmudbClient from '../src/client';
         const res1 = await client.set({ key: 'hello', value: 'world' });
         console.log('success: set', res1);
 
-        const res2 = await client.verifiedTxById({ tx: 75 })
+        const res2 = await client.setReferenceAt({ key: 'hello', referencedKey: 'world', attx: 76 })
         console.log('success: verifiedTxById', res2);
 
         // // get item having the specified key
