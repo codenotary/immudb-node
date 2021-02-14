@@ -3,7 +3,7 @@ import crypto from 'crypto';
 
 import * as util from 'util';
 import * as types from './interfaces';
-import * as messages from './proto/schema_pb';
+import * as schemaTypes from './proto/schema_pb';
 import { REFERENCE_VALUE_PREFIX, SORTED_KEY_PREFIX, SET_KEY_PREFIX, PLAIN_VALUE_PREFIX, LEAF_PREFIX } from './consts'
 
 export const hashUint8Array = (value: Uint8Array) => new Uint8Array(crypto.createHash('sha256').update(value).digest())
@@ -12,7 +12,7 @@ export const utf8Encode = (val: any) => {
     return new util.TextEncoder().encode(val);
 }
 
-export const digestKeyValue = (kv: messages.KeyValue) => {
+export const digestKeyValue = (kv: schemaTypes.KeyValue) => {
     let valdigest
     const key = kv.getKey_asU8()
     const value = kv.getValue_asU8()
@@ -31,7 +31,7 @@ export const digestKeyValue = (kv: messages.KeyValue) => {
     return hashUint8Array(res)
 }
 
-export const getAlh = (txm: messages.TxMetadata): Uint8Array => {
+export const getAlh = (txm: schemaTypes.TxMetadata): Uint8Array => {
     const encId = encodeInt64(txm.getId())
     const prevalh = txm.getPrevalh_asU8()
     const encTs = encodeInt64(txm.getTs())
@@ -158,7 +158,7 @@ export const encodeReferenceValue = (referencedKey: Uint8Array, atTx: number): U
 }
 
 export const encodeKeyValue = (key: Uint8Array, value: Uint8Array) => {
-    const kv = new messages.KeyValue()
+    const kv = new schemaTypes.KeyValue()
 
     kv.setKey(prefixKey(key))
     kv.setValue(prefixValue(value))
@@ -182,7 +182,7 @@ export const encodeZAdd = (zSet: Uint8Array, score: number, key: Uint8Array, att
     zKey.set(eKey, SORTED_KEY_PREFIX.length + zSetLengthUint.length + zSet.length + scoreUint.length + eKeyLengthUint.length)
     zKey.set(attxUint, SORTED_KEY_PREFIX.length + zSetLengthUint.length + zSet.length + scoreUint.length + eKeyLengthUint.length + eKey.length)
     
-    const kv = new messages.KeyValue()
+    const kv = new schemaTypes.KeyValue()
 
     kv.setKey(zKey)
 

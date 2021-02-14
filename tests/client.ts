@@ -1,6 +1,6 @@
 import tap from 'tap';
 
-import * as messages from '../src/proto/schema_pb';
+import * as schemaTypes from '../src/proto/schema_pb';
 import ImmudbClient from '../src/client';
 import Util, { utf8Encode } from '../src/util'
 
@@ -24,7 +24,7 @@ tap.test('database management', async t => {
   const immudbClient = await ImmudbClient.getInstance(config);
   try {
     // test: login using the specified username and password
-    const firstRequestData: messages.LoginRequest.AsObject = {
+    const firstRequestData: schemaTypes.LoginRequest.AsObject = {
       user: IMMUDB_USER,
       password: IMMUDB_PWD,
     };
@@ -36,7 +36,7 @@ tap.test('database management', async t => {
     }
 
     // test: create database
-    const secondRequestData: messages.Database.AsObject = { databasename: 'db1' };
+    const secondRequestData: schemaTypes.Database.AsObject = { databasename: 'db1' };
     try {
       await immudbClient.createDatabase(secondRequestData);
       t.pass('Successfully created database');
@@ -45,7 +45,7 @@ tap.test('database management', async t => {
     }
 
     // test: use database just created
-    const thirdRequestData: messages.Database.AsObject = { databasename: 'db1' };
+    const thirdRequestData: schemaTypes.Database.AsObject = { databasename: 'db1' };
     const secondResponse = await immudbClient.useDatabase(thirdRequestData);
     // if (secondResponse) {
     //   t.type(secondResponse.token, 'string')
@@ -67,7 +67,7 @@ tap.test('database management', async t => {
 
     // test: list all databases available
     const fifthResponse:
-      | messages.DatabaseListResponse.AsObject
+      | schemaTypes.DatabaseListResponse.AsObject
       | undefined = await immudbClient.listDatabases();
     if (fifthResponse) {
       t.equal(fifthResponse.databasesList[0].databasename, 'defaultdb');
@@ -104,7 +104,7 @@ tap.test('user management', async t => {
     const rand = `${Math.floor(Math.random() * Math.floor(100000))}`;
 
     // test: login using the specified username and password
-    const loginRequest: messages.LoginRequest.AsObject = {
+    const loginRequest: schemaTypes.LoginRequest.AsObject = {
       user: IMMUDB_USER,
       password: IMMUDB_PWD,
     };
@@ -114,7 +114,7 @@ tap.test('user management', async t => {
     }
 
     // test: create a new user
-    const createUserRequest: messages.CreateUserRequest.AsObject = {
+    const createUserRequest: schemaTypes.CreateUserRequest.AsObject = {
       user: rand,
       password: 'Example12#',
       permission: Permission.READ_WRITE,
@@ -130,8 +130,8 @@ tap.test('user management', async t => {
     const listUsersResponse = await immudbClient.listUsers();
 
     // test: change user permission
-    const changeUserPermissionRequest: messages.ChangePermissionRequest.AsObject = {
-      action: messages.PermissionAction.GRANT,
+    const changeUserPermissionRequest: schemaTypes.ChangePermissionRequest.AsObject = {
+      action: schemaTypes.PermissionAction.GRANT,
       username: rand,
       database: rand,
       permission: Permission.READ_ONLY,
@@ -139,7 +139,7 @@ tap.test('user management', async t => {
     await immudbClient.changePermission(changeUserPermissionRequest);
 
     // test: change user password
-    const changePasswordRequest: messages.ChangePasswordRequest.AsObject = {
+    const changePasswordRequest: schemaTypes.ChangePasswordRequest.AsObject = {
       user: rand,
       oldpassword: 'Example12#',
       newpassword: 'Example1234%',
@@ -147,7 +147,7 @@ tap.test('user management', async t => {
     await immudbClient.changePassword(changePasswordRequest);
 
     // test: set active user
-    const setActiveUserRequest: messages.SetActiveUserRequest.AsObject = {
+    const setActiveUserRequest: schemaTypes.SetActiveUserRequest.AsObject = {
       username: rand,
       active: true,
     };
@@ -177,25 +177,25 @@ tap.test('operations', async t => {
     const testDB = 'testdb';
 
     // test: login using the specified username and password
-    const loginRequest: messages.LoginRequest.AsObject = {
+    const loginRequest: schemaTypes.LoginRequest.AsObject = {
       user: IMMUDB_USER,
       password: IMMUDB_PWD,
     };
-    const loginResponse: messages.LoginResponse.AsObject | undefined = await immudbClient.login(
+    const loginResponse: schemaTypes.LoginResponse.AsObject | undefined = await immudbClient.login(
       loginRequest
     );
 
     // test: create database
-    const createDatabaseRequest: messages.Database.AsObject = { databasename: testDB };
+    const createDatabaseRequest: schemaTypes.Database.AsObject = { databasename: testDB };
     const createDatabaseResponse = await immudbClient.createDatabase(createDatabaseRequest);
 
     // test: use database just created
-    const useDatabaseRequest: messages.Database.AsObject = { databasename: testDB };
+    const useDatabaseRequest: schemaTypes.Database.AsObject = { databasename: testDB };
     const useDatabaseResponse = await immudbClient.useDatabase(useDatabaseRequest);
 
     // test: add new item having the specified key
     // and value
-    let setRequest: messages.KeyValue.AsObject = {
+    let setRequest: schemaTypes.KeyValue.AsObject = {
       key: new Uint8Array(rand),
       value: new Uint8Array(rand),
     };
@@ -207,17 +207,17 @@ tap.test('operations', async t => {
     }
 
     // test: get item by key
-    const getRequest: messages.Key.AsObject = { key: new Uint8Array(rand) };
+    const getRequest: schemaTypes.Key.AsObject = { key: new Uint8Array(rand) };
     const getResponse = await immudbClient.get(getRequest);
 
     // // test: count keys having the specified value
     // // in the database in use
-    // const countRequest: messages.KeyPrefix.AsObject = { prefix: new Uint8Array(rand) };
+    // const countRequest: schemaTypes.KeyPrefix.AsObject = { prefix: new Uint8Array(rand) };
     // const countResponse = await immudbClient.count(countRequest);
 
     // test: iterate over keys having the specified
     // prefix
-    const scanRequest: messages.ScanRequest.AsObject = {
+    const scanRequest: schemaTypes.ScanRequest.AsObject = {
       seekkey: new Uint8Array(rand),
       prefix: new Uint8Array(rand),
       desc: true,
@@ -228,12 +228,12 @@ tap.test('operations', async t => {
     const seventhResponse = await immudbClient.scan(scanRequest);
 
     // test: return an element by txId
-    const txByIdRequest: messages.TxRequest.AsObject = { tx: id as number }
+    const txByIdRequest: schemaTypes.TxRequest.AsObject = { tx: id as number }
     const txByIdResponse = await immudbClient.txById(txByIdRequest);
 
     // history: fetch history for the item having the
     // specified key
-    const historyRequest: messages.HistoryRequest.AsObject = {
+    const historyRequest: schemaTypes.HistoryRequest.AsObject = {
       key: new Uint8Array(rand),
       offset: 10,
       limit: 5,
@@ -243,7 +243,7 @@ tap.test('operations', async t => {
     const historyResponse = await immudbClient.history(historyRequest);
 
     // test: iterate over a sorted set
-    const zScanRequest: messages.ZScanRequest.AsObject = {
+    const zScanRequest: schemaTypes.ZScanRequest.AsObject = {
       set: `${rand}`,
       seekkey: '',
       seekscore: 0,
@@ -257,7 +257,7 @@ tap.test('operations', async t => {
     const tenthResponse = await immudbClient.zScan(zScanRequest);
 
     // test: execute a getAll read
-    const getAllRequest: messages.KeyListRequest.AsObject = {
+    const getAllRequest: schemaTypes.KeyListRequest.AsObject = {
       keysList: [utf8Encode(new Uint8Array(rand))],
       sincetx: 1
     };
@@ -276,7 +276,7 @@ tap.test('operations', async t => {
 
     // // test: safely add new item having the specified key
     // // and value
-    // let safeSetRequest: messages.KeyValue.AsObject = {
+    // let safeSetRequest: schemaTypes.KeyValue.AsObject = {
     //   key: `${rand + 10}`,
     //   // key: new Uint8Array(rand + 10),
     //   value: new Uint8Array(rand + 10),
@@ -303,7 +303,7 @@ tap.test('operations', async t => {
     // safeSetResponse = await immudbClient.safeSet(safeSetRequest);
 
     // test: safely get item by key
-    const verifiedGetRequest: Partial<messages.KeyRequest.AsObject> = {
+    const verifiedGetRequest: Partial<schemaTypes.KeyRequest.AsObject> = {
       key: new Uint8Array(rand)
     }
     try {
@@ -328,25 +328,25 @@ tap.test('operations', async t => {
 //   const immudbClient = await ImmudbClient.getInstance(config);
 //   try {
 //     // test: login using the specified username and password
-//     const loginRequest: messages.LoginRequest.AsObject = {
+//     const loginRequest: schemaTypes.LoginRequest.AsObject = {
 //       user: IMMUDB_USER,
 //       password: IMMUDB_PWD,
 //     };
 //     const res = await immudbClient.login(loginRequest);
 
 //     // test: use default database
-//     const useDatabaseRequest: messages.Database.AsObject = { databasename: 'defaultdb' };
+//     const useDatabaseRequest: schemaTypes.Database.AsObject = { databasename: 'defaultdb' };
 //     const useDatabaseResponse = await immudbClient.useDatabase(useDatabaseRequest);
 
 //     // test: execute a batch insert
-//     const setBatchRequest: messages.KVList.AsObject = { kvsList: [] };
+//     const setBatchRequest: schemaTypes.KVList.AsObject = { kvsList: [] };
 //     for (let i = 0; i < 20; i++) {
 //       setBatchRequest.kvsList.push({ key: `${i}`, value: new Uint8Array(i) });
 //     }
 //     const setBatchResponse = await immudbClient.setBatch(setBatchRequest);
 
 //     // test: execute a batch read
-//     const getBatchRequest: messages.KeyList.AsObject = { keysList: [] };
+//     const getBatchRequest: schemaTypes.KeyList.AsObject = { keysList: [] };
 //     for (let i = 0; i < 20; i++) {
 //       getBatchRequest.keysList.push({ key: `${i}` });
 //     }

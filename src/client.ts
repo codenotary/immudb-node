@@ -4,42 +4,17 @@ import * as grpc from '@grpc/grpc-js';
 import * as empty from 'google-protobuf/google/protobuf/empty_pb';
 
 dotenv.config();
-import * as messages from './proto/schema_pb';
+import * as schemaTypes from './proto/schema_pb';
 import * as services from './proto/schema_grpc_pb';
 
 import { Config } from './interfaces';
 import * as util from './util';
 import { proofTx, txFrom } from './tx'
 import State from './state';
-import * as types from './interfaces';
-import { Database, Permission, User } from './proto/schema_pb';
+import * as interfaces from './interfaces';
 import { verifyInclusion, verifyDualProof } from './verification'
 import { CLIENT_INIT_PREFIX, DEFAULT_DATABASE, DEFAULT_ROOTPATH } from './consts'
-
-type SetReferenceParameters = {
-  key: string
-  referencedKey: string
-}
-type SetReferenceAtParameters = {
-  key: string
-  referencedKey: string
-  attx?: number
-}
-type ZAddParameters = {
-  set: string
-  score: number
-  key: string
-}
-type ZAddAtParameters = {
-  set: string
-  score: number
-  key: string
-  attx: number
-}
-type SetParameters = {
-  key: string
-  value: string
-}
+import * as types from './types'
 
 class ImmudbClient {
   public state: State;
@@ -188,12 +163,12 @@ class ImmudbClient {
   }
 
   async login(
-    params: messages.LoginRequest.AsObject
-  ): Promise<messages.LoginResponse.AsObject | undefined> {
+    params: types.LoginParameters
+  ): Promise<schemaTypes.LoginResponse.AsObject | undefined> {
     try {
       const { user, password } = params;
 
-      const req = new messages.LoginRequest();
+      const req = new schemaTypes.LoginRequest();
       req.setUser(util.utf8Encode(user));
       req.setPassword(util.utf8Encode(password));
 
@@ -219,9 +194,9 @@ class ImmudbClient {
     }
   }
 
-  async createDatabase({ databasename }: messages.Database.AsObject): Promise<empty.Empty | undefined> {
+  async createDatabase({ databasename }: schemaTypes.Database.AsObject): Promise<empty.Empty | undefined> {
     try {
-      const req = new messages.Database();
+      const req = new schemaTypes.Database();
 
       req.setDatabasename(databasename);
 
@@ -240,10 +215,10 @@ class ImmudbClient {
   }
 
   async useDatabase(
-    { databasename }: messages.Database.AsObject
-  ): Promise<messages.UseDatabaseReply.AsObject | undefined> {
+    { databasename }: schemaTypes.Database.AsObject
+  ): Promise<schemaTypes.UseDatabaseReply.AsObject | undefined> {
     try {
-      const req = new messages.Database();
+      const req = new schemaTypes.Database();
       req.setDatabasename(databasename);
 
       return new Promise((resolve, reject) => this.client.useDatabase(req, this._metadata, async (err, res) => {
@@ -265,10 +240,10 @@ class ImmudbClient {
     }
   }
 
-  async set({ key, value }: SetParameters): Promise<messages.TxMetadata.AsObject | undefined> {
+  async set({ key, value }: types.SetParameters): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     try {
-      const req = new messages.SetRequest();
-      const kv = new messages.KeyValue();
+      const req = new schemaTypes.SetRequest();
+      const kv = new schemaTypes.KeyValue();
 
       kv.setKey(util.utf8Encode(key));
       kv.setValue(util.utf8Encode(value));
@@ -291,9 +266,9 @@ class ImmudbClient {
     }
   }
 
-  async get({ key }: messages.Key.AsObject): Promise<messages.Entry.AsObject | undefined> {
+  async get({ key }: types.GetParameters): Promise<schemaTypes.Entry.AsObject | undefined> {
     try {
-      const req = new messages.KeyRequest();
+      const req = new schemaTypes.KeyRequest();
 
       req.setKey(util.utf8Encode(key));
 
@@ -316,7 +291,7 @@ class ImmudbClient {
     }
   }
 
-  async listDatabases(): Promise<messages.DatabaseListResponse.AsObject | undefined> {
+  async listDatabases(): Promise<schemaTypes.DatabaseListResponse.AsObject | undefined> {
     try {
       const req = new empty.Empty();
 
@@ -328,7 +303,7 @@ class ImmudbClient {
           }
 
           const dl = res && res.getDatabasesList();
-          const l: Array<Database.AsObject> = [];
+          const l: Array<schemaTypes.Database.AsObject> = [];
           for (let i = 0; dl && i < dl.length; i++) {
             l.push(dl[i].toObject());
           }
@@ -344,10 +319,10 @@ class ImmudbClient {
   }
 
   async changePermission(
-    params: messages.ChangePermissionRequest.AsObject
+    params: schemaTypes.ChangePermissionRequest.AsObject
   ): Promise<empty.Empty | undefined> {
     try {
-      const req = new messages.ChangePermissionRequest();
+      const req = new schemaTypes.ChangePermissionRequest();
       req.setAction(params && params.action);
       req.setPermission(params && params.permission);
       req.setUsername(params && params.username);
@@ -368,7 +343,7 @@ class ImmudbClient {
     }
   }
 
-  async listUsers(): Promise<messages.UserList.AsObject | undefined> {
+  async listUsers(): Promise<schemaTypes.UserList.AsObject | undefined> {
     try {
       const req = new empty.Empty();
 
@@ -380,12 +355,12 @@ class ImmudbClient {
           }
 
           const ul = res && res.getUsersList();
-          const l: Array<User.AsObject> = [];
+          const l: Array<schemaTypes.User.AsObject> = [];
           for (let i = 0; ul && i < ul.length; i++) {
             const u = ul[i];
 
             const pl = u.getPermissionsList();
-            const p: Array<Permission.AsObject> = [];
+            const p: Array<schemaTypes.Permission.AsObject> = [];
             for (let j = 0; j < pl.length; j++) {
               p.push({
                 database: pl[j].getDatabase(),
@@ -412,9 +387,9 @@ class ImmudbClient {
     }
   }
 
-  async createUser(params: messages.CreateUserRequest.AsObject): Promise<empty.Empty | undefined> {
+  async createUser(params: types.CreateUserParameters): Promise<empty.Empty | undefined> {
     try {
-      const req = new messages.CreateUserRequest();
+      const req = new schemaTypes.CreateUserRequest();
       req.setUser(util.utf8Encode(params && params.user));
       req.setPassword(util.utf8Encode(params && params.password));
       req.setPermission(params && params.permission);
@@ -436,10 +411,10 @@ class ImmudbClient {
   }
 
   async changePassword(
-    params: messages.ChangePasswordRequest.AsObject
+    params: types.ChangePasswordParameters
   ): Promise<empty.Empty | undefined> {
     try {
-      const req = new messages.ChangePasswordRequest();
+      const req = new schemaTypes.ChangePasswordRequest();
       req.setUser(util.utf8Encode(params && params.user));
       req.setOldpassword(util.utf8Encode(params && params.oldpassword));
       req.setNewpassword(util.utf8Encode(params && params.newpassword));
@@ -479,10 +454,10 @@ class ImmudbClient {
   }
 
   async setActiveUser(
-    params: messages.SetActiveUserRequest.AsObject
+    params: schemaTypes.SetActiveUserRequest.AsObject
   ): Promise<empty.Empty | undefined> {
     try {
-      const req = new messages.SetActiveUserRequest();
+      const req = new schemaTypes.SetActiveUserRequest();
       req.setUsername(params && params.username);
       req.setActive(params && params.active);
 
@@ -501,7 +476,7 @@ class ImmudbClient {
     }
   }
 
-  async health(): Promise<messages.HealthResponse.AsObject | undefined> {
+  async health(): Promise<schemaTypes.HealthResponse.AsObject | undefined> {
     try {
       const req = new empty.Empty();
 
@@ -528,11 +503,11 @@ class ImmudbClient {
   }
 
   async count(
-    params: messages.KeyPrefix.AsObject
-  ): Promise<messages.EntryCount.AsObject | undefined> {
+    { prefix }: types.CountParameters
+  ): Promise<schemaTypes.EntryCount.AsObject | undefined> {
     try {
-      const req = new messages.KeyPrefix();
-      req.setPrefix(util.utf8Encode(params && params.prefix));
+      const req = new schemaTypes.KeyPrefix();
+      req.setPrefix(util.utf8Encode(prefix));
 
       return new Promise((resolve, reject) =>
         this.client.count(req, this._metadata, (err, res) => {
@@ -541,9 +516,7 @@ class ImmudbClient {
             return reject(err);
           }
 
-          resolve({
-            count: res && res.getCount(),
-          });
+          resolve(res.toObject());
         })
       );
     } catch (err) {
@@ -551,9 +524,7 @@ class ImmudbClient {
     }
   }
 
-  async countAll(
-    params: messages.KeyPrefix.AsObject
-  ): Promise<messages.EntryCount.AsObject | undefined> {
+  async countAll(): Promise<schemaTypes.EntryCount.AsObject | undefined> {
     try {
       const req = new empty.Empty();
 
@@ -564,9 +535,7 @@ class ImmudbClient {
             return reject(err);
           }
 
-          resolve({
-            count: res && res.getCount(),
-          });
+          resolve(res.toObject());
         })
       );
     } catch (err) {
@@ -575,10 +544,10 @@ class ImmudbClient {
   }
 
   async scan(
-    { seekkey, prefix, desc, limit, sincetx, nowait }: Partial<messages.ScanRequest.AsObject> = {}
-  ): Promise<messages.Entries.AsObject | undefined> {
+    { seekkey, prefix, desc, limit, sincetx, nowait }: Partial<schemaTypes.ScanRequest.AsObject> = {}
+  ): Promise<schemaTypes.Entries.AsObject | undefined> {
     try {
-      const req = new messages.ScanRequest();
+      const req = new schemaTypes.ScanRequest();
 
       if (seekkey !== undefined) {
         req.setSeekkey(util.utf8Encode(seekkey));
@@ -606,7 +575,7 @@ class ImmudbClient {
             return reject(err);
           }
 
-          const result: Array<messages.Entry.AsObject> = [];
+          const result: Array<schemaTypes.Entry.AsObject> = [];
           const il = res && res.getEntriesList();
           for (let i = 0; il && i < il.length; i++) {
             const item = il[i];
@@ -628,10 +597,10 @@ class ImmudbClient {
   }
 
   async history(
-    { key, offset, limit, desc, sincetx }: messages.HistoryRequest.AsObject
-  ): Promise<messages.Entries.AsObject | undefined> {
+    { key, offset, limit, desc, sincetx }: types.HistoryParameters
+  ): Promise<schemaTypes.Entries.AsObject | undefined> {
     try {
-      const req = new messages.HistoryRequest();
+      const req = new schemaTypes.HistoryRequest();
 
       req.setKey(util.utf8Encode(key));
       req.setOffset(offset);
@@ -653,7 +622,7 @@ class ImmudbClient {
               key: util.utf8Decode(entry.getKey()),
               value: util.utf8Decode(entry.getValue()),
             }),
-            [] as Array<messages.Entry.AsObject>
+            [] as Array<schemaTypes.Entry.AsObject>
           )
 
           resolve({
@@ -667,10 +636,10 @@ class ImmudbClient {
   }
 
   async zScan(
-    { set, seekkey, seekscore, seekattx, inclusiveseek, limit, desc, sincetx, nowait }: messages.ZScanRequest.AsObject
-  ): Promise<messages.ZEntries.AsObject | undefined> {
+    { set, seekkey, seekscore, seekattx, inclusiveseek, limit, desc, sincetx, nowait }: types.ZScanParameters
+  ): Promise<schemaTypes.ZEntries.AsObject | undefined> {
     try {
-      const req = new messages.ZScanRequest();
+      const req = new schemaTypes.ZScanRequest();
 
       req.setSet(util.utf8Encode(set));
       req.setSeekkey(util.utf8Encode(seekkey));
@@ -697,7 +666,7 @@ class ImmudbClient {
               score: entry.getScore(),
               attx: entry.getAttx()
             }),
-            [] as Array<messages.ZEntry.AsObject>
+            [] as Array<schemaTypes.ZEntry.AsObject>
           )
 
           resolve({
@@ -710,7 +679,7 @@ class ImmudbClient {
     }
   }
 
-  async currentState(): Promise<messages.ImmutableState.AsObject | undefined> {
+  async currentState(): Promise<schemaTypes.ImmutableState.AsObject | undefined> {
     try {
       const req = new empty.Empty();
 
@@ -741,16 +710,16 @@ class ImmudbClient {
   }
 
   async zAdd(
-    params: ZAddParameters
-  ): Promise<messages.TxMetadata.AsObject | undefined> {
+    params: types.ZAddParameters
+  ): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     const reqParams = Object.assign({}, params, { attx: 0 })
 
     return this.zAddAt(reqParams)
   }
 
-  async zAddAt ({ set, score = 0, key, attx = 0 }: ZAddAtParameters): Promise<messages.TxMetadata.AsObject | undefined> {
+  async zAddAt ({ set, score = 0, key, attx = 0 }: types.ZAddAtParameters): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     try {
-      const req = new messages.ZAddRequest();
+      const req = new schemaTypes.ZAddRequest();
 
       req.setSet(util.utf8Encode(set));
       req.setScore(score);
@@ -781,20 +750,20 @@ class ImmudbClient {
     }
   }
 
-  async verifiedZAdd(params: ZAddParameters): Promise<messages.TxMetadata.AsObject | undefined> {
+  async verifiedZAdd(params: types.ZAddParameters): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     const reqParams = Object.assign({}, params, { attx: 0 })
 
     return await this.verifiedZAddAt(reqParams)
   }
 
-  async verifiedZAddAt({ set, score, key, attx }: ZAddAtParameters): Promise<messages.TxMetadata.AsObject | undefined> {
+  async verifiedZAddAt({ set, score, key, attx }: types.ZAddAtParameters): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     try {
       const state = await this.state.get({ serverName: this._serverUUID, databaseName: this._activeDatabase, metadata: this._metadata })
-      const req = new messages.VerifiableZAddRequest()
+      const req = new schemaTypes.VerifiableZAddRequest()
       const uintSet = util.utf8Encode(set)
       const uintKey = util.utf8Encode(key)
   
-      const zar = new messages.ZAddRequest()
+      const zar = new schemaTypes.ZAddRequest()
   
       zar.setSet(uintSet)
       zar.setScore(score)
@@ -911,13 +880,13 @@ class ImmudbClient {
     }
   }
 
-  async setReference (params: SetReferenceParameters): Promise<messages.TxMetadata.AsObject | undefined> {
+  async setReference (params: types.SetReferenceParameters): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     return await this.setReferenceAt(params)
   }
   
-  async setReferenceAt ({ key, referencedKey, attx = 0 }: SetReferenceAtParameters): Promise<messages.TxMetadata.AsObject | undefined> {
+  async setReferenceAt ({ key, referencedKey, attx = 0 }: types.SetReferenceAtParameters): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     try {
-      const req = new messages.ReferenceRequest();
+      const req = new schemaTypes.ReferenceRequest();
 
       req.setKey(util.utf8Encode(key));
       req.setReferencedkey(util.utf8Encode(referencedKey));
@@ -945,20 +914,20 @@ class ImmudbClient {
     }
   }
 
-  async verifiedSetReference (params: SetReferenceParameters): Promise<messages.TxMetadata.AsObject | undefined> {
+  async verifiedSetReference (params: types.SetReferenceParameters): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     return await this.verifiedSetReferenceAt(params)
   }
 
-  async verifiedSetReferenceAt ({ key, referencedKey, attx = 0 }: SetReferenceAtParameters): Promise<messages.TxMetadata.AsObject | undefined> {
+  async verifiedSetReferenceAt ({ key, referencedKey, attx = 0 }: types.SetReferenceAtParameters): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     try {
       const state = await this.state.get({ serverName: this._serverUUID, databaseName: this._activeDatabase, metadata: this._metadata })
       const txid = state.getTxid()
       const txhash = state.getTxhash_asU8()
       const uint8Key = util.utf8Encode(key)
       const uint8RefKey = util.utf8Encode(referencedKey)
-      const req = new messages.VerifiableReferenceRequest()
+      const req = new schemaTypes.VerifiableReferenceRequest()
 
-      const refReq = new messages.ReferenceRequest()
+      const refReq = new schemaTypes.ReferenceRequest()
 
       refReq.setKey(uint8Key)
       refReq.setReferencedkey(uint8RefKey)
@@ -998,7 +967,7 @@ class ImmudbClient {
 
               const tx = txFrom(resTx)
               const inclusionProof = proofTx(tx, util.prefixKey(uint8Key))
-              const eKv = new messages.KeyValue()
+              const eKv = new schemaTypes.KeyValue()
 
               eKv.setKey(util.prefixKey(uint8Key))
               eKv.setValue(util.encodeReferenceValue(uint8RefKey, attx))
@@ -1062,11 +1031,11 @@ class ImmudbClient {
     }
   }
 
-  async setAll({ kvsList }: messages.SetRequest.AsObject): Promise<messages.TxMetadata.AsObject | undefined> {
+  async setAll({ kvsList }: schemaTypes.SetRequest.AsObject): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     try {
-      const req = new messages.SetRequest();
+      const req = new schemaTypes.SetRequest();
       const kvls = kvsList.map(({ key, value }) => {
-        const kv = new messages.KeyValue();
+        const kv = new schemaTypes.KeyValue();
 
         kv.setKey(key)
         kv.setValue(value)
@@ -1098,14 +1067,14 @@ class ImmudbClient {
     }
   }
   
-  async execAll({ operationsList }: messages.ExecAllRequest.AsObject): Promise<messages.TxMetadata.AsObject | undefined> {
+  async execAll({ operationsList }: schemaTypes.ExecAllRequest.AsObject): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     try {
-      const req = new messages.ExecAllRequest();
+      const req = new schemaTypes.ExecAllRequest();
       const opl = operationsList.map(({ kv, zadd, ref }) => {
-        const op = new messages.Op();
-        const keyValue = new messages.KeyValue()
-        const zAddReq = new messages.ZAddRequest();
-        const refReq = new messages.ReferenceRequest();
+        const op = new schemaTypes.Op();
+        const keyValue = new schemaTypes.KeyValue()
+        const zAddReq = new schemaTypes.ZAddRequest();
+        const refReq = new schemaTypes.ReferenceRequest();
 
         if (kv !== undefined && kv !== null) {
           const { key, value } = kv
@@ -1164,9 +1133,9 @@ class ImmudbClient {
     }
   }
 
-  async getAll ({ keysList, sincetx }: messages.KeyListRequest.AsObject): Promise<messages.Entries.AsObject | undefined> {
+  async getAll ({ keysList, sincetx }: schemaTypes.KeyListRequest.AsObject): Promise<schemaTypes.Entries.AsObject | undefined> {
     try {
-      const req = new messages.KeyListRequest();
+      const req = new schemaTypes.KeyListRequest();
 
       req.setKeysList(keysList);
       req.setSincetx(sincetx);
@@ -1184,7 +1153,7 @@ class ImmudbClient {
             key: util.utf8Decode(entry.getKey()),
             value: util.utf8Decode(entry.getValue()),
           }),
-          [] as Array<messages.Entry.AsObject>
+          [] as Array<schemaTypes.Entry.AsObject>
         )
 
         resolve({
@@ -1196,14 +1165,14 @@ class ImmudbClient {
     }
   }
 
-  async verifiedSet ({ key, value }: messages.KeyValue.AsObject): Promise<messages.TxMetadata.AsObject | undefined> {
+  async verifiedSet ({ key, value }: schemaTypes.KeyValue.AsObject): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     try {
       const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID, metadata: this._metadata })
       const txid = state.getTxid()
       const txhash = state.getTxhash_asU8()
-      const req = new messages.VerifiableSetRequest();
-      const kv = new messages.KeyValue();
-      const setRequest = new messages.SetRequest();
+      const req = new schemaTypes.VerifiableSetRequest();
+      const kv = new schemaTypes.KeyValue();
+      const setRequest = new schemaTypes.SetRequest();
       const uint8Key = util.utf8Encode(key)
       const uint8Value = util.utf8Encode(value)
 
@@ -1300,13 +1269,13 @@ class ImmudbClient {
     }
   }
 
-  async verifiedGet({ key, attx, sincetx }: types.PartialBy<messages.KeyRequest.AsObject, 'sincetx' | 'attx'>): Promise<messages.Entry.AsObject | undefined> {
+  async verifiedGet({ key, attx, sincetx }: interfaces.PartialBy<schemaTypes.KeyRequest.AsObject, 'sincetx' | 'attx'>): Promise<schemaTypes.Entry.AsObject | undefined> {
     try {
       const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID, metadata: this._metadata })
       const txid = state.getTxid()
       const txhash = state.getTxhash_asU8()
-      const req = new messages.VerifiableGetRequest();
-      const kr = new messages.KeyRequest();
+      const req = new schemaTypes.VerifiableGetRequest();
+      const kr = new schemaTypes.KeyRequest();
       const uint8Key = util.utf8Encode(key)
 
       kr.setKey(uint8Key)
@@ -1338,7 +1307,7 @@ class ImmudbClient {
           } else {
             const referencedby = entry.getReferencedby()
             let vTx: number
-            let kv = new messages.KeyValue()
+            let kv = new schemaTypes.KeyValue()
 
             if (referencedby === undefined) {
               vTx = entry.getTx()
@@ -1432,16 +1401,16 @@ class ImmudbClient {
     }
   }
 
-  async verifiedGetAt({ key, attx }: Omit<messages.KeyRequest.AsObject, 'sincetx'>) {
+  async verifiedGetAt({ key, attx }: Omit<schemaTypes.KeyRequest.AsObject, 'sincetx'>) {
     return await this.verifiedGet({ key, attx })
   }
-  async verifiedGetSince({ key, sincetx }: Omit<messages.KeyRequest.AsObject, 'attx'>) {
+  async verifiedGetSince({ key, sincetx }: Omit<schemaTypes.KeyRequest.AsObject, 'attx'>) {
     return await this.verifiedGet({ key, sincetx })
   }
 
-  async updateAuthConfig(params: messages.AuthConfig.AsObject): Promise<empty.Empty | undefined> {
+  async updateAuthConfig(params: schemaTypes.AuthConfig.AsObject): Promise<empty.Empty | undefined> {
     try {
-      const req = new messages.AuthConfig();
+      const req = new schemaTypes.AuthConfig();
       req.setKind(params && params.kind);
 
       return new Promise((resolve, reject) =>
@@ -1459,9 +1428,9 @@ class ImmudbClient {
     }
   }
 
-  async updateMTLSConfig(params: messages.MTLSConfig.AsObject): Promise<empty.Empty | undefined> {
+  async updateMTLSConfig(params: schemaTypes.MTLSConfig.AsObject): Promise<empty.Empty | undefined> {
     try {
-      const req = new messages.MTLSConfig();
+      const req = new schemaTypes.MTLSConfig();
       req.setEnabled(params && params.enabled);
 
       return new Promise((resolve, reject) =>
@@ -1479,9 +1448,9 @@ class ImmudbClient {
     }
   }
 
-  async txById({ tx }: messages.TxRequest.AsObject): Promise<messages.Tx.AsObject | undefined> {
+  async txById({ tx }: schemaTypes.TxRequest.AsObject): Promise<schemaTypes.Tx.AsObject | undefined> {
     try {
-      const req = new messages.TxRequest();
+      const req = new schemaTypes.TxRequest();
 
       req.setTx(tx)
 
@@ -1504,13 +1473,13 @@ class ImmudbClient {
     }
   }
 
-  async verifiedTxById({ tx }: messages.TxRequest.AsObject): Promise<messages.Tx.AsObject | undefined> {
+  async verifiedTxById({ tx }: schemaTypes.TxRequest.AsObject): Promise<schemaTypes.Tx.AsObject | undefined> {
     try {
       const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID, metadata: this._metadata })
 
 	    const txid = state.getTxid()
 	    const txhash = state.getTxhash_asU8()
-      const req = new messages.VerifiableTxRequest()
+      const req = new schemaTypes.VerifiableTxRequest()
 
       req.setTx(tx)
       req.setProvesincetx(txid)
@@ -1595,9 +1564,9 @@ class ImmudbClient {
     }
   }
 
-  async txScan(params: messages.TxScanRequest.AsObject): Promise<messages.TxList.AsObject | undefined> {
+  async txScan(params: schemaTypes.TxScanRequest.AsObject): Promise<schemaTypes.TxList.AsObject | undefined> {
     try {
-      const req = new messages.TxScanRequest();
+      const req = new schemaTypes.TxScanRequest();
 
       req.setInitialtx(params.initialtx);
       req.setLimit(params.limit);

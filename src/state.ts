@@ -1,11 +1,11 @@
 import { Metadata } from 'grpc';
 import fs from 'fs'
 
-import * as messages from './proto/schema_pb';
+import * as schemaTypes from './proto/schema_pb';
 import * as services from './proto/schema_grpc_pb';
 import * as empty from 'google-protobuf/google/protobuf/empty_pb';
 
-type Server = Map<string, messages.ImmutableState>
+type Server = Map<string, schemaTypes.ImmutableState>
 type Servers = Map<string, Server>
 type StateGetMetadata = {
     serverName: string
@@ -47,7 +47,7 @@ class State {
         this.servers = this.getInitialState()
     }
 
-    async get (config: StateGetMetadata): Promise<messages.ImmutableState> {
+    async get (config: StateGetMetadata): Promise<schemaTypes.ImmutableState> {
         const { serverName, databaseName } = config
         const server = this.servers.get(serverName)
 
@@ -64,7 +64,7 @@ class State {
         }
     }
 
-    async getCurrentState(config: StateGetMetadata): Promise<messages.ImmutableState> {
+    async getCurrentState(config: StateGetMetadata): Promise<schemaTypes.ImmutableState> {
         const { databaseName, metadata } = config
         return new Promise((resolve, reject) => this.client.currentState(new empty.Empty(), metadata, (err, res) => {
             if (err) {
@@ -72,8 +72,8 @@ class State {
             }
 
             const stateObject = res.toObject();
-            const state = new messages.ImmutableState()
-            const sgntr = new messages.Signature()
+            const state = new schemaTypes.ImmutableState()
+            const sgntr = new schemaTypes.Signature()
 
             if (stateObject.signature !== undefined) {
                 sgntr.setSignature(stateObject.signature.signature)
@@ -91,10 +91,10 @@ class State {
         }))
     }
  
-    set ({ serverName, databaseName }: StateSetMetadata, { db, txid, txhash, signature }: messages.ImmutableState.AsObject) {
+    set ({ serverName, databaseName }: StateSetMetadata, { db, txid, txhash, signature }: schemaTypes.ImmutableState.AsObject) {
         const server = this.servers.get(serverName) || new Map() as Server
-        const state = new messages.ImmutableState()
-        const sgntr = new messages.Signature()
+        const state = new schemaTypes.ImmutableState()
+        const sgntr = new schemaTypes.Signature()
 
         if (signature) {
             sgntr.setSignature(signature.signature)

@@ -15,7 +15,7 @@ import 'dotenv/config';
 import ImmudbClient from '../src/client';
 import * as util from 'util';
 import * as types from '../src/interfaces';
-import * as messages from '../src/proto/schema_pb';
+import * as schemaTypes from '../src/proto/schema_pb';
 
 const IMMUDB_HOST: string = (process.env.IMMUDB_HOST as string || '127.0.0.1');
 const IMMUDB_PORT: string = (process.env.IMMUDB_PORT as string || '3322');
@@ -65,7 +65,7 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
 
         // change user permission
         res = await client.changePermission({
-            action: messages.PermissionAction.GRANT,
+            action: schemaTypes.PermissionAction.GRANT,
             username: rand,
             database: rand,
             permission: types.Permission.READ_ONLY

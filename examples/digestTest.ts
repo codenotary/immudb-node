@@ -14,11 +14,11 @@ limitations under the License.
 import ImmudbClient from '../src/client';
 
 import { verifyInclusion } from '../src/htree'
-import * as messages from '../src/proto/schema_pb';
+import * as schemaTypes from '../src/proto/schema_pb';
 
 (async () => {
     try {
-        const proof = new messages.InclusionProof()
+        const proof = new schemaTypes.InclusionProof()
         const list1 = new Uint8Array([186, 3, 230, 8, 23, 19, 121, 207, 73, 197, 31, 210, 133, 82, 249, 90, 153, 194, 3, 248, 229, 30, 66, 162, 129, 53, 218, 132, 45, 71, 17, 125])
         const list2 = new Uint8Array([229, 51, 216, 45, 55, 71, 1, 143, 176, 229, 105, 244, 244, 28, 180, 221, 188, 91, 25, 193, 19, 134, 214, 4, 18, 87, 136, 114, 133, 174, 90, 85])
         const termsList = [list1, list2]

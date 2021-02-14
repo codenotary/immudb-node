@@ -1,6 +1,6 @@
 import HTree from './htree';
 import { encodeInt32, encodeInt64, equalArray, hashUint8Array, utf8Encode } from './util';
-import * as messages from './proto/schema_pb';
+import * as schemaTypes from './proto/schema_pb';
 
 class TXe {
     public hValue: Uint8Array
@@ -96,7 +96,7 @@ const newTx = (entries: Array<TXe>, id: number, prevAlh: Uint8Array, ts: number,
     return new Tx(entries, id, prevAlh, ts, blTxId, blRoot)
 }
 
-export const txFrom = (sTx: messages.Tx) => {
+export const txFrom = (sTx: schemaTypes.Tx) => {
     const sTxMetadata = sTx.getMetadata()
 
     if (sTxMetadata === undefined) {

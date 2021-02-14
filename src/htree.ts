@@ -1,4 +1,4 @@
-import * as messages from './proto/schema_pb';
+import * as schemaTypes from './proto/schema_pb';
 import { hashUint8Array, withLeafPrefix, bitLength } from './util'
 import { NODE_PREFIX } from './consts'
 
@@ -73,7 +73,7 @@ class HTree {
         this.root = this.levels[l][0]
     }
 
-    inclusionProof(i: number): messages.InclusionProof | undefined {
+    inclusionProof(i: number): schemaTypes.InclusionProof | undefined {
         if (i >= this.width) {
             throw new Error("Illegal inclusionProof arguments");
         }
@@ -81,7 +81,7 @@ class HTree {
         let m = i
         let n = this.width
         let offset = 0
-        const proof = new messages.InclusionProof()
+        const proof = new schemaTypes.InclusionProof()
 
         proof.setLeaf(i)
         proof.setWidth(this.width)

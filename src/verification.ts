@@ -1,4 +1,4 @@
-import * as messages from './proto/schema_pb';
+import * as schemaTypes from './proto/schema_pb';
 
 import { getAlh, hashUint8Array, encodeInt64, equalArray, withLeafPrefix } from './util'
 import { NODE_PREFIX } from './consts'
@@ -110,7 +110,7 @@ const verifyLastInclusion = (lastInclusionproofList: Array<Uint8Array>, i: numbe
 
     return equalArray(root, iRoot)
 }
-const verifyLinearProof = (linearProof: messages.LinearProof, sourceId: number, targetId: number, sourceAlh: Uint8Array, targetAlh: Uint8Array): boolean => {
+const verifyLinearProof = (linearProof: schemaTypes.LinearProof, sourceId: number, targetId: number, sourceAlh: Uint8Array, targetAlh: Uint8Array): boolean => {
     if (linearProof === undefined) {
         return false
     }
@@ -144,8 +144,8 @@ const verifyLinearProof = (linearProof: messages.LinearProof, sourceId: number, 
     return equalArray(targetAlh, calculatedAlh)
 }
 
-export const inclusionProofFrom = ({ leaf, width, termsList }: messages.InclusionProof.AsObject) => {
-    const iProof = new messages.InclusionProof()
+export const inclusionProofFrom = ({ leaf, width, termsList }: schemaTypes.InclusionProof.AsObject) => {
+    const iProof = new schemaTypes.InclusionProof()
 
     iProof.setLeaf(leaf)
     iProof.setWidth(width)
@@ -162,11 +162,11 @@ export const dualProofFrom = ({
     targetbltxalh,
     lastinclusionproofList,
     linearproof
-}: messages.DualProof.AsObject) => {
-    const dProof = new messages.DualProof();
+}: schemaTypes.DualProof.AsObject) => {
+    const dProof = new schemaTypes.DualProof();
 
     if (sourcetxmetadata !== undefined) {
-        const sTxMetadata = new messages.TxMetadata();
+        const sTxMetadata = new schemaTypes.TxMetadata();
         const { id, prevalh, ts, nentries, eh, bltxid, blroot } = sourcetxmetadata
 
         sTxMetadata.setId(id);
@@ -181,7 +181,7 @@ export const dualProofFrom = ({
     }
 
     if (targettxmetadata !== undefined) {
-        const tTxMetadata = new messages.TxMetadata();
+        const tTxMetadata = new schemaTypes.TxMetadata();
         const { id, prevalh, ts, nentries, eh, bltxid, blroot } = targettxmetadata
 
         tTxMetadata.setId(id);
@@ -212,7 +212,7 @@ export const dualProofFrom = ({
     }
 
     if (linearproof !== undefined) {
-        const lProof = new messages.LinearProof();
+        const lProof = new schemaTypes.LinearProof();
         const { sourcetxid, targettxid, termsList } = linearproof
 
         lProof.setSourcetxid(sourcetxid)
@@ -225,7 +225,7 @@ export const dualProofFrom = ({
     return dProof
 }
 
-export const verifyInclusion = (proof: messages.InclusionProof, digest: Uint8Array, root: Uint8Array) => {
+export const verifyInclusion = (proof: schemaTypes.InclusionProof, digest: Uint8Array, root: Uint8Array) => {
     if (proof === undefined) {
         return false
     }
@@ -255,7 +255,7 @@ export const verifyInclusion = (proof: messages.InclusionProof, digest: Uint8Arr
     return i === r && equalArray(root, calcRoot)
 }
 
-export const verifyDualProof = (dualProof: messages.DualProof, sourceId: number, targetId: number, sourceAlh: Uint8Array, targetAlh: Uint8Array) => {
+export const verifyDualProof = (dualProof: schemaTypes.DualProof, sourceId: number, targetId: number, sourceAlh: Uint8Array, targetAlh: Uint8Array) => {
     if (dualProof === undefined) {
         return false
     }
