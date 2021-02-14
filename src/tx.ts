@@ -1,5 +1,5 @@
 import HTree from './htree';
-import Util, { encodeInt32, encodeInt64, hashUint8Array } from './util';
+import Util, { encodeInt32, encodeInt64, hashUint8Array, utf8Encode } from './util';
 import * as messages from './proto/schema_pb';
 
 const util = new Util()
@@ -58,14 +58,15 @@ class Tx {
 
     private buildHashTree() {
         const digests = []
+        
         for (let e of this.entries) {
             digests.push(digestTXe(e))
         }
+        
         this.htree.buildWith(digests)
     }
 
     private calcAlh() {
-        this.calcInnerHash()
         const encodedId = encodeInt64(this.id)
         const bi = new Uint8Array(encodedId.length + this.prevAlh.length + this.innerHash.length)
 
@@ -100,7 +101,7 @@ export const txFrom = (sTx: messages.Tx) => {
     const sTxMetadata = sTx.getMetadata()
 
     if (sTxMetadata === undefined) {
-        throw new Error('Corrupted parameters')
+        throw new Error('Corrupted txFrom parameters')
     }
     
     let entries: Array<TXe> = []
@@ -130,8 +131,8 @@ export const proofTx = (tx: Tx, key: Uint8Array) => {
     }
 
     if (kindex === undefined) {
-        throw new Error('Error finding kindex')
+        console.error('Error finding kindex')
+    } else {
+        return tx.htree.inclusionProof(kindex)
     }
-
-    return tx.htree.inclusionProof(kindex)
 }

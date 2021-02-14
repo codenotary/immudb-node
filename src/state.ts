@@ -7,10 +7,14 @@ import * as empty from 'google-protobuf/google/protobuf/empty_pb';
 
 type Server = Map<string, messages.ImmutableState>
 type Servers = Map<string, Server>
-type StateMetadata = {
+type StateGetMetadata = {
     serverName: string
     databaseName: string
     metadata: Metadata
+}
+type StateSetMetadata = {
+    serverName: string
+    databaseName: string
 }
 
 type StateConfig = {
@@ -43,7 +47,7 @@ class State {
         this.servers = this.getInitialState()
     }
 
-    async get (config: StateMetadata): Promise<messages.ImmutableState> {
+    async get (config: StateGetMetadata): Promise<messages.ImmutableState> {
         const { serverName, databaseName } = config
         const server = this.servers.get(serverName)
 
@@ -60,7 +64,7 @@ class State {
         }
     }
 
-    async getCurrentState(config: StateMetadata): Promise<messages.ImmutableState> {
+    async getCurrentState(config: StateGetMetadata): Promise<messages.ImmutableState> {
         const { databaseName, metadata } = config
         return new Promise((resolve, reject) => this.client.currentState(new empty.Empty(), metadata, (err, res) => {
             if (err) {
@@ -87,7 +91,7 @@ class State {
         }))
     }
  
-    set ({ serverName, databaseName }: StateMetadata, { db, txid, txhash, signature }: messages.ImmutableState.AsObject) {
+    set ({ serverName, databaseName }: StateSetMetadata, { db, txid, txhash, signature }: messages.ImmutableState.AsObject) {
         const server = this.servers.get(serverName) || new Map() as Server
         const state = new messages.ImmutableState()
         const sgntr = new messages.Signature()
@@ -103,8 +107,6 @@ class State {
         state.setSignature(sgntr)
 
         server.set(databaseName, state)
-
-        console.log('new state set', state.toObject())
 
         this.servers.set(serverName, server)
     }

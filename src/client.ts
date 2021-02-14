@@ -730,7 +730,7 @@ class ImmudbClient {
           console.log('state received', res.toObject())
           const signature = res.getSignature();
 
-          this.state.set({ databaseName: this._activeDatabase, serverName: this._serverUUID, metadata: this._metadata }, res.toObject());
+          this.state.set({ databaseName: this._activeDatabase, serverName: this._serverUUID }, res.toObject());
 
           resolve({
             db: this._activeDatabase,
@@ -806,7 +806,7 @@ class ImmudbClient {
 
     zar.setSet(uintSet)
     zar.setScore(score)
-    zar.setKey(key)
+    zar.setKey(uintKey)
     zar.setAttx(attx)
     zar.setBoundref(attx > 0)
 
@@ -814,38 +814,104 @@ class ImmudbClient {
     req.setProvesincetx(state.getTxid())
 
     return new Promise((resolve, reject) => this.client.verifiableZAdd(req, this._metadata, (err, res) => {
-      if (err !== undefined) {
+      if (err) {
         console.error('verifiedZAddAt error', err);
 
         reject(err)
       } else {
-        // const resTx = res.getTx()
+        const resTx = res.getTx()
 
-        // if (resTx === undefined) {
-        //   console.error('Error getting verifiedZAddAt tx')
+        if (resTx === undefined) {
+          console.error('Error getting verifiedZAddAt tx')
 
-        //   reject()
-        // } else {
-        //   const txMetadata = resTx.getMetadata()
+          reject()
+        } else {
+          const txMetadata = resTx.getMetadata()
 
-        //   if (txMetadata === undefined) {
-        //     console.error('Error getting verifiedZAddAt txMetadata')
+          if (txMetadata === undefined) {
+            console.error('Error getting verifiedZAddAt txMetadata')
   
-        //     reject()
-        //   } else {
-        //     const nEntries = txMetadata.getNentries()
+            reject()
+          } else {
+            const nEntries = txMetadata.getNentries()
 
-        //     if (nEntries !== 1) {
-        //       console.error('nEntries verification failed for verifiedZAddAt')
+            if (nEntries !== 1) {
+              console.error('nEntries verification failed for verifiedZAddAt')
     
-        //       reject()
-        //     }
+              reject()
+            }
 
-        //     const tx = txFrom(resTx)
-        //     const eKv = this.util.encodeZAdd(uintSet, score, uintKey, attx)
-        //     const inclusionProof = tx.proof(eKv.getKey_asU8())
-        //   }
-        // }
+            const tx = txFrom(resTx)
+            const eKv = this.util.encodeZAdd(uintSet, score, uintKey, attx)
+            const inclusionProof = proofTx(tx, eKv.getKey_asU8())
+
+            if (inclusionProof === undefined) {
+              console.error('Error getting inclusionProof for verifiedZAddAt')
+            
+              reject()
+            } else {
+              let verifies = verifyInclusion(inclusionProof, digestKeyValue(eKv), tx.htree.root)
+
+              if (verifies === false) {
+                console.error('Inclusion verification for verifiedZAddAt failed')
+               
+                reject()
+              }
+
+              const dualProof = res.getDualproof()
+
+              if (dualProof === undefined) {
+                console.error('Error getting dualProof for verifiedZAddAt')
+               
+                reject()
+              } else {
+                const tTxMetadata = dualProof.getTargettxmetadata()
+
+                if (tTxMetadata === undefined) {
+                  console.error('Error getting tx metadata from dualProof in verifiedZAddAt')
+               
+                  reject()
+                } else {
+                  if (!this.util.equalArray(tx.htree.root, tTxMetadata.getEh_asU8())) {
+                    console.error('verifiedZAddAt error')
+                  }
+
+                  const txid = state.getTxid()
+                  const txhash = state.getTxhash_asU8()
+                  let sourceId
+                  let sourceAlh
+
+                  if (txid === 0) {
+                    sourceId = tx.id
+                    sourceAlh = tx.alh
+                  } else {
+                    sourceId = txid
+                    sourceAlh = txhash
+                  }
+
+                  const targetId = tx.id
+                  const targetAlh = tx.alh
+
+                  verifies = verifyDualProof(dualProof, sourceId, targetId, sourceAlh, targetAlh)
+
+                  if (verifies === false) {
+                    console.error('Dual verification for verifiedZAddAt failed')
+                   
+                    reject()
+                  }
+
+                  this.state.set(
+                    { serverName: this._serverUUID, databaseName: this._activeDatabase },
+                    { txid: targetId, txhash: targetAlh, signature: res.getSignature()?.toObject(), db: this._activeDatabase }
+                  )
+                  console.log('here too')
+
+                  resolve(tTxMetadata.toObject())
+                }
+              }
+            }
+          }
+        }
       }
     }))
   }
@@ -1032,9 +1098,11 @@ class ImmudbClient {
       const req = new messages.VerifiableSetRequest();
       const kv = new messages.KeyValue();
       const setRequest = new messages.SetRequest();
+      const uint8Key = utf8Encode(key)
+      const uint8Value = utf8Encode(value)
 
-      kv.setKey(key)
-      kv.setValue(value)
+      kv.setKey(uint8Key)
+      kv.setValue(uint8Value)
 
       setRequest.setKvsList([kv])
 
@@ -1050,13 +1118,11 @@ class ImmudbClient {
           const verifiableTx = res.getTx()
 
           if (verifiableTx === undefined) {
-            console.error('')
+            console.error('Error getting verifiableTx from verifiedSet response')
 
             reject()
           } else {
             const tx = txFrom(verifiableTx)
-            const uint8Key = utf8Encode(key)
-            const uint8Value = utf8Encode(value)
             const inclusionProof = proofTx(tx, this.util.prefixKey(uint8Key))
 
             if (inclusionProof === undefined) {
@@ -1083,8 +1149,8 @@ class ImmudbClient {
                 if (!tTxMetadata) {
   
                 } else {
-                  if (tx.htree.root !== tTxMetadata.getEh_asU8()) {
-                    console.error('verifiedSet error', err)
+                  if (!this.util.equalArray(tx.htree.root, tTxMetadata.getEh_asU8())) {
+                    console.error('verifiedSet error')
                   }
   
                   let sourceId: number
@@ -1099,9 +1165,9 @@ class ImmudbClient {
                   }
   
                   const targetId = tx.id
-                  const targetAlh = tx.alh
+                  const targetAlh = getAlh(tTxMetadata)
   
-                  verifies = verifyDualProof(dualProofFrom(dualProof.toObject()), sourceId, targetId, sourceAlh, targetAlh)
+                  verifies = verifyDualProof(dualProof, sourceId, targetId, sourceAlh, targetAlh)
   
                   if (!verifies) {
                     console.error('verifiedSet dual verification failed', err)
@@ -1109,16 +1175,14 @@ class ImmudbClient {
                     reject(err)
                   }
   
-                  this.state.set({ serverName: this._serverUUID, databaseName: this._activeDatabase, metadata: this._metadata }, {
+                  this.state.set({ serverName: this._serverUUID, databaseName: this._activeDatabase }, {
                     db: this._activeDatabase,
                     txid: targetId,
                     txhash: targetAlh,
                     signature: res.getSignature()?.toObject()
                   })
   
-                  // resolve({
-                  //   id
-                  // })
+                  resolve(tTxMetadata.toObject())
                 }
               }
             }
@@ -1176,13 +1240,13 @@ class ImmudbClient {
               kv.setKey(this.util.prefixKey(uint8Key))
               kv.setValue(this.util.prefixValue(entry.getValue_asU8()))
             } else {
-              const key = utf8Encode(referencedby.getKey())
+              const encRefKey = utf8Encode(referencedby.getKey())
               const atTx = referencedby.getAttx()
     
               vTx = referencedby.getTx()
 
-              kv.setKey(this.util.prefixKey(key))
-              kv.setValue(this.util.encodeReferenceValue(key, atTx))
+              kv.setKey(this.util.prefixKey(encRefKey))
+              kv.setValue(this.util.encodeReferenceValue(encRefKey, atTx))
             }
 
             const dualproof = verifiabletx.getDualproof()
@@ -1240,7 +1304,7 @@ class ImmudbClient {
                 }
 
                 this.state.set(
-                  { serverName: this._serverUUID, databaseName: this._activeDatabase, metadata: this._metadata },
+                  { serverName: this._serverUUID, databaseName: this._activeDatabase },
                   { txid: targetId, txhash: targetAlh, signature: verifiabletx.getSignature()?.toObject(), db: this._activeDatabase }
                 )
 
@@ -1351,14 +1415,13 @@ class ImmudbClient {
 
           reject(err)
         } else {
-          const dp = res.getDualproof()
+          const dualProof = res.getDualproof()
 
-          if (dp === undefined) {
+          if (dualProof === undefined) {
             console.error('Error getting verifiedTxById dualProof')
 
             reject()
           } else {
-            const dualProof = dualProofFrom(dp.toObject())
             const resTxId = res.getTx()?.getMetadata()?.getId()
 
             if (resTxId === undefined) {
@@ -1408,7 +1471,6 @@ class ImmudbClient {
                 this.state.set({
                   serverName: this._serverUUID,
                   databaseName: this._activeDatabase,
-                  metadata: this._metadata
                 }, {
                   db: this._activeDatabase,
                   txhash: targetAlh,
