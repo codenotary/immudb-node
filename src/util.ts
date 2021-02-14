@@ -73,7 +73,7 @@ export function encodeInt64 (num: number, buf = Buffer.allocUnsafe(8), offset = 
     return buf
 }
 
-function encodeInt32 (num: number, buf = Buffer.allocUnsafe(4), offset = 0) {
+export function encodeInt32 (num: number, buf = Buffer.allocUnsafe(4), offset = 0) {
     buf.writeUInt32BE(num, offset)
     return buf
 }

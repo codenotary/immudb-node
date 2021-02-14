@@ -9,7 +9,7 @@ import * as services from './proto/schema_grpc_pb';
 
 import { Config } from './interfaces';
 import Util, { hashUint8Array, utf8Encode, digestKeyValue, getAlh } from './util';
-import { txFrom } from './tx'
+import { proofTx, txFrom } from './tx'
 import Proofs from './proofs';
 import State from './state';
 import * as types from './interfaces';
@@ -1047,75 +1047,82 @@ class ImmudbClient {
 
           reject(err)
         } else {
-          // const verifiableTx = res.getTx()
+          const verifiableTx = res.getTx()
 
-          // if (verifiableTx === undefined) {
-          //   console.error('')
+          if (verifiableTx === undefined) {
+            console.error('')
 
-          //   reject()
-          // } else {
-          //   const tx = txFrom(verifiableTx)
-          //   const uint8Key = utf8Encode(key)
-          //   const uint8Value = utf8Encode(value)
-          //   const inclusionProof = tx.proof(this.util.prefixKey(uint8Key))
-          //   const eKv = this.util.encodeKeyValue(uint8Key, uint8Value)
-          //   let verifies = verifyInclusion(inclusionProof, eKv, tx.eh())
+            reject()
+          } else {
+            const tx = txFrom(verifiableTx)
+            const uint8Key = utf8Encode(key)
+            const uint8Value = utf8Encode(value)
+            const inclusionProof = proofTx(tx, this.util.prefixKey(uint8Key))
 
-          //   if (!verifies) {
-          //     console.error('verifiedSet inclusion verification failed', err)
+            if (inclusionProof === undefined) {
+              console.error('Error getting inclusionProof for verifiedSet')
 
-          //     reject(err)
-          //   }
-
-          //   const dualProof = res.getDualproof()
-
-          //   if (!dualProof) {
-
-          //   } else {
-          //     const tTxMetadata = dualProof.getTargettxmetadata()
-
-          //     if (!tTxMetadata) {
-
-          //     } else {
-          //       if (tx.eh() !== tTxMetadata.getEh_asU8()) {
-          //         console.error('verifiedSet error', err)
-          //       }
-
-          //       let sourceId: number
-          //       let sourceAlh: Uint8Array
-
-          //       if (txid === 0) {
-          //         sourceId = tx.getId()
-          //         sourceAlh = tx.getAlh()
-          //       } else {
-          //         sourceId = txid
-          //         sourceAlh = txhash
-          //       }
-
-          //       const targetId = tx.getId()
-          //       const targetAlh = tx.getAlh()
-
-          //       verifies = verifyDualProof(dualProofFrom(dualProof.toObject()), sourceId, targetId, sourceAlh, targetAlh)
-
-          //       if (!verifies) {
-          //         console.error('verifiedSet dual verification failed', err)
-    
-          //         reject(err)
-          //       }
-
-          //       this.state.set({ serverName: this._serverUUID, databaseName: this._activeDatabase }, {
-          //         db: this._activeDatabase,
-          //         txid: targetId,
-          //         txhash: targetAlh,
-          //         signature: res.getSignature()?.toObject()
-          //       })
-
-          //       resolve({
-          //         id
-          //       })
-          //     }
-          //   }
-          // }
+              reject()
+            } else {
+              const eKv = this.util.encodeKeyValue(uint8Key, uint8Value)
+              let verifies = verifyInclusion(inclusionProof, digestKeyValue(eKv), tx.htree.root)
+  
+              if (!verifies) {
+                console.error('verifiedSet inclusion verification failed', err)
+  
+                reject(err)
+              }
+  
+              const dualProof = res.getDualproof()
+  
+              if (!dualProof) {
+  
+              } else {
+                const tTxMetadata = dualProof.getTargettxmetadata()
+  
+                if (!tTxMetadata) {
+  
+                } else {
+                  if (tx.htree.root !== tTxMetadata.getEh_asU8()) {
+                    console.error('verifiedSet error', err)
+                  }
+  
+                  let sourceId: number
+                  let sourceAlh: Uint8Array
+  
+                  if (txid === 0) {
+                    sourceId = tx.id
+                    sourceAlh = tx.alh
+                  } else {
+                    sourceId = txid
+                    sourceAlh = txhash
+                  }
+  
+                  const targetId = tx.id
+                  const targetAlh = tx.alh
+  
+                  verifies = verifyDualProof(dualProofFrom(dualProof.toObject()), sourceId, targetId, sourceAlh, targetAlh)
+  
+                  if (!verifies) {
+                    console.error('verifiedSet dual verification failed', err)
+      
+                    reject(err)
+                  }
+  
+                  this.state.set({ serverName: this._serverUUID, databaseName: this._activeDatabase, metadata: this._metadata }, {
+                    db: this._activeDatabase,
+                    txid: targetId,
+                    txhash: targetAlh,
+                    signature: res.getSignature()?.toObject()
+                  })
+  
+                  // resolve({
+                  //   id
+                  // })
+                }
+              }
+            }
+          }
         }
       }))
     } catch(err) {

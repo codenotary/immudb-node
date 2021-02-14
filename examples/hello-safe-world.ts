@@ -22,11 +22,11 @@ import ImmudbClient from '../src/client';
         });
 
         // add new item with the specified key and value
-        const res1 = await client.set({ key: 'hello', value: 'world' });
+        const res1 = await client.verifiedSet({ key: 'hello', value: 'world' });
         console.log('success: set', res1);
 
-        const res2 = await client.setReferenceAt({ key: 'hello', referencedKey: 'world', attx: 76 })
-        console.log('success: verifiedTxById', res2);
+        // const res2 = await client.setReferenceAt({ key: 'hello', referencedKey: 'world', attx: 76 })
+        // console.log('success: verifiedTxById', res2);
 
         // // get item having the specified key
         // const res4 = await client.verifiedGet({ key: 'hello' })
