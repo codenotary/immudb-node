@@ -16,11 +16,6 @@ export interface Config {
     autoDatabase?: boolean;
 }
 
-export enum Action {
-    Grant,
-    Revoke
-}
-
 export enum Permission {
     NONE = 0,
     READ_ONLY = 1,
@@ -30,15 +25,6 @@ export enum Permission {
 export enum Auth {
     DISABLED = 0,
     ENABLED = 1
-}
-
-export namespace SimpleZAddOptions {
-    export type AsObject = {
-        set: Uint8Array | string,
-        score?: number,
-        key: Uint8Array | string,
-        index?: number
-    }
 }
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>

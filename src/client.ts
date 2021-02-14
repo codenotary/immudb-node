@@ -8,18 +8,13 @@ import * as messages from './proto/schema_pb';
 import * as services from './proto/schema_grpc_pb';
 
 import { Config } from './interfaces';
-import Util, { hashUint8Array, utf8Encode, digestKeyValue, getAlh } from './util';
+import * as util from './util';
 import { proofTx, txFrom } from './tx'
-import Proofs from './proofs';
 import State from './state';
 import * as types from './interfaces';
 import { Database, Permission, User } from './proto/schema_pb';
-import { inclusionProofFrom, dualProofFrom, verifyInclusion, verifyDualProof } from './htree'
-import { stat } from 'fs';
-
-const CLIENT_INIT_PREFIX = 'ImmudbClient:';
-const DEFAULT_DATABASE = 'defaultdb';
-const DEFAULT_ROOTPATH = 'root';
+import { verifyInclusion, verifyDualProof } from './verification'
+import { CLIENT_INIT_PREFIX, DEFAULT_DATABASE, DEFAULT_ROOTPATH } from './consts'
 
 type SetReferenceParameters = {
   key: string
@@ -47,10 +42,6 @@ type SetParameters = {
 }
 
 class ImmudbClient {
-  public util = new Util();
-
-  public proofs = new Proofs();
-
   public state: State;
 
   public client: services.ImmuServiceClient;
@@ -92,7 +83,6 @@ class ImmudbClient {
   }
 
   public static async getInstance(config: Config): Promise<ImmudbClient> {
-    const util = new Util();
     const {
       user = process.env.IMMUDB_USER as string,
       password = process.env.IMMUDB_PWD as string,
@@ -140,7 +130,7 @@ class ImmudbClient {
       // login
       if (user && password) {
         const resLogin = await this.login({ user, password });
-        const token = resLogin ? this.util.maskString(resLogin.token) : '';
+        const token = resLogin ? util.maskString(resLogin.token) : '';
         console.log('ImmudbClient: login', token);
       }
     } else {
@@ -204,8 +194,8 @@ class ImmudbClient {
       const { user, password } = params;
 
       const req = new messages.LoginRequest();
-      req.setUser(utf8Encode(user));
-      req.setPassword(utf8Encode(password));
+      req.setUser(util.utf8Encode(user));
+      req.setPassword(util.utf8Encode(password));
 
       return new Promise((resolve, reject) =>
         this.client.login(req, this._metadata, (err, res) => {
@@ -220,7 +210,7 @@ class ImmudbClient {
 
           resolve({
             token: this._token,
-            warning: this.util.utf8Decode(res.getWarning()),
+            warning: util.utf8Decode(res.getWarning()),
           });
         })
       );
@@ -280,8 +270,8 @@ class ImmudbClient {
       const req = new messages.SetRequest();
       const kv = new messages.KeyValue();
 
-      kv.setKey(utf8Encode(key));
-      kv.setValue(utf8Encode(value));
+      kv.setKey(util.utf8Encode(key));
+      kv.setValue(util.utf8Encode(value));
       req.setKvsList([kv]);
 
       return new Promise((resolve, reject) =>
@@ -305,7 +295,7 @@ class ImmudbClient {
     try {
       const req = new messages.KeyRequest();
 
-      req.setKey(utf8Encode(key));
+      req.setKey(util.utf8Encode(key));
 
       return new Promise(resolve =>
         this.client.get(req, this._metadata, (err, res) => {
@@ -315,8 +305,8 @@ class ImmudbClient {
           } else {
             resolve({
               tx: res && res.getTx(),
-              key: this.util && this.util.utf8Decode(res && res.getKey()),
-              value: this.util && this.util.utf8Decode(res && res.getValue()),
+              key: util.utf8Decode(res && res.getKey()),
+              value: util.utf8Decode(res && res.getValue()),
             });
           }
         })
@@ -404,7 +394,7 @@ class ImmudbClient {
             }
 
             l.push({
-              user: this.util && this.util.utf8Decode(u.getUser()),
+              user: util.utf8Decode(u.getUser()),
               permissionsList: p,
               createdby: u.getCreatedby(),
               createdat: u.getCreatedat(),
@@ -425,8 +415,8 @@ class ImmudbClient {
   async createUser(params: messages.CreateUserRequest.AsObject): Promise<empty.Empty | undefined> {
     try {
       const req = new messages.CreateUserRequest();
-      req.setUser(this.util && utf8Encode(params && params.user));
-      req.setPassword(this.util && utf8Encode(params && params.password));
+      req.setUser(util.utf8Encode(params && params.user));
+      req.setPassword(util.utf8Encode(params && params.password));
       req.setPermission(params && params.permission);
       req.setDatabase(params && params.database);
 
@@ -450,9 +440,9 @@ class ImmudbClient {
   ): Promise<empty.Empty | undefined> {
     try {
       const req = new messages.ChangePasswordRequest();
-      req.setUser(this.util && utf8Encode(params && params.user));
-      req.setOldpassword(this.util && utf8Encode(params && params.oldpassword));
-      req.setNewpassword(this.util && utf8Encode(params && params.newpassword));
+      req.setUser(util.utf8Encode(params && params.user));
+      req.setOldpassword(util.utf8Encode(params && params.oldpassword));
+      req.setNewpassword(util.utf8Encode(params && params.newpassword));
 
       return new Promise((resolve, reject) =>
         this.client.changePassword(req, this._metadata, (err, res) => {
@@ -542,7 +532,7 @@ class ImmudbClient {
   ): Promise<messages.EntryCount.AsObject | undefined> {
     try {
       const req = new messages.KeyPrefix();
-      req.setPrefix(this.util && utf8Encode(params && params.prefix));
+      req.setPrefix(util.utf8Encode(params && params.prefix));
 
       return new Promise((resolve, reject) =>
         this.client.count(req, this._metadata, (err, res) => {
@@ -591,10 +581,10 @@ class ImmudbClient {
       const req = new messages.ScanRequest();
 
       if (seekkey !== undefined) {
-        req.setSeekkey(utf8Encode(seekkey));
+        req.setSeekkey(util.utf8Encode(seekkey));
       } 
       if (prefix !== undefined) {
-        req.setPrefix(utf8Encode(prefix));
+        req.setPrefix(util.utf8Encode(prefix));
       }
       if (desc !== undefined) {
         req.setDesc(desc);
@@ -622,8 +612,8 @@ class ImmudbClient {
             const item = il[i];
             result.push({
               tx: item.getTx(),
-              key: this.util && this.util.utf8Decode(item.getKey()),
-              value: this.util && this.util.utf8Decode(item.getValue()),
+              key: util.utf8Decode(item.getKey()),
+              value: util.utf8Decode(item.getValue()),
             });
           }
 
@@ -643,7 +633,7 @@ class ImmudbClient {
     try {
       const req = new messages.HistoryRequest();
 
-      req.setKey(this.util && utf8Encode(key));
+      req.setKey(util.utf8Encode(key));
       req.setOffset(offset);
       req.setLimit(limit);
       req.setDesc(desc);
@@ -660,8 +650,8 @@ class ImmudbClient {
           const result = entriesList.reduce(
             (entries, entry) => entries.concat({
               tx: entry.getTx(),
-              key: this.util && this.util.utf8Decode(entry.getKey()),
-              value: this.util && this.util.utf8Decode(entry.getValue()),
+              key: util.utf8Decode(entry.getKey()),
+              value: util.utf8Decode(entry.getValue()),
             }),
             [] as Array<messages.Entry.AsObject>
           )
@@ -682,8 +672,8 @@ class ImmudbClient {
     try {
       const req = new messages.ZScanRequest();
 
-      req.setSet(this.util && utf8Encode(set));
-      req.setSeekkey(this.util && utf8Encode(seekkey));
+      req.setSet(util.utf8Encode(set));
+      req.setSeekkey(util.utf8Encode(seekkey));
       req.setSeekscore(seekscore);
       req.setSeekattx(seekattx);
       req.setInclusiveseek(inclusiveseek);
@@ -702,8 +692,8 @@ class ImmudbClient {
           const entriesList = res.getEntriesList();
           const result = entriesList.reduce(
             (entries, entry) => entries.concat({
-              set: this.util && this.util.utf8Decode(entry.getSet()),
-              key: this.util && this.util.utf8Decode(entry.getKey()),
+              set: util.utf8Decode(entry.getSet()),
+              key: util.utf8Decode(entry.getKey()),
               score: entry.getScore(),
               attx: entry.getAttx()
             }),
@@ -738,8 +728,8 @@ class ImmudbClient {
             txid: res.getTxid(),
             txhash: res.getTxhash(),
             signature: {
-              signature: utf8Encode(signature && signature.getSignature()),
-              publickey: utf8Encode(signature && signature.getPublickey())
+              signature: util.utf8Encode(signature && signature.getSignature()),
+              publickey: util.utf8Encode(signature && signature.getPublickey())
             },
           });
         }
@@ -762,9 +752,9 @@ class ImmudbClient {
     try {
       const req = new messages.ZAddRequest();
 
-      req.setSet(this.util && utf8Encode(set));
+      req.setSet(util.utf8Encode(set));
       req.setScore(score);
-      req.setKey(this.util && utf8Encode(key));
+      req.setKey(util.utf8Encode(key));
       req.setAttx(attx)
       req.setBoundref(attx > 0)
 
@@ -801,8 +791,8 @@ class ImmudbClient {
     try {
       const state = await this.state.get({ serverName: this._serverUUID, databaseName: this._activeDatabase, metadata: this._metadata })
       const req = new messages.VerifiableZAddRequest()
-      const uintSet = utf8Encode(set)
-      const uintKey = utf8Encode(key)
+      const uintSet = util.utf8Encode(set)
+      const uintKey = util.utf8Encode(key)
   
       const zar = new messages.ZAddRequest()
   
@@ -844,7 +834,7 @@ class ImmudbClient {
               }
   
               const tx = txFrom(resTx)
-              const eKv = this.util.encodeZAdd(uintSet, score, uintKey, attx)
+              const eKv = util.encodeZAdd(uintSet, score, uintKey, attx)
               const inclusionProof = proofTx(tx, eKv.getKey_asU8())
   
               if (inclusionProof === undefined) {
@@ -852,7 +842,7 @@ class ImmudbClient {
               
                 reject()
               } else {
-                let verifies = verifyInclusion(inclusionProof, digestKeyValue(eKv), tx.htree.root)
+                let verifies = verifyInclusion(inclusionProof, util.digestKeyValue(eKv), tx.htree.root)
   
                 if (verifies === false) {
                   console.error('Inclusion verification for verifiedZAddAt failed')
@@ -874,7 +864,7 @@ class ImmudbClient {
                  
                     reject()
                   } else {
-                    if (!this.util.equalArray(tx.htree.root, tTxMetadata.getEh_asU8())) {
+                    if (!util.equalArray(tx.htree.root, tTxMetadata.getEh_asU8())) {
                       console.error('verifiedZAddAt error')
                     }
   
@@ -929,8 +919,8 @@ class ImmudbClient {
     try {
       const req = new messages.ReferenceRequest();
 
-      req.setKey(utf8Encode(key));
-      req.setReferencedkey(utf8Encode(referencedKey));
+      req.setKey(util.utf8Encode(key));
+      req.setReferencedkey(util.utf8Encode(referencedKey));
       req.setAttx(attx)
       req.setBoundref(attx > 0)
 
@@ -964,8 +954,8 @@ class ImmudbClient {
       const state = await this.state.get({ serverName: this._serverUUID, databaseName: this._activeDatabase, metadata: this._metadata })
       const txid = state.getTxid()
       const txhash = state.getTxhash_asU8()
-      const uint8Key = utf8Encode(key)
-      const uint8RefKey = utf8Encode(referencedKey)
+      const uint8Key = util.utf8Encode(key)
+      const uint8RefKey = util.utf8Encode(referencedKey)
       const req = new messages.VerifiableReferenceRequest()
 
       const refReq = new messages.ReferenceRequest()
@@ -1007,18 +997,18 @@ class ImmudbClient {
               }
 
               const tx = txFrom(resTx)
-              const inclusionProof = proofTx(tx, this.util.prefixKey(uint8Key))
+              const inclusionProof = proofTx(tx, util.prefixKey(uint8Key))
               const eKv = new messages.KeyValue()
 
-              eKv.setKey(this.util.prefixKey(uint8Key))
-              eKv.setValue(this.util.encodeReferenceValue(uint8RefKey, attx))
+              eKv.setKey(util.prefixKey(uint8Key))
+              eKv.setValue(util.encodeReferenceValue(uint8RefKey, attx))
 
               if (inclusionProof === undefined) {
                 console.error('Error getting inclusionProof from verifiedSetReferenceAt response')
     
                 reject()
               } else {
-                let verifies = verifyInclusion(inclusionProof, digestKeyValue(eKv), tx.htree.root)
+                let verifies = verifyInclusion(inclusionProof, util.digestKeyValue(eKv), tx.htree.root)
                 
                 if (verifies === false) {
                   console.error('Inclusion verification failed for verifiedSetReferenceAt')
@@ -1191,8 +1181,8 @@ class ImmudbClient {
         const result = entriesList.reduce(
           (entries, entry) => entries.concat({
             tx: entry.getTx(),
-            key: this.util && this.util.utf8Decode(entry.getKey()),
-            value: this.util && this.util.utf8Decode(entry.getValue()),
+            key: util.utf8Decode(entry.getKey()),
+            value: util.utf8Decode(entry.getValue()),
           }),
           [] as Array<messages.Entry.AsObject>
         )
@@ -1214,8 +1204,8 @@ class ImmudbClient {
       const req = new messages.VerifiableSetRequest();
       const kv = new messages.KeyValue();
       const setRequest = new messages.SetRequest();
-      const uint8Key = utf8Encode(key)
-      const uint8Value = utf8Encode(value)
+      const uint8Key = util.utf8Encode(key)
+      const uint8Value = util.utf8Encode(value)
 
       kv.setKey(uint8Key)
       kv.setValue(uint8Value)
@@ -1239,15 +1229,15 @@ class ImmudbClient {
             reject()
           } else {
             const tx = txFrom(verifiableTx)
-            const inclusionProof = proofTx(tx, this.util.prefixKey(uint8Key))
+            const inclusionProof = proofTx(tx, util.prefixKey(uint8Key))
 
             if (inclusionProof === undefined) {
               console.error('Error getting inclusionProof for verifiedSet')
 
               reject()
             } else {
-              const eKv = this.util.encodeKeyValue(uint8Key, uint8Value)
-              let verifies = verifyInclusion(inclusionProof, digestKeyValue(eKv), tx.htree.root)
+              const eKv = util.encodeKeyValue(uint8Key, uint8Value)
+              let verifies = verifyInclusion(inclusionProof, util.digestKeyValue(eKv), tx.htree.root)
   
               if (!verifies) {
                 console.error('verifiedSet inclusion verification failed', err)
@@ -1265,7 +1255,7 @@ class ImmudbClient {
                 if (!tTxMetadata) {
   
                 } else {
-                  if (!this.util.equalArray(tx.htree.root, tTxMetadata.getEh_asU8())) {
+                  if (!util.equalArray(tx.htree.root, tTxMetadata.getEh_asU8())) {
                     console.error('verifiedSet error')
                   }
   
@@ -1281,7 +1271,7 @@ class ImmudbClient {
                   }
   
                   const targetId = tx.id
-                  const targetAlh = getAlh(tTxMetadata)
+                  const targetAlh = util.getAlh(tTxMetadata)
   
                   verifies = verifyDualProof(dualProof, sourceId, targetId, sourceAlh, targetAlh)
   
@@ -1317,7 +1307,7 @@ class ImmudbClient {
       const txhash = state.getTxhash_asU8()
       const req = new messages.VerifiableGetRequest();
       const kr = new messages.KeyRequest();
-      const uint8Key = utf8Encode(key)
+      const uint8Key = util.utf8Encode(key)
 
       kr.setKey(uint8Key)
 
@@ -1353,16 +1343,16 @@ class ImmudbClient {
             if (referencedby === undefined) {
               vTx = entry.getTx()
 
-              kv.setKey(this.util.prefixKey(uint8Key))
-              kv.setValue(this.util.prefixValue(entry.getValue_asU8()))
+              kv.setKey(util.prefixKey(uint8Key))
+              kv.setValue(util.prefixValue(entry.getValue_asU8()))
             } else {
-              const encRefKey = utf8Encode(referencedby.getKey())
+              const encRefKey = util.utf8Encode(referencedby.getKey())
               const atTx = referencedby.getAttx()
     
               vTx = referencedby.getTx()
 
-              kv.setKey(this.util.prefixKey(encRefKey))
-              kv.setValue(this.util.encodeReferenceValue(encRefKey, atTx))
+              kv.setKey(util.prefixKey(encRefKey))
+              kv.setValue(util.encodeReferenceValue(encRefKey, atTx))
             }
 
             const dualproof = verifiabletx.getDualproof()
@@ -1381,7 +1371,7 @@ class ImmudbClient {
                 reject()
               } else {
                 let eh = targettxmetadata.getEh_asU8()
-                const tPrevalh = getAlh(targettxmetadata)
+                const tPrevalh = util.getAlh(targettxmetadata)
                 let sourceId = txid
                 let sourceAlh = txhash
                 let targetId = vTx
@@ -1397,7 +1387,7 @@ class ImmudbClient {
                   targetAlh = txhash
                 }
     
-                let verifies = verifyInclusion(inclusionproof, digestKeyValue(kv), eh)
+                let verifies = verifyInclusion(inclusionproof, util.digestKeyValue(kv), eh)
     
                 if (!verifies) {
                   console.error('verifiedGet inclusion verification failed');
@@ -1562,10 +1552,10 @@ class ImmudbClient {
                   sourceId = txid
                   sourceAlh = txhash
                   targetId = resTxId
-                  targetAlh = getAlh(targettxmetadata)
+                  targetAlh = util.getAlh(targettxmetadata)
                 } else {
                   sourceId = resTxId
-                  sourceAlh = getAlh(sourcetxmetadata)
+                  sourceAlh = util.getAlh(sourcetxmetadata)
                   targetId = txid
                   targetAlh = txhash
                 }

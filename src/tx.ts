@@ -1,8 +1,7 @@
 import HTree from './htree';
-import Util, { encodeInt32, encodeInt64, hashUint8Array, utf8Encode } from './util';
+import { encodeInt32, encodeInt64, equalArray, hashUint8Array, utf8Encode } from './util';
 import * as messages from './proto/schema_pb';
 
-const util = new Util()
 class TXe {
     public hValue: Uint8Array
     public vOff: number
@@ -125,7 +124,7 @@ export const proofTx = (tx: Tx, key: Uint8Array) => {
     let kindex
 
     for (let [k, v] of tx.entries.entries()) {
-        if (util.equalArray(v.key, key)) {
+        if (equalArray(v.key, key)) {
             kindex = k
         }
     }
