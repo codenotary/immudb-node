@@ -20,8 +20,9 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
  
 (async () => {
     try {
-		const randString: string = `${Math.floor(Math.random() * Math.floor(100000))}`;
-		const randNumber: number = +randString;
+        const randNumber = 1
+		const randString: string = `test${randNumber}`;
+
         let index: any;
 
         // Instantiate the client
@@ -104,13 +105,13 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
         const res7 = await client.txById({
             tx: index
         })
-        console.log('success: byIndex', res7);
+        console.log('success: txById', res7);
 
         // // safely return an element by index
         const res8 = await client.verifiedTxById({
             tx: index
         })
-        console.log('success: bySafeIndex', res8);
+        console.log('success: verifiedTxById', res8);
 
         // fetch history for the item having the
         // specified key
@@ -120,7 +121,6 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
 			limit: 0,
 			desc: false,
 			sincetx: randNumber
-
         })
         console.log('success: history', res9);
 
@@ -151,11 +151,11 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
 
         // iterate over a sorted set
         const res12 = await client.zAdd({
-            set: randString,
-            key: '10',
+            set: '10',
+            key: randString,
             score: 5,
         })
-        console.log('success: zScan', res12);
+        console.log('success: zAdd', res12);
 
         // execute a batch read
         const res14 = await client.getAll({
