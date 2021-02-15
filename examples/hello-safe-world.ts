@@ -29,12 +29,27 @@ import ImmudbClient from '../src/client';
         // const res4 = await client.verifiedGet({ key: 'hello' })
         // console.log('success: verifiedGet', res4);
 
-        // get item having the specified key
-        const res44 = await client.verifiedGet({ key: 'hello' })
-        console.log('success: verifiedGet', res44);
+        // // get item having the specified key
+        // const res44 = await client.verifiedGet({ key: 'hello' })
+        // console.log('success: verifiedGet', res44);
 
         // //@ts-ignore
-        // const res = await client.setReferenceAt({ key: 'hello', referencedKey: 'blabla', attx: res11?.id })
+        const res = await client.verifiedSetReferenceAt({ key: 'blabla', referencedKey: 'hello', attx: 0 })
+
+
+
+
+        // const res1 = await client.set({ key: 'hello', value: 'world' })
+        // console.log('set: ',res1)
+
+        // const res2 = await client.verifiedSet({ key: 'hellohello', value: 'world' })
+        // console.log('verifiedSet1: ',res2)
+
+        // const res3 = await client.verifiedSet({ key: 'hellohellohellohello', value: 'world' })
+        // console.log('verifiedSet2: ',res3)
+
+        // const res4 = await client.verifiedGet({ key: 'hello' })
+        // console.log('verifiedGet: ',res4)
     } catch (err) {
         console.log(err)
     }

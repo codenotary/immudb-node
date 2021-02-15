@@ -4,6 +4,11 @@ import { getAlh, hashUint8Array, encodeInt64, equalArray, withLeafPrefix } from 
 import { NODE_PREFIX } from './consts'
 
 const verifyInclusionAHT = (inclusionProofList: Array<Uint8Array>, i: number, j: number, iLeaf: Uint8Array, jRoot: Uint8Array): boolean => {
+    console.log('i', i)
+    console.log('j', j)
+    console.log('iLeaf', iLeaf)
+    console.log('jRoot', jRoot)
+    console.log('inclusionProofList', inclusionProofList)
     if (i > j || i === 0 || i < j && inclusionProofList.length === 0) {
         return false
     }
@@ -216,7 +221,7 @@ export const verifyDualProof = (dualProof: schemaTypes.DualProof, sourceId: numb
     if (!equalArray(sourceAlh, sPrevalh) || !equalArray(targetAlh, tPrevalh)) {
         return false
     }
-    if (sourceId < tBltxid && verifyInclusionAHT(inclusionproofList, sourceId, tBltxid, withLeafPrefix(sourceAlh), tBlroot) === false) {
+    if (sourceId < tBltxid && verifyInclusionAHT(inclusionproofList, sourceId, tBltxid, hashUint8Array(withLeafPrefix(sourceAlh)), tBlroot) === false) {
         return false
     }
     if (sBltxid > 0 && verifyConsistency(consistencyproofList, sBltxid, tBltxid, sBlroot, tBlroot) === false) {

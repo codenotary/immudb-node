@@ -1366,7 +1366,7 @@ class ImmudbClient {
                   targetId = vTx
                   targetAlh = tPrevalh
                 } else {
-                  const sPrevalh = sourcetxmetadata.getPrevalh_asU8()
+                  const sPrevalh = util.getAlh(sourcetxmetadata)
                   
                   eh = sourcetxmetadata.getEh_asU8()
                   sourceId = vTx
