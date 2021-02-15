@@ -4,9 +4,10 @@ import fs from 'fs'
 import * as schemaTypes from './proto/schema_pb';
 import * as services from './proto/schema_grpc_pb';
 import * as empty from 'google-protobuf/google/protobuf/empty_pb';
+import { utf8Decode, utf8Encode } from './util';
 
-type Server = Map<string, schemaTypes.ImmutableState>
-type Servers = Map<string, Server>
+type Server = { [key: string]:  schemaTypes.ImmutableState.AsObject }
+type Servers = { [key: string]: Server }
 type StateGetMetadata = {
     serverName: string
     databaseName: string
@@ -28,6 +29,31 @@ enum Signals {
     UNCAUGHT_EXCEPTION = 'uncaughtException'
 }
 
+// const prepareDataForWritingToFile = (servers: Servers): Servers => {
+//     const serverNames = Object.keys(servers)
+
+//     const preparedServers: Servers = serverNames.reduce((newServers, serverName) => {
+//         const server = servers[serverName]
+//         const dbNames = Object.keys(server)
+
+//         const preparedDbs = dbNames.reduce((newDbs, dbName) => {
+//             const db = server[dbName]
+//             const preparedDb: schemaTypes.ImmutableState.AsObject = Object.assign({}, db, { txhash: utf8Decode(db.txhash) })
+
+//             console.log('txhash', db.txhash)
+//             console.log('utf8Decode', utf8Decode(db.txhash))
+//             console.log('utf8Encode', utf8Encode(utf8Decode(db.txhash)))
+
+//             return Object.assign({}, newDbs, { [dbName]: preparedDb })
+//         }, {} as Server)
+
+//         return Object.assign({}, newServers, { [serverName]: preparedDbs })
+//     }, {} as Servers)
+
+//     return preparedServers
+// }
+// const prepareDataAfterReadingFromFile = (servers: Servers): Servers => {}
+
 class State {
     public servers: Servers
     public client: services.ImmuServiceClient
@@ -35,7 +61,7 @@ class State {
 
     constructor({ client, rootPath = 'root' }: StateConfig) {
         const handleExit = () => {
-            this.exitHandler()
+            // this.exitHandler()
         }
         (process as NodeJS.EventEmitter).on(Signals.EXIT, handleExit);
         (process as NodeJS.EventEmitter).on(Signals.SIGINT, handleExit);
@@ -49,13 +75,28 @@ class State {
 
     async get (config: StateGetMetadata): Promise<schemaTypes.ImmutableState> {
         const { serverName, databaseName } = config
-        const server = this.servers.get(serverName)
+        const server = this.servers[serverName]
 
         if (server !== undefined) {
-            const state = server.get(databaseName)
+            const state = server[databaseName]
 
-            if (state !== undefined) {
-                return state
+            if (state !== undefined || Object.keys(state).length === 0) {
+                const { db, txid, txhash, signature } = state
+                const iState = new schemaTypes.ImmutableState()
+
+                iState.setDb(db)
+                iState.setTxid(txid)
+                iState.setTxhash(txhash)
+                if (signature !== undefined) {
+                    const sgntr = new schemaTypes.Signature()
+
+                    sgntr.setSignature(signature.signature)
+                    sgntr.setPublickey(signature.publickey)
+
+                    iState.setSignature(sgntr)
+                }
+
+                return iState
             } else {
                 return await this.getCurrentState(config)
             }
@@ -71,7 +112,12 @@ class State {
                 reject(err);
             }
 
-            const stateObject = res.toObject();
+            const stateObject: schemaTypes.ImmutableState.AsObject = {
+                db: res.getDb(),
+                txid: res.getTxid(),
+                txhash: res.getTxhash_asU8(),
+                signature: res.getSignature()?.toObject()
+            };
             const state = new schemaTypes.ImmutableState()
             const sgntr = new schemaTypes.Signature()
 
@@ -91,60 +137,44 @@ class State {
         }))
     }
  
-    set ({ serverName, databaseName }: StateSetMetadata, { db, txid, txhash, signature }: schemaTypes.ImmutableState.AsObject) {
-        const server = this.servers.get(serverName) || new Map() as Server
-        const state = new schemaTypes.ImmutableState()
-        const sgntr = new schemaTypes.Signature()
-
-        if (signature) {
-            sgntr.setSignature(signature.signature)
-            sgntr.setPublickey(signature.publickey)
-        }
-
-        state.setDb(db)
-        state.setTxid(txid)
-        state.setTxhash(txhash)
-        state.setSignature(sgntr)
-
-        server.set(databaseName, state)
-
-        this.servers.set(serverName, server)
+    set ({ serverName, databaseName }: StateSetMetadata, state: schemaTypes.ImmutableState.AsObject) {
+        const server = this.servers[serverName] || {} as Server
+        
+        server[databaseName] = state
+        this.servers[serverName] = server
     }
 
-    commit() {
-        try {
-            const data = JSON.stringify(this.servers)
+    // commit() {
+    //     try {
+    //         const data = prepareDataForWritingToFile(this.servers)
 
-            fs.writeFileSync(this.rootPath, data, 'utf-8')
-        } catch(err) {
-            console.error(err)
-            throw new Error('Error writing state to file')
-        }
-    }
+    //         console.log('prepared data', data)
 
-    exitHandler() {
-        try {
-            this.commit()
-        } catch(err) {
-            console.error(err)
-            throw new Error('Error in state exit handler')
-        }
-    }
+    //         fs.writeFileSync(this.rootPath, JSON.stringify(data), 'utf-8')
+    //     } catch(err) {
+    //         console.error(err)
+    //         throw new Error('Error writing state to file')
+    //     }
+    // }
+
+    // exitHandler() {
+    //     try {
+    //         this.commit()
+    //     } catch(err) {
+    //         console.error(err)
+    //         throw new Error('Error in state exit handler')
+    //     }
+    // }
     
-    getInitialState() {
+    getInitialState(): Servers {
         try {
-            const initialStateEntriesGetter = () => {
-                if (fs.existsSync(this.rootPath)) {
-                    const rawdata = fs.readFileSync(this.rootPath, 'utf-8')
-                    const dataEntries: [string, Server][] = Object.entries(JSON.parse(rawdata))
+            if (fs.existsSync(this.rootPath)) {
+                const rawdata = fs.readFileSync(this.rootPath, 'utf-8')
 
-                    return dataEntries
-                } else {
-                    return [];
-                }                
-            }
-
-            return new Map(initialStateEntriesGetter())
+                return JSON.parse(rawdata) as Servers
+            } else {
+                return {} as Servers;
+            }     
         } catch(err) {
             console.error(err)
             throw new Error('Error getting initial state')

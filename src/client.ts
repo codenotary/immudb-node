@@ -157,7 +157,7 @@ class ImmudbClient {
   }
 
   async shutdown() {
-    this.state.commit();
+    // this.state.commit();
     this.logout();
     process.exit(0);
   }
@@ -687,10 +687,16 @@ class ImmudbClient {
         if (err) {
           reject(err);
         } else {
-          console.log('state received', res.toObject())
           const signature = res.getSignature();
 
-          this.state.set({ databaseName: this._activeDatabase, serverName: this._serverUUID }, res.toObject());
+          const state: schemaTypes.ImmutableState.AsObject = {
+            db: res.getDb(),
+            txid: res.getTxid(),
+            txhash: res.getTxhash_asU8(),
+            signature: signature?.toObject()
+          }
+
+          this.state.set({ databaseName: this._activeDatabase, serverName: this._serverUUID }, state);
 
           resolve({
             db: this._activeDatabase,
@@ -851,7 +857,7 @@ class ImmudbClient {
                     }
   
                     const targetId = tx.id
-                    const targetAlh = tx.alh
+                    const targetAlh = util.getAlh(tTxMetadata)
   
                     verifies = verifyDualProof(dualProof, sourceId, targetId, sourceAlh, targetAlh)
   
@@ -865,7 +871,6 @@ class ImmudbClient {
                       { serverName: this._serverUUID, databaseName: this._activeDatabase },
                       { txid: targetId, txhash: targetAlh, signature: res.getSignature()?.toObject(), db: this._activeDatabase }
                     )
-                    console.log('here too')
   
                     resolve(tTxMetadata.toObject())
                   }
@@ -1220,8 +1225,9 @@ class ImmudbClient {
   
               } else {
                 const tTxMetadata = dualProof.getTargettxmetadata()
+                const sTxMetadata = dualProof.getSourcetxmetadata()
   
-                if (!tTxMetadata) {
+                if (!tTxMetadata || !sTxMetadata) {
   
                 } else {
                   if (!util.equalArray(tx.htree.root, tTxMetadata.getEh_asU8())) {
@@ -1233,7 +1239,7 @@ class ImmudbClient {
   
                   if (txid === 0) {
                     sourceId = tx.id
-                    sourceAlh = tx.alh
+                    sourceAlh = util.getAlh(sTxMetadata)
                   } else {
                     sourceId = txid
                     sourceAlh = txhash
@@ -1339,16 +1345,21 @@ class ImmudbClient {
       
                 reject()
               } else {
-                let eh = targettxmetadata.getEh_asU8()
-                const tPrevalh = util.getAlh(targettxmetadata)
-                let sourceId = txid
-                let sourceAlh = txhash
-                let targetId = vTx
-                let targetAlh = tPrevalh
+                let eh
+                let sourceId
+                let sourceAlh
+                let targetId
+                let targetAlh
     
-                if (txid > vTx) {
+                if (txid <= vTx) {
+                  const tPrevalh = util.getAlh(targettxmetadata)
+                  eh = targettxmetadata.getEh_asU8()
+                  sourceId = txid
+                  sourceAlh = txhash
+                  targetId = vTx
+                  targetAlh = tPrevalh
+                } else {
                   const sPrevalh = sourcetxmetadata.getPrevalh_asU8()
-
                   eh = sourcetxmetadata.getEh_asU8()
                   sourceId = vTx
                   sourceAlh = sPrevalh
@@ -1387,8 +1398,8 @@ class ImmudbClient {
 
                 resolve({
                   tx: vTx,
-                  key: entry.getKey_asU8(),
-                  value: entry.getValue_asU8(),
+                  key: util.utf8Decode(entry.getKey_asU8()),
+                  value: util.utf8Decode((entry.getValue_asU8())),
                   referencedby: referencedBy?.toObject()
                 })
               }

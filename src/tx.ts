@@ -18,7 +18,7 @@ class TXe {
     }
 }
 
-const digestTXe = ({ key, hValue }: TXe) => {
+export const digestTXe = ({ key, hValue }: Omit<TXe, 'vOff' | 'valueLen' | 'keyLen'>) => {
     const b = new Uint8Array(key.length + hValue.length)
 
     b.set(key)
@@ -27,7 +27,7 @@ const digestTXe = ({ key, hValue }: TXe) => {
     return hashUint8Array(b)
 }
 
-class Tx {
+export class Tx {
     public id: number
     public entries: Array<TXe>
     public nEntries: number
@@ -92,10 +92,6 @@ class Tx {
     }
 }
 
-const newTx = (entries: Array<TXe>, id: number, prevAlh: Uint8Array, ts: number, blTxId: number, blRoot: Uint8Array) => {
-    return new Tx(entries, id, prevAlh, ts, blTxId, blRoot)
-}
-
 export const txFrom = (sTx: schemaTypes.Tx) => {
     const sTxMetadata = sTx.getMetadata()
 
@@ -117,7 +113,7 @@ export const txFrom = (sTx: schemaTypes.Tx) => {
     const sTxBlTxId = sTxMetadata.getBltxid()
     const sTxBlRoot = sTxMetadata.getBlroot_asU8()
 
-    return newTx(entries, sTxId, sTxPrevalh, sTxTs, sTxBlTxId, sTxBlRoot)
+    return new Tx(entries, sTxId, sTxPrevalh, sTxTs, sTxBlTxId, sTxBlRoot)
 }
 
 export const proofTx = (tx: Tx, key: Uint8Array) => {

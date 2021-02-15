@@ -2,7 +2,7 @@ import tap from 'tap';
 
 import * as schemaTypes from '../src/proto/schema_pb';
 import ImmudbClient from '../src/client';
-import Util, { utf8Encode } from '../src/util'
+import * as util from '../src/util'
 
 import { Permission, Config } from '../src/interfaces';
 
@@ -13,8 +13,6 @@ const {
   IMMUDB_PWD = 'immudb',
 } = process.env;
 
-const util = new Util()
-
 tap.test('database management', async t => {
   const config: Config = {
     host: IMMUDB_HOST,
@@ -24,7 +22,7 @@ tap.test('database management', async t => {
   const immudbClient = await ImmudbClient.getInstance(config);
   try {
     // test: login using the specified username and password
-    const firstRequestData: schemaTypes.LoginRequest.AsObject = {
+    const firstRequestData = {
       user: IMMUDB_USER,
       password: IMMUDB_PWD,
     };
@@ -104,7 +102,7 @@ tap.test('user management', async t => {
     const rand = `${Math.floor(Math.random() * Math.floor(100000))}`;
 
     // test: login using the specified username and password
-    const loginRequest: schemaTypes.LoginRequest.AsObject = {
+    const loginRequest = {
       user: IMMUDB_USER,
       password: IMMUDB_PWD,
     };
@@ -114,7 +112,7 @@ tap.test('user management', async t => {
     }
 
     // test: create a new user
-    const createUserRequest: schemaTypes.CreateUserRequest.AsObject = {
+    const createUserRequest = {
       user: rand,
       password: 'Example12#',
       permission: Permission.READ_WRITE,
@@ -139,7 +137,7 @@ tap.test('user management', async t => {
     await immudbClient.changePermission(changeUserPermissionRequest);
 
     // test: change user password
-    const changePasswordRequest: schemaTypes.ChangePasswordRequest.AsObject = {
+    const changePasswordRequest = {
       user: rand,
       oldpassword: 'Example12#',
       newpassword: 'Example1234%',
@@ -177,7 +175,7 @@ tap.test('operations', async t => {
     const testDB = 'testdb';
 
     // test: login using the specified username and password
-    const loginRequest: schemaTypes.LoginRequest.AsObject = {
+    const loginRequest = {
       user: IMMUDB_USER,
       password: IMMUDB_PWD,
     };
@@ -195,9 +193,11 @@ tap.test('operations', async t => {
 
     // test: add new item having the specified key
     // and value
-    let setRequest: schemaTypes.KeyValue.AsObject = {
-      key: new Uint8Array(rand),
-      value: new Uint8Array(rand),
+    const key = 'hello'
+    const value = 'world'
+    let setRequest = {
+      key,
+      value: 'world',
     };
     let setResponse = await immudbClient.set(setRequest);
     const id = setResponse && setResponse.id; // used in txById test
@@ -207,7 +207,7 @@ tap.test('operations', async t => {
     }
 
     // test: get item by key
-    const getRequest: schemaTypes.Key.AsObject = { key: new Uint8Array(rand) };
+    const getRequest = { key };
     const getResponse = await immudbClient.get(getRequest);
 
     // // test: count keys having the specified value
@@ -218,8 +218,8 @@ tap.test('operations', async t => {
     // test: iterate over keys having the specified
     // prefix
     const scanRequest: schemaTypes.ScanRequest.AsObject = {
-      seekkey: new Uint8Array(rand),
-      prefix: new Uint8Array(rand),
+      seekkey: key,
+      prefix: 'test',
       desc: true,
       limit: 5,
       sincetx: rand,
@@ -233,8 +233,8 @@ tap.test('operations', async t => {
 
     // history: fetch history for the item having the
     // specified key
-    const historyRequest: schemaTypes.HistoryRequest.AsObject = {
-      key: new Uint8Array(rand),
+    const historyRequest = {
+      key,
       offset: 10,
       limit: 5,
       desc: false,
@@ -243,8 +243,8 @@ tap.test('operations', async t => {
     const historyResponse = await immudbClient.history(historyRequest);
 
     // test: iterate over a sorted set
-    const zScanRequest: schemaTypes.ZScanRequest.AsObject = {
-      set: `${rand}`,
+    const zScanRequest = {
+      set: 'test',
       seekkey: '',
       seekscore: 0,
       seekattx: 0,
@@ -258,7 +258,7 @@ tap.test('operations', async t => {
 
     // test: execute a getAll read
     const getAllRequest: schemaTypes.KeyListRequest.AsObject = {
-      keysList: [utf8Encode(new Uint8Array(rand))],
+      keysList: [util.utf8Encode(key)],
       sincetx: 1
     };
     const getAllResponse = await immudbClient.getAll(getAllRequest);
@@ -266,51 +266,62 @@ tap.test('operations', async t => {
     // test: add new item having the specified key
     // and value
     setRequest = {
-      key: new Uint8Array(rand * 2),
-      value: new Uint8Array(rand * 2),
+      key: `${key}${key}`,
+      value: `${value}${value}`,
     };
     setResponse = await immudbClient.set(setRequest);
     
     // test: get current state info
     let currentStateResponse = await immudbClient.currentState();
 
-    // // test: safely add new item having the specified key
-    // // and value
-    // let safeSetRequest: schemaTypes.KeyValue.AsObject = {
-    //   key: `${rand + 10}`,
-    //   // key: new Uint8Array(rand + 10),
-    //   value: new Uint8Array(rand + 10),
-    // };
-    // let safeSetResponse = await immudbClient.safeSet(safeSetRequest);
+    // test: safely add new item having the specified key
+    // and value
+    let verifiedSetRequest: schemaTypes.KeyValue.AsObject = {
+      key: `${key}${key}`,
+      value: `${value}${value}`,
+    };
+    let verifiedSetResponse
+    try {
+      verifiedSetResponse = await immudbClient.verifiedSet(verifiedSetRequest);
+    } catch(err) {
+      t.fail(err)
+    }
 
-    // // test: get current root info
-    // currentRootResponse = await immudbClient.currentRoot();
+    // test: get current root info
+    currentStateResponse = await immudbClient.currentState();
 
-    // // test: safely add new item having the specified key
-    // // and value
-    // safeSetRequest = {
-    //   key: new Uint8Array(rand + 11),
-    //   value: new Uint8Array(rand + 11),
-    // };
-    // safeSetResponse = await immudbClient.safeSet(safeSetRequest);
+    // test: safely add new item having the specified key
+    // and value
+    verifiedSetRequest = {
+      key: `${key}1`,
+      value: `${value}1`,
+    };
+    try {
+      verifiedSetResponse = await immudbClient.verifiedSet(verifiedSetRequest);
+    } catch(err) {
+      t.fail(err)
+    }
 
-    // // test: safely add new item having the specified key
-    // // and value
-    // safeSetRequest = {
-    //   key: new Uint8Array(rand + 12),
-    //   value: new Uint8Array(rand + 12),
-    // };
-    // safeSetResponse = await immudbClient.safeSet(safeSetRequest);
+    // test: safely add new item having the specified key
+    // and value
+    verifiedSetRequest = {
+      key: `${key}2`,
+      value: `${value}2`,
+    };
+    try {
+      verifiedSetResponse = await immudbClient.verifiedSet(verifiedSetRequest);
+    } catch(err) {
+      t.fail(err)
+    }
 
     // test: safely get item by key
-    const verifiedGetRequest: Partial<schemaTypes.KeyRequest.AsObject> = {
-      key: new Uint8Array(rand)
+    const verifiedGetRequest = {
+      key
     }
     try {
       const verifiedGetResponse = await immudbClient.verifiedGet(verifiedGetRequest);
-      t.pass('Verified get test succeeded');
     } catch(err) {
-      t.fail('Verified get test failed',err)
+      t.fail(err)
     }
 
     t.end();
@@ -319,41 +330,44 @@ tap.test('operations', async t => {
   }
 });
 
-// tap.test('batches', async t => {
-//   const config: Config = {
-//     host: IMMUDB_HOST,
-//     port: IMMUDB_PORT,
-//     autoLogin: false,
-//   };
-//   const immudbClient = await ImmudbClient.getInstance(config);
-//   try {
-//     // test: login using the specified username and password
-//     const loginRequest: schemaTypes.LoginRequest.AsObject = {
-//       user: IMMUDB_USER,
-//       password: IMMUDB_PWD,
-//     };
-//     const res = await immudbClient.login(loginRequest);
+tap.test('batches', async t => {
+  const config: Config = {
+    host: IMMUDB_HOST,
+    port: IMMUDB_PORT,
+    autoLogin: false,
+  };
+  const immudbClient = await ImmudbClient.getInstance(config);
+  try {
+    // test: login using the specified username and password
+    const loginRequest = {
+      user: IMMUDB_USER,
+      password: IMMUDB_PWD,
+    };
+    const res = await immudbClient.login(loginRequest);
 
-//     // test: use default database
-//     const useDatabaseRequest: schemaTypes.Database.AsObject = { databasename: 'defaultdb' };
-//     const useDatabaseResponse = await immudbClient.useDatabase(useDatabaseRequest);
+    // test: use default database
+    const useDatabaseRequest: schemaTypes.Database.AsObject = { databasename: 'defaultdb' };
+    const useDatabaseResponse = await immudbClient.useDatabase(useDatabaseRequest);
 
-//     // test: execute a batch insert
-//     const setBatchRequest: schemaTypes.KVList.AsObject = { kvsList: [] };
-//     for (let i = 0; i < 20; i++) {
-//       setBatchRequest.kvsList.push({ key: `${i}`, value: new Uint8Array(i) });
-//     }
-//     const setBatchResponse = await immudbClient.setBatch(setBatchRequest);
+    // // test: execute setAll
+    // const setAllRequest: schemaTypes.SetRequest.AsObject = { kvsList: [] };
+    // for (let i = 0; i < 2; i++) {
+    //   const kv: schemaTypes.KeyValue.AsObject = { key: `test${i}`, value: `world${i}` }
 
-//     // test: execute a batch read
-//     const getBatchRequest: schemaTypes.KeyList.AsObject = { keysList: [] };
-//     for (let i = 0; i < 20; i++) {
-//       getBatchRequest.keysList.push({ key: `${i}` });
-//     }
-//     const getBatchResponse = await immudbClient.getBatch(getBatchRequest);
+    //   setAllRequest.kvsList.push(kv);
+    // }
+    // console.log('setAllRequest',setAllRequest)
+    // const setAllResponse = await immudbClient.setAll(setAllRequest);
 
-//     t.end();
-//   } catch (err) {
-//     t.error(err);
-//   }
-// });
+    // // test: execute a batch read
+    // const getAllRequest: schemaTypes.KeyListRequest.AsObject = { keysList: [], sincetx: 0 };
+    // for (let i = 0; i < 2; i++) {
+    //   getAllRequest.keysList.push(`test${i}`);
+    // }
+    // const getBatchResponse = await immudbClient.getAll(getAllRequest);
+
+    t.end();
+  } catch (err) {
+    t.error(err);
+  }
+});

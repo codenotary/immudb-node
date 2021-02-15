@@ -74,6 +74,15 @@ export const encodeInt32 = (num: number, buf = Buffer.allocUnsafe(4), offset = 0
     return buf
 }
 
+export const doubleToByteArray = (number: number) => {
+    var buffer = new ArrayBuffer(8);         // JS numbers are 8 bytes long, or 64 bits
+    var longNum = new Float64Array(buffer);  // so equivalent to Float64
+
+    longNum[0] = number;
+
+    return Array.from(new Int8Array(buffer)).reverse();  // reverse to get little endian
+}
+
 export const utf8Decode = (val: any) => {
     return val === ''
         ? val
@@ -169,7 +178,7 @@ export const encodeKeyValue = (key: Uint8Array, value: Uint8Array) => {
 export const encodeZAdd = (zSet: Uint8Array, score: number, key: Uint8Array, attx: number) => {
     const eKey = prefixKey(key)
     const zSetLengthUint = encodeInt64(zSet.length)
-    const scoreUint = encodeInt64(score)
+    const scoreUint = doubleToByteArray(score)
     const eKeyLengthUint = encodeInt64(eKey.length)
     const attxUint = encodeInt64(attx)
     const zKey = new Uint8Array(SORTED_KEY_PREFIX.length + zSetLengthUint.length + zSet.length + scoreUint.length + eKeyLengthUint.length + eKey.length + attxUint.length)

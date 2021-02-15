@@ -29,7 +29,7 @@ const verifyInclusionAHT = (inclusionProofList: Array<Uint8Array>, i: number, j:
         j1 = j1 >> 1
     }
 
-    return jRoot === ciRoot
+    return equalArray(jRoot, ciRoot)
 }
 const verifyConsistency = (consistencyProofList: Array<Uint8Array>, i: number, j: number, iRoot: Uint8Array, jRoot: Uint8Array): boolean => {
     if (i > j || i === 0 || (i < j && consistencyProofList.length === 0)) {
@@ -37,7 +37,7 @@ const verifyConsistency = (consistencyProofList: Array<Uint8Array>, i: number, j
     }
 
     if (i === j && consistencyProofList.length === 0) {
-        return iRoot === jRoot
+        return equalArray(iRoot, jRoot)
     }
 
     let fn = i - 1
@@ -142,87 +142,6 @@ const verifyLinearProof = (linearProof: schemaTypes.LinearProof, sourceId: numbe
     }
 
     return equalArray(targetAlh, calculatedAlh)
-}
-
-export const inclusionProofFrom = ({ leaf, width, termsList }: schemaTypes.InclusionProof.AsObject) => {
-    const iProof = new schemaTypes.InclusionProof()
-
-    iProof.setLeaf(leaf)
-    iProof.setWidth(width)
-    iProof.setTermsList(termsList)
-
-    return iProof
-}
-
-export const dualProofFrom = ({
-    sourcetxmetadata,
-    targettxmetadata,
-    inclusionproofList,
-    consistencyproofList,
-    targetbltxalh,
-    lastinclusionproofList,
-    linearproof
-}: schemaTypes.DualProof.AsObject) => {
-    const dProof = new schemaTypes.DualProof();
-
-    if (sourcetxmetadata !== undefined) {
-        const sTxMetadata = new schemaTypes.TxMetadata();
-        const { id, prevalh, ts, nentries, eh, bltxid, blroot } = sourcetxmetadata
-
-        sTxMetadata.setId(id);
-        sTxMetadata.setPrevalh(prevalh);
-        sTxMetadata.setTs(ts);
-        sTxMetadata.setNentries(nentries);
-        sTxMetadata.setEh(eh);
-        sTxMetadata.setBltxid(bltxid);
-        sTxMetadata.setBlroot(blroot);
-
-        dProof.setSourcetxmetadata(sTxMetadata);
-    }
-
-    if (targettxmetadata !== undefined) {
-        const tTxMetadata = new schemaTypes.TxMetadata();
-        const { id, prevalh, ts, nentries, eh, bltxid, blroot } = targettxmetadata
-
-        tTxMetadata.setId(id);
-        tTxMetadata.setPrevalh(prevalh);
-        tTxMetadata.setTs(ts);
-        tTxMetadata.setNentries(nentries);
-        tTxMetadata.setEh(eh);
-        tTxMetadata.setBltxid(bltxid);
-        tTxMetadata.setBlroot(blroot);
-
-        dProof.setTargettxmetadata(tTxMetadata);
-    }
-
-    if (inclusionproofList !== undefined) {
-        dProof.setInclusionproofList(inclusionproofList)
-    }
-
-    if (consistencyproofList !== undefined) {
-        dProof.setConsistencyproofList(consistencyproofList)
-    }
-
-    if (targetbltxalh !== undefined) {
-        dProof.setTargetbltxalh(targetbltxalh)
-    }
-
-    if (lastinclusionproofList !== undefined) {
-        dProof.setLastinclusionproofList(lastinclusionproofList)
-    }
-
-    if (linearproof !== undefined) {
-        const lProof = new schemaTypes.LinearProof();
-        const { sourcetxid, targettxid, termsList } = linearproof
-
-        lProof.setSourcetxid(sourcetxid)
-        lProof.setTargettxid(targettxid)
-        lProof.setTermsList(termsList)
-
-        dProof.setLinearproof(lProof)
-    }
-
-    return dProof
 }
 
 export const verifyInclusion = (proof: schemaTypes.InclusionProof, digest: Uint8Array, root: Uint8Array) => {

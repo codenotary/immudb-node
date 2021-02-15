@@ -11,7 +11,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { utf8Encode } from '../src/util';
+import { digestKeyValue, encodeZAdd, utf8Encode } from '../src/util';
 import ImmudbClient from '../src/client';
 
 (async () => {
@@ -21,24 +21,24 @@ import ImmudbClient from '../src/client';
             host: '127.0.0.1', port: '3322', user: 'immudb', password: 'immudb'
         });
 
-        // // add new item with the specified key and value
-        // const res11 = await client.verifiedSet({ key: 'hello', value: 'world' });
-        // console.log('success: set', res11);
+        // add new item with the specified key and value
+        const res11 = await client.verifiedSet({ key: 'hello', value: 'world' });
+        console.log('success: set', res11);
 
-        // // add new item with the specified key and value
-        // const res1 = await client.verifiedTxById({ tx: 91 });
-        // console.log('success: verifiedTxById', res1);
+        // get item having the specified key
+        const res4 = await client.verifiedGet({ key: 'hello' })
+        console.log('success: verifiedGet', res4);
 
-        // // // add new item with the specified key and value
-        // const res1 = await client.verifiedZAddAt({ set: 'test', score: 32, key: 'hello', attx: 94 });
-        // console.log('success: verifiedZAdd', res1);
+        // get item having the specified key
+        const res44 = await client.verifiedGet({ key: 'hello' })
+        console.log('success: verifiedGet', res44);
 
-        const res2 = await client.setReferenceAt({ key: 'hello', referencedKey: 'world', attx: 76 })
-        console.log('success: setReferenceAt', res2);
+        // const res = await client.set({ key: 'hello', value: 'world' })
 
-        // // get item having the specified key
-        // const res4 = await client.verifiedGet({ key: 'hello' })
-        // console.log('success: get', res4);
+        const res1 = await client.verifiedZAdd({ set: 'gfhjds', score: 32.4, key: 'hello' })
+        console.log('success: verifiedZAdd', res1)
+
+        // const res = await client.setReference({ key: 'hello', referencedKey: 'blabla' })
     
     } catch (err) {
         console.log(err)
