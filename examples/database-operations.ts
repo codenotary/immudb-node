@@ -115,7 +115,7 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
         // fetch history for the item having the
         // specified key
         const res9 = await client.history({
-			key: new Uint8Array(randNumber),
+			key: randString,
 			offset: 0,
 			limit: 0,
 			desc: false,
@@ -127,7 +127,7 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
         // fetch paginated history for the item having the
         // specified key
         const res10 = await client.history({
-			key: new Uint8Array(randNumber),
+			key: randString,
 			offset: 10,
 			limit: 5,
 			desc: true,
@@ -154,16 +154,8 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
             set: randString,
             key: '10',
             score: 5,
-            index: 0
         })
         console.log('success: zScan', res12);
-
-        // iterate over all elements by insertion order
-        // const res13 = await client.iScan({
-        //     pagesize: 1,
-        //     pagenumber: 1
-        // })
-        // console.log('success: iScan', res13);
 
         // execute a batch read
         const res14 = await client.getAll({
