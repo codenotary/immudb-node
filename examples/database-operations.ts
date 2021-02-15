@@ -60,7 +60,9 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
         })
         console.log('success: get', res2);
 
-        // count keys having the specified value
+		// count keys having the specified value
+		// TODO: implement that as soon as immudb
+		// ^0.9.1 has that implemented
         // // in the database in use
         // const res3 = await client.count({ 
         //     prefix: randString
@@ -77,7 +79,9 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
             console.log(`success: set ${i}`, res4);
         }
             
-        // count again keys having the specified value
+		// count again keys having the specified value
+		// TODO: implement that as soon as immudb
+		// ^0.9.1 has that implemented		
         // in the database in use (result will be +10)
         // const res5 = await client.count({
         //     prefix: randString
@@ -97,39 +101,39 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
         console.log('success: scan', res6);
 
         // return an element by index
-        // const res7 = await client.byIndex({
-        //     index: index
-        // })
-        // console.log('success: byIndex', res7);
+        const res7 = await client.txById({
+            tx: index
+        })
+        console.log('success: byIndex', res7);
 
         // // safely return an element by index
-        // const res8 = await client.bySafeIndex({
-        //     index: index
-        // })
-        // console.log('success: bySafeIndex', res8);
+        const res8 = await client.verifiedTxById({
+            tx: index
+        })
+        console.log('success: bySafeIndex', res8);
 
         // fetch history for the item having the
         // specified key
-        // const res9 = await client.history({
-		// 	key: new Uint8Array(randNumber),
-		// 	offset: 0,
-		// 	limit: 0,
-		// 	desc: false,
-		// 	sincetx: randNumber
+        const res9 = await client.history({
+			key: new Uint8Array(randNumber),
+			offset: 0,
+			limit: 0,
+			desc: false,
+			sincetx: randNumber
 
-        // })
-        // console.log('success: history', res9);
+        })
+        console.log('success: history', res9);
 
         // fetch paginated history for the item having the
         // specified key
-        // const res10 = await client.history({
-		// 	key: new Uint8Array(randNumber),
-		// 	offset: 10,
-		// 	limit: 5,
-		// 	desc: true,
-		// 	sincetx: randNumber
-        // })
-        // console.log('success: paginated history', res10);
+        const res10 = await client.history({
+			key: new Uint8Array(randNumber),
+			offset: 10,
+			limit: 5,
+			desc: true,
+			sincetx: randNumber
+        })
+        console.log('success: paginated history', res10);
 
         // iterate over a sorted set
         const res11 = await client.zScan({
@@ -146,13 +150,13 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
         console.log('success: zScan', res11);
 
         // iterate over a sorted set
-        // const res12 = await client.zAdd({
-        //     set: randString,
-        //     key: '10',
-        //     score: 5,
-        //     index: 0
-        // })
-        // console.log('success: zScan', res12);
+        const res12 = await client.zAdd({
+            set: randString,
+            key: '10',
+            score: 5,
+            index: 0
+        })
+        console.log('success: zScan', res12);
 
         // iterate over all elements by insertion order
         // const res13 = await client.iScan({
