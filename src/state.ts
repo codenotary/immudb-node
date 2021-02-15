@@ -29,31 +29,6 @@ enum Signals {
     UNCAUGHT_EXCEPTION = 'uncaughtException'
 }
 
-// const prepareDataForWritingToFile = (servers: Servers): Servers => {
-//     const serverNames = Object.keys(servers)
-
-//     const preparedServers: Servers = serverNames.reduce((newServers, serverName) => {
-//         const server = servers[serverName]
-//         const dbNames = Object.keys(server)
-
-//         const preparedDbs = dbNames.reduce((newDbs, dbName) => {
-//             const db = server[dbName]
-//             const preparedDb: schemaTypes.ImmutableState.AsObject = Object.assign({}, db, { txhash: utf8Decode(db.txhash) })
-
-//             console.log('txhash', db.txhash)
-//             console.log('utf8Decode', utf8Decode(db.txhash))
-//             console.log('utf8Encode', utf8Encode(utf8Decode(db.txhash)))
-
-//             return Object.assign({}, newDbs, { [dbName]: preparedDb })
-//         }, {} as Server)
-
-//         return Object.assign({}, newServers, { [serverName]: preparedDbs })
-//     }, {} as Servers)
-
-//     return preparedServers
-// }
-// const prepareDataAfterReadingFromFile = (servers: Servers): Servers => {}
-
 class State {
     public servers: Servers
     public client: services.ImmuServiceClient

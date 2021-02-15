@@ -21,36 +21,30 @@ import ImmudbClient from '../src/client';
             host: '127.0.0.1', port: '3322', user: 'immudb', password: 'immudb'
         });
 
-        // add new item with the specified key and value
-        const res11 = await client.verifiedSet({ key: 'hello', value: 'world' });
-        console.log('success: set', res11);
+        // // add new item with the specified key and value
+        // const res11 = await client.verifiedSet({ key: 'hello', value: 'world' });
+        // console.log('success: set', res11);
 
-        // get item having the specified key
-        const res4 = await client.verifiedGet({ key: 'hello' })
-        console.log('success: verifiedGet', res4);
-
-        // get item having the specified key
-        const res44 = await client.verifiedGet({ key: 'hello' })
-        console.log('success: verifiedGet', res44);
-
-        // //@ts-ignore
-        const res = await client.verifiedSetReferenceAt({ key: 'blabla', referencedKey: 'hello', attx: 0 })
-        console.log('success: verifiedSetReferenceAt', res)
-
-
-
-
-        // const res1 = await client.set({ key: 'hello', value: 'world' })
-        // console.log('set: ',res1)
-
-        // const res2 = await client.verifiedSet({ key: 'hellohello', value: 'world' })
-        // console.log('verifiedSet1: ',res2)
-
-        // const res3 = await client.verifiedSet({ key: 'hellohellohellohello', value: 'world' })
-        // console.log('verifiedSet2: ',res3)
-
+        // // get item having the specified key
         // const res4 = await client.verifiedGet({ key: 'hello' })
-        // console.log('verifiedGet: ',res4)
+        // console.log('success: verifiedGet', res4);
+
+        // // get item having the specified key
+        // const res44 = await client.verifiedGet({ key: 'hello' })
+        // console.log('success: verifiedGet', res44);
+
+        // const res = await client.verifiedSetReferenceAt({ key: 'blabla', referencedKey: 'hello', attx: 0 })
+        // console.log('success: verifiedSetReferenceAt', res)
+
+        // get item having the specified key
+        const res444 = await client.verifiedGet({ key: 'blabla' })
+        console.log('success: verifiedGet by reference', res444);
+
+        // const res2 = await client.zAdd({ set: 'ajshdf', score: 34, key: 'hello' })
+        // console.log('success: zAdd', res2)
+
+        // const res3 = await client.zScan({ set: 'ajshdf', seekkey: 'hello', seekscore: 34, seekattx: 0, inclusiveseek: true, limit: 10, desc: false, sincetx: 0, nowait: true })
+        // console.log('success: zScan', res3)
     } catch (err) {
         console.log(err)
     }

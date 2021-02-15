@@ -1337,13 +1337,14 @@ class ImmudbClient {
               kv.setKey(util.prefixKey(uint8Key))
               kv.setValue(util.prefixValue(entry.getValue_asU8()))
             } else {
-              const encRefKey = util.utf8Encode(referencedby.getKey())
+              const encRefKey = referencedby.getKey_asU8()
               const atTx = referencedby.getAttx()
+              const entryKey = entry.getKey_asU8()
     
               vTx = referencedby.getTx()
 
               kv.setKey(util.prefixKey(encRefKey))
-              kv.setValue(util.encodeReferenceValue(encRefKey, atTx))
+              kv.setValue(util.encodeReferenceValue(entryKey, atTx))
             }
 
             const dualproof = verifiabletx.getDualproof()
