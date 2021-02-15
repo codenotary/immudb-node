@@ -150,10 +150,10 @@ read or write operation:
 
 ```
 try {
-  let res = await cl.safeSet({ key: 'key1', value: 'value1' })
+  let res = await cl.verifiedSet({ key: 'key1', value: 'value1' })
   console.log(res.index)
 
-  res = await cl.safeGet({ key: 'key1' })
+  res = await cl.verifiedGet({ key: 'key1' })
   console.log(res.key, res.value, res.index)
 } catch (err) {
   if (err.clientErr == cl.proofErr) {
@@ -173,13 +173,13 @@ Atomic multi-key write (all entries are persisted or none):
   req = {
     keys: [{
       key: 'key1',
-      payload: 'value1'
+      value: 'value1'
     },{
       key: 'key2',
-      payload: 'value2'
+      value: 'value2'
     }]
   }
-  res = await cl.setBatch(req)
+  res = await cl.setAll(req)
 ```
 
 Atomic multi-key read (all entries are retrieved or none):
@@ -191,7 +191,7 @@ Atomic multi-key read (all entries are retrieved or none):
         key: 'key2',
       }],
     }
-    res = await cl.getBatch(req)
+    res = await cl.getAll(req)
 ```
 
 ### Closing the client
