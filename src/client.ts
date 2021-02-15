@@ -1164,7 +1164,7 @@ class ImmudbClient {
       return new Promise((resolve, reject) => this.client.getAll(req, this._metadata, (err, res) => {
         if (err) {
           console.error('Get all error', err);
-          return reject(err);
+          reject(err);
         }
 
         const entriesList = res.getEntriesList();

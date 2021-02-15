@@ -52,7 +52,7 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
             value: randString
         })
         console.log('success: set', res1);
-        // index = res1 && res1.index;
+        index = res1 && res1.id;
 
         // get item having the specified key
         const res2 = await client.get({
@@ -91,8 +91,8 @@ const IMMUDB_PWD: string = (process.env.IMMUDB_PWD as string || 'immudb');
         // iterate over keys having the specified
         // prefix
         const res6 = await client.scan({
-            seekkey: new Uint8Array(randNumber),
-            prefix: new Uint8Array(randNumber),
+            seekkey: randString,
+            prefix: randString,
 			desc: true,
             limit: 1,
 			sincetx: randNumber,
