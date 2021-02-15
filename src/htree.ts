@@ -6,7 +6,7 @@ class HTree {
     public levels: Array<Array<Uint8Array>>
     public maxWidth: number
     public width: number = 0
-    public root: Uint8Array = Uint8Array.from([])
+    public root: Uint8Array = new Uint8Array()
 
     constructor(maxWidth: number) {
         if (maxWidth < 1) {
@@ -92,7 +92,7 @@ class HTree {
 
         while (true) {
             const d = bitLength(n - 1)
-            const k = 1 << d - 1
+            const k = 1 << (d - 1)
             let l
             let r
 
@@ -111,6 +111,9 @@ class HTree {
             
             const layer = bitLength(r - l)
             const index =  l / (1 << layer)
+
+            console.log('index', index)
+            console.log('floor index', Math.floor(index))
 
             const a = this.levels[layer][index]
             const b = proof.getTermsList_asU8()

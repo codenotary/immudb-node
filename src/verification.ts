@@ -4,11 +4,6 @@ import { getAlh, hashUint8Array, encodeInt64, equalArray, withLeafPrefix } from 
 import { NODE_PREFIX } from './consts'
 
 const verifyInclusionAHT = (inclusionProofList: Array<Uint8Array>, i: number, j: number, iLeaf: Uint8Array, jRoot: Uint8Array): boolean => {
-    console.log('i', i)
-    console.log('j', j)
-    console.log('iLeaf', iLeaf)
-    console.log('jRoot', jRoot)
-    console.log('inclusionProofList', inclusionProofList)
     if (i > j || i === 0 || i < j && inclusionProofList.length === 0) {
         return false
     }
@@ -34,8 +29,6 @@ const verifyInclusionAHT = (inclusionProofList: Array<Uint8Array>, i: number, j:
         j1 = j1 >> 1
     }
 
-    console.log('jRoot', jRoot)
-    console.log('ciRoot', ciRoot)
     return equalArray(jRoot, ciRoot)
 }
 const verifyConsistency = (consistencyProofList: Array<Uint8Array>, i: number, j: number, iRoot: Uint8Array, jRoot: Uint8Array): boolean => {
@@ -177,7 +170,7 @@ export const verifyInclusion = (proof: schemaTypes.InclusionProof, digest: Uint8
         i = Math.floor(i / 2)
         r = Math.floor(r / 2)
     }
-    
+
     return i === r && equalArray(root, calcRoot)
 }
 

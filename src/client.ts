@@ -741,13 +741,13 @@ class ImmudbClient {
           }
 
           resolve({
-            id: res && res.getId(),
-            prevalh: res && res.getPrevalh(),
-            ts: res && res.getTs(),
-            nentries: res && res.getNentries(),
-            eh: res && res.getEh(),
-            bltxid: res && res.getBltxid(),
-            blroot: res && res.getBlroot(),
+            id: res.getId(),
+            prevalh: util.getAlh(res),
+            ts: res.getTs(),
+            nentries: res.getNentries(),
+            eh: res.getEh(),
+            bltxid: res.getBltxid(),
+            blroot: res.getBlroot(),
           });
         })
       );
@@ -908,7 +908,7 @@ class ImmudbClient {
 
         resolve({
           id: res.getId(),
-          prevalh: res.getPrevalh(),
+          prevalh: util.getAlh(res),
           ts: res.getTs(),
           nentries: res.getNentries(),
           eh: res.getEh(),
@@ -947,7 +947,7 @@ class ImmudbClient {
       req.setProvesincetx(state.getTxid())
 
       return new Promise((resolve, reject) => this.client.verifiableSetReference(req, this._metadata, (err, res) => {
-        if (err !== undefined) {
+        if (err === undefined) {
           console.error('verifiedSetReferenceAt error', err)
 
           reject(err)
@@ -1013,7 +1013,7 @@ class ImmudbClient {
                   }
   
                   const targetId = tx.id
-                  const targetAlh = tx.alh
+                  const targetAlh = util.getAlh(resTxMetadata)
   
                   verifies = verifyDualProof(dualProof, sourceId, targetId, sourceAlh, targetAlh)
 
@@ -1028,7 +1028,17 @@ class ImmudbClient {
                     { db: this._activeDatabase, txid: targetId, txhash: targetAlh, signature: res.getSignature()?.toObject() }
                   )
 
-                  resolve(resTxMetadata.toObject())
+                  const txMetadataObject: schemaTypes.TxMetadata.AsObject = {
+                    id: resTxMetadata.getId(),
+                    prevalh: util.getAlh(resTxMetadata),
+                    ts: resTxMetadata.getTs(),
+                    nentries: resTxMetadata.getNentries(),
+                    eh: resTxMetadata.getEh_asU8(),
+                    bltxid: resTxMetadata.getBltxid(),
+                    blroot: resTxMetadata.getBlroot_asU8(),
+                  }
+
+                  resolve(txMetadataObject)
                 }
               }
             }
@@ -1062,7 +1072,7 @@ class ImmudbClient {
         } else {
           resolve({
             id: res.getId(),
-            prevalh: res.getPrevalh(),
+            prevalh: util.getAlh(res),
             ts: res.getTs(),
             nentries: res.getNentries(),
             eh: res.getEh(),
@@ -1128,7 +1138,7 @@ class ImmudbClient {
         } else {
           resolve({
             id: res.getId(),
-            prevalh: res.getPrevalh(),
+            prevalh: util.getAlh(res),
             ts: res.getTs(),
             nentries: res.getNentries(),
             eh: res.getEh(),

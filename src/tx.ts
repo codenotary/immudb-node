@@ -1,5 +1,5 @@
 import HTree from './htree';
-import { encodeInt32, encodeInt64, equalArray, hashUint8Array, utf8Encode } from './util';
+import { encodeInt32, encodeInt64, equalArray, hashUint8Array, getAlh } from './util';
 import * as schemaTypes from './proto/schema_pb';
 
 class TXe {
@@ -70,8 +70,8 @@ export class Tx {
         const bi = new Uint8Array(encodedId.length + this.prevAlh.length + this.innerHash.length)
 
         bi.set(encodedId)
-        bi.set(this.prevAlh)
-        bi.set(this.innerHash)
+        bi.set(this.prevAlh, encodedId.length)
+        bi.set(this.innerHash, encodedId.length + this.prevAlh.length)
 
         return hashUint8Array(bi)
     }
@@ -108,7 +108,7 @@ export const txFrom = (sTx: schemaTypes.Tx) => {
     }
 
     const sTxId = sTxMetadata.getId()
-    const sTxPrevalh = sTxMetadata.getPrevalh_asU8()
+    const sTxPrevalh = getAlh(sTxMetadata)
     const sTxTs = sTxMetadata.getTs()
     const sTxBlTxId = sTxMetadata.getBltxid()
     const sTxBlRoot = sTxMetadata.getBlroot_asU8()

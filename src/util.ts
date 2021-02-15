@@ -155,7 +155,7 @@ export const prefixValue = (value: Uint8Array): Uint8Array => {
 }
 
 export const encodeReferenceValue = (referencedKey: Uint8Array, atTx: number): Uint8Array => {
-    const atTxUint = new Uint8Array([atTx])
+    const atTxUint = encodeInt64(atTx)
     const encoded = new Uint8Array(REFERENCE_VALUE_PREFIX.length + atTxUint.length + SET_KEY_PREFIX.length + referencedKey.length)
 
     encoded.set(REFERENCE_VALUE_PREFIX)
