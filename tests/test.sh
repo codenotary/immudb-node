@@ -7,7 +7,7 @@ cd "$(dirname "$0")"
 eval $(cat ../.env | sed 's/^/export /')
 
 DEV=false
-LAST_IMMUDB_VERSION=v0.8.0
+LAST_IMMUDB_VERSION=v0.9.1
 
 for arg in "$@"
 do

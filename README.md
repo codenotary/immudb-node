@@ -49,13 +49,21 @@ const ImmudbClient = require('immudb-node')
 
 immudb-node supports the [latest immudb release].
 
-[latest immudb release]: https://github.com/codenotary/immudb/releases/tag/v0.8.0
+[latest immudb release]: https://github.com/codenotary/immudb/releases/tag/v0.9.1
 
 ## Quickstart
 
 Check out some [examples]
 
 [examples]: https://github.com/codenotary/immudb-node/tree/master/examples/
+
+## Testing
+
+Create a `.env` file based on a `.env.example` in the project root and replace the `/path/to/immudb/` with your local path to immudb.
+
+You can use either of the following commands to check that all the unit tests pass:
+- `npm run test`: _automatically_ download the [latest immudb release], run it and then run tests
+- `npm run test:dev`: connect to an _already running immudb_ on the `host`:`port` from the `.env` file on your machine and then run tests
 
 ## Step by step guide
 
