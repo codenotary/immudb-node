@@ -7,7 +7,7 @@ export type SetReferenceParameters = {
 export type SetReferenceAtParameters = {
     key: string
     referencedKey: string
-    attx?: number
+    attx: number
 }
 export type ZAddParameters = {
     set: string

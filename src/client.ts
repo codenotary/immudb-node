@@ -886,10 +886,12 @@ class ImmudbClient {
   }
 
   async setReference (params: types.SetReferenceParameters): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
-    return await this.setReferenceAt(params)
+    const setReferenceAtParameters = Object.assign({}, params, { attx: 0 })
+
+    return await this.setReferenceAt(setReferenceAtParameters)
   }
   
-  async setReferenceAt ({ key, referencedKey, attx = 0 }: types.SetReferenceAtParameters): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
+  async setReferenceAt ({ key, referencedKey, attx }: types.SetReferenceAtParameters): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     try {
       const req = new schemaTypes.ReferenceRequest();
 
@@ -920,10 +922,12 @@ class ImmudbClient {
   }
 
   async verifiedSetReference (params: types.SetReferenceParameters): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
-    return await this.verifiedSetReferenceAt(params)
+    const vSetReferenceAtParameters = Object.assign({}, params, { attx: 0 })
+    
+    return await this.verifiedSetReferenceAt(vSetReferenceAtParameters)
   }
 
-  async verifiedSetReferenceAt ({ key, referencedKey, attx = 0 }: types.SetReferenceAtParameters): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
+  async verifiedSetReferenceAt ({ key, referencedKey, attx }: types.SetReferenceAtParameters): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     try {
       const state = await this.state.get({ serverName: this._serverUUID, databaseName: this._activeDatabase, metadata: this._metadata })
       const txid = state.getTxid()
@@ -1042,8 +1046,8 @@ class ImmudbClient {
       const kvls = kvsList.map(({ key, value }) => {
         const kv = new schemaTypes.KeyValue();
 
-        kv.setKey(key)
-        kv.setValue(value)
+        kv.setKey(util.utf8Encode(key))
+        kv.setValue(util.utf8Encode(value))
 
         return kv
       })
@@ -1142,7 +1146,9 @@ class ImmudbClient {
     try {
       const req = new schemaTypes.KeyListRequest();
 
-      req.setKeysList(keysList);
+      const encodedKeys = keysList.map(util.utf8Encode)
+
+      req.setKeysList(encodedKeys);
       req.setSincetx(sincetx);
 
       return new Promise((resolve, reject) => this.client.getAll(req, this._metadata, (err, res) => {
@@ -1353,6 +1359,7 @@ class ImmudbClient {
     
                 if (txid <= vTx) {
                   const tPrevalh = util.getAlh(targettxmetadata)
+
                   eh = targettxmetadata.getEh_asU8()
                   sourceId = txid
                   sourceAlh = txhash
@@ -1360,6 +1367,7 @@ class ImmudbClient {
                   targetAlh = tPrevalh
                 } else {
                   const sPrevalh = sourcetxmetadata.getPrevalh_asU8()
+                  
                   eh = sourcetxmetadata.getEh_asU8()
                   sourceId = vTx
                   sourceAlh = sPrevalh

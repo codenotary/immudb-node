@@ -21,25 +21,20 @@ import ImmudbClient from '../src/client';
             host: '127.0.0.1', port: '3322', user: 'immudb', password: 'immudb'
         });
 
-        // add new item with the specified key and value
-        const res11 = await client.verifiedSet({ key: 'hello', value: 'world' });
-        console.log('success: set', res11);
+        // // add new item with the specified key and value
+        // const res11 = await client.verifiedSet({ key: 'hello', value: 'world' });
+        // console.log('success: set', res11);
 
-        // get item having the specified key
-        const res4 = await client.verifiedGet({ key: 'hello' })
-        console.log('success: verifiedGet', res4);
+        // // get item having the specified key
+        // const res4 = await client.verifiedGet({ key: 'hello' })
+        // console.log('success: verifiedGet', res4);
 
         // get item having the specified key
         const res44 = await client.verifiedGet({ key: 'hello' })
         console.log('success: verifiedGet', res44);
 
-        // const res = await client.set({ key: 'hello', value: 'world' })
-
-        const res1 = await client.verifiedZAdd({ set: 'gfhjds', score: 32.4, key: 'hello' })
-        console.log('success: verifiedZAdd', res1)
-
-        // const res = await client.setReference({ key: 'hello', referencedKey: 'blabla' })
-    
+        // //@ts-ignore
+        // const res = await client.setReferenceAt({ key: 'hello', referencedKey: 'blabla', attx: res11?.id })
     } catch (err) {
         console.log(err)
     }

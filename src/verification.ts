@@ -29,6 +29,8 @@ const verifyInclusionAHT = (inclusionProofList: Array<Uint8Array>, i: number, j:
         j1 = j1 >> 1
     }
 
+    console.log('jRoot', jRoot)
+    console.log('ciRoot', ciRoot)
     return equalArray(jRoot, ciRoot)
 }
 const verifyConsistency = (consistencyProofList: Array<Uint8Array>, i: number, j: number, iRoot: Uint8Array, jRoot: Uint8Array): boolean => {

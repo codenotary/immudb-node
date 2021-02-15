@@ -258,7 +258,7 @@ tap.test('operations', async t => {
 
     // test: execute a getAll read
     const getAllRequest: schemaTypes.KeyListRequest.AsObject = {
-      keysList: [util.utf8Encode(key)],
+      keysList: [key],
       sincetx: 1
     };
     const getAllResponse = await immudbClient.getAll(getAllRequest);
