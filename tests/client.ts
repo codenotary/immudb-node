@@ -210,6 +210,27 @@ tap.test('operations', async t => {
     const getRequest = { key };
     const getResponse = await immudbClient.get(getRequest);
 
+    //test: set a reference to an inserted key
+    const referenceKey = 'refHello'
+    const setReferenceRequest = { key: referenceKey, referencedKey: key }
+    const setReferenceResponse = await immudbClient.setReference(setReferenceRequest)
+
+    // test: get item by reference
+    const getRefRequest = { key: referenceKey };
+    const getRefResponse = await immudbClient.get(getRefRequest);
+
+    // test: set a reference to an inserted key
+    const setReferenceAtRequest = { key: referenceKey, referencedKey: key, attx: 0 }
+    const setReferenceAtResponse = await immudbClient.setReferenceAt(setReferenceAtRequest)
+
+    // test: safely set a reference to an inserted key
+    const verifiedSetReferenceRequest = { key: referenceKey, referencedKey: key }
+    const verifiedSetReferenceResponse = await immudbClient.verifiedSetReference(verifiedSetReferenceRequest)
+
+    // test: safely set a reference to an inserted key
+    const verifiedSetReferenceAtRequest = { key: referenceKey, referencedKey: key, attx: 1 }
+    const verifiedSetReferenceAtResponse = await immudbClient.verifiedSetReference(verifiedSetReferenceAtRequest)
+
     // // test: count keys having the specified value
     // // in the database in use
     // const countRequest: schemaTypes.KeyPrefix.AsObject = { prefix: new Uint8Array(rand) };
@@ -230,6 +251,10 @@ tap.test('operations', async t => {
     // test: return an element by txId
     const txByIdRequest: schemaTypes.TxRequest.AsObject = { tx: id as number }
     const txByIdResponse = await immudbClient.txById(txByIdRequest);
+
+    // test: safely get an element by txId
+    const verifiedTxByIdRequest: schemaTypes.TxRequest.AsObject = { tx: id as number }
+    const verifiedTxByIdResponse = await immudbClient.verifiedTxById(verifiedTxByIdRequest);
 
     // history: fetch history for the item having the
     // specified key
@@ -324,6 +349,44 @@ tap.test('operations', async t => {
       t.fail(err)
     }
 
+    // test: safely get item by key at specific tx
+    const verifiedGetAtRequest = {
+      key,
+      attx: 0
+    }
+    try {
+      const verifiedGetAtResponse = await immudbClient.verifiedGetAt(verifiedGetAtRequest);
+    } catch(err) {
+      t.fail(err)
+    }
+
+    // test: safely get item by key since specific tx
+    const verifiedGetSinceRequest = {
+      key,
+      sincetx: 2
+    }
+    try {
+      const verifiedGetSinceResponse = await immudbClient.verifiedGetSince(verifiedGetSinceRequest);
+    } catch(err) {
+      t.fail(err)
+    }
+
+    // test: set a secondary index on a key
+    const zAddRequest = { set: 'test', score: 23, key }
+    const zAddResponse = await immudbClient.zAdd(zAddRequest)
+
+    // test: set a secondary index on a key at a specific transaction
+    const zAddAtRequest = { set: 'test', score: 23, key, attx: 0 }
+    const zAddAtResponse = await immudbClient.zAddAt(zAddAtRequest)
+
+    // test: safely set a secondary index on a key at a specific transaction
+    const verifiedZAddRequest = { set: 'test', score: 32, key }
+    const verifiedZAddResponse = await immudbClient.zAdd(verifiedZAddRequest)
+
+    // test: safely set a secondary index on a key at a specific transaction
+    const verifiedZAddAtRequest = { set: 'test', score: 32, key, attx: 1 }
+    const verifiedZAddAtResponse = await immudbClient.zAddAt(verifiedZAddAtRequest)
+
     t.end();
   } catch (err) {
     t.error(err);
@@ -349,22 +412,21 @@ tap.test('batches', async t => {
     const useDatabaseRequest: schemaTypes.Database.AsObject = { databasename: 'defaultdb' };
     const useDatabaseResponse = await immudbClient.useDatabase(useDatabaseRequest);
 
-    // // test: execute setAll
-    // const setAllRequest: schemaTypes.SetRequest.AsObject = { kvsList: [] };
-    // for (let i = 0; i < 2; i++) {
-    //   const kv: schemaTypes.KeyValue.AsObject = { key: `test${i}`, value: `world${i}` }
+    // test: execute setAll
+    const setAllRequest: schemaTypes.SetRequest.AsObject = { kvsList: [] };
+    for (let i = 0; i < 2; i++) {
+      const kv: schemaTypes.KeyValue.AsObject = { key: `test${i}`, value: `world${i}` }
 
-    //   setAllRequest.kvsList.push(kv);
-    // }
-    // console.log('setAllRequest',setAllRequest)
-    // const setAllResponse = await immudbClient.setAll(setAllRequest);
+      setAllRequest.kvsList.push(kv);
+    }
+    const setAllResponse = await immudbClient.setAll(setAllRequest);
 
-    // // test: execute a batch read
-    // const getAllRequest: schemaTypes.KeyListRequest.AsObject = { keysList: [], sincetx: 0 };
-    // for (let i = 0; i < 2; i++) {
-    //   getAllRequest.keysList.push(`test${i}`);
-    // }
-    // const getBatchResponse = await immudbClient.getAll(getAllRequest);
+    // test: execute a batch read
+    const getAllRequest: schemaTypes.KeyListRequest.AsObject = { keysList: [], sincetx: 0 };
+    for (let i = 0; i < 2; i++) {
+      getAllRequest.keysList.push(`test${i}`);
+    }
+    const getBatchResponse = await immudbClient.getAll(getAllRequest);
 
     t.end();
   } catch (err) {

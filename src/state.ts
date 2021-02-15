@@ -118,28 +118,6 @@ class State {
         server[databaseName] = state
         this.servers[serverName] = server
     }
-
-    // commit() {
-    //     try {
-    //         const data = prepareDataForWritingToFile(this.servers)
-
-    //         console.log('prepared data', data)
-
-    //         fs.writeFileSync(this.rootPath, JSON.stringify(data), 'utf-8')
-    //     } catch(err) {
-    //         console.error(err)
-    //         throw new Error('Error writing state to file')
-    //     }
-    // }
-
-    // exitHandler() {
-    //     try {
-    //         this.commit()
-    //     } catch(err) {
-    //         console.error(err)
-    //         throw new Error('Error in state exit handler')
-    //     }
-    // }
     
     getInitialState(): Servers {
         try {
