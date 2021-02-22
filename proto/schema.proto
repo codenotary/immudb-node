@@ -1,0 +1,418 @@
+/*
+Copyright 2019-2020 vChain, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package immudb.schema;
+
+option go_package = "github.com/codenotary/immudb/pkg/api/schema";
+
+message Key {
+	bytes key = 1;
+}
+
+message Permission{
+	string database = 1;
+	uint32 permission = 2;
+}
+
+message User {
+	bytes user = 1;
+	repeated Permission permissions = 3;
+	string createdby = 4;
+	string createdat = 5;
+	bool active = 6;
+}
+
+message UserList {
+	repeated User users = 1;
+}
+
+message CreateUserRequest {
+	bytes user = 1;
+	bytes password = 2;
+	uint32 permission = 3;
+	string database = 4;
+}
+
+message UserRequest {
+	bytes user = 1;
+}
+
+message ChangePasswordRequest {
+	bytes user = 1;
+	bytes oldPassword = 2;
+	bytes newPassword = 3;
+}
+
+message LoginRequest {
+	bytes user = 1;
+	bytes password = 2;
+}
+
+message LoginResponse {
+	string token = 1;
+	bytes warning = 2;
+}
+
+message AuthConfig {
+	uint32 kind = 1;
+}
+
+message MTLSConfig {
+	bool enabled = 1;
+}
+
+////////////////////////////////////////////////////////
+
+message KeyValue {
+	bytes key = 1;
+	bytes value = 2;
+}
+
+message Entry {
+	uint64 tx = 1;
+	bytes key = 2;
+	bytes value = 3;
+
+	Reference referencedBy = 4;
+}
+
+message Reference {
+	uint64 tx = 1;
+	bytes key = 2;
+	uint64 atTx = 3;
+}
+
+message Op {
+	oneof operation {
+		KeyValue kv = 1;
+		ZAddRequest zAdd = 2;
+		ReferenceRequest ref = 3;
+	}
+}
+
+message ExecAllRequest {
+	repeated Op Operations = 1;
+}
+
+message Entries {
+	repeated Entry entries = 1;
+}
+
+message ZEntry {
+	bytes set = 1;
+	bytes key = 2;
+	Entry entry = 3;
+	double score = 4;
+	uint64 atTx = 5;
+}
+
+message ZEntries {
+	repeated ZEntry entries = 1;
+}
+
+message ScanRequest {
+	bytes seekKey = 1;
+	bytes prefix = 2;
+	bool desc = 3;
+	uint64 limit = 4;
+	uint64 sinceTx = 5;
+	bool  noWait = 6;
+}
+
+message KeyPrefix {
+	bytes prefix = 1;
+}
+
+message EntryCount {
+	uint64 count = 1;
+}
+
+///////////////
+
+message Signature {
+	bytes publicKey = 1;
+	bytes signature = 2;
+}
+
+message TxMetadata {
+	uint64 id = 1;
+	bytes prevAlh = 2;
+	int64 ts = 3;
+	int32 nentries = 4;
+	bytes eH = 5;
+	uint64 blTxId = 6;
+	bytes blRoot = 7;
+}
+
+message LinearProof {
+	uint64 sourceTxId = 1;
+	uint64 TargetTxId = 2;
+	repeated bytes terms = 3;
+}
+
+message DualProof {
+	TxMetadata sourceTxMetadata = 1;
+	TxMetadata targetTxMetadata = 2;
+
+	repeated bytes inclusionProof = 3;
+	repeated bytes consistencyProof = 4;
+
+	bytes targetBlTxAlh = 5;
+	repeated bytes lastInclusionProof = 6;
+
+	LinearProof linearProof = 7;
+}
+
+message Tx {
+	TxMetadata metadata = 1;
+	repeated TxEntry entries = 2;
+}
+
+message TxEntry {
+	bytes key = 1;
+	bytes hValue = 2;
+	int64 vOff = 3;
+	int32 vLen = 4;
+}
+
+message VerifiableTx {
+	Tx tx = 1;
+	DualProof dualProof = 2;
+	Signature signature = 3;
+}
+
+//////////////////
+
+message VerifiableEntry {
+	Entry entry = 1;
+	VerifiableTx verifiableTx = 2;
+	InclusionProof inclusionProof = 3;
+}
+
+message InclusionProof {
+	int32 leaf = 1;
+	int32 width = 2;
+	repeated bytes terms = 3;
+}
+
+message SetRequest {
+	repeated KeyValue KVs = 1;
+}
+
+message KeyRequest {
+	bytes key = 1;
+    uint64 atTx = 2;
+	uint64 sinceTx = 3;
+}
+
+message KeyListRequest {
+	repeated bytes keys = 1;
+	uint64 sinceTx = 2;
+}
+
+message VerifiableSetRequest {
+	SetRequest setRequest = 1;
+	uint64 proveSinceTx = 2;
+}
+
+message VerifiableGetRequest {
+	KeyRequest keyRequest = 1;
+	uint64 proveSinceTx = 2;
+}
+
+message HealthResponse {
+	bool status = 1;
+	string version = 2;
+}
+
+message ImmutableState {
+	string db = 1;
+	uint64 txId = 2;
+	bytes txHash = 3;
+	Signature signature = 4;
+}
+
+message ReferenceRequest {
+	bytes key = 1;
+	bytes referencedKey = 2;
+	uint64 atTx = 3;
+	bool boundRef = 4;
+}
+
+message VerifiableReferenceRequest {
+	ReferenceRequest referenceRequest = 1;
+	uint64 proveSinceTx = 2;
+}
+
+message ZAddRequest {
+	bytes set = 1;
+	double score = 2;
+	bytes key = 3;
+	uint64 atTx = 4;
+	bool boundRef = 5;
+}
+
+message Score {
+	double score = 1;
+}
+
+message ZScanRequest {
+	bytes set = 1;
+	bytes seekKey = 2;
+	double seekScore = 3;
+	uint64 seekAtTx = 4;
+	bool inclusiveSeek = 5;
+	uint64 limit = 6;
+	bool desc = 7;
+	Score minScore = 8;
+	Score maxScore = 9;
+	uint64 sinceTx = 10;
+	bool  noWait = 11;
+}
+
+message HistoryRequest {
+	bytes key = 1;
+	uint64 offset = 2;
+	int32 limit = 3;
+	bool desc = 4;
+	uint64 sinceTx = 5;
+}
+
+message VerifiableZAddRequest {
+	ZAddRequest zAddRequest = 1;
+	uint64 proveSinceTx = 2;
+}
+
+message TxRequest {
+	uint64 tx = 1;
+}
+
+message VerifiableTxRequest {
+	uint64 tx = 1;
+	uint64 proveSinceTx = 2;
+}
+
+message TxScanRequest {
+	uint64 initialTx = 1;
+	uint32 limit = 2;
+    bool desc = 3;
+}
+
+message TxList {
+	repeated Tx txs = 1;
+}
+
+message Database {
+	string databasename = 1;
+}
+
+message UseDatabaseReply{
+	string token = 1;
+}
+
+enum PermissionAction {
+	GRANT = 0;
+	REVOKE = 1;
+}
+
+message ChangePermissionRequest {
+	PermissionAction action = 1;
+	string username = 2;
+	string database = 3;
+	uint32 permission = 4;
+}
+
+message SetActiveUserRequest {
+	bool active = 1;
+	string username = 2;
+}
+
+message DatabaseListResponse{
+	repeated Database databases = 1;
+}
+
+// immudb gRPC & REST service
+// IMPORTANT: All get and safeget functions return base64-encoded keys and values, while all set and safeset functions expect base64-encoded inputs.
+service ImmuService {
+	rpc ListUsers (google.protobuf.Empty) returns (UserList){};
+
+	rpc CreateUser (CreateUserRequest) returns (google.protobuf.Empty){};
+
+	rpc ChangePassword (ChangePasswordRequest) returns (google.protobuf.Empty){};
+
+	rpc UpdateAuthConfig (AuthConfig) returns (google.protobuf.Empty){}
+	rpc UpdateMTLSConfig (MTLSConfig) returns (google.protobuf.Empty){}
+
+	rpc Login (LoginRequest) returns (LoginResponse){};
+
+	rpc Logout (google.protobuf.Empty) returns (google.protobuf.Empty){};
+
+	rpc Set (SetRequest) returns (TxMetadata){};
+
+	rpc VerifiableSet (VerifiableSetRequest) returns (VerifiableTx){};
+
+	rpc Get (KeyRequest) returns (Entry){};
+
+	rpc VerifiableGet (VerifiableGetRequest) returns (VerifiableEntry){};
+
+	rpc GetAll (KeyListRequest) returns (Entries){};
+
+	rpc ExecAll (ExecAllRequest) returns (TxMetadata) {};
+
+	rpc Scan(ScanRequest) returns (Entries){};
+
+	rpc Count(KeyPrefix) returns (EntryCount){};
+
+	rpc CountAll(google.protobuf.Empty) returns (EntryCount){};
+
+	rpc TxById(TxRequest) returns (Tx){};
+
+	rpc VerifiableTxById(VerifiableTxRequest) returns (VerifiableTx){};
+
+	rpc TxScan(TxScanRequest) returns (TxList) {}
+	
+	rpc History(HistoryRequest) returns (Entries){};
+
+	rpc Health (google.protobuf.Empty) returns (HealthResponse){};
+
+	rpc CurrentState (google.protobuf.Empty) returns (ImmutableState){};
+
+	rpc SetReference (ReferenceRequest) returns (TxMetadata){};
+
+	rpc VerifiableSetReference (VerifiableReferenceRequest) returns (VerifiableTx){};
+
+	rpc ZAdd (ZAddRequest) returns (TxMetadata){};
+
+	rpc VerifiableZAdd (VerifiableZAddRequest) returns (VerifiableTx){};
+
+	rpc ZScan (ZScanRequest) returns (ZEntries){};
+
+	rpc CreateDatabase(Database) returns (google.protobuf.Empty) {}
+
+	rpc DatabaseList (google.protobuf.Empty) returns (DatabaseListResponse){};
+
+	rpc UseDatabase(Database) returns (UseDatabaseReply) {}
+
+	rpc CleanIndex(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+
+	rpc ChangePermission(ChangePermissionRequest) returns (google.protobuf.Empty) {}
+
+	rpc SetActiveUser (SetActiveUserRequest) returns (google.protobuf.Empty){};
+}
