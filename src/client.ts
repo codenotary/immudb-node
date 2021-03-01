@@ -7,7 +7,6 @@ dotenv.config();
 import * as schemaTypes from './proto/schema_pb';
 import * as services from './proto/schema_grpc_pb';
 
-import { Config } from './interfaces';
 import * as util from './util';
 import { proofTx, txFrom } from './tx'
 import State from './state';
@@ -33,18 +32,18 @@ class ImmudbClient {
 
   private _serverUUID: any;
 
-  private constructor({
+  constructor({
     host = (process.env.IMMUDB_HOST as string) || '127.0.0.1',
     port = (process.env.IMMUDB_PORT as string) || '3322',
     certs,
     rootPath = DEFAULT_ROOTPATH,
-  }: Config) {
+  }: interfaces.Config) {
     // init insecure grpc auth
     this._auth = grpc.credentials.createInsecure();
 
     // init secure grpc auth
     if (certs !== undefined) {
-      this._auth = grpc.credentials.createSsl();
+      this._auth = grpc.credentials.createSsl(Buffer.from(JSON.stringify(certs)));
     }
 
     // initialize client from service
@@ -57,7 +56,7 @@ class ImmudbClient {
     this.state = new State({ client: this.client, rootPath })
   }
 
-  public static async getInstance(config: Config): Promise<ImmudbClient> {
+  public static async getInstance(config: interfaces.Config): Promise<ImmudbClient> {
     const {
       user = process.env.IMMUDB_USER as string,
       password = process.env.IMMUDB_PWD as string,
@@ -153,11 +152,11 @@ class ImmudbClient {
     }
 
     // fetch health status
-    this.health();
+    await this.health();
   }
 
   async shutdown() {
-    // this.state.commit();
+    this.state.commit();
     this.logout();
     process.exit(0);
   }
@@ -947,7 +946,7 @@ class ImmudbClient {
       req.setProvesincetx(state.getTxid())
 
       return new Promise((resolve, reject) => this.client.verifiableSetReference(req, this._metadata, (err, res) => {
-        if (err === undefined) {
+        if (err) {
           console.error('verifiedSetReferenceAt error', err)
 
           reject(err)

@@ -13,7 +13,7 @@ limitations under the License.
 
 import ImmudbClient from '../src/client';
 
-import { verifyInclusion } from '../src/htree'
+import { verifyInclusion } from '../src/verification'
 import * as schemaTypes from '../src/proto/schema_pb';
 
 (async () => {

@@ -207,6 +207,8 @@ export const withLeafPrefix = (value: Uint8Array): Uint8Array => {
     return res
 }
 
-export function bitLength(n: number): number {
-    return parseInt((n >>> 0).toString(2))
+export const bitLength = (n: number): number => Math.abs(n).toString(2).length
+
+export const isString = (value: any) => {
+    return typeof value === 'string'
 }

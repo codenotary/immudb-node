@@ -55,7 +55,7 @@ immudb-node supports the [latest immudb release].
 
 Check out some [examples]
 
-[examples]: https://github.com/codenotary/immudb-node/tree/master/examples/
+[examples]: https://github.com/codenotary/immudb-client-examples/tree/master/node
 
 ## Testing
 

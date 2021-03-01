@@ -1,10 +1,9 @@
 import { Metadata } from 'grpc';
-import fs from 'fs'
+import fs, { stat } from 'fs'
 
 import * as schemaTypes from './proto/schema_pb';
 import * as services from './proto/schema_grpc_pb';
 import * as empty from 'google-protobuf/google/protobuf/empty_pb';
-import { utf8Decode, utf8Encode } from './util';
 
 type Server = { [key: string]:  schemaTypes.ImmutableState.AsObject }
 type Servers = { [key: string]: Server }
@@ -36,7 +35,7 @@ class State {
 
     constructor({ client, rootPath = 'root' }: StateConfig) {
         const handleExit = () => {
-            // this.exitHandler()
+            this.exitHandler()
         }
         (process as NodeJS.EventEmitter).on(Signals.EXIT, handleExit);
         (process as NodeJS.EventEmitter).on(Signals.SIGINT, handleExit);
@@ -62,6 +61,7 @@ class State {
                 iState.setDb(db)
                 iState.setTxid(txid)
                 iState.setTxhash(txhash)
+                
                 if (signature !== undefined) {
                     const sgntr = new schemaTypes.Signature()
 
@@ -124,7 +124,7 @@ class State {
             if (fs.existsSync(this.rootPath)) {
                 const rawdata = fs.readFileSync(this.rootPath, 'utf-8')
 
-                return JSON.parse(rawdata) as Servers
+                return this.parseServers(rawdata)
             } else {
                 return {} as Servers;
             }     
@@ -132,6 +132,61 @@ class State {
             console.error(err)
             throw new Error('Error getting initial state')
         }
+    }
+
+    commit() {
+        try {
+            const data = this.stringifyServers()
+
+            fs.writeFileSync(this.rootPath, data)
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
+    exitHandler() {
+        this.commit()
+    }
+
+    stringifyServers() {
+        const serverNames = Object.keys(this.servers)
+
+        const servers = serverNames.reduce((sAcc, serverName) => {
+            const databaseNames = Object.keys(this.servers[serverName])
+
+            const databases = databaseNames.reduce((dAcc, databaseName) => {
+                const state = this.servers[serverName][databaseName]
+                const txhash = Array.from(state.txhash as Uint8Array)
+                const newState = Object.assign({}, state, { txhash })
+
+                return Object.assign({}, dAcc, { [databaseName]: newState })
+            }, {})
+
+            return Object.assign({}, sAcc, { [serverName]: databases })
+        }, {})
+
+        return JSON.stringify(servers)
+    }
+
+    parseServers(stringifiedServers: string): Servers {
+        const data = JSON.parse(stringifiedServers)
+        const serverNames = Object.keys(data)
+
+        const servers = serverNames.reduce((sAcc, serverName) => {
+            const databaseNames = Object.keys(data[serverName])
+
+            const databases = databaseNames.reduce((dAcc, databaseName) => {
+                const state = data[serverName][databaseName]
+                const txhash = new Uint8Array(state.txhash)
+                const newState = Object.assign({}, state, { txhash })
+
+                return Object.assign({}, dAcc, { [databaseName]: newState })
+            }, {})
+
+            return Object.assign({}, sAcc, { [serverName]: databases })
+        }, {})
+
+        return servers
     }
 }
 
