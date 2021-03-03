@@ -2,9 +2,9 @@ import tap from 'tap';
 
 import * as schemaTypes from '../src/proto/schema_pb';
 import ImmudbClient from '../src/client';
-import * as util from '../src/util'
 
-import { Permission, Config } from '../src/interfaces';
+import { Config } from '../src/interfaces';
+import { USER_PERMISSION } from '../types/user';
 
 const {
   IMMUDB_HOST = '127.0.0.1',
@@ -115,7 +115,7 @@ tap.test('user management', async t => {
     const createUserRequest = {
       user: rand,
       password: 'Example12#',
-      permission: Permission.READ_WRITE,
+      permission: USER_PERMISSION.READ_WRITE,
       database: 'defaultdb',
     };
     try {
@@ -132,7 +132,7 @@ tap.test('user management', async t => {
       action: schemaTypes.PermissionAction.GRANT,
       username: rand,
       database: rand,
-      permission: Permission.READ_ONLY,
+      permission: USER_PERMISSION.READ_ONLY,
     };
     await immudbClient.changePermission(changeUserPermissionRequest);
 
@@ -183,9 +183,24 @@ tap.test('operations', async t => {
       loginRequest
     );
 
-    // test: create database
-    const createDatabaseRequest: schemaTypes.Database.AsObject = { databasename: testDB };
-    const createDatabaseResponse = await immudbClient.createDatabase(createDatabaseRequest);
+    const listDatabasesResponse = await immudbClient.listDatabases()
+    if (listDatabasesResponse) {
+      const { databasesList } = listDatabasesResponse
+
+      let dbExists = false
+
+      databasesList.forEach(({ databasename }) => {
+        if (databasename === testDB) {
+          dbExists = true
+        }
+      })
+
+      if (!dbExists) {
+        // test: create database
+        const createDatabaseRequest: schemaTypes.Database.AsObject = { databasename: testDB };
+        const createDatabaseResponse = await immudbClient.createDatabase(createDatabaseRequest);
+      }
+    }
 
     // test: use database just created
     const useDatabaseRequest: schemaTypes.Database.AsObject = { databasename: testDB };

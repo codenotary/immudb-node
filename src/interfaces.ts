@@ -5,7 +5,7 @@ export interface Certs {
 
 export interface Config {
     host: string;
-    port: string;
+    port: string | number;
     user?: string;
     password?: string;
     database?: string;
@@ -14,17 +14,6 @@ export interface Config {
     secure?: boolean;
     autoLogin?: boolean;
     autoDatabase?: boolean;
-}
-
-export enum Permission {
-    NONE = 0,
-    READ_ONLY = 1,
-    READ_WRITE = 2
-}
-
-export enum Auth {
-    DISABLED = 0,
-    ENABLED = 1
 }
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>

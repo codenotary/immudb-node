@@ -1,4 +1,4 @@
-import dotenv from 'dotenv';
+import * as dotenv from 'dotenv';
 import { Metadata } from 'grpc';
 import * as grpc from '@grpc/grpc-js';
 import * as empty from 'google-protobuf/google/protobuf/empty_pb';
@@ -7,14 +7,13 @@ dotenv.config();
 import * as schemaTypes from './proto/schema_pb';
 import * as services from './proto/schema_grpc_pb';
 
-import { Config } from './interfaces';
 import * as util from './util';
 import { proofTx, txFrom } from './tx'
 import State from './state';
 import * as interfaces from './interfaces';
 import { verifyInclusion, verifyDualProof } from './verification'
 import { CLIENT_INIT_PREFIX, DEFAULT_DATABASE, DEFAULT_ROOTPATH } from './consts'
-import * as types from './types'
+import Parameters from '../types/parameters'
 
 class ImmudbClient {
   public state: State;
@@ -33,18 +32,18 @@ class ImmudbClient {
 
   private _serverUUID: any;
 
-  private constructor({
+  constructor({
     host = (process.env.IMMUDB_HOST as string) || '127.0.0.1',
     port = (process.env.IMMUDB_PORT as string) || '3322',
     certs,
     rootPath = DEFAULT_ROOTPATH,
-  }: Config) {
+  }: interfaces.Config) {
     // init insecure grpc auth
     this._auth = grpc.credentials.createInsecure();
 
     // init secure grpc auth
     if (certs !== undefined) {
-      this._auth = grpc.credentials.createSsl();
+      this._auth = grpc.credentials.createSsl(Buffer.from(JSON.stringify(certs)));
     }
 
     // initialize client from service
@@ -57,7 +56,7 @@ class ImmudbClient {
     this.state = new State({ client: this.client, rootPath })
   }
 
-  public static async getInstance(config: Config): Promise<ImmudbClient> {
+  public static async getInstance(config: interfaces.Config): Promise<ImmudbClient> {
     const {
       user = process.env.IMMUDB_USER as string,
       password = process.env.IMMUDB_PWD as string,
@@ -153,17 +152,17 @@ class ImmudbClient {
     }
 
     // fetch health status
-    this.health();
+    await this.health();
   }
 
   async shutdown() {
-    // this.state.commit();
+    this.state.commit();
     this.logout();
     process.exit(0);
   }
 
   async login(
-    params: types.LoginParameters
+    params: Parameters.Login
   ): Promise<schemaTypes.LoginResponse.AsObject | undefined> {
     try {
       const { user, password } = params;
@@ -194,7 +193,7 @@ class ImmudbClient {
     }
   }
 
-  async createDatabase({ databasename }: schemaTypes.Database.AsObject): Promise<empty.Empty | undefined> {
+  async createDatabase({ databasename }: Parameters.CreateDatabase): Promise<empty.Empty | undefined> {
     try {
       const req = new schemaTypes.Database();
 
@@ -215,7 +214,7 @@ class ImmudbClient {
   }
 
   async useDatabase(
-    { databasename }: schemaTypes.Database.AsObject
+    { databasename }: Parameters.UseDatabase
   ): Promise<schemaTypes.UseDatabaseReply.AsObject | undefined> {
     try {
       const req = new schemaTypes.Database();
@@ -240,7 +239,7 @@ class ImmudbClient {
     }
   }
 
-  async set({ key, value }: types.SetParameters): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
+  async set({ key, value }: Parameters.Set): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     try {
       const req = new schemaTypes.SetRequest();
       const kv = new schemaTypes.KeyValue();
@@ -266,7 +265,7 @@ class ImmudbClient {
     }
   }
 
-  async get({ key }: types.GetParameters): Promise<schemaTypes.Entry.AsObject | undefined> {
+  async get({ key }: Parameters.Get): Promise<schemaTypes.Entry.AsObject | undefined> {
     try {
       const req = new schemaTypes.KeyRequest();
 
@@ -319,14 +318,16 @@ class ImmudbClient {
   }
 
   async changePermission(
-    params: schemaTypes.ChangePermissionRequest.AsObject
+    params: Parameters.ChangePermission
   ): Promise<empty.Empty | undefined> {
     try {
+      const { action, permission, username, database } = params
+
       const req = new schemaTypes.ChangePermissionRequest();
-      req.setAction(params && params.action);
-      req.setPermission(params && params.permission);
-      req.setUsername(params && params.username);
-      req.setDatabase(params && params.database);
+      req.setAction(action);
+      req.setPermission(permission);
+      req.setUsername(username);
+      req.setDatabase(database);
 
       return new Promise((resolve, reject) =>
         this.client.changePermission(req, this._metadata, (err, res) => {
@@ -387,7 +388,7 @@ class ImmudbClient {
     }
   }
 
-  async createUser(params: types.CreateUserParameters): Promise<empty.Empty | undefined> {
+  async createUser(params: Parameters.CreateUser): Promise<empty.Empty | undefined> {
     try {
       const req = new schemaTypes.CreateUserRequest();
       req.setUser(util.utf8Encode(params && params.user));
@@ -411,7 +412,7 @@ class ImmudbClient {
   }
 
   async changePassword(
-    params: types.ChangePasswordParameters
+    params: Parameters.ChangePassword
   ): Promise<empty.Empty | undefined> {
     try {
       const req = new schemaTypes.ChangePasswordRequest();
@@ -454,7 +455,7 @@ class ImmudbClient {
   }
 
   async setActiveUser(
-    params: schemaTypes.SetActiveUserRequest.AsObject
+    params: Parameters.SetActiveUser
   ): Promise<empty.Empty | undefined> {
     try {
       const req = new schemaTypes.SetActiveUserRequest();
@@ -503,7 +504,7 @@ class ImmudbClient {
   }
 
   async count(
-    { prefix }: types.CountParameters
+    { prefix }: Parameters.Count
   ): Promise<schemaTypes.EntryCount.AsObject | undefined> {
     try {
       const req = new schemaTypes.KeyPrefix();
@@ -544,7 +545,7 @@ class ImmudbClient {
   }
 
   async scan(
-    { seekkey, prefix, desc, limit, sincetx, nowait }: Partial<schemaTypes.ScanRequest.AsObject> = {}
+    { seekkey, prefix, desc, limit, sincetx, nowait }: Parameters.Scan = {}
   ): Promise<schemaTypes.Entries.AsObject | undefined> {
     try {
       const req = new schemaTypes.ScanRequest();
@@ -597,7 +598,7 @@ class ImmudbClient {
   }
 
   async history(
-    { key, offset, limit, desc, sincetx }: types.HistoryParameters
+    { key, offset, limit, desc, sincetx }: Parameters.History
   ): Promise<schemaTypes.Entries.AsObject | undefined> {
     try {
       const req = new schemaTypes.HistoryRequest();
@@ -636,7 +637,7 @@ class ImmudbClient {
   }
 
   async zScan(
-    { set, seekkey, seekscore, seekattx, inclusiveseek, limit, desc, sincetx, nowait }: types.ZScanParameters
+    { set, seekkey, seekscore, seekattx, inclusiveseek, limit, desc, sincetx, nowait, minscore, maxscore }: Parameters.ZScan
   ): Promise<schemaTypes.ZEntries.AsObject | undefined> {
     try {
       const req = new schemaTypes.ZScanRequest();
@@ -650,6 +651,22 @@ class ImmudbClient {
       req.setDesc(desc);
       req.setSincetx(sincetx);
       req.setNowait(nowait);
+
+      if (minscore) {
+        const minScore = new schemaTypes.Score()
+
+        minScore.setScore(minscore.score)
+
+        req.setMinscore(minScore)
+      }
+
+      if (maxscore) {
+        const maxScore = new schemaTypes.Score()
+
+        maxScore.setScore(maxscore.score)
+
+        req.setMaxscore(maxScore)
+      }
 
       return new Promise((resolve, reject) =>
         this.client.zScan(req, this._metadata, (err, res) => {
@@ -716,14 +733,14 @@ class ImmudbClient {
   }
 
   async zAdd(
-    params: types.ZAddParameters
+    params: Parameters.ZAdd
   ): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     const reqParams = Object.assign({}, params, { attx: 0 })
 
     return this.zAddAt(reqParams)
   }
 
-  async zAddAt ({ set, score = 0, key, attx = 0 }: types.ZAddAtParameters): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
+  async zAddAt ({ set, score = 0, key, attx = 0 }: Parameters.ZAddAt): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     try {
       const req = new schemaTypes.ZAddRequest();
 
@@ -756,13 +773,13 @@ class ImmudbClient {
     }
   }
 
-  async verifiedZAdd(params: types.ZAddParameters): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
+  async verifiedZAdd(params: Parameters.VerifiedZAdd): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     const reqParams = Object.assign({}, params, { attx: 0 })
 
     return await this.verifiedZAddAt(reqParams)
   }
 
-  async verifiedZAddAt({ set, score, key, attx }: types.ZAddAtParameters): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
+  async verifiedZAddAt({ set, score, key, attx }: Parameters.VerifiedZAddAt): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     try {
       const state = await this.state.get({ serverName: this._serverUUID, databaseName: this._activeDatabase, metadata: this._metadata })
       const req = new schemaTypes.VerifiableZAddRequest()
@@ -885,13 +902,13 @@ class ImmudbClient {
     }
   }
 
-  async setReference (params: types.SetReferenceParameters): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
+  async setReference (params: Parameters.SetReference): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     const setReferenceAtParameters = Object.assign({}, params, { attx: 0 })
 
     return await this.setReferenceAt(setReferenceAtParameters)
   }
   
-  async setReferenceAt ({ key, referencedKey, attx }: types.SetReferenceAtParameters): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
+  async setReferenceAt ({ key, referencedKey, attx }: Parameters.SetReferenceAt): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     try {
       const req = new schemaTypes.ReferenceRequest();
 
@@ -921,13 +938,13 @@ class ImmudbClient {
     }
   }
 
-  async verifiedSetReference (params: types.SetReferenceParameters): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
+  async verifiedSetReference (params: Parameters.VerifiedSetReference): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     const vSetReferenceAtParameters = Object.assign({}, params, { attx: 0 })
     
     return await this.verifiedSetReferenceAt(vSetReferenceAtParameters)
   }
 
-  async verifiedSetReferenceAt ({ key, referencedKey, attx }: types.SetReferenceAtParameters): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
+  async verifiedSetReferenceAt ({ key, referencedKey, attx }: Parameters.VerifiedSetReferenceAt): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     try {
       const state = await this.state.get({ serverName: this._serverUUID, databaseName: this._activeDatabase, metadata: this._metadata })
       const txid = state.getTxid()
@@ -947,7 +964,7 @@ class ImmudbClient {
       req.setProvesincetx(state.getTxid())
 
       return new Promise((resolve, reject) => this.client.verifiableSetReference(req, this._metadata, (err, res) => {
-        if (err === undefined) {
+        if (err) {
           console.error('verifiedSetReferenceAt error', err)
 
           reject(err)
@@ -1050,7 +1067,7 @@ class ImmudbClient {
     }
   }
 
-  async setAll({ kvsList }: schemaTypes.SetRequest.AsObject): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
+  async setAll({ kvsList }: Parameters.SetAll): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     try {
       const req = new schemaTypes.SetRequest();
       const kvls = kvsList.map(({ key, value }) => {
@@ -1086,7 +1103,7 @@ class ImmudbClient {
     }
   }
   
-  async execAll({ operationsList }: schemaTypes.ExecAllRequest.AsObject): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
+  async execAll({ operationsList }: Parameters.ExecAll): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     try {
       const req = new schemaTypes.ExecAllRequest();
       const opl = operationsList.map(({ kv, zadd, ref }) => {
@@ -1152,7 +1169,7 @@ class ImmudbClient {
     }
   }
 
-  async getAll ({ keysList, sincetx }: schemaTypes.KeyListRequest.AsObject): Promise<schemaTypes.Entries.AsObject | undefined> {
+  async getAll ({ keysList, sincetx }: Parameters.GetAll): Promise<schemaTypes.Entries.AsObject | undefined> {
     try {
       const req = new schemaTypes.KeyListRequest();
 
@@ -1186,7 +1203,7 @@ class ImmudbClient {
     }
   }
 
-  async verifiedSet ({ key, value }: schemaTypes.KeyValue.AsObject): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
+  async verifiedSet ({ key, value }: Parameters.VerifiedSet): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     try {
       const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID, metadata: this._metadata })
       const txid = state.getTxid()
@@ -1291,7 +1308,7 @@ class ImmudbClient {
     }
   }
 
-  async verifiedGet({ key, attx, sincetx }: interfaces.PartialBy<schemaTypes.KeyRequest.AsObject, 'sincetx' | 'attx'>): Promise<schemaTypes.Entry.AsObject | undefined> {
+  async verifiedGet({ key, attx, sincetx }: Parameters.VerifiedGet): Promise<schemaTypes.Entry.AsObject | undefined> {
     try {
       const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID, metadata: this._metadata })
       const txid = state.getTxid()
@@ -1431,14 +1448,14 @@ class ImmudbClient {
     }
   }
 
-  async verifiedGetAt({ key, attx }: Omit<schemaTypes.KeyRequest.AsObject, 'sincetx'>) {
+  async verifiedGetAt({ key, attx }: Parameters.VerifiedGetAt) {
     return await this.verifiedGet({ key, attx })
   }
-  async verifiedGetSince({ key, sincetx }: Omit<schemaTypes.KeyRequest.AsObject, 'attx'>) {
+  async verifiedGetSince({ key, sincetx }: Parameters.VerifiedGetSince) {
     return await this.verifiedGet({ key, sincetx })
   }
 
-  async updateAuthConfig(params: schemaTypes.AuthConfig.AsObject): Promise<empty.Empty | undefined> {
+  async updateAuthConfig(params: Parameters.UpdateAuthConfig): Promise<empty.Empty | undefined> {
     try {
       const req = new schemaTypes.AuthConfig();
       req.setKind(params && params.kind);
@@ -1458,7 +1475,7 @@ class ImmudbClient {
     }
   }
 
-  async updateMTLSConfig(params: schemaTypes.MTLSConfig.AsObject): Promise<empty.Empty | undefined> {
+  async updateMTLSConfig(params: Parameters.UpdateMTLSConfig): Promise<empty.Empty | undefined> {
     try {
       const req = new schemaTypes.MTLSConfig();
       req.setEnabled(params && params.enabled);
@@ -1478,7 +1495,7 @@ class ImmudbClient {
     }
   }
 
-  async txById({ tx }: schemaTypes.TxRequest.AsObject): Promise<schemaTypes.Tx.AsObject | undefined> {
+  async txById({ tx }: Parameters.TxById): Promise<schemaTypes.Tx.AsObject | undefined> {
     try {
       const req = new schemaTypes.TxRequest();
 
@@ -1503,7 +1520,7 @@ class ImmudbClient {
     }
   }
 
-  async verifiedTxById({ tx }: schemaTypes.TxRequest.AsObject): Promise<schemaTypes.Tx.AsObject | undefined> {
+  async verifiedTxById({ tx }: Parameters.VerifiedTxById): Promise<schemaTypes.Tx.AsObject | undefined> {
     try {
       const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID, metadata: this._metadata })
 
@@ -1594,7 +1611,7 @@ class ImmudbClient {
     }
   }
 
-  async txScan(params: schemaTypes.TxScanRequest.AsObject): Promise<schemaTypes.TxList.AsObject | undefined> {
+  async txScan(params: Parameters.TxScan): Promise<schemaTypes.TxList.AsObject | undefined> {
     try {
       const req = new schemaTypes.TxScanRequest();
 

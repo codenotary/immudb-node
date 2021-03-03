@@ -23,8 +23,8 @@ class HTree {
 
             this.levels = new Array(height);
 
-            for (let i = 0; i < height; i++) {
-                this.levels[i] = new Array(lw >> i);
+            for (let l = 0; l < height; l++) {
+                this.levels[l] = new Array(lw >> l);
             }
         }
     }
@@ -42,8 +42,10 @@ class HTree {
 
             this.levels[0][i] = hashUint8Array(leaf)
         }
-        const l = 0
-        const w = digests.length
+
+        let l = 0
+        let w = digests.length
+
         while (w > 1) {
             let wn = 0
             let i = 0
@@ -68,6 +70,9 @@ class HTree {
 
                 wn++
             }
+
+            l++
+            w = wn
         }
         this.width = digests.length
         this.root = this.levels[l][0]
@@ -93,8 +98,8 @@ class HTree {
         while (true) {
             const d = bitLength(n - 1)
             const k = 1 << (d - 1)
-            let l
-            let r
+            let l: number
+            let r: number
 
             if (m < k) {
                 l = offset + k
@@ -110,10 +115,7 @@ class HTree {
             }
             
             const layer = bitLength(r - l)
-            const index =  l / (1 << layer)
-
-            console.log('index', index)
-            console.log('floor index', Math.floor(index))
+            const index = l / (1 << layer)
 
             const a = this.levels[layer][index]
             const b = proof.getTermsList_asU8()
@@ -121,7 +123,7 @@ class HTree {
 
             proof.setTermsList(termsList)
 
-            if (n < 1 || (n === 0 && m === 0)) {
+            if (n < 1 || (n === 1 && m === 0)) {
                 return proof
             }
         }
