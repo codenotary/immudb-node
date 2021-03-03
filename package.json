@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "main": "src/client.ts",
-  "types": "src/client.ts",
+  "types": "types/index.d.ts",
   "scripts": {
     "prepare": "npm run build",
     "build": "tsc",
