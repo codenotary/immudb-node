@@ -98,8 +98,8 @@ class HTree {
         while (true) {
             const d = bitLength(n - 1)
             const k = 1 << (d - 1)
-            let l
-            let r
+            let l: number
+            let r: number
 
             if (m < k) {
                 l = offset + k

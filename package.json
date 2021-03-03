@@ -3,11 +3,11 @@
   "version": "1.0.9",
   "description": "Node ts client for immudb",
   "directories": {
-    "lib": "src",
+    "src": "src",
     "test": "tests"
   },
   "main": "src/client.ts",
-  "types": "types/index.d.ts",
+  "types": "src/client.ts",
   "scripts": {
     "prepare": "npm run build",
     "build": "tsc",

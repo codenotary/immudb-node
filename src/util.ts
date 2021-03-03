@@ -1,7 +1,6 @@
-import btoa from 'btoa';
-import crypto from 'crypto';
-
+import * as crypto from 'crypto';
 import * as util from 'util';
+
 import * as types from './interfaces';
 import * as schemaTypes from './proto/schema_pb';
 import { REFERENCE_VALUE_PREFIX, SORTED_KEY_PREFIX, SET_KEY_PREFIX, PLAIN_VALUE_PREFIX, LEAF_PREFIX } from './consts'
@@ -87,12 +86,6 @@ export const utf8Decode = (val: any) => {
     return val === ''
         ? val
         : new util.TextDecoder("utf-8").decode(val);
-}
-    
-export const base64Encode = (val: any) => {
-    return btoa(String.fromCharCode(
-        ...new Uint8Array(val))
-    );
 }
     
 export const equalArray = (a1: any, a2: any) => {
@@ -207,7 +200,7 @@ export const withLeafPrefix = (value: Uint8Array): Uint8Array => {
     return res
 }
 
-export const bitLength = (n: number): number => Math.abs(n).toString(2).length
+export const bitLength = (n: number): number => n === 0 ? 0 : Math.abs(n).toString(2).length
 
 export const isString = (value: any) => {
     return typeof value === 'string'
