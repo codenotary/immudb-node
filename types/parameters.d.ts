@@ -50,23 +50,23 @@ export namespace Parameters {
     }
     export type History = {
         key: string
-        offset: number
-        limit: number
-        desc: boolean
-        sincetx: number
+        offset?: number
+        limit?: number
+        desc?: boolean
+        sincetx?: number
     }
     export type ZScan = {
         set: string,
-        seekkey: string,
-        seekscore: number,
-        seekattx: number,
-        inclusiveseek: boolean,
-        limit: number,
-        desc: boolean,
+        seekkey?: string,
+        seekscore?: number,
+        seekattx?: number,
+        inclusiveseek?: boolean,
+        desc?: boolean,
+        sincetx?: number,
+        nowait?: boolean,
         minscore?: schemaTypes.Score.AsObject,
         maxscore?: schemaTypes.Score.AsObject,
-        sincetx: number,
-        nowait: boolean,
+        limit?: number,
     }
     export type ChangePermission = Omit<schemaTypes.ChangePermissionRequest.AsObject, 'permission'> & {
         permission: USER_PERMISSION

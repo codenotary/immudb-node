@@ -604,10 +604,10 @@ class ImmudbClient {
       const req = new schemaTypes.HistoryRequest();
 
       req.setKey(util.utf8Encode(key));
-      req.setOffset(offset);
-      req.setLimit(limit);
-      req.setDesc(desc);
-      req.setSincetx(sincetx);
+      offset && req.setOffset(offset);
+      limit && req.setLimit(limit);
+      desc && req.setDesc(desc);
+      sincetx && req.setSincetx(sincetx);
 
       return new Promise((resolve, reject) =>
         this.client.history(req, this._metadata, (err, res) => {
@@ -643,14 +643,14 @@ class ImmudbClient {
       const req = new schemaTypes.ZScanRequest();
 
       req.setSet(util.utf8Encode(set));
-      req.setSeekkey(util.utf8Encode(seekkey));
-      req.setSeekscore(seekscore);
-      req.setSeekattx(seekattx);
-      req.setInclusiveseek(inclusiveseek);
-      req.setLimit(limit);
-      req.setDesc(desc);
-      req.setSincetx(sincetx);
-      req.setNowait(nowait);
+      seekkey && req.setSeekkey(util.utf8Encode(seekkey));
+      seekscore && req.setSeekscore(seekscore);
+      seekattx && req.setSeekattx(seekattx);
+      inclusiveseek && req.setInclusiveseek(inclusiveseek);
+      limit && req.setLimit(limit);
+      desc && req.setDesc(desc);
+      sincetx && req.setSincetx(sincetx);
+      nowait && req.setNowait(nowait);
 
       if (minscore) {
         const minScore = new schemaTypes.Score()

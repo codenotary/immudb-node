@@ -5,4 +5,4 @@ export enum USER_PERMISSION {
   READ_ONLY = 1,
   READ_WRITE = 2,
 }
-export const USER_ACTION  = PermissionAction
+export const USER_ACTION = PermissionAction

@@ -20,7 +20,6 @@
     ],
     "include": [
       "src/**/*",
-      "examples/**/*",
       "types/**/*",
     ],
     "exclude": [

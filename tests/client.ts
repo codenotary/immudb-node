@@ -275,10 +275,10 @@ tap.test('operations', async t => {
     // specified key
     const historyRequest = {
       key,
-      offset: 10,
-      limit: 5,
-      desc: false,
-      sincetx: rand
+      // offset: 10,
+      // limit: 5,
+      // desc: false,
+      // sincetx: rand
     };
     const historyResponse = await immudbClient.history(historyRequest);
 
