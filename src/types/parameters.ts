@@ -1,6 +1,6 @@
-import * as schemaTypes from '../src/proto/schema_pb';
+import * as schemaTypes from '../proto/schema_pb';
 import { USER_PERMISSION, USER_ACTION } from './user'
-import * as interfaces from '../src/interfaces';
+import * as interfaces from '../interfaces';
 
 export namespace Parameters {
     export type SetReference = {

@@ -1,5 +1,5 @@
 import { Metadata } from 'grpc';
-import fs, { stat } from 'fs'
+import fs from 'fs'
 
 import * as schemaTypes from './proto/schema_pb';
 import * as services from './proto/schema_grpc_pb';

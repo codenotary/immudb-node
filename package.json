@@ -1,13 +1,13 @@
 {
   "name": "immudb-node",
-  "version": "1.0.10-rc.4",
+  "version": "1.0.10-rc.5",
   "description": "Node ts client for immudb",
   "directories": {
     "src": "src",
     "test": "tests"
   },
-  "main": "dist/src/client.js",
-  "types": "dist/src/client.d.ts",
+  "main": "dist/client.js",
+  "types": "dist/types/index.d.ts",
   "scripts": {
     "prepare": "npm run build",
     "build": "tsc",
