@@ -4,4 +4,4 @@ export enum USER_PERMISSION {
   READ_WRITE = 2,
 }
 
-export { PermissionAction as USER_ACTION } from '../proto/schema_pb'
+export { PermissionAction as USER_ACTION } from '../src/proto/schema_pb'

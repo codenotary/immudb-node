@@ -3,8 +3,8 @@ import tap from 'tap';
 import ImmudbClient from '../src/client';
 
 import { Config } from '../src/interfaces';
-import { USER_PERMISSION, USER_ACTION } from '../src/types/user';
-import Parameters from '../src/types/parameters';
+import { USER_PERMISSION, USER_ACTION } from '../types/user';
+import Parameters from '../types/parameters';
 
 const {
   IMMUDB_HOST = '127.0.0.1',

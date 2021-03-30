@@ -9,7 +9,7 @@
       "sourceMap": true,
       "declaration": true,
       "outDir": "./dist",
-      "rootDir": "./src",
+      "rootDir": "./",
       // "allowJs": true,
       "baseUrl": "src",
       // "moduleResolution": "classic"

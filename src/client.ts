@@ -13,7 +13,7 @@ import State from './state';
 import * as interfaces from './interfaces';
 import { verifyInclusion, verifyDualProof } from './verification'
 import { CLIENT_INIT_PREFIX, DEFAULT_DATABASE, DEFAULT_ROOTPATH } from './consts'
-import Parameters from './types/parameters'
+import Parameters from '../types/parameters'
 
 class ImmudbClient {
   public state: State;
