@@ -1,5 +1,5 @@
 import * as schemaTypes from '../src/proto/schema_pb';
-import { USER_PERMISSION } from './user'
+import { USER_PERMISSION, USER_ACTION } from './user'
 import * as interfaces from '../src/interfaces';
 
 export namespace Parameters {
@@ -50,26 +50,27 @@ export namespace Parameters {
     }
     export type History = {
         key: string
-        offset: number
-        limit: number
-        desc: boolean
-        sincetx: number
+        offset?: number
+        limit?: number
+        desc?: boolean
+        sincetx?: number
     }
     export type ZScan = {
         set: string,
-        seekkey: string,
-        seekscore: number,
-        seekattx: number,
-        inclusiveseek: boolean,
-        limit: number,
-        desc: boolean,
+        seekkey?: string,
+        seekscore?: number,
+        seekattx?: number,
+        inclusiveseek?: boolean,
+        desc?: boolean,
+        sincetx?: number,
+        nowait?: boolean,
         minscore?: schemaTypes.Score.AsObject,
         maxscore?: schemaTypes.Score.AsObject,
-        sincetx: number,
-        nowait: boolean,
+        limit?: number,
     }
-    export type ChangePermission = Omit<schemaTypes.ChangePermissionRequest.AsObject, 'permission'> & {
+    export type ChangePermission = Omit<schemaTypes.ChangePermissionRequest.AsObject, 'permission' | 'action'> & {
         permission: USER_PERMISSION
+        action: USER_ACTION | schemaTypes.PermissionAction
     }
     export type CreateDatabase = schemaTypes.Database.AsObject
     export type UseDatabase = schemaTypes.Database.AsObject
