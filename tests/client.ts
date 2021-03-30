@@ -1,10 +1,10 @@
 import tap from 'tap';
 
-import * as schemaTypes from '../src/proto/schema_pb';
 import ImmudbClient from '../src/client';
 
 import { Config } from '../src/interfaces';
-import { USER_PERMISSION } from '../types/user';
+import { USER_PERMISSION, USER_ACTION } from '../types/user';
+import Parameters from '../types/parameters';
 
 const {
   IMMUDB_HOST = '127.0.0.1',
@@ -34,7 +34,7 @@ tap.test('database management', async t => {
     }
 
     // test: create database
-    const secondRequestData: schemaTypes.Database.AsObject = { databasename: 'db1' };
+    const secondRequestData: Parameters.CreateDatabase = { databasename: 'db1' };
     try {
       await immudbClient.createDatabase(secondRequestData);
       t.pass('Successfully created database');
@@ -43,7 +43,7 @@ tap.test('database management', async t => {
     }
 
     // test: use database just created
-    const thirdRequestData: schemaTypes.Database.AsObject = { databasename: 'db1' };
+    const thirdRequestData: Parameters.UseDatabase = { databasename: 'db1' };
     const secondResponse = await immudbClient.useDatabase(thirdRequestData);
     // if (secondResponse) {
     //   t.type(secondResponse.token, 'string')
@@ -64,9 +64,7 @@ tap.test('database management', async t => {
     }
 
     // test: list all databases available
-    const fifthResponse:
-      | schemaTypes.DatabaseListResponse.AsObject
-      | undefined = await immudbClient.listDatabases();
+    const fifthResponse = await immudbClient.listDatabases();
     if (fifthResponse) {
       t.equal(fifthResponse.databasesList[0].databasename, 'defaultdb');
       t.equal(fifthResponse.databasesList[1].databasename, 'db1');
@@ -102,7 +100,7 @@ tap.test('user management', async t => {
     const rand = `${Math.floor(Math.random() * Math.floor(100000))}`;
 
     // test: login using the specified username and password
-    const loginRequest = {
+    const loginRequest: Parameters.Login = {
       user: IMMUDB_USER,
       password: IMMUDB_PWD,
     };
@@ -128,8 +126,8 @@ tap.test('user management', async t => {
     const listUsersResponse = await immudbClient.listUsers();
 
     // test: change user permission
-    const changeUserPermissionRequest: schemaTypes.ChangePermissionRequest.AsObject = {
-      action: schemaTypes.PermissionAction.GRANT,
+    const changeUserPermissionRequest: Parameters.ChangePermission = {
+      action: USER_ACTION.GRANT,
       username: rand,
       database: rand,
       permission: USER_PERMISSION.READ_ONLY,
@@ -145,7 +143,7 @@ tap.test('user management', async t => {
     await immudbClient.changePassword(changePasswordRequest);
 
     // test: set active user
-    const setActiveUserRequest: schemaTypes.SetActiveUserRequest.AsObject = {
+    const setActiveUserRequest: Parameters.SetActiveUser = {
       username: rand,
       active: true,
     };
@@ -175,11 +173,11 @@ tap.test('operations', async t => {
     const testDB = 'testdb';
 
     // test: login using the specified username and password
-    const loginRequest = {
+    const loginRequest: Parameters.Login = {
       user: IMMUDB_USER,
       password: IMMUDB_PWD,
     };
-    const loginResponse: schemaTypes.LoginResponse.AsObject | undefined = await immudbClient.login(
+    const loginResponse = await immudbClient.login(
       loginRequest
     );
 
@@ -197,13 +195,13 @@ tap.test('operations', async t => {
 
       if (!dbExists) {
         // test: create database
-        const createDatabaseRequest: schemaTypes.Database.AsObject = { databasename: testDB };
+        const createDatabaseRequest: Parameters.CreateDatabase = { databasename: testDB };
         const createDatabaseResponse = await immudbClient.createDatabase(createDatabaseRequest);
       }
     }
 
     // test: use database just created
-    const useDatabaseRequest: schemaTypes.Database.AsObject = { databasename: testDB };
+    const useDatabaseRequest: Parameters.UseDatabase = { databasename: testDB };
     const useDatabaseResponse = await immudbClient.useDatabase(useDatabaseRequest);
 
     // test: add new item having the specified key
@@ -253,7 +251,7 @@ tap.test('operations', async t => {
 
     // test: iterate over keys having the specified
     // prefix
-    const scanRequest: schemaTypes.ScanRequest.AsObject = {
+    const scanRequest: Parameters.Scan = {
       seekkey: key,
       prefix: 'test',
       desc: true,
@@ -264,11 +262,11 @@ tap.test('operations', async t => {
     const seventhResponse = await immudbClient.scan(scanRequest);
 
     // test: return an element by txId
-    const txByIdRequest: schemaTypes.TxRequest.AsObject = { tx: id as number }
+    const txByIdRequest: Parameters.TxById = { tx: id as number }
     const txByIdResponse = await immudbClient.txById(txByIdRequest);
 
     // test: safely get an element by txId
-    const verifiedTxByIdRequest: schemaTypes.TxRequest.AsObject = { tx: id as number }
+    const verifiedTxByIdRequest: Parameters.VerifiedTxById = { tx: id as number }
     const verifiedTxByIdResponse = await immudbClient.verifiedTxById(verifiedTxByIdRequest);
 
     // history: fetch history for the item having the
@@ -297,7 +295,7 @@ tap.test('operations', async t => {
     const tenthResponse = await immudbClient.zScan(zScanRequest);
 
     // test: execute a getAll read
-    const getAllRequest: schemaTypes.KeyListRequest.AsObject = {
+    const getAllRequest: Parameters.GetAll = {
       keysList: [key],
       sincetx: 1
     };
@@ -316,7 +314,7 @@ tap.test('operations', async t => {
 
     // test: safely add new item having the specified key
     // and value
-    let verifiedSetRequest: schemaTypes.KeyValue.AsObject = {
+    let verifiedSetRequest: Parameters.VerifiedSet = {
       key: `${key}${key}`,
       value: `${value}${value}`,
     };
@@ -424,20 +422,20 @@ tap.test('batches', async t => {
     const res = await immudbClient.login(loginRequest);
 
     // test: use default database
-    const useDatabaseRequest: schemaTypes.Database.AsObject = { databasename: 'defaultdb' };
+    const useDatabaseRequest: Parameters.UseDatabase = { databasename: 'defaultdb' };
     const useDatabaseResponse = await immudbClient.useDatabase(useDatabaseRequest);
 
     // test: execute setAll
-    const setAllRequest: schemaTypes.SetRequest.AsObject = { kvsList: [] };
+    const setAllRequest: Parameters.SetAll = { kvsList: [] };
     for (let i = 0; i < 2; i++) {
-      const kv: schemaTypes.KeyValue.AsObject = { key: `test${i}`, value: `world${i}` }
+      const kv = { key: `test${i}`, value: `world${i}` }
 
       setAllRequest.kvsList.push(kv);
     }
     const setAllResponse = await immudbClient.setAll(setAllRequest);
 
     // test: execute a batch read
-    const getAllRequest: schemaTypes.KeyListRequest.AsObject = { keysList: [], sincetx: 0 };
+    const getAllRequest: Parameters.GetAll = { keysList: [], sincetx: 0 };
     for (let i = 0; i < 2; i++) {
       getAllRequest.keysList.push(`test${i}`);
     }

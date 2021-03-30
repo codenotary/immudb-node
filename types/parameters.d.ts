@@ -1,5 +1,5 @@
 import * as schemaTypes from '../src/proto/schema_pb';
-import { USER_PERMISSION } from './user'
+import { USER_PERMISSION, USER_ACTION } from './user'
 import * as interfaces from '../src/interfaces';
 
 export namespace Parameters {
@@ -68,8 +68,9 @@ export namespace Parameters {
         maxscore?: schemaTypes.Score.AsObject,
         limit?: number,
     }
-    export type ChangePermission = Omit<schemaTypes.ChangePermissionRequest.AsObject, 'permission'> & {
+    export type ChangePermission = Omit<schemaTypes.ChangePermissionRequest.AsObject, 'permission' | 'action'> & {
         permission: USER_PERMISSION
+        action: USER_ACTION | schemaTypes.PermissionAction
     }
     export type CreateDatabase = schemaTypes.Database.AsObject
     export type UseDatabase = schemaTypes.Database.AsObject
