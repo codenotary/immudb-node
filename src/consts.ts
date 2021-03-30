@@ -1,5 +1,3 @@
-import { PermissionAction } from './proto/schema_pb'
-
 export const CLIENT_INIT_PREFIX = 'ImmudbClient:';
 export const DEFAULT_DATABASE = 'defaultdb';
 export const DEFAULT_ROOTPATH = 'root';
