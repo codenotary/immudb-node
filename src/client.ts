@@ -1,10 +1,11 @@
 import * as dotenv from 'dotenv';
-import grpc, { Metadata } from 'grpc-web';
+import { credentials } from 'grpc';
+import * as grpc from 'grpc-web'
 import * as empty from 'google-protobuf/google/protobuf/empty_pb';
 
 dotenv.config();
 import * as schemaTypes from './proto/schema_pb';
-import * as services from './proto/schema_grpc_pb';
+import { ImmuServiceClient } from './proto/SchemaServiceClientPb';
 
 import * as util from './util';
 import { proofTx, txFrom } from './tx'
@@ -17,7 +18,7 @@ import Parameters from '../types/parameters'
 class ImmudbClient {
   public state: State;
 
-  public client: services.ImmuServiceClient;
+  public client: ImmuServiceClient;
 
   private static instance: ImmudbClient;
 
@@ -25,7 +26,7 @@ class ImmudbClient {
 
   private _token: any;
 
-  private _metadata: Metadata;
+  private _metadata: grpc.Metadata;
 
   private _activeDatabase: any;
 
@@ -39,15 +40,15 @@ class ImmudbClient {
     statePersistenceType = StatePersistenceTypes.FILE
   }: interfaces.Config) {
     // init insecure grpc auth
-    this._auth = grpc.credentials.createInsecure();
+    this._auth = credentials.createInsecure();
 
     // init secure grpc auth
     if (certs !== undefined) {
-      this._auth = grpc.credentials.createSsl(Buffer.from(JSON.stringify(certs)));
+      this._auth = credentials.createSsl(Buffer.from(JSON.stringify(certs)));
     }
 
     // initialize client from service
-    this.client = new services.ImmuServiceClient(`${host}:${port}`, this._auth);
+    this.client = new ImmuServiceClient(`${host}:${port}`, this._auth);
 
     // init empty grpc metadata
     this._metadata = {};
@@ -179,8 +180,8 @@ class ImmudbClient {
           }
 
           this._token = res.getToken();
-          this._metadata.remove('authorization');
-          this._metadata.add('authorization', `Bearer ${this._token}`);
+          delete this._metadata.authorization
+          this._metadata.authorization = `Bearer ${this._token}`
 
           resolve({
             token: this._token,
@@ -226,8 +227,8 @@ class ImmudbClient {
           return reject(err);
         } else {
           const token = res.getToken();
-          this._metadata.remove('authorization');
-          this._metadata.add('authorization', `Bearer ${token}`);
+          delete this._metadata.authorization
+          this._metadata.authorization = `Bearer ${token}`
           this._activeDatabase = databasename;
 
           resolve(res.toObject());
@@ -494,9 +495,9 @@ class ImmudbClient {
           });
         })
 
-        call.on('_metadata', meta => {
-          this._serverUUID = meta.get('immudb-uuid')[0]
-        })
+        // call.on('_metadata', meta => {
+        //   this._serverUUID = meta.get('immudb-uuid')[0]
+        // })
       });
     } catch (err) {
       console.error(err);

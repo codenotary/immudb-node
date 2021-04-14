@@ -118,7 +118,7 @@ class HTree {
             const index = l / (1 << layer)
 
             const a = this.levels[layer][index]
-            const b = proof.getTermsList_asU8()
+            const b = proof.getTermsList() as Uint8Array[]
             const termsList: Array<Uint8Array> = b.concat(a)
 
             proof.setTermsList(termsList)

@@ -117,7 +117,7 @@ const verifyLinearProof = (linearProof: schemaTypes.LinearProof, sourceId: numbe
 
     const sourceTxId = linearProof.getSourcetxid()
     const targetTxId = linearProof.getTargettxid()
-    const termsList = linearProof.getTermsList_asU8()
+    const termsList = linearProof.getTermsList() as Uint8Array[]
 
     if (sourceId !== sourceTxId || targetId !== targetTxId) {
         return false
@@ -154,7 +154,7 @@ export const verifyInclusion = (proof: schemaTypes.InclusionProof, digest: Uint8
     let i = proof.getLeaf()
     let r = proof.getWidth() - 1
 
-    for (let t of proof.getTermsList_asU8()) {
+    for (let t of proof.getTermsList() as Uint8Array[]) {
         const b = new Uint8Array(NODE_PREFIX.length + t.length + calcRoot.length)
 
         b.set(NODE_PREFIX)
@@ -181,9 +181,9 @@ export const verifyDualProof = (dualProof: schemaTypes.DualProof, sourceId: numb
 
     const sourcetxmetadata = dualProof.getSourcetxmetadata()
     const targettxmetadata = dualProof.getTargettxmetadata()
-    const inclusionproofList = dualProof.getInclusionproofList_asU8()
-    const consistencyproofList = dualProof.getConsistencyproofList_asU8()
-    const lastinclusionproofList = dualProof.getLastinclusionproofList_asU8()
+    const inclusionproofList = dualProof.getInclusionproofList() as Uint8Array[]
+    const consistencyproofList = dualProof.getConsistencyproofList() as Uint8Array[]
+    const lastinclusionproofList = dualProof.getLastinclusionproofList() as Uint8Array[]
     const targetbltxalh = dualProof.getTargetbltxalh_asU8()
     
     if (

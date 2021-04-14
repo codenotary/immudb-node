@@ -1,8 +1,8 @@
-import { Metadata } from 'grpc';
+import { Metadata } from 'grpc-web';
 import fs from 'fs'
 
 import * as schemaTypes from './proto/schema_pb';
-import * as services from './proto/schema_grpc_pb';
+import * as services from './proto/SchemaServiceClientPb';
 import * as empty from 'google-protobuf/google/protobuf/empty_pb';
 
 type Server = { [key: string]:  schemaTypes.ImmutableState.AsObject }
