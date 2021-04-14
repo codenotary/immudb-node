@@ -1,11 +1,11 @@
-import * as crypto from 'crypto';
+import { sha256 } from 'js-sha256'
 import * as util from 'util';
 
 import * as types from './interfaces';
 import * as schemaTypes from './proto/schema_pb';
 import { REFERENCE_VALUE_PREFIX, SORTED_KEY_PREFIX, SET_KEY_PREFIX, PLAIN_VALUE_PREFIX, LEAF_PREFIX } from './consts'
 
-export const hashUint8Array = (value: Uint8Array) => new Uint8Array(crypto.createHash('sha256').update(value).digest())
+export const hashUint8Array = (value: Uint8Array) => new Uint8Array(sha256.create().update(value).array())
 
 export const utf8Encode = (val: any) => {
     return new util.TextEncoder().encode(val);

@@ -1,3 +1,4 @@
+import { StatePersistenceTypes } from "./state"
 export interface Certs {
     privateKey: string;
     cercChain?: string;
@@ -14,6 +15,7 @@ export interface Config {
     secure?: boolean;
     autoLogin?: boolean;
     autoDatabase?: boolean;
+    statePersistenceType?: StatePersistenceTypes
 }
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>

@@ -20,6 +20,7 @@ type StateSetMetadata = {
 type StateConfig = {
     client: services.ImmuServiceClient
     rootPath?: string
+    statePersistenceType: StatePersistenceTypes
 }
 
 enum Signals {
@@ -28,12 +29,20 @@ enum Signals {
     UNCAUGHT_EXCEPTION = 'uncaughtException'
 }
 
+export enum StatePersistenceTypes {
+    FILE = 'file',
+    COOKIE = 'cookie',
+    LOCALSTORAGE = 'localStorage',
+    INDEXEDDB = 'indexedDB'
+}
+
 class State {
     public servers: Servers
     public client: services.ImmuServiceClient
     public rootPath: string
+    public statePersistenceType: StatePersistenceTypes
 
-    constructor({ client, rootPath = 'root' }: StateConfig) {
+    constructor({ client, rootPath = 'root', statePersistenceType }: StateConfig) {
         const handleExit = () => {
             this.exitHandler()
         }
@@ -43,6 +52,7 @@ class State {
 
         this.client = client
         this.rootPath = rootPath
+        this.statePersistenceType = statePersistenceType
 
         this.servers = this.getInitialState()
     }
@@ -121,24 +131,26 @@ class State {
     
     getInitialState(): Servers {
         try {
-            if (fs.existsSync(this.rootPath)) {
-                const rawdata = fs.readFileSync(this.rootPath, 'utf-8')
-
-                return this.parseServers(rawdata)
-            } else {
-                return {} as Servers;
-            }     
+            return this.statePersistenceType === StatePersistenceTypes.COOKIE
+                ? this.getStateFromCookie()
+                : this.statePersistenceType === StatePersistenceTypes.LOCALSTORAGE
+                    ? this.getStateFromLocalStorage()
+                    : this.getStateFromFile();
         } catch(err) {
             console.error(err)
             throw new Error('Error getting initial state')
         }
     }
 
-    commit() {
+    commit(): void {
         try {
             const data = this.stringifyServers()
 
-            fs.writeFileSync(this.rootPath, data)
+            this.statePersistenceType === StatePersistenceTypes.COOKIE
+                ? this.setStateInCookie(data)
+                : this.statePersistenceType === StatePersistenceTypes.LOCALSTORAGE
+                    ? this.setStateInLocalStorage(data)
+                    : this.setStateInFile(data);
         } catch (err) {
             console.error(err)
         }
@@ -188,6 +200,59 @@ class State {
 
         return servers
     }
+
+    private getStateFromCookie(): Servers {
+        var name = `${this.rootPath}=`;
+        var ca = document.cookie.split(';');
+        for(var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return this.parseServers(c.substring(name.length, c.length));
+            }
+        }
+        return {} as Servers
+    }
+
+    // TODO: @Temii implement localStorage state persistence handling
+    private getStateFromLocalStorage(): Servers {
+        return {} as Servers
+    }
+
+    // TODO: @Temii implement IndexedDB state persistence handling
+    private getStateFromIndexedDB(): Servers {
+        return {} as Servers
+    }
+
+    private getStateFromFile(): Servers {
+        if (fs.existsSync(this.rootPath)) {
+            const rawdata = fs.readFileSync(this.rootPath, 'utf-8')
+
+            return this.parseServers(rawdata)
+        } else {
+            return {} as Servers;
+        }
+    }
+
+    private setStateInFile(data: string): void {
+        fs.writeFileSync(this.rootPath, data)
+    }
+
+    private setStateInCookie(data: string): void {
+        const date = new Date();
+        date.setTime(date.getTime() + 365 * 24 * 60 * 60 * 1000);
+        const expires = `expires=${date.toUTCString()}`;
+
+        document.cookie = `${this.rootPath}=${data};${expires};path=/;samesite=strict;`;
+    }
+
+    // TODO: @Temii implement localStorage state persistence handling
+    private setStateInLocalStorage(data: string): void {}
+
+    // TODO: @Temii implement IndexedDB state persistence handling
+    private setStateInIndexedDB(data: string): void {}
 }
 
 export default State

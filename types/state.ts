@@ -1,0 +1,1 @@
+export { StatePersistenceTypes as PERSISTENCE_TYPES } from '../src/state'

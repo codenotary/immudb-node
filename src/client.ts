@@ -1,6 +1,5 @@
 import * as dotenv from 'dotenv';
-import { Metadata } from 'grpc';
-import * as grpc from '@grpc/grpc-js';
+import grpc, { Metadata } from 'grpc-web';
 import * as empty from 'google-protobuf/google/protobuf/empty_pb';
 
 dotenv.config();
@@ -9,7 +8,7 @@ import * as services from './proto/schema_grpc_pb';
 
 import * as util from './util';
 import { proofTx, txFrom } from './tx'
-import State from './state';
+import State, { StatePersistenceTypes } from './state';
 import * as interfaces from './interfaces';
 import { verifyInclusion, verifyDualProof } from './verification'
 import { CLIENT_INIT_PREFIX, DEFAULT_DATABASE, DEFAULT_ROOTPATH } from './consts'
@@ -37,6 +36,7 @@ class ImmudbClient {
     port = (process.env.IMMUDB_PORT as string) || '3322',
     certs,
     rootPath = DEFAULT_ROOTPATH,
+    statePersistenceType = StatePersistenceTypes.FILE
   }: interfaces.Config) {
     // init insecure grpc auth
     this._auth = grpc.credentials.createInsecure();
@@ -50,10 +50,10 @@ class ImmudbClient {
     this.client = new services.ImmuServiceClient(`${host}:${port}`, this._auth);
 
     // init empty grpc metadata
-    this._metadata = new grpc.Metadata();
+    this._metadata = {};
 
     // init state
-    this.state = new State({ client: this.client, rootPath })
+    this.state = new State({ client: this.client, rootPath, statePersistenceType })
   }
 
   public static async getInstance(config: interfaces.Config): Promise<ImmudbClient> {
