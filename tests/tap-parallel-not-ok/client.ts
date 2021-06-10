@@ -1,10 +1,10 @@
 import tap from 'tap';
 
-import ImmudbClient from '../src/client';
+import ImmudbClient from '../../src/client';
 
-import { Config } from '../src/interfaces';
-import { USER_PERMISSION, USER_ACTION } from '../types/user';
-import Parameters from '../types/parameters';
+import { Config } from '../../src/interfaces';
+import { USER_PERMISSION, USER_ACTION } from '../../types/user';
+import Parameters from '../../types/parameters';
 
 const {
   IMMUDB_HOST = '127.0.0.1',
@@ -44,7 +44,7 @@ tap.test('database management', async t => {
 
     // test: use database just created
     const thirdRequestData: Parameters.UseDatabase = { databasename: 'db1' };
-    const secondResponse = await immudbClient.useDatabase(thirdRequestData);
+    await immudbClient.useDatabase(thirdRequestData);
     // if (secondResponse) {
     //   t.type(secondResponse.token, 'string')
     // }
@@ -177,7 +177,7 @@ tap.test('operations', async t => {
       user: IMMUDB_USER,
       password: IMMUDB_PWD,
     };
-    const loginResponse = await immudbClient.login(
+    await immudbClient.login(
       loginRequest
     );
 
@@ -185,13 +185,8 @@ tap.test('operations', async t => {
     if (listDatabasesResponse) {
       const { databasesList } = listDatabasesResponse
 
-      let dbExists = false
-
-      databasesList.forEach(({ databasename }) => {
-        if (databasename === testDB) {
-          dbExists = true
-        }
-      })
+      // let dbExists = false
+      const dbExists = databasesList.some(({ databasename }) => databasename === testDB)
 
       if (!dbExists) {
         // test: create database
@@ -202,16 +197,13 @@ tap.test('operations', async t => {
 
     // test: use database just created
     const useDatabaseRequest: Parameters.UseDatabase = { databasename: testDB };
-    const useDatabaseResponse = await immudbClient.useDatabase(useDatabaseRequest);
+    await immudbClient.useDatabase(useDatabaseRequest);
 
     // test: add new item having the specified key
     // and value
     const key = 'hello'
     const value = 'world'
-    let setRequest = {
-      key,
-      value: 'world',
-    };
+    let setRequest = { key, value };
     let setResponse = await immudbClient.set(setRequest);
     const id = setResponse && setResponse.id; // used in txById test
 
@@ -221,28 +213,28 @@ tap.test('operations', async t => {
 
     // test: get item by key
     const getRequest = { key };
-    const getResponse = await immudbClient.get(getRequest);
+    await immudbClient.get(getRequest);
 
     //test: set a reference to an inserted key
     const referenceKey = 'refHello'
     const setReferenceRequest = { key: referenceKey, referencedKey: key }
-    const setReferenceResponse = await immudbClient.setReference(setReferenceRequest)
+    await immudbClient.setReference(setReferenceRequest)
 
     // test: get item by reference
     const getRefRequest = { key: referenceKey };
-    const getRefResponse = await immudbClient.get(getRefRequest);
+    await immudbClient.get(getRefRequest);
 
     // test: set a reference to an inserted key
     const setReferenceAtRequest = { key: referenceKey, referencedKey: key, attx: 0 }
-    const setReferenceAtResponse = await immudbClient.setReferenceAt(setReferenceAtRequest)
+    await immudbClient.setReferenceAt(setReferenceAtRequest)
 
     // test: safely set a reference to an inserted key
     const verifiedSetReferenceRequest = { key: referenceKey, referencedKey: key }
-    const verifiedSetReferenceResponse = await immudbClient.verifiedSetReference(verifiedSetReferenceRequest)
+    await immudbClient.verifiedSetReference(verifiedSetReferenceRequest)
 
     // test: safely set a reference to an inserted key
     const verifiedSetReferenceAtRequest = { key: referenceKey, referencedKey: key, attx: 1 }
-    const verifiedSetReferenceAtResponse = await immudbClient.verifiedSetReference(verifiedSetReferenceAtRequest)
+    await immudbClient.verifiedSetReferenceAt(verifiedSetReferenceAtRequest)
 
     // // test: count keys having the specified value
     // // in the database in use
@@ -259,15 +251,15 @@ tap.test('operations', async t => {
       sincetx: rand,
       nowait: true
     };
-    const seventhResponse = await immudbClient.scan(scanRequest);
+    await immudbClient.scan(scanRequest);
 
     // test: return an element by txId
     const txByIdRequest: Parameters.TxById = { tx: id as number }
-    const txByIdResponse = await immudbClient.txById(txByIdRequest);
+    await immudbClient.txById(txByIdRequest);
 
     // test: safely get an element by txId
     const verifiedTxByIdRequest: Parameters.VerifiedTxById = { tx: id as number }
-    const verifiedTxByIdResponse = await immudbClient.verifiedTxById(verifiedTxByIdRequest);
+    await immudbClient.verifiedTxById(verifiedTxByIdRequest);
 
     // history: fetch history for the item having the
     // specified key
@@ -278,7 +270,7 @@ tap.test('operations', async t => {
       // desc: false,
       // sincetx: rand
     };
-    const historyResponse = await immudbClient.history(historyRequest);
+    await immudbClient.history(historyRequest);
 
     // test: iterate over a sorted set
     const zScanRequest = {
@@ -292,14 +284,14 @@ tap.test('operations', async t => {
       sincetx: 0,
       nowait: true
     };
-    const tenthResponse = await immudbClient.zScan(zScanRequest);
+    await immudbClient.zScan(zScanRequest);
 
     // test: execute a getAll read
     const getAllRequest: Parameters.GetAll = {
       keysList: [key],
       sincetx: 1
     };
-    const getAllResponse = await immudbClient.getAll(getAllRequest);
+    await immudbClient.getAll(getAllRequest);
 
     // test: add new item having the specified key
     // and value
@@ -386,19 +378,19 @@ tap.test('operations', async t => {
 
     // test: set a secondary index on a key
     const zAddRequest = { set: 'test', score: 23, key }
-    const zAddResponse = await immudbClient.zAdd(zAddRequest)
+    await immudbClient.zAdd(zAddRequest)
 
     // test: set a secondary index on a key at a specific transaction
     const zAddAtRequest = { set: 'test', score: 23, key, attx: 0 }
-    const zAddAtResponse = await immudbClient.zAddAt(zAddAtRequest)
+    await immudbClient.zAddAt(zAddAtRequest)
 
     // test: safely set a secondary index on a key at a specific transaction
     const verifiedZAddRequest = { set: 'test', score: 32, key }
-    const verifiedZAddResponse = await immudbClient.zAdd(verifiedZAddRequest)
+    await immudbClient.zAdd(verifiedZAddRequest)
 
     // test: safely set a secondary index on a key at a specific transaction
     const verifiedZAddAtRequest = { set: 'test', score: 32, key, attx: 1 }
-    const verifiedZAddAtResponse = await immudbClient.zAddAt(verifiedZAddAtRequest)
+    await immudbClient.zAddAt(verifiedZAddAtRequest)
 
     t.end();
   } catch (err) {
@@ -426,7 +418,7 @@ tap.test('batches', async t => {
     const useDatabaseResponse = await immudbClient.useDatabase(useDatabaseRequest);
 
     // test: execute setAll
-    const setAllRequest: Parameters.SetAll = { kvsList: [] };
+    const setAllRequest: Parameters.SetAll = { kvsList: [], nowait: true };
     for (let i = 0; i < 2; i++) {
       const kv = { key: `test${i}`, value: `world${i}` }
 

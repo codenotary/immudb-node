@@ -7,6 +7,7 @@
 import * as grpc from "grpc";
 import * as schema_pb from "./schema_pb";
 import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
+import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 
 interface IImmuServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
     listUsers: IImmuServiceService_IListUsers;
@@ -42,6 +43,20 @@ interface IImmuServiceService extends grpc.ServiceDefinition<grpc.UntypedService
     cleanIndex: IImmuServiceService_ICleanIndex;
     changePermission: IImmuServiceService_IChangePermission;
     setActiveUser: IImmuServiceService_ISetActiveUser;
+    streamGet: IImmuServiceService_IstreamGet;
+    streamSet: IImmuServiceService_IstreamSet;
+    streamVerifiableGet: IImmuServiceService_IstreamVerifiableGet;
+    streamVerifiableSet: IImmuServiceService_IstreamVerifiableSet;
+    streamScan: IImmuServiceService_IstreamScan;
+    streamZScan: IImmuServiceService_IstreamZScan;
+    streamHistory: IImmuServiceService_IstreamHistory;
+    streamExecAll: IImmuServiceService_IstreamExecAll;
+    useSnapshot: IImmuServiceService_IUseSnapshot;
+    sQLExec: IImmuServiceService_ISQLExec;
+    sQLQuery: IImmuServiceService_ISQLQuery;
+    listTables: IImmuServiceService_IListTables;
+    describeTable: IImmuServiceService_IDescribeTable;
+    verifiableSQLGet: IImmuServiceService_IVerifiableSQLGet;
 }
 
 interface IImmuServiceService_IListUsers extends grpc.MethodDefinition<google_protobuf_empty_pb.Empty, schema_pb.UserList> {
@@ -341,6 +356,132 @@ interface IImmuServiceService_ISetActiveUser extends grpc.MethodDefinition<schem
     responseSerialize: grpc.serialize<google_protobuf_empty_pb.Empty>;
     responseDeserialize: grpc.deserialize<google_protobuf_empty_pb.Empty>;
 }
+interface IImmuServiceService_IstreamGet extends grpc.MethodDefinition<schema_pb.KeyRequest, schema_pb.Chunk> {
+    path: "/immudb.schema.ImmuService/streamGet";
+    requestStream: false;
+    responseStream: true;
+    requestSerialize: grpc.serialize<schema_pb.KeyRequest>;
+    requestDeserialize: grpc.deserialize<schema_pb.KeyRequest>;
+    responseSerialize: grpc.serialize<schema_pb.Chunk>;
+    responseDeserialize: grpc.deserialize<schema_pb.Chunk>;
+}
+interface IImmuServiceService_IstreamSet extends grpc.MethodDefinition<schema_pb.Chunk, schema_pb.TxMetadata> {
+    path: "/immudb.schema.ImmuService/streamSet";
+    requestStream: true;
+    responseStream: false;
+    requestSerialize: grpc.serialize<schema_pb.Chunk>;
+    requestDeserialize: grpc.deserialize<schema_pb.Chunk>;
+    responseSerialize: grpc.serialize<schema_pb.TxMetadata>;
+    responseDeserialize: grpc.deserialize<schema_pb.TxMetadata>;
+}
+interface IImmuServiceService_IstreamVerifiableGet extends grpc.MethodDefinition<schema_pb.VerifiableGetRequest, schema_pb.Chunk> {
+    path: "/immudb.schema.ImmuService/streamVerifiableGet";
+    requestStream: false;
+    responseStream: true;
+    requestSerialize: grpc.serialize<schema_pb.VerifiableGetRequest>;
+    requestDeserialize: grpc.deserialize<schema_pb.VerifiableGetRequest>;
+    responseSerialize: grpc.serialize<schema_pb.Chunk>;
+    responseDeserialize: grpc.deserialize<schema_pb.Chunk>;
+}
+interface IImmuServiceService_IstreamVerifiableSet extends grpc.MethodDefinition<schema_pb.Chunk, schema_pb.VerifiableTx> {
+    path: "/immudb.schema.ImmuService/streamVerifiableSet";
+    requestStream: true;
+    responseStream: false;
+    requestSerialize: grpc.serialize<schema_pb.Chunk>;
+    requestDeserialize: grpc.deserialize<schema_pb.Chunk>;
+    responseSerialize: grpc.serialize<schema_pb.VerifiableTx>;
+    responseDeserialize: grpc.deserialize<schema_pb.VerifiableTx>;
+}
+interface IImmuServiceService_IstreamScan extends grpc.MethodDefinition<schema_pb.ScanRequest, schema_pb.Chunk> {
+    path: "/immudb.schema.ImmuService/streamScan";
+    requestStream: false;
+    responseStream: true;
+    requestSerialize: grpc.serialize<schema_pb.ScanRequest>;
+    requestDeserialize: grpc.deserialize<schema_pb.ScanRequest>;
+    responseSerialize: grpc.serialize<schema_pb.Chunk>;
+    responseDeserialize: grpc.deserialize<schema_pb.Chunk>;
+}
+interface IImmuServiceService_IstreamZScan extends grpc.MethodDefinition<schema_pb.ZScanRequest, schema_pb.Chunk> {
+    path: "/immudb.schema.ImmuService/streamZScan";
+    requestStream: false;
+    responseStream: true;
+    requestSerialize: grpc.serialize<schema_pb.ZScanRequest>;
+    requestDeserialize: grpc.deserialize<schema_pb.ZScanRequest>;
+    responseSerialize: grpc.serialize<schema_pb.Chunk>;
+    responseDeserialize: grpc.deserialize<schema_pb.Chunk>;
+}
+interface IImmuServiceService_IstreamHistory extends grpc.MethodDefinition<schema_pb.HistoryRequest, schema_pb.Chunk> {
+    path: "/immudb.schema.ImmuService/streamHistory";
+    requestStream: false;
+    responseStream: true;
+    requestSerialize: grpc.serialize<schema_pb.HistoryRequest>;
+    requestDeserialize: grpc.deserialize<schema_pb.HistoryRequest>;
+    responseSerialize: grpc.serialize<schema_pb.Chunk>;
+    responseDeserialize: grpc.deserialize<schema_pb.Chunk>;
+}
+interface IImmuServiceService_IstreamExecAll extends grpc.MethodDefinition<schema_pb.Chunk, schema_pb.TxMetadata> {
+    path: "/immudb.schema.ImmuService/streamExecAll";
+    requestStream: true;
+    responseStream: false;
+    requestSerialize: grpc.serialize<schema_pb.Chunk>;
+    requestDeserialize: grpc.deserialize<schema_pb.Chunk>;
+    responseSerialize: grpc.serialize<schema_pb.TxMetadata>;
+    responseDeserialize: grpc.deserialize<schema_pb.TxMetadata>;
+}
+interface IImmuServiceService_IUseSnapshot extends grpc.MethodDefinition<schema_pb.UseSnapshotRequest, google_protobuf_empty_pb.Empty> {
+    path: "/immudb.schema.ImmuService/UseSnapshot";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<schema_pb.UseSnapshotRequest>;
+    requestDeserialize: grpc.deserialize<schema_pb.UseSnapshotRequest>;
+    responseSerialize: grpc.serialize<google_protobuf_empty_pb.Empty>;
+    responseDeserialize: grpc.deserialize<google_protobuf_empty_pb.Empty>;
+}
+interface IImmuServiceService_ISQLExec extends grpc.MethodDefinition<schema_pb.SQLExecRequest, schema_pb.SQLExecResult> {
+    path: "/immudb.schema.ImmuService/SQLExec";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<schema_pb.SQLExecRequest>;
+    requestDeserialize: grpc.deserialize<schema_pb.SQLExecRequest>;
+    responseSerialize: grpc.serialize<schema_pb.SQLExecResult>;
+    responseDeserialize: grpc.deserialize<schema_pb.SQLExecResult>;
+}
+interface IImmuServiceService_ISQLQuery extends grpc.MethodDefinition<schema_pb.SQLQueryRequest, schema_pb.SQLQueryResult> {
+    path: "/immudb.schema.ImmuService/SQLQuery";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<schema_pb.SQLQueryRequest>;
+    requestDeserialize: grpc.deserialize<schema_pb.SQLQueryRequest>;
+    responseSerialize: grpc.serialize<schema_pb.SQLQueryResult>;
+    responseDeserialize: grpc.deserialize<schema_pb.SQLQueryResult>;
+}
+interface IImmuServiceService_IListTables extends grpc.MethodDefinition<google_protobuf_empty_pb.Empty, schema_pb.SQLQueryResult> {
+    path: "/immudb.schema.ImmuService/ListTables";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<google_protobuf_empty_pb.Empty>;
+    requestDeserialize: grpc.deserialize<google_protobuf_empty_pb.Empty>;
+    responseSerialize: grpc.serialize<schema_pb.SQLQueryResult>;
+    responseDeserialize: grpc.deserialize<schema_pb.SQLQueryResult>;
+}
+interface IImmuServiceService_IDescribeTable extends grpc.MethodDefinition<schema_pb.Table, schema_pb.SQLQueryResult> {
+    path: "/immudb.schema.ImmuService/DescribeTable";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<schema_pb.Table>;
+    requestDeserialize: grpc.deserialize<schema_pb.Table>;
+    responseSerialize: grpc.serialize<schema_pb.SQLQueryResult>;
+    responseDeserialize: grpc.deserialize<schema_pb.SQLQueryResult>;
+}
+interface IImmuServiceService_IVerifiableSQLGet extends grpc.MethodDefinition<schema_pb.VerifiableSQLGetRequest, schema_pb.VerifiableSQLEntry> {
+    path: "/immudb.schema.ImmuService/VerifiableSQLGet";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<schema_pb.VerifiableSQLGetRequest>;
+    requestDeserialize: grpc.deserialize<schema_pb.VerifiableSQLGetRequest>;
+    responseSerialize: grpc.serialize<schema_pb.VerifiableSQLEntry>;
+    responseDeserialize: grpc.deserialize<schema_pb.VerifiableSQLEntry>;
+}
 
 export const ImmuServiceService: IImmuServiceService;
 
@@ -378,6 +519,20 @@ export interface IImmuServiceServer {
     cleanIndex: grpc.handleUnaryCall<google_protobuf_empty_pb.Empty, google_protobuf_empty_pb.Empty>;
     changePermission: grpc.handleUnaryCall<schema_pb.ChangePermissionRequest, google_protobuf_empty_pb.Empty>;
     setActiveUser: grpc.handleUnaryCall<schema_pb.SetActiveUserRequest, google_protobuf_empty_pb.Empty>;
+    streamGet: grpc.handleServerStreamingCall<schema_pb.KeyRequest, schema_pb.Chunk>;
+    streamSet: grpc.handleClientStreamingCall<schema_pb.Chunk, schema_pb.TxMetadata>;
+    streamVerifiableGet: grpc.handleServerStreamingCall<schema_pb.VerifiableGetRequest, schema_pb.Chunk>;
+    streamVerifiableSet: grpc.handleClientStreamingCall<schema_pb.Chunk, schema_pb.VerifiableTx>;
+    streamScan: grpc.handleServerStreamingCall<schema_pb.ScanRequest, schema_pb.Chunk>;
+    streamZScan: grpc.handleServerStreamingCall<schema_pb.ZScanRequest, schema_pb.Chunk>;
+    streamHistory: grpc.handleServerStreamingCall<schema_pb.HistoryRequest, schema_pb.Chunk>;
+    streamExecAll: grpc.handleClientStreamingCall<schema_pb.Chunk, schema_pb.TxMetadata>;
+    useSnapshot: grpc.handleUnaryCall<schema_pb.UseSnapshotRequest, google_protobuf_empty_pb.Empty>;
+    sQLExec: grpc.handleUnaryCall<schema_pb.SQLExecRequest, schema_pb.SQLExecResult>;
+    sQLQuery: grpc.handleUnaryCall<schema_pb.SQLQueryRequest, schema_pb.SQLQueryResult>;
+    listTables: grpc.handleUnaryCall<google_protobuf_empty_pb.Empty, schema_pb.SQLQueryResult>;
+    describeTable: grpc.handleUnaryCall<schema_pb.Table, schema_pb.SQLQueryResult>;
+    verifiableSQLGet: grpc.handleUnaryCall<schema_pb.VerifiableSQLGetRequest, schema_pb.VerifiableSQLEntry>;
 }
 
 export interface IImmuServiceClient {
@@ -480,6 +635,46 @@ export interface IImmuServiceClient {
     setActiveUser(request: schema_pb.SetActiveUserRequest, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
     setActiveUser(request: schema_pb.SetActiveUserRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
     setActiveUser(request: schema_pb.SetActiveUserRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
+    streamGet(request: schema_pb.KeyRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<schema_pb.Chunk>;
+    streamGet(request: schema_pb.KeyRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<schema_pb.Chunk>;
+    streamSet(callback: (error: grpc.ServiceError | null, response: schema_pb.TxMetadata) => void): grpc.ClientWritableStream<schema_pb.Chunk>;
+    streamSet(metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.TxMetadata) => void): grpc.ClientWritableStream<schema_pb.Chunk>;
+    streamSet(options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.TxMetadata) => void): grpc.ClientWritableStream<schema_pb.Chunk>;
+    streamSet(metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.TxMetadata) => void): grpc.ClientWritableStream<schema_pb.Chunk>;
+    streamVerifiableGet(request: schema_pb.VerifiableGetRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<schema_pb.Chunk>;
+    streamVerifiableGet(request: schema_pb.VerifiableGetRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<schema_pb.Chunk>;
+    streamVerifiableSet(callback: (error: grpc.ServiceError | null, response: schema_pb.VerifiableTx) => void): grpc.ClientWritableStream<schema_pb.Chunk>;
+    streamVerifiableSet(metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.VerifiableTx) => void): grpc.ClientWritableStream<schema_pb.Chunk>;
+    streamVerifiableSet(options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.VerifiableTx) => void): grpc.ClientWritableStream<schema_pb.Chunk>;
+    streamVerifiableSet(metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.VerifiableTx) => void): grpc.ClientWritableStream<schema_pb.Chunk>;
+    streamScan(request: schema_pb.ScanRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<schema_pb.Chunk>;
+    streamScan(request: schema_pb.ScanRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<schema_pb.Chunk>;
+    streamZScan(request: schema_pb.ZScanRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<schema_pb.Chunk>;
+    streamZScan(request: schema_pb.ZScanRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<schema_pb.Chunk>;
+    streamHistory(request: schema_pb.HistoryRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<schema_pb.Chunk>;
+    streamHistory(request: schema_pb.HistoryRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<schema_pb.Chunk>;
+    streamExecAll(callback: (error: grpc.ServiceError | null, response: schema_pb.TxMetadata) => void): grpc.ClientWritableStream<schema_pb.Chunk>;
+    streamExecAll(metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.TxMetadata) => void): grpc.ClientWritableStream<schema_pb.Chunk>;
+    streamExecAll(options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.TxMetadata) => void): grpc.ClientWritableStream<schema_pb.Chunk>;
+    streamExecAll(metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.TxMetadata) => void): grpc.ClientWritableStream<schema_pb.Chunk>;
+    useSnapshot(request: schema_pb.UseSnapshotRequest, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
+    useSnapshot(request: schema_pb.UseSnapshotRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
+    useSnapshot(request: schema_pb.UseSnapshotRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
+    sQLExec(request: schema_pb.SQLExecRequest, callback: (error: grpc.ServiceError | null, response: schema_pb.SQLExecResult) => void): grpc.ClientUnaryCall;
+    sQLExec(request: schema_pb.SQLExecRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.SQLExecResult) => void): grpc.ClientUnaryCall;
+    sQLExec(request: schema_pb.SQLExecRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.SQLExecResult) => void): grpc.ClientUnaryCall;
+    sQLQuery(request: schema_pb.SQLQueryRequest, callback: (error: grpc.ServiceError | null, response: schema_pb.SQLQueryResult) => void): grpc.ClientUnaryCall;
+    sQLQuery(request: schema_pb.SQLQueryRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.SQLQueryResult) => void): grpc.ClientUnaryCall;
+    sQLQuery(request: schema_pb.SQLQueryRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.SQLQueryResult) => void): grpc.ClientUnaryCall;
+    listTables(request: google_protobuf_empty_pb.Empty, callback: (error: grpc.ServiceError | null, response: schema_pb.SQLQueryResult) => void): grpc.ClientUnaryCall;
+    listTables(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.SQLQueryResult) => void): grpc.ClientUnaryCall;
+    listTables(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.SQLQueryResult) => void): grpc.ClientUnaryCall;
+    describeTable(request: schema_pb.Table, callback: (error: grpc.ServiceError | null, response: schema_pb.SQLQueryResult) => void): grpc.ClientUnaryCall;
+    describeTable(request: schema_pb.Table, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.SQLQueryResult) => void): grpc.ClientUnaryCall;
+    describeTable(request: schema_pb.Table, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.SQLQueryResult) => void): grpc.ClientUnaryCall;
+    verifiableSQLGet(request: schema_pb.VerifiableSQLGetRequest, callback: (error: grpc.ServiceError | null, response: schema_pb.VerifiableSQLEntry) => void): grpc.ClientUnaryCall;
+    verifiableSQLGet(request: schema_pb.VerifiableSQLGetRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.VerifiableSQLEntry) => void): grpc.ClientUnaryCall;
+    verifiableSQLGet(request: schema_pb.VerifiableSQLGetRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.VerifiableSQLEntry) => void): grpc.ClientUnaryCall;
 }
 
 export class ImmuServiceClient extends grpc.Client implements IImmuServiceClient {
@@ -583,4 +778,44 @@ export class ImmuServiceClient extends grpc.Client implements IImmuServiceClient
     public setActiveUser(request: schema_pb.SetActiveUserRequest, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
     public setActiveUser(request: schema_pb.SetActiveUserRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
     public setActiveUser(request: schema_pb.SetActiveUserRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
+    public streamGet(request: schema_pb.KeyRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<schema_pb.Chunk>;
+    public streamGet(request: schema_pb.KeyRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<schema_pb.Chunk>;
+    public streamSet(callback: (error: grpc.ServiceError | null, response: schema_pb.TxMetadata) => void): grpc.ClientWritableStream<schema_pb.Chunk>;
+    public streamSet(metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.TxMetadata) => void): grpc.ClientWritableStream<schema_pb.Chunk>;
+    public streamSet(options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.TxMetadata) => void): grpc.ClientWritableStream<schema_pb.Chunk>;
+    public streamSet(metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.TxMetadata) => void): grpc.ClientWritableStream<schema_pb.Chunk>;
+    public streamVerifiableGet(request: schema_pb.VerifiableGetRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<schema_pb.Chunk>;
+    public streamVerifiableGet(request: schema_pb.VerifiableGetRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<schema_pb.Chunk>;
+    public streamVerifiableSet(callback: (error: grpc.ServiceError | null, response: schema_pb.VerifiableTx) => void): grpc.ClientWritableStream<schema_pb.Chunk>;
+    public streamVerifiableSet(metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.VerifiableTx) => void): grpc.ClientWritableStream<schema_pb.Chunk>;
+    public streamVerifiableSet(options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.VerifiableTx) => void): grpc.ClientWritableStream<schema_pb.Chunk>;
+    public streamVerifiableSet(metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.VerifiableTx) => void): grpc.ClientWritableStream<schema_pb.Chunk>;
+    public streamScan(request: schema_pb.ScanRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<schema_pb.Chunk>;
+    public streamScan(request: schema_pb.ScanRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<schema_pb.Chunk>;
+    public streamZScan(request: schema_pb.ZScanRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<schema_pb.Chunk>;
+    public streamZScan(request: schema_pb.ZScanRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<schema_pb.Chunk>;
+    public streamHistory(request: schema_pb.HistoryRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<schema_pb.Chunk>;
+    public streamHistory(request: schema_pb.HistoryRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<schema_pb.Chunk>;
+    public streamExecAll(callback: (error: grpc.ServiceError | null, response: schema_pb.TxMetadata) => void): grpc.ClientWritableStream<schema_pb.Chunk>;
+    public streamExecAll(metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.TxMetadata) => void): grpc.ClientWritableStream<schema_pb.Chunk>;
+    public streamExecAll(options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.TxMetadata) => void): grpc.ClientWritableStream<schema_pb.Chunk>;
+    public streamExecAll(metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.TxMetadata) => void): grpc.ClientWritableStream<schema_pb.Chunk>;
+    public useSnapshot(request: schema_pb.UseSnapshotRequest, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
+    public useSnapshot(request: schema_pb.UseSnapshotRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
+    public useSnapshot(request: schema_pb.UseSnapshotRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
+    public sQLExec(request: schema_pb.SQLExecRequest, callback: (error: grpc.ServiceError | null, response: schema_pb.SQLExecResult) => void): grpc.ClientUnaryCall;
+    public sQLExec(request: schema_pb.SQLExecRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.SQLExecResult) => void): grpc.ClientUnaryCall;
+    public sQLExec(request: schema_pb.SQLExecRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.SQLExecResult) => void): grpc.ClientUnaryCall;
+    public sQLQuery(request: schema_pb.SQLQueryRequest, callback: (error: grpc.ServiceError | null, response: schema_pb.SQLQueryResult) => void): grpc.ClientUnaryCall;
+    public sQLQuery(request: schema_pb.SQLQueryRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.SQLQueryResult) => void): grpc.ClientUnaryCall;
+    public sQLQuery(request: schema_pb.SQLQueryRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.SQLQueryResult) => void): grpc.ClientUnaryCall;
+    public listTables(request: google_protobuf_empty_pb.Empty, callback: (error: grpc.ServiceError | null, response: schema_pb.SQLQueryResult) => void): grpc.ClientUnaryCall;
+    public listTables(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.SQLQueryResult) => void): grpc.ClientUnaryCall;
+    public listTables(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.SQLQueryResult) => void): grpc.ClientUnaryCall;
+    public describeTable(request: schema_pb.Table, callback: (error: grpc.ServiceError | null, response: schema_pb.SQLQueryResult) => void): grpc.ClientUnaryCall;
+    public describeTable(request: schema_pb.Table, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.SQLQueryResult) => void): grpc.ClientUnaryCall;
+    public describeTable(request: schema_pb.Table, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.SQLQueryResult) => void): grpc.ClientUnaryCall;
+    public verifiableSQLGet(request: schema_pb.VerifiableSQLGetRequest, callback: (error: grpc.ServiceError | null, response: schema_pb.VerifiableSQLEntry) => void): grpc.ClientUnaryCall;
+    public verifiableSQLGet(request: schema_pb.VerifiableSQLGetRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.VerifiableSQLEntry) => void): grpc.ClientUnaryCall;
+    public verifiableSQLGet(request: schema_pb.VerifiableSQLGetRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.VerifiableSQLEntry) => void): grpc.ClientUnaryCall;
 }
