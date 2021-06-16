@@ -77,7 +77,7 @@ tap.test('database management', async t => {
     // test: check immudb health status
     const seventhResponse = await immudbClient.health();
     if (seventhResponse) {
-      t.true(seventhResponse.status);
+      t.ok(seventhResponse.status);
     } else {
       t.fail('Failed to get health');
     }
@@ -123,7 +123,7 @@ tap.test('user management', async t => {
     }
 
     // test: list all users
-    const listUsersResponse = await immudbClient.listUsers();
+    await immudbClient.listUsers();
 
     // test: change user permission
     const changeUserPermissionRequest: Parameters.ChangePermission = {
@@ -191,7 +191,8 @@ tap.test('operations', async t => {
       if (!dbExists) {
         // test: create database
         const createDatabaseRequest: Parameters.CreateDatabase = { databasename: testDB };
-        const createDatabaseResponse = await immudbClient.createDatabase(createDatabaseRequest);
+        
+        await immudbClient.createDatabase(createDatabaseRequest);
       }
     }
 
@@ -349,7 +350,7 @@ tap.test('operations', async t => {
       key
     }
     try {
-      const verifiedGetResponse = await immudbClient.verifiedGet(verifiedGetRequest);
+      await immudbClient.verifiedGet(verifiedGetRequest);
     } catch(err) {
       t.fail(err)
     }
@@ -360,7 +361,7 @@ tap.test('operations', async t => {
       attx: 0
     }
     try {
-      const verifiedGetAtResponse = await immudbClient.verifiedGetAt(verifiedGetAtRequest);
+      await immudbClient.verifiedGetAt(verifiedGetAtRequest);
     } catch(err) {
       t.fail(err)
     }
@@ -371,7 +372,7 @@ tap.test('operations', async t => {
       sincetx: 2
     }
     try {
-      const verifiedGetSinceResponse = await immudbClient.verifiedGetSince(verifiedGetSinceRequest);
+      await immudbClient.verifiedGetSince(verifiedGetSinceRequest);
     } catch(err) {
       t.fail(err)
     }
