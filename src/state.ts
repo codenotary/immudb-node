@@ -117,6 +117,8 @@ class State {
         
         server[databaseName] = state
         this.servers[serverName] = server
+
+        this.commit();
     }
     
     getInitialState(): Servers {

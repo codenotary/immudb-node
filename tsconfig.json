@@ -10,7 +10,7 @@
       "declaration": true,
       "outDir": "./dist",
       "rootDir": "./",
-      // "allowJs": true,
+      "allowJs": true,
       "baseUrl": "src",
       // "moduleResolution": "classic"
     },

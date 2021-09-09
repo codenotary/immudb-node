@@ -42,7 +42,7 @@ if [ "$DEV" == true ]; then
 
   pushd $IMMUDB_DEV_PATH
     # Clean up
-    rm -rf test-data roots root.json
+    rm -rf test-data roots root.json ../root
   popd
 
   # Stop immudb
@@ -80,7 +80,7 @@ if [ "$DEV" == false ]; then
   (cd .. ; ./node_modules/tap/bin/run.js)
 
   # Clean up
-  rm -rf test-data roots root.json
+  rm -rf test-data roots root.json ../root
 
   # Stop immudb
   npx kill-port $IMMUDB_TEST_PORT

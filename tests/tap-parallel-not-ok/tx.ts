@@ -1,6 +1,6 @@
 import tap from 'tap'
 
-import { Tx, digestTXe } from '../src/tx'
+import { Tx, digestTXe } from '../../src/tx'
 
 tap.test('tx-related functions', async t => {
     try {

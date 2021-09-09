@@ -271,11 +271,11 @@ class ImmudbClient {
 
       req.setKey(util.utf8Encode(key));
 
-      return new Promise(resolve =>
+      return new Promise((resolve, reject) =>
         this.client.get(req, this._metadata, (err, res) => {
           if (err) {
             console.error('Get error', err);
-            throw new Error(err.message);
+            reject(err.message);
           } else {
             resolve({
               tx: res && res.getTx(),
@@ -352,7 +352,7 @@ class ImmudbClient {
         this.client.listUsers(req, this._metadata, (err, res) => {
           if (err) {
             console.error('List users error', err);
-            throw new Error(err.message);
+            reject(err.message);
           }
 
           const ul = res && res.getUsersList();
@@ -443,7 +443,7 @@ class ImmudbClient {
         this.client.logout(req, this._metadata, (err, res) => {
           if (err) {
             console.error('Logout error', err);
-            throw new Error(err.message);
+            reject(err.message);
           }
 
           resolve(res);
@@ -961,7 +961,7 @@ class ImmudbClient {
       refReq.setBoundref(attx > 0)
 
       req.setReferencerequest(refReq)
-      req.setProvesincetx(state.getTxid())
+      req.setProvesincetx(txid)
 
       return new Promise((resolve, reject) => this.client.verifiableSetReference(req, this._metadata, (err, res) => {
         if (err) {

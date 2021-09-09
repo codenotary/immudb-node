@@ -1,12 +1,9 @@
 /*
-Copyright 2019-2020 vChain, Inc.
-
+Copyright 2021 CodeNotary, Inc. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
-
 	http://www.apache.org/licenses/LICENSE-2.0
-
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,6 +14,7 @@ limitations under the License.
 syntax = "proto3";
 
 import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
 
 package immudb.schema;
 
@@ -109,6 +107,7 @@ message Op {
 
 message ExecAllRequest {
 	repeated Op Operations = 1;
+	bool  noWait = 2;
 }
 
 message Entries {
@@ -214,6 +213,7 @@ message InclusionProof {
 
 message SetRequest {
 	repeated KeyValue KVs = 1;
+	bool  noWait = 2;
 }
 
 message KeyRequest {
@@ -254,6 +254,7 @@ message ReferenceRequest {
 	bytes referencedKey = 2;
 	uint64 atTx = 3;
 	bool boundRef = 4;
+	bool  noWait = 5;
 }
 
 message VerifiableReferenceRequest {
@@ -267,6 +268,7 @@ message ZAddRequest {
 	bytes key = 3;
 	uint64 atTx = 4;
 	bool boundRef = 5;
+	bool  noWait = 6;
 }
 
 message Score {
@@ -320,7 +322,41 @@ message TxList {
 }
 
 message Database {
-	string databasename = 1;
+	string databaseName = 1;
+}
+
+message Table {
+	string tableName = 1;
+}
+
+message SQLGetRequest {
+	string table = 1;
+	SQLValue pkValue = 2;
+    uint64 atTx = 3;
+	uint64 sinceTx = 4;
+}
+
+message VerifiableSQLGetRequest {
+	SQLGetRequest sqlGetRequest = 1;
+	uint64 proveSinceTx = 2;
+}
+
+message SQLEntry {
+	uint64 tx = 1;
+	bytes key = 2;
+	bytes value = 3;
+}
+
+message VerifiableSQLEntry {
+	SQLEntry sqlEntry = 1;
+	VerifiableTx verifiableTx = 2;
+	InclusionProof inclusionProof = 3;
+	uint64 DatabaseId = 4;
+	uint64 TableId = 5;
+	string PKName = 6;
+	map<uint64, string> ColIdsById = 8;
+	map<string, uint64> ColIdsByName = 9;
+	map<uint64, string> ColTypesById = 10;
 }
 
 message UseDatabaseReply{
@@ -348,71 +384,113 @@ message DatabaseListResponse{
 	repeated Database databases = 1;
 }
 
+message Chunk {
+	bytes content = 1;
+}
+
+message UseSnapshotRequest {
+	uint64 sinceTx = 1;
+	uint64 asBeforeTx = 2;
+}
+
+message SQLExecRequest {
+	string sql = 1;
+	repeated NamedParam params = 2;
+	bool  noWait = 3;
+}
+
+message SQLQueryRequest {
+	string sql = 1;
+	repeated NamedParam params = 2;
+	bool reuseSnapshot = 3;
+}
+
+message NamedParam {
+	string name = 1;
+	SQLValue value = 2;
+}
+
+message SQLExecResult {
+	repeated TxMetadata ctxs = 1;
+	repeated TxMetadata dtxs = 2;
+}
+
+message SQLQueryResult {
+	repeated Column columns = 2;
+	repeated Row rows = 1;
+}
+
+message Column {
+	string name = 1;
+	string type = 2;
+}
+
+message Row {
+	repeated string columns = 1;
+	repeated SQLValue values = 2;
+}
+
+message SQLValue {
+	oneof value {
+		google.protobuf.NullValue null = 1;
+		uint64 n = 2;
+		string s = 3;
+		bool b = 4;
+		bytes bs = 5;
+	}
+}
+
 // immudb gRPC & REST service
 // IMPORTANT: All get and safeget functions return base64-encoded keys and values, while all set and safeset functions expect base64-encoded inputs.
 service ImmuService {
-	rpc ListUsers (google.protobuf.Empty) returns (UserList){};
+	rpc ListUsers (google.protobuf.Empty) returns (UserList);
+	rpc CreateUser (CreateUserRequest) returns (google.protobuf.Empty);
+	rpc ChangePassword (ChangePasswordRequest) returns (google.protobuf.Empty);
+	rpc UpdateAuthConfig (AuthConfig) returns (google.protobuf.Empty);
+	rpc UpdateMTLSConfig (MTLSConfig) returns (google.protobuf.Empty);
+	rpc Login (LoginRequest) returns (LoginResponse);
+	rpc Logout (google.protobuf.Empty) returns (google.protobuf.Empty);
+	rpc Set (SetRequest) returns (TxMetadata);
+	rpc VerifiableSet (VerifiableSetRequest) returns (VerifiableTx);
+	rpc Get (KeyRequest) returns (Entry);
+	rpc VerifiableGet (VerifiableGetRequest) returns (VerifiableEntry);
+	rpc GetAll (KeyListRequest) returns (Entries);
+	rpc ExecAll (ExecAllRequest) returns (TxMetadata);
+	rpc Scan(ScanRequest) returns (Entries);
+	rpc Count(KeyPrefix) returns (EntryCount);
+	rpc CountAll(google.protobuf.Empty) returns (EntryCount);
+	rpc TxById(TxRequest) returns (Tx);
+	rpc VerifiableTxById(VerifiableTxRequest) returns (VerifiableTx);
+	rpc TxScan(TxScanRequest) returns (TxList);
+	rpc History(HistoryRequest) returns (Entries);
+	rpc Health (google.protobuf.Empty) returns (HealthResponse);
+	rpc CurrentState (google.protobuf.Empty) returns (ImmutableState);
+	rpc SetReference (ReferenceRequest) returns (TxMetadata);
+	rpc VerifiableSetReference (VerifiableReferenceRequest) returns (VerifiableTx);
+	rpc ZAdd (ZAddRequest) returns (TxMetadata);
+	rpc VerifiableZAdd (VerifiableZAddRequest) returns (VerifiableTx);
+	rpc ZScan (ZScanRequest) returns (ZEntries);
+	rpc CreateDatabase(Database) returns (google.protobuf.Empty);
+	rpc DatabaseList (google.protobuf.Empty) returns (DatabaseListResponse);
+	rpc UseDatabase(Database) returns (UseDatabaseReply);
+	rpc CleanIndex(google.protobuf.Empty) returns (google.protobuf.Empty);
+	rpc ChangePermission(ChangePermissionRequest) returns (google.protobuf.Empty);
+	rpc SetActiveUser (SetActiveUserRequest) returns (google.protobuf.Empty);
+	// Streams
+	rpc streamGet(KeyRequest) returns (stream Chunk);
+	rpc streamSet(stream Chunk) returns (TxMetadata);
+	rpc streamVerifiableGet(VerifiableGetRequest) returns (stream Chunk);
+	rpc streamVerifiableSet(stream Chunk) returns (VerifiableTx);
+	rpc streamScan(ScanRequest) returns (stream Chunk);
+	rpc streamZScan(ZScanRequest) returns (stream Chunk);
+	rpc streamHistory(HistoryRequest) returns (stream Chunk);
+	rpc streamExecAll(stream Chunk) returns (TxMetadata);
 
-	rpc CreateUser (CreateUserRequest) returns (google.protobuf.Empty){};
-
-	rpc ChangePassword (ChangePasswordRequest) returns (google.protobuf.Empty){};
-
-	rpc UpdateAuthConfig (AuthConfig) returns (google.protobuf.Empty){}
-	rpc UpdateMTLSConfig (MTLSConfig) returns (google.protobuf.Empty){}
-
-	rpc Login (LoginRequest) returns (LoginResponse){};
-
-	rpc Logout (google.protobuf.Empty) returns (google.protobuf.Empty){};
-
-	rpc Set (SetRequest) returns (TxMetadata){};
-
-	rpc VerifiableSet (VerifiableSetRequest) returns (VerifiableTx){};
-
-	rpc Get (KeyRequest) returns (Entry){};
-
-	rpc VerifiableGet (VerifiableGetRequest) returns (VerifiableEntry){};
-
-	rpc GetAll (KeyListRequest) returns (Entries){};
-
-	rpc ExecAll (ExecAllRequest) returns (TxMetadata) {};
-
-	rpc Scan(ScanRequest) returns (Entries){};
-
-	rpc Count(KeyPrefix) returns (EntryCount){};
-
-	rpc CountAll(google.protobuf.Empty) returns (EntryCount){};
-
-	rpc TxById(TxRequest) returns (Tx){};
-
-	rpc VerifiableTxById(VerifiableTxRequest) returns (VerifiableTx){};
-
-	rpc TxScan(TxScanRequest) returns (TxList) {}
-	
-	rpc History(HistoryRequest) returns (Entries){};
-
-	rpc Health (google.protobuf.Empty) returns (HealthResponse){};
-
-	rpc CurrentState (google.protobuf.Empty) returns (ImmutableState){};
-
-	rpc SetReference (ReferenceRequest) returns (TxMetadata){};
-
-	rpc VerifiableSetReference (VerifiableReferenceRequest) returns (VerifiableTx){};
-
-	rpc ZAdd (ZAddRequest) returns (TxMetadata){};
-
-	rpc VerifiableZAdd (VerifiableZAddRequest) returns (VerifiableTx){};
-
-	rpc ZScan (ZScanRequest) returns (ZEntries){};
-
-	rpc CreateDatabase(Database) returns (google.protobuf.Empty) {}
-
-	rpc DatabaseList (google.protobuf.Empty) returns (DatabaseListResponse){};
-
-	rpc UseDatabase(Database) returns (UseDatabaseReply) {}
-
-	rpc CleanIndex(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-
-	rpc ChangePermission(ChangePermissionRequest) returns (google.protobuf.Empty) {}
-
-	rpc SetActiveUser (SetActiveUserRequest) returns (google.protobuf.Empty){};
+	// SQL
+	rpc UseSnapshot(UseSnapshotRequest) returns (google.protobuf.Empty);
+	rpc SQLExec(SQLExecRequest) returns (SQLExecResult);
+	rpc SQLQuery(SQLQueryRequest) returns (SQLQueryResult);
+	rpc ListTables(google.protobuf.Empty) returns (SQLQueryResult);
+	rpc DescribeTable(Table) returns (SQLQueryResult);
+	rpc VerifiableSQLGet (VerifiableSQLGetRequest) returns (VerifiableSQLEntry);
 }

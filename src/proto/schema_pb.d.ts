@@ -6,13 +6,13 @@
 
 import * as jspb from "google-protobuf";
 import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
+import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 
 export class Key extends jspb.Message { 
     getKey(): Uint8Array | string;
     getKey_asU8(): Uint8Array;
     getKey_asB64(): string;
     setKey(value: Uint8Array | string): Key;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Key.AsObject;
@@ -33,10 +33,8 @@ export namespace Key {
 export class Permission extends jspb.Message { 
     getDatabase(): string;
     setDatabase(value: string): Permission;
-
     getPermission(): number;
     setPermission(value: number): Permission;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Permission.AsObject;
@@ -60,21 +58,16 @@ export class User extends jspb.Message {
     getUser_asU8(): Uint8Array;
     getUser_asB64(): string;
     setUser(value: Uint8Array | string): User;
-
     clearPermissionsList(): void;
     getPermissionsList(): Array<Permission>;
     setPermissionsList(value: Array<Permission>): User;
     addPermissions(value?: Permission, index?: number): Permission;
-
     getCreatedby(): string;
     setCreatedby(value: string): User;
-
     getCreatedat(): string;
     setCreatedat(value: string): User;
-
     getActive(): boolean;
     setActive(value: boolean): User;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): User.AsObject;
@@ -102,7 +95,6 @@ export class UserList extends jspb.Message {
     setUsersList(value: Array<User>): UserList;
     addUsers(value?: User, index?: number): User;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): UserList.AsObject;
     static toObject(includeInstance: boolean, msg: UserList): UserList.AsObject;
@@ -124,18 +116,14 @@ export class CreateUserRequest extends jspb.Message {
     getUser_asU8(): Uint8Array;
     getUser_asB64(): string;
     setUser(value: Uint8Array | string): CreateUserRequest;
-
     getPassword(): Uint8Array | string;
     getPassword_asU8(): Uint8Array;
     getPassword_asB64(): string;
     setPassword(value: Uint8Array | string): CreateUserRequest;
-
     getPermission(): number;
     setPermission(value: number): CreateUserRequest;
-
     getDatabase(): string;
     setDatabase(value: string): CreateUserRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): CreateUserRequest.AsObject;
@@ -162,7 +150,6 @@ export class UserRequest extends jspb.Message {
     getUser_asB64(): string;
     setUser(value: Uint8Array | string): UserRequest;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): UserRequest.AsObject;
     static toObject(includeInstance: boolean, msg: UserRequest): UserRequest.AsObject;
@@ -184,17 +171,14 @@ export class ChangePasswordRequest extends jspb.Message {
     getUser_asU8(): Uint8Array;
     getUser_asB64(): string;
     setUser(value: Uint8Array | string): ChangePasswordRequest;
-
     getOldpassword(): Uint8Array | string;
     getOldpassword_asU8(): Uint8Array;
     getOldpassword_asB64(): string;
     setOldpassword(value: Uint8Array | string): ChangePasswordRequest;
-
     getNewpassword(): Uint8Array | string;
     getNewpassword_asU8(): Uint8Array;
     getNewpassword_asB64(): string;
     setNewpassword(value: Uint8Array | string): ChangePasswordRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ChangePasswordRequest.AsObject;
@@ -219,12 +203,10 @@ export class LoginRequest extends jspb.Message {
     getUser_asU8(): Uint8Array;
     getUser_asB64(): string;
     setUser(value: Uint8Array | string): LoginRequest;
-
     getPassword(): Uint8Array | string;
     getPassword_asU8(): Uint8Array;
     getPassword_asB64(): string;
     setPassword(value: Uint8Array | string): LoginRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): LoginRequest.AsObject;
@@ -246,12 +228,10 @@ export namespace LoginRequest {
 export class LoginResponse extends jspb.Message { 
     getToken(): string;
     setToken(value: string): LoginResponse;
-
     getWarning(): Uint8Array | string;
     getWarning_asU8(): Uint8Array;
     getWarning_asB64(): string;
     setWarning(value: Uint8Array | string): LoginResponse;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): LoginResponse.AsObject;
@@ -274,7 +254,6 @@ export class AuthConfig extends jspb.Message {
     getKind(): number;
     setKind(value: number): AuthConfig;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): AuthConfig.AsObject;
     static toObject(includeInstance: boolean, msg: AuthConfig): AuthConfig.AsObject;
@@ -294,7 +273,6 @@ export namespace AuthConfig {
 export class MTLSConfig extends jspb.Message { 
     getEnabled(): boolean;
     setEnabled(value: boolean): MTLSConfig;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): MTLSConfig.AsObject;
@@ -317,12 +295,10 @@ export class KeyValue extends jspb.Message {
     getKey_asU8(): Uint8Array;
     getKey_asB64(): string;
     setKey(value: Uint8Array | string): KeyValue;
-
     getValue(): Uint8Array | string;
     getValue_asU8(): Uint8Array;
     getValue_asB64(): string;
     setValue(value: Uint8Array | string): KeyValue;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): KeyValue.AsObject;
@@ -344,23 +320,19 @@ export namespace KeyValue {
 export class Entry extends jspb.Message { 
     getTx(): number;
     setTx(value: number): Entry;
-
     getKey(): Uint8Array | string;
     getKey_asU8(): Uint8Array;
     getKey_asB64(): string;
     setKey(value: Uint8Array | string): Entry;
-
     getValue(): Uint8Array | string;
     getValue_asU8(): Uint8Array;
     getValue_asB64(): string;
     setValue(value: Uint8Array | string): Entry;
 
-
     hasReferencedby(): boolean;
     clearReferencedby(): void;
     getReferencedby(): Reference | undefined;
     setReferencedby(value?: Reference): Entry;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Entry.AsObject;
@@ -384,15 +356,12 @@ export namespace Entry {
 export class Reference extends jspb.Message { 
     getTx(): number;
     setTx(value: number): Reference;
-
     getKey(): Uint8Array | string;
     getKey_asU8(): Uint8Array;
     getKey_asB64(): string;
     setKey(value: Uint8Array | string): Reference;
-
     getAttx(): number;
     setAttx(value: number): Reference;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Reference.AsObject;
@@ -419,18 +388,15 @@ export class Op extends jspb.Message {
     getKv(): KeyValue | undefined;
     setKv(value?: KeyValue): Op;
 
-
     hasZadd(): boolean;
     clearZadd(): void;
     getZadd(): ZAddRequest | undefined;
     setZadd(value?: ZAddRequest): Op;
 
-
     hasRef(): boolean;
     clearRef(): void;
     getRef(): ReferenceRequest | undefined;
     setRef(value?: ReferenceRequest): Op;
-
 
     getOperationCase(): Op.OperationCase;
 
@@ -453,13 +419,9 @@ export namespace Op {
 
     export enum OperationCase {
         OPERATION_NOT_SET = 0,
-    
-    KV = 1,
-
-    ZADD = 2,
-
-    REF = 3,
-
+        KV = 1,
+        ZADD = 2,
+        REF = 3,
     }
 
 }
@@ -469,7 +431,8 @@ export class ExecAllRequest extends jspb.Message {
     getOperationsList(): Array<Op>;
     setOperationsList(value: Array<Op>): ExecAllRequest;
     addOperations(value?: Op, index?: number): Op;
-
+    getNowait(): boolean;
+    setNowait(value: boolean): ExecAllRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ExecAllRequest.AsObject;
@@ -484,6 +447,7 @@ export class ExecAllRequest extends jspb.Message {
 export namespace ExecAllRequest {
     export type AsObject = {
         operationsList: Array<Op.AsObject>,
+        nowait: boolean,
     }
 }
 
@@ -492,7 +456,6 @@ export class Entries extends jspb.Message {
     getEntriesList(): Array<Entry>;
     setEntriesList(value: Array<Entry>): Entries;
     addEntries(value?: Entry, index?: number): Entry;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Entries.AsObject;
@@ -515,24 +478,19 @@ export class ZEntry extends jspb.Message {
     getSet_asU8(): Uint8Array;
     getSet_asB64(): string;
     setSet(value: Uint8Array | string): ZEntry;
-
     getKey(): Uint8Array | string;
     getKey_asU8(): Uint8Array;
     getKey_asB64(): string;
     setKey(value: Uint8Array | string): ZEntry;
 
-
     hasEntry(): boolean;
     clearEntry(): void;
     getEntry(): Entry | undefined;
     setEntry(value?: Entry): ZEntry;
-
     getScore(): number;
     setScore(value: number): ZEntry;
-
     getAttx(): number;
     setAttx(value: number): ZEntry;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ZEntry.AsObject;
@@ -560,7 +518,6 @@ export class ZEntries extends jspb.Message {
     setEntriesList(value: Array<ZEntry>): ZEntries;
     addEntries(value?: ZEntry, index?: number): ZEntry;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ZEntries.AsObject;
     static toObject(includeInstance: boolean, msg: ZEntries): ZEntries.AsObject;
@@ -582,24 +539,18 @@ export class ScanRequest extends jspb.Message {
     getSeekkey_asU8(): Uint8Array;
     getSeekkey_asB64(): string;
     setSeekkey(value: Uint8Array | string): ScanRequest;
-
     getPrefix(): Uint8Array | string;
     getPrefix_asU8(): Uint8Array;
     getPrefix_asB64(): string;
     setPrefix(value: Uint8Array | string): ScanRequest;
-
     getDesc(): boolean;
     setDesc(value: boolean): ScanRequest;
-
     getLimit(): number;
     setLimit(value: number): ScanRequest;
-
     getSincetx(): number;
     setSincetx(value: number): ScanRequest;
-
     getNowait(): boolean;
     setNowait(value: boolean): ScanRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ScanRequest.AsObject;
@@ -628,7 +579,6 @@ export class KeyPrefix extends jspb.Message {
     getPrefix_asB64(): string;
     setPrefix(value: Uint8Array | string): KeyPrefix;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): KeyPrefix.AsObject;
     static toObject(includeInstance: boolean, msg: KeyPrefix): KeyPrefix.AsObject;
@@ -648,7 +598,6 @@ export namespace KeyPrefix {
 export class EntryCount extends jspb.Message { 
     getCount(): number;
     setCount(value: number): EntryCount;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): EntryCount.AsObject;
@@ -671,12 +620,10 @@ export class Signature extends jspb.Message {
     getPublickey_asU8(): Uint8Array;
     getPublickey_asB64(): string;
     setPublickey(value: Uint8Array | string): Signature;
-
     getSignature(): Uint8Array | string;
     getSignature_asU8(): Uint8Array;
     getSignature_asB64(): string;
     setSignature(value: Uint8Array | string): Signature;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Signature.AsObject;
@@ -698,31 +645,24 @@ export namespace Signature {
 export class TxMetadata extends jspb.Message { 
     getId(): number;
     setId(value: number): TxMetadata;
-
     getPrevalh(): Uint8Array | string;
     getPrevalh_asU8(): Uint8Array;
     getPrevalh_asB64(): string;
     setPrevalh(value: Uint8Array | string): TxMetadata;
-
     getTs(): number;
     setTs(value: number): TxMetadata;
-
     getNentries(): number;
     setNentries(value: number): TxMetadata;
-
     getEh(): Uint8Array | string;
     getEh_asU8(): Uint8Array;
     getEh_asB64(): string;
     setEh(value: Uint8Array | string): TxMetadata;
-
     getBltxid(): number;
     setBltxid(value: number): TxMetadata;
-
     getBlroot(): Uint8Array | string;
     getBlroot_asU8(): Uint8Array;
     getBlroot_asB64(): string;
     setBlroot(value: Uint8Array | string): TxMetadata;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): TxMetadata.AsObject;
@@ -749,17 +689,14 @@ export namespace TxMetadata {
 export class LinearProof extends jspb.Message { 
     getSourcetxid(): number;
     setSourcetxid(value: number): LinearProof;
-
     getTargettxid(): number;
     setTargettxid(value: number): LinearProof;
-
     clearTermsList(): void;
     getTermsList(): Array<Uint8Array | string>;
     getTermsList_asU8(): Array<Uint8Array>;
     getTermsList_asB64(): Array<string>;
     setTermsList(value: Array<Uint8Array | string>): LinearProof;
     addTerms(value: Uint8Array | string, index?: number): Uint8Array | string;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): LinearProof.AsObject;
@@ -786,31 +723,26 @@ export class DualProof extends jspb.Message {
     getSourcetxmetadata(): TxMetadata | undefined;
     setSourcetxmetadata(value?: TxMetadata): DualProof;
 
-
     hasTargettxmetadata(): boolean;
     clearTargettxmetadata(): void;
     getTargettxmetadata(): TxMetadata | undefined;
     setTargettxmetadata(value?: TxMetadata): DualProof;
-
     clearInclusionproofList(): void;
     getInclusionproofList(): Array<Uint8Array | string>;
     getInclusionproofList_asU8(): Array<Uint8Array>;
     getInclusionproofList_asB64(): Array<string>;
     setInclusionproofList(value: Array<Uint8Array | string>): DualProof;
     addInclusionproof(value: Uint8Array | string, index?: number): Uint8Array | string;
-
     clearConsistencyproofList(): void;
     getConsistencyproofList(): Array<Uint8Array | string>;
     getConsistencyproofList_asU8(): Array<Uint8Array>;
     getConsistencyproofList_asB64(): Array<string>;
     setConsistencyproofList(value: Array<Uint8Array | string>): DualProof;
     addConsistencyproof(value: Uint8Array | string, index?: number): Uint8Array | string;
-
     getTargetbltxalh(): Uint8Array | string;
     getTargetbltxalh_asU8(): Uint8Array;
     getTargetbltxalh_asB64(): string;
     setTargetbltxalh(value: Uint8Array | string): DualProof;
-
     clearLastinclusionproofList(): void;
     getLastinclusionproofList(): Array<Uint8Array | string>;
     getLastinclusionproofList_asU8(): Array<Uint8Array>;
@@ -818,12 +750,10 @@ export class DualProof extends jspb.Message {
     setLastinclusionproofList(value: Array<Uint8Array | string>): DualProof;
     addLastinclusionproof(value: Uint8Array | string, index?: number): Uint8Array | string;
 
-
     hasLinearproof(): boolean;
     clearLinearproof(): void;
     getLinearproof(): LinearProof | undefined;
     setLinearproof(value?: LinearProof): DualProof;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): DualProof.AsObject;
@@ -853,12 +783,10 @@ export class Tx extends jspb.Message {
     clearMetadata(): void;
     getMetadata(): TxMetadata | undefined;
     setMetadata(value?: TxMetadata): Tx;
-
     clearEntriesList(): void;
     getEntriesList(): Array<TxEntry>;
     setEntriesList(value: Array<TxEntry>): Tx;
     addEntries(value?: TxEntry, index?: number): TxEntry;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Tx.AsObject;
@@ -882,18 +810,14 @@ export class TxEntry extends jspb.Message {
     getKey_asU8(): Uint8Array;
     getKey_asB64(): string;
     setKey(value: Uint8Array | string): TxEntry;
-
     getHvalue(): Uint8Array | string;
     getHvalue_asU8(): Uint8Array;
     getHvalue_asB64(): string;
     setHvalue(value: Uint8Array | string): TxEntry;
-
     getVoff(): number;
     setVoff(value: number): TxEntry;
-
     getVlen(): number;
     setVlen(value: number): TxEntry;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): TxEntry.AsObject;
@@ -921,18 +845,15 @@ export class VerifiableTx extends jspb.Message {
     getTx(): Tx | undefined;
     setTx(value?: Tx): VerifiableTx;
 
-
     hasDualproof(): boolean;
     clearDualproof(): void;
     getDualproof(): DualProof | undefined;
     setDualproof(value?: DualProof): VerifiableTx;
 
-
     hasSignature(): boolean;
     clearSignature(): void;
     getSignature(): Signature | undefined;
     setSignature(value?: Signature): VerifiableTx;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): VerifiableTx.AsObject;
@@ -959,18 +880,15 @@ export class VerifiableEntry extends jspb.Message {
     getEntry(): Entry | undefined;
     setEntry(value?: Entry): VerifiableEntry;
 
-
     hasVerifiabletx(): boolean;
     clearVerifiabletx(): void;
     getVerifiabletx(): VerifiableTx | undefined;
     setVerifiabletx(value?: VerifiableTx): VerifiableEntry;
 
-
     hasInclusionproof(): boolean;
     clearInclusionproof(): void;
     getInclusionproof(): InclusionProof | undefined;
     setInclusionproof(value?: InclusionProof): VerifiableEntry;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): VerifiableEntry.AsObject;
@@ -993,17 +911,14 @@ export namespace VerifiableEntry {
 export class InclusionProof extends jspb.Message { 
     getLeaf(): number;
     setLeaf(value: number): InclusionProof;
-
     getWidth(): number;
     setWidth(value: number): InclusionProof;
-
     clearTermsList(): void;
     getTermsList(): Array<Uint8Array | string>;
     getTermsList_asU8(): Array<Uint8Array>;
     getTermsList_asB64(): Array<string>;
     setTermsList(value: Array<Uint8Array | string>): InclusionProof;
     addTerms(value: Uint8Array | string, index?: number): Uint8Array | string;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): InclusionProof.AsObject;
@@ -1028,7 +943,8 @@ export class SetRequest extends jspb.Message {
     getKvsList(): Array<KeyValue>;
     setKvsList(value: Array<KeyValue>): SetRequest;
     addKvs(value?: KeyValue, index?: number): KeyValue;
-
+    getNowait(): boolean;
+    setNowait(value: boolean): SetRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SetRequest.AsObject;
@@ -1043,6 +959,7 @@ export class SetRequest extends jspb.Message {
 export namespace SetRequest {
     export type AsObject = {
         kvsList: Array<KeyValue.AsObject>,
+        nowait: boolean,
     }
 }
 
@@ -1051,13 +968,10 @@ export class KeyRequest extends jspb.Message {
     getKey_asU8(): Uint8Array;
     getKey_asB64(): string;
     setKey(value: Uint8Array | string): KeyRequest;
-
     getAttx(): number;
     setAttx(value: number): KeyRequest;
-
     getSincetx(): number;
     setSincetx(value: number): KeyRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): KeyRequest.AsObject;
@@ -1084,10 +998,8 @@ export class KeyListRequest extends jspb.Message {
     getKeysList_asB64(): Array<string>;
     setKeysList(value: Array<Uint8Array | string>): KeyListRequest;
     addKeys(value: Uint8Array | string, index?: number): Uint8Array | string;
-
     getSincetx(): number;
     setSincetx(value: number): KeyListRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): KeyListRequest.AsObject;
@@ -1112,10 +1024,8 @@ export class VerifiableSetRequest extends jspb.Message {
     clearSetrequest(): void;
     getSetrequest(): SetRequest | undefined;
     setSetrequest(value?: SetRequest): VerifiableSetRequest;
-
     getProvesincetx(): number;
     setProvesincetx(value: number): VerifiableSetRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): VerifiableSetRequest.AsObject;
@@ -1140,10 +1050,8 @@ export class VerifiableGetRequest extends jspb.Message {
     clearKeyrequest(): void;
     getKeyrequest(): KeyRequest | undefined;
     setKeyrequest(value?: KeyRequest): VerifiableGetRequest;
-
     getProvesincetx(): number;
     setProvesincetx(value: number): VerifiableGetRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): VerifiableGetRequest.AsObject;
@@ -1165,10 +1073,8 @@ export namespace VerifiableGetRequest {
 export class HealthResponse extends jspb.Message { 
     getStatus(): boolean;
     setStatus(value: boolean): HealthResponse;
-
     getVersion(): string;
     setVersion(value: string): HealthResponse;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): HealthResponse.AsObject;
@@ -1190,21 +1096,17 @@ export namespace HealthResponse {
 export class ImmutableState extends jspb.Message { 
     getDb(): string;
     setDb(value: string): ImmutableState;
-
     getTxid(): number;
     setTxid(value: number): ImmutableState;
-
     getTxhash(): Uint8Array | string;
     getTxhash_asU8(): Uint8Array;
     getTxhash_asB64(): string;
     setTxhash(value: Uint8Array | string): ImmutableState;
 
-
     hasSignature(): boolean;
     clearSignature(): void;
     getSignature(): Signature | undefined;
     setSignature(value?: Signature): ImmutableState;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ImmutableState.AsObject;
@@ -1230,18 +1132,16 @@ export class ReferenceRequest extends jspb.Message {
     getKey_asU8(): Uint8Array;
     getKey_asB64(): string;
     setKey(value: Uint8Array | string): ReferenceRequest;
-
     getReferencedkey(): Uint8Array | string;
     getReferencedkey_asU8(): Uint8Array;
     getReferencedkey_asB64(): string;
     setReferencedkey(value: Uint8Array | string): ReferenceRequest;
-
     getAttx(): number;
     setAttx(value: number): ReferenceRequest;
-
     getBoundref(): boolean;
     setBoundref(value: boolean): ReferenceRequest;
-
+    getNowait(): boolean;
+    setNowait(value: boolean): ReferenceRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ReferenceRequest.AsObject;
@@ -1259,6 +1159,7 @@ export namespace ReferenceRequest {
         referencedkey: Uint8Array | string,
         attx: number,
         boundref: boolean,
+        nowait: boolean,
     }
 }
 
@@ -1268,10 +1169,8 @@ export class VerifiableReferenceRequest extends jspb.Message {
     clearReferencerequest(): void;
     getReferencerequest(): ReferenceRequest | undefined;
     setReferencerequest(value?: ReferenceRequest): VerifiableReferenceRequest;
-
     getProvesincetx(): number;
     setProvesincetx(value: number): VerifiableReferenceRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): VerifiableReferenceRequest.AsObject;
@@ -1295,21 +1194,18 @@ export class ZAddRequest extends jspb.Message {
     getSet_asU8(): Uint8Array;
     getSet_asB64(): string;
     setSet(value: Uint8Array | string): ZAddRequest;
-
     getScore(): number;
     setScore(value: number): ZAddRequest;
-
     getKey(): Uint8Array | string;
     getKey_asU8(): Uint8Array;
     getKey_asB64(): string;
     setKey(value: Uint8Array | string): ZAddRequest;
-
     getAttx(): number;
     setAttx(value: number): ZAddRequest;
-
     getBoundref(): boolean;
     setBoundref(value: boolean): ZAddRequest;
-
+    getNowait(): boolean;
+    setNowait(value: boolean): ZAddRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ZAddRequest.AsObject;
@@ -1328,13 +1224,13 @@ export namespace ZAddRequest {
         key: Uint8Array | string,
         attx: number,
         boundref: boolean,
+        nowait: boolean,
     }
 }
 
 export class Score extends jspb.Message { 
     getScore(): number;
     setScore(value: number): Score;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Score.AsObject;
@@ -1357,45 +1253,34 @@ export class ZScanRequest extends jspb.Message {
     getSet_asU8(): Uint8Array;
     getSet_asB64(): string;
     setSet(value: Uint8Array | string): ZScanRequest;
-
     getSeekkey(): Uint8Array | string;
     getSeekkey_asU8(): Uint8Array;
     getSeekkey_asB64(): string;
     setSeekkey(value: Uint8Array | string): ZScanRequest;
-
     getSeekscore(): number;
     setSeekscore(value: number): ZScanRequest;
-
     getSeekattx(): number;
     setSeekattx(value: number): ZScanRequest;
-
     getInclusiveseek(): boolean;
     setInclusiveseek(value: boolean): ZScanRequest;
-
     getLimit(): number;
     setLimit(value: number): ZScanRequest;
-
     getDesc(): boolean;
     setDesc(value: boolean): ZScanRequest;
-
 
     hasMinscore(): boolean;
     clearMinscore(): void;
     getMinscore(): Score | undefined;
     setMinscore(value?: Score): ZScanRequest;
 
-
     hasMaxscore(): boolean;
     clearMaxscore(): void;
     getMaxscore(): Score | undefined;
     setMaxscore(value?: Score): ZScanRequest;
-
     getSincetx(): number;
     setSincetx(value: number): ZScanRequest;
-
     getNowait(): boolean;
     setNowait(value: boolean): ZScanRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ZScanRequest.AsObject;
@@ -1428,19 +1313,14 @@ export class HistoryRequest extends jspb.Message {
     getKey_asU8(): Uint8Array;
     getKey_asB64(): string;
     setKey(value: Uint8Array | string): HistoryRequest;
-
     getOffset(): number;
     setOffset(value: number): HistoryRequest;
-
     getLimit(): number;
     setLimit(value: number): HistoryRequest;
-
     getDesc(): boolean;
     setDesc(value: boolean): HistoryRequest;
-
     getSincetx(): number;
     setSincetx(value: number): HistoryRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): HistoryRequest.AsObject;
@@ -1468,10 +1348,8 @@ export class VerifiableZAddRequest extends jspb.Message {
     clearZaddrequest(): void;
     getZaddrequest(): ZAddRequest | undefined;
     setZaddrequest(value?: ZAddRequest): VerifiableZAddRequest;
-
     getProvesincetx(): number;
     setProvesincetx(value: number): VerifiableZAddRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): VerifiableZAddRequest.AsObject;
@@ -1494,7 +1372,6 @@ export class TxRequest extends jspb.Message {
     getTx(): number;
     setTx(value: number): TxRequest;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): TxRequest.AsObject;
     static toObject(includeInstance: boolean, msg: TxRequest): TxRequest.AsObject;
@@ -1514,10 +1391,8 @@ export namespace TxRequest {
 export class VerifiableTxRequest extends jspb.Message { 
     getTx(): number;
     setTx(value: number): VerifiableTxRequest;
-
     getProvesincetx(): number;
     setProvesincetx(value: number): VerifiableTxRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): VerifiableTxRequest.AsObject;
@@ -1539,13 +1414,10 @@ export namespace VerifiableTxRequest {
 export class TxScanRequest extends jspb.Message { 
     getInitialtx(): number;
     setInitialtx(value: number): TxScanRequest;
-
     getLimit(): number;
     setLimit(value: number): TxScanRequest;
-
     getDesc(): boolean;
     setDesc(value: boolean): TxScanRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): TxScanRequest.AsObject;
@@ -1571,7 +1443,6 @@ export class TxList extends jspb.Message {
     setTxsList(value: Array<Tx>): TxList;
     addTxs(value?: Tx, index?: number): Tx;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): TxList.AsObject;
     static toObject(includeInstance: boolean, msg: TxList): TxList.AsObject;
@@ -1592,7 +1463,6 @@ export class Database extends jspb.Message {
     getDatabasename(): string;
     setDatabasename(value: string): Database;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Database.AsObject;
     static toObject(includeInstance: boolean, msg: Database): Database.AsObject;
@@ -1609,10 +1479,176 @@ export namespace Database {
     }
 }
 
+export class Table extends jspb.Message { 
+    getTablename(): string;
+    setTablename(value: string): Table;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Table.AsObject;
+    static toObject(includeInstance: boolean, msg: Table): Table.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Table, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Table;
+    static deserializeBinaryFromReader(message: Table, reader: jspb.BinaryReader): Table;
+}
+
+export namespace Table {
+    export type AsObject = {
+        tablename: string,
+    }
+}
+
+export class SQLGetRequest extends jspb.Message { 
+    getTable(): string;
+    setTable(value: string): SQLGetRequest;
+
+    hasPkvalue(): boolean;
+    clearPkvalue(): void;
+    getPkvalue(): SQLValue | undefined;
+    setPkvalue(value?: SQLValue): SQLGetRequest;
+    getAttx(): number;
+    setAttx(value: number): SQLGetRequest;
+    getSincetx(): number;
+    setSincetx(value: number): SQLGetRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SQLGetRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: SQLGetRequest): SQLGetRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SQLGetRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SQLGetRequest;
+    static deserializeBinaryFromReader(message: SQLGetRequest, reader: jspb.BinaryReader): SQLGetRequest;
+}
+
+export namespace SQLGetRequest {
+    export type AsObject = {
+        table: string,
+        pkvalue?: SQLValue.AsObject,
+        attx: number,
+        sincetx: number,
+    }
+}
+
+export class VerifiableSQLGetRequest extends jspb.Message { 
+
+    hasSqlgetrequest(): boolean;
+    clearSqlgetrequest(): void;
+    getSqlgetrequest(): SQLGetRequest | undefined;
+    setSqlgetrequest(value?: SQLGetRequest): VerifiableSQLGetRequest;
+    getProvesincetx(): number;
+    setProvesincetx(value: number): VerifiableSQLGetRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): VerifiableSQLGetRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: VerifiableSQLGetRequest): VerifiableSQLGetRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: VerifiableSQLGetRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): VerifiableSQLGetRequest;
+    static deserializeBinaryFromReader(message: VerifiableSQLGetRequest, reader: jspb.BinaryReader): VerifiableSQLGetRequest;
+}
+
+export namespace VerifiableSQLGetRequest {
+    export type AsObject = {
+        sqlgetrequest?: SQLGetRequest.AsObject,
+        provesincetx: number,
+    }
+}
+
+export class SQLEntry extends jspb.Message { 
+    getTx(): number;
+    setTx(value: number): SQLEntry;
+    getKey(): Uint8Array | string;
+    getKey_asU8(): Uint8Array;
+    getKey_asB64(): string;
+    setKey(value: Uint8Array | string): SQLEntry;
+    getValue(): Uint8Array | string;
+    getValue_asU8(): Uint8Array;
+    getValue_asB64(): string;
+    setValue(value: Uint8Array | string): SQLEntry;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SQLEntry.AsObject;
+    static toObject(includeInstance: boolean, msg: SQLEntry): SQLEntry.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SQLEntry, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SQLEntry;
+    static deserializeBinaryFromReader(message: SQLEntry, reader: jspb.BinaryReader): SQLEntry;
+}
+
+export namespace SQLEntry {
+    export type AsObject = {
+        tx: number,
+        key: Uint8Array | string,
+        value: Uint8Array | string,
+    }
+}
+
+export class VerifiableSQLEntry extends jspb.Message { 
+
+    hasSqlentry(): boolean;
+    clearSqlentry(): void;
+    getSqlentry(): SQLEntry | undefined;
+    setSqlentry(value?: SQLEntry): VerifiableSQLEntry;
+
+    hasVerifiabletx(): boolean;
+    clearVerifiabletx(): void;
+    getVerifiabletx(): VerifiableTx | undefined;
+    setVerifiabletx(value?: VerifiableTx): VerifiableSQLEntry;
+
+    hasInclusionproof(): boolean;
+    clearInclusionproof(): void;
+    getInclusionproof(): InclusionProof | undefined;
+    setInclusionproof(value?: InclusionProof): VerifiableSQLEntry;
+    getDatabaseid(): number;
+    setDatabaseid(value: number): VerifiableSQLEntry;
+    getTableid(): number;
+    setTableid(value: number): VerifiableSQLEntry;
+    getPkname(): string;
+    setPkname(value: string): VerifiableSQLEntry;
+
+    getColidsbyidMap(): jspb.Map<number, string>;
+    clearColidsbyidMap(): void;
+
+    getColidsbynameMap(): jspb.Map<string, number>;
+    clearColidsbynameMap(): void;
+
+    getColtypesbyidMap(): jspb.Map<number, string>;
+    clearColtypesbyidMap(): void;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): VerifiableSQLEntry.AsObject;
+    static toObject(includeInstance: boolean, msg: VerifiableSQLEntry): VerifiableSQLEntry.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: VerifiableSQLEntry, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): VerifiableSQLEntry;
+    static deserializeBinaryFromReader(message: VerifiableSQLEntry, reader: jspb.BinaryReader): VerifiableSQLEntry;
+}
+
+export namespace VerifiableSQLEntry {
+    export type AsObject = {
+        sqlentry?: SQLEntry.AsObject,
+        verifiabletx?: VerifiableTx.AsObject,
+        inclusionproof?: InclusionProof.AsObject,
+        databaseid: number,
+        tableid: number,
+        pkname: string,
+
+        colidsbyidMap: Array<[number, string]>,
+
+        colidsbynameMap: Array<[string, number]>,
+
+        coltypesbyidMap: Array<[number, string]>,
+    }
+}
+
 export class UseDatabaseReply extends jspb.Message { 
     getToken(): string;
     setToken(value: string): UseDatabaseReply;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): UseDatabaseReply.AsObject;
@@ -1633,16 +1669,12 @@ export namespace UseDatabaseReply {
 export class ChangePermissionRequest extends jspb.Message { 
     getAction(): PermissionAction;
     setAction(value: PermissionAction): ChangePermissionRequest;
-
     getUsername(): string;
     setUsername(value: string): ChangePermissionRequest;
-
     getDatabase(): string;
     setDatabase(value: string): ChangePermissionRequest;
-
     getPermission(): number;
     setPermission(value: number): ChangePermissionRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ChangePermissionRequest.AsObject;
@@ -1666,10 +1698,8 @@ export namespace ChangePermissionRequest {
 export class SetActiveUserRequest extends jspb.Message { 
     getActive(): boolean;
     setActive(value: boolean): SetActiveUserRequest;
-
     getUsername(): string;
     setUsername(value: string): SetActiveUserRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SetActiveUserRequest.AsObject;
@@ -1694,7 +1724,6 @@ export class DatabaseListResponse extends jspb.Message {
     setDatabasesList(value: Array<Database>): DatabaseListResponse;
     addDatabases(value?: Database, index?: number): Database;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): DatabaseListResponse.AsObject;
     static toObject(includeInstance: boolean, msg: DatabaseListResponse): DatabaseListResponse.AsObject;
@@ -1709,6 +1738,298 @@ export namespace DatabaseListResponse {
     export type AsObject = {
         databasesList: Array<Database.AsObject>,
     }
+}
+
+export class Chunk extends jspb.Message { 
+    getContent(): Uint8Array | string;
+    getContent_asU8(): Uint8Array;
+    getContent_asB64(): string;
+    setContent(value: Uint8Array | string): Chunk;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Chunk.AsObject;
+    static toObject(includeInstance: boolean, msg: Chunk): Chunk.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Chunk, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Chunk;
+    static deserializeBinaryFromReader(message: Chunk, reader: jspb.BinaryReader): Chunk;
+}
+
+export namespace Chunk {
+    export type AsObject = {
+        content: Uint8Array | string,
+    }
+}
+
+export class UseSnapshotRequest extends jspb.Message { 
+    getSincetx(): number;
+    setSincetx(value: number): UseSnapshotRequest;
+    getAsbeforetx(): number;
+    setAsbeforetx(value: number): UseSnapshotRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): UseSnapshotRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: UseSnapshotRequest): UseSnapshotRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: UseSnapshotRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): UseSnapshotRequest;
+    static deserializeBinaryFromReader(message: UseSnapshotRequest, reader: jspb.BinaryReader): UseSnapshotRequest;
+}
+
+export namespace UseSnapshotRequest {
+    export type AsObject = {
+        sincetx: number,
+        asbeforetx: number,
+    }
+}
+
+export class SQLExecRequest extends jspb.Message { 
+    getSql(): string;
+    setSql(value: string): SQLExecRequest;
+    clearParamsList(): void;
+    getParamsList(): Array<NamedParam>;
+    setParamsList(value: Array<NamedParam>): SQLExecRequest;
+    addParams(value?: NamedParam, index?: number): NamedParam;
+    getNowait(): boolean;
+    setNowait(value: boolean): SQLExecRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SQLExecRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: SQLExecRequest): SQLExecRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SQLExecRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SQLExecRequest;
+    static deserializeBinaryFromReader(message: SQLExecRequest, reader: jspb.BinaryReader): SQLExecRequest;
+}
+
+export namespace SQLExecRequest {
+    export type AsObject = {
+        sql: string,
+        paramsList: Array<NamedParam.AsObject>,
+        nowait: boolean,
+    }
+}
+
+export class SQLQueryRequest extends jspb.Message { 
+    getSql(): string;
+    setSql(value: string): SQLQueryRequest;
+    clearParamsList(): void;
+    getParamsList(): Array<NamedParam>;
+    setParamsList(value: Array<NamedParam>): SQLQueryRequest;
+    addParams(value?: NamedParam, index?: number): NamedParam;
+    getReusesnapshot(): boolean;
+    setReusesnapshot(value: boolean): SQLQueryRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SQLQueryRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: SQLQueryRequest): SQLQueryRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SQLQueryRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SQLQueryRequest;
+    static deserializeBinaryFromReader(message: SQLQueryRequest, reader: jspb.BinaryReader): SQLQueryRequest;
+}
+
+export namespace SQLQueryRequest {
+    export type AsObject = {
+        sql: string,
+        paramsList: Array<NamedParam.AsObject>,
+        reusesnapshot: boolean,
+    }
+}
+
+export class NamedParam extends jspb.Message { 
+    getName(): string;
+    setName(value: string): NamedParam;
+
+    hasValue(): boolean;
+    clearValue(): void;
+    getValue(): SQLValue | undefined;
+    setValue(value?: SQLValue): NamedParam;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): NamedParam.AsObject;
+    static toObject(includeInstance: boolean, msg: NamedParam): NamedParam.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: NamedParam, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): NamedParam;
+    static deserializeBinaryFromReader(message: NamedParam, reader: jspb.BinaryReader): NamedParam;
+}
+
+export namespace NamedParam {
+    export type AsObject = {
+        name: string,
+        value?: SQLValue.AsObject,
+    }
+}
+
+export class SQLExecResult extends jspb.Message { 
+    clearCtxsList(): void;
+    getCtxsList(): Array<TxMetadata>;
+    setCtxsList(value: Array<TxMetadata>): SQLExecResult;
+    addCtxs(value?: TxMetadata, index?: number): TxMetadata;
+    clearDtxsList(): void;
+    getDtxsList(): Array<TxMetadata>;
+    setDtxsList(value: Array<TxMetadata>): SQLExecResult;
+    addDtxs(value?: TxMetadata, index?: number): TxMetadata;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SQLExecResult.AsObject;
+    static toObject(includeInstance: boolean, msg: SQLExecResult): SQLExecResult.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SQLExecResult, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SQLExecResult;
+    static deserializeBinaryFromReader(message: SQLExecResult, reader: jspb.BinaryReader): SQLExecResult;
+}
+
+export namespace SQLExecResult {
+    export type AsObject = {
+        ctxsList: Array<TxMetadata.AsObject>,
+        dtxsList: Array<TxMetadata.AsObject>,
+    }
+}
+
+export class SQLQueryResult extends jspb.Message { 
+    clearColumnsList(): void;
+    getColumnsList(): Array<Column>;
+    setColumnsList(value: Array<Column>): SQLQueryResult;
+    addColumns(value?: Column, index?: number): Column;
+    clearRowsList(): void;
+    getRowsList(): Array<Row>;
+    setRowsList(value: Array<Row>): SQLQueryResult;
+    addRows(value?: Row, index?: number): Row;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SQLQueryResult.AsObject;
+    static toObject(includeInstance: boolean, msg: SQLQueryResult): SQLQueryResult.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SQLQueryResult, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SQLQueryResult;
+    static deserializeBinaryFromReader(message: SQLQueryResult, reader: jspb.BinaryReader): SQLQueryResult;
+}
+
+export namespace SQLQueryResult {
+    export type AsObject = {
+        columnsList: Array<Column.AsObject>,
+        rowsList: Array<Row.AsObject>,
+    }
+}
+
+export class Column extends jspb.Message { 
+    getName(): string;
+    setName(value: string): Column;
+    getType(): string;
+    setType(value: string): Column;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Column.AsObject;
+    static toObject(includeInstance: boolean, msg: Column): Column.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Column, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Column;
+    static deserializeBinaryFromReader(message: Column, reader: jspb.BinaryReader): Column;
+}
+
+export namespace Column {
+    export type AsObject = {
+        name: string,
+        type: string,
+    }
+}
+
+export class Row extends jspb.Message { 
+    clearColumnsList(): void;
+    getColumnsList(): Array<string>;
+    setColumnsList(value: Array<string>): Row;
+    addColumns(value: string, index?: number): string;
+    clearValuesList(): void;
+    getValuesList(): Array<SQLValue>;
+    setValuesList(value: Array<SQLValue>): Row;
+    addValues(value?: SQLValue, index?: number): SQLValue;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Row.AsObject;
+    static toObject(includeInstance: boolean, msg: Row): Row.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Row, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Row;
+    static deserializeBinaryFromReader(message: Row, reader: jspb.BinaryReader): Row;
+}
+
+export namespace Row {
+    export type AsObject = {
+        columnsList: Array<string>,
+        valuesList: Array<SQLValue.AsObject>,
+    }
+}
+
+export class SQLValue extends jspb.Message { 
+
+    hasNull(): boolean;
+    clearNull(): void;
+    getNull(): google_protobuf_struct_pb.NullValue;
+    setNull(value: google_protobuf_struct_pb.NullValue): SQLValue;
+
+    hasN(): boolean;
+    clearN(): void;
+    getN(): number;
+    setN(value: number): SQLValue;
+
+    hasS(): boolean;
+    clearS(): void;
+    getS(): string;
+    setS(value: string): SQLValue;
+
+    hasB(): boolean;
+    clearB(): void;
+    getB(): boolean;
+    setB(value: boolean): SQLValue;
+
+    hasBs(): boolean;
+    clearBs(): void;
+    getBs(): Uint8Array | string;
+    getBs_asU8(): Uint8Array;
+    getBs_asB64(): string;
+    setBs(value: Uint8Array | string): SQLValue;
+
+    getValueCase(): SQLValue.ValueCase;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SQLValue.AsObject;
+    static toObject(includeInstance: boolean, msg: SQLValue): SQLValue.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SQLValue, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SQLValue;
+    static deserializeBinaryFromReader(message: SQLValue, reader: jspb.BinaryReader): SQLValue;
+}
+
+export namespace SQLValue {
+    export type AsObject = {
+        pb_null: google_protobuf_struct_pb.NullValue,
+        n: number,
+        s: string,
+        b: boolean,
+        bs: Uint8Array | string,
+    }
+
+    export enum ValueCase {
+        VALUE_NOT_SET = 0,
+        NULL = 1,
+        N = 2,
+        S = 3,
+        B = 4,
+        BS = 5,
+    }
+
 }
 
 export enum PermissionAction {

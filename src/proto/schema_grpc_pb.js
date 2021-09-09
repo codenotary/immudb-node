@@ -2,14 +2,11 @@
 
 // Original file comments:
 //
-// Copyright 2019-2020 vChain, Inc.
-//
+// Copyright 2021 CodeNotary, Inc. All rights reserved.
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
 // http://www.apache.org/licenses/LICENSE-2.0
-//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,6 +17,7 @@
 var grpc = require('@grpc/grpc-js');
 var schema_pb = require('./schema_pb.js');
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
+var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
 
 function serialize_google_protobuf_Empty(arg) {
   if (!(arg instanceof google_protobuf_empty_pb.Empty)) {
@@ -63,6 +61,17 @@ function serialize_immudb_schema_ChangePermissionRequest(arg) {
 
 function deserialize_immudb_schema_ChangePermissionRequest(buffer_arg) {
   return schema_pb.ChangePermissionRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_immudb_schema_Chunk(arg) {
+  if (!(arg instanceof schema_pb.Chunk)) {
+    throw new Error('Expected argument of type immudb.schema.Chunk');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_immudb_schema_Chunk(buffer_arg) {
+  return schema_pb.Chunk.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_immudb_schema_CreateUserRequest(arg) {
@@ -252,6 +261,50 @@ function deserialize_immudb_schema_ReferenceRequest(buffer_arg) {
   return schema_pb.ReferenceRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_immudb_schema_SQLExecRequest(arg) {
+  if (!(arg instanceof schema_pb.SQLExecRequest)) {
+    throw new Error('Expected argument of type immudb.schema.SQLExecRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_immudb_schema_SQLExecRequest(buffer_arg) {
+  return schema_pb.SQLExecRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_immudb_schema_SQLExecResult(arg) {
+  if (!(arg instanceof schema_pb.SQLExecResult)) {
+    throw new Error('Expected argument of type immudb.schema.SQLExecResult');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_immudb_schema_SQLExecResult(buffer_arg) {
+  return schema_pb.SQLExecResult.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_immudb_schema_SQLQueryRequest(arg) {
+  if (!(arg instanceof schema_pb.SQLQueryRequest)) {
+    throw new Error('Expected argument of type immudb.schema.SQLQueryRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_immudb_schema_SQLQueryRequest(buffer_arg) {
+  return schema_pb.SQLQueryRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_immudb_schema_SQLQueryResult(arg) {
+  if (!(arg instanceof schema_pb.SQLQueryResult)) {
+    throw new Error('Expected argument of type immudb.schema.SQLQueryResult');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_immudb_schema_SQLQueryResult(buffer_arg) {
+  return schema_pb.SQLQueryResult.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_immudb_schema_ScanRequest(arg) {
   if (!(arg instanceof schema_pb.ScanRequest)) {
     throw new Error('Expected argument of type immudb.schema.ScanRequest');
@@ -283,6 +336,17 @@ function serialize_immudb_schema_SetRequest(arg) {
 
 function deserialize_immudb_schema_SetRequest(buffer_arg) {
   return schema_pb.SetRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_immudb_schema_Table(arg) {
+  if (!(arg instanceof schema_pb.Table)) {
+    throw new Error('Expected argument of type immudb.schema.Table');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_immudb_schema_Table(buffer_arg) {
+  return schema_pb.Table.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_immudb_schema_Tx(arg) {
@@ -351,6 +415,17 @@ function deserialize_immudb_schema_UseDatabaseReply(buffer_arg) {
   return schema_pb.UseDatabaseReply.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_immudb_schema_UseSnapshotRequest(arg) {
+  if (!(arg instanceof schema_pb.UseSnapshotRequest)) {
+    throw new Error('Expected argument of type immudb.schema.UseSnapshotRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_immudb_schema_UseSnapshotRequest(buffer_arg) {
+  return schema_pb.UseSnapshotRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_immudb_schema_UserList(arg) {
   if (!(arg instanceof schema_pb.UserList)) {
     throw new Error('Expected argument of type immudb.schema.UserList');
@@ -393,6 +468,28 @@ function serialize_immudb_schema_VerifiableReferenceRequest(arg) {
 
 function deserialize_immudb_schema_VerifiableReferenceRequest(buffer_arg) {
   return schema_pb.VerifiableReferenceRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_immudb_schema_VerifiableSQLEntry(arg) {
+  if (!(arg instanceof schema_pb.VerifiableSQLEntry)) {
+    throw new Error('Expected argument of type immudb.schema.VerifiableSQLEntry');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_immudb_schema_VerifiableSQLEntry(buffer_arg) {
+  return schema_pb.VerifiableSQLEntry.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_immudb_schema_VerifiableSQLGetRequest(arg) {
+  if (!(arg instanceof schema_pb.VerifiableSQLGetRequest)) {
+    throw new Error('Expected argument of type immudb.schema.VerifiableSQLGetRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_immudb_schema_VerifiableSQLGetRequest(buffer_arg) {
+  return schema_pb.VerifiableSQLGetRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_immudb_schema_VerifiableSetRequest(arg) {
@@ -838,6 +935,162 @@ var ImmuServiceService = exports.ImmuServiceService = {
     requestDeserialize: deserialize_immudb_schema_SetActiveUserRequest,
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
+  },
+  // Streams
+streamGet: {
+    path: '/immudb.schema.ImmuService/streamGet',
+    requestStream: false,
+    responseStream: true,
+    requestType: schema_pb.KeyRequest,
+    responseType: schema_pb.Chunk,
+    requestSerialize: serialize_immudb_schema_KeyRequest,
+    requestDeserialize: deserialize_immudb_schema_KeyRequest,
+    responseSerialize: serialize_immudb_schema_Chunk,
+    responseDeserialize: deserialize_immudb_schema_Chunk,
+  },
+  streamSet: {
+    path: '/immudb.schema.ImmuService/streamSet',
+    requestStream: true,
+    responseStream: false,
+    requestType: schema_pb.Chunk,
+    responseType: schema_pb.TxMetadata,
+    requestSerialize: serialize_immudb_schema_Chunk,
+    requestDeserialize: deserialize_immudb_schema_Chunk,
+    responseSerialize: serialize_immudb_schema_TxMetadata,
+    responseDeserialize: deserialize_immudb_schema_TxMetadata,
+  },
+  streamVerifiableGet: {
+    path: '/immudb.schema.ImmuService/streamVerifiableGet',
+    requestStream: false,
+    responseStream: true,
+    requestType: schema_pb.VerifiableGetRequest,
+    responseType: schema_pb.Chunk,
+    requestSerialize: serialize_immudb_schema_VerifiableGetRequest,
+    requestDeserialize: deserialize_immudb_schema_VerifiableGetRequest,
+    responseSerialize: serialize_immudb_schema_Chunk,
+    responseDeserialize: deserialize_immudb_schema_Chunk,
+  },
+  streamVerifiableSet: {
+    path: '/immudb.schema.ImmuService/streamVerifiableSet',
+    requestStream: true,
+    responseStream: false,
+    requestType: schema_pb.Chunk,
+    responseType: schema_pb.VerifiableTx,
+    requestSerialize: serialize_immudb_schema_Chunk,
+    requestDeserialize: deserialize_immudb_schema_Chunk,
+    responseSerialize: serialize_immudb_schema_VerifiableTx,
+    responseDeserialize: deserialize_immudb_schema_VerifiableTx,
+  },
+  streamScan: {
+    path: '/immudb.schema.ImmuService/streamScan',
+    requestStream: false,
+    responseStream: true,
+    requestType: schema_pb.ScanRequest,
+    responseType: schema_pb.Chunk,
+    requestSerialize: serialize_immudb_schema_ScanRequest,
+    requestDeserialize: deserialize_immudb_schema_ScanRequest,
+    responseSerialize: serialize_immudb_schema_Chunk,
+    responseDeserialize: deserialize_immudb_schema_Chunk,
+  },
+  streamZScan: {
+    path: '/immudb.schema.ImmuService/streamZScan',
+    requestStream: false,
+    responseStream: true,
+    requestType: schema_pb.ZScanRequest,
+    responseType: schema_pb.Chunk,
+    requestSerialize: serialize_immudb_schema_ZScanRequest,
+    requestDeserialize: deserialize_immudb_schema_ZScanRequest,
+    responseSerialize: serialize_immudb_schema_Chunk,
+    responseDeserialize: deserialize_immudb_schema_Chunk,
+  },
+  streamHistory: {
+    path: '/immudb.schema.ImmuService/streamHistory',
+    requestStream: false,
+    responseStream: true,
+    requestType: schema_pb.HistoryRequest,
+    responseType: schema_pb.Chunk,
+    requestSerialize: serialize_immudb_schema_HistoryRequest,
+    requestDeserialize: deserialize_immudb_schema_HistoryRequest,
+    responseSerialize: serialize_immudb_schema_Chunk,
+    responseDeserialize: deserialize_immudb_schema_Chunk,
+  },
+  streamExecAll: {
+    path: '/immudb.schema.ImmuService/streamExecAll',
+    requestStream: true,
+    responseStream: false,
+    requestType: schema_pb.Chunk,
+    responseType: schema_pb.TxMetadata,
+    requestSerialize: serialize_immudb_schema_Chunk,
+    requestDeserialize: deserialize_immudb_schema_Chunk,
+    responseSerialize: serialize_immudb_schema_TxMetadata,
+    responseDeserialize: deserialize_immudb_schema_TxMetadata,
+  },
+  // SQL
+useSnapshot: {
+    path: '/immudb.schema.ImmuService/UseSnapshot',
+    requestStream: false,
+    responseStream: false,
+    requestType: schema_pb.UseSnapshotRequest,
+    responseType: google_protobuf_empty_pb.Empty,
+    requestSerialize: serialize_immudb_schema_UseSnapshotRequest,
+    requestDeserialize: deserialize_immudb_schema_UseSnapshotRequest,
+    responseSerialize: serialize_google_protobuf_Empty,
+    responseDeserialize: deserialize_google_protobuf_Empty,
+  },
+  sQLExec: {
+    path: '/immudb.schema.ImmuService/SQLExec',
+    requestStream: false,
+    responseStream: false,
+    requestType: schema_pb.SQLExecRequest,
+    responseType: schema_pb.SQLExecResult,
+    requestSerialize: serialize_immudb_schema_SQLExecRequest,
+    requestDeserialize: deserialize_immudb_schema_SQLExecRequest,
+    responseSerialize: serialize_immudb_schema_SQLExecResult,
+    responseDeserialize: deserialize_immudb_schema_SQLExecResult,
+  },
+  sQLQuery: {
+    path: '/immudb.schema.ImmuService/SQLQuery',
+    requestStream: false,
+    responseStream: false,
+    requestType: schema_pb.SQLQueryRequest,
+    responseType: schema_pb.SQLQueryResult,
+    requestSerialize: serialize_immudb_schema_SQLQueryRequest,
+    requestDeserialize: deserialize_immudb_schema_SQLQueryRequest,
+    responseSerialize: serialize_immudb_schema_SQLQueryResult,
+    responseDeserialize: deserialize_immudb_schema_SQLQueryResult,
+  },
+  listTables: {
+    path: '/immudb.schema.ImmuService/ListTables',
+    requestStream: false,
+    responseStream: false,
+    requestType: google_protobuf_empty_pb.Empty,
+    responseType: schema_pb.SQLQueryResult,
+    requestSerialize: serialize_google_protobuf_Empty,
+    requestDeserialize: deserialize_google_protobuf_Empty,
+    responseSerialize: serialize_immudb_schema_SQLQueryResult,
+    responseDeserialize: deserialize_immudb_schema_SQLQueryResult,
+  },
+  describeTable: {
+    path: '/immudb.schema.ImmuService/DescribeTable',
+    requestStream: false,
+    responseStream: false,
+    requestType: schema_pb.Table,
+    responseType: schema_pb.SQLQueryResult,
+    requestSerialize: serialize_immudb_schema_Table,
+    requestDeserialize: deserialize_immudb_schema_Table,
+    responseSerialize: serialize_immudb_schema_SQLQueryResult,
+    responseDeserialize: deserialize_immudb_schema_SQLQueryResult,
+  },
+  verifiableSQLGet: {
+    path: '/immudb.schema.ImmuService/VerifiableSQLGet',
+    requestStream: false,
+    responseStream: false,
+    requestType: schema_pb.VerifiableSQLGetRequest,
+    responseType: schema_pb.VerifiableSQLEntry,
+    requestSerialize: serialize_immudb_schema_VerifiableSQLGetRequest,
+    requestDeserialize: deserialize_immudb_schema_VerifiableSQLGetRequest,
+    responseSerialize: serialize_immudb_schema_VerifiableSQLEntry,
+    responseDeserialize: deserialize_immudb_schema_VerifiableSQLEntry,
   },
 };
 

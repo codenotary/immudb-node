@@ -1,6 +1,6 @@
 // @ts-ignore
 import tap from 'tap';
-import * as util from '../src/util';
+import * as util from '../../src/util';
 
 tap.test('utf8 encode', t => {
     const array = new Uint8Array([226, 130, 172])
