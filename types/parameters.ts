@@ -91,6 +91,8 @@ export namespace Parameters {
     export type VerifiedZAddAt = ZAddAt
     export type VerifiedSetReference = SetReference
     export type VerifiedSetReferenceAt = SetReferenceAt
+    export type SQLExec = schemaTypes.SQLExecRequest.AsObject
+    export type SQLQuery = schemaTypes.SQLQueryRequest.AsObject
 }
 
 

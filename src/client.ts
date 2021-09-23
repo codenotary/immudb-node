@@ -88,6 +88,7 @@ class ImmudbClient {
       return new Promise((resolve) => resolve(ImmudbClient.instance));
     } catch (err) {
       await ImmudbClient.instance.shutdown();
+
       return new Promise((_, reject) => reject(err));
     }
   }
@@ -1644,6 +1645,174 @@ class ImmudbClient {
           reject(err);
         } else {
           resolve(res)  
+        }
+      }))
+    } catch(err) {
+      console.error(err);
+    }
+  }
+
+  async SQLExec ({ sql, paramsList, nowait }: Parameters.SQLExec): Promise<schemaTypes.SQLExecResult.AsObject | undefined > {
+    try {
+      const req = new schemaTypes.SQLExecRequest();
+
+      const sqlParamsList = paramsList.map(({ name, value = null }) => {
+        const param = new schemaTypes.NamedParam();
+
+        param.setName(name)
+
+        if (value !== null) {
+          const sqlValue = new schemaTypes.SQLValue();
+          const { pb_null, n, s, b, bs } = value;
+
+          sqlValue.setNull(pb_null);
+          sqlValue.setN(n);
+          sqlValue.setS(s);
+          sqlValue.setB(b);
+          sqlValue.setBs(bs);
+
+          param.setValue(sqlValue)
+        }
+
+        return param;
+      });
+
+      req.setParamsList(sqlParamsList);
+      req.setSql(sql);
+      req.setNowait(nowait);
+
+      return new Promise((resolve, reject) => this.client.sQLExec(req, this._metadata, (err, res) => {
+        if (err) {
+          console.error('SQLExec error', err)
+
+          reject(err)
+        } else {
+          const ctxsList = res
+            .getCtxsList()
+            .map(txMetadata => ({
+              id: txMetadata.getId(),
+              prevalh: util.getAlh(txMetadata),
+              ts: txMetadata.getTs(),
+              nentries: txMetadata.getNentries(),
+              eh: txMetadata.getEh(),
+              bltxid: txMetadata.getBltxid(),
+              blroot: txMetadata.getBlroot(),
+            }))
+          const dtxsList = res
+            .getCtxsList()
+            .map(txMetadata => ({
+              id: txMetadata.getId(),
+              prevalh: util.getAlh(txMetadata),
+              ts: txMetadata.getTs(),
+              nentries: txMetadata.getNentries(),
+              eh: txMetadata.getEh(),
+              bltxid: txMetadata.getBltxid(),
+              blroot: txMetadata.getBlroot(),
+            }))
+
+          resolve({
+            ctxsList,
+            dtxsList,
+          })
+        }
+      }))
+    } catch(err) {
+      console.error(err);
+    }
+  }
+
+  async SQLQuery ({ sql, paramsList, reusesnapshot }: Parameters.SQLQuery): Promise<schemaTypes.SQLQueryResult.AsObject | undefined> {
+    try {
+      const req = new schemaTypes.SQLQueryRequest();
+
+      const sqlParamsList = paramsList.map(({ name, value = null }) => {
+        const param = new schemaTypes.NamedParam();
+
+        param.setName(name)
+
+        if (value !== null) {
+          const sqlValue = new schemaTypes.SQLValue();
+          const { pb_null, n, s, b, bs } = value;
+
+          sqlValue.setNull(pb_null);
+          sqlValue.setN(n);
+          sqlValue.setS(s);
+          sqlValue.setB(b);
+          sqlValue.setBs(bs);
+
+          param.setValue(sqlValue)
+        }
+
+        return param;
+      });
+
+      req.setSql(sql);
+      req.setParamsList(sqlParamsList);
+      req.setReusesnapshot(reusesnapshot);
+
+      return new Promise((resolve, reject) => this.client.sQLQuery(req, this._metadata, (err, res) => {
+        if (err) {
+          console.error('SQLQuery error', err)
+
+          reject(err)
+        } else {
+          const columnsList = res
+            .getColumnsList()
+            .map(column => column.toObject());
+          const rowsList = res
+            .getRowsList()
+            .map(row => {
+              const valuesList = row
+                .getValuesList()
+                .map(value => value.toObject());
+
+              return {
+                columnsList: row.getColumnsList(),
+                valuesList
+              }
+            });
+
+          resolve({
+            columnsList,
+            rowsList,
+          })
+        }
+      }))
+    } catch(err) {
+      console.error(err);
+    }
+  }
+
+  async listTables (): Promise<schemaTypes.SQLQueryResult.AsObject | undefined> {
+    try {
+      const req = new empty.Empty()
+
+      return new Promise((resolve, reject) => this.client.listTables(req, this._metadata, (err, res) => {
+        if (err) {
+          console.error('listTables error', err);
+          
+          reject(err);
+        } else {
+          const columnsList = res
+            .getColumnsList()
+            .map(column => column.toObject());
+          const rowsList = res
+            .getRowsList()
+            .map(row => {
+              const valuesList = row
+                .getValuesList()
+                .map(value => value.toObject());
+
+              return {
+                columnsList: row.getColumnsList(),
+                valuesList
+              }
+            });
+
+          resolve({
+            columnsList,
+            rowsList,
+          })
         }
       }))
     } catch(err) {
