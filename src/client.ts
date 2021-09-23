@@ -88,7 +88,7 @@ class ImmudbClient {
       return new Promise((resolve) => resolve(ImmudbClient.instance));
     } catch (err) {
       await ImmudbClient.instance.shutdown();
-      return new Promise((reject) => reject(err));
+      return new Promise((_, reject) => reject(err));
     }
   }
 
@@ -1633,11 +1633,11 @@ class ImmudbClient {
     }
   }
 
-  async cleanIndex (): Promise<empty.Empty | undefined> {
+  async compactIndex (): Promise<empty.Empty | undefined> {
     try {
       const req = new empty.Empty()
 
-      return new Promise((resolve, reject) => this.client.cleanIndex(req, this._metadata, (err, res) => {
+      return new Promise((resolve, reject) => this.client.compactIndex(req, this._metadata, (err, res) => {
         if (err) {
           console.error('cleanIndex error', err);
           

@@ -40,7 +40,7 @@ interface IImmuServiceService extends grpc.ServiceDefinition<grpc.UntypedService
     createDatabase: IImmuServiceService_ICreateDatabase;
     databaseList: IImmuServiceService_IDatabaseList;
     useDatabase: IImmuServiceService_IUseDatabase;
-    cleanIndex: IImmuServiceService_ICleanIndex;
+    compactIndex: IImmuServiceService_ICompactIndex;
     changePermission: IImmuServiceService_IChangePermission;
     setActiveUser: IImmuServiceService_ISetActiveUser;
     streamGet: IImmuServiceService_IstreamGet;
@@ -329,8 +329,8 @@ interface IImmuServiceService_IUseDatabase extends grpc.MethodDefinition<schema_
     responseSerialize: grpc.serialize<schema_pb.UseDatabaseReply>;
     responseDeserialize: grpc.deserialize<schema_pb.UseDatabaseReply>;
 }
-interface IImmuServiceService_ICleanIndex extends grpc.MethodDefinition<google_protobuf_empty_pb.Empty, google_protobuf_empty_pb.Empty> {
-    path: "/immudb.schema.ImmuService/CleanIndex";
+interface IImmuServiceService_ICompactIndex extends grpc.MethodDefinition<google_protobuf_empty_pb.Empty, google_protobuf_empty_pb.Empty> {
+    path: "/immudb.schema.ImmuService/CompactIndex";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<google_protobuf_empty_pb.Empty>;
@@ -516,7 +516,7 @@ export interface IImmuServiceServer {
     createDatabase: grpc.handleUnaryCall<schema_pb.Database, google_protobuf_empty_pb.Empty>;
     databaseList: grpc.handleUnaryCall<google_protobuf_empty_pb.Empty, schema_pb.DatabaseListResponse>;
     useDatabase: grpc.handleUnaryCall<schema_pb.Database, schema_pb.UseDatabaseReply>;
-    cleanIndex: grpc.handleUnaryCall<google_protobuf_empty_pb.Empty, google_protobuf_empty_pb.Empty>;
+    compactIndex: grpc.handleUnaryCall<google_protobuf_empty_pb.Empty, google_protobuf_empty_pb.Empty>;
     changePermission: grpc.handleUnaryCall<schema_pb.ChangePermissionRequest, google_protobuf_empty_pb.Empty>;
     setActiveUser: grpc.handleUnaryCall<schema_pb.SetActiveUserRequest, google_protobuf_empty_pb.Empty>;
     streamGet: grpc.handleServerStreamingCall<schema_pb.KeyRequest, schema_pb.Chunk>;
@@ -626,9 +626,9 @@ export interface IImmuServiceClient {
     useDatabase(request: schema_pb.Database, callback: (error: grpc.ServiceError | null, response: schema_pb.UseDatabaseReply) => void): grpc.ClientUnaryCall;
     useDatabase(request: schema_pb.Database, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.UseDatabaseReply) => void): grpc.ClientUnaryCall;
     useDatabase(request: schema_pb.Database, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.UseDatabaseReply) => void): grpc.ClientUnaryCall;
-    cleanIndex(request: google_protobuf_empty_pb.Empty, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
-    cleanIndex(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
-    cleanIndex(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
+    compactIndex(request: google_protobuf_empty_pb.Empty, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
+    compactIndex(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
+    compactIndex(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
     changePermission(request: schema_pb.ChangePermissionRequest, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
     changePermission(request: schema_pb.ChangePermissionRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
     changePermission(request: schema_pb.ChangePermissionRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
@@ -769,9 +769,9 @@ export class ImmuServiceClient extends grpc.Client implements IImmuServiceClient
     public useDatabase(request: schema_pb.Database, callback: (error: grpc.ServiceError | null, response: schema_pb.UseDatabaseReply) => void): grpc.ClientUnaryCall;
     public useDatabase(request: schema_pb.Database, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: schema_pb.UseDatabaseReply) => void): grpc.ClientUnaryCall;
     public useDatabase(request: schema_pb.Database, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: schema_pb.UseDatabaseReply) => void): grpc.ClientUnaryCall;
-    public cleanIndex(request: google_protobuf_empty_pb.Empty, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
-    public cleanIndex(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
-    public cleanIndex(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
+    public compactIndex(request: google_protobuf_empty_pb.Empty, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
+    public compactIndex(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
+    public compactIndex(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
     public changePermission(request: schema_pb.ChangePermissionRequest, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
     public changePermission(request: schema_pb.ChangePermissionRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;
     public changePermission(request: schema_pb.ChangePermissionRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: google_protobuf_empty_pb.Empty) => void): grpc.ClientUnaryCall;

@@ -1,9 +1,12 @@
 /*
 Copyright 2021 CodeNotary, Inc. All rights reserved.
+
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
+
 	http://www.apache.org/licenses/LICENSE-2.0
+
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -473,7 +476,7 @@ service ImmuService {
 	rpc CreateDatabase(Database) returns (google.protobuf.Empty);
 	rpc DatabaseList (google.protobuf.Empty) returns (DatabaseListResponse);
 	rpc UseDatabase(Database) returns (UseDatabaseReply);
-	rpc CleanIndex(google.protobuf.Empty) returns (google.protobuf.Empty);
+	rpc CompactIndex(google.protobuf.Empty) returns (google.protobuf.Empty);
 	rpc ChangePermission(ChangePermissionRequest) returns (google.protobuf.Empty);
 	rpc SetActiveUser (SetActiveUserRequest) returns (google.protobuf.Empty);
 	// Streams
