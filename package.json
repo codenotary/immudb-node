@@ -1,6 +1,6 @@
 {
   "name": "immudb-node",
-  "version": "1.0.10",
+  "version": "1.1.0-rc.1",
   "description": "Node.js SDK for immudb written in TypeScript",
   "directories": {
     "src": "src",
