@@ -1731,36 +1731,31 @@ class ImmudbClient {
     }
   }
 
-  async listTables (): Promise<schemaTypes.SQLQueryResult.AsObject | undefined> {
+  async SQLListTables (): Promise<Array<Array<SQLValue>> | undefined> {
     try {
       const req = new empty.Empty()
 
       return new Promise((resolve, reject) => this.client.listTables(req, this._metadata, (err, res) => {
         if (err) {
-          console.error('listTables error', err);
+          console.error('SQLListTables error', err);
           
           reject(err);
         } else {
-          const columnsList = res
-            .getColumnsList()
-            .map(column => column.toObject());
-          const rowsList = res
+          resolve(res
             .getRowsList()
-            .map(row => {
-              const valuesList = row
-                .getValuesList()
-                .map(value => value.toObject());
-
-              return {
-                columnsList: row.getColumnsList(),
-                valuesList
-              }
-            });
-
-          resolve({
-            columnsList,
-            rowsList,
-          })
+            .map(row => row
+              .getValuesList()
+              .map(value => value.hasNull()
+                ? value.getNull()
+                : value.hasS()
+                  ? value.getS()
+                  : value.hasN()
+                    ? value.getN()
+                    : value.hasB()
+                      ? value.getB()
+                      : value.hasBs()
+                        ? value.getBs_asU8()
+                        : null)))
         }
       }))
     } catch(err) {

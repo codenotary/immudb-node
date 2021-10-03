@@ -443,6 +443,8 @@ tap.test('[OPERATIONS]: SQL', async t => {
       sql: `create table ${ tableName } (id integer, name varchar, primary key id);`,
     })
 
+    await immudbClient.SQLListTables()
+
     const sqlExecParams = [
       {
         id: 1,
@@ -466,9 +468,7 @@ tap.test('[OPERATIONS]: SQL', async t => {
     
     await immudbClient.SQLQuery({
       sql: `select id,name from ${ tableName } where name=@name;`,
-      params: {
-        name: 'Joe',
-      }
+      params: { name: 'Joe' }
     })
 
     t.end();
