@@ -2,6 +2,8 @@ import * as schemaTypes from '../src/proto/schema_pb';
 import { USER_PERMISSION, USER_ACTION } from './user'
 import * as interfaces from '../src/interfaces';
 
+export type SQLValue = null | string | number | Uint8Array | boolean
+type SQLParams = { [key: string]: SQLValue }
 export namespace Parameters {
     export type SetReference = {
         key: string
@@ -91,8 +93,12 @@ export namespace Parameters {
     export type VerifiedZAddAt = ZAddAt
     export type VerifiedSetReference = SetReference
     export type VerifiedSetReferenceAt = SetReferenceAt
-    export type SQLExec = schemaTypes.SQLExecRequest.AsObject
-    export type SQLQuery = schemaTypes.SQLQueryRequest.AsObject
+    export type SQLExec = interfaces.PartialBy<Omit<schemaTypes.SQLExecRequest.AsObject, 'paramsList'>, 'nowait'> & {
+        params?: SQLParams
+    }
+    export type SQLQuery = interfaces.PartialBy<Omit<schemaTypes.SQLQueryRequest.AsObject, 'paramsList'>, 'reusesnapshot'> & {
+        params?: SQLParams
+    }
 }
 
 

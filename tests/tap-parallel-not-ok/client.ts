@@ -13,7 +13,7 @@ const {
   IMMUDB_PWD = 'immudb',
 } = process.env;
 
-tap.test('database management', async t => {
+tap.test('[DATABASE MANAGEMENT]', async t => {
   const config: Config = {
     host: IMMUDB_HOST,
     port: IMMUDB_PORT,
@@ -57,8 +57,8 @@ tap.test('database management', async t => {
     const fourthResponse = await immudbClient.set(fourthRequestData);
 
     if (fourthResponse) {
-      t.equal(fourthResponse.bltxid, 0);
-      t.equal(fourthResponse.id, 1);
+      t.equal(fourthResponse.bltxid, 1);
+      t.equal(fourthResponse.id, 2);
     } else {
       t.fail('Failed to set');
     }
@@ -88,7 +88,7 @@ tap.test('database management', async t => {
   }
 });
 
-tap.test('user management', async t => {
+tap.test('[USER MANAGEMENT]', async t => {
   const config: Config = {
     host: IMMUDB_HOST,
     port: IMMUDB_PORT,
@@ -158,7 +158,7 @@ tap.test('user management', async t => {
   }
 });
 
-tap.test('operations', async t => {
+tap.test('[OPERATIONS]: Regular', async t => {
   const config: Config = {
     host: IMMUDB_HOST,
     port: IMMUDB_PORT,
@@ -234,7 +234,7 @@ tap.test('operations', async t => {
     await immudbClient.verifiedSetReference(verifiedSetReferenceRequest)
 
     // test: safely set a reference to an inserted key
-    const verifiedSetReferenceAtRequest = { key: referenceKey, referencedKey: key, attx: 1 }
+    const verifiedSetReferenceAtRequest = { key: referenceKey, referencedKey: key, attx: 0 }
     await immudbClient.verifiedSetReferenceAt(verifiedSetReferenceAtRequest)
 
     // // test: count keys having the specified value
@@ -311,9 +311,8 @@ tap.test('operations', async t => {
       key: `${key}${key}`,
       value: `${value}${value}`,
     };
-    let verifiedSetResponse
     try {
-      verifiedSetResponse = await immudbClient.verifiedSet(verifiedSetRequest);
+      await immudbClient.verifiedSet(verifiedSetRequest);
     } catch(err) {
       t.fail(err)
     }
@@ -328,7 +327,7 @@ tap.test('operations', async t => {
       value: `${value}1`,
     };
     try {
-      verifiedSetResponse = await immudbClient.verifiedSet(verifiedSetRequest);
+      await immudbClient.verifiedSet(verifiedSetRequest);
     } catch(err) {
       t.fail(err)
     }
@@ -340,7 +339,7 @@ tap.test('operations', async t => {
       value: `${value}2`,
     };
     try {
-      verifiedSetResponse = await immudbClient.verifiedSet(verifiedSetRequest);
+      await immudbClient.verifiedSet(verifiedSetRequest);
     } catch(err) {
       t.fail(err)
     }
@@ -390,7 +389,7 @@ tap.test('operations', async t => {
     await immudbClient.zAdd(verifiedZAddRequest)
 
     // test: safely set a secondary index on a key at a specific transaction
-    const verifiedZAddAtRequest = { set: 'test', score: 32, key, attx: 1 }
+    const verifiedZAddAtRequest = { set: 'test', score: 32, key, attx: 0 }
     await immudbClient.zAddAt(verifiedZAddAtRequest)
 
     t.end();
@@ -399,7 +398,86 @@ tap.test('operations', async t => {
   }
 });
 
-tap.test('batches', async t => {
+tap.test('[OPERATIONS]: SQL', async t => {
+  const config: Config = {
+    host: IMMUDB_HOST,
+    port: IMMUDB_PORT,
+    autoLogin: false,
+  };
+  const immudbClient = await ImmudbClient.getInstance(config);
+  try {
+    const rand = 1;
+    const testDB = 'testdb';
+
+    // test: login using the specified username and password
+    const loginRequest: Parameters.Login = {
+      user: IMMUDB_USER,
+      password: IMMUDB_PWD,
+    };
+    await immudbClient.login(
+      loginRequest
+    );
+
+    const listDatabasesResponse = await immudbClient.listDatabases()
+    if (listDatabasesResponse) {
+      const { databasesList } = listDatabasesResponse
+
+      // let dbExists = false
+      const dbExists = databasesList.some(({ databasename }) => databasename === testDB)
+
+      if (!dbExists) {
+        // test: create database
+        const createDatabaseRequest: Parameters.CreateDatabase = { databasename: testDB };
+        
+        await immudbClient.createDatabase(createDatabaseRequest);
+      }
+    }
+
+    // test: use database just created
+    const useDatabaseRequest: Parameters.UseDatabase = { databasename: testDB };
+    await immudbClient.useDatabase(useDatabaseRequest);
+
+    const tableName = `table${ Math.floor(Math.random() * 101) }`
+
+    await immudbClient.SQLExec({
+      sql: `create table ${ tableName } (id integer, name varchar, primary key id);`,
+    })
+
+    const sqlExecParams = [
+      {
+        id: 1,
+        name: 'Joe'
+      },
+      {
+        id: 2,
+        name: 'Joe'
+      },
+      {
+        id: 3,
+        name: 'Adam'
+      },
+    ]
+    for (const params of sqlExecParams) {
+      await immudbClient.SQLExec({
+        sql: `insert into ${ tableName } (id, name) values (@id, @name);`,
+        params
+      })
+    }
+    
+    await immudbClient.SQLQuery({
+      sql: `select id,name from ${ tableName } where name=@name;`,
+      params: {
+        name: 'Joe',
+      }
+    })
+
+    t.end();
+  } catch (err) {
+    t.error(err);
+  }
+});
+
+tap.test('[BATCHES]', async t => {
   const config: Config = {
     host: IMMUDB_HOST,
     port: IMMUDB_PORT,

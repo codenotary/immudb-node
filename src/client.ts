@@ -13,7 +13,8 @@ import State from './state';
 import * as interfaces from './interfaces';
 import { verifyInclusion, verifyDualProof } from './verification'
 import { CLIENT_INIT_PREFIX, DEFAULT_DATABASE, DEFAULT_ROOTPATH } from './consts'
-import Parameters from '../types/parameters'
+import { getSQLValue } from './common';
+import Parameters, { SQLValue } from '../types/parameters'
 
 class ImmudbClient {
   public state: State;
@@ -1652,27 +1653,15 @@ class ImmudbClient {
     }
   }
 
-  async SQLExec ({ sql, paramsList, nowait }: Parameters.SQLExec): Promise<schemaTypes.SQLExecResult.AsObject | undefined > {
+  async SQLExec ({ sql, params = {}, nowait = false }: Parameters.SQLExec): Promise<schemaTypes.SQLExecResult.AsObject | undefined > {
     try {
       const req = new schemaTypes.SQLExecRequest();
 
-      const sqlParamsList = paramsList.map(({ name, value = null }) => {
+      const sqlParamsList = Object.entries(params).map(([name, value]) => {
         const param = new schemaTypes.NamedParam();
 
         param.setName(name)
-
-        if (value !== null) {
-          const sqlValue = new schemaTypes.SQLValue();
-          const { pb_null, n, s, b, bs } = value;
-
-          sqlValue.setNull(pb_null);
-          sqlValue.setN(n);
-          sqlValue.setS(s);
-          sqlValue.setB(b);
-          sqlValue.setBs(bs);
-
-          param.setValue(sqlValue)
-        }
+        param.setValue(getSQLValue(value))
 
         return param;
       });
@@ -1687,33 +1676,7 @@ class ImmudbClient {
 
           reject(err)
         } else {
-          const ctxsList = res
-            .getCtxsList()
-            .map(txMetadata => ({
-              id: txMetadata.getId(),
-              prevalh: util.getAlh(txMetadata),
-              ts: txMetadata.getTs(),
-              nentries: txMetadata.getNentries(),
-              eh: txMetadata.getEh(),
-              bltxid: txMetadata.getBltxid(),
-              blroot: txMetadata.getBlroot(),
-            }))
-          const dtxsList = res
-            .getCtxsList()
-            .map(txMetadata => ({
-              id: txMetadata.getId(),
-              prevalh: util.getAlh(txMetadata),
-              ts: txMetadata.getTs(),
-              nentries: txMetadata.getNentries(),
-              eh: txMetadata.getEh(),
-              bltxid: txMetadata.getBltxid(),
-              blroot: txMetadata.getBlroot(),
-            }))
-
-          resolve({
-            ctxsList,
-            dtxsList,
-          })
+          resolve(res.toObject())
         }
       }))
     } catch(err) {
@@ -1721,33 +1684,21 @@ class ImmudbClient {
     }
   }
 
-  async SQLQuery ({ sql, paramsList, reusesnapshot }: Parameters.SQLQuery): Promise<schemaTypes.SQLQueryResult.AsObject | undefined> {
+  async SQLQuery ({ sql, params = {}, reusesnapshot = false }: Parameters.SQLQuery): Promise<Array<Array<SQLValue>> | undefined> {
     try {
       const req = new schemaTypes.SQLQueryRequest();
 
-      const sqlParamsList = paramsList.map(({ name, value = null }) => {
+      const sqlParamsList = Object.entries(params).map(([name, value]) => {
         const param = new schemaTypes.NamedParam();
 
         param.setName(name)
-
-        if (value !== null) {
-          const sqlValue = new schemaTypes.SQLValue();
-          const { pb_null, n, s, b, bs } = value;
-
-          sqlValue.setNull(pb_null);
-          sqlValue.setN(n);
-          sqlValue.setS(s);
-          sqlValue.setB(b);
-          sqlValue.setBs(bs);
-
-          param.setValue(sqlValue)
-        }
+        param.setValue(getSQLValue(value))
 
         return param;
       });
 
-      req.setSql(sql);
       req.setParamsList(sqlParamsList);
+      req.setSql(sql);
       req.setReusesnapshot(reusesnapshot);
 
       return new Promise((resolve, reject) => this.client.sQLQuery(req, this._metadata, (err, res) => {
@@ -1756,26 +1707,23 @@ class ImmudbClient {
 
           reject(err)
         } else {
-          const columnsList = res
-            .getColumnsList()
-            .map(column => column.toObject());
-          const rowsList = res
+          resolve(
+            res
             .getRowsList()
-            .map(row => {
-              const valuesList = row
-                .getValuesList()
-                .map(value => value.toObject());
-
-              return {
-                columnsList: row.getColumnsList(),
-                valuesList
-              }
-            });
-
-          resolve({
-            columnsList,
-            rowsList,
-          })
+            .map(row => row
+              .getValuesList()
+              .map(value => value.hasNull()
+                ? value.getNull()
+                : value.hasS()
+                  ? value.getS()
+                  : value.hasN()
+                    ? value.getN()
+                    : value.hasB()
+                      ? value.getB()
+                      : value.hasBs()
+                        ? value.getBs_asU8()
+                        : null)
+          ))
         }
       }))
     } catch(err) {

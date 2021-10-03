@@ -7,7 +7,7 @@ cd "$(dirname "$0")"
 eval $(cat ../.env | sed 's/^/export /')
 
 DEV=false
-LAST_IMMUDB_VERSION=v0.9.1
+LAST_IMMUDB_VERSION=v1.1.0
 
 for arg in "$@"
 do
@@ -30,10 +30,14 @@ if [ "$DEV" == true ]; then
   echo "Stopping dev immudb..."
   npx kill-port $IMMUDB_TEST_PORT
 
-  echo "Starting dev immudb..."
-
   pushd $IMMUDB_DEV_PATH
+
+  # check dev immudb
+  echo "immudb version running:"
+  ./immudb version
+
   # start dev immudb
+  echo "Starting dev immudb..."
   ./immudb -d -a $IMMUDB_HOST -p $IMMUDB_TEST_PORT --dir ./test-data > /dev/null 2>&1
   popd
 
@@ -42,8 +46,10 @@ if [ "$DEV" == true ]; then
 
   pushd $IMMUDB_DEV_PATH
     # Clean up
-    rm -rf test-data roots root.json ../root
+    rm -rf test-data
   popd
+
+  rm -rf roots root.json ../root root
 
   # Stop immudb
   npx kill-port $IMMUDB_TEST_PORT
@@ -71,16 +77,18 @@ if [ "$DEV" == false ]; then
 
     echo "Downloaded"
   fi
+  
+  echo "immudb version running:"
+  ./immudb version
 
   echo "Starting immudb..."
-
   ./immudb -d -a $IMMUDB_HOST -p $IMMUDB_TEST_PORT --dir ./test-data > /dev/null 2>&1
 
   # Run tests
   (cd .. ; ./node_modules/tap/bin/run.js)
 
   # Clean up
-  rm -rf test-data roots root.json ../root
+  # rm -rf test-data roots root.json ../root root immudb
 
   # Stop immudb
   npx kill-port $IMMUDB_TEST_PORT
