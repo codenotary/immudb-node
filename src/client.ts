@@ -13,7 +13,8 @@ import State from './state';
 import * as interfaces from './interfaces';
 import { verifyInclusion, verifyDualProof } from './verification'
 import { CLIENT_INIT_PREFIX, DEFAULT_DATABASE, DEFAULT_ROOTPATH } from './consts'
-import Parameters from '../types/parameters'
+import { getSQLValue } from './common';
+import Parameters, { SQLValue } from '../types/parameters'
 
 class ImmudbClient {
   public state: State;
@@ -88,6 +89,7 @@ class ImmudbClient {
       return new Promise((resolve) => resolve(ImmudbClient.instance));
     } catch (err) {
       await ImmudbClient.instance.shutdown();
+
       return new Promise((_, reject) => reject(err));
     }
   }
@@ -1644,6 +1646,116 @@ class ImmudbClient {
           reject(err);
         } else {
           resolve(res)  
+        }
+      }))
+    } catch(err) {
+      console.error(err);
+    }
+  }
+
+  async SQLExec ({ sql, params = {}, nowait = false }: Parameters.SQLExec): Promise<schemaTypes.SQLExecResult.AsObject | undefined > {
+    try {
+      const req = new schemaTypes.SQLExecRequest();
+
+      const sqlParamsList = Object.entries(params).map(([name, value]) => {
+        const param = new schemaTypes.NamedParam();
+
+        param.setName(name)
+        param.setValue(getSQLValue(value))
+
+        return param;
+      });
+
+      req.setParamsList(sqlParamsList);
+      req.setSql(sql);
+      req.setNowait(nowait);
+
+      return new Promise((resolve, reject) => this.client.sQLExec(req, this._metadata, (err, res) => {
+        if (err) {
+          console.error('SQLExec error', err)
+
+          reject(err)
+        } else {
+          resolve(res.toObject())
+        }
+      }))
+    } catch(err) {
+      console.error(err);
+    }
+  }
+
+  async SQLQuery ({ sql, params = {}, reusesnapshot = false }: Parameters.SQLQuery): Promise<Array<Array<SQLValue>> | undefined> {
+    try {
+      const req = new schemaTypes.SQLQueryRequest();
+
+      const sqlParamsList = Object.entries(params).map(([name, value]) => {
+        const param = new schemaTypes.NamedParam();
+
+        param.setName(name)
+        param.setValue(getSQLValue(value))
+
+        return param;
+      });
+
+      req.setParamsList(sqlParamsList);
+      req.setSql(sql);
+      req.setReusesnapshot(reusesnapshot);
+
+      return new Promise((resolve, reject) => this.client.sQLQuery(req, this._metadata, (err, res) => {
+        if (err) {
+          console.error('SQLQuery error', err)
+
+          reject(err)
+        } else {
+          resolve(
+            res
+            .getRowsList()
+            .map(row => row
+              .getValuesList()
+              .map(value => value.hasNull()
+                ? value.getNull()
+                : value.hasS()
+                  ? value.getS()
+                  : value.hasN()
+                    ? value.getN()
+                    : value.hasB()
+                      ? value.getB()
+                      : value.hasBs()
+                        ? value.getBs_asU8()
+                        : null)
+          ))
+        }
+      }))
+    } catch(err) {
+      console.error(err);
+    }
+  }
+
+  async SQLListTables (): Promise<Array<Array<SQLValue>> | undefined> {
+    try {
+      const req = new empty.Empty()
+
+      return new Promise((resolve, reject) => this.client.listTables(req, this._metadata, (err, res) => {
+        if (err) {
+          console.error('SQLListTables error', err);
+          
+          reject(err);
+        } else {
+          resolve(res
+            .getRowsList()
+            .map(row => row
+              .getValuesList()
+              .map(value => value.hasNull()
+                ? value.getNull()
+                : value.hasS()
+                  ? value.getS()
+                  : value.hasN()
+                    ? value.getN()
+                    : value.hasB()
+                      ? value.getB()
+                      : value.hasBs()
+                        ? value.getBs_asU8()
+                        : null)))
         }
       }))
     } catch(err) {
