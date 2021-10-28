@@ -471,7 +471,8 @@ tap.test('[OPERATIONS]: SQL', async t => {
       params: { name: 'Joe' }
     })
 
-    await immudbClient.SQLDescribe(tableName)
+    const res = await immudbClient.SQLDescribe(tableName)
+    console.dir({res}) // KILLME
 
     t.end();
   } catch (err) {

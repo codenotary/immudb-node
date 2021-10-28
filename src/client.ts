@@ -1776,21 +1776,19 @@ class ImmudbClient {
           resolve(
             res
               .getRowsList()
-              .map(row => row
-                .getValuesList()
-                .map(value => value.hasNull()
-                  ? value.getNull()
-                  : value.hasS()
-                    ? value.getS()
-                    : value.hasN()
-                      ? value.getN()
-                      : value.hasB()
-                        ? value.getB()
-                        : value.hasBs()
-                          ? value.getBs_asU8()
-                          : null)
-              ))
-          
+              .map((row) => {
+                const [name, type, boolean1, key, boolean2, boolean3,] = row.getValuesList();
+                return {
+                  name: name.getS(),
+                  type: type.getS(),
+                  boolean1: boolean1.getB(),
+                  key: key.getS(),
+                  boolean2: boolean2.getB(),
+                  boolean3: boolean3.getB()
+                };
+              }
+            )
+          )
         }
       })
     })
