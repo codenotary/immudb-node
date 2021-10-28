@@ -28,8 +28,8 @@
     "@typescript-eslint/parser": "^3.9.0",
     "crypto-ts": "^1.0.2",
     "grpc": "^1.24.10",
-    "grpc-tools": "^1.11.1",
     "grpc_tools_node_protoc_ts": "^5.0.1",
+    "grpc-tools": "^1.11.1",
     "protobufjs": "6.10.1",
     "tap": "15.0.9",
     "typescript": "^3.9.7"

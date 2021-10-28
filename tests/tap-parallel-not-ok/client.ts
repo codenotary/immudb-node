@@ -471,6 +471,8 @@ tap.test('[OPERATIONS]: SQL', async t => {
       params: { name: 'Joe' }
     })
 
+    await immudbClient.SQLDescribe(tableName)
+
     t.end();
   } catch (err) {
     t.error(err);

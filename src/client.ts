@@ -1762,6 +1762,39 @@ class ImmudbClient {
       console.error(err);
     }
   }
+
+  async SQLDescribe(tableName: string) {
+    const request = new schemaTypes.Table();
+    request.setTablename(tableName);
+
+    return new Promise((resolve, reject) => {
+      return this.client.describeTable(request, this._metadata,(err, res) => {
+        if (err) {
+          console.error('SQLDescribe', err);
+          reject(err);
+        } else {
+          resolve(
+            res
+              .getRowsList()
+              .map(row => row
+                .getValuesList()
+                .map(value => value.hasNull()
+                  ? value.getNull()
+                  : value.hasS()
+                    ? value.getS()
+                    : value.hasN()
+                      ? value.getN()
+                      : value.hasB()
+                        ? value.getB()
+                        : value.hasBs()
+                          ? value.getBs_asU8()
+                          : null)
+              ))
+          
+        }
+      })
+    })
+  }
 }
 
 export default ImmudbClient;
