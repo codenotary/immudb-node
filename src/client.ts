@@ -14,7 +14,7 @@ import * as interfaces from './interfaces';
 import { verifyInclusion, verifyDualProof } from './verification'
 import { CLIENT_INIT_PREFIX, DEFAULT_DATABASE, DEFAULT_ROOTPATH } from './consts'
 import { getSQLValue } from './common';
-import Parameters, { SQLValue } from '../types/parameters'
+import Parameters, { SQLColumnValue, } from '../types/parameters'
 
 class ImmudbClient {
   public state: State;
@@ -1684,7 +1684,7 @@ class ImmudbClient {
     }
   }
 
-  async SQLQuery ({ sql, params = {}, reusesnapshot = false }: Parameters.SQLQuery): Promise<Array<Array<SQLValue>> | undefined> {
+  async SQLQuery ({ sql, params = {}, reusesnapshot = false }: Parameters.SQLQuery): Promise<Array<SQLColumnValue> | undefined> {
     try {
       const req = new schemaTypes.SQLQueryRequest();
 
@@ -1704,26 +1704,23 @@ class ImmudbClient {
       return new Promise((resolve, reject) => this.client.sQLQuery(req, this._metadata, (err, res) => {
         if (err) {
           console.error('SQLQuery error', err)
-
           reject(err)
         } else {
           resolve(
             res
-            .getRowsList()
-            .map(row => row
-              .getValuesList()
-              .map(value => value.hasNull()
-                ? value.getNull()
-                : value.hasS()
-                  ? value.getS()
-                  : value.hasN()
-                    ? value.getN()
-                    : value.hasB()
-                      ? value.getB()
-                      : value.hasBs()
-                        ? value.getBs_asU8()
-                        : null)
-          ))
+              .getRowsList()
+              .map(row => {
+                const [name, type, nullable, index, autoincrement, unique,] = row.getValuesList();
+                return {
+                  name: name.getS(),
+                  type: type?.getS(),
+                  nullable: nullable?.getB(),
+                  index: index?.getS(),
+                  autoincrement: autoincrement?.getB(),
+                  unique: unique?.getB()
+                };
+              })
+          );
         }
       }))
     } catch(err) {
@@ -1731,39 +1728,38 @@ class ImmudbClient {
     }
   }
 
-  async SQLListTables (): Promise<Array<Array<SQLValue>> | undefined> {
+  async SQLListTables (): Promise<Array<SQLColumnValue> | undefined> {
     try {
       const req = new empty.Empty()
 
       return new Promise((resolve, reject) => this.client.listTables(req, this._metadata, (err, res) => {
         if (err) {
           console.error('SQLListTables error', err);
-          
           reject(err);
         } else {
-          resolve(res
-            .getRowsList()
-            .map(row => row
-              .getValuesList()
-              .map(value => value.hasNull()
-                ? value.getNull()
-                : value.hasS()
-                  ? value.getS()
-                  : value.hasN()
-                    ? value.getN()
-                    : value.hasB()
-                      ? value.getB()
-                      : value.hasBs()
-                        ? value.getBs_asU8()
-                        : null)))
+          resolve(
+            res
+              .getRowsList()
+              .map(row => {
+                const [name, type, nullable, index, autoincrement, unique,] = row.getValuesList();
+                  return {
+                    name: name.getS(),
+                    type: type?.getS(),
+                    nullable: nullable?.getB(),
+                    index: index?.getS(),
+                    autoincrement: autoincrement?.getB(),
+                    unique: unique?.getB()
+                  };
+              })
+          );
         }
-      }))
+      }));
     } catch(err) {
       console.error(err);
     }
   }
 
-  async SQLDescribe(tableName: string) {
+  async SQLDescribe(tableName: string): Promise<Array<SQLColumnValue> | undefined> {
     const request = new schemaTypes.Table();
     request.setTablename(tableName);
 
@@ -1778,18 +1774,16 @@ class ImmudbClient {
               .getRowsList()
               .map(row => {
                 const [name, type, nullable, index, autoincrement, unique,] = row.getValuesList();
-
                 return {
                   name: name.getS(),
-                  type: type.getS(),
-                  nullable: nullable.getB(),
-                  index: index.getS(),
-                  autoincrement: autoincrement.getB(),
-                  unique: unique.getB()
+                  type: type?.getS(),
+                  nullable: nullable?.getB(),
+                  index: index?.getS(),
+                  autoincrement: autoincrement?.getB(),
+                  unique: unique?.getB()
                 };
-              }
-            )
-          )
+              })
+          );
         }
       })
     })
