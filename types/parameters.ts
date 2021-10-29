@@ -2,6 +2,15 @@ import * as schemaTypes from '../src/proto/schema_pb';
 import { USER_PERMISSION, USER_ACTION } from './user'
 import * as interfaces from '../src/interfaces';
 
+export type SQLColumnValue = {
+    name: string,
+    type: string,
+    nullable: boolean,
+    index: string,
+    autoincrement: boolean,
+    unique: boolean,
+};
+
 export type SQLValue = null | string | number | Uint8Array | boolean
 type SQLParams = { [key: string]: SQLValue }
 export namespace Parameters {
