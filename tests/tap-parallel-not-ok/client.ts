@@ -471,6 +471,8 @@ tap.test('[OPERATIONS]: SQL', async t => {
       params: { name: 'Joe' }
     })
 
+    await immudbClient.SQLQuery({ sql: `select id,name from ${tableName}`, })
+
     await immudbClient.SQLDescribe(tableName)
 
     t.end();
