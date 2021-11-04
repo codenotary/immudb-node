@@ -27,7 +27,7 @@
 
 ## Introduction
 
-immudb-node implements a [grpc] immudb client. A minimalist API is exposed for applications while cryptographic verifications and state update protocol implementation are fully implemented by this client.  Latest validated immudb state may be keep in the local filesystem when initialising the client with the rootPath option, please read [immudb research paper] for details of how immutability is ensured by [immudb].
+immudb-node implements a [grpc] immudb client. A minimalist API is exposed for applications while cryptographic verifications and state update protocol implementation are fully implemented by this client. Latest validated immudb state may be kept in the local filesystem when initialising the client with the rootPath option. Please read [immudb research paper] for details on how immutability is ensured by [immudb].
 
 [grpc]: https://grpc.io/
 [immudb research paper]: https://immudb.io/
@@ -49,7 +49,7 @@ const ImmudbClient = require('immudb-node')
 
 immudb-node supports the [latest immudb release].
 
-[latest immudb release]: https://github.com/codenotary/immudb/releases/tag/v0.9.1
+[latest immudb release]: https://github.com/codenotary/immudb/releases/latest
 
 ## Quickstart
 
@@ -139,8 +139,8 @@ cl.useDatabase('db1')
 ### Traditional read and write
 
 immudb provides read and write operations that behave as a traditional
-key-value store i.e. no cryptographic verification is done. This operations
-may be used when validations can be post-poned:
+key-value store i.e. no cryptographic verification is done. These operations
+may be used when validating can be postponed:
 
 ```
 let res = await cl.set({ key: 'key1', value: 'value1' })
