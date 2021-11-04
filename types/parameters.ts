@@ -1,8 +1,8 @@
 import * as schemaTypes from '../src/proto/schema_pb';
-import { USER_PERMISSION, USER_ACTION } from './user'
+import { USER_PERMISSION, } from './user'
 import * as interfaces from '../src/interfaces';
 
-export type SQLColumnValue = {
+export type SQLColumnDescription = {
     name: string,
     type: string,
     nullable: boolean,
@@ -10,6 +10,17 @@ export type SQLColumnValue = {
     autoincrement: boolean,
     unique: boolean,
 };
+
+export type SQLTableDescription = {
+    name: string,
+};
+
+interface IValue {
+    prop: string
+}
+export interface SQLRowDescription {
+    [name: string]: IValue;
+}
 
 export type SQLValue = null | string | number | Uint8Array | boolean
 type SQLParams = { [key: string]: SQLValue }
