@@ -14,7 +14,7 @@ import * as interfaces from './interfaces';
 import { verifyInclusion, verifyDualProof } from './verification'
 import { CLIENT_INIT_PREFIX, DEFAULT_DATABASE, DEFAULT_ROOTPATH } from './consts'
 import { getSQLValue } from './common';
-import Parameters, { SQLValue } from '../types/parameters'
+import Parameters, { SQLValue, SQLColumnDescription, SQLTableDescription, SQLRowDescription, } from '../types/parameters'
 
 class ImmudbClient {
   public state: State;
@@ -554,7 +554,7 @@ class ImmudbClient {
 
       if (seekkey !== undefined) {
         req.setSeekkey(util.utf8Encode(seekkey));
-      } 
+      }
       if (prefix !== undefined) {
         req.setPrefix(util.utf8Encode(prefix));
       }
@@ -742,7 +742,7 @@ class ImmudbClient {
     return this.zAddAt(reqParams)
   }
 
-  async zAddAt ({ set, score = 0, key, attx = 0 }: Parameters.ZAddAt): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
+  async zAddAt({ set, score = 0, key, attx = 0 }: Parameters.ZAddAt): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     try {
       const req = new schemaTypes.ZAddRequest();
 
@@ -787,86 +787,86 @@ class ImmudbClient {
       const req = new schemaTypes.VerifiableZAddRequest()
       const uintSet = util.utf8Encode(set)
       const uintKey = util.utf8Encode(key)
-  
+
       const zar = new schemaTypes.ZAddRequest()
-  
+
       zar.setSet(uintSet)
       zar.setScore(score)
       zar.setKey(uintKey)
       zar.setAttx(attx)
       zar.setBoundref(attx > 0)
-  
+
       req.setZaddrequest(zar)
       req.setProvesincetx(state.getTxid())
-  
+
       return new Promise((resolve, reject) => this.client.verifiableZAdd(req, this._metadata, (err, res) => {
         if (err) {
           console.error('verifiedZAddAt error', err);
-  
+
           reject(err)
         } else {
           const resTx = res.getTx()
-  
+
           if (resTx === undefined) {
             console.error('Error getting verifiedZAddAt tx')
-  
+
             reject()
           } else {
             const txMetadata = resTx.getMetadata()
-  
+
             if (txMetadata === undefined) {
               console.error('Error getting verifiedZAddAt txMetadata')
-    
+
               reject()
             } else {
               const nEntries = txMetadata.getNentries()
-  
+
               if (nEntries !== 1) {
                 console.error('nEntries verification failed for verifiedZAddAt')
-      
+
                 reject()
               }
-  
+
               const tx = txFrom(resTx)
               const eKv = util.encodeZAdd(uintSet, score, uintKey, attx)
               const inclusionProof = proofTx(tx, eKv.getKey_asU8())
-  
+
               if (inclusionProof === undefined) {
                 console.error('Error getting inclusionProof for verifiedZAddAt')
-              
+
                 reject()
               } else {
                 let verifies = verifyInclusion(inclusionProof, util.digestKeyValue(eKv), tx.htree.root)
-  
+
                 if (verifies === false) {
                   console.error('Inclusion verification for verifiedZAddAt failed')
-                 
+
                   reject()
                 }
-  
+
                 const dualProof = res.getDualproof()
-  
+
                 if (dualProof === undefined) {
                   console.error('Error getting dualProof for verifiedZAddAt')
-                 
+
                   reject()
                 } else {
                   const tTxMetadata = dualProof.getTargettxmetadata()
-  
+
                   if (tTxMetadata === undefined) {
                     console.error('Error getting tx metadata from dualProof in verifiedZAddAt')
-                 
+
                     reject()
                   } else {
                     if (!util.equalArray(tx.htree.root, tTxMetadata.getEh_asU8())) {
                       console.error('verifiedZAddAt error')
                     }
-  
+
                     const txid = state.getTxid()
                     const txhash = state.getTxhash_asU8()
                     let sourceId
                     let sourceAlh
-  
+
                     if (txid === 0) {
                       sourceId = tx.id
                       sourceAlh = tx.alh
@@ -874,23 +874,23 @@ class ImmudbClient {
                       sourceId = txid
                       sourceAlh = txhash
                     }
-  
+
                     const targetId = tx.id
                     const targetAlh = util.getAlh(tTxMetadata)
-  
+
                     verifies = verifyDualProof(dualProof, sourceId, targetId, sourceAlh, targetAlh)
-  
+
                     if (verifies === false) {
                       console.error('Dual verification for verifiedZAddAt failed')
-                     
+
                       reject()
                     }
-  
+
                     this.state.set(
                       { serverName: this._serverUUID, databaseName: this._activeDatabase },
                       { txid: targetId, txhash: targetAlh, signature: res.getSignature()?.toObject(), db: this._activeDatabase }
                     )
-  
+
                     resolve(tTxMetadata.toObject())
                   }
                 }
@@ -904,13 +904,13 @@ class ImmudbClient {
     }
   }
 
-  async setReference (params: Parameters.SetReference): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
+  async setReference(params: Parameters.SetReference): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     const setReferenceAtParameters = Object.assign({}, params, { attx: 0 })
 
     return await this.setReferenceAt(setReferenceAtParameters)
   }
-  
-  async setReferenceAt ({ key, referencedKey, attx }: Parameters.SetReferenceAt): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
+
+  async setReferenceAt({ key, referencedKey, attx }: Parameters.SetReferenceAt): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     try {
       const req = new schemaTypes.ReferenceRequest();
 
@@ -934,19 +934,19 @@ class ImmudbClient {
           bltxid: res.getBltxid(),
           blroot: res.getBlroot(),
         })
-      }))      
-    } catch(err) {
+      }))
+    } catch (err) {
       console.error(err);
     }
   }
 
-  async verifiedSetReference (params: Parameters.VerifiedSetReference): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
+  async verifiedSetReference(params: Parameters.VerifiedSetReference): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     const vSetReferenceAtParameters = Object.assign({}, params, { attx: 0 })
-    
+
     return await this.verifiedSetReferenceAt(vSetReferenceAtParameters)
   }
 
-  async verifiedSetReferenceAt ({ key, referencedKey, attx }: Parameters.VerifiedSetReferenceAt): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
+  async verifiedSetReferenceAt({ key, referencedKey, attx }: Parameters.VerifiedSetReferenceAt): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     try {
       const state = await this.state.get({ serverName: this._serverUUID, databaseName: this._activeDatabase, metadata: this._metadata })
       const txid = state.getTxid()
@@ -982,14 +982,14 @@ class ImmudbClient {
 
             if (resTxMetadata === undefined) {
               console.error('Error getting transaction metadata from verifiedSetReferenceAt response')
-  
+
               reject()
             } else {
               const nEntries = resTxMetadata.getNentries()
 
               if (nEntries !== 1) {
                 console.error('nEntries verification failed for verifiedSetReferenceAt')
-    
+
                 reject()
               }
 
@@ -1002,14 +1002,14 @@ class ImmudbClient {
 
               if (inclusionProof === undefined) {
                 console.error('Error getting inclusionProof from verifiedSetReferenceAt response')
-    
+
                 reject()
               } else {
                 let verifies = verifyInclusion(inclusionProof, util.digestKeyValue(eKv), tx.htree.root)
-                
+
                 if (verifies === false) {
                   console.error('Inclusion verification failed for verifiedSetReferenceAt')
-      
+
                   reject()
                 }
 
@@ -1017,12 +1017,12 @@ class ImmudbClient {
 
                 if (dualProof === undefined) {
                   console.error('Error getting dualProof from verifiedSetReferenceAt response')
-      
+
                   reject()
                 } else {
                   let sourceId
                   let sourceAlh
-  
+
                   if (txid === 0) {
                     sourceId = tx.id
                     sourceAlh = tx.alh
@@ -1030,15 +1030,15 @@ class ImmudbClient {
                     sourceId = txid
                     sourceAlh = txhash
                   }
-  
+
                   const targetId = tx.id
                   const targetAlh = util.getAlh(resTxMetadata)
-  
+
                   verifies = verifyDualProof(dualProof, sourceId, targetId, sourceAlh, targetAlh)
 
                   if (!verifies) {
                     console.error('Dual verification failed for verifiedSetReferenceAt')
-        
+
                     reject()
                   }
 
@@ -1064,7 +1064,7 @@ class ImmudbClient {
           }
         }
       }))
-    } catch(err) {
+    } catch (err) {
       console.error(err);
     }
   }
@@ -1104,7 +1104,7 @@ class ImmudbClient {
       console.error(err)
     }
   }
-  
+
   async execAll({ operationsList }: Parameters.ExecAll): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     try {
       const req = new schemaTypes.ExecAllRequest();
@@ -1166,12 +1166,12 @@ class ImmudbClient {
           });
         }
       }))
-    } catch(err) {
+    } catch (err) {
       console.error(err)
     }
   }
 
-  async getAll ({ keysList, sincetx }: Parameters.GetAll): Promise<schemaTypes.Entries.AsObject | undefined> {
+  async getAll({ keysList, sincetx }: Parameters.GetAll): Promise<schemaTypes.Entries.AsObject | undefined> {
     try {
       const req = new schemaTypes.KeyListRequest();
 
@@ -1200,12 +1200,12 @@ class ImmudbClient {
           entriesList: result
         })
       }))
-    } catch(err) {
+    } catch (err) {
       console.error(err);
     }
   }
 
-  async verifiedSet ({ key, value }: Parameters.VerifiedSet): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
+  async verifiedSet({ key, value }: Parameters.VerifiedSet): Promise<schemaTypes.TxMetadata.AsObject | undefined> {
     try {
       const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID, metadata: this._metadata })
       const txid = state.getTxid()
@@ -1224,7 +1224,7 @@ class ImmudbClient {
       req.setProvesincetx(txid)
       req.setSetrequest(setRequest)
 
-      return new Promise((resolve, reject)=> this.client.verifiableSet(req, this._metadata, async (err, res) => {
+      return new Promise((resolve, reject) => this.client.verifiableSet(req, this._metadata, async (err, res) => {
         if (err) {
           console.error('verifiedSet error', err)
 
@@ -1247,31 +1247,31 @@ class ImmudbClient {
             } else {
               const eKv = util.encodeKeyValue(uint8Key, uint8Value)
               let verifies = verifyInclusion(inclusionProof, util.digestKeyValue(eKv), tx.htree.root)
-  
+
               if (!verifies) {
                 console.error('verifiedSet inclusion verification failed', err)
-  
+
                 reject(err)
               }
-  
+
               const dualProof = res.getDualproof()
-  
+
               if (!dualProof) {
-  
+
               } else {
                 const tTxMetadata = dualProof.getTargettxmetadata()
                 const sTxMetadata = dualProof.getSourcetxmetadata()
-  
+
                 if (!tTxMetadata || !sTxMetadata) {
-  
+
                 } else {
                   if (!util.equalArray(tx.htree.root, tTxMetadata.getEh_asU8())) {
                     console.error('verifiedSet error')
                   }
-  
+
                   let sourceId: number
                   let sourceAlh: Uint8Array
-  
+
                   if (txid === 0) {
                     sourceId = tx.id
                     sourceAlh = util.getAlh(sTxMetadata)
@@ -1279,25 +1279,25 @@ class ImmudbClient {
                     sourceId = txid
                     sourceAlh = txhash
                   }
-  
+
                   const targetId = tx.id
                   const targetAlh = util.getAlh(tTxMetadata)
-  
+
                   verifies = verifyDualProof(dualProof, sourceId, targetId, sourceAlh, targetAlh)
-  
+
                   if (!verifies) {
                     console.error('verifiedSet dual verification failed', err)
-      
+
                     reject(err)
                   }
-  
+
                   this.state.set({ serverName: this._serverUUID, databaseName: this._activeDatabase }, {
                     db: this._activeDatabase,
                     txid: targetId,
                     txhash: targetAlh,
                     signature: res.getSignature()?.toObject()
                   })
-  
+
                   resolve(tTxMetadata.toObject())
                 }
               }
@@ -1305,7 +1305,7 @@ class ImmudbClient {
           }
         }
       }))
-    } catch(err) {
+    } catch (err) {
       console.error(err)
     }
   }
@@ -1343,7 +1343,7 @@ class ImmudbClient {
 
           if (!inclusionproof || !verifiabletx || !entry) {
             console.error('Server verifiedGet error');
-  
+
             reject()
           } else {
             const referencedby = entry.getReferencedby()
@@ -1359,7 +1359,7 @@ class ImmudbClient {
               const encRefKey = referencedby.getKey_asU8()
               const atTx = referencedby.getAttx()
               const entryKey = entry.getKey_asU8()
-    
+
               vTx = referencedby.getTx()
 
               kv.setKey(util.prefixKey(encRefKey))
@@ -1370,7 +1370,7 @@ class ImmudbClient {
 
             if (dualproof === undefined) {
               console.error('Server verifiedGet error');
-    
+
               reject()
             } else {
               const targettxmetadata = dualproof.getTargettxmetadata()
@@ -1378,7 +1378,7 @@ class ImmudbClient {
 
               if (targettxmetadata === undefined || sourcetxmetadata === undefined) {
                 console.error('Server verifiedGet error');
-      
+
                 reject()
               } else {
                 let eh
@@ -1386,7 +1386,7 @@ class ImmudbClient {
                 let sourceAlh
                 let targetId
                 let targetAlh
-    
+
                 if (txid <= vTx) {
                   const tPrevalh = util.getAlh(targettxmetadata)
 
@@ -1397,22 +1397,22 @@ class ImmudbClient {
                   targetAlh = tPrevalh
                 } else {
                   const sPrevalh = util.getAlh(sourcetxmetadata)
-                  
+
                   eh = sourcetxmetadata.getEh_asU8()
                   sourceId = vTx
                   sourceAlh = sPrevalh
                   targetId = txid
                   targetAlh = txhash
                 }
-    
+
                 let verifies = verifyInclusion(inclusionproof, util.digestKeyValue(kv), eh)
-    
+
                 if (!verifies) {
                   console.error('verifiedGet inclusion verification failed');
-    
+
                   reject()
                 }
-    
+
                 verifies = verifyDualProof(
                   dualproof,
                   sourceId,
@@ -1420,10 +1420,10 @@ class ImmudbClient {
                   sourceAlh,
                   targetAlh
                 )
-    
+
                 if (!verifies) {
                   console.error('verifiedGet dual verification failed');
-    
+
                   reject()
                 }
 
@@ -1445,7 +1445,7 @@ class ImmudbClient {
           }
         }
       }))
-    } catch(err) {
+    } catch (err) {
       console.error(err)
     }
   }
@@ -1506,7 +1506,7 @@ class ImmudbClient {
       return new Promise((resolve, reject) => this.client.txById(req, this._metadata, (err, res) => {
         if (err) {
           console.error('txById error', err);
-          
+
           reject(err);
         } else {
           const { metadata, entriesList } = res.toObject()
@@ -1526,8 +1526,8 @@ class ImmudbClient {
     try {
       const state = await this.state.get({ databaseName: this._activeDatabase, serverName: this._serverUUID, metadata: this._metadata })
 
-	    const txid = state.getTxid()
-	    const txhash = state.getTxhash_asU8()
+      const txid = state.getTxid()
+      const txhash = state.getTxhash_asU8()
       const req = new schemaTypes.VerifiableTxRequest()
 
       req.setTx(tx)
@@ -1550,7 +1550,7 @@ class ImmudbClient {
 
             if (resTxId === undefined) {
               console.error('Error getting verifiedTxById txId')
-           
+
               reject()
             } else {
               const targettxmetadata = dualProof.getTargettxmetadata()
@@ -1558,7 +1558,7 @@ class ImmudbClient {
 
               if (targettxmetadata === undefined || sourcetxmetadata === undefined) {
                 console.error('Error getting verifiedTxById txmetadata')
-           
+
                 reject()
               } else {
                 let sourceId
@@ -1577,7 +1577,7 @@ class ImmudbClient {
                   targetId = txid
                   targetAlh = txhash
                 }
-                
+
                 const verifies = verifyDualProof(
                   dualProof,
                   sourceId,
@@ -1608,7 +1608,7 @@ class ImmudbClient {
           }
         }
       }))
-    } catch(err) {
+    } catch (err) {
       console.error(err)
     }
   }
@@ -1635,25 +1635,25 @@ class ImmudbClient {
     }
   }
 
-  async compactIndex (): Promise<empty.Empty | undefined> {
+  async compactIndex(): Promise<empty.Empty | undefined> {
     try {
       const req = new empty.Empty()
 
       return new Promise((resolve, reject) => this.client.compactIndex(req, this._metadata, (err, res) => {
         if (err) {
           console.error('cleanIndex error', err);
-          
+
           reject(err);
         } else {
-          resolve(res)  
+          resolve(res)
         }
       }))
-    } catch(err) {
+    } catch (err) {
       console.error(err);
     }
   }
 
-  async SQLExec ({ sql, params = {}, nowait = false }: Parameters.SQLExec): Promise<schemaTypes.SQLExecResult.AsObject | undefined > {
+  async SQLExec({ sql, params = {}, nowait = false }: Parameters.SQLExec): Promise<schemaTypes.SQLExecResult.AsObject | undefined> {
     try {
       const req = new schemaTypes.SQLExecRequest();
 
@@ -1679,12 +1679,12 @@ class ImmudbClient {
           resolve(res.toObject())
         }
       }))
-    } catch(err) {
+    } catch (err) {
       console.error(err);
     }
   }
 
-  async SQLQuery ({ sql, params = {}, reusesnapshot = false }: Parameters.SQLQuery): Promise<Array<Array<SQLValue>> | undefined> {
+  async SQLQuery({ sql, params = {}, reusesnapshot = false }: Parameters.SQLQuery): Promise<Array<SQLRowDescription> | undefined> {
     try {
       const req = new schemaTypes.SQLQueryRequest();
 
@@ -1704,93 +1704,77 @@ class ImmudbClient {
       return new Promise((resolve, reject) => this.client.sQLQuery(req, this._metadata, (err, res) => {
         if (err) {
           console.error('SQLQuery error', err)
-
           reject(err)
         } else {
-          resolve(
-            res
-            .getRowsList()
-            .map(row => row
-              .getValuesList()
-              .map(value => value.hasNull()
-                ? value.getNull()
-                : value.hasS()
-                  ? value.getS()
-                  : value.hasN()
-                    ? value.getN()
-                    : value.hasB()
-                      ? value.getB()
-                      : value.hasBs()
-                        ? value.getBs_asU8()
-                        : null)
-          ))
+          const rowsList = res.getRowsList().reduce(
+            (acc: Array<SQLRowDescription>, cur: any) => {
+              const cols = cur.array[0].map((el: string) => el.slice(el.lastIndexOf('.') + 1).replace(')', ''))
+              const data = cur.array[1].map((el: string[]) => el.filter(Boolean))
+              const out = cols.reduce(
+                (acc: SQLRowDescription, cur: string, i: number) => (acc[cur] = data[i][0], acc),
+                {},
+              )
+              acc.push(out)
+              return acc
+            },
+            [],
+          )
+          resolve(rowsList);
         }
       }))
-    } catch(err) {
+    } catch (err) {
       console.error(err);
     }
   }
 
-  async SQLListTables (): Promise<Array<Array<SQLValue>> | undefined> {
+  async SQLListTables(): Promise<Array<SQLTableDescription> | undefined> {
     try {
       const req = new empty.Empty()
 
       return new Promise((resolve, reject) => this.client.listTables(req, this._metadata, (err, res) => {
         if (err) {
           console.error('SQLListTables error', err);
-          
           reject(err);
         } else {
-          resolve(res
-            .getRowsList()
-            .map(row => row
-              .getValuesList()
-              .map(value => value.hasNull()
-                ? value.getNull()
-                : value.hasS()
-                  ? value.getS()
-                  : value.hasN()
-                    ? value.getN()
-                    : value.hasB()
-                      ? value.getB()
-                      : value.hasBs()
-                        ? value.getBs_asU8()
-                        : null)))
+          const rowsList = res.getRowsList()
+            .map((row) => {
+              const [name] = row.getValuesList();
+              return {
+                name: name.getS(),
+              };
+            })
+          resolve(rowsList);
         }
-      }))
-    } catch(err) {
+      }));
+    } catch (err) {
       console.error(err);
     }
   }
 
-  async SQLDescribe(tableName: string) {
+  async SQLDescribe(tableName: string): Promise<Array<SQLColumnDescription> | undefined> {
     const request = new schemaTypes.Table();
     request.setTablename(tableName);
 
     return new Promise((resolve, reject) => {
-      return this.client.describeTable(request, this._metadata,(err, res) => {
+      return this.client.describeTable(request, this._metadata, (err, res) => {
         if (err) {
           console.error('SQLDescribe', err);
           reject(err);
         } else {
-          resolve(
-            res
-              .getRowsList()
-              .map(row => row
-                .getValuesList()
-                .map(value => value.hasNull()
-                  ? value.getNull()
-                  : value.hasS()
-                    ? value.getS()
-                    : value.hasN()
-                      ? value.getN()
-                      : value.hasB()
-                        ? value.getB()
-                        : value.hasBs()
-                          ? value.getBs_asU8()
-                          : null)
-              ))
-          
+          const rowsList = res
+            .getRowsList()
+            .map(row => {
+              const [name, type, nullable, index, autoincrement, unique,] = row.getValuesList();
+              return {
+                name: name.getS(),
+                type: type?.getS(),
+                nullable: nullable?.getB(),
+                index: index?.getS(),
+                autoincrement: autoincrement?.getB(),
+                unique: unique?.getB()
+              };
+            })
+          resolve(rowsList);
         }
       })
     })
