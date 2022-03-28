@@ -41,7 +41,7 @@ following link for downloading and running it: https://docs.immudb.io/quickstart
 ## Installation
 
 Just include immudb-node as a dependency in your project:
-```
+```javascript
 const ImmudbClient = require('immudb-node')
 ```
 
@@ -72,7 +72,7 @@ You can use either of the following commands to check that all the unit tests pa
 The following code snippets shows how to create a client.
 
 Using default configuration:
-```
+```javascript
 const config = {
   address: '127.0.0.1:3322',
   rootPath: '.',
@@ -91,7 +91,7 @@ ImmudbClient(config, (err, cl) => {
 
 Use `login` and `logout` methods to initiate and terminate user sessions:
 
-```
+```javascript
 try {
   await cl.login({ username: 'usr1', password: 'pwd1' })
 
@@ -104,7 +104,7 @@ try {
 ```
 
 Or with callbacks
-```
+```javascript
 cl.login({ username: 'usr1', password: 'pwd1' }, (err, res) => {
   if (err) {
     return console.log(err)
@@ -124,7 +124,7 @@ cl.login({ username: 'usr1', password: 'pwd1' }, (err, res) => {
 
 Creating a new database is quite simple:
 
-```
+```javascript
 cl.createDatabase('db1')
 ```
 
@@ -132,7 +132,7 @@ cl.createDatabase('db1')
 
 Specify the active database with:
 
-```
+```javascript
 cl.useDatabase('db1')
 ```
 
@@ -142,7 +142,7 @@ immudb provides read and write operations that behave as a traditional
 key-value store i.e. no cryptographic verification is done. These operations
 may be used when validating can be postponed:
 
-```
+```javascript
 let res = await cl.set({ key: 'key1', value: 'value1' })
 console.log(res.index)
 
@@ -156,7 +156,7 @@ immudb provides built-in cryptographic verification for any entry. The client
 implements the mathematical validations while the application uses as a traditional
 read or write operation:
 
-```
+```javascript
 try {
   let res = await cl.verifiedSet({ key: 'key1', value: 'value1' })
   console.log(res.index)
@@ -177,7 +177,7 @@ Transactional multi-key read and write operations are supported by immudb and im
 
 Atomic multi-key write (all entries are persisted or none):
 
-```
+```javascript
   req = {
     keys: [{
       key: 'key1',
@@ -191,7 +191,7 @@ Atomic multi-key write (all entries are persisted or none):
 ```
 
 Atomic multi-key read (all entries are retrieved or none):
-```
+```javascript
     req = {
       keys: [{
         key: 'key1',
@@ -206,7 +206,7 @@ Atomic multi-key read (all entries are retrieved or none):
 
 To programatically close the connection with immudb server use the `shutdown` operation:
  
- ```
+ ```javascript
  cl.shutdown()
  ```
 
