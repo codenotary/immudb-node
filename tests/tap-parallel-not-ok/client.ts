@@ -13,6 +13,28 @@ const {
   IMMUDB_PWD = 'immudb',
 } = process.env;
 
+tap.test('[DATABASE AUTOLOGIN & AUTODATABASE]', async t => {
+  const notADefaultDB = "notadefaultdb";
+
+  const config: Config = {
+    host: IMMUDB_HOST,
+    port: IMMUDB_PORT,
+    database: notADefaultDB
+  };
+
+  const immudbClient = await ImmudbClient.getInstance(config);
+
+  try {
+    const currentStateResponse =  await immudbClient.currentState();
+
+    t.equal(currentStateResponse?.db, notADefaultDB);
+
+    t.end();
+  } catch (err) {
+    t.error(err);
+  }
+});
+
 tap.test('[DATABASE MANAGEMENT]', async t => {
   const config: Config = {
     host: IMMUDB_HOST,

@@ -127,11 +127,11 @@ class ImmudbClient {
     if (autoLogin && autoDatabase) {
       // get current database list
       const resList = await this.listDatabases();
-      if (resList && resList.databasesList.some(db => db.databasename === databasename)) {
+      if (databasename && resList && resList.databasesList.some(db => db.databasename === databasename)) {
         // useDatabase database specified if it
         // already exists
-        await this.useDatabase({ databasename: DEFAULT_DATABASE });
-        console.log(`${CLIENT_INIT_PREFIX} useDatabase  '${DEFAULT_DATABASE}'`);
+        await this.useDatabase({ databasename });
+        console.log(`${CLIENT_INIT_PREFIX} useDatabase '${databasename}'`);
       } else if (databasename) {
         // run createDatabase and useDatabase if databasename
         // is different than the default one
@@ -143,7 +143,7 @@ class ImmudbClient {
         // run createDatabase and useDatabase if default
         // databasename is missing
         await this.useDatabase({ databasename: DEFAULT_DATABASE });
-        console.log(`${CLIENT_INIT_PREFIX} useDatabase '${databasename}'`);
+        console.log(`${CLIENT_INIT_PREFIX} useDatabase '${DEFAULT_DATABASE}'`);
       }
     } else {
       console.log(
