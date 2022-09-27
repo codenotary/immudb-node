@@ -1,62 +1,23 @@
 {
-  "name": "immudb-node",
-  "version": "1.1.1",
-  "description": "Node.js SDK for immudb written in TypeScript",
-  "directories": {
-    "src": "src",
-    "test": "tests"
-  },
-  "main": "dist/src/client.js",
-  "types": "dist/src/client.d.ts",
-  "scripts": {
-    "prepare": "npm run build",
-    "build": "tsc",
-    "test": "tests/test.sh",
-    "test:dev": "tests/test.sh --dev",
-    "tap": "tap --ts"
-  },
-  "author": "",
+  "name": "immudb-node-packages",
+  "version": "1.3.2-alpha.0",
+  "description": "ImmuDb js packages",
+  "author": "MK",
   "license": "ISC",
-  "devDependencies": {
-    "@types/btoa": "^1.2.3",
-    "@types/google-protobuf": "^3.15.2",
-    "@types/lodash": "^4.14.170",
-    "@types/mocha": "^8.2.2",
-    "@types/node": "^14.17.3",
-    "@types/tap": "^14.10.3",
-    "@typescript-eslint/eslint-plugin": "^3.9.0",
-    "@typescript-eslint/parser": "^3.9.0",
-    "crypto-ts": "^1.0.2",
-    "grpc": "^1.24.10",
-    "grpc_tools_node_protoc_ts": "^5.0.1",
-    "grpc-tools": "^1.11.1",
-    "protobufjs": "6.10.1",
-    "tap": "15.0.9",
-    "typescript": "^3.9.7"
+  "workspaces": [
+    "immudb-node-grpcjs",
+    "immudb-node-pbjs",
+    "immudb-node",
+    "immudb-node-showcase",
+    "immudb-node-test",
+    "immudb-node-doc"
+  ],
+  "scripts": {
+    "clean": "tsc --build --clean",
+    "build": "tsc --build",
+    "watch": "tsc --build --watch"
   },
   "dependencies": {
-    "@grpc/grpc-js": "1.2.0",
-    "btoa": "1.2.1",
-    "dotenv": "^8.6.0",
-    "google-protobuf": "3.13.0",
-    "lodash": "^4.17.21",
-    "ts-node": "^9.1.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/codenotary/immudb-node.git"
-  },
-  "tap": {
-    "nyc-arg": [
-      "--exclude=src/proto"
-    ]
-  },
-  "keywords": [
-    "immutable",
-    "merkle",
-    "cryptography",
-    "merkle-proof",
-    "verifiable",
-    "tamperproof"
-  ]
+    "typedoc": "^0.23.15"
+  }
 }

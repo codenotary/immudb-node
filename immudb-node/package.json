@@ -1,0 +1,27 @@
+{
+    "name": "immudb-node",
+    "version": "1.3.2-alpha.0",
+    "type": "module",
+    "main": "./dist/index.js",
+    "files": [
+        "dist",
+        "LICENSE"
+    ],
+    "exports": {
+        ".": "./dist/index.js"
+    },
+    "types": "dist/index.d.ts",
+    "dependencies": {
+        "@grpc/grpc-js": "^1.7.0",
+        "@grpc/proto-loader": "^0.7.2",
+        "immudb-node-grpcjs": "*",
+        "immudb-node-pbjs": "*",
+        "long": "^5.2.0"
+    },
+    "devDependencies": {
+        "typescript": "^4.8.3"
+    },
+    "scripts": {
+        "build": "tsc"
+    }
+}

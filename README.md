@@ -7,215 +7,35 @@
 [immudb]: https://immudb.io/
 
 
-## Contents
+# Mono repository
 
-- [Introduction](#introduction)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Supported Versions](#supported-versions)
-- [Quickstart](#quickstart)
-- [Step by step guide](#step-by-step-guide)
-  * [Creating a Client](#creating-a-client)
-  * [User sessions](#user-sessions)
-  * [Creating a database](#creating-a-database)
-  * [Setting the active database](#setting-the-active-database)
-  * [Traditional read and write](#traditional-read-and-write)
-  * [Verified or Safe read and write](#verified-or-safe-read-and-write)
-  * [Multi-key read and write](#multi-key-read-and-write)
-  * [Closing the client](#creating-a-database)
-- [Contributing](#contributing)
 
-## Introduction
+If you don't plan developing this project, you will be only interested with:
+- [immudb-node](immudb-node) - ImmuDb client, or
+- [immudb-node-showcase](immudb-node-showcase) - ImmuDb client examples of usage.
 
-immudb-node implements a [grpc] immudb client. A minimalist API is exposed for applications while cryptographic verifications and state update protocol implementation are fully implemented by this client. Latest validated immudb state may be kept in the local filesystem when initialising the client with the rootPath option. Please read [immudb research paper] for details on how immutability is ensured by [immudb].
 
-[grpc]: https://grpc.io/
-[immudb research paper]: https://immudb.io/
-[immudb]: https://immudb.io/
 
-## Prerequisites
+This repository contains following projects:
 
-immudb-node assumes an already running immudb server. Running `immudb` is quite simple, please refer to the
-following link for downloading and running it: https://docs.immudb.io/quickstart.html
+- [immudb-node](immudb-node) - ImmuDb client,
+- [immudb-node-showcase](immudb-node-showcase) - ImmuDb client examples of usage,
+- [immudb-node-doc](immudb-node-doc) - Documentation of ImmuDb client,
+- [immudb-node-grpcjs](immudb-node-grpcjs) - ImmuDb low lewel gprc bindings,
+- [immudb-node-pbjs](immudb-node-pbjs) - ImmuDb low lewel protobufers bindings,
+- [immudb-node-test](immudb-node-test) - ImmuDb client tests.
 
-## Installation
 
-Just include immudb-node as a dependency in your project:
-```
-const ImmudbClient = require('immudb-node')
+
+# Building project
+
+
+To (re)build all projects run in root directory:
+
+```sh
+npm install
+npm run build
+# cleaning:
+npm run clean
 ```
 
-## Supported Versions
-
-immudb-node supports the [latest immudb release].
-
-[latest immudb release]: https://github.com/codenotary/immudb/releases/latest
-
-## Quickstart
-
-Check out some [examples]
-
-[examples]: https://github.com/codenotary/immudb-client-examples/tree/master/node
-
-## Testing
-
-Create a `.env` file based on a `.env.example` in the project root and replace the `/path/to/immudb/` with your local path to immudb.
-
-You can use either of the following commands to check that all the unit tests pass:
-- `npm run test`: _automatically_ download the [latest immudb release], run it and then run tests
-- `npm run test:dev`: connect to an _already running immudb_ on the `host`:`port` from the `.env` file on your machine and then run tests
-
-## Step by step guide
-
-### Creating a Client
-
-The following code snippets shows how to create a client.
-
-Using default configuration:
-```
-const config = {
-  address: '127.0.0.1:3322',
-  rootPath: '.',
-}
-
-ImmudbClient(config, (err, cl) => {
-  if (err) {
-    return console.log(err)
-  }
-
-  // Interact with the client.
-})
-```
-
-### User sessions
-
-Use `login` and `logout` methods to initiate and terminate user sessions:
-
-```
-try {
-  await cl.login({ username: 'usr1', password: 'pwd1' })
-
-  // Interact with immudb using logged user.
-
-  await cl.logout()
-} catch (err) {
-  console.log(err)
-}
-```
-
-Or with callbacks
-```
-cl.login({ username: 'usr1', password: 'pwd1' }, (err, res) => {
-  if (err) {
-    return console.log(err)
-  }
-
-  // Interact with immudb using logged user.
-
-  cl.logout(null, (err, res) => {
-    if (err) {
-      return console.log(err)
-    })
-    // Logged out.
-})
-```
-
-### Creating a database
-
-Creating a new database is quite simple:
-
-```
-cl.createDatabase('db1')
-```
-
-### Setting the active database
-
-Specify the active database with:
-
-```
-cl.useDatabase('db1')
-```
-
-### Traditional read and write
-
-immudb provides read and write operations that behave as a traditional
-key-value store i.e. no cryptographic verification is done. These operations
-may be used when validating can be postponed:
-
-```
-let res = await cl.set({ key: 'key1', value: 'value1' })
-console.log(res.index)
-
-res = await cl.get({ key: 'key1' })
-console.log(res.key, res.value, res.index)
-```
-
-### Verified or Safe read and write
-
-immudb provides built-in cryptographic verification for any entry. The client
-implements the mathematical validations while the application uses as a traditional
-read or write operation:
-
-```
-try {
-  let res = await cl.verifiedSet({ key: 'key1', value: 'value1' })
-  console.log(res.index)
-
-  res = await cl.verifiedGet({ key: 'key1' })
-  console.log(res.key, res.value, res.index)
-} catch (err) {
-  if (err.clientErr == cl.proofErr) {
-    // Proof does not verify.
-  }
-  console.log(err)
-}
-```
-
-### Multi-key read and write
-
-Transactional multi-key read and write operations are supported by immudb and immudb-node.
-
-Atomic multi-key write (all entries are persisted or none):
-
-```
-  req = {
-    keys: [{
-      key: 'key1',
-      value: 'value1'
-    },{
-      key: 'key2',
-      value: 'value2'
-    }]
-  }
-  res = await cl.setAll(req)
-```
-
-Atomic multi-key read (all entries are retrieved or none):
-```
-    req = {
-      keys: [{
-        key: 'key1',
-      },{
-        key: 'key2',
-      }],
-    }
-    res = await cl.getAll(req)
-```
-
-### Closing the client
-
-To programatically close the connection with immudb server use the `shutdown` operation:
- 
- ```
- cl.shutdown()
- ```
-
-Note: after shutdown, a new client needs to be created to establish a new connection.
-
-## Contributing
-
-We welcome contributions. Feel free to join the team!
-
-To report bugs or get help, use [GitHub's issues].
-
-[GitHub's issues]: https://github.com/codenotary/immudb-node/issues

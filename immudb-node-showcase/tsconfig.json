@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist",
+        "target": "es2020",
+        "lib": [
+            "es2020",
+            "DOM"
+        ],
+        "module": "ES2020", 
+        "moduleResolution": "Node", 
+        "strict": true,
+        "noImplicitOverride": true,
+        // needed for CommonJS modules
+        "allowSyntheticDefaultImports": true, 
+        "sourceMap": true,
+        // emits declaration files
+        "declaration": true,
+        // enables importers to jump to source
+        "declarationMap": true,
+    }
+}

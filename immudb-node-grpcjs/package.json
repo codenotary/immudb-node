@@ -1,0 +1,26 @@
+{
+    "name": "immudb-node-grpcjs",
+    "version": "1.3.2-alpha.0",
+    "type": "module",
+    "main": "./dist/main.js",
+    "files": [
+        "dist",
+        "schema.proto",
+        "LICENSE"
+    ],
+    "exports": {
+        ".": "./dist/main.js"
+    },
+    "types": "dist/main.d.ts",
+    "dependencies": {
+        "@grpc/grpc-js": "^1.7.0",
+        "@grpc/proto-loader": "^0.7.2",
+        "long": "^5.2.0"
+    },
+    "devDependencies": {
+        "typescript": "^4.8.3"
+    },
+    "scripts": {
+        "build": "tsc"
+    }
+}

@@ -1,0 +1,1182 @@
+/*
+Copyright 2022 CodeNotary, Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+syntax = "proto3";
+
+// import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+// import "protoc-gen-swagger/options/annotations.proto";
+import "google/protobuf/struct.proto";
+
+package immudb.schema;
+
+option go_package = "github.com/codenotary/immudb/pkg/api/schema";
+
+message Key {
+	bytes key = 1;
+}
+
+message Permission {
+	string database = 1;
+	uint32 permission = 2;
+}
+
+message User {
+	bytes user = 1;
+	repeated Permission permissions = 3;
+	string createdby = 4;
+	string createdat = 5;
+	bool active = 6;
+}
+
+message UserList {
+	repeated User users = 1;
+}
+
+message CreateUserRequest {
+	bytes user = 1;
+	bytes password = 2;
+	uint32 permission = 3;
+	string database = 4;
+}
+
+message UserRequest {
+	bytes user = 1;
+}
+
+message ChangePasswordRequest {
+	bytes user = 1;
+	bytes oldPassword = 2;
+	bytes newPassword = 3;
+}
+
+message LoginRequest {
+	bytes user = 1;
+	bytes password = 2;
+}
+
+message LoginResponse {
+	string token = 1;
+	bytes warning = 2;
+}
+
+message AuthConfig {
+	uint32 kind = 1;
+}
+
+message MTLSConfig {
+	bool enabled = 1;
+}
+
+message OpenSessionRequest {
+	bytes username = 1;
+	bytes password = 2;
+	string databaseName = 3;
+}
+
+message OpenSessionResponse {
+	string sessionID = 1;
+	string serverUUID = 2;
+}
+
+////////////////////////////////////////////////////////
+
+message Precondition {
+
+	message KeyMustExistPrecondition {
+		bytes key = 1;
+	}
+
+	message KeyMustNotExistPrecondition {
+		bytes key = 1;
+	}
+
+	message KeyNotModifiedAfterTXPrecondition {
+		bytes key = 1;
+		uint64 txID = 2;
+	}
+
+	oneof precondition {
+		KeyMustExistPrecondition keyMustExist = 1;
+		KeyMustNotExistPrecondition keyMustNotExist = 2;
+		KeyNotModifiedAfterTXPrecondition keyNotModifiedAfterTX = 3;
+	}
+}
+
+message KeyValue {
+	bytes key = 1;
+	bytes value = 2;
+	KVMetadata metadata = 3;
+}
+
+message Entry {
+	uint64 tx = 1;
+	bytes key = 2;
+	bytes value = 3;
+	Reference referencedBy = 4;
+	KVMetadata metadata = 5;
+	bool expired = 6;
+	uint64 revision = 7;
+}
+
+message Reference {
+	uint64 tx = 1;
+	bytes key = 2;
+	uint64 atTx = 3;
+	KVMetadata metadata = 4;
+	uint64 revision = 5;
+}
+
+message Op {
+	oneof operation {
+		KeyValue kv = 1;
+		ZAddRequest zAdd = 2;
+		ReferenceRequest ref = 3;
+	}
+}
+
+message ExecAllRequest {
+	repeated Op Operations = 1;
+	bool  noWait = 2;
+	repeated Precondition preconditions = 3;
+}
+
+message Entries {
+	repeated Entry entries = 1;
+}
+
+message ZEntry {
+	bytes set = 1;
+	bytes key = 2;
+	Entry entry = 3;
+	double score = 4;
+	uint64 atTx = 5;
+}
+
+message ZEntries {
+	repeated ZEntry entries = 1;
+}
+
+message ScanRequest {
+	bytes seekKey = 1;
+	bytes endKey = 7;
+	bytes prefix = 2;
+	bool desc = 3;
+	uint64 limit = 4;
+	uint64 sinceTx = 5;
+	bool  noWait = 6;
+	bool inclusiveSeek = 8;		// If set to true, results will include seekKey
+	bool inclusiveEnd = 9;		// If set to true, results will include endKey if needed
+}
+
+message KeyPrefix {
+	bytes prefix = 1;
+}
+
+message EntryCount {
+	uint64 count = 1;
+}
+
+///////////////
+
+message Signature {
+	bytes publicKey = 1;
+	bytes signature = 2;
+}
+
+message TxHeader {
+	uint64 id = 1;
+	bytes prevAlh = 2;
+	int64 ts = 3;
+	int32 nentries = 4;
+	bytes eH = 5;
+	uint64 blTxId = 6;
+	bytes blRoot = 7;
+	int32 version = 8;
+	TxMetadata metadata = 9;
+}
+
+message TxMetadata {
+}
+
+message LinearProof {
+	uint64 sourceTxId = 1;
+	uint64 TargetTxId = 2;
+	repeated bytes terms = 3;
+}
+
+message DualProof {
+	TxHeader sourceTxHeader = 1;
+	TxHeader targetTxHeader = 2;
+
+	repeated bytes inclusionProof = 3;
+	repeated bytes consistencyProof = 4;
+
+	bytes targetBlTxAlh = 5;
+	repeated bytes lastInclusionProof = 6;
+
+	LinearProof linearProof = 7;
+}
+
+message Tx {
+	TxHeader header = 1;
+	repeated TxEntry entries = 2;
+	repeated Entry  kvEntries = 3;
+	repeated ZEntry zEntries = 4;
+}
+
+message TxEntry {
+	bytes key = 1;
+	bytes hValue = 2;
+	int32 vLen = 3;
+	KVMetadata metadata = 4;
+	bytes value = 5; // value must be ignored when len(value) == 0 and vLen > 0. Otherwise, sha256(value) must be equal to hValue
+}
+
+message KVMetadata {
+	bool deleted = 1;
+	Expiration expiration = 2;
+	bool nonIndexable = 3;
+}
+
+message Expiration {
+	int64 expiresAt = 1;
+}
+
+message VerifiableTx {
+	Tx tx = 1;
+	DualProof dualProof = 2;
+	Signature signature = 3;
+}
+
+//////////////////
+
+message VerifiableEntry {
+	Entry entry = 1;
+	VerifiableTx verifiableTx = 2;
+	InclusionProof inclusionProof = 3;
+}
+
+message InclusionProof {
+	int32 leaf = 1;
+	int32 width = 2;
+	repeated bytes terms = 3;
+}
+
+message SetRequest {
+	repeated KeyValue KVs = 1;
+	bool  noWait = 2;
+	repeated Precondition preconditions = 3;
+}
+
+message KeyRequest {
+	bytes key = 1;
+	uint64 atTx = 2; // if > 0, query for the value exactly at given transaction
+
+
+	// if 0 (and nowait=false), wait for the index to be up=to-date
+	uint64 sinceTx = 3;
+
+	// if set to true - do not wait for any indexing update considering only the currently indexed state
+	bool  noWait = 4;
+
+	// if > 0, get the nth version of the value, 1 being the first version, 2 being the second and so on
+	// if < 0, get the historical nth value of the key, -1 being the previous version, -2 being the one before and so on
+	int64 atRevision = 5;
+
+}
+
+message KeyListRequest {
+	repeated bytes keys = 1;
+	uint64 sinceTx = 2;
+}
+
+message DeleteKeysRequest {
+	repeated bytes keys = 1;
+	uint64 sinceTx = 2;
+	bool  noWait = 3;
+}
+
+message VerifiableSetRequest {
+	SetRequest setRequest = 1;
+	uint64 proveSinceTx = 2;
+}
+
+message VerifiableGetRequest {
+	KeyRequest keyRequest = 1;
+	uint64 proveSinceTx = 2;
+}
+
+message HealthResponse {
+	bool status = 1;
+	string version = 2;
+}
+
+message DatabaseHealthResponse {
+	uint32 pendingRequests = 1;
+	int64 lastRequestCompletedAt = 2;
+}
+
+message ImmutableState {
+	string db = 1;
+	uint64 txId = 2;
+	bytes txHash = 3;
+	Signature signature = 4;
+}
+
+message ReferenceRequest {
+	bytes key = 1;
+	bytes referencedKey = 2;
+	uint64 atTx = 3;
+	bool boundRef = 4;
+	bool  noWait = 5;
+	repeated Precondition preconditions = 6;
+}
+
+message VerifiableReferenceRequest {
+	ReferenceRequest referenceRequest = 1;
+	uint64 proveSinceTx = 2;
+}
+
+message ZAddRequest {
+	bytes set = 1;
+	double score = 2;
+	bytes key = 3;
+	uint64 atTx = 4;
+	bool boundRef = 5;
+	bool  noWait = 6;
+}
+
+message Score {
+	double score = 1;
+}
+
+message ZScanRequest {
+	bytes set = 1;
+	bytes seekKey = 2;
+	double seekScore = 3;
+	uint64 seekAtTx = 4;
+	bool inclusiveSeek = 5;
+	uint64 limit = 6;
+	bool desc = 7;
+	Score minScore = 8;
+	Score maxScore = 9;
+	uint64 sinceTx = 10;
+	bool  noWait = 11;
+}
+
+message HistoryRequest {
+	bytes key = 1;
+	uint64 offset = 2;
+	int32 limit = 3;
+	bool desc = 4;
+	uint64 sinceTx = 5;
+}
+
+message VerifiableZAddRequest {
+	ZAddRequest zAddRequest = 1;
+	uint64 proveSinceTx = 2;
+}
+
+message TxRequest {
+	uint64      tx                = 1;
+	EntriesSpec entriesSpec       = 2;
+	uint64      sinceTx           = 3;
+	bool        noWait            = 4;
+	bool        keepReferencesUnresolved = 5;
+}
+
+message EntriesSpec {
+	EntryTypeSpec kvEntriesSpec  = 1;
+	EntryTypeSpec zEntriesSpec   = 2;
+	EntryTypeSpec sqlEntriesSpec = 3;
+}
+
+message EntryTypeSpec {
+	EntryTypeAction action = 1;
+}
+
+enum EntryTypeAction {
+	EXCLUDE     = 0;
+	ONLY_DIGEST = 1;
+	RAW_VALUE   = 2;
+	RESOLVE     = 3;
+}
+
+message VerifiableTxRequest {
+	uint64 tx = 1;
+	uint64 proveSinceTx = 2;
+	EntriesSpec entriesSpec = 3;
+	uint64 sinceTx  = 4;
+	bool   noWait   = 5;
+	bool   keepReferencesUnresolved = 6;
+}
+
+message TxScanRequest {
+	uint64 initialTx = 1;
+	uint32 limit = 2;
+    bool   desc = 3;
+	EntriesSpec entriesSpec = 4;
+	uint64 sinceTx  = 5;
+	bool   noWait   = 6;
+}
+
+message TxList {
+	repeated Tx txs = 1;
+}
+
+message ExportTxRequest {
+	uint64 tx = 1;
+}
+
+message Database {
+	string databaseName = 1;
+}
+
+message DatabaseSettings {
+	string databaseName = 1;
+
+	bool   replica = 2;
+	string masterDatabase = 3;
+	string masterAddress = 4;
+	uint32 masterPort = 5;
+	string followerUsername = 6;
+	string followerPassword = 7;
+
+	uint32 fileSize = 8;
+	uint32 maxKeyLen = 9;
+	uint32 maxValueLen = 10;
+	uint32 maxTxEntries = 11;
+
+	bool   excludeCommitTime = 12;
+}
+
+message CreateDatabaseRequest {
+	string name = 1;
+	DatabaseNullableSettings settings = 2;
+	bool ifNotExists = 3;
+}
+
+message CreateDatabaseResponse {
+	string name = 1;
+	DatabaseNullableSettings settings = 2;
+	bool alreadyExisted = 3;
+}
+
+message UpdateDatabaseRequest {
+	string database = 1;
+	DatabaseNullableSettings settings = 2;
+}
+
+message UpdateDatabaseResponse {	// Reserved to reply with more advanced response later
+	string database = 1;
+	DatabaseNullableSettings settings = 2;
+}
+
+message DatabaseSettingsRequest {
+
+}
+
+message DatabaseSettingsResponse {
+	string database = 1;
+	DatabaseNullableSettings settings = 2;
+}
+
+message NullableUint32 {
+	uint32 value = 1;
+}
+
+message NullableUint64 {
+	uint64 value = 1;
+}
+
+message NullableFloat {
+	float value = 1;
+}
+
+message NullableBool {
+	bool value = 1;
+}
+
+message NullableString {
+	string value = 1;
+}
+
+message DatabaseNullableSettings {
+	ReplicationNullableSettings replicationSettings = 2;
+
+	NullableUint32 fileSize = 8;
+	NullableUint32 maxKeyLen = 9;
+	NullableUint32 maxValueLen = 10;
+	NullableUint32 maxTxEntries = 11;
+
+	NullableBool excludeCommitTime = 12;
+
+	NullableUint32 maxConcurrency = 13;
+	NullableUint32 maxIOConcurrency = 14;
+
+	NullableUint32 txLogCacheSize = 15;
+	NullableUint32 vLogMaxOpenedFiles = 16;
+	NullableUint32 txLogMaxOpenedFiles = 17;
+	NullableUint32 commitLogMaxOpenedFiles = 18;
+
+	IndexNullableSettings indexSettings = 19;
+
+	NullableUint32 writeTxHeaderVersion = 20;
+
+	NullableBool autoload = 21;
+}
+
+message ReplicationNullableSettings {
+	NullableBool   replica = 1;
+	NullableString masterDatabase = 2;
+	NullableString masterAddress = 3;
+	NullableUint32 masterPort = 4;
+	NullableString followerUsername = 5;
+	NullableString followerPassword = 6;
+}
+
+message IndexNullableSettings {
+	NullableUint32  flushThreshold = 1;
+	NullableUint32  syncThreshold = 2;
+	NullableUint32  cacheSize = 3;
+	NullableUint32  maxNodeSize = 4;
+	NullableUint32  maxActiveSnapshots = 5;
+	NullableUint64  renewSnapRootAfter = 6;
+	NullableUint32  compactionThld = 7;
+	NullableUint32  delayDuringCompaction = 8;
+	NullableUint32  nodesLogMaxOpenedFiles = 9;
+	NullableUint32  historyLogMaxOpenedFiles = 10;
+	NullableUint32  commitLogMaxOpenedFiles = 11;
+	NullableUint32  flushBufferSize = 12;
+	NullableFloat   cleanupPercentage = 13;
+}
+
+message LoadDatabaseRequest {
+	string database = 1;
+	// may add createIfNotExist
+}
+
+message LoadDatabaseResponse {
+	string database = 1;
+	// may add setttings
+}
+
+message UnloadDatabaseRequest {
+	string database = 1;
+}
+
+message UnloadDatabaseResponse {
+	string database = 1;
+}
+
+message DeleteDatabaseRequest {
+	string database = 1;
+}
+
+message DeleteDatabaseResponse {
+	string database = 1;
+}
+
+message FlushIndexRequest {
+	float  cleanupPercentage = 1;
+	bool   synced = 2;
+}
+
+message FlushIndexResponse {
+	string database = 1;
+}
+
+message Table {
+	string tableName = 1;
+}
+
+message SQLGetRequest {
+	string table = 1;
+	repeated SQLValue pkValues = 2;
+    uint64 atTx = 3;
+	uint64 sinceTx = 4;
+}
+
+message VerifiableSQLGetRequest {
+	SQLGetRequest sqlGetRequest = 1;
+	uint64        proveSinceTx = 2;
+}
+
+message SQLEntry {
+	uint64 tx = 1;
+	bytes  key = 2;
+	bytes  value = 3;
+	KVMetadata metadata = 4;
+}
+
+message VerifiableSQLEntry {
+	reserved 6;
+	SQLEntry sqlEntry = 1;
+	VerifiableTx verifiableTx = 2;
+	InclusionProof inclusionProof = 3;
+	uint32 DatabaseId = 4;
+	uint32 TableId = 5;
+	repeated uint32 PKIDs = 16;
+	map<uint32, string> ColNamesById = 8;
+	map<string, uint32> ColIdsByName = 9;
+	map<uint32, string> ColTypesById = 10;
+	map<uint32, int32> ColLenById = 11;
+}
+
+message UseDatabaseReply{
+	string token = 1;
+}
+
+enum PermissionAction {
+	GRANT = 0;
+	REVOKE = 1;
+}
+
+message ChangePermissionRequest {
+	PermissionAction action = 1;
+	string username = 2;
+	string database = 3;
+	uint32 permission = 4;
+}
+
+message SetActiveUserRequest {
+	bool active = 1;
+	string username = 2;
+}
+
+message DatabaseListResponse {
+	repeated Database databases = 1;
+}
+
+message DatabaseListRequestV2 {
+}
+
+message DatabaseListResponseV2 {
+	repeated DatabaseWithSettings databases = 1;
+}
+
+message DatabaseWithSettings {
+	string name = 1;
+	DatabaseNullableSettings settings = 2;
+	bool loaded = 3;
+}
+
+message Chunk {
+	bytes content = 1;
+}
+
+message UseSnapshotRequest {
+	uint64 sinceTx = 1;
+	uint64 asBeforeTx = 2;
+}
+
+message SQLExecRequest {
+	string sql = 1;
+	repeated NamedParam params = 2;
+	bool  noWait = 3;
+}
+
+message SQLQueryRequest {
+	string sql = 1;
+	repeated NamedParam params = 2;
+	bool reuseSnapshot = 3;
+}
+
+message NamedParam {
+	string name = 1;
+	SQLValue value = 2;
+}
+
+message SQLExecResult {
+	repeated CommittedSQLTx txs = 5;
+	bool ongoingTx = 6;
+}
+
+message CommittedSQLTx {
+	TxHeader header = 1;
+	uint32 updatedRows = 2;
+	map<string, SQLValue> lastInsertedPKs = 3;
+	map<string, SQLValue> firstInsertedPKs = 4;
+}
+
+message SQLQueryResult {
+	repeated Column columns = 2;
+	repeated Row rows = 1;
+}
+
+message Column {
+	string name = 1;
+	string type = 2;
+}
+
+message Row {
+	repeated string columns = 1;
+	repeated SQLValue values = 2;
+}
+
+message SQLValue {
+	oneof value {
+		google.protobuf.NullValue null = 1;
+		int64 n = 2;
+		string s = 3;
+		bool b = 4;
+		bytes bs = 5;
+		int64 ts = 6;
+	}
+}
+
+enum TxMode {
+	ReadOnly = 0;
+	WriteOnly = 1;
+	ReadWrite = 2;
+}
+
+message NewTxRequest {
+	TxMode mode = 1;
+}
+
+message NewTxResponse {
+	string transactionID = 1;
+}
+
+
+option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
+	info: {
+		title: "immudb REST API"
+		description: "<b>IMPORTANT</b>: All <code>get</code> and <code>safeget</code> functions return <u>base64-encoded</u> keys and values, while all <code>set</code> and <code>safeset</code> functions expect <u>base64-encoded</u> inputs."
+	}
+	security_definitions: {
+		security: {
+			key: "bearer"
+			value: {
+				type: TYPE_API_KEY
+				in: IN_HEADER
+				name: "Authorization"
+				description: "Authentication token, prefixed by Bearer: Bearer <token>"
+			}
+		}
+	}
+	security: {
+		security_requirement: {
+			key: "bearer"
+		}
+	}
+};
+
+message ErrorInfo {
+	string code = 1;
+	string cause = 2;
+}
+
+message DebugInfo {
+	string stack = 1;
+}
+
+message RetryInfo {
+	int32 retry_delay = 1;
+}
+
+// immudb gRPC & REST service
+service ImmuService {
+	rpc ListUsers (google.protobuf.Empty) returns (UserList){
+		option (google.api.http) = {
+			get: "/user/list"
+		};
+	};
+
+	rpc CreateUser (CreateUserRequest) returns (google.protobuf.Empty){
+		option (google.api.http) = {
+			post: "/user"
+			body: "*"
+		};
+	};
+
+	rpc ChangePassword (ChangePasswordRequest) returns (google.protobuf.Empty){
+		option (google.api.http) = {
+			post: "/user/password/change"
+			body: "*"
+		};
+	};
+
+	rpc ChangePermission(ChangePermissionRequest) returns (google.protobuf.Empty) {
+		option (google.api.http) = {
+			post: "/user/changepermission"
+			body: "*"
+		};
+	}
+
+	rpc SetActiveUser (SetActiveUserRequest) returns (google.protobuf.Empty){
+		option (google.api.http) = {
+			post: "/user/setactiveUser"
+			body: "*"
+		};
+	};
+
+	rpc UpdateAuthConfig (AuthConfig) returns (google.protobuf.Empty){
+		option deprecated = true;
+	} // DEPRECATED
+	rpc UpdateMTLSConfig (MTLSConfig) returns (google.protobuf.Empty){
+		option deprecated = true;
+	} // DEPRECATED
+
+	rpc OpenSession (OpenSessionRequest) returns (OpenSessionResponse){};
+	rpc CloseSession (google.protobuf.Empty) returns (google.protobuf.Empty){};
+	rpc KeepAlive (google.protobuf.Empty) returns (google.protobuf.Empty){};
+
+	rpc NewTx (NewTxRequest) returns (NewTxResponse){};
+	rpc Commit (google.protobuf.Empty) returns (CommittedSQLTx){};
+	rpc Rollback (google.protobuf.Empty) returns (google.protobuf.Empty){};
+
+	rpc TxSQLExec(SQLExecRequest) returns (google.protobuf.Empty) {};
+	rpc TxSQLQuery(SQLQueryRequest) returns (SQLQueryResult) {};
+
+	rpc Login (LoginRequest) returns (LoginResponse){
+		option deprecated = true;
+		option (google.api.http) = {
+			post: "/login"
+			body: "*"
+		};
+		option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+			security: {} // no security
+		};
+	};
+
+	rpc Logout (google.protobuf.Empty) returns (google.protobuf.Empty){
+		option deprecated = true;
+		option (google.api.http) = {
+			post: "/logout"
+			body: "*"
+		};
+	};
+
+	rpc Set (SetRequest) returns (TxHeader){
+		option (google.api.http) = {
+			post: "/db/set"
+			body: "*"
+		};
+	};
+
+	rpc VerifiableSet (VerifiableSetRequest) returns (VerifiableTx){
+		option (google.api.http) = {
+			post: "/db/verifiable/set"
+			body: "*"
+		};
+	};
+
+	rpc Get (KeyRequest) returns (Entry){
+		option (google.api.http) = {
+			get: "/db/get/{key}"
+		};
+	};
+
+	rpc VerifiableGet (VerifiableGetRequest) returns (VerifiableEntry){
+		option (google.api.http) = {
+			post: "/db/verifiable/get"
+			body: "*"
+		};
+	};
+
+	rpc Delete(DeleteKeysRequest) returns (TxHeader) {
+		option (google.api.http) = {
+			post: "/db/delete"
+			body: "*"
+		};
+	}
+
+	rpc GetAll (KeyListRequest) returns (Entries){
+		option (google.api.http) = {
+			post: "/db/getall"
+			body: "*"
+		};
+	};
+
+	rpc ExecAll (ExecAllRequest) returns (TxHeader) {
+		option (google.api.http) = {
+			post: "/db/execall"
+			body: "*"
+		};
+	};
+
+	rpc Scan(ScanRequest) returns (Entries){
+		option (google.api.http) = {
+			post: "/db/scan"
+			body: "*"
+		};
+	};
+
+	// NOT YET SUPPORTED
+	rpc Count(KeyPrefix) returns (EntryCount){
+		option (google.api.http) = {
+			get: "/db/count/{prefix}"
+		};
+	};
+
+	// NOT YET SUPPORTED
+	rpc CountAll(google.protobuf.Empty) returns (EntryCount){
+		option (google.api.http) = {
+			get: "/db/countall"
+		};
+	};
+
+	rpc TxById(TxRequest) returns (Tx){
+		option (google.api.http) = {
+			get: "/db/tx/{tx}"
+		};
+	};
+
+	rpc VerifiableTxById(VerifiableTxRequest) returns (VerifiableTx){
+		option (google.api.http) = {
+			get: "/db/verifiable/tx/{tx}"
+		};
+	};
+
+	rpc TxScan(TxScanRequest) returns (TxList) {
+		option (google.api.http) = {
+			post: "/db/tx"
+			body: "*"
+		};
+	}
+
+	rpc History(HistoryRequest) returns (Entries){
+		option (google.api.http) = {
+			post: "/db/history"
+			body: "*"
+		};
+	};
+
+	rpc Health (google.protobuf.Empty) returns (HealthResponse){
+		option (google.api.http) = {
+			get: "/health"
+		};
+		option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+			security: {} // no security
+		};
+	};
+
+	rpc DatabaseHealth (google.protobuf.Empty) returns (DatabaseHealthResponse){
+		option (google.api.http) = {
+			get: "/db/health"
+		};
+		option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+			security: {} // no security
+		};
+	};
+
+	rpc CurrentState (google.protobuf.Empty) returns (ImmutableState){
+		option (google.api.http) = {
+			get: "/db/state"
+		};
+		option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+			security: {} // no security
+		};
+	};
+
+	rpc SetReference (ReferenceRequest) returns (TxHeader){
+		option (google.api.http) = {
+			post: "/db/setreference"
+			body: "*"
+		};
+	};
+
+	rpc VerifiableSetReference (VerifiableReferenceRequest) returns (VerifiableTx){
+		option (google.api.http) = {
+			post: "/db/verifiable/setreference"
+			body: "*"
+		};
+	};
+
+	rpc ZAdd (ZAddRequest) returns (TxHeader){
+		option (google.api.http) = {
+			post: "/db/zadd"
+			body: "*"
+		};
+	};
+
+	rpc VerifiableZAdd (VerifiableZAddRequest) returns (VerifiableTx){
+		option (google.api.http) = {
+			post: "/db/verifiable/zadd"
+			body: "*"
+		};
+	};
+
+	rpc ZScan (ZScanRequest) returns (ZEntries){
+		option (google.api.http) = {
+			post: "/db/zscan"
+			body: "*"
+		};
+	};
+
+	// DEPRECATED: Use CreateDatabaseV2
+	rpc CreateDatabase(Database) returns (google.protobuf.Empty) {
+		option deprecated = true;
+		option (google.api.http) = {
+			post: "/db/create"
+			body: "*"
+		};
+	}
+
+	// DEPRECATED: Use CreateDatabaseV2
+	rpc CreateDatabaseWith(DatabaseSettings) returns (google.protobuf.Empty) {
+		option deprecated = true;
+		option (google.api.http) = {
+			post: "/db/createwith"
+			body: "*"
+		};
+	}
+
+	rpc CreateDatabaseV2(CreateDatabaseRequest) returns (CreateDatabaseResponse) {
+		option (google.api.http) = {
+			post: "/db/create/v2"
+			body: "*"
+		};
+	}
+
+	rpc LoadDatabase(LoadDatabaseRequest) returns (LoadDatabaseResponse) {
+		option (google.api.http) = {
+			post: "/db/load"
+			body: "*"
+		};
+	}
+
+	rpc UnloadDatabase(UnloadDatabaseRequest) returns (UnloadDatabaseResponse) {
+		option (google.api.http) = {
+			post: "/db/unload"
+			body: "*"
+		};
+	}
+
+	rpc DeleteDatabase(DeleteDatabaseRequest) returns (DeleteDatabaseResponse) {
+		option (google.api.http) = {
+			post: "/db/delete"
+			body: "*"
+		};
+	}
+
+	// DEPRECATED: Use DatabaseListV2
+	rpc DatabaseList (google.protobuf.Empty) returns (DatabaseListResponse){
+		option deprecated = true;
+		option (google.api.http) = {
+			post: "/db/list"
+			body: "*"
+		};
+	};
+
+	rpc DatabaseListV2 (DatabaseListRequestV2) returns (DatabaseListResponseV2){
+		option (google.api.http) = {
+			post: "/db/list/v2"
+			body: "*"
+		};
+	};
+
+	rpc UseDatabase(Database) returns (UseDatabaseReply) {
+		option (google.api.http) = {
+			get: "/db/use/{databaseName}"
+		};
+	}
+
+	// DEPRECATED: Use UpdateDatabaseV2
+	rpc UpdateDatabase(DatabaseSettings) returns (google.protobuf.Empty) {
+		option deprecated = true;
+		option (google.api.http) = {
+			post: "/db/update"
+			body: "*"
+		};
+	}
+
+	rpc UpdateDatabaseV2(UpdateDatabaseRequest) returns (UpdateDatabaseResponse) {
+		option (google.api.http) = {
+			post: "/db/update/v2"
+			body: "*"
+		};
+	}
+
+	// DEPRECATED: Use GetDatabaseSettingsV2
+	rpc GetDatabaseSettings(google.protobuf.Empty) returns (DatabaseSettings) {
+		option deprecated = true;
+		option (google.api.http) = {
+			post: "/db/settings"
+			body: "*"
+		};
+	}
+
+	rpc GetDatabaseSettingsV2(DatabaseSettingsRequest) returns (DatabaseSettingsResponse) {
+		option (google.api.http) = {
+			post: "/db/settings/v2"
+			body: "*"
+		};
+	}
+
+	rpc FlushIndex(FlushIndexRequest) returns (FlushIndexResponse) {
+		option (google.api.http) = {
+			get: "/db/flushindex"
+		};
+	}
+
+	rpc CompactIndex(google.protobuf.Empty) returns (google.protobuf.Empty) {
+		option (google.api.http) = {
+			get: "/db/compactindex"
+		};
+	}
+
+	// Streams
+	rpc streamGet(KeyRequest) returns (stream Chunk) {};
+	rpc streamSet(stream Chunk) returns (TxHeader) {};
+	rpc streamVerifiableGet(VerifiableGetRequest) returns (stream Chunk) {};
+	rpc streamVerifiableSet(stream Chunk) returns (VerifiableTx) {};
+	rpc streamScan(ScanRequest) returns (stream Chunk) {};
+	rpc streamZScan(ZScanRequest) returns (stream Chunk) {};
+	rpc streamHistory(HistoryRequest) returns (stream Chunk) {};
+	rpc streamExecAll(stream Chunk) returns (TxHeader) {};
+
+	// Replication
+	rpc exportTx(ExportTxRequest) returns (stream Chunk) {};
+	rpc replicateTx(stream Chunk) returns (TxHeader) {};
+
+	rpc SQLExec(SQLExecRequest) returns (SQLExecResult) {
+		option (google.api.http) = {
+			post: "/db/sqlexec"
+			body: "*"
+		};
+	};
+
+	rpc SQLQuery(SQLQueryRequest) returns (SQLQueryResult) {
+		option (google.api.http) = {
+			post: "/db/sqlquery"
+			body: "*"
+		};
+	};
+
+	rpc ListTables(google.protobuf.Empty) returns (SQLQueryResult) {
+		option (google.api.http) = {
+			get: "/db/table/list"
+		};
+	};
+
+	rpc DescribeTable(Table) returns (SQLQueryResult) {
+		option (google.api.http) = {
+			post: "/db/tables"
+			body: "*"
+		};
+	};
+
+	rpc VerifiableSQLGet (VerifiableSQLGetRequest) returns (VerifiableSQLEntry){
+		option (google.api.http) = {
+			post: "/db/verifiable/sqlget"
+			body: "*"
+		};
+	};
+}

@@ -1,14 +1,4 @@
-node_modules/
-package-lock.json
-root.json
-tests/immudb
-tests/test-data
-.nyc_output
-.vscode/
-tests/root.json
+node_modules
+dist
+*.tsbuildinfo
 .vscode
-root
-rootfile
-examples/.env
-.env
-dist/
