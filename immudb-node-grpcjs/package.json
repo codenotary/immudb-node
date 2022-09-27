@@ -1,6 +1,7 @@
 {
     "name": "immudb-node-grpcjs",
     "version": "1.3.2-alpha.0",
+    "license": "Apache-2.0",
     "type": "module",
     "main": "./dist/main.js",
     "files": [
