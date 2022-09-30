@@ -8,6 +8,11 @@
         "directory": "immudb-node-grpcjs"
     },
     "description": "ImmuDb schema.proto grpc node bindings.",
+    "keywords": [
+        "immudb",
+        "grpc",
+        "bindings"
+    ],
     "type": "module",
     "main": "./dist/main.js",
     "files": [

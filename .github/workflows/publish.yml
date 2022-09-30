@@ -21,13 +21,13 @@ jobs:
       - name: Publish immudb-node-grpcjs
         run: |
           cd immudb-node-grpcjs
-          npm publish --access public
+          npm publish --access public --tag alpha
       - name: Publish immudb-node-pbjs
         run: |
           cd immudb-node-pbjs
-          npm publish --access public
+          npm publish --access public --tag alpha
       - name: Publish immudb-node
         run: |
           cd immudb-node
-          npm publish --access public
+          npm publish --access public --tag alpha
 

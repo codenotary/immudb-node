@@ -8,6 +8,20 @@
         "directory": "immudb-node"
     },
     "description": "ImmuDb node client.",
+    "keywords": [
+        "immudb",
+        "database",
+        "sql",
+        "key",
+        "value",
+        "store",
+        "immutable",
+        "merkle",
+        "cryptography",
+        "merkle-proof",
+        "verifiable",
+        "tamperproof"
+    ],
     "type": "module",
     "main": "./dist/index.js",
     "files": [

@@ -8,7 +8,13 @@
 
 [immudb]: https://immudb.io/
 
-# Mono repository
+# Old ImmuDb client
+
+**[Old version of ImmuDb node client](https://github.com/codenotary/immudb-node/releases/tag/v1.1.1)**
+
+# ImmuDb node client (Alpha) mono repository
+
+
 
 If you don't plan developing this project, you will be only interested with:
 
