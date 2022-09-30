@@ -2,6 +2,12 @@
     "name": "immudb-node",
     "version": "2.0.0-alpha.0",
     "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/codenotary/immudb-node.git",
+        "directory": "immudb-node"
+    },
+    "description": "ImmuDb node client.",
     "type": "module",
     "main": "./dist/index.js",
     "files": [
@@ -14,9 +20,8 @@
     "types": "dist/index.d.ts",
     "dependencies": {
         "@grpc/grpc-js": "^1.7.0",
-        "@grpc/proto-loader": "^0.7.2",
-        "immudb-node-grpcjs": "*",
-        "immudb-node-pbjs": "*",
+        "immudb-node-grpcjs": "2.0.0-alpha.0",
+        "immudb-node-pbjs": "2.0.0-alpha.0",
         "long": "^5.2.0"
     },
     "devDependencies": {

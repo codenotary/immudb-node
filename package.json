@@ -16,8 +16,5 @@
     "clean": "tsc --build --clean",
     "build": "tsc --build",
     "watch": "tsc --build --watch"
-  },
-  "dependencies": {
-    "typedoc": "^0.23.15"
   }
 }
