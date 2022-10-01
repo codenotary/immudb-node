@@ -25,13 +25,13 @@
 | :------ | :------ | :------ |
 | `key` | `Buffer` | Key for which scan history. |
 | `limit?` | `number` | Limit output to number, no limit if `undefined` (default). |
-| `seenSinceTxId?` | `Long` | Get keys in transactions (database) after specified id.    Simulate situation as if database consists of transactions:  - from transaction `seenAtTxId`  - to most recent transaction. |
-| `sortDescending?` | `boolean` | Sort order, default is ascending. To order descending set this field to  `true`. |
-| `startAtRevisionId?` | `Long` | Start history scan starting with revision id:  - `0` - most recent revision  - `n` - n-th revision (n's starts from 1),  - `-k` - k-th revision before most recent (k's starts from 1). |
+| `seenSinceTxId?` | `Long` | Get keys in transactions (database) after specified id.  Simulate situation as if database consists of transactions: - from transaction `seenAtTxId` - to most recent transaction. |
+| `sortDescending?` | `boolean` | Sort order, default is ascending. To order descending set this field to `true`. |
+| `startAtRevisionId?` | `Long` | Start history scan starting with revision id: - `0` - most recent revision - `n` - n-th revision (n's starts from 1), - `-k` - k-th revision before most recent (k's starts from 1). |
 
 #### Defined in
 
-[immudb-node/src/immu-api/history.ts:12](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/history.ts#L12)
+[immudb-node/src/immu-api/history.ts:12](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/history.ts#L12)
 
 ## Functions
 
@@ -63,7 +63,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-api/history.ts:43](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/history.ts#L43)
+[immudb-node/src/immu-api/history.ts:43](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/history.ts#L43)
 
 ___
 
@@ -95,4 +95,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/history.ts:77](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/history.ts#L77)
+[immudb-node/src/immu-api/history.ts:77](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/history.ts#L77)

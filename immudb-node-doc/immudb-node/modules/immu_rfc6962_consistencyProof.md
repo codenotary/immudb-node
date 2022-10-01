@@ -25,9 +25,9 @@ client side consistency check alghoritm.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `proofData` | `Object` | - |
-| `proofData.proofNodes` | `Buffer`[] | List of nodes needed to compute source and target Merkle Tree hashes.  Proof nodes have four parts:  - first node is last leaf of source Merkle Tree, used for computation    of both source and target Merkle Trees roots,  - next is 0 or 1 node from target Merkle Tree joined on the right used for    computing target Merkle Tree,  - next are nodes from both Merkle Trees (at least 1 when source and    target are not the same) joined on the left used for computing source and    target Merkle Tree,  - next are 0 or moore nodes from target Merkle Tree joined on the right when    computing target Merkle Tree. |
-| `proofData.sourceSize` | `Long` | Size (number of leafs) of the source Merkle Tree.  Number is encoded as UInt64, unsigned integer with 64 bits,  and represented by type Long in js. In immudb sourceSize  is equal to last transaction number. |
-| `proofData.targetSize` | `Long` | Size (number of leafs) of the target Merkle Tree.  Number is encoded as UInt64, unsigned integer with 64 bits,  and represented by type Long in js. In immudb targetSize  is equal to last transaction number. |
+| `proofData.proofNodes` | `Buffer`[] | List of nodes needed to compute source and target Merkle Tree hashes. Proof nodes have four parts: - first node is last leaf of source Merkle Tree, used for computation   of both source and target Merkle Trees roots, - next is 0 or 1 node from target Merkle Tree joined on the right used for   computing target Merkle Tree, - next are nodes from both Merkle Trees (at least 1 when source and   target are not the same) joined on the left used for computing source and   target Merkle Tree, - next are 0 or moore nodes from target Merkle Tree joined on the right when   computing target Merkle Tree. |
+| `proofData.sourceSize` | `Long` | Size (number of leafs) of the source Merkle Tree. Number is encoded as UInt64, unsigned integer with 64 bits, and represented by type Long in js. In immudb sourceSize is equal to last transaction number. |
+| `proofData.targetSize` | `Long` | Size (number of leafs) of the target Merkle Tree. Number is encoded as UInt64, unsigned integer with 64 bits, and represented by type Long in js. In immudb targetSize is equal to last transaction number. |
 
 #### Returns
 
@@ -37,9 +37,9 @@ computed roots
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `sourceRoot` | `Buffer` | Source Merkle Tree root  (by default as SHA256) |
-| `targetRoot` | `Buffer` | Target Merkle Tree root  (by default as SHA256) |
+| `sourceRoot` | `Buffer` | Source Merkle Tree root (by default as SHA256) |
+| `targetRoot` | `Buffer` | Target Merkle Tree root (by default as SHA256) |
 
 #### Defined in
 
-[immudb-node/src/immu-rfc6962/consistencyProof.ts:16](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-rfc6962/consistencyProof.ts#L16)
+[immudb-node/src/immu-rfc6962/consistencyProof.ts:16](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-rfc6962/consistencyProof.ts#L16)

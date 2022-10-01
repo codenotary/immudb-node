@@ -52,7 +52,7 @@ Error.constructor
 
 #### Defined in
 
-[immudb-node/src/common/errors.ts:4](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/common/errors.ts#L4)
+[immudb-node/src/common/errors.ts:4](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/common/errors.ts#L4)
 
 ## Properties
 

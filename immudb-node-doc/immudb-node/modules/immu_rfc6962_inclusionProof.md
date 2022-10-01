@@ -40,7 +40,7 @@ in Java client
 
 #### Defined in
 
-[immudb-node/src/immu-rfc6962/inclusionProof.ts:100](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-rfc6962/inclusionProof.ts#L100)
+[immudb-node/src/immu-rfc6962/inclusionProof.ts:100](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-rfc6962/inclusionProof.ts#L100)
 
 ___
 
@@ -60,9 +60,9 @@ Computes MHT root from:
 | :------ | :------ | :------ |
 | `proofData` | `Object` | - |
 | `proofData.inclusionProofNodes` | `Buffer`[] | List of nodes needed to compute MHT path starting at leaf. |
-| `proofData.lastLeafId` | `Long` | Size of Merkle Tree.  Number is UInt64, represented by type Long in js. |
+| `proofData.lastLeafId` | `Long` | Size of Merkle Tree. Number is UInt64, represented by type Long in js. |
 | `proofData.leaf` | `Buffer` | Leaf node value for which proof inclusion |
-| `proofData.leafId` | `Long` | Id (number) of leaf.  Number is encoded as UInt64  and represented by type Long in js. |
+| `proofData.leafId` | `Long` | Id (number) of leaf. Number is encoded as UInt64  and represented by type Long in js. |
 
 #### Returns
 
@@ -70,4 +70,4 @@ Computes MHT root from:
 
 #### Defined in
 
-[immudb-node/src/immu-rfc6962/inclusionProof.ts:14](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-rfc6962/inclusionProof.ts#L14)
+[immudb-node/src/immu-rfc6962/inclusionProof.ts:14](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-rfc6962/inclusionProof.ts#L14)

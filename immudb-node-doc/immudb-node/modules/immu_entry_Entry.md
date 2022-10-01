@@ -29,7 +29,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-entry/Entry.ts:66](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/Entry.ts#L66)
+[immudb-node/src/immu-entry/Entry.ts:66](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/Entry.ts#L66)
 
 ___
 
@@ -49,7 +49,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-entry/Entry.ts:38](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/Entry.ts#L38)
+[immudb-node/src/immu-entry/Entry.ts:38](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/Entry.ts#L38)
 
 ___
 
@@ -69,7 +69,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-entry/Entry.ts:80](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/Entry.ts#L80)
+[immudb-node/src/immu-entry/Entry.ts:80](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/Entry.ts#L80)
 
 ___
 
@@ -89,4 +89,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-entry/Entry.ts:94](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/Entry.ts#L94)
+[immudb-node/src/immu-entry/Entry.ts:94](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/Entry.ts#L94)

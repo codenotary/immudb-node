@@ -31,7 +31,7 @@ Creates Date from seconds since midnight, January 1, 1970 UTC.
 
 #### Defined in
 
-[immudb-node/src/common/time.ts:27](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/common/time.ts#L27)
+[immudb-node/src/common/time.ts:27](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/common/time.ts#L27)
 
 ___
 
@@ -55,7 +55,7 @@ returns `undefined`.
 
 #### Defined in
 
-[immudb-node/src/common/time.ts:18](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/common/time.ts#L18)
+[immudb-node/src/common/time.ts:18](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/common/time.ts#L18)
 
 ___
 
@@ -79,4 +79,4 @@ milli seconds after unix epoch. If `miliSeconds` is
 
 #### Defined in
 
-[immudb-node/src/common/time.ts:9](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/common/time.ts#L9)
+[immudb-node/src/common/time.ts:9](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/common/time.ts#L9)

@@ -40,7 +40,7 @@
 
 #### Defined in
 
-[immudb-node/src/types/Entry.ts:16](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Entry.ts#L16)
+[immudb-node/src/types/Entry.ts:16](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Entry.ts#L16)
 
 ___
 
@@ -48,7 +48,7 @@ ___
 
 Ƭ **Entry**: [`BinEntry`](types_Entry.md#binentry) \| [`HashEntry`](types_Entry.md#hashentry) \| [`ValEntry`](types_Entry.md#valentry) \| [`RefEntry`](types_Entry.md#refentry) \| [`ZSetEntry`](types_Entry.md#zsetentry) \| [`SqlEntry`](types_Entry.md#sqlentry)
 
-ImmuDb entry, one of:
+immudb entry, one of:
 - binary entry - [BinEntry](types_Entry.md#binentry),
 - hash entry - [HashEntry](types_Entry.md#hashentry),
 - value entry - [ValEntry](types_Entry.md#valentry),
@@ -58,7 +58,7 @@ ImmuDb entry, one of:
 
 #### Defined in
 
-[immudb-node/src/types/Entry.ts:157](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Entry.ts#L157)
+[immudb-node/src/types/Entry.ts:157](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Entry.ts#L157)
 
 ___
 
@@ -78,7 +78,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/Entry.ts:25](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Entry.ts#L25)
+[immudb-node/src/types/Entry.ts:25](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Entry.ts#L25)
 
 ___
 
@@ -97,7 +97,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/Entry.ts:7](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Entry.ts#L7)
+[immudb-node/src/types/Entry.ts:7](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Entry.ts#L7)
 
 ___
 
@@ -118,7 +118,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/Entry.ts:43](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Entry.ts#L43)
+[immudb-node/src/types/Entry.ts:43](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Entry.ts#L43)
 
 ___
 
@@ -145,7 +145,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/Entry.ts:80](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Entry.ts#L80)
+[immudb-node/src/types/Entry.ts:80](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Entry.ts#L80)
 
 ___
 
@@ -166,7 +166,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/Entry.ts:122](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Entry.ts#L122)
+[immudb-node/src/types/Entry.ts:122](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Entry.ts#L122)
 
 ___
 
@@ -174,7 +174,7 @@ ___
 
 Ƭ **SqlEntry**: [`SqlRowEntry`](types_Entry.md#sqlrowentry) \| [`SqlColumnEntry`](types_Entry.md#sqlcolumnentry) \| [`SqlIndexEntry`](types_Entry.md#sqlindexentry) \| [`SqlTableEntry`](types_Entry.md#sqltableentry) \| [`SqlDbEntry`](types_Entry.md#sqldbentry)
 
-ImmuDb sql entry, one of:
+immudb sql entry, one of:
 - row entry - [SqlRowEntry](types_Entry.md#sqlrowentry),
 - column entry - [SqlColumnEntry](types_Entry.md#sqlcolumnentry),
 - index entry - [SqlIndexEntry](types_Entry.md#sqlindexentry),
@@ -183,7 +183,7 @@ ImmuDb sql entry, one of:
 
 #### Defined in
 
-[immudb-node/src/types/Entry.ts:140](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Entry.ts#L140)
+[immudb-node/src/types/Entry.ts:140](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Entry.ts#L140)
 
 ___
 
@@ -200,7 +200,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/Entry.ts:107](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Entry.ts#L107)
+[immudb-node/src/types/Entry.ts:107](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Entry.ts#L107)
 
 ___
 
@@ -224,7 +224,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/Entry.ts:95](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Entry.ts#L95)
+[immudb-node/src/types/Entry.ts:95](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Entry.ts#L95)
 
 ___
 
@@ -241,7 +241,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/Entry.ts:75](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Entry.ts#L75)
+[immudb-node/src/types/Entry.ts:75](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Entry.ts#L75)
 
 ___
 
@@ -264,7 +264,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/Entry.ts:64](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Entry.ts#L64)
+[immudb-node/src/types/Entry.ts:64](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Entry.ts#L64)
 
 ___
 
@@ -286,7 +286,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/Entry.ts:112](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Entry.ts#L112)
+[immudb-node/src/types/Entry.ts:112](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Entry.ts#L112)
 
 ___
 
@@ -306,7 +306,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/Entry.ts:34](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Entry.ts#L34)
+[immudb-node/src/types/Entry.ts:34](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Entry.ts#L34)
 
 ___
 
@@ -328,4 +328,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/Entry.ts:53](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Entry.ts#L53)
+[immudb-node/src/types/Entry.ts:53](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Entry.ts#L53)

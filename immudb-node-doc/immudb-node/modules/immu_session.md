@@ -32,7 +32,7 @@ Various immudb authorization headers
 
 #### Defined in
 
-[immudb-node/src/immu-session.ts:12](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-session.ts#L12)
+[immudb-node/src/immu-session.ts:12](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-session.ts#L12)
 
 ## Functions
 
@@ -41,7 +41,7 @@ Various immudb authorization headers
 ▸ **createImmuGrpcCallCredentials**(`props`): `grpcjs.CallCredentials`
 
 Creates grpcjs.CallCredentials object with provided [ImmuGrpcMetadata](immu_session.md#immugrpcmetadata)
-options specific to ImmuDb.
+options specific to immudb.
 
 #### Parameters
 
@@ -55,7 +55,7 @@ options specific to ImmuDb.
 
 #### Defined in
 
-[immudb-node/src/immu-session.ts:56](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-session.ts#L56)
+[immudb-node/src/immu-session.ts:56](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-session.ts#L56)
 
 ___
 
@@ -64,7 +64,7 @@ ___
 ▸ **createImmuGrpcMetadata**(`props`): `grpcjs.Metadata`
 
 Creates grpcjs.Metadata object with provided [ImmuGrpcMetadata](immu_session.md#immugrpcmetadata)
-options specific to ImmuDb.
+options specific to immudb.
 
 #### Parameters
 
@@ -78,4 +78,4 @@ options specific to ImmuDb.
 
 #### Defined in
 
-[immudb-node/src/immu-session.ts:37](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-session.ts#L37)
+[immudb-node/src/immu-session.ts:37](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-session.ts#L37)

@@ -27,7 +27,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-api/verification-set-val.ts:12](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/verification-set-val.ts#L12)
+[immudb-node/src/immu-api/verification-set-val.ts:12](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/verification-set-val.ts#L12)
 
 ## Functions
 
@@ -59,4 +59,4 @@
 
 #### Defined in
 
-[immudb-node/src/immu-api/verification-set-val.ts:19](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/verification-set-val.ts#L19)
+[immudb-node/src/immu-api/verification-set-val.ts:19](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/verification-set-val.ts#L19)

@@ -36,7 +36,7 @@ Decodes bytes to js types.
 
 #### Defined in
 
-[immudb-node/src/immu-sql/index.ts:36](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-sql/index.ts#L36)
+[immudb-node/src/immu-sql/index.ts:36](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-sql/index.ts#L36)
 
 ___
 
@@ -46,7 +46,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-sql/index.ts:8](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-sql/index.ts#L8)
+[immudb-node/src/immu-sql/index.ts:8](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-sql/index.ts#L8)
 
 ## Variables
 
@@ -58,7 +58,7 @@ Decodes bytes to js types.
 
 #### Defined in
 
-[immudb-node/src/immu-sql/index.ts:13](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-sql/index.ts#L13)
+[immudb-node/src/immu-sql/index.ts:13](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-sql/index.ts#L13)
 
 ## Functions
 
@@ -109,4 +109,4 @@ const mapTestTableRow = createSqlMap({
 
 #### Defined in
 
-[immudb-node/src/immu-sql/index.ts:65](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-sql/index.ts#L65)
+[immudb-node/src/immu-sql/index.ts:65](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-sql/index.ts#L65)

@@ -49,7 +49,7 @@ Decodes Buffer to sql column structure header from:
 
 #### Defined in
 
-[immudb-node/src/immu-entry/SqlColumnEntry.ts:127](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/SqlColumnEntry.ts#L127)
+[immudb-node/src/immu-entry/SqlColumnEntry.ts:127](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/SqlColumnEntry.ts#L127)
 
 ___
 
@@ -80,7 +80,7 @@ Decodes Buffer to sql column structure value from:
 
 #### Defined in
 
-[immudb-node/src/immu-entry/SqlColumnEntry.ts:167](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/SqlColumnEntry.ts#L167)
+[immudb-node/src/immu-entry/SqlColumnEntry.ts:167](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/SqlColumnEntry.ts#L167)
 
 ___
 
@@ -100,7 +100,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-entry/SqlColumnEntry.ts:21](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/SqlColumnEntry.ts#L21)
+[immudb-node/src/immu-entry/SqlColumnEntry.ts:21](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/SqlColumnEntry.ts#L21)
 
 ___
 
@@ -126,7 +126,7 @@ Meaning Buffer is sql column.
 
 #### Defined in
 
-[immudb-node/src/immu-entry/SqlColumnEntry.ts:104](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/SqlColumnEntry.ts#L104)
+[immudb-node/src/immu-entry/SqlColumnEntry.ts:104](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/SqlColumnEntry.ts#L104)
 
 ___
 
@@ -146,7 +146,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-entry/SqlColumnEntry.ts:59](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/SqlColumnEntry.ts#L59)
+[immudb-node/src/immu-entry/SqlColumnEntry.ts:59](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/SqlColumnEntry.ts#L59)
 
 ___
 
@@ -166,7 +166,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-entry/SqlColumnEntry.ts:72](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/SqlColumnEntry.ts#L72)
+[immudb-node/src/immu-entry/SqlColumnEntry.ts:72](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/SqlColumnEntry.ts#L72)
 
 ___
 
@@ -186,4 +186,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-entry/SqlColumnEntry.ts:84](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/SqlColumnEntry.ts#L84)
+[immudb-node/src/immu-entry/SqlColumnEntry.ts:84](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/SqlColumnEntry.ts#L84)

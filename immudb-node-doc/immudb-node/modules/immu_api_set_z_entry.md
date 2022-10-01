@@ -22,17 +22,17 @@
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `boundReferredKeyAtTxId?` | `boolean` | Setting this value to:  - `true` and if SetZSetEntryProps.referredKeyAtTxId is not set, then immudb    will set SetZSetEntryProps.referredKeyAtTxId to latest transaction id.  - `true` and if SetZSetEntryProps.referredKeyAtTxId is set    than operation behaviour is unknown.  - `false` or `undefinde` (default) operation behaviour will    not be changed. |
+| `boundReferredKeyAtTxId?` | `boolean` | Setting this value to: - `true` and if SetZSetEntryProps.referredKeyAtTxId is not set, then immudb   will set SetZSetEntryProps.referredKeyAtTxId to latest transaction id. - `true` and if SetZSetEntryProps.referredKeyAtTxId is set   than operation behaviour is unknown. - `false` or `undefinde` (default) operation behaviour will   not be changed. |
 | `options?` | { `dontWaitForIndexer?`: `boolean`  } | Operation options. |
-| `options.dontWaitForIndexer?` | `boolean` | Do not wait for ImmuDb to update database indexes, setting this  value to `true` may cause operation to speed up in exchange for  stale database latest keys values.    For example geting key value will return key value pointed by  indexer. If indexer is not up to date, returned value may be not  latest value.    Default value is `false`. |
+| `options.dontWaitForIndexer?` | `boolean` | Do not wait for immudb to update database indexes, setting this value to `true` may cause operation to speed up in exchange for stale database latest keys values.  For example geting key value will return key value pointed by indexer. If indexer is not up to date, returned value may be not latest value.  Default value is `false`. |
 | `referredKey` | `Buffer` | Key to include in set SetZSetEntryProps.zSet. |
-| `referredKeyAtTxId?` | `Long` | Optional transaction id for seeing key by indexer. If not set this value  will be set to `0` by immudb, meaning reference to latest value of key. |
+| `referredKeyAtTxId?` | `Long` | Optional transaction id for seeing key by indexer. If not set this value will be set to `0` by immudb, meaning reference to latest value of key. |
 | `referredKeyScore` | `number` | Key index in set. |
 | `zSet` | `Buffer` | Key of Set holding ZEntries. |
 
 #### Defined in
 
-[immudb-node/src/immu-api/set-z-entry.ts:10](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/set-z-entry.ts#L10)
+[immudb-node/src/immu-api/set-z-entry.ts:10](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/set-z-entry.ts#L10)
 
 ## Functions
 
@@ -64,4 +64,4 @@
 
 #### Defined in
 
-[immudb-node/src/immu-api/set-z-entry.ts:58](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/set-z-entry.ts#L58)
+[immudb-node/src/immu-api/set-z-entry.ts:58](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/set-z-entry.ts#L58)

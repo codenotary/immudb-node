@@ -31,7 +31,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-api/verification-get-sql-row.ts:11](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/verification-get-sql-row.ts#L11)
+[immudb-node/src/immu-api/verification-get-sql-row.ts:11](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/verification-get-sql-row.ts#L11)
 
 ## Functions
 
@@ -63,4 +63,4 @@
 
 #### Defined in
 
-[immudb-node/src/immu-api/verification-get-sql-row.ts:25](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/verification-get-sql-row.ts#L25)
+[immudb-node/src/immu-api/verification-get-sql-row.ts:25](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/verification-get-sql-row.ts#L25)

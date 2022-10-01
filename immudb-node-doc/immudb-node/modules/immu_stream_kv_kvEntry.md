@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-stream-kv/kvEntry.ts:23](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-stream-kv/kvEntry.ts#L23)
+[immudb-node/src/immu-stream-kv/kvEntry.ts:23](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-stream-kv/kvEntry.ts#L23)
 
 ___
 
@@ -52,7 +52,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-stream-kv/kvEntry.ts:8](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-stream-kv/kvEntry.ts#L8)
+[immudb-node/src/immu-stream-kv/kvEntry.ts:8](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-stream-kv/kvEntry.ts#L8)
 
 ___
 
@@ -80,7 +80,7 @@ following structure:
 
 #### Defined in
 
-[immudb-node/src/immu-stream-kv/kvEntry.ts:82](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-stream-kv/kvEntry.ts#L82)
+[immudb-node/src/immu-stream-kv/kvEntry.ts:82](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-stream-kv/kvEntry.ts#L82)
 
 ___
 
@@ -112,7 +112,7 @@ following structure:
 
 #### Defined in
 
-[immudb-node/src/immu-stream-kv/kvEntry.ts:46](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-stream-kv/kvEntry.ts#L46)
+[immudb-node/src/immu-stream-kv/kvEntry.ts:46](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-stream-kv/kvEntry.ts#L46)
 
 ___
 
@@ -144,4 +144,4 @@ following structure:
 
 #### Defined in
 
-[immudb-node/src/immu-stream-kv/kvEntry.ts:104](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-stream-kv/kvEntry.ts#L104)
+[immudb-node/src/immu-stream-kv/kvEntry.ts:104](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-stream-kv/kvEntry.ts#L104)

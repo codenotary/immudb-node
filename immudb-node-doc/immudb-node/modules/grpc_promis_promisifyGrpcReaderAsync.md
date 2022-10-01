@@ -54,7 +54,7 @@
 
 #### Defined in
 
-[immudb-node/src/grpc-promis/promisifyGrpcReaderAsync.ts:8](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/grpc-promis/promisifyGrpcReaderAsync.ts#L8)
+[immudb-node/src/grpc-promis/promisifyGrpcReaderAsync.ts:8](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/grpc-promis/promisifyGrpcReaderAsync.ts#L8)
 
 ___
 
@@ -98,7 +98,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/grpc-promis/promisifyGrpcReaderAsync.ts:86](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/grpc-promis/promisifyGrpcReaderAsync.ts#L86)
+[immudb-node/src/grpc-promis/promisifyGrpcReaderAsync.ts:86](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/grpc-promis/promisifyGrpcReaderAsync.ts#L86)
 
 ___
 
@@ -142,7 +142,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/grpc-promis/promisifyGrpcReaderAsync.ts:162](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/grpc-promis/promisifyGrpcReaderAsync.ts#L162)
+[immudb-node/src/grpc-promis/promisifyGrpcReaderAsync.ts:162](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/grpc-promis/promisifyGrpcReaderAsync.ts#L162)
 
 ___
 
@@ -186,7 +186,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/grpc-promis/promisifyGrpcReaderAsync.ts:293](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/grpc-promis/promisifyGrpcReaderAsync.ts#L293)
+[immudb-node/src/grpc-promis/promisifyGrpcReaderAsync.ts:293](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/grpc-promis/promisifyGrpcReaderAsync.ts#L293)
 
 ___
 
@@ -230,4 +230,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/grpc-promis/promisifyGrpcReaderAsync.ts:238](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/grpc-promis/promisifyGrpcReaderAsync.ts#L238)
+[immudb-node/src/grpc-promis/promisifyGrpcReaderAsync.ts:238](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/grpc-promis/promisifyGrpcReaderAsync.ts#L238)

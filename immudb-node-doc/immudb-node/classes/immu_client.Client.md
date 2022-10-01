@@ -87,7 +87,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:115](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L115)
+[immudb-node/src/immu-client.ts:115](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L115)
 
 ## Properties
 
@@ -97,7 +97,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:113](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L113)
+[immudb-node/src/immu-client.ts:113](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L113)
 
 ___
 
@@ -107,7 +107,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:109](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L109)
+[immudb-node/src/immu-client.ts:109](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L109)
 
 ___
 
@@ -178,7 +178,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:111](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L111)
+[immudb-node/src/immu-client.ts:111](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L111)
 
 ___
 
@@ -188,7 +188,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:110](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L110)
+[immudb-node/src/immu-client.ts:110](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L110)
 
 ___
 
@@ -198,7 +198,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:112](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L112)
+[immudb-node/src/immu-client.ts:112](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L112)
 
 ## Methods
 
@@ -207,7 +207,7 @@ ___
 ▸ **close**(): `Promise`<`void`\>
 
 Clears stored session tokens and credentials and closses session
-with ImmuDb
+with immudb
 
 #### Returns
 
@@ -215,7 +215,7 @@ with ImmuDb
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:179](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L179)
+[immudb-node/src/immu-client.ts:179](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L179)
 
 ___
 
@@ -231,7 +231,7 @@ Compacts current database index.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:832](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L832)
+[immudb-node/src/immu-client.ts:832](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L832)
 
 ___
 
@@ -239,7 +239,7 @@ ___
 
 ▸ **createDb**(`props`): `Promise`<{ `alreadyExisted`: `boolean` = resp.alreadyExisted; `database`: `string` = resp.name; `settings`: [`DatabaseSettings`](../modules/types_Db.md#databasesettings)  }\>
 
-Creates database as ImmuDb server.
+Creates database as immudb server.
 
 #### Parameters
 
@@ -253,7 +253,7 @@ Creates database as ImmuDb server.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:782](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L782)
+[immudb-node/src/immu-client.ts:782](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L782)
 
 ___
 
@@ -261,7 +261,7 @@ ___
 
 ▸ **createUser**(`props`): `Promise`<[`UserCredentials`](../modules/types_User.md#usercredentials) & [`DatabasePermission`](../modules/types_Permission.md#databasepermission)\>
 
-Creates ImmuDb server user
+Creates immudb server user
 
 #### Parameters
 
@@ -275,7 +275,7 @@ Creates ImmuDb server user
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:721](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L721)
+[immudb-node/src/immu-client.ts:721](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L721)
 
 ___
 
@@ -283,7 +283,7 @@ ___
 
 ▸ **deleteDb**(`props`): `Promise`<`string`\>
 
-Deletes database as ImmuDb server.
+Deletes database as immudb server.
 
 #### Parameters
 
@@ -297,7 +297,7 @@ Deletes database as ImmuDb server.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:792](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L792)
+[immudb-node/src/immu-client.ts:792](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L792)
 
 ___
 
@@ -305,7 +305,7 @@ ___
 
 ▸ **deleteUser**(`props`): `Promise`<[`SetUserActiveProps`](../modules/immu_api_user.md#setuseractiveprops) & { `credentials`: `CallCredentials`  }\>
 
-Deletes (deactivates) ImmuDb server user, can also activate user.
+Deletes (deactivates) immudb server user, can also activate user.
 
 #### Parameters
 
@@ -319,7 +319,7 @@ Deletes (deactivates) ImmuDb server user, can also activate user.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:731](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L731)
+[immudb-node/src/immu-client.ts:731](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L731)
 
 ___
 
@@ -346,7 +346,7 @@ will not be set once more.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:297](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L297)
+[immudb-node/src/immu-client.ts:297](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L297)
 
 ___
 
@@ -431,7 +431,7 @@ console.log(await client.sqlQuery({sql: `
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:640](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L640)
+[immudb-node/src/immu-client.ts:640](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L640)
 
 ___
 
@@ -453,7 +453,7 @@ Exports transaction.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:901](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L901)
+[immudb-node/src/immu-client.ts:901](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L901)
 
 ___
 
@@ -475,7 +475,7 @@ Flushes current database index.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:822](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L822)
+[immudb-node/src/immu-client.ts:822](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L822)
 
 ___
 
@@ -491,7 +491,7 @@ Creates and caches session credentials.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:162](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L162)
+[immudb-node/src/immu-client.ts:162](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L162)
 
 ___
 
@@ -507,7 +507,7 @@ Gets current database state.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:851](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L851)
+[immudb-node/src/immu-client.ts:851](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L851)
 
 ___
 
@@ -523,7 +523,7 @@ Gets current database settings.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:860](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L860)
+[immudb-node/src/immu-client.ts:860](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L860)
 
 ___
 
@@ -539,7 +539,7 @@ Gets and caches session tokens.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:150](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L150)
+[immudb-node/src/immu-client.ts:150](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L150)
 
 ___
 
@@ -562,7 +562,7 @@ for sql row primary key (which can be composite).
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:935](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L935)
+[immudb-node/src/immu-client.ts:935](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L935)
 
 ___
 
@@ -585,7 +585,7 @@ transaction id.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:923](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L923)
+[immudb-node/src/immu-client.ts:923](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L923)
 
 ___
 
@@ -608,7 +608,7 @@ Obtained entries are verifiable.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:440](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L440)
+[immudb-node/src/immu-client.ts:440](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L440)
 
 ___
 
@@ -648,7 +648,7 @@ To obtain sequential entries ordering set all actions to:
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:429](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L429)
+[immudb-node/src/immu-client.ts:429](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L429)
 
 ___
 
@@ -671,7 +671,7 @@ reference.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:452](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L452)
+[immudb-node/src/immu-client.ts:452](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L452)
 
 ___
 
@@ -694,7 +694,7 @@ ref) verification structure by looking for ValEntry or RefEntry key.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:947](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L947)
+[immudb-node/src/immu-client.ts:947](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L947)
 
 ___
 
@@ -717,7 +717,7 @@ reference.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:464](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L464)
+[immudb-node/src/immu-client.ts:464](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L464)
 
 ___
 
@@ -739,7 +739,7 @@ Gets values and refs for all provided keys.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:474](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L474)
+[immudb-node/src/immu-client.ts:474](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L474)
 
 ___
 
@@ -747,7 +747,7 @@ ___
 
 ▸ **keepAlive**(): `Promise`<`void`\>
 
-Asks ImmuDb to not close (idle?) connection.
+Asks immudb to not close (idle?) connection.
 
 #### Returns
 
@@ -755,7 +755,7 @@ Asks ImmuDb to not close (idle?) connection.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:188](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L188)
+[immudb-node/src/immu-client.ts:188](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L188)
 
 ___
 
@@ -763,7 +763,7 @@ ___
 
 ▸ **listDbs**(): `Promise`<[`DBRuntimeInfo`](../modules/types_Db.md#dbruntimeinfo)[]\>
 
-Lists all ImmuDb server databases.
+Lists all immudb server databases.
 
 #### Returns
 
@@ -771,7 +771,7 @@ Lists all ImmuDb server databases.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:842](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L842)
+[immudb-node/src/immu-client.ts:842](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L842)
 
 ___
 
@@ -779,7 +779,7 @@ ___
 
 ▸ **listUsers**(): `Promise`<[`UserInfo`](../modules/types_User.md#userinfo)[]\>
 
-Lists ImmuDb server users, can also activate user.
+Lists immudb server users, can also activate user.
 
 #### Returns
 
@@ -787,7 +787,7 @@ Lists ImmuDb server users, can also activate user.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:741](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L741)
+[immudb-node/src/immu-client.ts:741](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L741)
 
 ___
 
@@ -795,7 +795,7 @@ ___
 
 ▸ **loadDb**(`props`): `Promise`<`string`\>
 
-Loads database at ImmuDb server.
+Loads database at immudb server.
 
 #### Parameters
 
@@ -809,7 +809,7 @@ Loads database at ImmuDb server.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:802](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L802)
+[immudb-node/src/immu-client.ts:802](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L802)
 
 ___
 
@@ -831,7 +831,7 @@ Replicates transaction.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:890](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L890)
+[immudb-node/src/immu-client.ts:890](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L890)
 
 ___
 
@@ -853,7 +853,7 @@ Scans all database entries in one transaction.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:486](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L486)
+[immudb-node/src/immu-client.ts:486](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L486)
 
 ___
 
@@ -875,7 +875,7 @@ Scans entry history.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:497](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L497)
+[immudb-node/src/immu-client.ts:497](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L497)
 
 ___
 
@@ -898,7 +898,7 @@ Returns output as stream.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:510](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L510)
+[immudb-node/src/immu-client.ts:510](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L510)
 
 ___
 
@@ -907,7 +907,7 @@ ___
 ▸ **scanTxes**(`props`): `Promise`<`Tx__Output`[]\>
 
 Scans database transactions in one transaction. This is most fundamental
-operation of ImmuDb.
+operation of immudb.
 
 Result is composed in following way:
 - entries are filtered out for actions:
@@ -943,7 +943,7 @@ To obtain sequential transactions ordering set all actions as:
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:399](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L399)
+[immudb-node/src/immu-client.ts:399](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L399)
 
 ___
 
@@ -965,7 +965,7 @@ Scans database VEntries and RefEntries in one transaction.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:331](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L331)
+[immudb-node/src/immu-client.ts:331](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L331)
 
 ___
 
@@ -988,7 +988,7 @@ Returns output as stream.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:342](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L342)
+[immudb-node/src/immu-client.ts:342](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L342)
 
 ___
 
@@ -1010,7 +1010,7 @@ Scans database ZEntries in one transaction.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:352](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L352)
+[immudb-node/src/immu-client.ts:352](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L352)
 
 ___
 
@@ -1033,7 +1033,7 @@ Returns output as stream.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:364](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L364)
+[immudb-node/src/immu-client.ts:364](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L364)
 
 ___
 
@@ -1055,7 +1055,7 @@ Sets database settings.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:869](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L869)
+[immudb-node/src/immu-client.ts:869](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L869)
 
 ___
 
@@ -1077,7 +1077,7 @@ Sets RefEntry in one transaction.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:278](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L278)
+[immudb-node/src/immu-client.ts:278](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L278)
 
 ___
 
@@ -1101,7 +1101,7 @@ Returns RefEntry set and its verification structure.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:976](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L976)
+[immudb-node/src/immu-client.ts:976](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L976)
 
 ___
 
@@ -1109,7 +1109,7 @@ ___
 
 ▸ **setUserDbPermissions**(`props`): `Promise`<[`SetUserDbPermissionsProps`](../modules/immu_api_user.md#setuserdbpermissionsprops) & { `credentials`: `CallCredentials`  }\>
 
-Sets ImmuDb server user permissions.
+Sets immudb server user permissions.
 
 #### Parameters
 
@@ -1123,7 +1123,7 @@ Sets ImmuDb server user permissions.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:751](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L751)
+[immudb-node/src/immu-client.ts:751](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L751)
 
 ___
 
@@ -1131,7 +1131,7 @@ ___
 
 ▸ **setUserPassword**(`props`): `Promise`<`string`\>
 
-Sets ImmuDb server user password.
+Sets immudb server user password.
 
 #### Parameters
 
@@ -1145,7 +1145,7 @@ Sets ImmuDb server user password.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:761](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L761)
+[immudb-node/src/immu-client.ts:761](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L761)
 
 ___
 
@@ -1167,7 +1167,7 @@ Sets all value entries in one transaction.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:236](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L236)
+[immudb-node/src/immu-client.ts:236](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L236)
 
 ___
 
@@ -1191,7 +1191,7 @@ Returns entries set and its verification structure.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:961](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L961)
+[immudb-node/src/immu-client.ts:961](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L961)
 
 ___
 
@@ -1213,7 +1213,7 @@ Sets multiple ValEntries in one transaction.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:253](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L253)
+[immudb-node/src/immu-client.ts:253](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L253)
 
 ___
 
@@ -1235,7 +1235,7 @@ Sets multiple ValEntries, RefEntries or ZSetEntries in one transaction.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:209](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L209)
+[immudb-node/src/immu-client.ts:209](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L209)
 
 ___
 
@@ -1257,7 +1257,7 @@ Sets multiple ValEntries or ZSetEntries in one transaction.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:223](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L223)
+[immudb-node/src/immu-client.ts:223](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L223)
 
 ___
 
@@ -1279,7 +1279,7 @@ Sets ZEntry in one transaction.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:265](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L265)
+[immudb-node/src/immu-client.ts:265](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L265)
 
 ___
 
@@ -1303,7 +1303,7 @@ Returns ZSetEntry set and its verification structure.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:991](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L991)
+[immudb-node/src/immu-client.ts:991](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L991)
 
 ___
 
@@ -1325,7 +1325,7 @@ Executes sql batch as one transaction.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:565](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L565)
+[immudb-node/src/immu-client.ts:565](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L565)
 
 ___
 
@@ -1347,7 +1347,7 @@ Sql queries DB in one transaction. (Multiple result sets?)
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:532](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L532)
+[immudb-node/src/immu-client.ts:532](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L532)
 
 ___
 
@@ -1369,7 +1369,7 @@ Queries sql table schema.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:554](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L554)
+[immudb-node/src/immu-client.ts:554](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L554)
 
 ___
 
@@ -1391,7 +1391,7 @@ Queries current db for sql tables.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:543](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L543)
+[immudb-node/src/immu-client.ts:543](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L543)
 
 ___
 
@@ -1399,7 +1399,7 @@ ___
 
 ▸ **unloadDb**(`props`): `Promise`<`void`\>
 
-Unloads database at ImmuDb server.
+Unloads database at immudb server.
 
 #### Parameters
 
@@ -1413,4 +1413,4 @@ Unloads database at ImmuDb server.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:812](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L812)
+[immudb-node/src/immu-client.ts:812](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L812)

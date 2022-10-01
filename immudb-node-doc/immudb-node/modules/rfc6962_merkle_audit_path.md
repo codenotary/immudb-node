@@ -37,7 +37,7 @@ addition of leaf) computation of merkel hash of list.
 
 #### Defined in
 
-[immudb-node/src/rfc6962/merkle-audit-path.ts:56](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/rfc6962/merkle-audit-path.ts#L56)
+[immudb-node/src/rfc6962/merkle-audit-path.ts:56](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/rfc6962/merkle-audit-path.ts#L56)
 
 ___
 
@@ -61,4 +61,4 @@ size of leafs and index of selected leaf.
 
 #### Defined in
 
-[immudb-node/src/rfc6962/merkle-audit-path.ts:12](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/rfc6962/merkle-audit-path.ts#L12)
+[immudb-node/src/rfc6962/merkle-audit-path.ts:12](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/rfc6962/merkle-audit-path.ts#L12)

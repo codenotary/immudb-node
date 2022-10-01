@@ -26,12 +26,12 @@
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `database` | `string` | Name of immudb instance database |
-| `isLoaded` | `boolean` | Databases can be dynamically loaded and unloaded without having to  restart the server. After the database is unloaded, all its resources are  released. Unloaded databases cannot be queried or written to |
+| `isLoaded` | `boolean` | Databases can be dynamically loaded and unloaded without having to restart the server. After the database is unloaded, all its resources are released. Unloaded databases cannot be queried or written to |
 | `settings` | [`DatabaseSettings`](types_Db.md#databasesettings) | Database settings |
 
 #### Defined in
 
-[immudb-node/src/types/Db.ts:5](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Db.ts#L5)
+[immudb-node/src/types/Db.ts:5](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Db.ts#L5)
 
 ___
 
@@ -52,7 +52,7 @@ Database settings.
 
 #### Defined in
 
-[immudb-node/src/types/Db.ts:36](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Db.ts#L36)
+[immudb-node/src/types/Db.ts:36](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Db.ts#L36)
 
 ___
 
@@ -66,15 +66,15 @@ Database unchangable settings
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `fileSize?` | `number` | default storage layer implementation writes data into fixed-size files,  default size being 512MB. The current theoretical maximum number of files  is 100 millions. |
+| `fileSize?` | `number` | default storage layer implementation writes data into fixed-size files, default size being 512MB. The current theoretical maximum number of files is 100 millions. |
 | `indexSettings` | [`IndexSettingsReadonly`](types_Db.md#indexsettingsreadonly) | Indexing settings |
-| `maxKeyLen?` | `number` | maximum length of keys for entries stored in the database.    max maxKeyLen: 1024 Bytes (2^31-1 bytes) |
-| `maxTxEntries?` | `number` | In order to provide manageable limits, immudb is designed to set an upper  bound to the number of key-value pairs included in a single transaction.  The default value being 1024, so using default settings, the theoretical  number of key-value pairs that can be stored in immudb is: 1024 * (1^64 -  1). |
-| `maxValueLen?` | `number` | maximum length of value for entries stored in the database.    Max maxValueLen: 32 MB (2^56-1 bytes) |
+| `maxKeyLen?` | `number` | maximum length of keys for entries stored in the database.  max maxKeyLen: 1024 Bytes (2^31-1 bytes) |
+| `maxTxEntries?` | `number` | In order to provide manageable limits, immudb is designed to set an upper bound to the number of key-value pairs included in a single transaction. The default value being 1024, so using default settings, the theoretical number of key-value pairs that can be stored in immudb is: 1024 * (1^64 - 1). |
+| `maxValueLen?` | `number` | maximum length of value for entries stored in the database.  Max maxValueLen: 32 MB (2^56-1 bytes) |
 
 #### Defined in
 
-[immudb-node/src/types/Db.ts:105](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Db.ts#L105)
+[immudb-node/src/types/Db.ts:105](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Db.ts#L105)
 
 ___
 
@@ -88,9 +88,9 @@ Database changable settings
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `autoload?` | `boolean` | Should database be automatically loaded?:  * (default) yes -> leave this value undefined or set to true  * no -> set this value to false |
+| `autoload?` | `boolean` | Should database be automatically loaded?: * (default) yes -> leave this value undefined or set to true * no -> set this value to false |
 | `commitLogMaxOpenedFiles?` | `number` | maximum number of open files for commit log |
-| `excludeCommitTime?` | `boolean` | if set to true, commit time is not added to transaction headers allowing  reproducible database state |
+| `excludeCommitTime?` | `boolean` | if set to true, commit time is not added to transaction headers allowing reproducible database state |
 | `indexSettings` | [`IndexSettingsUpdatable`](types_Db.md#indexsettingsupdatable) | Indexing settings |
 | `maxConcurrency?` | `number` | max number of concurrent operations on the db |
 | `maxIOConcurrency?` | `number` | max number of concurrent IO operations on the db |
@@ -102,7 +102,7 @@ Database changable settings
 
 #### Defined in
 
-[immudb-node/src/types/Db.ts:42](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Db.ts#L42)
+[immudb-node/src/types/Db.ts:42](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Db.ts#L42)
 
 ___
 
@@ -114,7 +114,7 @@ Indexing settings
 
 #### Defined in
 
-[immudb-node/src/types/Db.ts:182](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Db.ts#L182)
+[immudb-node/src/types/Db.ts:182](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Db.ts#L182)
 
 ___
 
@@ -132,7 +132,7 @@ Indexing unchangable settings
 
 #### Defined in
 
-[immudb-node/src/types/Db.ts:189](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Db.ts#L189)
+[immudb-node/src/types/Db.ts:189](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Db.ts#L189)
 
 ___
 
@@ -147,19 +147,19 @@ ___
 | `cacheSize?` | `number` | size of btree node cache |
 | `cleanupPercentage?` | `number` \| `string` | % of data to be cleaned up from during next automatic flush operation |
 | `commitLogMaxOpenedFiles?` | `number` | maximum number of files opened for commit log |
-| `compactionThld?` | `number` | minimum number of flushed snapshots to enable full compaction of the  index |
+| `compactionThld?` | `number` | minimum number of flushed snapshots to enable full compaction of the index |
 | `delayDuringCompaction?` | `number` | extra delay added during indexing when full compaction is in progress |
 | `flushBufferSize?` | `number` | in-memory buffer size when doing flush operation |
 | `flushThreshold?` | `number` | threshold in number of entries between automatic flushes |
 | `historyLogMaxOpenedFiles?` | `number` | maximum number of files opened for nodes history |
 | `maxActiveSnapshots?` | `number` | max number of active in-memory btree snapshots |
 | `nodesLogMaxOpenedFiles?` | `number` | maximum number of files opened for nodes data |
-| `renewSnapRootAfter?` | `Long` | threshold in time for automated snapshot renewal during data scans  (in seconds?). |
+| `renewSnapRootAfter?` | `Long` | threshold in time for automated snapshot renewal during data scans (in seconds?). |
 | `syncThreshold?` | `number` | threshold in number of entries between flushes with sync |
 
 #### Defined in
 
-[immudb-node/src/types/Db.ts:199](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Db.ts#L199)
+[immudb-node/src/types/Db.ts:199](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Db.ts#L199)
 
 ___
 
@@ -182,4 +182,4 @@ Replication settings
 
 #### Defined in
 
-[immudb-node/src/types/Db.ts:150](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Db.ts#L150)
+[immudb-node/src/types/Db.ts:150](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Db.ts#L150)

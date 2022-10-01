@@ -18,9 +18,9 @@
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `status` | `boolean` | Status of immudb inistance:  * ok --> true  * something wrong --> false |
+| `status` | `boolean` | Status of immudb inistance: * ok --> true * something wrong --> false |
 | `version` | `string` | Version of instance. |
 
 #### Defined in
 
-[immudb-node/src/types/Instance.ts:5](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Instance.ts#L5)
+[immudb-node/src/types/Instance.ts:5](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Instance.ts#L5)

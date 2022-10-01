@@ -23,13 +23,13 @@
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `options?` | { `dontWaitForIndexer?`: `boolean`  } | Operation options. |
-| `options.dontWaitForIndexer?` | `boolean` | Do not wait for ImmuDb to update database indexes, setting this  value to `true` may cause operation to speed up in exchange for  stale database latest keys values.    For example geting key value will return key value pointed by  indexer. If indexer is not up to date, returned value may be not  latest value.    Default value is `false`. |
-| `params?` | [`SqlNamedValue`](types_SQL.md#sqlnamedvalue)[] | sql params    ```ts    sqlExec({    sql: 'select * from customer where id = :clientId',    params: [      {name: ':clientId', type: 'Int64', value: Long.fromValue(10)},    ]  })  ``` |
-| `sql` | `string` | Sql statements to execute. (May be multiple, all will be executed inside  automatic transaction.) |
+| `options.dontWaitForIndexer?` | `boolean` | Do not wait for immudb to update database indexes, setting this value to `true` may cause operation to speed up in exchange for stale database latest keys values.  For example geting key value will return key value pointed by indexer. If indexer is not up to date, returned value may be not latest value.  Default value is `false`. |
+| `params?` | [`SqlNamedValue`](types_SQL.md#sqlnamedvalue)[] | sql params  ```ts  sqlExec({   sql: 'select * from customer where id = :clientId',   params: [     {name: ':clientId', type: 'Int64', value: Long.fromValue(10)},   ] }) ``` |
+| `sql` | `string` | Sql statements to execute. (May be multiple, all will be executed inside automatic transaction.) |
 
 #### Defined in
 
-[immudb-node/src/immu-api/sql-exec.ts:10](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/sql-exec.ts#L10)
+[immudb-node/src/immu-api/sql-exec.ts:10](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/sql-exec.ts#L10)
 
 ## Functions
 
@@ -61,4 +61,4 @@
 
 #### Defined in
 
-[immudb-node/src/immu-api/sql-exec.ts:53](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/sql-exec.ts#L53)
+[immudb-node/src/immu-api/sql-exec.ts:53](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/sql-exec.ts#L53)

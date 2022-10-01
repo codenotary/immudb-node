@@ -34,4 +34,4 @@
 
 #### Defined in
 
-[immudb-node/src/grpc-promis/grpcWriteToEnd.ts:5](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/grpc-promis/grpcWriteToEnd.ts#L5)
+[immudb-node/src/grpc-promis/grpcWriteToEnd.ts:5](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/grpc-promis/grpcWriteToEnd.ts#L5)

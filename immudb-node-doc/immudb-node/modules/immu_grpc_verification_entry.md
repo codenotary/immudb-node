@@ -29,7 +29,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-grpc-verification/entry.ts:27](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc-verification/entry.ts#L27)
+[immudb-node/src/immu-grpc-verification/entry.ts:27](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc-verification/entry.ts#L27)
 
 ___
 
@@ -51,4 +51,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc-verification/entry.ts:11](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc-verification/entry.ts#L11)
+[immudb-node/src/immu-grpc-verification/entry.ts:11](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc-verification/entry.ts#L11)

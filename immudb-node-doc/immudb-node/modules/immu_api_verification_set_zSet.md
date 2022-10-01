@@ -38,4 +38,4 @@
 
 #### Defined in
 
-[immudb-node/src/immu-api/verification-set-zSet.ts:16](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/verification-set-zSet.ts#L16)
+[immudb-node/src/immu-api/verification-set-zSet.ts:16](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/verification-set-zSet.ts#L16)

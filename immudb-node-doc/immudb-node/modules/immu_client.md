@@ -36,7 +36,7 @@ Session configuration.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:1021](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L1021)
+[immudb-node/src/immu-client.ts:1021](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L1021)
 
 ## Variables
 
@@ -48,4 +48,4 @@ Config for local develpoment.
 
 #### Defined in
 
-[immudb-node/src/immu-client.ts:1047](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-client.ts#L1047)
+[immudb-node/src/immu-client.ts:1047](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-client.ts#L1047)

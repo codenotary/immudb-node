@@ -31,7 +31,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-entry/RefEntry.ts:51](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/RefEntry.ts#L51)
+[immudb-node/src/immu-entry/RefEntry.ts:51](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/RefEntry.ts#L51)
 
 ___
 
@@ -51,7 +51,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-entry/RefEntry.ts:13](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/RefEntry.ts#L13)
+[immudb-node/src/immu-entry/RefEntry.ts:13](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/RefEntry.ts#L13)
 
 ___
 
@@ -77,7 +77,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-entry/RefEntry.ts:62](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/RefEntry.ts#L62)
+[immudb-node/src/immu-entry/RefEntry.ts:62](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/RefEntry.ts#L62)
 
 ___
 
@@ -97,7 +97,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-entry/RefEntry.ts:27](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/RefEntry.ts#L27)
+[immudb-node/src/immu-entry/RefEntry.ts:27](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/RefEntry.ts#L27)
 
 ___
 
@@ -117,4 +117,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-entry/RefEntry.ts:46](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/RefEntry.ts#L46)
+[immudb-node/src/immu-entry/RefEntry.ts:46](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/RefEntry.ts#L46)

@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[immudb-node/src/types/TxEntry.ts:39](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/TxEntry.ts#L39)
+[immudb-node/src/types/TxEntry.ts:39](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/TxEntry.ts#L39)
 
 ___
 
@@ -38,7 +38,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/TxEntry.ts:40](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/TxEntry.ts#L40)
+[immudb-node/src/types/TxEntry.ts:40](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/TxEntry.ts#L40)
 
 ___
 
@@ -48,7 +48,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/TxEntry.ts:42](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/TxEntry.ts#L42)
+[immudb-node/src/types/TxEntry.ts:42](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/TxEntry.ts#L42)
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/TxEntry.ts:46](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/TxEntry.ts#L46)
+[immudb-node/src/types/TxEntry.ts:46](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/TxEntry.ts#L46)
 
 ___
 
@@ -68,7 +68,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/TxEntry.ts:49](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/TxEntry.ts#L49)
+[immudb-node/src/types/TxEntry.ts:49](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/TxEntry.ts#L49)
 
 ___
 
@@ -78,7 +78,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/TxEntry.ts:47](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/TxEntry.ts#L47)
+[immudb-node/src/types/TxEntry.ts:47](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/TxEntry.ts#L47)
 
 ___
 
@@ -88,7 +88,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/TxEntry.ts:45](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/TxEntry.ts#L45)
+[immudb-node/src/types/TxEntry.ts:45](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/TxEntry.ts#L45)
 
 ___
 
@@ -98,7 +98,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/TxEntry.ts:48](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/TxEntry.ts#L48)
+[immudb-node/src/types/TxEntry.ts:48](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/TxEntry.ts#L48)
 
 ___
 
@@ -108,7 +108,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/TxEntry.ts:30](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/TxEntry.ts#L30)
+[immudb-node/src/types/TxEntry.ts:30](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/TxEntry.ts#L30)
 
 ___
 
@@ -125,7 +125,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/TxEntry.ts:15](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/TxEntry.ts#L15)
+[immudb-node/src/types/TxEntry.ts:15](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/TxEntry.ts#L15)
 
 ___
 
@@ -135,7 +135,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/TxEntry.ts:21](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/TxEntry.ts#L21)
+[immudb-node/src/types/TxEntry.ts:21](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/TxEntry.ts#L21)
 
 ___
 
@@ -145,7 +145,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/TxEntry.ts:41](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/TxEntry.ts#L41)
+[immudb-node/src/types/TxEntry.ts:41](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/TxEntry.ts#L41)
 
 ___
 
@@ -155,4 +155,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/TxEntry.ts:43](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/TxEntry.ts#L43)
+[immudb-node/src/types/TxEntry.ts:43](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/TxEntry.ts#L43)

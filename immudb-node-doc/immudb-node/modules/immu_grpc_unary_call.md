@@ -85,7 +85,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:255](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L255)
+[immudb-node/src/immu-grpc/unary-call.ts:255](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L255)
 
 ___
 
@@ -117,7 +117,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:261](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L261)
+[immudb-node/src/immu-grpc/unary-call.ts:261](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L261)
 
 ___
 
@@ -149,7 +149,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:20](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L20)
+[immudb-node/src/immu-grpc/unary-call.ts:20](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L20)
 
 ___
 
@@ -181,7 +181,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:44](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L44)
+[immudb-node/src/immu-grpc/unary-call.ts:44](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L44)
 
 ___
 
@@ -213,7 +213,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:319](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L319)
+[immudb-node/src/immu-grpc/unary-call.ts:319](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L319)
 
 ___
 
@@ -245,7 +245,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:289](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L289)
+[immudb-node/src/immu-grpc/unary-call.ts:289](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L289)
 
 ___
 
@@ -277,7 +277,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:243](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L243)
+[immudb-node/src/immu-grpc/unary-call.ts:243](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L243)
 
 ___
 
@@ -309,7 +309,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:355](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L355)
+[immudb-node/src/immu-grpc/unary-call.ts:355](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L355)
 
 ___
 
@@ -341,7 +341,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:337](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L337)
+[immudb-node/src/immu-grpc/unary-call.ts:337](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L337)
 
 ___
 
@@ -373,7 +373,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:277](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L277)
+[immudb-node/src/immu-grpc/unary-call.ts:277](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L277)
 
 ___
 
@@ -405,7 +405,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:209](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L209)
+[immudb-node/src/immu-grpc/unary-call.ts:209](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L209)
 
 ___
 
@@ -437,7 +437,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:331](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L331)
+[immudb-node/src/immu-grpc/unary-call.ts:331](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L331)
 
 ___
 
@@ -469,7 +469,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:97](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L97)
+[immudb-node/src/immu-grpc/unary-call.ts:97](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L97)
 
 ___
 
@@ -501,7 +501,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:203](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L203)
+[immudb-node/src/immu-grpc/unary-call.ts:203](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L203)
 
 ___
 
@@ -533,7 +533,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:325](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L325)
+[immudb-node/src/immu-grpc/unary-call.ts:325](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L325)
 
 ___
 
@@ -565,7 +565,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:122](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L122)
+[immudb-node/src/immu-grpc/unary-call.ts:122](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L122)
 
 ___
 
@@ -597,7 +597,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:128](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L128)
+[immudb-node/src/immu-grpc/unary-call.ts:128](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L128)
 
 ___
 
@@ -629,7 +629,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:283](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L283)
+[immudb-node/src/immu-grpc/unary-call.ts:283](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L283)
 
 ___
 
@@ -661,7 +661,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:349](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L349)
+[immudb-node/src/immu-grpc/unary-call.ts:349](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L349)
 
 ___
 
@@ -693,7 +693,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:158](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L158)
+[immudb-node/src/immu-grpc/unary-call.ts:158](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L158)
 
 ___
 
@@ -725,7 +725,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:26](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L26)
+[immudb-node/src/immu-grpc/unary-call.ts:26](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L26)
 
 ___
 
@@ -757,7 +757,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:91](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L91)
+[immudb-node/src/immu-grpc/unary-call.ts:91](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L91)
 
 ___
 
@@ -789,7 +789,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:249](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L249)
+[immudb-node/src/immu-grpc/unary-call.ts:249](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L249)
 
 ___
 
@@ -821,7 +821,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:307](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L307)
+[immudb-node/src/immu-grpc/unary-call.ts:307](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L307)
 
 ___
 
@@ -853,7 +853,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:38](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L38)
+[immudb-node/src/immu-grpc/unary-call.ts:38](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L38)
 
 ___
 
@@ -885,7 +885,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:14](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L14)
+[immudb-node/src/immu-grpc/unary-call.ts:14](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L14)
 
 ___
 
@@ -917,7 +917,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:50](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L50)
+[immudb-node/src/immu-grpc/unary-call.ts:50](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L50)
 
 ___
 
@@ -949,7 +949,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:140](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L140)
+[immudb-node/src/immu-grpc/unary-call.ts:140](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L140)
 
 ___
 
@@ -981,7 +981,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:185](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L185)
+[immudb-node/src/immu-grpc/unary-call.ts:185](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L185)
 
 ___
 
@@ -1013,7 +1013,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:267](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L267)
+[immudb-node/src/immu-grpc/unary-call.ts:267](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L267)
 
 ___
 
@@ -1045,7 +1045,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:191](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L191)
+[immudb-node/src/immu-grpc/unary-call.ts:191](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L191)
 
 ___
 
@@ -1077,7 +1077,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:74](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L74)
+[immudb-node/src/immu-grpc/unary-call.ts:74](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L74)
 
 ___
 
@@ -1109,7 +1109,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:80](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L80)
+[immudb-node/src/immu-grpc/unary-call.ts:80](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L80)
 
 ___
 
@@ -1141,7 +1141,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:134](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L134)
+[immudb-node/src/immu-grpc/unary-call.ts:134](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L134)
 
 ___
 
@@ -1173,7 +1173,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:146](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L146)
+[immudb-node/src/immu-grpc/unary-call.ts:146](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L146)
 
 ___
 
@@ -1205,7 +1205,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:58](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L58)
+[immudb-node/src/immu-grpc/unary-call.ts:58](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L58)
 
 ___
 
@@ -1237,7 +1237,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:64](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L64)
+[immudb-node/src/immu-grpc/unary-call.ts:64](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L64)
 
 ___
 
@@ -1269,7 +1269,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:313](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L313)
+[immudb-node/src/immu-grpc/unary-call.ts:313](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L313)
 
 ___
 
@@ -1301,7 +1301,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:295](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L295)
+[immudb-node/src/immu-grpc/unary-call.ts:295](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L295)
 
 ___
 
@@ -1333,7 +1333,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:301](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L301)
+[immudb-node/src/immu-grpc/unary-call.ts:301](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L301)
 
 ___
 
@@ -1365,7 +1365,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:168](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L168)
+[immudb-node/src/immu-grpc/unary-call.ts:168](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L168)
 
 ___
 
@@ -1397,7 +1397,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:221](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L221)
+[immudb-node/src/immu-grpc/unary-call.ts:221](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L221)
 
 ___
 
@@ -1429,7 +1429,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:227](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L227)
+[immudb-node/src/immu-grpc/unary-call.ts:227](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L227)
 
 ___
 
@@ -1461,7 +1461,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:107](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L107)
+[immudb-node/src/immu-grpc/unary-call.ts:107](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L107)
 
 ___
 
@@ -1493,7 +1493,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:174](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L174)
+[immudb-node/src/immu-grpc/unary-call.ts:174](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L174)
 
 ___
 
@@ -1525,7 +1525,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:233](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L233)
+[immudb-node/src/immu-grpc/unary-call.ts:233](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L233)
 
 ___
 
@@ -1557,7 +1557,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:197](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L197)
+[immudb-node/src/immu-grpc/unary-call.ts:197](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L197)
 
 ___
 
@@ -1589,4 +1589,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/unary-call.ts:152](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/unary-call.ts#L152)
+[immudb-node/src/immu-grpc/unary-call.ts:152](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/unary-call.ts#L152)

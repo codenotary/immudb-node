@@ -27,7 +27,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-grpc-entry/kvmh.ts:10](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc-entry/kvmh.ts#L10)
+[immudb-node/src/immu-grpc-entry/kvmh.ts:10](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc-entry/kvmh.ts#L10)
 
 ___
 
@@ -47,4 +47,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc-entry/kvmh.ts:24](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc-entry/kvmh.ts#L24)
+[immudb-node/src/immu-grpc-entry/kvmh.ts:24](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc-entry/kvmh.ts#L24)

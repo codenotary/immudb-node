@@ -29,7 +29,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-verify-verification/tx.ts:73](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-verify-verification/tx.ts#L73)
+[immudb-node/src/immu-verify-verification/tx.ts:73](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-verify-verification/tx.ts#L73)
 
 ___
 
@@ -49,7 +49,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-verify-verification/tx.ts:15](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-verify-verification/tx.ts#L15)
+[immudb-node/src/immu-verify-verification/tx.ts:15](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-verify-verification/tx.ts#L15)
 
 ___
 
@@ -69,7 +69,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-verify-verification/tx.ts:150](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-verify-verification/tx.ts#L150)
+[immudb-node/src/immu-verify-verification/tx.ts:150](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-verify-verification/tx.ts#L150)
 
 ___
 
@@ -89,4 +89,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-verify-verification/tx.ts:7](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-verify-verification/tx.ts#L7)
+[immudb-node/src/immu-verify-verification/tx.ts:7](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-verify-verification/tx.ts#L7)

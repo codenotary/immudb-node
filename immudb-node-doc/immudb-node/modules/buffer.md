@@ -49,7 +49,7 @@ console.log(fromDoubleBe(number))
 
 #### Defined in
 
-[immudb-node/src/buffer.ts:244](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/buffer.ts#L244)
+[immudb-node/src/buffer.ts:244](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/buffer.ts#L244)
 
 ___
 
@@ -147,7 +147,7 @@ console.log(
 
 #### Defined in
 
-[immudb-node/src/buffer.ts:85](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/buffer.ts#L85)
+[immudb-node/src/buffer.ts:85](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/buffer.ts#L85)
 
 ___
 
@@ -179,7 +179,7 @@ console.log(fromUInt16Be(number))
 
 #### Defined in
 
-[immudb-node/src/buffer.ts:206](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/buffer.ts#L206)
+[immudb-node/src/buffer.ts:206](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/buffer.ts#L206)
 
 ___
 
@@ -211,7 +211,7 @@ console.log(fromUInt32Be(number))
 
 #### Defined in
 
-[immudb-node/src/buffer.ts:225](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/buffer.ts#L225)
+[immudb-node/src/buffer.ts:225](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/buffer.ts#L225)
 
 ___
 
@@ -243,7 +243,7 @@ console.log(fromUInt64BEAsBigInt(number))
 
 #### Defined in
 
-[immudb-node/src/buffer.ts:264](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/buffer.ts#L264)
+[immudb-node/src/buffer.ts:264](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/buffer.ts#L264)
 
 ___
 
@@ -274,7 +274,7 @@ console.log(fromUInt64BE(number))
 
 #### Defined in
 
-[immudb-node/src/buffer.ts:283](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/buffer.ts#L283)
+[immudb-node/src/buffer.ts:283](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/buffer.ts#L283)
 
 ___
 
@@ -306,7 +306,7 @@ console.log(fromUInt64BEAsNumber(number))
 
 #### Defined in
 
-[immudb-node/src/buffer.ts:300](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/buffer.ts#L300)
+[immudb-node/src/buffer.ts:300](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/buffer.ts#L300)
 
 ___
 
@@ -339,7 +339,7 @@ console.log(toDoubleBe(buf, offset))
 
 #### Defined in
 
-[immudb-node/src/buffer.ts:319](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/buffer.ts#L319)
+[immudb-node/src/buffer.ts:319](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/buffer.ts#L319)
 
 ___
 
@@ -444,7 +444,7 @@ console.log(
 
 #### Defined in
 
-[immudb-node/src/buffer.ts:179](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/buffer.ts#L179)
+[immudb-node/src/buffer.ts:179](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/buffer.ts#L179)
 
 ___
 
@@ -477,7 +477,7 @@ console.log(toUInt16BE(buffer, offset))
 
 #### Defined in
 
-[immudb-node/src/buffer.ts:381](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/buffer.ts#L381)
+[immudb-node/src/buffer.ts:381](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/buffer.ts#L381)
 
 ___
 
@@ -512,7 +512,7 @@ console.log(toUInt32BE(buffer, offset))
 
 #### Defined in
 
-[immudb-node/src/buffer.ts:362](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/buffer.ts#L362)
+[immudb-node/src/buffer.ts:362](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/buffer.ts#L362)
 
 ___
 
@@ -551,4 +551,4 @@ console.log(toUInt64BE(buffer, offset))
 
 #### Defined in
 
-[immudb-node/src/buffer.ts:342](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/buffer.ts#L342)
+[immudb-node/src/buffer.ts:342](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/buffer.ts#L342)

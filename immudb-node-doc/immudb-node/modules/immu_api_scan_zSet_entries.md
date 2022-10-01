@@ -23,21 +23,21 @@
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `dontWaitForLatestKeys?` | `boolean` | If set to `true`, seek does not wait for indexer to be synchronized.  This mean that operation may return stale values.    Not set does nothing (default). |
+| `dontWaitForLatestKeys?` | `boolean` | If set to `true`, seek does not wait for indexer to be synchronized. This mean that operation may return stale values.  Not set does nothing (default). |
 | `equalsScore?` | `number` | Include referenced entries heaving score equal to `equalsScore`. |
-| `inclusiveSeek?` | `boolean` | Wheader to include entries with ScanZSetEntriesProps.minScore  and ScanZSetEntriesProps.maxScore. |
+| `inclusiveSeek?` | `boolean` | Wheader to include entries with ScanZSetEntriesProps.minScore and ScanZSetEntriesProps.maxScore. |
 | `limit?` | `Long` | Limit output to number, no limit if `undefined` (default). |
 | `maxScore?` | `number` | Include referenced entries heaving score not greater than `maxScore`. |
 | `minScore?` | `number` | Include referenced entries heaving score at least `minScore`. |
 | `seekKey?` | `Buffer` | Include zEntries heaving key. |
-| `seenSinceTxId?` | `Long` | Get keys in transactions (database) after specified id.    Simulate situation as if database consists of transactions:  - from transaction `seenAtTxId`  - to most recent transaction. |
-| `seenToTxId?` | `Long` | Get keys in transactions (database) after specified id.    Simulate situation as if database consists of transactions:  - from first transaction   - to transaction with id `seenToTxId`. |
+| `seenSinceTxId?` | `Long` | Get keys in transactions (database) after specified id.  Simulate situation as if database consists of transactions: - from transaction `seenAtTxId` - to most recent transaction. |
+| `seenToTxId?` | `Long` | Get keys in transactions (database) after specified id.  Simulate situation as if database consists of transactions: - from first transaction  - to transaction with id `seenToTxId`. |
 | `set` | `Buffer` | Set to seek. |
-| `sortDescending?` | `boolean` | Sort order, default is ascending. To order descending set this field to  `true`. |
+| `sortDescending?` | `boolean` | Sort order, default is ascending. To order descending set this field to `true`. |
 
 #### Defined in
 
-[immudb-node/src/immu-api/scan-zSet-entries.ts:11](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/scan-zSet-entries.ts#L11)
+[immudb-node/src/immu-api/scan-zSet-entries.ts:11](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/scan-zSet-entries.ts#L11)
 
 ## Functions
 
@@ -69,7 +69,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-api/scan-zSet-entries.ts:69](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/scan-zSet-entries.ts#L69)
+[immudb-node/src/immu-api/scan-zSet-entries.ts:69](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/scan-zSet-entries.ts#L69)
 
 ___
 
@@ -101,4 +101,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/scan-zSet-entries.ts:115](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/scan-zSet-entries.ts#L115)
+[immudb-node/src/immu-api/scan-zSet-entries.ts:115](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/scan-zSet-entries.ts#L115)

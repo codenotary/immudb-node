@@ -33,7 +33,7 @@ Closest power of two value on the left
 
 #### Defined in
 
-[immudb-node/src/rfc6962/merkle-hash.ts:84](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/rfc6962/merkle-hash.ts#L84)
+[immudb-node/src/rfc6962/merkle-hash.ts:84](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/rfc6962/merkle-hash.ts#L84)
 
 ___
 
@@ -83,4 +83,4 @@ merkle hash
 
 #### Defined in
 
-[immudb-node/src/rfc6962/merkle-hash.ts:32](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/rfc6962/merkle-hash.ts#L32)
+[immudb-node/src/rfc6962/merkle-hash.ts:32](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/rfc6962/merkle-hash.ts#L32)

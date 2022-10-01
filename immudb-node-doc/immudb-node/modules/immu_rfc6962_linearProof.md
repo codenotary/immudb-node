@@ -31,7 +31,7 @@ RangeError when proofData is empty
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `props` | `Object` | - |
-| `props.proofData` | `Buffer`[] | Array of hashes, first element is hash of previous  block, rest are hashes of data. |
+| `props.proofData` | `Buffer`[] | Array of hashes, first element is hash of previous block, rest are hashes of data. |
 | `props.sourceTxId` | `Long` | Transaction id of previous block (UInt64) |
 
 #### Returns
@@ -47,7 +47,7 @@ Block hash and its transaction id
 
 #### Defined in
 
-[immudb-node/src/immu-rfc6962/linearProof.ts:16](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-rfc6962/linearProof.ts#L16)
+[immudb-node/src/immu-rfc6962/linearProof.ts:16](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-rfc6962/linearProof.ts#L16)
 
 ___
 
@@ -70,4 +70,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-rfc6962/linearProof.ts:69](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-rfc6962/linearProof.ts#L69)
+[immudb-node/src/immu-rfc6962/linearProof.ts:69](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-rfc6962/linearProof.ts#L69)

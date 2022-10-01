@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-stream-kv/consts.ts:3](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-stream-kv/consts.ts#L3)
+[immudb-node/src/immu-stream-kv/consts.ts:3](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-stream-kv/consts.ts#L3)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-stream-kv/consts.ts:5](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-stream-kv/consts.ts#L5)
+[immudb-node/src/immu-stream-kv/consts.ts:5](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-stream-kv/consts.ts#L5)
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-stream-kv/consts.ts:4](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-stream-kv/consts.ts#L4)
+[immudb-node/src/immu-stream-kv/consts.ts:4](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-stream-kv/consts.ts#L4)

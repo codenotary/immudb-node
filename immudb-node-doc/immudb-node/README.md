@@ -2,9 +2,13 @@ immudb-node / [Exports](modules.md)
 
 # Install & use
 
+To include (alpha) client in your code, do:
+
 ```sh
-npm install immudb-node
+npm install immudb-node@alpha
 ```
+
+Then use (see detailed examples in [showcases](../immudb-node-showcase/)):
 
 ```ts
 import { Client } from 'immudb-node'

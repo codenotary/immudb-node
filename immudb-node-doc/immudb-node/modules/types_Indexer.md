@@ -14,15 +14,15 @@
 
 Ƭ **IndexerInfo**: `Object`
 
-Entry and additional informations from ImmuDb server indexer.
+Entry and additional information from immudb server indexer.
 
 #### Type declaration
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `expired?` | `boolean` | Entry indexer context - is entry expired?    If `true` than entry metadata expiresAt |
-| `revision` | `Long` | Entry indexer context - entry revision.    (Assuming that for same key (different) values was set  multiple times, `revision` number is sequence number of  set operation.) |
+| `expired?` | `boolean` | Entry indexer context - is entry expired?  If `true` than entry metadata expiresAt |
+| `revision` | `Long` | Entry indexer context - entry revision.  (Assuming that for same key (different) values was set multiple times, `revision` number is sequence number of set operation.) |
 
 #### Defined in
 
-[immudb-node/src/types/Indexer.ts:9](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Indexer.ts#L9)
+[immudb-node/src/types/Indexer.ts:9](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Indexer.ts#L9)

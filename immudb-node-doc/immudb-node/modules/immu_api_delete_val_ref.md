@@ -24,12 +24,12 @@
 | :------ | :------ | :------ |
 | `keys` | `Buffer`[] | Array of key value pairs to set. |
 | `options?` | { `dontWaitForIndexer?`: `boolean`  } | Operation options. |
-| `options.dontWaitForIndexer?` | `boolean` | Do not wait for ImmuDb to update database indexes, setting this  value to `true` may cause operation to speed up in exchange for  stale database latest keys values.    For example geting key value will return key value pointed by  indexer. If indexer is not up to date, returned value may be not  latest value.    Default value is `false`. |
-| `seenSinceTxId?` | `Long` | Delete keys in transactions (database) after specified id.    Simulate situation as if database consists of transactions:  - from transaction `seenAtTxId`  - to most recent transaction. |
+| `options.dontWaitForIndexer?` | `boolean` | Do not wait for immudb to update database indexes, setting this value to `true` may cause operation to speed up in exchange for stale database latest keys values.  For example geting key value will return key value pointed by indexer. If indexer is not up to date, returned value may be not latest value.  Default value is `false`. |
+| `seenSinceTxId?` | `Long` | Delete keys in transactions (database) after specified id.  Simulate situation as if database consists of transactions: - from transaction `seenAtTxId` - to most recent transaction. |
 
 #### Defined in
 
-[immudb-node/src/immu-api/delete-val-ref.ts:8](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/delete-val-ref.ts#L8)
+[immudb-node/src/immu-api/delete-val-ref.ts:8](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/delete-val-ref.ts#L8)
 
 ## Functions
 
@@ -61,4 +61,4 @@
 
 #### Defined in
 
-[immudb-node/src/immu-api/delete-val-ref.ts:41](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/delete-val-ref.ts#L41)
+[immudb-node/src/immu-api/delete-val-ref.ts:41](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/delete-val-ref.ts#L41)

@@ -48,7 +48,7 @@ Hashes sql column entry. Schema is sha256 of:
 
 #### Defined in
 
-[immudb-node/src/immu-hash/sqlEntry.ts:111](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/sqlEntry.ts#L111)
+[immudb-node/src/immu-hash/sqlEntry.ts:111](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/sqlEntry.ts#L111)
 
 ___
 
@@ -79,7 +79,7 @@ Hashes sql database entry. Schema is sha256 of:
 
 #### Defined in
 
-[immudb-node/src/immu-hash/sqlEntry.ts:316](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/sqlEntry.ts#L316)
+[immudb-node/src/immu-hash/sqlEntry.ts:316](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/sqlEntry.ts#L316)
 
 ___
 
@@ -116,7 +116,7 @@ Hashes sql table entry. Schema is sha256 of:
 
 #### Defined in
 
-[immudb-node/src/immu-hash/sqlEntry.ts:189](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/sqlEntry.ts#L189)
+[immudb-node/src/immu-hash/sqlEntry.ts:189](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/sqlEntry.ts#L189)
 
 ___
 
@@ -154,7 +154,7 @@ Hashes sql row entry. Schema is sha256 of:
 
 #### Defined in
 
-[immudb-node/src/immu-hash/sqlEntry.ts:29](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/sqlEntry.ts#L29)
+[immudb-node/src/immu-hash/sqlEntry.ts:29](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/sqlEntry.ts#L29)
 
 ___
 
@@ -186,4 +186,4 @@ Hashes sql table entry. Schema is sha256 of:
 
 #### Defined in
 
-[immudb-node/src/immu-hash/sqlEntry.ts:260](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/sqlEntry.ts#L260)
+[immudb-node/src/immu-hash/sqlEntry.ts:260](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/sqlEntry.ts#L260)

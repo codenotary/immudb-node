@@ -27,14 +27,14 @@
 | `dbTxesWindow.startId?` | `Long` | - |
 | `key` | `Buffer` | - |
 | `options?` | { `dontWaitForIndexer?`: `boolean`  } | Operation options. |
-| `options.dontWaitForIndexer?` | `boolean` | Do not wait for ImmuDb to update database indexes, setting this  value to `true` may cause operation to speed up in exchange for  stale database latest keys values.    For example geting key value will return key value pointed by  indexer. If indexer is not up to date, returned value may be not  latest value.    Default value is `false`. |
+| `options.dontWaitForIndexer?` | `boolean` | Do not wait for immudb to update database indexes, setting this value to `true` may cause operation to speed up in exchange for stale database latest keys values.  For example geting key value will return key value pointed by indexer. If indexer is not up to date, returned value may be not latest value.  Default value is `false`. |
 | `refHash` | `Buffer` | - |
 | `refTxId` | `Long` | - |
 | `revisionId?` | `Long` | - |
 
 #### Defined in
 
-[immudb-node/src/immu-api/verification-get-val-ref.ts:12](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/verification-get-val-ref.ts#L12)
+[immudb-node/src/immu-api/verification-get-val-ref.ts:12](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/verification-get-val-ref.ts#L12)
 
 ## Functions
 
@@ -66,4 +66,4 @@
 
 #### Defined in
 
-[immudb-node/src/immu-api/verification-get-val-ref.ts:42](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/verification-get-val-ref.ts#L42)
+[immudb-node/src/immu-api/verification-get-val-ref.ts:42](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/verification-get-val-ref.ts#L42)

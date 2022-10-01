@@ -35,7 +35,7 @@ Binary formats entry KV metadata as concatence of following buffers:
 
 #### Defined in
 
-[immudb-node/src/immu-hash/EntryMetadata.ts:36](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/EntryMetadata.ts#L36)
+[immudb-node/src/immu-hash/EntryMetadata.ts:36](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/EntryMetadata.ts#L36)
 
 ___
 
@@ -55,4 +55,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/EntryMetadata.ts:10](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/EntryMetadata.ts#L10)
+[immudb-node/src/immu-hash/EntryMetadata.ts:10](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/EntryMetadata.ts#L10)

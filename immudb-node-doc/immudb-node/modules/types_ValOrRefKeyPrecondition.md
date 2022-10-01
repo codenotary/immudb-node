@@ -25,7 +25,7 @@ Key value condition, one of 3 possible conditions:
 
 #### Defined in
 
-[immudb-node/src/types/ValOrRefKeyPrecondition.ts:13](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/ValOrRefKeyPrecondition.ts#L13)
+[immudb-node/src/types/ValOrRefKeyPrecondition.ts:13](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/ValOrRefKeyPrecondition.ts#L13)
 
 ___
 
@@ -44,7 +44,7 @@ Key must exist condition.
 
 #### Defined in
 
-[immudb-node/src/types/ValOrRefKeyPrecondition.ts:19](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/ValOrRefKeyPrecondition.ts#L19)
+[immudb-node/src/types/ValOrRefKeyPrecondition.ts:19](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/ValOrRefKeyPrecondition.ts#L19)
 
 ___
 
@@ -63,7 +63,7 @@ Key must exist condition.
 
 #### Defined in
 
-[immudb-node/src/types/ValOrRefKeyPrecondition.ts:26](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/ValOrRefKeyPrecondition.ts#L26)
+[immudb-node/src/types/ValOrRefKeyPrecondition.ts:26](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/ValOrRefKeyPrecondition.ts#L26)
 
 ___
 
@@ -83,4 +83,4 @@ Key must not be modified since transaction with id condition.
 
 #### Defined in
 
-[immudb-node/src/types/ValOrRefKeyPrecondition.ts:32](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/ValOrRefKeyPrecondition.ts#L32)
+[immudb-node/src/types/ValOrRefKeyPrecondition.ts:32](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/ValOrRefKeyPrecondition.ts#L32)

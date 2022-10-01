@@ -15,7 +15,7 @@
 
 Ƭ **Provable**: [`ProvableTx`](types_Provable.md#provabletx) \| [`ProvableTx`](types_Provable.md#provabletx)[] \| [`TxEntry`](types_TxEntry.md#txentry) \| [`TxEntry`](types_TxEntry.md#txentry)[]
 
-ImmuDb can prove what has been set in what transaction, this implies that any
+immudb can prove what has been set in what transaction, this implies that any
 number of transaction can be verified.
 
 As transaction (Tx) can contain entries (of type Entry), any
@@ -26,7 +26,7 @@ As list of transaction also can be proved, whole database composed of entries
 
 #### Defined in
 
-[immudb-node/src/types/Provable.ts:50](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Provable.ts#L50)
+[immudb-node/src/types/Provable.ts:50](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Provable.ts#L50)
 
 ___
 
@@ -34,20 +34,20 @@ ___
 
 Ƭ **ProvableTx**: `Object`
 
-Structure represetning fundamental data which existance in ImmuDb can be
+Structure representing fundamental data which existence in immudb can be
 verified.
 
 Minimal required data is transaction id Verifiable.id, because it
-uniqly identifies transaction TxAnonymous, which is an atom of
+uniquely identifies transaction TxAnonymous, which is an atom of
 verification process.
 
 Common users would be also interested in:
 - time of creation - Verifiable.timestamp
 - some entries - Verifiable.entries.
 
-All filds could be verified.
+All fields could be verified.
 
-Verification process in all cases will verify all filds but entries. Entries
+Verification process in all cases will verify all fields but entries. Entries
 will be verified if specified and in this situation sometimes all entries
 will be verified, even if not specified.
 
@@ -66,4 +66,4 @@ will be verified, even if not specified.
 
 #### Defined in
 
-[immudb-node/src/types/Provable.ts:28](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Provable.ts#L28)
+[immudb-node/src/types/Provable.ts:28](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Provable.ts#L28)
