@@ -1,0 +1,36 @@
+name: Build and run immudb-node
+
+on:
+  push:
+    branches:
+    - '**'
+  pull_request:
+    branches:
+    - '**'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Build
+        run: |
+          npm ci
+          npm run build
+      - name: Run immudb
+        run: |
+           docker run -d --rm --health-cmd "immuadmin status" --health-interval 10s --health-timeout 5s --health-retries 5 -p 3322:3322 codenotary/immudb:latest
+      - name: Run showcase
+        run: |
+          cd immudb-node-showcase
+          npx ts-node --esm ./src/scanning.ts

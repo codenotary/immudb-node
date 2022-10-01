@@ -1,0 +1,47 @@
+{
+    "name": "immudb-node",
+    "version": "2.0.0-alpha.0",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/codenotary/immudb-node.git",
+        "directory": "immudb-node"
+    },
+    "description": "immudb node client.",
+    "keywords": [
+        "immudb",
+        "database",
+        "sql",
+        "key",
+        "value",
+        "store",
+        "immutable",
+        "merkle",
+        "cryptography",
+        "merkle-proof",
+        "verifiable",
+        "tamperproof"
+    ],
+    "type": "module",
+    "main": "./dist/index.js",
+    "files": [
+        "dist",
+        "LICENSE"
+    ],
+    "exports": {
+        ".": "./dist/index.js"
+    },
+    "types": "dist/index.d.ts",
+    "dependencies": {
+        "@grpc/grpc-js": "^1.7.0",
+        "immudb-node-grpcjs": "2.0.0-alpha.0",
+        "immudb-node-pbjs": "2.0.0-alpha.0",
+        "long": "^5.2.0"
+    },
+    "devDependencies": {
+        "typescript": "^4.8.3"
+    },
+    "scripts": {
+        "build": "tsc"
+    }
+}

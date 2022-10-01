@@ -1,0 +1,32 @@
+{
+    "name": "immudb-node-pbjs",
+    "version": "2.0.0-alpha.0",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/codenotary/immudb-node.git",
+        "directory": "immudb-node-pbjs"
+    },
+    "description": "immudb schema.proto protobuf node bindings.",
+    "keywords": [
+        "immudb",
+        "protobuf",
+        "bindings"
+    ],
+    "type": "module",
+    "main": "./src/main.js",
+    "types": "src/main.d.ts",
+    "files": [
+        "src",
+        "schema.proto",
+        "LICENSE"
+    ],
+    "dependencies": {
+        "long": "^5.2.0",
+        "protobufjs": "^7.1.1"
+    },
+    "devDependencies": {
+        "protobufjs-cli": "^1.0.2",
+        "typescript": "^4.8.3"
+    }
+}

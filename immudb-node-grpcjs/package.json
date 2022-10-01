@@ -1,0 +1,38 @@
+{
+    "name": "immudb-node-grpcjs",
+    "version": "2.0.0-alpha.0",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/codenotary/immudb-node.git",
+        "directory": "immudb-node-grpcjs"
+    },
+    "description": "immudb schema.proto grpc node bindings.",
+    "keywords": [
+        "immudb",
+        "grpc",
+        "bindings"
+    ],
+    "type": "module",
+    "main": "./dist/main.js",
+    "files": [
+        "dist",
+        "schema.proto",
+        "LICENSE"
+    ],
+    "exports": {
+        ".": "./dist/main.js"
+    },
+    "types": "dist/main.d.ts",
+    "dependencies": {
+        "@grpc/grpc-js": "^1.7.0",
+        "@grpc/proto-loader": "^0.7.2",
+        "long": "^5.2.0"
+    },
+    "devDependencies": {
+        "typescript": "^4.8.3"
+    },
+    "scripts": {
+        "build": "tsc"
+    }
+}
