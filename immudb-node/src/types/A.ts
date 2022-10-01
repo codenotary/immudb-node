@@ -6,7 +6,7 @@ import Long from "long"
 
 
 /** 
- * Structure influencing ImmuDb Indexer behaviour for
+ * Structure influencing immudb Indexer behaviour for
  * indexing {@link Entry}'ies.
  */
 export type EntryMetadata = {
@@ -24,7 +24,7 @@ export type EntryMetadata = {
      */
     nonIndexable?: boolean,
     /**
-     * If set and ImmuDb server time is after, this key value will be marked as expired
+     * If set and immudb server time is after, this key value will be marked as expired
      * when queried. Latest key value may than return other value.
      */
     expiresAt?: Long,
@@ -161,7 +161,7 @@ export type SqlDbEntry = {
 
 
 /**
- * ImmuDb sql entry, one of:
+ * immudb sql entry, one of:
  * - row entry - {@link SqlRowEntry},
  * - column entry - {@link SqlColumnEntry},
  * - index entry - {@link SqlIndexEntry},
@@ -177,7 +177,7 @@ export type SqlEntry =
 
 
 /**
- * ImmuDb entry, one of:
+ * immudb entry, one of:
  * - binary entry - {@link BinEntry},
  * - hash entry - {@link LeafEntry},
  * - value entry - {@link ValEntry},
@@ -244,7 +244,7 @@ export type SqlDbTxEntry        = TxContext & SqlDbEntry
 
 
 /**
- * Entry and additional informations from ImmuDb server indexer.
+ * Entry and additional informations from immudb server indexer.
  * 
  */
 export type IndexerInfo = {
@@ -539,7 +539,7 @@ export type TxFullComputed = TxFull & TxEntriesComputed
 
 
 /**
- * Structure represetning fundamental data which existance in ImmuDb can be
+ * Structure represetning fundamental data which existance in immudb can be
  * verified.
  *
  * Minimal required data is transaction id {@link Verifiable.id}, because it
@@ -569,7 +569,7 @@ export type ProvableTx = {
 
 
 /**
- * ImmuDb can prove what has been set in what transaction, this implies that any
+ * immudb can prove what has been set in what transaction, this implies that any
  * number of transaction can be verified.
  *
  * As transaction ({@link Tx}) can contain entries (of type {@link Entry}), any

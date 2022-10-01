@@ -25,13 +25,13 @@
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `params?` | [`SqlNamedValue`](types_SQL.md#sqlnamedvalue)[] | sql params    ```ts    sqlExec({    sql: 'select * from customer where id = :clientId',    params: [      {name: ':clientId', type: 'Int64', value: Long.fromValue(10)},    ]  })  ``` |
-| `reuseSnapshot?` | `boolean` | Does this query operation needs refreshed index  or not? (perhaps earlier operation was also read). |
-| `sql` | `string` | Sql statements to execute. (May be multiple, all will be executed inside  automatic transaction.) |
+| `params?` | [`SqlNamedValue`](types_SQL.md#sqlnamedvalue)[] | sql params  ```ts  sqlExec({   sql: 'select * from customer where id = :clientId',   params: [     {name: ':clientId', type: 'Int64', value: Long.fromValue(10)},   ] }) ``` |
+| `reuseSnapshot?` | `boolean` | Does this query operation needs refreshed index or not? (perhaps earlier operation was also read). |
+| `sql` | `string` | Sql statements to execute. (May be multiple, all will be executed inside automatic transaction.) |
 
 #### Defined in
 
-[immudb-node/src/immu-api/sql-query.ts:11](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/sql-query.ts#L11)
+[immudb-node/src/immu-api/sql-query.ts:11](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/sql-query.ts#L11)
 
 ___
 
@@ -47,7 +47,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/sql-query.ts:103](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/sql-query.ts#L103)
+[immudb-node/src/immu-api/sql-query.ts:103](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/sql-query.ts#L103)
 
 ## Functions
 
@@ -79,7 +79,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/sql-query.ts:43](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/sql-query.ts#L43)
+[immudb-node/src/immu-api/sql-query.ts:43](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/sql-query.ts#L43)
 
 ___
 
@@ -111,7 +111,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/sql-query.ts:111](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/sql-query.ts#L111)
+[immudb-node/src/immu-api/sql-query.ts:111](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/sql-query.ts#L111)
 
 ___
 
@@ -144,4 +144,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/sql-query.ts:74](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/sql-query.ts#L74)
+[immudb-node/src/immu-api/sql-query.ts:74](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/sql-query.ts#L74)

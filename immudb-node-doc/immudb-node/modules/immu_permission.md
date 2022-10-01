@@ -42,7 +42,7 @@ Invert<{None: 0, Sth: 1} as const>
 
 #### Defined in
 
-[immudb-node/src/immu-permission.ts:78](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-permission.ts#L78)
+[immudb-node/src/immu-permission.ts:78](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-permission.ts#L78)
 
 ## Variables
 
@@ -52,7 +52,7 @@ Invert<{None: 0, Sth: 1} as const>
 
 #### Defined in
 
-[immudb-node/src/immu-permission.ts:83](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-permission.ts#L83)
+[immudb-node/src/immu-permission.ts:83](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-permission.ts#L83)
 
 ___
 
@@ -74,7 +74,7 @@ Permission names to codes.
 
 #### Defined in
 
-[immudb-node/src/immu-permission.ts:45](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-permission.ts#L45)
+[immudb-node/src/immu-permission.ts:45](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-permission.ts#L45)
 
 ## Functions
 
@@ -94,7 +94,7 @@ Permission names to codes.
 
 #### Defined in
 
-[immudb-node/src/immu-permission.ts:18](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-permission.ts#L18)
+[immudb-node/src/immu-permission.ts:18](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-permission.ts#L18)
 
 ___
 
@@ -114,7 +114,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-permission.ts:29](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-permission.ts#L29)
+[immudb-node/src/immu-permission.ts:29](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-permission.ts#L29)
 
 ___
 
@@ -134,4 +134,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-permission.ts:6](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-permission.ts#L6)
+[immudb-node/src/immu-permission.ts:6](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-permission.ts#L6)

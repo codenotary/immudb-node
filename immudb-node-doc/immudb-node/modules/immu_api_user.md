@@ -30,13 +30,13 @@
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `database` | `string` | New user database name for which she will have permission |
-| `password` | `string` | Password of new user. Password must have between 8 and 32 letters,  digits and special characters of which at least 1 uppercase letter, 1  digit and 1 special character. |
-| `permission` | [`Permission`](types_Permission.md#permission) | Permission given to new user on selected database.  New user creator must have permissions for giving permissions  on selected database. |
+| `password` | `string` | Password of new user. Password must have between 8 and 32 letters, digits and special characters of which at least 1 uppercase letter, 1 digit and 1 special character. |
+| `permission` | [`Permission`](types_Permission.md#permission) | Permission given to new user on selected database. New user creator must have permissions for giving permissions on selected database. |
 | `username` | `string` | Name of new user. Must be unique. |
 
 #### Defined in
 
-[immudb-node/src/immu-api/user.ts:73](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/user.ts#L73)
+[immudb-node/src/immu-api/user.ts:73](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/user.ts#L73)
 
 ___
 
@@ -53,7 +53,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/user.ts:176](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/user.ts#L176)
+[immudb-node/src/immu-api/user.ts:176](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/user.ts#L176)
 
 ___
 
@@ -72,7 +72,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/user.ts:215](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/user.ts#L215)
+[immudb-node/src/immu-api/user.ts:215](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/user.ts#L215)
 
 ___
 
@@ -84,13 +84,13 @@ ___
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `newPassword` | `string` | New password. Must have between 8 and 32 letters, digits and special  characters of which at least 1 uppercase letter, 1 digit and 1 special  character. |
+| `newPassword` | `string` | New password. Must have between 8 and 32 letters, digits and special characters of which at least 1 uppercase letter, 1 digit and 1 special character. |
 | `password` | `string` | Actual password |
 | `username` | `string` | Name of new user. Must be unique. |
 
 #### Defined in
 
-[immudb-node/src/immu-api/user.ts:130](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/user.ts#L130)
+[immudb-node/src/immu-api/user.ts:130](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/user.ts#L130)
 
 ## Functions
 
@@ -122,7 +122,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/user.ts:97](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/user.ts#L97)
+[immudb-node/src/immu-api/user.ts:97](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/user.ts#L97)
 
 ___
 
@@ -155,7 +155,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/user.ts:13](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/user.ts#L13)
+[immudb-node/src/immu-api/user.ts:13](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/user.ts#L13)
 
 ___
 
@@ -187,7 +187,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/user.ts:188](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/user.ts#L188)
+[immudb-node/src/immu-api/user.ts:188](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/user.ts#L188)
 
 ___
 
@@ -219,7 +219,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/user.ts:235](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/user.ts#L235)
+[immudb-node/src/immu-api/user.ts:235](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/user.ts#L235)
 
 ___
 
@@ -251,4 +251,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/user.ts:148](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/user.ts#L148)
+[immudb-node/src/immu-api/user.ts:148](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/user.ts#L148)

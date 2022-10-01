@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-kvm-entry/index.ts:44](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-kvm-entry/index.ts#L44)
+[immudb-node/src/immu-kvm-entry/index.ts:44](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-kvm-entry/index.ts#L44)
 
 ___
 
@@ -48,7 +48,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-kvm-entry/index.ts:24](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-kvm-entry/index.ts#L24)
+[immudb-node/src/immu-kvm-entry/index.ts:24](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-kvm-entry/index.ts#L24)
 
 ___
 
@@ -69,4 +69,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-kvm-entry/index.ts:7](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-kvm-entry/index.ts#L7)
+[immudb-node/src/immu-kvm-entry/index.ts:7](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-kvm-entry/index.ts#L7)

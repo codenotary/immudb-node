@@ -48,7 +48,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:69](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L69)
+[immudb-node/src/immu-hash/consts.ts:69](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L69)
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:67](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L67)
+[immudb-node/src/immu-hash/consts.ts:67](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L67)
 
 ___
 
@@ -72,7 +72,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:61](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L61)
+[immudb-node/src/immu-hash/consts.ts:61](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L61)
 
 ___
 
@@ -84,7 +84,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:63](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L63)
+[immudb-node/src/immu-hash/consts.ts:63](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L63)
 
 ___
 
@@ -96,7 +96,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:51](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L51)
+[immudb-node/src/immu-hash/consts.ts:51](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L51)
 
 ___
 
@@ -108,7 +108,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:55](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L55)
+[immudb-node/src/immu-hash/consts.ts:55](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L55)
 
 ___
 
@@ -120,7 +120,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:49](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L49)
+[immudb-node/src/immu-hash/consts.ts:49](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L49)
 
 ___
 
@@ -132,7 +132,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:53](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L53)
+[immudb-node/src/immu-hash/consts.ts:53](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L53)
 
 ___
 
@@ -144,7 +144,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:5](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L5)
+[immudb-node/src/immu-hash/consts.ts:5](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L5)
 
 ___
 
@@ -156,7 +156,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:7](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L7)
+[immudb-node/src/immu-hash/consts.ts:7](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L7)
 
 ___
 
@@ -168,7 +168,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:14](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L14)
+[immudb-node/src/immu-hash/consts.ts:14](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L14)
 
 ___
 
@@ -180,7 +180,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:12](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L12)
+[immudb-node/src/immu-hash/consts.ts:12](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L12)
 
 ___
 
@@ -192,7 +192,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:10](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L10)
+[immudb-node/src/immu-hash/consts.ts:10](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L10)
 
 ___
 
@@ -204,7 +204,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:45](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L45)
+[immudb-node/src/immu-hash/consts.ts:45](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L45)
 
 ___
 
@@ -216,7 +216,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:43](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L43)
+[immudb-node/src/immu-hash/consts.ts:43](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L43)
 
 ___
 
@@ -228,7 +228,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:22](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L22)
+[immudb-node/src/immu-hash/consts.ts:22](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L22)
 
 ___
 
@@ -240,7 +240,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:24](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L24)
+[immudb-node/src/immu-hash/consts.ts:24](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L24)
 
 ___
 
@@ -252,7 +252,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:26](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L26)
+[immudb-node/src/immu-hash/consts.ts:26](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L26)
 
 ___
 
@@ -264,7 +264,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:32](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L32)
+[immudb-node/src/immu-hash/consts.ts:32](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L32)
 
 ___
 
@@ -276,7 +276,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:38](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L38)
+[immudb-node/src/immu-hash/consts.ts:38](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L38)
 
 ___
 
@@ -288,7 +288,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:34](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L34)
+[immudb-node/src/immu-hash/consts.ts:34](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L34)
 
 ___
 
@@ -300,7 +300,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:30](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L30)
+[immudb-node/src/immu-hash/consts.ts:30](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L30)
 
 ___
 
@@ -312,7 +312,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:36](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L36)
+[immudb-node/src/immu-hash/consts.ts:36](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L36)
 
 ## Functions
 
@@ -334,7 +334,7 @@ Checks if byte value have [FlagAutoIncrement](immu_hash_consts.md#flagautoincrem
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:81](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L81)
+[immudb-node/src/immu-hash/consts.ts:81](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L81)
 
 ___
 
@@ -356,7 +356,7 @@ Checks if byte value have [FlagNullable](immu_hash_consts.md#flagnullable) bit s
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:77](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L77)
+[immudb-node/src/immu-hash/consts.ts:77](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L77)
 
 ___
 
@@ -378,7 +378,7 @@ Returns byte value with [FlagAutoIncrement](immu_hash_consts.md#flagautoincremen
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:90](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L90)
+[immudb-node/src/immu-hash/consts.ts:90](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L90)
 
 ___
 
@@ -400,7 +400,7 @@ Returns byte value with [FlagNullable](immu_hash_consts.md#flagnullable) bit set
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:86](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L86)
+[immudb-node/src/immu-hash/consts.ts:86](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L86)
 
 ___
 
@@ -425,4 +425,4 @@ bits set if required, leaves bits unchanged if setting not specified.
 
 #### Defined in
 
-[immudb-node/src/immu-hash/consts.ts:97](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/consts.ts#L97)
+[immudb-node/src/immu-hash/consts.ts:97](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/consts.ts#L97)

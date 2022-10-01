@@ -24,7 +24,7 @@
 
 #### Defined in
 
-[immudb-node/src/types/User.ts:33](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/User.ts#L33)
+[immudb-node/src/types/User.ts:33](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/User.ts#L33)
 
 ___
 
@@ -44,4 +44,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/User.ts:8](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/User.ts#L8)
+[immudb-node/src/types/User.ts:8](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/User.ts#L8)

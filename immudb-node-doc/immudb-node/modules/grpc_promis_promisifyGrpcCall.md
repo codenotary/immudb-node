@@ -49,7 +49,7 @@
 
 #### Defined in
 
-[immudb-node/src/grpc-promis/promisifyGrpcCall.ts:8](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/grpc-promis/promisifyGrpcCall.ts#L8)
+[immudb-node/src/grpc-promis/promisifyGrpcCall.ts:8](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/grpc-promis/promisifyGrpcCall.ts#L8)
 
 ___
 
@@ -93,7 +93,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/grpc-promis/promisifyGrpcCall.ts:64](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/grpc-promis/promisifyGrpcCall.ts#L64)
+[immudb-node/src/grpc-promis/promisifyGrpcCall.ts:64](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/grpc-promis/promisifyGrpcCall.ts#L64)
 
 ___
 
@@ -132,4 +132,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/grpc-promis/promisifyGrpcCall.ts:28](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/grpc-promis/promisifyGrpcCall.ts#L28)
+[immudb-node/src/grpc-promis/promisifyGrpcCall.ts:28](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/grpc-promis/promisifyGrpcCall.ts#L28)

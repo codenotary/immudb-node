@@ -48,7 +48,7 @@
 
 #### Defined in
 
-[immudb-node/src/common/errors.ts:26](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/common/errors.ts#L26)
+[immudb-node/src/common/errors.ts:26](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/common/errors.ts#L26)
 
 ## Properties
 
@@ -58,7 +58,7 @@
 
 #### Defined in
 
-[immudb-node/src/common/errors.ts:25](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/common/errors.ts#L25)
+[immudb-node/src/common/errors.ts:25](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/common/errors.ts#L25)
 
 ___
 

@@ -130,7 +130,7 @@ export type SqlDbEntry = {
 
 
 /**
- * ImmuDb sql entry, one of:
+ * immudb sql entry, one of:
  * - row entry - {@link SqlRowEntry},
  * - column entry - {@link SqlColumnEntry},
  * - index entry - {@link SqlIndexEntry},
@@ -146,7 +146,7 @@ export type SqlEntry =
 
 
 /**
- * ImmuDb entry, one of:
+ * immudb entry, one of:
  * - binary entry - {@link BinEntry},
  * - hash entry - {@link HashEntry},
  * - value entry - {@link ValEntry},

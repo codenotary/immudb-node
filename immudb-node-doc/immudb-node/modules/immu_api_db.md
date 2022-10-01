@@ -37,12 +37,12 @@
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `database` | `string` | Name of immudb instance database |
-| `ifNotExists?` | `boolean` | What to do when database exists?  * silently ignore --> set this value to true  * (default) throw exception --> set this value to false or undefined |
+| `ifNotExists?` | `boolean` | What to do when database exists? * silently ignore --> set this value to true * (default) throw exception --> set this value to false or undefined |
 | `settings` | [`DatabaseSettingsUpdatable`](types_Db.md#databasesettingsupdatable) | Database settings |
 
 #### Defined in
 
-[immudb-node/src/immu-api/db.ts:9](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/db.ts#L9)
+[immudb-node/src/immu-api/db.ts:9](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/db.ts#L9)
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/db.ts:61](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/db.ts#L61)
+[immudb-node/src/immu-api/db.ts:61](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/db.ts#L61)
 
 ___
 
@@ -70,12 +70,12 @@ ___
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `cleanupPercentage` | `number` | Indicates how much space will be scanned for unreferenced data.   Value must be between 0 and 1.    Even though this operation blocks transaction processing, choosing a  small percentage e.g. 0.1 may not significantly hinder normal operations  while reducing used storage space.    Partially compaction may be triggered automatically by immudb. Database  settings can be modified to set the cleanupPercentage attribute to  non-zero in order to accomplish this. |
-| `synced` | `boolean` | Should run fsync after writing data?  * true --> run fsync after writing data to avoid index regeneration in    the case of an unexpected crash  * false \| undefined -->  do not run fsync after writing data |
+| `cleanupPercentage` | `number` | Indicates how much space will be scanned for unreferenced data.  Value must be between 0 and 1.  Even though this operation blocks transaction processing, choosing a small percentage e.g. 0.1 may not significantly hinder normal operations while reducing used storage space.  Partially compaction may be triggered automatically by immudb. Database settings can be modified to set the cleanupPercentage attribute to non-zero in order to accomplish this. |
+| `synced` | `boolean` | Should run fsync after writing data? * true --> run fsync after writing data to avoid index regeneration in   the case of an unexpected crash * false \| undefined -->  do not run fsync after writing data |
 
 #### Defined in
 
-[immudb-node/src/immu-api/db.ts:100](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/db.ts#L100)
+[immudb-node/src/immu-api/db.ts:100](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/db.ts#L100)
 
 ___
 
@@ -91,7 +91,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/db.ts:249](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/db.ts#L249)
+[immudb-node/src/immu-api/db.ts:249](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/db.ts#L249)
 
 ___
 
@@ -108,7 +108,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/db.ts:320](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/db.ts#L320)
+[immudb-node/src/immu-api/db.ts:320](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/db.ts#L320)
 
 ___
 
@@ -124,7 +124,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/db.ts:285](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/db.ts#L285)
+[immudb-node/src/immu-api/db.ts:285](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/db.ts#L285)
 
 ## Functions
 
@@ -157,7 +157,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/db.ts:152](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/db.ts#L152)
+[immudb-node/src/immu-api/db.ts:152](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/db.ts#L152)
 
 ___
 
@@ -189,7 +189,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/db.ts:27](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/db.ts#L27)
+[immudb-node/src/immu-api/db.ts:27](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/db.ts#L27)
 
 ___
 
@@ -221,7 +221,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/db.ts:70](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/db.ts#L70)
+[immudb-node/src/immu-api/db.ts:70](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/db.ts#L70)
 
 ___
 
@@ -253,7 +253,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/db.ts:124](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/db.ts#L124)
+[immudb-node/src/immu-api/db.ts:124](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/db.ts#L124)
 
 ___
 
@@ -286,7 +286,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/db.ts:364](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/db.ts#L364)
+[immudb-node/src/immu-api/db.ts:364](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/db.ts#L364)
 
 ___
 
@@ -319,7 +319,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/db.ts:179](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/db.ts#L179)
+[immudb-node/src/immu-api/db.ts:179](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/db.ts#L179)
 
 ___
 
@@ -352,7 +352,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/db.ts:211](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/db.ts#L211)
+[immudb-node/src/immu-api/db.ts:211](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/db.ts#L211)
 
 ___
 
@@ -384,7 +384,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/db.ts:257](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/db.ts#L257)
+[immudb-node/src/immu-api/db.ts:257](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/db.ts#L257)
 
 ___
 
@@ -416,7 +416,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/db.ts:332](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/db.ts#L332)
+[immudb-node/src/immu-api/db.ts:332](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/db.ts#L332)
 
 ___
 
@@ -448,4 +448,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/db.ts:293](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/db.ts#L293)
+[immudb-node/src/immu-api/db.ts:293](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/db.ts#L293)

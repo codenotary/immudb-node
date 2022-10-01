@@ -41,7 +41,7 @@ following structure:
 
 #### Defined in
 
-[immudb-node/src/immu-stream-kv/zEntry.ts:85](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-stream-kv/zEntry.ts#L85)
+[immudb-node/src/immu-stream-kv/zEntry.ts:85](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-stream-kv/zEntry.ts#L85)
 
 ___
 
@@ -82,4 +82,4 @@ following structure:
 
 #### Defined in
 
-[immudb-node/src/immu-stream-kv/zEntry.ts:20](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-stream-kv/zEntry.ts#L20)
+[immudb-node/src/immu-stream-kv/zEntry.ts:20](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-stream-kv/zEntry.ts#L20)

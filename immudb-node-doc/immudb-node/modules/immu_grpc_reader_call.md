@@ -48,7 +48,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/reader-call.ts:50](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/reader-call.ts#L50)
+[immudb-node/src/immu-grpc/reader-call.ts:50](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/reader-call.ts#L50)
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/reader-call.ts:11](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/reader-call.ts#L11)
+[immudb-node/src/immu-grpc/reader-call.ts:11](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/reader-call.ts#L11)
 
 ___
 
@@ -122,7 +122,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/reader-call.ts:29](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/reader-call.ts#L29)
+[immudb-node/src/immu-grpc/reader-call.ts:29](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/reader-call.ts#L29)
 
 ___
 
@@ -159,7 +159,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/reader-call.ts:17](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/reader-call.ts#L17)
+[immudb-node/src/immu-grpc/reader-call.ts:17](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/reader-call.ts#L17)
 
 ___
 
@@ -196,7 +196,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/reader-call.ts:39](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/reader-call.ts#L39)
+[immudb-node/src/immu-grpc/reader-call.ts:39](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/reader-call.ts#L39)
 
 ___
 
@@ -233,4 +233,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/reader-call.ts:23](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/reader-call.ts#L23)
+[immudb-node/src/immu-grpc/reader-call.ts:23](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/reader-call.ts#L23)

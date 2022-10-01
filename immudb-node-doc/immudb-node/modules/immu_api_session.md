@@ -29,7 +29,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-api/session.ts:79](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/session.ts#L79)
+[immudb-node/src/immu-api/session.ts:79](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/session.ts#L79)
 
 ## Functions
 
@@ -61,7 +61,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-api/session.ts:30](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/session.ts#L30)
+[immudb-node/src/immu-api/session.ts:30](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/session.ts#L30)
 
 ___
 
@@ -94,7 +94,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/session.ts:56](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/session.ts#L56)
+[immudb-node/src/immu-api/session.ts:56](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/session.ts#L56)
 
 ___
 
@@ -126,7 +126,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/session.ts:10](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/session.ts#L10)
+[immudb-node/src/immu-api/session.ts:10](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/session.ts#L10)
 
 ___
 
@@ -158,4 +158,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/session.ts:88](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/session.ts#L88)
+[immudb-node/src/immu-api/session.ts:88](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/session.ts#L88)

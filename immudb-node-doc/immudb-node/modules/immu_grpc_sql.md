@@ -32,7 +32,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-grpc-sql/index.ts:23](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc-sql/index.ts#L23)
+[immudb-node/src/immu-grpc-sql/index.ts:23](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc-sql/index.ts#L23)
 
 ___
 
@@ -54,7 +54,7 @@ Maps grpc sql value and value name to more js friendly value.
 
 #### Defined in
 
-[immudb-node/src/immu-grpc-sql/index.ts:85](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc-sql/index.ts#L85)
+[immudb-node/src/immu-grpc-sql/index.ts:85](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc-sql/index.ts#L85)
 
 ___
 
@@ -74,7 +74,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc-sql/index.ts:7](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc-sql/index.ts#L7)
+[immudb-node/src/immu-grpc-sql/index.ts:7](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc-sql/index.ts#L7)
 
 ___
 
@@ -94,7 +94,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc-sql/index.ts:30](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc-sql/index.ts#L30)
+[immudb-node/src/immu-grpc-sql/index.ts:30](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc-sql/index.ts#L30)
 
 ___
 
@@ -116,7 +116,7 @@ Maps grpc sql value to more js friendly value.
 
 #### Defined in
 
-[immudb-node/src/immu-grpc-sql/index.ts:103](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc-sql/index.ts#L103)
+[immudb-node/src/immu-grpc-sql/index.ts:103](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc-sql/index.ts#L103)
 
 ___
 
@@ -136,7 +136,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc-sql/index.ts:42](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc-sql/index.ts#L42)
+[immudb-node/src/immu-grpc-sql/index.ts:42](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc-sql/index.ts#L42)
 
 ___
 
@@ -156,4 +156,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc-sql/index.ts:63](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc-sql/index.ts#L63)
+[immudb-node/src/immu-grpc-sql/index.ts:63](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc-sql/index.ts#L63)

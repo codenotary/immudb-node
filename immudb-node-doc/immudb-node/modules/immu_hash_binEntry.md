@@ -34,4 +34,4 @@ Hashes immu.BinEntry as sha256 of:
 
 #### Defined in
 
-[immudb-node/src/immu-hash/binEntry.ts:16](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/binEntry.ts#L16)
+[immudb-node/src/immu-hash/binEntry.ts:16](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/binEntry.ts#L16)

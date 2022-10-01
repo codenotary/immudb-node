@@ -21,7 +21,7 @@ equilibrium to verify successfully.
 
 #### Defined in
 
-[immudb-node/src/types/VerificationEntries.ts:31](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/VerificationEntries.ts#L31)
+[immudb-node/src/types/VerificationEntries.ts:31](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/VerificationEntries.ts#L31)
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/VerificationEntries.ts:18](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/VerificationEntries.ts#L18)
+[immudb-node/src/types/VerificationEntries.ts:18](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/VerificationEntries.ts#L18)
 
 ___
 
@@ -60,4 +60,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/VerificationEntries.ts:8](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/VerificationEntries.ts#L8)
+[immudb-node/src/types/VerificationEntries.ts:8](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/VerificationEntries.ts#L8)

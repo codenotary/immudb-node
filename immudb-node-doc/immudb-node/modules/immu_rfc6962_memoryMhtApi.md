@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-rfc6962/memoryMhtApi.ts:13](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-rfc6962/memoryMhtApi.ts#L13)
+[immudb-node/src/immu-rfc6962/memoryMhtApi.ts:13](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-rfc6962/memoryMhtApi.ts#L13)
 
 ## Functions
 
@@ -48,7 +48,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-rfc6962/memoryMhtApi.ts:16](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-rfc6962/memoryMhtApi.ts#L16)
+[immudb-node/src/immu-rfc6962/memoryMhtApi.ts:16](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-rfc6962/memoryMhtApi.ts#L16)
 
 ___
 
@@ -70,7 +70,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-rfc6962/memoryMhtApi.ts:153](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-rfc6962/memoryMhtApi.ts#L153)
+[immudb-node/src/immu-rfc6962/memoryMhtApi.ts:153](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-rfc6962/memoryMhtApi.ts#L153)
 
 ___
 
@@ -90,7 +90,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-rfc6962/memoryMhtApi.ts:85](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-rfc6962/memoryMhtApi.ts#L85)
+[immudb-node/src/immu-rfc6962/memoryMhtApi.ts:85](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-rfc6962/memoryMhtApi.ts#L85)
 
 ___
 
@@ -111,7 +111,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-rfc6962/memoryMhtApi.ts:102](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-rfc6962/memoryMhtApi.ts#L102)
+[immudb-node/src/immu-rfc6962/memoryMhtApi.ts:102](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-rfc6962/memoryMhtApi.ts#L102)
 
 ___
 
@@ -132,7 +132,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-rfc6962/memoryMhtApi.ts:89](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-rfc6962/memoryMhtApi.ts#L89)
+[immudb-node/src/immu-rfc6962/memoryMhtApi.ts:89](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-rfc6962/memoryMhtApi.ts#L89)
 
 ___
 
@@ -154,7 +154,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-rfc6962/memoryMhtApi.ts:118](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-rfc6962/memoryMhtApi.ts#L118)
+[immudb-node/src/immu-rfc6962/memoryMhtApi.ts:118](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-rfc6962/memoryMhtApi.ts#L118)
 
 ___
 
@@ -176,7 +176,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-rfc6962/memoryMhtApi.ts:135](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-rfc6962/memoryMhtApi.ts#L135)
+[immudb-node/src/immu-rfc6962/memoryMhtApi.ts:135](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-rfc6962/memoryMhtApi.ts#L135)
 
 ___
 
@@ -196,7 +196,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-rfc6962/memoryMhtApi.ts:77](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-rfc6962/memoryMhtApi.ts#L77)
+[immudb-node/src/immu-rfc6962/memoryMhtApi.ts:77](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-rfc6962/memoryMhtApi.ts#L77)
 
 ___
 
@@ -216,4 +216,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-rfc6962/memoryMhtApi.ts:81](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-rfc6962/memoryMhtApi.ts#L81)
+[immudb-node/src/immu-rfc6962/memoryMhtApi.ts:81](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-rfc6962/memoryMhtApi.ts#L81)

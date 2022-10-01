@@ -34,7 +34,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-entry/SqlRowEntry.ts:11](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/SqlRowEntry.ts#L11)
+[immudb-node/src/immu-entry/SqlRowEntry.ts:11](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/SqlRowEntry.ts#L11)
 
 ___
 
@@ -74,7 +74,7 @@ Decodes Buffer to sql table row structure header from:
 
 #### Defined in
 
-[immudb-node/src/immu-entry/SqlRowEntry.ts:73](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/SqlRowEntry.ts#L73)
+[immudb-node/src/immu-entry/SqlRowEntry.ts:73](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/SqlRowEntry.ts#L73)
 
 ___
 
@@ -106,7 +106,7 @@ Returns decoded row column value and rest of buffer.
 
 #### Defined in
 
-[immudb-node/src/immu-entry/SqlRowEntry.ts:171](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/SqlRowEntry.ts#L171)
+[immudb-node/src/immu-entry/SqlRowEntry.ts:171](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/SqlRowEntry.ts#L171)
 
 ___
 
@@ -132,7 +132,7 @@ Decodes Buffer to sql table row columns values from:
 
 #### Defined in
 
-[immudb-node/src/immu-entry/SqlRowEntry.ts:205](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/SqlRowEntry.ts#L205)
+[immudb-node/src/immu-entry/SqlRowEntry.ts:205](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/SqlRowEntry.ts#L205)
 
 ___
 
@@ -164,7 +164,7 @@ Decodes Buffer to sql table row structure value from:
 
 #### Defined in
 
-[immudb-node/src/immu-entry/SqlRowEntry.ts:145](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/SqlRowEntry.ts#L145)
+[immudb-node/src/immu-entry/SqlRowEntry.ts:145](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/SqlRowEntry.ts#L145)
 
 ___
 
@@ -184,7 +184,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-entry/SqlRowEntry.ts:222](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/SqlRowEntry.ts#L222)
+[immudb-node/src/immu-entry/SqlRowEntry.ts:222](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/SqlRowEntry.ts#L222)
 
 ___
 
@@ -210,7 +210,7 @@ Meaning Buffer is sql table row.
 
 #### Defined in
 
-[immudb-node/src/immu-entry/SqlRowEntry.ts:50](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/SqlRowEntry.ts#L50)
+[immudb-node/src/immu-entry/SqlRowEntry.ts:50](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/SqlRowEntry.ts#L50)
 
 ___
 
@@ -230,7 +230,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-entry/SqlRowEntry.ts:104](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/SqlRowEntry.ts#L104)
+[immudb-node/src/immu-entry/SqlRowEntry.ts:104](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/SqlRowEntry.ts#L104)
 
 ___
 
@@ -250,4 +250,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-entry/SqlRowEntry.ts:27](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/SqlRowEntry.ts#L27)
+[immudb-node/src/immu-entry/SqlRowEntry.ts:27](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/SqlRowEntry.ts#L27)

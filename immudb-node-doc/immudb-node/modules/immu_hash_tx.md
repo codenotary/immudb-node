@@ -27,7 +27,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-hash/tx.ts:9](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/tx.ts#L9)
+[immudb-node/src/immu-hash/tx.ts:9](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/tx.ts#L9)
 
 ___
 
@@ -47,4 +47,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/tx.ts:25](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/tx.ts#L25)
+[immudb-node/src/immu-hash/tx.ts:25](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/tx.ts#L25)

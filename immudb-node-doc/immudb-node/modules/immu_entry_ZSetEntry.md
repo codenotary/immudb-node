@@ -29,7 +29,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-entry/ZSetEntry.ts:13](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/ZSetEntry.ts#L13)
+[immudb-node/src/immu-entry/ZSetEntry.ts:13](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/ZSetEntry.ts#L13)
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-entry/ZSetEntry.ts:78](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/ZSetEntry.ts#L78)
+[immudb-node/src/immu-entry/ZSetEntry.ts:78](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/ZSetEntry.ts#L78)
 
 ___
 
@@ -77,7 +77,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-entry/ZSetEntry.ts:27](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/ZSetEntry.ts#L27)
+[immudb-node/src/immu-entry/ZSetEntry.ts:27](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/ZSetEntry.ts#L27)
 
 ___
 
@@ -97,4 +97,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-entry/ZSetEntry.ts:40](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/ZSetEntry.ts#L40)
+[immudb-node/src/immu-entry/ZSetEntry.ts:40](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/ZSetEntry.ts#L40)

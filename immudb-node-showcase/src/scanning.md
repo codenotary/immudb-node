@@ -911,7 +911,16 @@ getTx2AndVerification
     }
   }
 }
-verifyVerification result:
+verifyVerification(getTx2AndVerification) result:
+true
+
+verifyVerification(getTx6AndVerification) result:
+true
+
+verifyVerification(getTx7AndVerification) result:
+true
+
+verifyVerification(getTx8AndVerification) result:
 true
 
 ```

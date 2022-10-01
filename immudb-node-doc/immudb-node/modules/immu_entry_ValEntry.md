@@ -31,7 +31,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-entry/ValEntry.ts:45](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/ValEntry.ts#L45)
+[immudb-node/src/immu-entry/ValEntry.ts:45](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/ValEntry.ts#L45)
 
 ___
 
@@ -51,7 +51,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-entry/ValEntry.ts:9](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/ValEntry.ts#L9)
+[immudb-node/src/immu-entry/ValEntry.ts:9](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/ValEntry.ts#L9)
 
 ___
 
@@ -72,7 +72,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-entry/ValEntry.ts:56](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/ValEntry.ts#L56)
+[immudb-node/src/immu-entry/ValEntry.ts:56](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/ValEntry.ts#L56)
 
 ___
 
@@ -92,7 +92,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-entry/ValEntry.ts:21](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/ValEntry.ts#L21)
+[immudb-node/src/immu-entry/ValEntry.ts:21](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/ValEntry.ts#L21)
 
 ___
 
@@ -112,4 +112,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-entry/ValEntry.ts:38](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-entry/ValEntry.ts#L38)
+[immudb-node/src/immu-entry/ValEntry.ts:38](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-entry/ValEntry.ts#L38)

@@ -1,0 +1,33 @@
+name: Publish immudb node to npmjs
+on:
+  release:
+    types: [created]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+      # Setup .npmrc file to publish to npm
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Build
+        run: |
+          npm ci
+          npm run build
+      - name: Publish immudb-node-grpcjs
+        run: |
+          cd immudb-node-grpcjs
+          npm publish --access public --tag alpha
+      - name: Publish immudb-node-pbjs
+        run: |
+          cd immudb-node-pbjs
+          npm publish --access public --tag alpha
+      - name: Publish immudb-node
+        run: |
+          cd immudb-node
+          npm publish --access public --tag alpha
+

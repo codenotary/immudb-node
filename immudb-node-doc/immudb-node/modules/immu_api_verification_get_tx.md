@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-api/verification-get-tx.ts:11](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/verification-get-tx.ts#L11)
+[immudb-node/src/immu-api/verification-get-tx.ts:11](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/verification-get-tx.ts#L11)
 
 ## Functions
 
@@ -62,4 +62,4 @@
 
 #### Defined in
 
-[immudb-node/src/immu-api/verification-get-tx.ts:21](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/verification-get-tx.ts#L21)
+[immudb-node/src/immu-api/verification-get-tx.ts:21](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/verification-get-tx.ts#L21)

@@ -29,7 +29,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-api/set-val-ref-zSet.ts:178](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/set-val-ref-zSet.ts#L178)
+[immudb-node/src/immu-api/set-val-ref-zSet.ts:178](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/set-val-ref-zSet.ts#L178)
 
 ___
 
@@ -45,12 +45,12 @@ Specifies how to set Entry.
 | :------ | :------ | :------ |
 | `ops` | [`SetOperation`](immu_api_set_val_ref_zSet.md#setoperation)[] | Operations. |
 | `options?` | { `dontWaitForIndexer?`: `boolean`  } | Operation options. |
-| `options.dontWaitForIndexer?` | `boolean` | Do not wait for ImmuDb to update database indexes, setting this  value to `true` may cause operation to speed up in exchange for  stale database latest keys values.    For example geting key value will return key value pointed by  indexer. If indexer is not up to date, returned value may be not  latest value.    Default value is `false`. |
+| `options.dontWaitForIndexer?` | `boolean` | Do not wait for immudb to update database indexes, setting this value to `true` may cause operation to speed up in exchange for stale database latest keys values.  For example geting key value will return key value pointed by indexer. If indexer is not up to date, returned value may be not latest value.  Default value is `false`. |
 | `preconditions?` | [`ValOrRefKeyPrecondition`](types_ValOrRefKeyPrecondition.md#valorrefkeyprecondition)[] | All conditions must be fullfilled for all key values. |
 
 #### Defined in
 
-[immudb-node/src/immu-api/set-val-ref-zSet.ts:19](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/set-val-ref-zSet.ts#L19)
+[immudb-node/src/immu-api/set-val-ref-zSet.ts:19](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/set-val-ref-zSet.ts#L19)
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/set-val-ref-zSet.ts:48](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/set-val-ref-zSet.ts#L48)
+[immudb-node/src/immu-api/set-val-ref-zSet.ts:48](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/set-val-ref-zSet.ts#L48)
 
 ## Functions
 
@@ -92,7 +92,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/set-val-ref-zSet.ts:54](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/set-val-ref-zSet.ts#L54)
+[immudb-node/src/immu-api/set-val-ref-zSet.ts:54](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/set-val-ref-zSet.ts#L54)
 
 ___
 
@@ -124,4 +124,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/set-val-ref-zSet.ts:182](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/set-val-ref-zSet.ts#L182)
+[immudb-node/src/immu-api/set-val-ref-zSet.ts:182](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/set-val-ref-zSet.ts#L182)

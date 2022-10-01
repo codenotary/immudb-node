@@ -1,7 +1,7 @@
 
 
 /**
- * User credentials needed for ImmuDb session.
+ * User credentials needed for immudb session.
  */
 export type UserSessionCredentials = {
     /**
@@ -16,7 +16,7 @@ export type UserSessionCredentials = {
 
 
 /**
- * Informations needed to connect user with ImmuDb database.
+ * Information needed to connect user with immudb database.
  */
 export type UserDatabaseSession = UserSessionCredentials & {
     /**
@@ -27,26 +27,26 @@ export type UserDatabaseSession = UserSessionCredentials & {
 
 
 /**
- * Represents ImmuDb user session tokens
+ * Represents immudb user session tokens
  */
 export type SessionTokens = {
     /**
-     * Token of ImmuDb server user session.
+     * Token of immudb server user session.
      */
     sessionid: string,
     /**
-     * Token of ImmuDb server.
+     * Token of immudb server.
      */
     'immudb-uuid': string;
 }
 
 
 /**
- * Represents ImmuDb user session transaction token
+ * Represents immudb user session transaction token
  */
  export type TransactionTokens = {
     /**
-     * Token of ImmuDb server user session transaction.
+     * Token of immudb server user session transaction.
      */
     transactionid: string,
     

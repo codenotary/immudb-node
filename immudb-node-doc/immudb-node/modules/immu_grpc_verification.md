@@ -65,4 +65,4 @@ Re-exports [kvmsToVerificationEntries](immu_grpc_verification_entry.md#kvmstover
 
 #### Defined in
 
-[immudb-node/src/immu-grpc-verification/index.ts:12](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc-verification/index.ts#L12)
+[immudb-node/src/immu-grpc-verification/index.ts:12](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc-verification/index.ts#L12)

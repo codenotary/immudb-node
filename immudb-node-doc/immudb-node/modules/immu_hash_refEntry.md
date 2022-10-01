@@ -38,4 +38,4 @@ Hashes key-value entry as hash of fallowing buffers:
 
 #### Defined in
 
-[immudb-node/src/immu-hash/refEntry.ts:24](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/refEntry.ts#L24)
+[immudb-node/src/immu-hash/refEntry.ts:24](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/refEntry.ts#L24)

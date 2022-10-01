@@ -29,13 +29,13 @@
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `options?` | { `dontWaitForIndexer?`: `boolean`  } | Operation options. |
-| `options.dontWaitForIndexer?` | `boolean` | Do not wait for ImmuDb to update database indexes, setting this  value to `true` may cause operation to speed up in exchange for  stale database latest keys values.    For example geting key value will return key value pointed by  indexer. If indexer is not up to date, returned value may be not  latest value.    Default value is `false`. |
-| `params?` | [`SqlNamedValue`](types_SQL.md#sqlnamedvalue)[] | sql params    ```ts    sqlExec({    sql: 'select * from customer where id = :clientId',    params: [      {name: ':clientId', type: 'Int64', value: Long.fromValue(10)},    ]  })  ``` |
-| `sql` | `string` | Sql statements to execute. (May be multiple, all will be executed inside  automatic transaction.) |
+| `options.dontWaitForIndexer?` | `boolean` | Do not wait for immudb to update database indexes, setting this value to `true` may cause operation to speed up in exchange for stale database latest keys values.  For example geting key value will return key value pointed by indexer. If indexer is not up to date, returned value may be not latest value.  Default value is `false`. |
+| `params?` | [`SqlNamedValue`](types_SQL.md#sqlnamedvalue)[] | sql params  ```ts  sqlExec({   sql: 'select * from customer where id = :clientId',   params: [     {name: ':clientId', type: 'Int64', value: Long.fromValue(10)},   ] }) ``` |
+| `sql` | `string` | Sql statements to execute. (May be multiple, all will be executed inside automatic transaction.) |
 
 #### Defined in
 
-[immudb-node/src/immu-api/sql-tx.ts:132](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/sql-tx.ts#L132)
+[immudb-node/src/immu-api/sql-tx.ts:132](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/sql-tx.ts#L132)
 
 ___
 
@@ -47,11 +47,11 @@ ___
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `mode?` | ``"ReadOnly"`` \| ``"WriteOnly"`` \| ``"ReadWrite"`` | Mode of interactive transaction:  - `ReadOnly` declares that transaction will not modify db,  - `WriteOnly` declares that transaction will not depend on reading db,  - `ReadWrite` declares that transaction may read and write to db. |
+| `mode?` | ``"ReadOnly"`` \| ``"WriteOnly"`` \| ``"ReadWrite"`` | Mode of interactive transaction: - `ReadOnly` declares that transaction will not modify db, - `WriteOnly` declares that transaction will not depend on reading db, - `ReadWrite` declares that transaction may read and write to db. |
 
 #### Defined in
 
-[immudb-node/src/immu-api/sql-tx.ts:10](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/sql-tx.ts#L10)
+[immudb-node/src/immu-api/sql-tx.ts:10](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/sql-tx.ts#L10)
 
 ___
 
@@ -63,13 +63,13 @@ ___
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `params?` | [`SqlNamedValue`](types_SQL.md#sqlnamedvalue)[] | sql params    ```ts    sqlExec({    sql: 'select * from customer where id = :clientId',    params: [      {name: ':clientId', type: 'Int64', value: Long.fromValue(10)},    ]  })  ``` |
-| `reuseSnapshot?` | `boolean` | Does this query operation needs refreshed index  or not? (perhaps earlier operation was also read). |
-| `sql` | `string` | Sql statements to execute. (May be multiple, all will be executed inside  automatic transaction.) |
+| `params?` | [`SqlNamedValue`](types_SQL.md#sqlnamedvalue)[] | sql params  ```ts  sqlExec({   sql: 'select * from customer where id = :clientId',   params: [     {name: ':clientId', type: 'Int64', value: Long.fromValue(10)},   ] }) ``` |
+| `reuseSnapshot?` | `boolean` | Does this query operation needs refreshed index or not? (perhaps earlier operation was also read). |
+| `sql` | `string` | Sql statements to execute. (May be multiple, all will be executed inside automatic transaction.) |
 
 #### Defined in
 
-[immudb-node/src/immu-api/sql-tx.ts:200](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/sql-tx.ts#L200)
+[immudb-node/src/immu-api/sql-tx.ts:200](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/sql-tx.ts#L200)
 
 ## Functions
 
@@ -102,7 +102,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/sql-tx.ts:55](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/sql-tx.ts#L55)
+[immudb-node/src/immu-api/sql-tx.ts:55](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/sql-tx.ts#L55)
 
 ___
 
@@ -134,7 +134,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/sql-tx.ts:172](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/sql-tx.ts#L172)
+[immudb-node/src/immu-api/sql-tx.ts:172](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/sql-tx.ts#L172)
 
 ___
 
@@ -166,7 +166,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/sql-tx.ts:20](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/sql-tx.ts#L20)
+[immudb-node/src/immu-api/sql-tx.ts:20](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/sql-tx.ts#L20)
 
 ___
 
@@ -198,7 +198,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/sql-tx.ts:232](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/sql-tx.ts#L232)
+[immudb-node/src/immu-api/sql-tx.ts:232](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/sql-tx.ts#L232)
 
 ___
 
@@ -231,4 +231,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-api/sql-tx.ts:102](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-api/sql-tx.ts#L102)
+[immudb-node/src/immu-api/sql-tx.ts:102](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-api/sql-tx.ts#L102)

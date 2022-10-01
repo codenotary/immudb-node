@@ -46,7 +46,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/writer-call.ts:38](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/writer-call.ts#L38)
+[immudb-node/src/immu-grpc/writer-call.ts:38](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/writer-call.ts#L38)
 
 ___
 
@@ -83,7 +83,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/writer-call.ts:17](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/writer-call.ts#L17)
+[immudb-node/src/immu-grpc/writer-call.ts:17](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/writer-call.ts#L17)
 
 ___
 
@@ -120,7 +120,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/writer-call.ts:11](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/writer-call.ts#L11)
+[immudb-node/src/immu-grpc/writer-call.ts:11](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/writer-call.ts#L11)
 
 ___
 
@@ -157,4 +157,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc/writer-call.ts:27](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc/writer-call.ts#L27)
+[immudb-node/src/immu-grpc/writer-call.ts:27](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc/writer-call.ts#L27)

@@ -75,7 +75,7 @@
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:48](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L48)
+[immudb-node/src/types/A.ts:48](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L48)
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:221](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L221)
+[immudb-node/src/types/A.ts:221](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L221)
 
 ___
 
@@ -93,7 +93,7 @@ ___
 
 Ƭ **Entry**: [`BinEntry`](types_A.md#binentry) \| [`LeafEntry`](types_A.md#leafentry) \| [`ValEntry`](types_A.md#valentry) \| [`RefEntry`](types_A.md#refentry) \| [`ZSetEntry`](types_A.md#zsetentry) \| [`SqlEntry`](types_A.md#sqlentry)
 
-ImmuDb entry, one of:
+immudb entry, one of:
 - binary entry - [BinEntry](types_A.md#binentry),
 - hash entry - [LeafEntry](types_A.md#leafentry),
 - value entry - [ValEntry](types_A.md#valentry),
@@ -103,7 +103,7 @@ ImmuDb entry, one of:
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:188](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L188)
+[immudb-node/src/types/A.ts:188](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L188)
 
 ___
 
@@ -111,20 +111,20 @@ ___
 
 Ƭ **EntryMetadata**: `Object`
 
-Structure influencing ImmuDb Indexer behaviour for
+Structure influencing immudb Indexer behaviour for
 indexing [Entry](types_A.md#entry)'ies.
 
 #### Type declaration
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `deleted?` | `boolean` | If set to `true` key value will be marked as deleted.    Get key will not return value ok key value marked as deleted. |
-| `expiresAt?` | `Long` | If set and ImmuDb server time is after, this key value will be marked as expired  when queried. Latest key value may than return other value. |
-| `nonIndexable?` | `boolean` | If set to `true` key value will be marked as non indexable and  skipped by ImuuDb indexer. Effectively this would mean that if this  key value was set with this property, and we ask for latest key,  returned value will be not of this key value but of last indexed. |
+| `deleted?` | `boolean` | If set to `true` key value will be marked as deleted.  Get key will not return value ok key value marked as deleted. |
+| `expiresAt?` | `Long` | If set and immudb server time is after, this key value will be marked as expired when queried. Latest key value may than return other value. |
+| `nonIndexable?` | `boolean` | If set to `true` key value will be marked as non indexable and skipped by ImuuDb indexer. Effectively this would mean that if this key value was set with this property, and we ask for latest key, returned value will be not of this key value but of last indexed. |
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:12](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L12)
+[immudb-node/src/types/A.ts:12](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L12)
 
 ___
 
@@ -132,18 +132,18 @@ ___
 
 Ƭ **IndexerInfo**: `Object`
 
-Entry and additional informations from ImmuDb server indexer.
+Entry and additional informations from immudb server indexer.
 
 #### Type declaration
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `expired?` | `boolean` | Entry indexer context - is entry expired?    If `true` than entry metadata expiresAt |
-| `revision` | `Long` | Entry indexer context - entry revision.    (Assuming that for same key (different) values was set  multiple times, `revision` number is sequence number of  set operation.) |
+| `expired?` | `boolean` | Entry indexer context - is entry expired?  If `true` than entry metadata expiresAt |
+| `revision` | `Long` | Entry indexer context - entry revision.  (Assuming that for same key (different) values was set multiple times, `revision` number is sequence number of set operation.) |
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:250](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L250)
+[immudb-node/src/types/A.ts:250](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L250)
 
 ___
 
@@ -161,7 +161,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:34](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L34)
+[immudb-node/src/types/A.ts:34](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L34)
 
 ___
 
@@ -181,7 +181,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:57](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L57)
+[immudb-node/src/types/A.ts:57](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L57)
 
 ___
 
@@ -191,7 +191,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:222](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L222)
+[immudb-node/src/types/A.ts:222](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L222)
 
 ___
 
@@ -199,7 +199,7 @@ ___
 
 Ƭ **Provable**: [`ProvableTx`](types_A.md#provabletx) \| [`ProvableTx`](types_A.md#provabletx)[] \| [`TxEntry`](types_A.md#txentry) \| [`TxEntry`](types_A.md#txentry)[]
 
-ImmuDb can prove what has been set in what transaction, this implies that any
+immudb can prove what has been set in what transaction, this implies that any
 number of transaction can be verified.
 
 As transaction ([Tx](types_A.md#tx)) can contain entries (of type [Entry](types_A.md#entry)), any
@@ -210,7 +210,7 @@ As list of transaction also can be proved, whole database composed of entries
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:581](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L581)
+[immudb-node/src/types/A.ts:581](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L581)
 
 ___
 
@@ -218,7 +218,7 @@ ___
 
 Ƭ **ProvableTx**: `Object`
 
-Structure represetning fundamental data which existance in ImmuDb can be
+Structure represetning fundamental data which existance in immudb can be
 verified.
 
 Minimal required data is transaction id Verifiable.id, because it
@@ -250,7 +250,7 @@ will be verified, even if not specified.
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:559](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L559)
+[immudb-node/src/types/A.ts:559](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L559)
 
 ___
 
@@ -271,7 +271,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:75](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L75)
+[immudb-node/src/types/A.ts:75](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L75)
 
 ___
 
@@ -281,7 +281,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:224](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L224)
+[immudb-node/src/types/A.ts:224](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L224)
 
 ___
 
@@ -307,7 +307,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:112](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L112)
+[immudb-node/src/types/A.ts:112](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L112)
 
 ___
 
@@ -317,7 +317,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:228](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L228)
+[immudb-node/src/types/A.ts:228](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L228)
 
 ___
 
@@ -338,7 +338,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:153](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L153)
+[immudb-node/src/types/A.ts:153](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L153)
 
 ___
 
@@ -348,7 +348,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:231](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L231)
+[immudb-node/src/types/A.ts:231](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L231)
 
 ___
 
@@ -356,7 +356,7 @@ ___
 
 Ƭ **SqlEntry**: [`SqlRowEntry`](types_A.md#sqlrowentry) \| [`SqlColumnEntry`](types_A.md#sqlcolumnentry) \| [`SqlIndexEntry`](types_A.md#sqlindexentry) \| [`SqlTableEntry`](types_A.md#sqltableentry) \| [`SqlDbEntry`](types_A.md#sqldbentry)
 
-ImmuDb sql entry, one of:
+immudb sql entry, one of:
 - row entry - [SqlRowEntry](types_A.md#sqlrowentry),
 - column entry - [SqlColumnEntry](types_A.md#sqlcolumnentry),
 - index entry - [SqlIndexEntry](types_A.md#sqlindexentry),
@@ -365,7 +365,7 @@ ImmuDb sql entry, one of:
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:171](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L171)
+[immudb-node/src/types/A.ts:171](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L171)
 
 ___
 
@@ -382,7 +382,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:138](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L138)
+[immudb-node/src/types/A.ts:138](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L138)
 
 ___
 
@@ -406,7 +406,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:126](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L126)
+[immudb-node/src/types/A.ts:126](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L126)
 
 ___
 
@@ -416,7 +416,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:229](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L229)
+[immudb-node/src/types/A.ts:229](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L229)
 
 ___
 
@@ -433,7 +433,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:107](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L107)
+[immudb-node/src/types/A.ts:107](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L107)
 
 ___
 
@@ -456,7 +456,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:96](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L96)
+[immudb-node/src/types/A.ts:96](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L96)
 
 ___
 
@@ -466,7 +466,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:227](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L227)
+[immudb-node/src/types/A.ts:227](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L227)
 
 ___
 
@@ -488,7 +488,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:143](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L143)
+[immudb-node/src/types/A.ts:143](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L143)
 
 ___
 
@@ -498,7 +498,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:230](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L230)
+[immudb-node/src/types/A.ts:230](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L230)
 
 ___
 
@@ -508,7 +508,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:212](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L212)
+[immudb-node/src/types/A.ts:212](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L212)
 
 ___
 
@@ -529,7 +529,7 @@ composed from [TxCore](types_A.md#txcore) and [Entry](types_A.md#entry)
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:591](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L591)
+[immudb-node/src/types/A.ts:591](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L591)
 
 ___
 
@@ -547,7 +547,7 @@ Entries of transaction can be specified (see TxType):
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:363](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L363)
+[immudb-node/src/types/A.ts:363](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L363)
 
 ___
 
@@ -563,9 +563,9 @@ Transaction without specified entries.
 | :------ | :------ | :------ |
 | `allEntriesCount` | `number` | Count of all entries set during this transaction. |
 | `allEntriesMht` | `Buffer` | Merkle Hash of all entries set during this transaction. |
-| `id` | `Long` | Transaction sequence number. First transaction  have sequence number `1`. |
-| `prevTxHash` | `Buffer` | Hash of contained transaction, effectively  this means that transaction contain all  other (database) transactions.     What is start transaction? |
-| `prevTxesMht` | `Buffer` | Merkle Hash of list of all contained transactions (sha256) hashes  (up to this transaction but not including). |
+| `id` | `Long` | Transaction sequence number. First transaction have sequence number `1`. |
+| `prevTxHash` | `Buffer` | Hash of contained transaction, effectively this means that transaction contain all other (database) transactions.   What is start transaction? |
+| `prevTxesMht` | `Buffer` | Merkle Hash of list of all contained transactions (sha256) hashes (up to this transaction but not including). |
 | `timestamp` | `Long` | When transaction happened. |
 | `txType` | ``"anonymous"`` | - |
 | `type` | ``"tx"`` | - |
@@ -573,7 +573,7 @@ Transaction without specified entries.
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:374](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L374)
+[immudb-node/src/types/A.ts:374](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L374)
 
 ___
 
@@ -590,7 +590,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:197](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L197)
+[immudb-node/src/types/A.ts:197](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L197)
 
 ___
 
@@ -606,16 +606,16 @@ Transaction without specified entries.
 | :------ | :------ | :------ |
 | `allEntriesCount` | `number` | Count of all entries set during this transaction. |
 | `allEntriesMht` | `Buffer` | Merkle Hash of all entries set during this transaction. |
-| `id` | `Long` | Transaction sequence number. First transaction  have sequence number `1`. |
-| `prevTxHash` | `Buffer` | Hash of contained transaction, effectively  this means that transaction contain all  other (database) transactions.     What is start transaction? |
-| `prevTxesMht` | `Buffer` | Merkle Hash of list of all contained transactions (sha256) hashes  (up to this transaction but not including). |
+| `id` | `Long` | Transaction sequence number. First transaction have sequence number `1`. |
+| `prevTxHash` | `Buffer` | Hash of contained transaction, effectively this means that transaction contain all other (database) transactions.   What is start transaction? |
+| `prevTxesMht` | `Buffer` | Merkle Hash of list of all contained transactions (sha256) hashes (up to this transaction but not including). |
 | `timestamp` | `Long` | When transaction happened. |
 | `type` | ``"tx-core"`` | - |
 | `version` | ``"1"`` | Transaction structure version. |
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:308](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L308)
+[immudb-node/src/types/A.ts:308](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L308)
 
 ___
 
@@ -632,7 +632,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:508](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L508)
+[immudb-node/src/types/A.ts:508](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L508)
 
 ___
 
@@ -642,7 +642,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:203](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L203)
+[immudb-node/src/types/A.ts:203](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L203)
 
 ___
 
@@ -659,9 +659,9 @@ Transaction with all entries specified.
 | `allEntries` | [`Entry`](types_A.md#entry)[] | All transaction entries. **Order matters**. |
 | `allEntriesCount` | `number` | Count of all entries set during this transaction. |
 | `allEntriesMht` | `Buffer` | Merkle Hash of all entries set during this transaction. |
-| `id` | `Long` | Transaction sequence number. First transaction  have sequence number `1`. |
-| `prevTxHash` | `Buffer` | Hash of contained transaction, effectively  this means that transaction contain all  other (database) transactions.     What is start transaction? |
-| `prevTxesMht` | `Buffer` | Merkle Hash of list of all contained transactions (sha256) hashes  (up to this transaction but not including). |
+| `id` | `Long` | Transaction sequence number. First transaction have sequence number `1`. |
+| `prevTxHash` | `Buffer` | Hash of contained transaction, effectively this means that transaction contain all other (database) transactions.   What is start transaction? |
+| `prevTxesMht` | `Buffer` | Merkle Hash of list of all contained transactions (sha256) hashes (up to this transaction but not including). |
 | `timestamp` | `Long` | When transaction happened. |
 | `txType` | ``"full"`` | - |
 | `type` | ``"tx"`` | - |
@@ -669,7 +669,7 @@ Transaction with all entries specified.
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:417](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L417)
+[immudb-node/src/types/A.ts:417](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L417)
 
 ___
 
@@ -679,7 +679,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:519](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L519)
+[immudb-node/src/types/A.ts:519](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L519)
 
 ___
 
@@ -691,14 +691,14 @@ ___
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `id` | `Long` | Transaction sequence number. First transaction  have sequence number `1`. |
+| `id` | `Long` | Transaction sequence number. First transaction have sequence number `1`. |
 | `txHash` | `Buffer` | Hash of transaction. |
 | `type` | ``"tx-hash"`` | - |
 | `version` | ``"1"`` | Transaction structure version. |
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:286](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L286)
+[immudb-node/src/types/A.ts:286](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L286)
 
 ___
 
@@ -714,9 +714,9 @@ Transaction with all entries specified.
 | :------ | :------ | :------ |
 | `allEntriesCount` | `number` | Count of all entries set during this transaction. |
 | `allEntriesMht` | `Buffer` | Merkle Hash of all entries set during this transaction. |
-| `id` | `Long` | Transaction sequence number. First transaction  have sequence number `1`. |
-| `prevTxHash` | `Buffer` | Hash of contained transaction, effectively  this means that transaction contain all  other (database) transactions.     What is start transaction? |
-| `prevTxesMht` | `Buffer` | Merkle Hash of list of all contained transactions (sha256) hashes  (up to this transaction but not including). |
+| `id` | `Long` | Transaction sequence number. First transaction have sequence number `1`. |
+| `prevTxHash` | `Buffer` | Hash of contained transaction, effectively this means that transaction contain all other (database) transactions.   What is start transaction? |
+| `prevTxesMht` | `Buffer` | Merkle Hash of list of all contained transactions (sha256) hashes (up to this transaction but not including). |
 | `someEntries` | [`Entry`](types_A.md#entry)[] | All transaction entries. **Order matters**. |
 | `timestamp` | `Long` | When transaction happened. |
 | `txType` | ``"some"`` | - |
@@ -725,7 +725,7 @@ Transaction with all entries specified.
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:463](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L463)
+[immudb-node/src/types/A.ts:463](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L463)
 
 ___
 
@@ -745,7 +745,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:66](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L66)
+[immudb-node/src/types/A.ts:66](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L66)
 
 ___
 
@@ -755,7 +755,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:223](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L223)
+[immudb-node/src/types/A.ts:223](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L223)
 
 ___
 
@@ -772,7 +772,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:679](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L679)
+[immudb-node/src/types/A.ts:679](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L679)
 
 ___
 
@@ -785,7 +785,7 @@ equilibrium to verify successfully.
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:633](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L633)
+[immudb-node/src/types/A.ts:633](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L633)
 
 ___
 
@@ -803,7 +803,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:620](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L620)
+[immudb-node/src/types/A.ts:620](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L620)
 
 ___
 
@@ -824,7 +824,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:610](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L610)
+[immudb-node/src/types/A.ts:610](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L610)
 
 ___
 
@@ -834,7 +834,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:646](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L646)
+[immudb-node/src/types/A.ts:646](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L646)
 
 ___
 
@@ -853,7 +853,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:670](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L670)
+[immudb-node/src/types/A.ts:670](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L670)
 
 ___
 
@@ -874,7 +874,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:652](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L652)
+[immudb-node/src/types/A.ts:652](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L652)
 
 ___
 
@@ -895,7 +895,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:661](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L661)
+[immudb-node/src/types/A.ts:661](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L661)
 
 ___
 
@@ -905,7 +905,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:677](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L677)
+[immudb-node/src/types/A.ts:677](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L677)
 
 ___
 
@@ -927,7 +927,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:85](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L85)
+[immudb-node/src/types/A.ts:85](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L85)
 
 ___
 
@@ -937,4 +937,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/types/A.ts:225](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/A.ts#L225)
+[immudb-node/src/types/A.ts:225](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/A.ts#L225)

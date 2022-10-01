@@ -17,18 +17,18 @@
 
 Ƭ **SessionTokens**: `Object`
 
-Represents ImmuDb user session tokens
+Represents immudb user session tokens
 
 #### Type declaration
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `immudb-uuid` | `string` | Token of ImmuDb server. |
-| `sessionid` | `string` | Token of ImmuDb server user session. |
+| `immudb-uuid` | `string` | Token of immudb server. |
+| `sessionid` | `string` | Token of immudb server user session. |
 
 #### Defined in
 
-[immudb-node/src/types/Session.ts:32](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Session.ts#L32)
+[immudb-node/src/types/Session.ts:32](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Session.ts#L32)
 
 ___
 
@@ -36,17 +36,17 @@ ___
 
 Ƭ **TransactionTokens**: `Object`
 
-Represents ImmuDb user session transaction token
+Represents immudb user session transaction token
 
 #### Type declaration
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `transactionid` | `string` | Token of ImmuDb server user session transaction. |
+| `transactionid` | `string` | Token of immudb server user session transaction. |
 
 #### Defined in
 
-[immudb-node/src/types/Session.ts:47](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Session.ts#L47)
+[immudb-node/src/types/Session.ts:47](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Session.ts#L47)
 
 ___
 
@@ -54,11 +54,11 @@ ___
 
 Ƭ **UserDatabaseSession**: [`UserSessionCredentials`](types_Session.md#usersessioncredentials) & { `database`: `string`  }
 
-Informations needed to connect user with ImmuDb database.
+Information needed to connect user with immudb database.
 
 #### Defined in
 
-[immudb-node/src/types/Session.ts:21](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Session.ts#L21)
+[immudb-node/src/types/Session.ts:21](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Session.ts#L21)
 
 ___
 
@@ -66,7 +66,7 @@ ___
 
 Ƭ **UserSessionCredentials**: `Object`
 
-User credentials needed for ImmuDb session.
+User credentials needed for immudb session.
 
 #### Type declaration
 
@@ -77,4 +77,4 @@ User credentials needed for ImmuDb session.
 
 #### Defined in
 
-[immudb-node/src/types/Session.ts:6](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/Session.ts#L6)
+[immudb-node/src/types/Session.ts:6](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/Session.ts#L6)

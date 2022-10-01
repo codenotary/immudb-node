@@ -8,20 +8,20 @@ import Long from "long"
 
 
 /**
- * Structure represetning fundamental data which existance in ImmuDb can be
+ * Structure representing fundamental data which existence in immudb can be
  * verified.
  *
  * Minimal required data is transaction id {@link Verifiable.id}, because it
- * uniqly identifies transaction {@link TxAnonymous}, which is an atom of
+ * uniquely identifies transaction {@link TxAnonymous}, which is an atom of
  * verification process.
  *
  * Common users would be also interested in:
  * - time of creation - {@link Verifiable.timestamp}
  * - some entries - {@link Verifiable.entries}.
  *
- * All filds could be verified.
+ * All fields could be verified.
  *
- * Verification process in all cases will verify all filds but entries. Entries
+ * Verification process in all cases will verify all fields but entries. Entries
  * will be verified if specified and in this situation sometimes all entries
  * will be verified, even if not specified.
  */
@@ -38,7 +38,7 @@ import Long from "long"
 
 
 /**
- * ImmuDb can prove what has been set in what transaction, this implies that any
+ * immudb can prove what has been set in what transaction, this implies that any
  * number of transaction can be verified.
  *
  * As transaction ({@link Tx}) can contain entries (of type {@link Entry}), any

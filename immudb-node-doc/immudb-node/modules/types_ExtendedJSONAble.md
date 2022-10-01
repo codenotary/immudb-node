@@ -25,4 +25,4 @@ This type is used by [toObject](buffer.md#toobject) and [fromObject](buffer.md#f
 
 #### Defined in
 
-[immudb-node/src/types/ExtendedJSONAble.ts:16](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/types/ExtendedJSONAble.ts#L16)
+[immudb-node/src/types/ExtendedJSONAble.ts:16](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/types/ExtendedJSONAble.ts#L16)

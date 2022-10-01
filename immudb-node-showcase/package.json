@@ -2,6 +2,12 @@
     "name": "immudb-node-showcase",
     "version": "2.0.0-alpha.0",
     "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/codenotary/immudb-node.git",
+        "directory": "immudb-node-showcase"
+    },
+    "description": "immudb node client showcases.",
     "type": "module",
     "main": "./dist/index.js",
     "exports": {
@@ -9,13 +15,11 @@
     },
     "typesVersions": {
         "*": {
-            "*": [
-                "dist/*.d.ts"
-            ]
+            "*": ["dist/*.d.ts"]
         }
     },
     "dependencies": {
-        "immudb-node": "*",
+        "immudb-node": "2.0.0-alpha.0",
         "long": "^5.2.0"
     },
     "devDependencies": {

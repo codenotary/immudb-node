@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-hash/hash.ts:82](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/hash.ts#L82)
+[immudb-node/src/immu-hash/hash.ts:82](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/hash.ts#L82)
 
 ## Functions
 
@@ -54,7 +54,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-hash/hash.ts:9](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/hash.ts#L9)
+[immudb-node/src/immu-hash/hash.ts:9](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/hash.ts#L9)
 
 ___
 
@@ -74,7 +74,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/hash.ts:17](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/hash.ts#L17)
+[immudb-node/src/immu-hash/hash.ts:17](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/hash.ts#L17)
 
 ___
 
@@ -115,7 +115,7 @@ https://nodejs.org/api/crypto.html#class-hash
 
 #### Defined in
 
-[immudb-node/src/immu-hash/hash.ts:74](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/hash.ts#L74)
+[immudb-node/src/immu-hash/hash.ts:74](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/hash.ts#L74)
 
 ___
 
@@ -173,7 +173,7 @@ console.log('Same hashes', hashOfBufs1.equals(hashOfBufs2))
 
 #### Defined in
 
-[immudb-node/src/immu-hash/hash.ts:193](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/hash.ts#L193)
+[immudb-node/src/immu-hash/hash.ts:193](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/hash.ts#L193)
 
 ___
 
@@ -211,7 +211,7 @@ fromTreeBuffers([
 
 #### Defined in
 
-[immudb-node/src/immu-hash/hash.ts:106](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/hash.ts#L106)
+[immudb-node/src/immu-hash/hash.ts:106](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/hash.ts#L106)
 
 ___
 
@@ -231,7 +231,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/hash.ts:39](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/hash.ts#L39)
+[immudb-node/src/immu-hash/hash.ts:39](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/hash.ts#L39)
 
 ___
 
@@ -253,7 +253,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/hash.ts:22](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/hash.ts#L22)
+[immudb-node/src/immu-hash/hash.ts:22](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/hash.ts#L22)
 
 ___
 
@@ -295,7 +295,7 @@ https://2ality.com/2019/11/nodejs-streams-async-iteration.html
 
 #### Defined in
 
-[immudb-node/src/immu-hash/hash.ts:150](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/hash.ts#L150)
+[immudb-node/src/immu-hash/hash.ts:150](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/hash.ts#L150)
 
 ___
 
@@ -315,4 +315,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-hash/hash.ts:124](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-hash/hash.ts#L124)
+[immudb-node/src/immu-hash/hash.ts:124](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-hash/hash.ts#L124)

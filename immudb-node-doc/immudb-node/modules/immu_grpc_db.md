@@ -34,7 +34,7 @@
 
 #### Defined in
 
-[immudb-node/src/immu-grpc-db.ts:10](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc-db.ts#L10)
+[immudb-node/src/immu-grpc-db.ts:10](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc-db.ts#L10)
 
 ___
 
@@ -54,7 +54,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc-db.ts:84](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc-db.ts#L84)
+[immudb-node/src/immu-grpc-db.ts:84](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc-db.ts#L84)
 
 ___
 
@@ -74,7 +74,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc-db.ts:150](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc-db.ts#L150)
+[immudb-node/src/immu-grpc-db.ts:150](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc-db.ts#L150)
 
 ___
 
@@ -94,7 +94,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc-db.ts:33](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc-db.ts#L33)
+[immudb-node/src/immu-grpc-db.ts:33](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc-db.ts#L33)
 
 ___
 
@@ -114,7 +114,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc-db.ts:70](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc-db.ts#L70)
+[immudb-node/src/immu-grpc-db.ts:70](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc-db.ts#L70)
 
 ___
 
@@ -134,7 +134,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc-db.ts:136](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc-db.ts#L136)
+[immudb-node/src/immu-grpc-db.ts:136](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc-db.ts#L136)
 
 ___
 
@@ -154,7 +154,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc-db.ts:125](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc-db.ts#L125)
+[immudb-node/src/immu-grpc-db.ts:125](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc-db.ts#L125)
 
 ___
 
@@ -174,7 +174,7 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc-db.ts:105](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc-db.ts#L105)
+[immudb-node/src/immu-grpc-db.ts:105](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc-db.ts#L105)
 
 ___
 
@@ -194,4 +194,4 @@ ___
 
 #### Defined in
 
-[immudb-node/src/immu-grpc-db.ts:164](https://github.com/user3232/node-immu-db/blob/30c0d74/immudb-node/src/immu-grpc-db.ts#L164)
+[immudb-node/src/immu-grpc-db.ts:164](https://github.com/codenotary/immudb-node/blob/fe12060/immudb-node/src/immu-grpc-db.ts#L164)
