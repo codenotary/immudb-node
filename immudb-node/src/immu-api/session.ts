@@ -10,7 +10,7 @@ import * as immuGrpc from '../immu-grpc/index.js'
 export function createOpenSession(client: igrpc.ImmuServiceClient) {
     const openSessionGrpc = immuGrpc.unaryCall.createOpenSession(client)
     /**
-     * Requests session metadata ({@link immu.UserDatabaseSession}) from ImmuDb
+     * Requests session metadata ({@link immu.UserDatabaseSession}) from immudb
      * server for user and database.
      */
     return function openSession(sessionInfo: immu.UserDatabaseSession) {
@@ -56,7 +56,7 @@ export function createCloseSession(client: igrpc.ImmuServiceClient) {
 export function createKeepAlive(client: igrpc.ImmuServiceClient) {
     const keepAliveGrpc = immuGrpc.unaryCall.createKeepAlive(client)
     /**
-     * Asks ImmuDb to not close (idle?) connection.
+     * Asks immudb to not close (idle?) connection.
      */
     return function keepAlive(props: {
         credentials: grpcjs.CallCredentials,

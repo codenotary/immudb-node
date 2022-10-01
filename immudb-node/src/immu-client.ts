@@ -174,7 +174,7 @@ export class Client {
 
     /**
      * Clears stored session tokens and credentials and closses session
-     * with ImmuDb
+     * with immudb
      */
     async close() {
         await this.immuGrpcApi.closeSession(await this.getCallCredentials())
@@ -183,7 +183,7 @@ export class Client {
     }
 
     /** 
-     * Asks ImmuDb to not close (idle?) connection.
+     * Asks immudb to not close (idle?) connection.
      */
     async keepAlive() {
         return this.immuGrpcApi.keepAlive({
@@ -372,7 +372,7 @@ export class Client {
 
     /** 
      * Scans database transactions in one transaction. This is most fundamental
-     * operation of ImmuDb.
+     * operation of immudb.
      *
      * Result is composed in following way:
      * - entries are filtered out for actions:
@@ -716,7 +716,7 @@ export class Client {
 
 
     /**
-     * Creates ImmuDb server user
+     * Creates immudb server user
      */
      async createUser(props: api.CreateUsersProps) {
         return this.immuGrpcApi.createUser({
@@ -726,7 +726,7 @@ export class Client {
     }
 
     /**
-     * Deletes (deactivates) ImmuDb server user, can also activate user.
+     * Deletes (deactivates) immudb server user, can also activate user.
      */
     async deleteUser(props: api.SetUserActiveProps) {
         return this.immuGrpcApi.setUserActive({
@@ -736,7 +736,7 @@ export class Client {
     }
 
     /**
-     * Lists ImmuDb server users, can also activate user.
+     * Lists immudb server users, can also activate user.
      */
     async listUsers() {
         return this.immuGrpcApi.listUsers({
@@ -746,7 +746,7 @@ export class Client {
 
 
     /**
-     * Sets ImmuDb server user permissions.
+     * Sets immudb server user permissions.
      */
     async setUserDbPermissions(props: api.SetUserDbPermissionsProps) {
         return this.immuGrpcApi.setUserDbPermissions({
@@ -756,7 +756,7 @@ export class Client {
     }
 
     /**
-     * Sets ImmuDb server user password.
+     * Sets immudb server user password.
      */
      async setUserPassword(props: api.SetUserPasswordProps) {
         return this.immuGrpcApi.setUserPassword({
@@ -777,7 +777,7 @@ export class Client {
 
 
     /**
-     * Creates database as ImmuDb server.
+     * Creates database as immudb server.
      */
     async createDb(props: api.CreateDatabaseProps) {
         return this.immuGrpcApi.createDb({
@@ -787,7 +787,7 @@ export class Client {
     }
 
     /**
-     * Deletes database as ImmuDb server.
+     * Deletes database as immudb server.
      */
     async deleteDb(props: api.DeleteDatabaseProps) {
         return this.immuGrpcApi.deleteDb({
@@ -797,7 +797,7 @@ export class Client {
     }
 
     /**
-     * Loads database at ImmuDb server.
+     * Loads database at immudb server.
      */
     async loadDb(props: api.LoadDbProps) {
         return this.immuGrpcApi.loadDb({
@@ -807,7 +807,7 @@ export class Client {
     }
 
     /**
-     * Unloads database at ImmuDb server.
+     * Unloads database at immudb server.
      */
     async unloadDb(props: api.UnloadDbProps) {
         return this.immuGrpcApi.unloadDb({
@@ -837,7 +837,7 @@ export class Client {
 
 
     /**
-     * Lists all ImmuDb server databases.
+     * Lists all immudb server databases.
      */
     async listDbs() {
         return this.immuGrpcApi.listDbs({

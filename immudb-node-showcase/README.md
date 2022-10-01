@@ -1,8 +1,8 @@
 
-# ImmuDb showcases
+# immudb showcases
 
-In `src` folder there are self sufficient files with ImmuDb showcases.
-Use them to play and learn ImmuDb.
+In `src` folder there are self sufficient files with immudb showcases.
+Use them to play and learn immudb.
 
 
 ## Running schowcases
@@ -65,7 +65,7 @@ function myShowcase() {
 }
 ```
 
-Remember to have your ImmuDb instance running:
+Remember to have your immudb instance running:
 
 ```sh
 docker run -d -it --rm -p 8080:8080 -p 3322:3322 -p 9497:9497 -p 5432:5432 --name immudb codenotary/immudb:latest

@@ -1,4 +1,4 @@
-# Generate grpcjs client for ImmuDb `.proto` file
+# Generate grpcjs client for immudb `.proto` file
 
 
 ## Prepare `schema.proto` after updates

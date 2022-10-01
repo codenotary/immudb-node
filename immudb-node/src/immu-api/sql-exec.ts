@@ -13,7 +13,7 @@ export type SqlExecProps = {
      */
     options?: {
         /**
-         * Do not wait for ImmuDb to update database indexes, setting this
+         * Do not wait for immudb to update database indexes, setting this
          * value to `true` may cause operation to speed up in exchange for
          * stale database latest keys values.
          *

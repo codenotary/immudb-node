@@ -1,5 +1,5 @@
 
-# Generate protobufjs client for ImmuDb `.proto` file
+# Generate protobufjs client for immudb `.proto` file
 
 
 

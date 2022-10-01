@@ -7,7 +7,7 @@
         "url": "https://github.com/codenotary/immudb-node.git",
         "directory": "immudb-node-doc"
     },
-    "description": "ImmuDb node documentation and API reference.",
+    "description": "immudb node documentation and API reference.",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"

@@ -7,7 +7,7 @@
         "url": "https://github.com/codenotary/immudb-node.git",
         "directory": "immudb-node-pbjs"
     },
-    "description": "ImmuDb schema.proto protobuf node bindings.",
+    "description": "immudb schema.proto protobuf node bindings.",
     "keywords": [
         "immudb",
         "protobuf",

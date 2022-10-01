@@ -32,7 +32,7 @@ export type ImmuGrpcMetadata = {
 
 /**
  * Creates {@link grpcjs.Metadata} object with provided {@link ImmuGrpcMetadata}
- * options specific to ImmuDb.
+ * options specific to immudb.
  */
 export function createImmuGrpcMetadata(
     props: ImmuGrpcMetadata
@@ -51,7 +51,7 @@ export function createImmuGrpcMetadata(
 
 /**
  * Creates {@link grpcjs.CallCredentials} object with provided {@link ImmuGrpcMetadata}
- * options specific to ImmuDb.
+ * options specific to immudb.
  */
 export function createImmuGrpcCallCredentials(
     props: ImmuGrpcMetadata

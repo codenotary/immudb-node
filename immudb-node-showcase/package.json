@@ -7,7 +7,7 @@
         "url": "https://github.com/codenotary/immudb-node.git",
         "directory": "immudb-node-showcase"
     },
-    "description": "ImmuDb node client showcases.",
+    "description": "immudb node client showcases.",
     "type": "module",
     "main": "./dist/index.js",
     "exports": {

@@ -2,7 +2,7 @@
   "name": "immudb-node-packages",
   "version": "2.0.0-alpha.0",
   "license": "Apache-2.0",
-  "description": "ImmuDb js packages",
+  "description": "immudb js packages",
   "author": "MK",
   "workspaces": [
     "immudb-node-grpcjs",

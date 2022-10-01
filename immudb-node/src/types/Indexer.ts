@@ -3,7 +3,7 @@ import Long from "long"
 
 
 /**
- * Entry and additional informations from ImmuDb server indexer.
+ * Entry and additional information from immudb server indexer.
  * 
  */
  export type IndexerInfo = {

@@ -8,11 +8,11 @@
 
 [immudb]: https://immudb.io/
 
-# Old ImmuDb client
+# Old immudb client
 
-**[Old version of ImmuDb node client](https://github.com/codenotary/immudb-node/releases/tag/v1.1.1)**
+**[Old version of immudb node client](https://github.com/codenotary/immudb-node/releases/tag/v1.1.1)**
 
-# ImmuDb node client (Alpha) mono repository
+# immudb node client (Alpha) mono repository
 
 
 
