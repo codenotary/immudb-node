@@ -29,7 +29,7 @@ jobs:
           npm run build
       - name: Run immudb
         run: |
-           docker run -d --rm --health-cmd "immuadmin status" --health-interval 10s --health-timeout 5s --health-retries 5 -p 3322:3322 codenotary/immudb:latest
+           docker run -d --rm --health-cmd "immuadmin status" --health-interval 10s --health-timeout 5s --health-retries 5 -p 3322:3322 codenotary/immudb:1.3.2
       - name: Run showcase
         run: |
           cd immudb-node-showcase

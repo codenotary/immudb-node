@@ -1,5 +1,5 @@
 {
-    "name": "immudb-node-doc",
+    "name": "@codenotary/immudb-node-doc",
     "version": "2.0.0-alpha.0",
     "license": "Apache-2.0",
     "repository": {
