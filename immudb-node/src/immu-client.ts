@@ -483,7 +483,7 @@ export class Client {
     /**
      * Scans all database entries in one transaction.
      */
-    async scanDbEntries(props: api.ScanDBProps) {
+    async scanDbEntries(props?: api.ScanDBProps) {
         return this.immuGrpcApi.scanDbEntries({
             ...props,
             credentials: await this.getCallCredentials(),

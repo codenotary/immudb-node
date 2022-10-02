@@ -23,9 +23,13 @@ export function grpcDualProofToVerificationTx(props: {
         refId: props.refTxId,
     })
 
+    // console.log('dualProof consistencyProof: ', props.grpcProof.consistencyProof)
+    // console.log('dualProof lastInclusionProof: ', props.grpcProof.lastInclusionProof)
+    // console.log('dualProof inclusionProof: ', props.grpcProof.inclusionProof)
+
     switch(txVerificationType) {
         case 'tx-prev-in-ref-prev':
-            verificationTx = {
+            return {
                 type:                       'tx-prev-in-ref-prev',
                 tx:                         txCore.fromGrpcTxHeader(props.grpcTx),
                 refPrevTxInRefPrevTxesMht:  props.grpcProof.lastInclusionProof,
@@ -38,9 +42,8 @@ export function grpcDualProofToVerificationTx(props: {
                     id:         props.refTxId,
                 },
             }
-            break
         case 'ref-prev-in-tx-prev':
-            verificationTx = {
+            return {
                 type:                                       'ref-prev-in-tx-prev',
                 tx:                                         txCore.fromGrpcTxHeader(props.grpcTx),
                 txPrevTxInTxPrevTxesMht:                    props.grpcProof.lastInclusionProof,
@@ -53,9 +56,8 @@ export function grpcDualProofToVerificationTx(props: {
                     id:         props.refTxId,
                 },
             }
-            break
         case 'tx-is-ref':
-            verificationTx = {
+            return {
                 type:                       'tx-is-ref',
                 tx:                         txCore.fromGrpcTxHeader(props.grpcTx),
                 txPrevTxInRefPrevTxesMht:   props.grpcProof.lastInclusionProof,
@@ -66,10 +68,8 @@ export function grpcDualProofToVerificationTx(props: {
                     id:         props.refTxId,
                 },
             }
-            break
     }
 
-    return verificationTx
 }
 
 

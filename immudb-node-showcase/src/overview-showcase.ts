@@ -10,15 +10,11 @@ import {
 
 
 
-scanningShowcase()
+overviewSchowcase()
 .catch(console.error)
 
 
-
-
-
-
-async function scanningShowcase() {
+async function overviewSchowcase() {
 
     
     const client = new Client({
@@ -236,7 +232,7 @@ async function scanningShowcase() {
         refTxId: stateAt9.txId,
     })
     console.log('getTx2AndVerification')
-    console.dir(getTx2AndVerification, {depth: 10})
+    console.log(getTx2AndVerification, {depth: 10})
     console.log('verifyVerification(getTx2AndVerification) result:')
     console.log(verifyVerification(getTx2AndVerification.verification))
 
@@ -250,7 +246,7 @@ async function scanningShowcase() {
         refTxId: stateAt9.txId,
     })
     console.log('getTx6AndVerification')
-    console.dir(getTx6AndVerification, {depth: 10})
+    console.log(getTx6AndVerification, {depth: 10})
     console.log('verifyVerification(getTx6AndVerification) result:')
     console.log(verifyVerification(getTx6AndVerification.verification))
 
@@ -263,7 +259,7 @@ async function scanningShowcase() {
         refTxId: stateAt9.txId,
     })
     console.log('getTx7AndVerification')
-    console.dir(getTx7AndVerification, {depth: 10})
+    console.log(getTx7AndVerification, {depth: 10})
     console.log('verifyVerification(getTx7AndVerification) result:')
     console.log(verifyVerification(getTx7AndVerification.verification))
 
@@ -275,14 +271,10 @@ async function scanningShowcase() {
         refTxId: stateAt9.txId,
     })
     console.log('getTx8AndVerification')
-    console.dir(getTx8AndVerification, {depth: 10})
+    console.log(getTx8AndVerification, {depth: 10})
     console.log('verifyVerification(getTx8AndVerification) result:')
     console.log(verifyVerification(getTx8AndVerification.verification))
     
-
-
-
-
 
 
 

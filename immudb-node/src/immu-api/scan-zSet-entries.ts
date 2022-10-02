@@ -78,8 +78,8 @@ export function createScanZEntries(client: igrpc.ImmuServiceClient) {
             request: {
                 
                 set:            props.set,
-                minScore:       { score: props.minScore },
-                maxScore:       { score: props.maxScore },
+                minScore:       props.minScore ? { score: props.minScore } : undefined,
+                maxScore:       props.maxScore ? { score: props.maxScore } : undefined,
                 seekScore:      props.equalsScore,
                 
 
@@ -140,8 +140,8 @@ export function createScanZEntriesStreaming(client: igrpc.ImmuServiceClient) {
             request: {
 
                 set:            props.set,
-                minScore:       { score: props.minScore },
-                maxScore:       { score: props.maxScore },
+                minScore:       props.minScore ? { score: props.minScore } : undefined,
+                maxScore:       props.maxScore ? { score: props.maxScore } : undefined,
                 seekScore:      props.equalsScore,
 
 
