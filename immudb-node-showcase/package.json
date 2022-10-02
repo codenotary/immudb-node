@@ -19,7 +19,7 @@
         }
     },
     "dependencies": {
-        "immudb-node": "2.0.0-alpha.0",
+        "@codenotary/immudb-node": "2.0.0-alpha.0",
         "long": "^5.2.0"
     },
     "devDependencies": {

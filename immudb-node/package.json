@@ -34,8 +34,8 @@
     "types": "dist/index.d.ts",
     "dependencies": {
         "@grpc/grpc-js": "^1.7.0",
-        "immudb-node-grpcjs": "2.0.0-alpha.0",
-        "immudb-node-pbjs": "2.0.0-alpha.0",
+        "@codenotary/immudb-node-grpcjs": "2.0.0-alpha.0",
+        "@codenotary/immudb-node-pbjs": "2.0.0-alpha.0",
         "long": "^5.2.0"
     },
     "devDependencies": {
