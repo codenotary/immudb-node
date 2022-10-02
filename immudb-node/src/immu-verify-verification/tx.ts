@@ -5,10 +5,32 @@ import * as prove from '../immu-rfc6962/index.js'
 
 
 export function verifyTx(props: immu.VerificationTx): true {
+    
     switch(props.type) {
-        case 'tx-prev-in-ref-prev': return txInRefTx(props)
-        case 'ref-prev-in-tx-prev': return refTxInTx(props)
-        case 'tx-is-ref':           return txIsRefTx(props)
+        case 'tx-prev-in-ref-prev': {
+            if(props.ref.id.equals(1)) {
+                throw 'Ref tx with id equal 1 does not have prev tx'
+                    + 'and cannot be verified in ImmuDb way.'
+            }
+
+            return txInRefTx(props)
+        }    
+        case 'ref-prev-in-tx-prev': {
+            if(props.ref.id.equals(1)) {
+                throw 'Ref tx with id equal 1 does not have prev tx'
+                    + 'and cannot be verified in ImmuDb way.'
+            }
+
+            return refTxInTx(props)
+        }
+        case 'tx-is-ref': {
+            if(props.tx.id.equals(1)) {
+                throw 'Ref tx with id equal 1 does not have prev tx'
+                    + 'and cannot be verified in ImmuDb way.'
+            }
+            
+            return txIsRefTx(props)
+        }
     }
 }
 
@@ -32,18 +54,25 @@ export function txInRefTx(props: immu.VerificationTxInclusion): true {
     // Tx in Ref prev txes Mht
     // ************************************************
 
-    const txHash = hash.hashOfTxCore(props.tx)
-    const txHashLeaf = hash.leaf(txHash)
+    // for tx behind ref next step will check the same
+    // (more importantly props.txPrevInRefPrevTxesMht returned by
+    // the server is empty in such case!!!!)
+    if(props.tx.id.add(1).notEquals(props.ref.id)) {
 
-    const refPrevTxesMhtFromTx = prove.rootFromInclusionProof({
-        leaf:                   txHashLeaf,
-        leafId:                 props.tx.id,
-        lastLeafId:             props.refHash.id.sub(1),
-        inclusionProofNodes:    props.txPrevInRefPrevTxesMht
-    })
+        const txHash = hash.hashOfTxCore(props.tx)
+        const txHashLeaf = hash.leaf(txHash)
+    
+        const refPrevTxesMhtFromTx = prove.rootFromInclusionProof({
+            leaf:                   txHashLeaf,
+            leafId:                 props.tx.id,
+            lastLeafId:             props.refHash.id.sub(1),
+            inclusionProofNodes:    props.txPrevInRefPrevTxesMht
+        })
+    
+        if (refPrevTxesMhtFromTx.equals(props.ref.prevTxesMht) === false) {
+            throw 'proved refPrevTxesMhtFromTx must match ref.prevTxesMht'
+        }
 
-    if (refPrevTxesMhtFromTx.equals(props.ref.prevTxesMht) === false) {
-        throw 'proved refPrevTxesMhtFromtx must match ref.prevTxesMht'
     }
 
     // ************************************************

@@ -165,9 +165,9 @@ export type ScanDBProps = {
      * If set operation will start scanning from transaction with specified id,
      * if not set operation will start from first transaction.
      * 
-     * **Mandatory**.
+     * 
      */
-    scanStartAtTxId: Long,
+    scanStartAtTxId?: Long,
 }
 
 
@@ -186,7 +186,7 @@ export function createScanDb(client: igrpc.ImmuServiceClient) {
 
         const allEntries = await scanTxes({
             credentials:            props.credentials,
-            scanStartAtTxId:        props.scanStartAtTxId,
+            scanStartAtTxId:        props.scanStartAtTxId ?? Long.fromInt(1, true),
             dontWaitForLatestKeys:  props.dontWaitForLatestKeys,
             seenSinceTxId:          props.seenSinceTxId,
             sortDescending:         props.sortDescending,
