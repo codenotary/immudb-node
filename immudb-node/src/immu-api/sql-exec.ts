@@ -86,9 +86,11 @@ export function createSqlExec(client: igrpc.ImmuServiceClient) {
                 const firstPK = igs.grpcSqlObjectNamedValueToNamedValues(
                     grpcCommitedSqlTx.firstInsertedPKs
                 )
+
                 const lastPK = igs.grpcSqlObjectNamedValueToNamedValues(
                     grpcCommitedSqlTx.lastInsertedPKs
                 )
+
                 return {
                     tx,
                     firstPK,

@@ -1,5 +1,5 @@
 {
-    "name": "immudb-node-showcase",
+    "name": "@codenotary/immudb-node-showcase",
     "version": "2.0.0-alpha.0",
     "license": "Apache-2.0",
     "repository": {
@@ -19,7 +19,7 @@
         }
     },
     "dependencies": {
-        "immudb-node": "2.0.0-alpha.0",
+        "@codenotary/immudb-node": "2.0.0-alpha.0",
         "long": "^5.2.0"
     },
     "devDependencies": {

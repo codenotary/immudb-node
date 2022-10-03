@@ -1,5 +1,5 @@
 {
-    "name": "immudb-node-grpcjs",
+    "name": "@codenotary/immudb-node-grpcjs",
     "version": "2.0.0-alpha.0",
     "license": "Apache-2.0",
     "repository": {

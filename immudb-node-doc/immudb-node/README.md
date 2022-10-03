@@ -35,5 +35,5 @@ function myShowcase() {
 Remember to have immudb docker image with exposed ports running:
 
 ```sh
-docker run -d -it --rm -p 8080:8080 -p 3322:3322 -p 9497:9497 -p 5432:5432 --name immudb codenotary/immudb:latest
+docker run -d -it --rm -p 8080:8080 -p 3322:3322 -p 9497:9497 -p 5432:5432 --name immudb codenotary/immudb:1.3.2
 ```

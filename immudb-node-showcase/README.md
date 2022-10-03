@@ -15,20 +15,30 @@ npm install
 ```
 
 
-Then run immudb docker image with exposed ports:
+
+
+Then run showcase from (git) root directory (To have predictable output it is
+best to restart immudb docker image before every showcase run):
 
 ```sh
-docker run -d -it --rm -p 8080:8080 -p 3322:3322 -p 9497:9497 -p 5432:5432 --name immudb codenotary/immudb:latest
+$ docker run -d -it --rm -p 8080:8080 -p 3322:3322 -p 9497:9497 -p 5432:5432 --name immudb codenotary/immudb:1.3.2
+$ npx ts-node --esm ./immudb-node-showcase/src/overview-showcase.ts
+$ docker stop immudb
 ```
-
-Then run example, e.g.:
 
 ```sh
-npx ts-node --esm .\src\scanning.ts
+$ docker run -d -it --rm -p 8080:8080 -p 3322:3322 -p 9497:9497 -p 5432:5432 --name immudb codenotary/immudb:1.3.2
+$ npx ts-node --esm ./immudb-node-showcase/src/sql-showcase.ts
+$ docker stop immudb
 ```
 
-To have predictable output it is best to restart immudb docker image 
-before every showcase run.
+```sh
+$ docker run -d -it --rm -p 8080:8080 -p 3322:3322 -p 9497:9497 -p 5432:5432 --name immudb codenotary/immudb:1.3.2
+$ npx ts-node --esm ./immudb-node-showcase/src/zSet-showcase.ts
+$ docker stop immudb
+```
+
+
 
 ## Create your own showcase and experiment
 
@@ -68,7 +78,7 @@ function myShowcase() {
 Remember to have your immudb instance running:
 
 ```sh
-docker run -d -it --rm -p 8080:8080 -p 3322:3322 -p 9497:9497 -p 5432:5432 --name immudb codenotary/immudb:latest
+docker run -d -it --rm -p 8080:8080 -p 3322:3322 -p 9497:9497 -p 5432:5432 --name immudb codenotary/immudb:1.3.2
 ```
 
 
