@@ -27,9 +27,18 @@ jobs:
         run: |
           npm ci
           npm run build
-      - name: Run immudb
+      - name: Run overview showcase
         run: |
-          docker run -d --rm --health-cmd "immuadmin status" --health-interval 10s --health-timeout 5s --health-retries 5 -p 3322:3322 codenotary/immudb:1.3.2
-      - name: Run showcase
-        run: |
+          docker run -d --rm --health-cmd "immuadmin status" --health-interval 10s --health-timeout 5s --health-retries 5 -p 3322:3322 --name immudb codenotary/immudb:1.3.2
           npx ts-node --esm ./immudb-node-showcase/src/overview-showcase.ts
+          docker stop immudb
+      - name: Run sql showcase
+        run: |
+          docker run -d --rm --health-cmd "immuadmin status" --health-interval 10s --health-timeout 5s --health-retries 5 -p 3322:3322 --name immudb codenotary/immudb:1.3.2
+          npx ts-node --esm ./immudb-node-showcase/src/sql-showcase.ts
+          docker stop immudb
+      - name: Run zSet showcase
+        run: |
+          docker run -d --rm --health-cmd "immuadmin status" --health-interval 10s --health-timeout 5s --health-retries 5 -p 3322:3322 --name immudb codenotary/immudb:1.3.2
+          npx ts-node --esm ./immudb-node-showcase/src/zSet-showcase.ts
+          docker stop immudb

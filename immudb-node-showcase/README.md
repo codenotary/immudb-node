@@ -22,19 +22,19 @@ best to restart immudb docker image before every showcase run):
 
 ```sh
 $ docker run -d -it --rm -p 8080:8080 -p 3322:3322 -p 9497:9497 -p 5432:5432 --name immudb codenotary/immudb:1.3.2
-$ npx ts-node --esm .\immudb-node-schowcase\src\overview-showcase.ts
+$ npx ts-node --esm ./immudb-node-showcase/src/overview-showcase.ts
 $ docker stop immudb
 ```
 
 ```sh
 $ docker run -d -it --rm -p 8080:8080 -p 3322:3322 -p 9497:9497 -p 5432:5432 --name immudb codenotary/immudb:1.3.2
-$ npx ts-node --esm .\immudb-node-schowcase\src\sql-showcase.ts
+$ npx ts-node --esm ./immudb-node-showcase/src/sql-showcase.ts
 $ docker stop immudb
 ```
 
 ```sh
 $ docker run -d -it --rm -p 8080:8080 -p 3322:3322 -p 9497:9497 -p 5432:5432 --name immudb codenotary/immudb:1.3.2
-$ npx ts-node --esm .\immudb-node-schowcase\src\zSet-showcase.ts
+$ npx ts-node --esm ./immudb-node-showcase/src/zSet-showcase.ts
 $ docker stop immudb
 ```
 
