@@ -4,7 +4,7 @@ import {
     verifyVerification, 
     types, 
     stream, 
-} from 'immudb-node'
+} from '@codenotary/immudb-node'
 
 
 

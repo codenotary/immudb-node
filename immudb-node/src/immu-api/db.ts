@@ -2,7 +2,7 @@ import type * as immu from '../types/index.js'
 import * as igd from '../immu-grpc-db.js'
 import * as grpcjs from '@grpc/grpc-js'
 import * as immuGrpc from '../immu-grpc/index.js'
-import type * as igrpc from 'immudb-node-grpcjs'
+import type * as igrpc from '@codenotary/immudb-node-grpcjs'
 
 
 

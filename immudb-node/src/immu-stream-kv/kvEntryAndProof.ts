@@ -1,5 +1,5 @@
 import { Buffer } from 'node:buffer'
-import * as pbImmu from 'immudb-node-pbjs'
+import * as pbImmu from '@codenotary/immudb-node-pbjs'
 // import * as _pbImmu from '../pb/immu.js'
 // import pbImmu = _pbImmu.immudb.schema
 

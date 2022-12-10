@@ -1,4 +1,4 @@
-import type * as igrpc from 'immudb-node-grpcjs'
+import type * as igrpc from '@codenotary/immudb-node-grpcjs'
 import * as promis from '../grpc-promis/index.js'
 
 

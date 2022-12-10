@@ -1,5 +1,5 @@
 import Long from 'long'
-import type * as igrpc from 'immudb-node-grpcjs'
+import type * as igrpc from '@codenotary/immudb-node-grpcjs'
 import * as grpcjs from '@grpc/grpc-js'
 import * as immuGrpc from '../immu-grpc/index.js'
 import * as ige from '../immu-grpc-entry/index.js'

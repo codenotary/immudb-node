@@ -1,6 +1,6 @@
 {
     "name": "@codenotary/immudb-node",
-    "version": "2.0.0-alpha.0",
+    "version": "2.0.0-alpha.1",
     "license": "Apache-2.0",
     "repository": {
         "type": "git",
@@ -34,8 +34,8 @@
     "types": "dist/index.d.ts",
     "dependencies": {
         "@grpc/grpc-js": "^1.7.0",
-        "@codenotary/immudb-node-grpcjs": "2.0.0-alpha.0",
-        "@codenotary/immudb-node-pbjs": "2.0.0-alpha.0",
+        "@codenotary/immudb-node-grpcjs": "2.0.0-alpha.1",
+        "@codenotary/immudb-node-pbjs": "2.0.0-alpha.1",
         "long": "^5.2.0"
     },
     "devDependencies": {
