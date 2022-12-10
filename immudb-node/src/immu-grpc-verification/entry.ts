@@ -1,4 +1,4 @@
-import type * as igrpc from 'immudb-node-grpcjs'
+import type * as igrpc from '@codenotary/immudb-node-grpcjs'
 import type * as immu from '../types/index.js'
 import * as ige from '../immu-grpc-entry/index.js'
 import * as ike from '../immu-kvm-entry/index.js'

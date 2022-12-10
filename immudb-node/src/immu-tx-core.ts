@@ -1,5 +1,5 @@
 import type * as immu from './types/index.js'
-import type * as igrpc from 'immudb-node-grpcjs'
+import type * as igrpc from '@codenotary/immudb-node-grpcjs'
 
 
 export function fromGrpcTxHeader(

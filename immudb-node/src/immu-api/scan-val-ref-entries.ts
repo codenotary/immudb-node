@@ -1,4 +1,4 @@
-import type * as igrpc from 'immudb-node-grpcjs'
+import type * as igrpc from '@codenotary/immudb-node-grpcjs'
 import { Buffer } from 'node:buffer'
 import Long from 'long'
 import * as grpcjs from '@grpc/grpc-js'

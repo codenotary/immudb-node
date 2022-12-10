@@ -1,7 +1,7 @@
 import * as api from './immu-api/index.js'
 import * as session from './immu-session.js'
 import * as grpcjs from '@grpc/grpc-js'
-import * as igrpc from 'immudb-node-grpcjs'
+import * as igrpc from '@codenotary/immudb-node-grpcjs'
 import type * as immu from './types/index.js'
 
 

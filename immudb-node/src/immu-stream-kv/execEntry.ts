@@ -1,4 +1,4 @@
-import * as pb from 'immudb-node-pbjs'
+import * as pb from '@codenotary/immudb-node-pbjs'
 import { fromKVEntry } from './kvEntry.js'
 import Long from 'long'
 import * as buffer from '../buffer.js'
