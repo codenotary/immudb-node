@@ -14,86 +14,86 @@ import type * as immu from './types/index.js'
 function createImmuGrpcApi(grpcClient: igrpc.ImmuServiceClient) {
     return {
         // session
-        openSession:            api.createOpenSession(grpcClient),
-        closeSession:           api.createCloseSession(grpcClient),
-        keepAlive:              api.createKeepAlive(grpcClient),
-        useDb:                  api.createUseDb(grpcClient),
+        openSession: api.createOpenSession(grpcClient),
+        closeSession: api.createCloseSession(grpcClient),
+        keepAlive: api.createKeepAlive(grpcClient),
+        useDb: api.createUseDb(grpcClient),
 
 
         // user
-        createUser:             api.createCreateUser(grpcClient),
-        listUsers:              api.createListUsers(grpcClient),
-        setUserActive:          api.createSetUserActive(grpcClient),
-        setUserPassword:        api.createSetUserPassword(grpcClient),
-        setUserDbPermissions:   api.createSetUserDbPermissions(grpcClient),
+        createUser: api.createCreateUser(grpcClient),
+        listUsers: api.createListUsers(grpcClient),
+        setUserActive: api.createSetUserActive(grpcClient),
+        setUserPassword: api.createSetUserPassword(grpcClient),
+        setUserDbPermissions: api.createSetUserDbPermissions(grpcClient),
 
 
         // db
-        createDb:               api.createCreateDb(grpcClient),
-        loadDb:                 api.createLoadDb(grpcClient),
-        unloadDb:               api.createUnloadDb(grpcClient),
-        deleteDb:               api.createDeleteDb(grpcClient),
-        flushDbIndex:           api.createFlushDbIndex(grpcClient),
-        compactDbIndex:         api.createCompactDbIndex(grpcClient),
-        listDbs:                api.createListDbs(grpcClient),
-        getDbSettings:          api.createGetDbSettings(grpcClient),
-        getDbCurrentState:      api.createGetDbCurrentState(grpcClient),
-        setDbSettings:          api.createSetDbSettings(grpcClient),
+        createDb: api.createCreateDb(grpcClient),
+        loadDb: api.createLoadDb(grpcClient),
+        unloadDb: api.createUnloadDb(grpcClient),
+        deleteDb: api.createDeleteDb(grpcClient),
+        flushDbIndex: api.createFlushDbIndex(grpcClient),
+        compactDbIndex: api.createCompactDbIndex(grpcClient),
+        listDbs: api.createListDbs(grpcClient),
+        getDbSettings: api.createGetDbSettings(grpcClient),
+        getDbCurrentState: api.createGetDbCurrentState(grpcClient),
+        setDbSettings: api.createSetDbSettings(grpcClient),
 
 
 
         // gets
-        scanValRefEntries:          api.createScanValRefEntries(grpcClient),
+        scanValRefEntries: api.createScanValRefEntries(grpcClient),
         scanValRefEntriesStreaming: api.createScanValRefEntriesStreaming(grpcClient),
-        scanZEntries:               api.createScanZEntries(grpcClient),
-        scanZEntriesStreaming:      api.createScanZEntriesStreaming(grpcClient),
-        scanTxes:                   api.createScanTxes(grpcClient),
-        scanDbEntries:              api.createScanDb(grpcClient),
-        scanHistory:                api.createScanHistory(grpcClient),
-        scanHistoryStreaming:       api.createScanHistoryStreaming(grpcClient),
-        getTxWithEntries:           api.createGetTxWithEntries(grpcClient),
-        getTxGenericEntries:        api.createGetTxGenericEntries(grpcClient),
-        getValRef:                  api.createGetValRef(grpcClient),
-        getValRefs:                 api.createGetValRefs(grpcClient),
-        getValRefStreaming:         api.createGetValRefStreaming(grpcClient),
+        scanZEntries: api.createScanZEntries(grpcClient),
+        scanZEntriesStreaming: api.createScanZEntriesStreaming(grpcClient),
+        scanTxes: api.createScanTxes(grpcClient),
+        scanDbEntries: api.createScanDb(grpcClient),
+        scanHistory: api.createScanHistory(grpcClient),
+        scanHistoryStreaming: api.createScanHistoryStreaming(grpcClient),
+        getTxWithEntries: api.createGetTxWithEntries(grpcClient),
+        getTxGenericEntries: api.createGetTxGenericEntries(grpcClient),
+        getValRef: api.createGetValRef(grpcClient),
+        getValRefs: api.createGetValRefs(grpcClient),
+        getValRefStreaming: api.createGetValRefStreaming(grpcClient),
 
 
         // sets
-        setValRefZSetEntries:       api.createSetEntries(grpcClient),
+        setValRefZSetEntries: api.createSetEntries(grpcClient),
         setValZSetEntriesStreaming: api.createSetEntriesStreaming(grpcClient),
-        setValEntries:              api.createSetValEntries(grpcClient),
-        setValEntriesStreaming:     api.createSetValEntriesStreaming(grpcClient),
-        setZSetEntry:               api.createSetZSetEntry(grpcClient),
-        setRefEntry:                api.createSetRefEntry(grpcClient),
-        deleteValRef:               api.createDeleteValRef(grpcClient),
-        
-        
-        // sql
-        sqlExec:                    api.createSqlExec(grpcClient),
-        sqlQuery:                   api.createSqlQuery(grpcClient),
-        sqlQueryTable:              api.createSqlQueryTable(grpcClient),
-        sqlQueryTables:             api.createSqlQueryTables(grpcClient),
-        
-        // sql tx
-        sqlTxNew:                   api.createSqlTxNew(grpcClient),
-        sqlTxCommit:                api.createSqlTxCommit(grpcClient),
-        sqlTxRollback:              api.createSqlTxRollback(grpcClient),
-        sqlTxExec:                  api.createSqlTxExec(grpcClient),
-        sqlTxQuery:                 api.createSqlTxQuery(grpcClient),
-        
-        // instance 
-        replicateTx:                api.createReplicateTx(grpcClient),
-        exportTx:                   api.createExportTx(grpcClient),
-        
-        
-        // with verification
-        getTxAndVerification:       api.createGetTxAndVerification(grpcClient),
-        getSqlRowEntryAndVerification:      api.createGetSqlRowEntryAndVerification(grpcClient),
-        getValRefAndVerification:   api.createGetValRefAndVerification(grpcClient),
+        setValEntries: api.createSetValEntries(grpcClient),
+        setValEntriesStreaming: api.createSetValEntriesStreaming(grpcClient),
+        setZSetEntry: api.createSetZSetEntry(grpcClient),
+        setRefEntry: api.createSetRefEntry(grpcClient),
+        deleteValRef: api.createDeleteValRef(grpcClient),
 
-        setValEntriesGetVerification:   api.createSetValEntriesGetVerification(grpcClient),
-        setRefEntryGetVerification:     api.createSetRefEntryGetVerification(grpcClient),
-        setZSetEntryGetVerification:    api.createSetZSetEntryGetVerification(grpcClient),
+
+        // sql
+        sqlExec: api.createSqlExec(grpcClient),
+        sqlQuery: api.createSqlQuery(grpcClient),
+        sqlQueryTable: api.createSqlQueryTable(grpcClient),
+        sqlQueryTables: api.createSqlQueryTables(grpcClient),
+
+        // sql tx
+        sqlTxNew: api.createSqlTxNew(grpcClient),
+        sqlTxCommit: api.createSqlTxCommit(grpcClient),
+        sqlTxRollback: api.createSqlTxRollback(grpcClient),
+        sqlTxExec: api.createSqlTxExec(grpcClient),
+        sqlTxQuery: api.createSqlTxQuery(grpcClient),
+
+        // instance 
+        replicateTx: api.createReplicateTx(grpcClient),
+        exportTx: api.createExportTx(grpcClient),
+
+
+        // with verification
+        getTxAndVerification: api.createGetTxAndVerification(grpcClient),
+        getSqlRowEntryAndVerification: api.createGetSqlRowEntryAndVerification(grpcClient),
+        getValRefAndVerification: api.createGetValRefAndVerification(grpcClient),
+
+        setValEntriesGetVerification: api.createSetValEntriesGetVerification(grpcClient),
+        setRefEntryGetVerification: api.createSetRefEntryGetVerification(grpcClient),
+        setZSetEntryGetVerification: api.createSetZSetEntryGetVerification(grpcClient),
     }
 }
 
@@ -106,22 +106,22 @@ function createImmuGrpcApi(grpcClient: igrpc.ImmuServiceClient) {
 
 
 export class Client {
-    private readonly conf:              Config
-    private readonly immuGrpcClient:    igrpc.ImmuServiceClient
-    private readonly immuGrpcApi:       ReturnType<typeof createImmuGrpcApi>
-    private sessionTokens?:             immu.SessionTokens
-    private callCredentials?:           grpcjs.CallCredentials
+    private readonly conf: Config
+    private readonly immuGrpcClient: igrpc.ImmuServiceClient
+    private readonly immuGrpcApi: ReturnType<typeof createImmuGrpcApi>
+    private sessionTokens?: immu.SessionTokens
+    private callCredentials?: grpcjs.CallCredentials
 
     constructor(conf: Config) {
         this.conf = conf
-        
-        
+
+
         this.immuGrpcClient = igrpc.grpcClientFactory({
-            address:        buildAddress(this.conf),
-            credentials:    grpcjs.credentials.createInsecure(),
+            address: buildAddress(this.conf),
+            credentials: grpcjs.credentials.createInsecure(),
             options: {
-                "grpc.max_send_message_length":     1<<4<<10<<10,   // 32 MB
-                "grpc.max_receive_message_length":  1<<4<<10<<10,   // 32 MB
+                "grpc.max_send_message_length": 1 << 4 << 10 << 10,   // 32 MB
+                "grpc.max_receive_message_length": 1 << 4 << 10 << 10,   // 32 MB
             }
         })
         this.immuGrpcApi = createImmuGrpcApi(this.immuGrpcClient)
@@ -131,7 +131,7 @@ export class Client {
 
 
 
-    
+
 
 
 
@@ -148,7 +148,7 @@ export class Client {
      * Gets and caches session tokens.
      */
     private async getSessionTokens() {
-        if(this.sessionTokens) {
+        if (this.sessionTokens) {
             return this.sessionTokens
         }
 
@@ -160,7 +160,7 @@ export class Client {
      * Creates and caches session credentials.
      */
     private async getCallCredentials() {
-        if(this.callCredentials) {
+        if (this.callCredentials) {
             return this.callCredentials
         }
 
@@ -187,7 +187,7 @@ export class Client {
      */
     async keepAlive() {
         return this.immuGrpcApi.keepAlive({
-            credentials:    await this.getCallCredentials(),
+            credentials: await this.getCallCredentials(),
         })
     }
 
@@ -211,21 +211,21 @@ export class Client {
     ) {
         return this.immuGrpcApi.setValRefZSetEntries({
             ...props,
-            credentials:    await this.getCallCredentials()
+            credentials: await this.getCallCredentials()
         })
     }
 
-    
+
 
     /** 
      * Sets multiple ValEntries or ZSetEntries in one transaction.
      */
     async setValZSetEntriesStreaming(
-        props: api.SetEntriesStreamingProps 
+        props: api.SetEntriesStreamingProps
     ) {
         return this.immuGrpcApi.setValZSetEntriesStreaming({
             ...props,
-            credentials:    await this.getCallCredentials()
+            credentials: await this.getCallCredentials()
         })
     }
 
@@ -237,25 +237,25 @@ export class Client {
         props: api.SetValEntryProps
     ) {
         return this.immuGrpcApi.setValEntries({
-            kvms:            props.kvms,
-            preconditions:  props.preconditions,
-            options:        props.options,
-            credentials:    await this.getCallCredentials()
+            kvms: props.kvms,
+            preconditions: props.preconditions,
+            options: props.options,
+            credentials: await this.getCallCredentials()
         })
     }
 
 
-    
+
 
     /** 
      * Sets multiple ValEntries in one transaction.
      */
     async setValEntriesStreaming(
-        props: api.SetValEntriesStreamingProps 
+        props: api.SetValEntriesStreamingProps
     ) {
         return this.immuGrpcApi.setValEntriesStreaming({
             ...props,
-            credentials:    await this.getCallCredentials()
+            credentials: await this.getCallCredentials()
         })
     }
 
@@ -267,7 +267,7 @@ export class Client {
     ) {
         return this.immuGrpcApi.setZSetEntry({
             ...props,
-            credentials:    await this.getCallCredentials()
+            credentials: await this.getCallCredentials()
         })
     }
 
@@ -280,12 +280,12 @@ export class Client {
     ) {
         return this.immuGrpcApi.setRefEntry({
             ...props,
-            credentials:    await this.getCallCredentials()
+            credentials: await this.getCallCredentials()
         })
     }
 
 
-    
+
     /**
      * Deletes keys or references to keys in one transaction.
      * 
@@ -305,8 +305,8 @@ export class Client {
             seenSinceTxId: props.seenSinceTxId,
         })
 
-        
-        
+
+
         return delTxEntries
     }
 
@@ -339,7 +339,7 @@ export class Client {
      * Scans database VEntries and RefEntries in one transaction.
      * Returns output as stream.
      */
-     async scanValRefEntriesStreaming(props: api.ScanValRefEntriesProps) {
+    async scanValRefEntriesStreaming(props: api.ScanValRefEntriesProps) {
         return this.immuGrpcApi.scanValRefEntriesStreaming({
             ...props,
             credentials: await this.getCallCredentials(),
@@ -349,7 +349,7 @@ export class Client {
     /** 
      * Scans database ZEntries in one transaction.
      */
-     async scanZEntries(props: api.ScanZSetEntriesProps) {
+    async scanZEntries(props: api.ScanZSetEntriesProps) {
         return this.immuGrpcApi.scanZEntries({
             ...props,
             credentials: await this.getCallCredentials(),
@@ -367,7 +367,7 @@ export class Client {
             credentials: await this.getCallCredentials(),
         })
     }
-    
+
 
 
     /** 
@@ -456,12 +456,12 @@ export class Client {
         })
     }
 
-    
+
     /**
      * Gets value for provided key in one transaction. Key may refer to value or
      * reference.
      */
-     async getValRefStreaming(props: api.GetValRefProps) {
+    async getValRefStreaming(props: api.GetValRefProps) {
         return this.immuGrpcApi.getValRefStreaming({
             ...props,
             credentials: await this.getCallCredentials(),
@@ -640,7 +640,7 @@ export class Client {
     async executeSqlTx(
         mode: "ReadOnly" | "WriteOnly" | "ReadWrite",
         run: (txApi: {
-            query(props: api.SqlTxQueryProps): Promise<immu.SqlNamedValue[][]>,
+            query(props: api.SqlTxQueryProps): Promise<AsyncGenerator<immu.SqlNamedValue[]>>,
             exec(props: api.SqlTxExecProps): Promise<void>,
         }) => Promise<void>,
     ) {
@@ -664,38 +664,38 @@ export class Client {
                 })
                 resolve(commitResult)
             }
-    
+
             const errorRollBack = async (reason?: any) => {
                 await this.immuGrpcApi.sqlTxRollback({
                     credentials: txCredentials,
                 })
                 resolve('rolled back, reason: ' + reason)
             }
-    
+
             const exec = async (props: api.SqlTxExecProps) => {
                 await this.immuGrpcApi.sqlTxExec({
                     ...props,
                     credentials: txCredentials,
                 })
             }
-    
+
             const query = async (props: api.SqlTxQueryProps) => {
-                return await this.immuGrpcApi.sqlTxQuery({
+                return this.immuGrpcApi.sqlTxQuery({
                     ...props,
                     credentials: txCredentials,
                 })
             }
-    
-            
+
+
             return run({
                 exec,
                 query,
             })
-            .then(commit)
-            .catch(errorRollBack)
+                .then(commit)
+                .catch(errorRollBack)
         })
 
-        
+
         return await operation
     }
 
@@ -703,7 +703,7 @@ export class Client {
 
 
 
-    
+
 
 
     // **********************************************************
@@ -718,7 +718,7 @@ export class Client {
     /**
      * Creates immudb server user
      */
-     async createUser(props: api.CreateUsersProps) {
+    async createUser(props: api.CreateUsersProps) {
         return this.immuGrpcApi.createUser({
             ...props,
             credentials: await this.getCallCredentials(),
@@ -758,7 +758,7 @@ export class Client {
     /**
      * Sets immudb server user password.
      */
-     async setUserPassword(props: api.SetUserPasswordProps) {
+    async setUserPassword(props: api.SetUserPasswordProps) {
         return this.immuGrpcApi.setUserPassword({
             ...props,
             credentials: await this.getCallCredentials(),
@@ -769,7 +769,7 @@ export class Client {
 
 
 
-    
+
 
     // **********************************************************
     // db
@@ -944,7 +944,7 @@ export class Client {
      * Gets ValEntry or RefEntry (and ref associated ValEntry) and its (val or
      * ref) verification structure by looking for ValEntry or RefEntry key.
      */
-     async getValRefAndVerification(props: api.GetValRefAndVerificationProps) {
+    async getValRefAndVerification(props: api.GetValRefAndVerificationProps) {
         return this.immuGrpcApi.getValRefAndVerification({
             ...props,
             credentials: await this.getCallCredentials(),
@@ -963,7 +963,7 @@ export class Client {
     ) {
         return this.immuGrpcApi.setValEntriesGetVerification({
             ...props,
-            credentials:    await this.getCallCredentials()
+            credentials: await this.getCallCredentials()
         })
     }
 
@@ -973,12 +973,12 @@ export class Client {
      *
      * Returns RefEntry set and its verification structure.
      */
-     async setRefEntryGetVerification(
+    async setRefEntryGetVerification(
         props: api.SetRefEntryProps & api.ProofRequestProps
     ) {
         return this.immuGrpcApi.setRefEntryGetVerification({
             ...props,
-            credentials:    await this.getCallCredentials()
+            credentials: await this.getCallCredentials()
         })
     }
 
@@ -988,12 +988,12 @@ export class Client {
      *
      * Returns ZSetEntry set and its verification structure.
      */
-     async setZSetEntryGetVerification(
+    async setZSetEntryGetVerification(
         props: api.SetZSetEntryProps & api.ProofRequestProps
     ) {
         return this.immuGrpcApi.setZSetEntryGetVerification({
             ...props,
-            credentials:    await this.getCallCredentials()
+            credentials: await this.getCallCredentials()
         })
     }
 }
@@ -1018,38 +1018,38 @@ export class Client {
 /**
  * Session configuration.
  */
- export type Config = {
+export type Config = {
     /**
      * Immudb server host address.
      */
-    host:           string,
+    host: string,
     /**
      * Immudb server port number.
      */
-    port?:           number,
+    port?: number,
     /**
      * Immudb server instance user name.
      */
-    user:       string,
+    user: string,
     /**
      * Immudb server instance user password.
      */
-    password:       string,
+    password: string,
     /**
      * Immudb server instance database name.
      */
-    database:   string,
+    database: string,
 }
 
 /**
  * Config for local develpoment.
  */
 export const devConfig: Config = {
-    host:       '127.0.0.1',
-    port:       3322,
-    user:       'immudb',
-    password:   'immudb',
-    database:   'defaultdb',
+    host: '127.0.0.1',
+    port: 3322,
+    user: 'immudb',
+    password: 'immudb',
+    database: 'defaultdb',
 }
 
 
@@ -1073,7 +1073,7 @@ export const devConfig: Config = {
  * // '127.0.0.1:3322'
  * ```
  */
- function buildAddress(conf: Config) {
+function buildAddress(conf: Config) {
     const host = conf.host
     const port = conf.port != undefined ? ':' + conf.port : ''
     return host + port

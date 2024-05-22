@@ -7,41 +7,40 @@
  */
 import Long from 'long'
 import {
-    Client, 
-    verifyVerification, 
-    types, 
-    stream, 
+    Client,
+    verifyVerification,
+    types,
+    stream,
 } from '@codenotary/immudb-node'
 
+sqlShowcase()
+    .catch(console.error)
 
-
-
-
-sqlSchowcase()
-.catch(console.error)
-
-async function sqlSchowcase() {
+async function sqlShowcase() {
 
     const client = new Client({
-        host:       '127.0.0.1',
-        port:       3322,
-        user:       'immudb',
-        password:   'immudb',
-        database:   'defaultdb',
+        host: '127.0.0.1',
+        port: 3322,
+        user: 'immudb',
+        password: 'immudb',
+        database: 'defaultdb',
     })
 
     // since tx used for verification reference 
     // cannot be first db transaction lets insert some dummy value:
-    const {valEntries: [dummyValEntry]} = await client.setValEntries({kvms: [
-        {key: Buffer.of(0), val: Buffer.of(0)}
-    ]})
+    const { valEntries: [dummyValEntry] } = await client.setValEntries({
+        kvms: [
+            { key: Buffer.of(0), val: Buffer.of(0) }
+        ]
+    })
 
     // state will be dummyValEntry if database was empty
     const stateId2 = await client.getDbCurrentState()
     console.log('stateId2:', stateId2)
 
 
-    const {subTxes: [{tx: createTestTableTx}]} = await client.sqlExec({sql: `
+    const { subTxes: [{ tx: createTestTableTx }] } = await client.sqlExec({
+        sql: `
         create table if not exists testtable (
             id1         integer not null,
             id2         varchar[3] null,
@@ -52,14 +51,15 @@ async function sqlSchowcase() {
         );
     `})
     console.log('createTestTableTx:', createTestTableTx)
-    
 
-    const {subTxes: [{
-        tx: insertTestTableTx, 
+
+    const { subTxes: [{
+        tx: insertTestTableTx,
         lastPK: insertTestTableLastPK,
         firstPK: insertTestTableFirstPK,
         updatedRowsCount: insertTestTableUpdatedRowsCount
-    }]} = await client.sqlExec({sql: `
+    }] } = await client.sqlExec({
+        sql: `
         upsert into testtable
             (id1, id2, created, data, isactive)
         values
@@ -72,34 +72,40 @@ async function sqlSchowcase() {
     console.log('insertTestTableFirstPK:', insertTestTableFirstPK)
     console.log('insertTestTableUpdatedRowsCount:', insertTestTableUpdatedRowsCount)
 
+    const res = await client.sqlQuery({ sql: 'SELECT * FROM testtable' })
+    for await (let row of res) {
+        console.log(row);
+    }
+
     // state at last sql insert (assuming empty db)
     const stateId4 = await client.getDbCurrentState()
     console.log('stateId4:', stateId4)
-    
 
-    const {valEntries: [dummyValEntry1]} = await client.setValEntries({kvms: [
-        {key: Buffer.of(0), val: Buffer.of(1)}
-    ]})
+
+    const { valEntries: [dummyValEntry1] } = await client.setValEntries({
+        kvms: [
+            { key: Buffer.of(0), val: Buffer.of(1) }
+        ]
+    })
 
     // state 1 transactions after last sql insert (assuming empty db)
     const stateId5 = await client.getDbCurrentState()
     console.log('stateId5:', stateId5)
 
 
-    const {valEntries: [dummyValEntry2]} = await client.setValEntries({kvms: [
-        {key: Buffer.of(0), val: Buffer.of(2)}
-    ]})
+    const { valEntries: [dummyValEntry2] } = await client.setValEntries({
+        kvms: [
+            { key: Buffer.of(0), val: Buffer.of(2) }
+        ]
+    })
 
     // state 2 transactions after last sql insert (assuming empty db)
     const stateId6 = await client.getDbCurrentState()
     console.log('stateId6:', stateId6)
 
-
-
-
-    if(createTestTableTx) {
+    if (createTestTableTx) {
         const createTestTableTxVer = await client.getTxAndVerification({
-            txId:    createTestTableTx.id,
+            txId: createTestTableTx.id,
             refHash: stateId5.txHash,
             refTxId: stateId5.txId,
         })
@@ -107,11 +113,9 @@ async function sqlSchowcase() {
         console.log('createTestTableTxVer has been verified.')
     }
 
-
-
-    if(insertTestTableTx) {
+    if (insertTestTableTx) {
         const insertTestTableTxVer = await client.getTxAndVerification({
-            txId:    insertTestTableTx.id,
+            txId: insertTestTableTx.id,
             refHash: stateId5.txHash,
             refTxId: stateId5.txId,
         })
@@ -130,10 +134,7 @@ async function sqlSchowcase() {
         // })
     }
 
-
-
     console.log('dbScan:', await client.scanDbEntries())
-
 
     await client.close()
 }

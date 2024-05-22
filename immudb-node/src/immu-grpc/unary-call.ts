@@ -45,13 +45,13 @@ export function createCommit(client: igrpc.ImmuServiceClient) {
     return promis.promisifyGrpcCall<igrpc.Empty, igrpc.CommittedSQLTx__Output>(
         client.commit.bind(client)
     )
-} 
+}
 
 export function createRollback(client: igrpc.ImmuServiceClient) {
     return promis.promisifyGrpcCall<igrpc.Empty, igrpc.Empty__Output>(
         client.rollback.bind(client)
     )
-} 
+}
 
 
 
@@ -59,13 +59,7 @@ export function createTxSqlExec(client: igrpc.ImmuServiceClient) {
     return promis.promisifyGrpcCall<igrpc.SQLExecRequest, igrpc.Empty__Output>(
         client.txSqlExec.bind(client)
     )
-} 
-
-export function createTxSqlQuery(client: igrpc.ImmuServiceClient) {
-    return promis.promisifyGrpcCall<igrpc.SQLQueryRequest, igrpc.SQLQueryResult__Output>(
-        client.txSqlQuery.bind(client)
-    )
-} 
+}
 
 // **************************
 // SQL
@@ -75,13 +69,7 @@ export function createSqlExec(client: igrpc.ImmuServiceClient) {
     return promis.promisifyGrpcCall<igrpc.SQLExecRequest, igrpc.SQLExecResult__Output>(
         client.sqlExec.bind(client)
     )
-} 
-
-export function createSqlQuery(client: igrpc.ImmuServiceClient) {
-    return promis.promisifyGrpcCall<igrpc.SQLQueryRequest, igrpc.SQLQueryResult__Output>(
-        client.sqlQuery.bind(client)
-    )
-} 
+}
 
 
 // **************************
@@ -92,24 +80,24 @@ export function createListTables(client: igrpc.ImmuServiceClient) {
     return promis.promisifyGrpcCall<igrpc.Empty, igrpc.SQLQueryResult__Output>(
         client.listTables.bind(client)
     )
-} 
+}
 
 export function createDescribeTable(client: igrpc.ImmuServiceClient) {
     return promis.promisifyGrpcCall<igrpc.Table, igrpc.SQLQueryResult__Output>(
         client.describeTable.bind(client)
     )
-} 
+}
 
 // **************************
 // SQL and proof
 // **************************
 
 export function createVerifiableSqlGet(client: igrpc.ImmuServiceClient) {
-    
+
     return promis.promisifyGrpcCall<igrpc.VerifiableSQLGetRequest, igrpc.VerifiableSQLEntry__Output>(
         client.verifiableSqlGet.bind(client)
     )
-} 
+}
 
 
 

@@ -9,7 +9,7 @@ import * as igs from '../immu-grpc-sql/index.js'
 
 
 export type SqlQueryProps = {
-    
+
     /**
      * Sql statements to execute. (May be multiple, all will be executed inside
      * automatic transaction.)
@@ -37,44 +37,30 @@ export type SqlQueryProps = {
 }
 
 
-
-
-
 export function createSqlQuery(client: igrpc.ImmuServiceClient) {
-    const sqlQueryGrpc = immuGrpc.unaryCall.createSqlQuery(client)
+    const sqlQueryGrpc = immuGrpc.readerCall.createSqlQuery(client)
 
-    
     return function sqlQuery(props: SqlQueryProps & {
         credentials: grpcjs.CallCredentials,
     }) {
-
-        return sqlQueryGrpc({
+        const gen = sqlQueryGrpc({
             request: {
-                sql:    props.sql,
+                sql: props.sql,
                 params: props.params?.map(igs.sqlNamedValueToGrpcSqlNamedParam),
-                reuseSnapshot: props.reuseSnapshot
+                reuseSnapshot: props.reuseSnapshot,
+                acceptStream: true
             },
-            options: {
-                credentials: props.credentials,
-            },
+            credentials: props.credentials,
         })
-        .then(maybeResponse => maybeResponse 
-            ? maybeResponse 
-            : Promise.reject('SQLQueryResult__Output must be defined')
-        )
-        .then(grpcSqlRows => {
-            return igs.grpcQueryResultToListoOfSqlNamedValues(grpcSqlRows)
-        })
+        return igs.generateRows(gen)
     }
 }
-
-
 
 
 export function createSqlQueryTables(client: igrpc.ImmuServiceClient) {
     const sqlQueryTablesGrpc = immuGrpc.unaryCall.createListTables(client)
 
-    
+
     return function sqlQueryTables(props: {
         credentials: grpcjs.CallCredentials,
     }) {
@@ -86,13 +72,13 @@ export function createSqlQueryTables(client: igrpc.ImmuServiceClient) {
                 credentials: props.credentials,
             },
         })
-        .then(maybeResponse => maybeResponse 
-            ? maybeResponse 
-            : Promise.reject('SQLQueryResult__Output must be defined')
-        )
-        .then(grpcSqlRows => {
-            return igs.grpcQueryResultToListoOfSqlNamedValues(grpcSqlRows)
-        })
+            .then(maybeResponse => maybeResponse
+                ? maybeResponse
+                : Promise.reject('SQLQueryResult__Output must be defined')
+            )
+            .then(grpcSqlRows => {
+                return igs.grpcQueryResultToListoOfSqlNamedValues(grpcSqlRows)
+            })
     }
 }
 
@@ -111,7 +97,7 @@ export type SqlQueryTableProps = {
 export function createSqlQueryTable(client: igrpc.ImmuServiceClient) {
     const sqlQueryTableGrpc = immuGrpc.unaryCall.createDescribeTable(client)
 
-    
+
     return function sqlQueryTable(props: SqlQueryTableProps & {
         credentials: grpcjs.CallCredentials,
     }) {
@@ -124,12 +110,12 @@ export function createSqlQueryTable(client: igrpc.ImmuServiceClient) {
                 credentials: props.credentials,
             },
         })
-        .then(maybeResponse => maybeResponse 
-            ? maybeResponse 
-            : Promise.reject('SQLQueryResult__Output must be defined')
-        )
-        .then(grpcSqlRows => {
-            return igs.grpcQueryResultToListoOfSqlNamedValues(grpcSqlRows)
-        })
+            .then(maybeResponse => maybeResponse
+                ? maybeResponse
+                : Promise.reject('SQLQueryResult__Output must be defined')
+            )
+            .then(grpcSqlRows => {
+                return igs.grpcQueryResultToListoOfSqlNamedValues(grpcSqlRows)
+            })
     }
 }

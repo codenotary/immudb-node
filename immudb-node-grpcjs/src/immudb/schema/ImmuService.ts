@@ -402,14 +402,10 @@ export interface ImmuServiceClient extends grpc.Client {
   sqlExec(argument: _immudb_schema_SQLExecRequest, options: grpc.CallOptions, callback: grpc.requestCallback<_immudb_schema_SQLExecResult__Output>): grpc.ClientUnaryCall;
   sqlExec(argument: _immudb_schema_SQLExecRequest, callback: grpc.requestCallback<_immudb_schema_SQLExecResult__Output>): grpc.ClientUnaryCall;
   
-  SQLQuery(argument: _immudb_schema_SQLQueryRequest, metadata: grpc.Metadata, options: grpc.CallOptions, callback: grpc.requestCallback<_immudb_schema_SQLQueryResult__Output>): grpc.ClientUnaryCall;
-  SQLQuery(argument: _immudb_schema_SQLQueryRequest, metadata: grpc.Metadata, callback: grpc.requestCallback<_immudb_schema_SQLQueryResult__Output>): grpc.ClientUnaryCall;
-  SQLQuery(argument: _immudb_schema_SQLQueryRequest, options: grpc.CallOptions, callback: grpc.requestCallback<_immudb_schema_SQLQueryResult__Output>): grpc.ClientUnaryCall;
-  SQLQuery(argument: _immudb_schema_SQLQueryRequest, callback: grpc.requestCallback<_immudb_schema_SQLQueryResult__Output>): grpc.ClientUnaryCall;
-  sqlQuery(argument: _immudb_schema_SQLQueryRequest, metadata: grpc.Metadata, options: grpc.CallOptions, callback: grpc.requestCallback<_immudb_schema_SQLQueryResult__Output>): grpc.ClientUnaryCall;
-  sqlQuery(argument: _immudb_schema_SQLQueryRequest, metadata: grpc.Metadata, callback: grpc.requestCallback<_immudb_schema_SQLQueryResult__Output>): grpc.ClientUnaryCall;
-  sqlQuery(argument: _immudb_schema_SQLQueryRequest, options: grpc.CallOptions, callback: grpc.requestCallback<_immudb_schema_SQLQueryResult__Output>): grpc.ClientUnaryCall;
-  sqlQuery(argument: _immudb_schema_SQLQueryRequest, callback: grpc.requestCallback<_immudb_schema_SQLQueryResult__Output>): grpc.ClientUnaryCall;
+  SQLQuery(argument: _immudb_schema_SQLQueryRequest, metadata: grpc.Metadata, options?: grpc.CallOptions): grpc.ClientReadableStream<_immudb_schema_SQLQueryResult__Output>;
+  SQLQuery(argument: _immudb_schema_SQLQueryRequest, options?: grpc.CallOptions): grpc.ClientReadableStream<_immudb_schema_SQLQueryResult__Output>;
+  sqlQuery(argument: _immudb_schema_SQLQueryRequest, metadata: grpc.Metadata, options?: grpc.CallOptions): grpc.ClientReadableStream<_immudb_schema_SQLQueryResult__Output>;
+  sqlQuery(argument: _immudb_schema_SQLQueryRequest, options?: grpc.CallOptions): grpc.ClientReadableStream<_immudb_schema_SQLQueryResult__Output>;
   
   Scan(argument: _immudb_schema_ScanRequest, metadata: grpc.Metadata, options: grpc.CallOptions, callback: grpc.requestCallback<_immudb_schema_Entries__Output>): grpc.ClientUnaryCall;
   Scan(argument: _immudb_schema_ScanRequest, metadata: grpc.Metadata, callback: grpc.requestCallback<_immudb_schema_Entries__Output>): grpc.ClientUnaryCall;
@@ -465,14 +461,10 @@ export interface ImmuServiceClient extends grpc.Client {
   txSqlExec(argument: _immudb_schema_SQLExecRequest, options: grpc.CallOptions, callback: grpc.requestCallback<_google_protobuf_Empty__Output>): grpc.ClientUnaryCall;
   txSqlExec(argument: _immudb_schema_SQLExecRequest, callback: grpc.requestCallback<_google_protobuf_Empty__Output>): grpc.ClientUnaryCall;
   
-  TxSQLQuery(argument: _immudb_schema_SQLQueryRequest, metadata: grpc.Metadata, options: grpc.CallOptions, callback: grpc.requestCallback<_immudb_schema_SQLQueryResult__Output>): grpc.ClientUnaryCall;
-  TxSQLQuery(argument: _immudb_schema_SQLQueryRequest, metadata: grpc.Metadata, callback: grpc.requestCallback<_immudb_schema_SQLQueryResult__Output>): grpc.ClientUnaryCall;
-  TxSQLQuery(argument: _immudb_schema_SQLQueryRequest, options: grpc.CallOptions, callback: grpc.requestCallback<_immudb_schema_SQLQueryResult__Output>): grpc.ClientUnaryCall;
-  TxSQLQuery(argument: _immudb_schema_SQLQueryRequest, callback: grpc.requestCallback<_immudb_schema_SQLQueryResult__Output>): grpc.ClientUnaryCall;
-  txSqlQuery(argument: _immudb_schema_SQLQueryRequest, metadata: grpc.Metadata, options: grpc.CallOptions, callback: grpc.requestCallback<_immudb_schema_SQLQueryResult__Output>): grpc.ClientUnaryCall;
-  txSqlQuery(argument: _immudb_schema_SQLQueryRequest, metadata: grpc.Metadata, callback: grpc.requestCallback<_immudb_schema_SQLQueryResult__Output>): grpc.ClientUnaryCall;
-  txSqlQuery(argument: _immudb_schema_SQLQueryRequest, options: grpc.CallOptions, callback: grpc.requestCallback<_immudb_schema_SQLQueryResult__Output>): grpc.ClientUnaryCall;
-  txSqlQuery(argument: _immudb_schema_SQLQueryRequest, callback: grpc.requestCallback<_immudb_schema_SQLQueryResult__Output>): grpc.ClientUnaryCall;
+  TxSQLQuery(argument: _immudb_schema_SQLQueryRequest, metadata: grpc.Metadata, options?: grpc.CallOptions): grpc.ClientReadableStream<_immudb_schema_SQLQueryResult__Output>;
+  TxSQLQuery(argument: _immudb_schema_SQLQueryRequest, options?: grpc.CallOptions): grpc.ClientReadableStream<_immudb_schema_SQLQueryResult__Output>;
+  txSqlQuery(argument: _immudb_schema_SQLQueryRequest, metadata: grpc.Metadata, options?: grpc.CallOptions): grpc.ClientReadableStream<_immudb_schema_SQLQueryResult__Output>;
+  txSqlQuery(argument: _immudb_schema_SQLQueryRequest, options?: grpc.CallOptions): grpc.ClientReadableStream<_immudb_schema_SQLQueryResult__Output>;
   
   TxScan(argument: _immudb_schema_TxScanRequest, metadata: grpc.Metadata, options: grpc.CallOptions, callback: grpc.requestCallback<_immudb_schema_TxList__Output>): grpc.ClientUnaryCall;
   TxScan(argument: _immudb_schema_TxScanRequest, metadata: grpc.Metadata, callback: grpc.requestCallback<_immudb_schema_TxList__Output>): grpc.ClientUnaryCall;
@@ -750,7 +742,7 @@ export interface ImmuServiceHandlers extends grpc.UntypedServiceImplementation {
   
   SQLExec: grpc.handleUnaryCall<_immudb_schema_SQLExecRequest__Output, _immudb_schema_SQLExecResult>;
   
-  SQLQuery: grpc.handleUnaryCall<_immudb_schema_SQLQueryRequest__Output, _immudb_schema_SQLQueryResult>;
+  SQLQuery: grpc.handleServerStreamingCall<_immudb_schema_SQLQueryRequest__Output, _immudb_schema_SQLQueryResult>;
   
   Scan: grpc.handleUnaryCall<_immudb_schema_ScanRequest__Output, _immudb_schema_Entries>;
   
@@ -764,7 +756,7 @@ export interface ImmuServiceHandlers extends grpc.UntypedServiceImplementation {
   
   TxSQLExec: grpc.handleUnaryCall<_immudb_schema_SQLExecRequest__Output, _google_protobuf_Empty>;
   
-  TxSQLQuery: grpc.handleUnaryCall<_immudb_schema_SQLQueryRequest__Output, _immudb_schema_SQLQueryResult>;
+  TxSQLQuery: grpc.handleServerStreamingCall<_immudb_schema_SQLQueryRequest__Output, _immudb_schema_SQLQueryResult>;
   
   TxScan: grpc.handleUnaryCall<_immudb_schema_TxScanRequest__Output, _immudb_schema_TxList>;
   

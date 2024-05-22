@@ -37,17 +37,17 @@ export function createSqlTxNew(client: igrpc.ImmuServiceClient) {
                 credentials: props.credentials,
             },
         })
-        .then(maybeResponse => maybeResponse 
-            ? maybeResponse 
-            : Promise.reject('NewTxResponse__Output    must be defined')
-        )
-        .then(grpcNewTxResponse => {
+            .then(maybeResponse => maybeResponse
+                ? maybeResponse
+                : Promise.reject('NewTxResponse__Output    must be defined')
+            )
+            .then(grpcNewTxResponse => {
 
-            const token: immu.TransactionTokens = {
-                transactionid: grpcNewTxResponse.transactionID
-            }
-            return token
-        })
+                const token: immu.TransactionTokens = {
+                    transactionid: grpcNewTxResponse.transactionID
+                }
+                return token
+            })
     }
 }
 
@@ -70,30 +70,30 @@ export function createSqlTxCommit(client: igrpc.ImmuServiceClient) {
                 credentials: props.credentials,
             },
         })
-        .then(maybeResponse => maybeResponse 
-            ? maybeResponse 
-            : Promise.reject('CommittedSQLTx__Output must be defined')
-        )
-        .then(grpcSqlCommitedTxResult => {
-            
-            // execution may not cause effects!!!
-            const tx = grpcSqlCommitedTxResult.header == undefined
-                ? undefined
-                : igt.grpcTxHeaderToTxCore(grpcSqlCommitedTxResult.header)
-            const updatedRowsCount = grpcSqlCommitedTxResult.updatedRows
-            const firstPK = igs.grpcSqlObjectNamedValueToNamedValues(
-                grpcSqlCommitedTxResult.firstInsertedPKs
+            .then(maybeResponse => maybeResponse
+                ? maybeResponse
+                : Promise.reject('CommittedSQLTx__Output must be defined')
             )
-            const lastPK = igs.grpcSqlObjectNamedValueToNamedValues(
-                grpcSqlCommitedTxResult.lastInsertedPKs
-            )
-            return {
-                tx,
-                firstPK,
-                lastPK,
-                updatedRowsCount,
-            }
-        })
+            .then(grpcSqlCommitedTxResult => {
+
+                // execution may not cause effects!!!
+                const tx = grpcSqlCommitedTxResult.header == undefined
+                    ? undefined
+                    : igt.grpcTxHeaderToTxCore(grpcSqlCommitedTxResult.header)
+                const updatedRowsCount = grpcSqlCommitedTxResult.updatedRows
+                const firstPK = igs.grpcSqlObjectNamedValueToNamedValues(
+                    grpcSqlCommitedTxResult.firstInsertedPKs
+                )
+                const lastPK = igs.grpcSqlObjectNamedValueToNamedValues(
+                    grpcSqlCommitedTxResult.lastInsertedPKs
+                )
+                return {
+                    tx,
+                    firstPK,
+                    lastPK,
+                    updatedRowsCount,
+                }
+            })
     }
 }
 
@@ -117,11 +117,11 @@ export function createSqlTxRollback(client: igrpc.ImmuServiceClient) {
                 credentials: props.credentials,
             },
         })
-        .then(maybeResponse => maybeResponse 
-            ? maybeResponse 
-            : Promise.reject('Empty__Output must be defined')
-        )
-        .then(res => {})
+            .then(maybeResponse => maybeResponse
+                ? maybeResponse
+                : Promise.reject('Empty__Output must be defined')
+            )
+            .then(res => { })
     }
 }
 
@@ -166,20 +166,20 @@ export type SqlTxExecProps = {
      * ```
      */
     params?: immu.SqlNamedValue[],
-    
+
 }
 
 export function createSqlTxExec(client: igrpc.ImmuServiceClient) {
     const sqlTxExecGrpc = immuGrpc.unaryCall.createTxSqlExec(client)
 
-    
+
     return function sqlTxExec(props: SqlTxExecProps & {
         credentials: grpcjs.CallCredentials,
     }) {
 
         return sqlTxExecGrpc({
             request: {
-                sql:    props.sql,
+                sql: props.sql,
                 params: props.params?.map(igs.sqlNamedValueToGrpcSqlNamedParam),
                 noWait: props.options?.dontWaitForIndexer,
             },
@@ -187,18 +187,18 @@ export function createSqlTxExec(client: igrpc.ImmuServiceClient) {
                 credentials: props.credentials,
             },
         })
-        .then(maybeResponse => maybeResponse 
-            ? maybeResponse 
-            : Promise.reject('Empty__Output must be defined')
-        )
-        .then(res => {})
+            .then(maybeResponse => maybeResponse
+                ? maybeResponse
+                : Promise.reject('Empty__Output must be defined')
+            )
+            .then(res => { })
     }
 }
 
 
 
 export type SqlTxQueryProps = {
-    
+
     /**
      * Sql statements to execute. (May be multiple, all will be executed inside
      * automatic transaction.)
@@ -230,30 +230,21 @@ export type SqlTxQueryProps = {
 
 
 export function createSqlTxQuery(client: igrpc.ImmuServiceClient) {
-    const sqlTxQueryGrpc = immuGrpc.unaryCall.createTxSqlQuery(client)
+    const sqlTxQueryGrpc = immuGrpc.readerCall.createTxSqlQuery(client)
 
-    
+
     return function sqlTxQuery(props: SqlTxQueryProps & {
         credentials: grpcjs.CallCredentials,
     }) {
 
-        return sqlTxQueryGrpc({
+        const res = sqlTxQueryGrpc({
             request: {
-                sql:    props.sql,
+                sql: props.sql,
                 params: props.params?.map(igs.sqlNamedValueToGrpcSqlNamedParam),
                 reuseSnapshot: props.reuseSnapshot
             },
-            options: {
-                credentials: props.credentials,
-            },
+            credentials: props.credentials,
         })
-        .then(maybeResponse => maybeResponse 
-            ? maybeResponse 
-            : Promise.reject('SQLQueryResult__Output must be defined')
-        )
-        .then(grpcSqlRows => {
-            return igs.grpcQueryResultToListoOfSqlNamedValues(grpcSqlRows)
-        })
-        
+        return igs.generateRows(res)
     }
 }

@@ -52,3 +52,23 @@ export function createExportTx(client: igrpc.ImmuServiceClient) {
         client.exportTx.bind(client)
     )
 }
+
+// **************************
+// SQL transactional
+// **************************
+
+export function createTxSqlQuery(client: igrpc.ImmuServiceClient) {
+    return promis.promisifyGrpcReaderAsync<igrpc.SQLQueryRequest, igrpc.SQLQueryResult__Output>(
+        client.txSqlQuery.bind(client)
+    )
+}
+
+// **************************
+// SQL
+// ***
+
+export function createSqlQuery(client: igrpc.ImmuServiceClient) {
+    return promis.promisifyGrpcReaderAsync<igrpc.SQLQueryRequest, igrpc.SQLQueryResult__Output>(
+        client.sqlQuery.bind(client)
+    )
+}

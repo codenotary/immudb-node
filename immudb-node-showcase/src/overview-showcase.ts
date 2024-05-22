@@ -1,28 +1,24 @@
 import Long from 'long'
 import {
-    Client, 
-    verifyVerification, 
-    types, 
-    stream, 
+    Client,
+    verifyVerification,
+    types,
+    stream,
 } from '@codenotary/immudb-node'
 
-
-
-
-
 overviewSchowcase()
-.catch(console.error)
+    .catch(console.error)
 
 
 async function overviewSchowcase() {
 
-    
+
     const client = new Client({
-        host:       '127.0.0.1',
-        port:       3322,
-        user:       'immudb',
-        password:   'immudb',
-        database:   'defaultdb',
+        host: '127.0.0.1',
+        port: 3322,
+        user: 'immudb',
+        password: 'immudb',
+        database: 'defaultdb',
     })
 
 
@@ -35,8 +31,8 @@ async function overviewSchowcase() {
 
     const valEntries2 = await client.setValEntries({
         kvms: [
-            {key: Buffer.of(0), val: Buffer.of(0)},
-            {key: Buffer.of(1), val: Buffer.of(1)},
+            { key: Buffer.of(0), val: Buffer.of(0) },
+            { key: Buffer.of(1), val: Buffer.of(1) },
         ]
     })
     console.log('valEntries2:')
@@ -45,7 +41,7 @@ async function overviewSchowcase() {
 
     const valEntry3 = await client.setValEntries({
         kvms: [
-            {key: Buffer.of(2), val: Buffer.of(2)},
+            { key: Buffer.of(2), val: Buffer.of(2) },
         ]
     })
     console.log('valEntry3:')
@@ -53,19 +49,19 @@ async function overviewSchowcase() {
 
 
     const refEntry4 = await client.setRefEntry({
-        key:        Buffer.of(3),
+        key: Buffer.of(3),
         referToKey: valEntries2.valEntries[0].key,
-        keyTxId:    valEntries2.valEntries[0].id,
-        boundRef:   true,
+        keyTxId: valEntries2.valEntries[0].id,
+        boundRef: true,
     })
     console.log('refEntry4:')
     console.log(refEntry4)
 
 
     const zSetEntry5 = await client.setZSetEntry({
-        zSet:        Buffer.of(4),
-        referredKey:        valEntry3.valEntries[0].key,
-        referredKeyScore:   3,
+        zSet: Buffer.of(4),
+        referredKey: valEntry3.valEntries[0].key,
+        referredKeyScore: 3,
     })
     console.log('zSetEntry5:')
     console.log(zSetEntry5)
@@ -73,19 +69,19 @@ async function overviewSchowcase() {
     const entries6 = await client.setValRefZSetEntries({
         ops: [
             {
-                type:   'val',
-                key:    Buffer.of(2),
-                val:    Buffer.of(6),
+                type: 'val',
+                key: Buffer.of(2),
+                val: Buffer.of(6),
             },
             {
-                type:       'ref',
-                key:        Buffer.of(3),
+                type: 'ref',
+                key: Buffer.of(3),
                 referToKey: valEntry3.valEntries[0].key
             },
             {
-                type:   'zSet',
+                type: 'zSet',
                 referredKey: valEntries2.valEntries[1].key,
-                zSet:    zSetEntry5.zSetTxEntry.zSet,
+                zSet: zSetEntry5.zSetTxEntry.zSet,
                 referredKeyScore: 9,
             }
         ]
@@ -126,7 +122,8 @@ async function overviewSchowcase() {
     console.log(stream.toKVEntries(Buffer.concat(buffs)))
 
 
-    const sqlExecCreateTable7 = await client.sqlExec({sql: `
+    const sqlExecCreateTable7 = await client.sqlExec({
+        sql: `
         create table if not exists testtable (
             id1         integer not null,
             id2         varchar[3] null,
@@ -140,7 +137,8 @@ async function overviewSchowcase() {
     console.log(sqlExecCreateTable7)
 
 
-    const sqlExecUpsert8 = await client.sqlExec({sql: `
+    const sqlExecUpsert8 = await client.sqlExec({
+        sql: `
         upsert into testtable
             (id1, id2, created, data, isactive)
         values
@@ -153,15 +151,18 @@ async function overviewSchowcase() {
 
 
     const sqlTxAt8 = await client.executeSqlTx('ReadWrite', async (txApi) => {
-        const sqlQueryInTxAt8 = await txApi.query({sql: `
+        const sqlQueryInTxAt8 = await txApi.query({
+            sql: `
             select * from testtable;
         `})
         console.log('sqlQueryInTxAt8')
-        console.log(sqlQueryInTxAt8)
-
+        for await (const row of sqlQueryInTxAt8) {
+            console.log(row)
+        }
 
         // sqlExecUpsert9
-        const sqlExecUpsertInTx9 = txApi.exec({sql:`
+        const sqlExecUpsertInTx9 = txApi.exec({
+            sql: `
             upsert into testtable
                 (id1, id2, created, data, isactive)
             values
@@ -170,11 +171,14 @@ async function overviewSchowcase() {
         `})
 
 
-        const sqlQueryInTxAt9 = await txApi.query({sql: `
+        const sqlQueryInTxAt9 = await txApi.query({
+            sql: `
             select * from testtable;
         `})
         console.log('sqlQueryInTxAt9')
-        console.log(sqlQueryInTxAt9)
+        for await (const row of sqlQueryInTxAt9) {
+            console.log(row)
+        }
 
 
         throw 'I would like to cancel'
@@ -184,18 +188,19 @@ async function overviewSchowcase() {
     console.log(sqlTxAt8)
 
 
-    const sqlQueryAt8 = await client.sqlQuery({sql: `
+    const sqlQueryAt8 = await client.sqlQuery({
+        sql: `
         select * from testtable;
     `})
     console.log('sqlQueryInTxAt8')
     console.log(sqlQueryAt8)
-    const k = sqlQueryAt8[0]
-    const d = k[0]
-    
-    
+
+    const row = await sqlQueryAt8.next()
+    console.log(row)
+
 
     const dbScanAt8 = await client.scanDbEntries({
-        scanStartAtTxId:        Long.fromValue(1, true),
+        scanStartAtTxId: Long.fromValue(1, true),
     })
     console.log('dbScanAt8')
     console.log(dbScanAt8)
@@ -208,12 +213,12 @@ async function overviewSchowcase() {
 
 
     const setAndProof9 = await client.setValEntriesGetVerification({
-        kvms: [{key: Buffer.from('yo'), val: Buffer.from('man')}],
+        kvms: [{ key: Buffer.from('yo'), val: Buffer.from('man') }],
         refTxId: stateAt8.txId,
         refHash: stateAt8.txHash,
     })
     console.log('setAndProof9')
-    console.dir(setAndProof9, {depth: 10})
+    console.dir(setAndProof9, { depth: 10 })
 
     console.log('verifyVerification(setAndProof9) result:')
     console.log(verifyVerification(setAndProof9.verification))
@@ -232,7 +237,7 @@ async function overviewSchowcase() {
         refTxId: stateAt9.txId,
     })
     console.log('getTx2AndVerification')
-    console.log(getTx2AndVerification, {depth: 10})
+    console.log(getTx2AndVerification, { depth: 10 })
     console.log('verifyVerification(getTx2AndVerification) result:')
     console.log(verifyVerification(getTx2AndVerification.verification))
 
@@ -241,12 +246,12 @@ async function overviewSchowcase() {
 
     // entries6
     const getTx6AndVerification = await client.getTxAndVerification({
-        txId:    entries6.tx.id,
+        txId: entries6.tx.id,
         refHash: stateAt9.txHash,
         refTxId: stateAt9.txId,
     })
     console.log('getTx6AndVerification')
-    console.log(getTx6AndVerification, {depth: 10})
+    console.log(getTx6AndVerification, { depth: 10 })
     console.log('verifyVerification(getTx6AndVerification) result:')
     console.log(verifyVerification(getTx6AndVerification.verification))
 
@@ -254,27 +259,27 @@ async function overviewSchowcase() {
 
     // sqlExecCreateTable7.subTxes[0].tx?.id
     const getTx7AndVerification = await client.getTxAndVerification({
-        txId:    Long.fromInt(7, true),
+        txId: Long.fromInt(7, true),
         refHash: stateAt9.txHash,
         refTxId: stateAt9.txId,
     })
     console.log('getTx7AndVerification')
-    console.log(getTx7AndVerification, {depth: 10})
+    console.log(getTx7AndVerification, { depth: 10 })
     console.log('verifyVerification(getTx7AndVerification) result:')
     console.log(verifyVerification(getTx7AndVerification.verification))
 
 
     // sqlExecUpsert8
     const getTx8AndVerification = await client.getTxAndVerification({
-        txId:    Long.fromInt(8, true),
+        txId: Long.fromInt(8, true),
         refHash: stateAt9.txHash,
         refTxId: stateAt9.txId,
     })
     console.log('getTx8AndVerification')
-    console.log(getTx8AndVerification, {depth: 10})
+    console.log(getTx8AndVerification, { depth: 10 })
     console.log('verifyVerification(getTx8AndVerification) result:')
     console.log(verifyVerification(getTx8AndVerification.verification))
-    
+
 
 
 
