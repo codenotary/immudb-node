@@ -2,6 +2,7 @@ node_modules/
 package-lock.json
 root.json
 tests/immudb
+tests/test-data
 .nyc_output
 .vscode/
 tests/root.json

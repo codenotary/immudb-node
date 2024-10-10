@@ -1,4 +1,4 @@
-import { Metadata } from 'grpc';
+import { Metadata } from '@grpc/grpc-js';
 import fs from 'fs'
 
 import * as schemaTypes from './proto/schema_pb';
